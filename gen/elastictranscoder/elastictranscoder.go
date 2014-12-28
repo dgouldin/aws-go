@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 import (
@@ -55,6 +56,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Ela
 // from starting to process a job while you're getting the job identifier,
 // use UpdatePipelineStatus to temporarily pause the pipeline.
 func (c *ElasticTranscoder) CancelJob(req *CancelJobRequest) (resp *CancelJobResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CancelJobResponse{}
 
 	var body io.Reader
@@ -104,6 +109,10 @@ func (c *ElasticTranscoder) CancelJob(req *CancelJobRequest) (resp *CancelJobRes
 // the Apple iPhone 4s), you currently must use the Elastic Transcoder API
 // to list the jobs (as opposed to the AWS Console).
 func (c *ElasticTranscoder) CreateJob(req *CreateJobRequest) (resp *CreateJobResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateJobResponse{}
 
 	var body io.Reader
@@ -144,6 +153,10 @@ func (c *ElasticTranscoder) CreateJob(req *CreateJobRequest) (resp *CreateJobRes
 // CreatePipeline the CreatePipeline operation creates a pipeline with
 // settings that you specify.
 func (c *ElasticTranscoder) CreatePipeline(req *CreatePipelineRequest) (resp *CreatePipelineResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreatePipelineResponse{}
 
 	var body io.Reader
@@ -197,6 +210,10 @@ func (c *ElasticTranscoder) CreatePipeline(req *CreatePipelineRequest) (resp *Cr
 // Recommendation H.264: Advanced video coding for generic audiovisual
 // services
 func (c *ElasticTranscoder) CreatePreset(req *CreatePresetRequest) (resp *CreatePresetResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreatePresetResponse{}
 
 	var body io.Reader
@@ -239,6 +256,10 @@ func (c *ElasticTranscoder) CreatePreset(req *CreatePresetRequest) (resp *Create
 // in use (doesn't contain any active jobs). If the pipeline is currently
 // in use, DeletePipeline returns an error.
 func (c *ElasticTranscoder) DeletePipeline(req *DeletePipelineRequest) (resp *DeletePipelineResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeletePipelineResponse{}
 
 	var body io.Reader
@@ -285,6 +306,10 @@ func (c *ElasticTranscoder) DeletePipeline(req *DeletePipelineRequest) (resp *De
 // added in an AWS region. You can't delete the default presets that are
 // included with Elastic Transcoder.
 func (c *ElasticTranscoder) DeletePreset(req *DeletePresetRequest) (resp *DeletePresetResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeletePresetResponse{}
 
 	var body io.Reader
@@ -332,6 +357,10 @@ func (c *ElasticTranscoder) DeletePreset(req *DeletePresetRequest) (resp *Delete
 // currently in the specified pipeline. The response body contains one
 // element for each job that satisfies the search criteria.
 func (c *ElasticTranscoder) ListJobsByPipeline(req *ListJobsByPipelineRequest) (resp *ListJobsByPipelineResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListJobsByPipelineResponse{}
 
 	var body io.Reader
@@ -386,6 +415,10 @@ func (c *ElasticTranscoder) ListJobsByPipeline(req *ListJobsByPipelineRequest) (
 // have a specified status. The response body contains one element for each
 // job that satisfies the search criteria.
 func (c *ElasticTranscoder) ListJobsByStatus(req *ListJobsByStatusRequest) (resp *ListJobsByStatusResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListJobsByStatusResponse{}
 
 	var body io.Reader
@@ -439,6 +472,10 @@ func (c *ElasticTranscoder) ListJobsByStatus(req *ListJobsByStatusRequest) (resp
 // ListPipelines the ListPipelines operation gets a list of the pipelines
 // associated with the current AWS account.
 func (c *ElasticTranscoder) ListPipelines(req *ListPipelinesRequest) (resp *ListPipelinesResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListPipelinesResponse{}
 
 	var body io.Reader
@@ -488,6 +525,10 @@ func (c *ElasticTranscoder) ListPipelines(req *ListPipelinesRequest) (resp *List
 // included with Elastic Transcoder and the presets that you've added in an
 // AWS region.
 func (c *ElasticTranscoder) ListPresets(req *ListPresetsRequest) (resp *ListPresetsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListPresetsResponse{}
 
 	var body io.Reader
@@ -535,6 +576,10 @@ func (c *ElasticTranscoder) ListPresets(req *ListPresetsRequest) (resp *ListPres
 
 // ReadJob the ReadJob operation returns detailed information about a job.
 func (c *ElasticTranscoder) ReadJob(req *ReadJobRequest) (resp *ReadJobResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ReadJobResponse{}
 
 	var body io.Reader
@@ -580,6 +625,10 @@ func (c *ElasticTranscoder) ReadJob(req *ReadJobRequest) (resp *ReadJobResponse,
 // ReadPipeline the ReadPipeline operation gets detailed information about
 // a pipeline.
 func (c *ElasticTranscoder) ReadPipeline(req *ReadPipelineRequest) (resp *ReadPipelineResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ReadPipelineResponse{}
 
 	var body io.Reader
@@ -625,6 +674,10 @@ func (c *ElasticTranscoder) ReadPipeline(req *ReadPipelineRequest) (resp *ReadPi
 // ReadPreset the ReadPreset operation gets detailed information about a
 // preset.
 func (c *ElasticTranscoder) ReadPreset(req *ReadPresetRequest) (resp *ReadPresetResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ReadPresetResponse{}
 
 	var body io.Reader
@@ -675,6 +728,10 @@ func (c *ElasticTranscoder) ReadPreset(req *ReadPresetRequest) (resp *ReadPreset
 // input and output buckets, and tries to send a test notification to
 // Amazon SNS topics that you specify.
 func (c *ElasticTranscoder) TestRole(req *TestRoleRequest) (resp *TestRoleResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &TestRoleResponse{}
 
 	var body io.Reader
@@ -718,6 +775,10 @@ func (c *ElasticTranscoder) TestRole(req *TestRoleRequest) (resp *TestRoleRespon
 // Transcoder has not started to process are affected in addition to jobs
 // that you submit after you change settings.
 func (c *ElasticTranscoder) UpdatePipeline(req *UpdatePipelineRequest) (resp *UpdatePipelineResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdatePipelineResponse{}
 
 	var body io.Reader
@@ -766,6 +827,10 @@ func (c *ElasticTranscoder) UpdatePipeline(req *UpdatePipelineRequest) (resp *Up
 // pipeline, Elastic Transcoder returns the values that you specified in
 // the request.
 func (c *ElasticTranscoder) UpdatePipelineNotifications(req *UpdatePipelineNotificationsRequest) (resp *UpdatePipelineNotificationsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdatePipelineNotificationsResponse{}
 
 	var body io.Reader
@@ -816,6 +881,10 @@ func (c *ElasticTranscoder) UpdatePipelineNotifications(req *UpdatePipelineNotif
 // which you submitted the jobs, you have more time to get the job IDs for
 // the jobs that you want to cancel, and to send a CancelJob request.
 func (c *ElasticTranscoder) UpdatePipelineStatus(req *UpdatePipelineStatusRequest) (resp *UpdatePipelineStatusResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdatePipelineStatusResponse{}
 
 	var body io.Reader
@@ -869,9 +938,65 @@ type Artwork struct {
 	SizingPolicy   aws.StringValue `json:"SizingPolicy,omitempty"`
 }
 
+func (v *Artwork) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "AlbumArtFormat", `(^jpg$)|(^png$)`); err != nil {
+		errors["AlbumArtFormat"] = append(errors["AlbumArtFormat"], err)
+	}
+
+	if err := model.ValidateMin(v, "InputKey", 1); err != nil {
+		errors["InputKey"] = append(errors["InputKey"], err)
+	}
+
+	if err := model.ValidateMax(v, "InputKey", 255); err != nil {
+		errors["InputKey"] = append(errors["InputKey"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InputKey", `(^.{1,}.jpg$)|(^.{1,}.jpeg$)|(^.{1,}.png$)`); err != nil {
+		errors["InputKey"] = append(errors["InputKey"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MaxHeight", `(^auto$)|(^\d{2,4}$)`); err != nil {
+		errors["MaxHeight"] = append(errors["MaxHeight"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MaxWidth", `(^auto$)|(^\d{2,4}$)`); err != nil {
+		errors["MaxWidth"] = append(errors["MaxWidth"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PaddingPolicy", `(^Pad$)|(^NoPad$)`); err != nil {
+		errors["PaddingPolicy"] = append(errors["PaddingPolicy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SizingPolicy", `(^Fit$)|(^Fill$)|(^Stretch$)|(^Keep$)|(^ShrinkToFit$)|(^ShrinkToFill$)`); err != nil {
+		errors["SizingPolicy"] = append(errors["SizingPolicy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AudioCodecOptions is undocumented.
 type AudioCodecOptions struct {
 	Profile aws.StringValue `json:"Profile,omitempty"`
+}
+
+func (v *AudioCodecOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Profile", `(^auto$)|(^AAC-LC$)|(^HE-AAC$)|(^HE-AACv2$)`); err != nil {
+		errors["Profile"] = append(errors["Profile"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AudioParameters is undocumented.
@@ -883,13 +1008,67 @@ type AudioParameters struct {
 	SampleRate   aws.StringValue    `json:"SampleRate,omitempty"`
 }
 
+func (v *AudioParameters) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "BitRate", `^\d{1,3}$`); err != nil {
+		errors["BitRate"] = append(errors["BitRate"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Channels", `(^auto$)|(^0$)|(^1$)|(^2$)`); err != nil {
+		errors["Channels"] = append(errors["Channels"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Codec", `(^AAC$)|(^vorbis$)|(^mp3$)`); err != nil {
+		errors["Codec"] = append(errors["Codec"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SampleRate", `(^auto$)|(^22050$)|(^32000$)|(^44100$)|(^48000$)|(^96000$)`); err != nil {
+		errors["SampleRate"] = append(errors["SampleRate"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CancelJobRequest is undocumented.
 type CancelJobRequest struct {
 	ID aws.StringValue `json:"-"`
 }
 
+func (v *CancelJobRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `^\d{13}-\w{6}$`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CancelJobResponse is undocumented.
 type CancelJobResponse struct {
+}
+
+func (v *CancelJobResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CaptionFormat is undocumented.
@@ -897,6 +1076,24 @@ type CaptionFormat struct {
 	Encryption *Encryption     `json:"Encryption,omitempty"`
 	Format     aws.StringValue `json:"Format,omitempty"`
 	Pattern    aws.StringValue `json:"Pattern,omitempty"`
+}
+
+func (v *CaptionFormat) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Format", `(^mov-text$)|(^srt$)|(^scc$)|(^webvtt$)|(^dfxp$)`); err != nil {
+		errors["Format"] = append(errors["Format"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Pattern", `(^$)|(^.*\{language\}.*$)`); err != nil {
+		errors["Pattern"] = append(errors["Pattern"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CaptionSource is undocumented.
@@ -908,6 +1105,44 @@ type CaptionSource struct {
 	TimeOffset aws.StringValue `json:"TimeOffset,omitempty"`
 }
 
+func (v *CaptionSource) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 255); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMin(v, "Label", 1); err != nil {
+		errors["Label"] = append(errors["Label"], err)
+	}
+
+	if err := model.ValidateMax(v, "Label", 40); err != nil {
+		errors["Label"] = append(errors["Label"], err)
+	}
+
+	if err := model.ValidateMin(v, "Language", 1); err != nil {
+		errors["Language"] = append(errors["Language"], err)
+	}
+
+	if err := model.ValidateMax(v, "Language", 255); err != nil {
+		errors["Language"] = append(errors["Language"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TimeOffset", `(^[+-]?\d{1,5}(\.\d{0,3})?$)|(^[+-]?([0-1]?[0-9]:|2[0-3]:)?([0-5]?[0-9]:)?[0-5]?[0-9](\.\d{0,3})?$)`); err != nil {
+		errors["TimeOffset"] = append(errors["TimeOffset"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Captions is undocumented.
 type Captions struct {
 	CaptionFormats []CaptionFormat `json:"CaptionFormats,omitempty"`
@@ -915,9 +1150,41 @@ type Captions struct {
 	MergePolicy    aws.StringValue `json:"MergePolicy,omitempty"`
 }
 
+func (v *Captions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "CaptionFormats", 4); err != nil {
+		errors["CaptionFormats"] = append(errors["CaptionFormats"], err)
+	}
+
+	if err := model.ValidateMax(v, "CaptionSources", 20); err != nil {
+		errors["CaptionSources"] = append(errors["CaptionSources"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MergePolicy", `(^MergeOverride$)|(^MergeRetain$)|(^Override$)`); err != nil {
+		errors["MergePolicy"] = append(errors["MergePolicy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Clip is undocumented.
 type Clip struct {
 	TimeSpan *TimeSpan `json:"TimeSpan,omitempty"`
+}
+
+func (v *Clip) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateJobOutput is undocumented.
@@ -935,11 +1202,71 @@ type CreateJobOutput struct {
 	Watermarks          []JobWatermark  `json:"Watermarks,omitempty"`
 }
 
+func (v *CreateJobOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 255); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PresetID", `^\d{13}-\w{6}$`); err != nil {
+		errors["PresetID"] = append(errors["PresetID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Rotate", `(^auto$)|(^0$)|(^90$)|(^180$)|(^270$)`); err != nil {
+		errors["Rotate"] = append(errors["Rotate"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SegmentDuration", `^\d{1,5}(\.\d{0,5})?$`); err != nil {
+		errors["SegmentDuration"] = append(errors["SegmentDuration"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ThumbnailPattern", `(^$)|(^.*\{count\}.*$)`); err != nil {
+		errors["ThumbnailPattern"] = append(errors["ThumbnailPattern"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateJobPlaylist is undocumented.
 type CreateJobPlaylist struct {
 	Format     aws.StringValue `json:"Format,omitempty"`
 	Name       aws.StringValue `json:"Name,omitempty"`
 	OutputKeys []string        `json:"OutputKeys,omitempty"`
+}
+
+func (v *CreateJobPlaylist) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Format", `(^HLSv3$)|(^HLSv4$)|(^Smooth$)`); err != nil {
+		errors["Format"] = append(errors["Format"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 255); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "OutputKeys", 30); err != nil {
+		errors["OutputKeys"] = append(errors["OutputKeys"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateJobRequest is undocumented.
@@ -953,9 +1280,57 @@ type CreateJobRequest struct {
 	UserMetadata    map[string]string   `json:"UserMetadata,omitempty"`
 }
 
+func (v *CreateJobRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Input"); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateMin(v, "OutputKeyPrefix", 1); err != nil {
+		errors["OutputKeyPrefix"] = append(errors["OutputKeyPrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "OutputKeyPrefix", 255); err != nil {
+		errors["OutputKeyPrefix"] = append(errors["OutputKeyPrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "Outputs", 30); err != nil {
+		errors["Outputs"] = append(errors["Outputs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `^\d{13}-\w{6}$`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "Playlists", 30); err != nil {
+		errors["Playlists"] = append(errors["Playlists"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateJobResponse is undocumented.
 type CreateJobResponse struct {
 	Job *Job `json:"Job,omitempty"`
+}
+
+func (v *CreateJobResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreatePipelineRequest is undocumented.
@@ -970,9 +1345,65 @@ type CreatePipelineRequest struct {
 	ThumbnailConfig *PipelineOutputConfig `json:"ThumbnailConfig,omitempty"`
 }
 
+func (v *CreatePipelineRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "AWSKMSKeyARN", 255); err != nil {
+		errors["AWSKMSKeyARN"] = append(errors["AWSKMSKeyARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InputBucket"); err != nil {
+		errors["InputBucket"] = append(errors["InputBucket"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InputBucket", `^(\w|\.|-){1,255}$`); err != nil {
+		errors["InputBucket"] = append(errors["InputBucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 40); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "OutputBucket", `^(\w|\.|-){1,255}$`); err != nil {
+		errors["OutputBucket"] = append(errors["OutputBucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Role"); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Role", `^arn:aws:iam::\w{12}:role/.+$`); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreatePipelineResponse is undocumented.
 type CreatePipelineResponse struct {
 	Pipeline *Pipeline `json:"Pipeline,omitempty"`
+}
+
+func (v *CreatePipelineResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreatePresetRequest is undocumented.
@@ -985,10 +1416,54 @@ type CreatePresetRequest struct {
 	Video       *VideoParameters `json:"Video,omitempty"`
 }
 
+func (v *CreatePresetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Container"); err != nil {
+		errors["Container"] = append(errors["Container"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Container", `(^mp4$)|(^ts$)|(^webm$)|(^mp3$)|(^ogg$)|(^fmp4$)`); err != nil {
+		errors["Container"] = append(errors["Container"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 255); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 40); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreatePresetResponse is undocumented.
 type CreatePresetResponse struct {
 	Preset  *Preset         `json:"Preset,omitempty"`
 	Warning aws.StringValue `json:"Warning,omitempty"`
+}
+
+func (v *CreatePresetResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeletePipelineRequest is undocumented.
@@ -996,8 +1471,36 @@ type DeletePipelineRequest struct {
 	ID aws.StringValue `json:"-"`
 }
 
+func (v *DeletePipelineRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `^\d{13}-\w{6}$`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeletePipelineResponse is undocumented.
 type DeletePipelineResponse struct {
+}
+
+func (v *DeletePipelineResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeletePresetRequest is undocumented.
@@ -1005,8 +1508,36 @@ type DeletePresetRequest struct {
 	ID aws.StringValue `json:"-"`
 }
 
+func (v *DeletePresetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `^\d{13}-\w{6}$`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeletePresetResponse is undocumented.
 type DeletePresetResponse struct {
+}
+
+func (v *DeletePresetResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Encryption is undocumented.
@@ -1015,6 +1546,36 @@ type Encryption struct {
 	Key                  aws.StringValue `json:"Key,omitempty"`
 	KeyMD5               aws.StringValue `json:"KeyMd5,omitempty"`
 	Mode                 aws.StringValue `json:"Mode,omitempty"`
+}
+
+func (v *Encryption) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "InitializationVector", 1); err != nil {
+		errors["InitializationVector"] = append(errors["InitializationVector"], err)
+	}
+
+	if err := model.ValidateMax(v, "InitializationVector", 255); err != nil {
+		errors["InitializationVector"] = append(errors["InitializationVector"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Key", `^(?:[A-Za-z0-9\+/]{4})*(?:[A-Za-z0-9\+/]{2}==|[A-Za-z0-9\+/]{3}=)?$`); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "KeyMD5", `^(?:[A-Za-z0-9\+/]{4})*(?:[A-Za-z0-9\+/]{2}==|[A-Za-z0-9\+/]{3}=)?$`); err != nil {
+		errors["KeyMD5"] = append(errors["KeyMD5"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Mode", `(^s3$)|(^s3-aws-kms$)|(^aes-cbc-pkcs7$)|(^aes-ctr$)|(^aes-gcm$)`); err != nil {
+		errors["Mode"] = append(errors["Mode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Job is undocumented.
@@ -1031,10 +1592,54 @@ type Job struct {
 	UserMetadata    map[string]string `json:"UserMetadata,omitempty"`
 }
 
+func (v *Job) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "ID", `^\d{13}-\w{6}$`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMin(v, "OutputKeyPrefix", 1); err != nil {
+		errors["OutputKeyPrefix"] = append(errors["OutputKeyPrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "OutputKeyPrefix", 255); err != nil {
+		errors["OutputKeyPrefix"] = append(errors["OutputKeyPrefix"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `^\d{13}-\w{6}$`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Status", `(^Submitted$)|(^Progressing$)|(^Complete$)|(^Canceled$)|(^Error$)`); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // JobAlbumArt is undocumented.
 type JobAlbumArt struct {
 	Artwork     []Artwork       `json:"Artwork,omitempty"`
 	MergePolicy aws.StringValue `json:"MergePolicy,omitempty"`
+}
+
+func (v *JobAlbumArt) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "MergePolicy", `(^Replace$)|(^Prepend$)|(^Append$)|(^Fallback$)`); err != nil {
+		errors["MergePolicy"] = append(errors["MergePolicy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // JobInput is undocumented.
@@ -1046,6 +1651,44 @@ type JobInput struct {
 	Interlaced  aws.StringValue `json:"Interlaced,omitempty"`
 	Key         aws.StringValue `json:"Key,omitempty"`
 	Resolution  aws.StringValue `json:"Resolution,omitempty"`
+}
+
+func (v *JobInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "AspectRatio", `(^auto$)|(^1:1$)|(^4:3$)|(^3:2$)|(^16:9$)`); err != nil {
+		errors["AspectRatio"] = append(errors["AspectRatio"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Container", `(^auto$)|(^3gp$)|(^asf$)|(^avi$)|(^divx$)|(^flv$)|(^mkv$)|(^mov$)|(^mp4$)|(^mpeg$)|(^mpeg-ps$)|(^mpeg-ts$)|(^mxf$)|(^ogg$)|(^ts$)|(^vob$)|(^wav$)|(^webm$)|(^mp3$)|(^m4a$)|(^aac$)`); err != nil {
+		errors["Container"] = append(errors["Container"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FrameRate", `(^auto$)|(^10$)|(^15$)|(^23.97$)|(^24$)|(^25$)|(^29.97$)|(^30$)|(^50$)|(^60$)`); err != nil {
+		errors["FrameRate"] = append(errors["FrameRate"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Interlaced", `(^auto$)|(^true$)|(^false$)`); err != nil {
+		errors["Interlaced"] = append(errors["Interlaced"], err)
+	}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 255); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Resolution", `(^auto$)|(^\d{1,5}x\d{1,5}$)`); err != nil {
+		errors["Resolution"] = append(errors["Resolution"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // JobOutput is undocumented.
@@ -1069,11 +1712,83 @@ type JobOutput struct {
 	Width               aws.IntegerValue `json:"Width,omitempty"`
 }
 
+func (v *JobOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 255); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PresetID", `^\d{13}-\w{6}$`); err != nil {
+		errors["PresetID"] = append(errors["PresetID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Rotate", `(^auto$)|(^0$)|(^90$)|(^180$)|(^270$)`); err != nil {
+		errors["Rotate"] = append(errors["Rotate"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SegmentDuration", `^\d{1,5}(\.\d{0,5})?$`); err != nil {
+		errors["SegmentDuration"] = append(errors["SegmentDuration"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Status", `(^Submitted$)|(^Progressing$)|(^Complete$)|(^Canceled$)|(^Error$)`); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateMax(v, "StatusDetail", 255); err != nil {
+		errors["StatusDetail"] = append(errors["StatusDetail"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ThumbnailPattern", `(^$)|(^.*\{count\}.*$)`); err != nil {
+		errors["ThumbnailPattern"] = append(errors["ThumbnailPattern"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // JobWatermark is undocumented.
 type JobWatermark struct {
 	Encryption        *Encryption     `json:"Encryption,omitempty"`
 	InputKey          aws.StringValue `json:"InputKey,omitempty"`
 	PresetWatermarkID aws.StringValue `json:"PresetWatermarkId,omitempty"`
+}
+
+func (v *JobWatermark) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "InputKey", 1); err != nil {
+		errors["InputKey"] = append(errors["InputKey"], err)
+	}
+
+	if err := model.ValidateMax(v, "InputKey", 255); err != nil {
+		errors["InputKey"] = append(errors["InputKey"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InputKey", `(^.{1,}.jpg$)|(^.{1,}.jpeg$)|(^.{1,}.png$)`); err != nil {
+		errors["InputKey"] = append(errors["InputKey"], err)
+	}
+
+	if err := model.ValidateMin(v, "PresetWatermarkID", 1); err != nil {
+		errors["PresetWatermarkID"] = append(errors["PresetWatermarkID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PresetWatermarkID", 40); err != nil {
+		errors["PresetWatermarkID"] = append(errors["PresetWatermarkID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListJobsByPipelineRequest is undocumented.
@@ -1083,10 +1798,50 @@ type ListJobsByPipelineRequest struct {
 	PipelineID aws.StringValue `json:"-"`
 }
 
+func (v *ListJobsByPipelineRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Ascending", `(^true$)|(^false$)`); err != nil {
+		errors["Ascending"] = append(errors["Ascending"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PageToken", `^\d{13}-\w{6}$`); err != nil {
+		errors["PageToken"] = append(errors["PageToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `^\d{13}-\w{6}$`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListJobsByPipelineResponse is undocumented.
 type ListJobsByPipelineResponse struct {
 	Jobs          []Job           `json:"Jobs,omitempty"`
 	NextPageToken aws.StringValue `json:"NextPageToken,omitempty"`
+}
+
+func (v *ListJobsByPipelineResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextPageToken", `^\d{13}-\w{6}$`); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListJobsByStatusRequest is undocumented.
@@ -1096,10 +1851,50 @@ type ListJobsByStatusRequest struct {
 	Status    aws.StringValue `json:"-"`
 }
 
+func (v *ListJobsByStatusRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Ascending", `(^true$)|(^false$)`); err != nil {
+		errors["Ascending"] = append(errors["Ascending"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PageToken", `^\d{13}-\w{6}$`); err != nil {
+		errors["PageToken"] = append(errors["PageToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Status", `(^Submitted$)|(^Progressing$)|(^Complete$)|(^Canceled$)|(^Error$)`); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListJobsByStatusResponse is undocumented.
 type ListJobsByStatusResponse struct {
 	Jobs          []Job           `json:"Jobs,omitempty"`
 	NextPageToken aws.StringValue `json:"NextPageToken,omitempty"`
+}
+
+func (v *ListJobsByStatusResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextPageToken", `^\d{13}-\w{6}$`); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListPipelinesRequest is undocumented.
@@ -1108,10 +1903,42 @@ type ListPipelinesRequest struct {
 	PageToken aws.StringValue `json:"-"`
 }
 
+func (v *ListPipelinesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Ascending", `(^true$)|(^false$)`); err != nil {
+		errors["Ascending"] = append(errors["Ascending"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PageToken", `^\d{13}-\w{6}$`); err != nil {
+		errors["PageToken"] = append(errors["PageToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListPipelinesResponse is undocumented.
 type ListPipelinesResponse struct {
 	NextPageToken aws.StringValue `json:"NextPageToken,omitempty"`
 	Pipelines     []Pipeline      `json:"Pipelines,omitempty"`
+}
+
+func (v *ListPipelinesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextPageToken", `^\d{13}-\w{6}$`); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListPresetsRequest is undocumented.
@@ -1120,10 +1947,42 @@ type ListPresetsRequest struct {
 	PageToken aws.StringValue `json:"-"`
 }
 
+func (v *ListPresetsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Ascending", `(^true$)|(^false$)`); err != nil {
+		errors["Ascending"] = append(errors["Ascending"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PageToken", `^\d{13}-\w{6}$`); err != nil {
+		errors["PageToken"] = append(errors["PageToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListPresetsResponse is undocumented.
 type ListPresetsResponse struct {
 	NextPageToken aws.StringValue `json:"NextPageToken,omitempty"`
 	Presets       []Preset        `json:"Presets,omitempty"`
+}
+
+func (v *ListPresetsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextPageToken", `^\d{13}-\w{6}$`); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Notifications is undocumented.
@@ -1134,11 +1993,63 @@ type Notifications struct {
 	Warning     aws.StringValue `json:"Warning,omitempty"`
 }
 
+func (v *Notifications) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Completed", `(^$)|(^arn:aws:sns:.*:\w{12}:.+$)`); err != nil {
+		errors["Completed"] = append(errors["Completed"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Error", `(^$)|(^arn:aws:sns:.*:\w{12}:.+$)`); err != nil {
+		errors["Error"] = append(errors["Error"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Progressing", `(^$)|(^arn:aws:sns:.*:\w{12}:.+$)`); err != nil {
+		errors["Progressing"] = append(errors["Progressing"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Warning", `(^$)|(^arn:aws:sns:.*:\w{12}:.+$)`); err != nil {
+		errors["Warning"] = append(errors["Warning"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Permission is undocumented.
 type Permission struct {
 	Access      []string        `json:"Access,omitempty"`
 	Grantee     aws.StringValue `json:"Grantee,omitempty"`
 	GranteeType aws.StringValue `json:"GranteeType,omitempty"`
+}
+
+func (v *Permission) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Access", 30); err != nil {
+		errors["Access"] = append(errors["Access"], err)
+	}
+
+	if err := model.ValidateMin(v, "Grantee", 1); err != nil {
+		errors["Grantee"] = append(errors["Grantee"], err)
+	}
+
+	if err := model.ValidateMax(v, "Grantee", 255); err != nil {
+		errors["Grantee"] = append(errors["Grantee"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GranteeType", `(^Canonical$)|(^Email$)|(^Group$)`); err != nil {
+		errors["GranteeType"] = append(errors["GranteeType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Pipeline is undocumented.
@@ -1156,11 +2067,75 @@ type Pipeline struct {
 	ThumbnailConfig *PipelineOutputConfig `json:"ThumbnailConfig,omitempty"`
 }
 
+func (v *Pipeline) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "AWSKMSKeyARN", 255); err != nil {
+		errors["AWSKMSKeyARN"] = append(errors["AWSKMSKeyARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `^\d{13}-\w{6}$`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InputBucket", `^(\w|\.|-){1,255}$`); err != nil {
+		errors["InputBucket"] = append(errors["InputBucket"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 40); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "OutputBucket", `^(\w|\.|-){1,255}$`); err != nil {
+		errors["OutputBucket"] = append(errors["OutputBucket"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Role", `^arn:aws:iam::\w{12}:role/.+$`); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Status", `(^Active$)|(^Paused$)`); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PipelineOutputConfig is undocumented.
 type PipelineOutputConfig struct {
 	Bucket       aws.StringValue `json:"Bucket,omitempty"`
 	Permissions  []Permission    `json:"Permissions,omitempty"`
 	StorageClass aws.StringValue `json:"StorageClass,omitempty"`
+}
+
+func (v *PipelineOutputConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Bucket", `^(\w|\.|-){1,255}$`); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateMax(v, "Permissions", 30); err != nil {
+		errors["Permissions"] = append(errors["Permissions"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StorageClass", `(^ReducedRedundancy$)|(^Standard$)`); err != nil {
+		errors["StorageClass"] = append(errors["StorageClass"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Playlist is undocumented.
@@ -1170,6 +2145,40 @@ type Playlist struct {
 	OutputKeys   []string        `json:"OutputKeys,omitempty"`
 	Status       aws.StringValue `json:"Status,omitempty"`
 	StatusDetail aws.StringValue `json:"StatusDetail,omitempty"`
+}
+
+func (v *Playlist) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Format", `(^HLSv3$)|(^HLSv4$)|(^Smooth$)`); err != nil {
+		errors["Format"] = append(errors["Format"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 255); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "OutputKeys", 30); err != nil {
+		errors["OutputKeys"] = append(errors["OutputKeys"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Status", `(^Submitted$)|(^Progressing$)|(^Complete$)|(^Canceled$)|(^Error$)`); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateMax(v, "StatusDetail", 255); err != nil {
+		errors["StatusDetail"] = append(errors["StatusDetail"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Preset is undocumented.
@@ -1183,6 +2192,40 @@ type Preset struct {
 	Thumbnails  *Thumbnails      `json:"Thumbnails,omitempty"`
 	Type        aws.StringValue  `json:"Type,omitempty"`
 	Video       *VideoParameters `json:"Video,omitempty"`
+}
+
+func (v *Preset) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Container", `(^mp4$)|(^ts$)|(^webm$)|(^mp3$)|(^ogg$)|(^fmp4$)`); err != nil {
+		errors["Container"] = append(errors["Container"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 255); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `^\d{13}-\w{6}$`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 40); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Type", `(^System$)|(^Custom$)`); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PresetWatermark is undocumented.
@@ -1199,9 +2242,81 @@ type PresetWatermark struct {
 	VerticalOffset   aws.StringValue `json:"VerticalOffset,omitempty"`
 }
 
+func (v *PresetWatermark) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "HorizontalAlign", `(^Left$)|(^Right$)|(^Center$)`); err != nil {
+		errors["HorizontalAlign"] = append(errors["HorizontalAlign"], err)
+	}
+
+	if err := model.ValidatePattern(v, "HorizontalOffset", `(^\d{1,3}(\.\d{0,5})?%$)|(^\d{1,4}?px$)`); err != nil {
+		errors["HorizontalOffset"] = append(errors["HorizontalOffset"], err)
+	}
+
+	if err := model.ValidateMin(v, "ID", 1); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 40); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MaxHeight", `(^\d{1,3}(\.\d{0,5})?%$)|(^\d{1,4}?px$)`); err != nil {
+		errors["MaxHeight"] = append(errors["MaxHeight"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MaxWidth", `(^\d{1,3}(\.\d{0,5})?%$)|(^\d{1,4}?px$)`); err != nil {
+		errors["MaxWidth"] = append(errors["MaxWidth"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Opacity", `^\d{1,3}(\.\d{0,20})?$`); err != nil {
+		errors["Opacity"] = append(errors["Opacity"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SizingPolicy", `(^Fit$)|(^Stretch$)|(^ShrinkToFit$)`); err != nil {
+		errors["SizingPolicy"] = append(errors["SizingPolicy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Target", `(^Content$)|(^Frame$)`); err != nil {
+		errors["Target"] = append(errors["Target"], err)
+	}
+
+	if err := model.ValidatePattern(v, "VerticalAlign", `(^Top$)|(^Bottom$)|(^Center$)`); err != nil {
+		errors["VerticalAlign"] = append(errors["VerticalAlign"], err)
+	}
+
+	if err := model.ValidatePattern(v, "VerticalOffset", `(^\d{1,3}(\.\d{0,5})?%$)|(^\d{1,4}?px$)`); err != nil {
+		errors["VerticalOffset"] = append(errors["VerticalOffset"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReadJobRequest is undocumented.
 type ReadJobRequest struct {
 	ID aws.StringValue `json:"-"`
+}
+
+func (v *ReadJobRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `^\d{13}-\w{6}$`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReadJobResponse is undocumented.
@@ -1209,9 +2324,37 @@ type ReadJobResponse struct {
 	Job *Job `json:"Job,omitempty"`
 }
 
+func (v *ReadJobResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReadPipelineRequest is undocumented.
 type ReadPipelineRequest struct {
 	ID aws.StringValue `json:"-"`
+}
+
+func (v *ReadPipelineRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `^\d{13}-\w{6}$`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReadPipelineResponse is undocumented.
@@ -1219,14 +2362,52 @@ type ReadPipelineResponse struct {
 	Pipeline *Pipeline `json:"Pipeline,omitempty"`
 }
 
+func (v *ReadPipelineResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReadPresetRequest is undocumented.
 type ReadPresetRequest struct {
 	ID aws.StringValue `json:"-"`
 }
 
+func (v *ReadPresetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `^\d{13}-\w{6}$`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReadPresetResponse is undocumented.
 type ReadPresetResponse struct {
 	Preset *Preset `json:"Preset,omitempty"`
+}
+
+func (v *ReadPresetResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TestRoleRequest is undocumented.
@@ -1237,10 +2418,66 @@ type TestRoleRequest struct {
 	Topics       []string        `json:"Topics"`
 }
 
+func (v *TestRoleRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InputBucket"); err != nil {
+		errors["InputBucket"] = append(errors["InputBucket"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InputBucket", `^(\w|\.|-){1,255}$`); err != nil {
+		errors["InputBucket"] = append(errors["InputBucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OutputBucket"); err != nil {
+		errors["OutputBucket"] = append(errors["OutputBucket"], err)
+	}
+
+	if err := model.ValidatePattern(v, "OutputBucket", `^(\w|\.|-){1,255}$`); err != nil {
+		errors["OutputBucket"] = append(errors["OutputBucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Role"); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Role", `^arn:aws:iam::\w{12}:role/.+$`); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Topics"); err != nil {
+		errors["Topics"] = append(errors["Topics"], err)
+	}
+
+	if err := model.ValidateMax(v, "Topics", 30); err != nil {
+		errors["Topics"] = append(errors["Topics"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TestRoleResponse is undocumented.
 type TestRoleResponse struct {
 	Messages []string        `json:"Messages,omitempty"`
 	Success  aws.StringValue `json:"Success,omitempty"`
+}
+
+func (v *TestRoleResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Success", `(^true$)|(^false$)`); err != nil {
+		errors["Success"] = append(errors["Success"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Thumbnails is undocumented.
@@ -1255,10 +2492,70 @@ type Thumbnails struct {
 	SizingPolicy  aws.StringValue `json:"SizingPolicy,omitempty"`
 }
 
+func (v *Thumbnails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "AspectRatio", `(^auto$)|(^1:1$)|(^4:3$)|(^3:2$)|(^16:9$)`); err != nil {
+		errors["AspectRatio"] = append(errors["AspectRatio"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Format", `(^jpg$)|(^png$)`); err != nil {
+		errors["Format"] = append(errors["Format"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Interval", `^\d{1,5}$`); err != nil {
+		errors["Interval"] = append(errors["Interval"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MaxHeight", `(^auto$)|(^\d{2,4}$)`); err != nil {
+		errors["MaxHeight"] = append(errors["MaxHeight"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MaxWidth", `(^auto$)|(^\d{2,4}$)`); err != nil {
+		errors["MaxWidth"] = append(errors["MaxWidth"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PaddingPolicy", `(^Pad$)|(^NoPad$)`); err != nil {
+		errors["PaddingPolicy"] = append(errors["PaddingPolicy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Resolution", `^\d{1,5}x\d{1,5}$`); err != nil {
+		errors["Resolution"] = append(errors["Resolution"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SizingPolicy", `(^Fit$)|(^Fill$)|(^Stretch$)|(^Keep$)|(^ShrinkToFit$)|(^ShrinkToFill$)`); err != nil {
+		errors["SizingPolicy"] = append(errors["SizingPolicy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TimeSpan is undocumented.
 type TimeSpan struct {
 	Duration  aws.StringValue `json:"Duration,omitempty"`
 	StartTime aws.StringValue `json:"StartTime,omitempty"`
+}
+
+func (v *TimeSpan) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Duration", `(^\d{1,5}(\.\d{0,3})?$)|(^([0-1]?[0-9]:|2[0-3]:)?([0-5]?[0-9]:)?[0-5]?[0-9](\.\d{0,3})?$)`); err != nil {
+		errors["Duration"] = append(errors["Duration"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StartTime", `(^\d{1,5}(\.\d{0,3})?$)|(^([0-1]?[0-9]:|2[0-3]:)?([0-5]?[0-9]:)?[0-5]?[0-9](\.\d{0,3})?$)`); err != nil {
+		errors["StartTime"] = append(errors["StartTime"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdatePipelineNotificationsRequest is undocumented.
@@ -1267,9 +2564,41 @@ type UpdatePipelineNotificationsRequest struct {
 	Notifications *Notifications  `json:"Notifications"`
 }
 
+func (v *UpdatePipelineNotificationsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `^\d{13}-\w{6}$`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Notifications"); err != nil {
+		errors["Notifications"] = append(errors["Notifications"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdatePipelineNotificationsResponse is undocumented.
 type UpdatePipelineNotificationsResponse struct {
 	Pipeline *Pipeline `json:"Pipeline,omitempty"`
+}
+
+func (v *UpdatePipelineNotificationsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdatePipelineRequest is undocumented.
@@ -1284,9 +2613,57 @@ type UpdatePipelineRequest struct {
 	ThumbnailConfig *PipelineOutputConfig `json:"ThumbnailConfig,omitempty"`
 }
 
+func (v *UpdatePipelineRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "AWSKMSKeyARN", 255); err != nil {
+		errors["AWSKMSKeyARN"] = append(errors["AWSKMSKeyARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `^\d{13}-\w{6}$`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InputBucket", `^(\w|\.|-){1,255}$`); err != nil {
+		errors["InputBucket"] = append(errors["InputBucket"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 40); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Role", `^arn:aws:iam::\w{12}:role/.+$`); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdatePipelineResponse is undocumented.
 type UpdatePipelineResponse struct {
 	Pipeline *Pipeline `json:"Pipeline,omitempty"`
+}
+
+func (v *UpdatePipelineResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdatePipelineStatusRequest is undocumented.
@@ -1295,9 +2672,45 @@ type UpdatePipelineStatusRequest struct {
 	Status aws.StringValue `json:"Status"`
 }
 
+func (v *UpdatePipelineStatusRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `^\d{13}-\w{6}$`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Status", `(^Active$)|(^Paused$)`); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdatePipelineStatusResponse is undocumented.
 type UpdatePipelineStatusResponse struct {
 	Pipeline *Pipeline `json:"Pipeline,omitempty"`
+}
+
+func (v *UpdatePipelineStatusResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // VideoParameters is undocumented.
@@ -1317,6 +2730,72 @@ type VideoParameters struct {
 	Resolution         aws.StringValue   `json:"Resolution,omitempty"`
 	SizingPolicy       aws.StringValue   `json:"SizingPolicy,omitempty"`
 	Watermarks         []PresetWatermark `json:"Watermarks,omitempty"`
+}
+
+func (v *VideoParameters) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "AspectRatio", `(^auto$)|(^1:1$)|(^4:3$)|(^3:2$)|(^16:9$)`); err != nil {
+		errors["AspectRatio"] = append(errors["AspectRatio"], err)
+	}
+
+	if err := model.ValidatePattern(v, "BitRate", `(^\d{2,5}$)|(^auto$)`); err != nil {
+		errors["BitRate"] = append(errors["BitRate"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Codec", `(^H\.264$)|(^vp8$)`); err != nil {
+		errors["Codec"] = append(errors["Codec"], err)
+	}
+
+	if err := model.ValidateMax(v, "CodecOptions", 30); err != nil {
+		errors["CodecOptions"] = append(errors["CodecOptions"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DisplayAspectRatio", `(^auto$)|(^1:1$)|(^4:3$)|(^3:2$)|(^16:9$)`); err != nil {
+		errors["DisplayAspectRatio"] = append(errors["DisplayAspectRatio"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FixedGOP", `(^true$)|(^false$)`); err != nil {
+		errors["FixedGOP"] = append(errors["FixedGOP"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FrameRate", `(^auto$)|(^10$)|(^15$)|(^23.97$)|(^24$)|(^25$)|(^29.97$)|(^30$)|(^50$)|(^60$)`); err != nil {
+		errors["FrameRate"] = append(errors["FrameRate"], err)
+	}
+
+	if err := model.ValidatePattern(v, "KeyframesMaxDist", `^\d{1,6}$`); err != nil {
+		errors["KeyframesMaxDist"] = append(errors["KeyframesMaxDist"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MaxFrameRate", `(^10$)|(^15$)|(^23.97$)|(^24$)|(^25$)|(^29.97$)|(^30$)|(^50$)|(^60$)`); err != nil {
+		errors["MaxFrameRate"] = append(errors["MaxFrameRate"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MaxHeight", `(^auto$)|(^\d{2,4}$)`); err != nil {
+		errors["MaxHeight"] = append(errors["MaxHeight"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MaxWidth", `(^auto$)|(^\d{2,4}$)`); err != nil {
+		errors["MaxWidth"] = append(errors["MaxWidth"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PaddingPolicy", `(^Pad$)|(^NoPad$)`); err != nil {
+		errors["PaddingPolicy"] = append(errors["PaddingPolicy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Resolution", `(^auto$)|(^\d{1,5}x\d{1,5}$)`); err != nil {
+		errors["Resolution"] = append(errors["Resolution"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SizingPolicy", `(^Fit$)|(^Fill$)|(^Stretch$)|(^Keep$)|(^ShrinkToFit$)|(^ShrinkToFill$)`); err != nil {
+		errors["SizingPolicy"] = append(errors["SizingPolicy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

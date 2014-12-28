@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // EMR is a client for Amazon Elastic MapReduce.
@@ -42,6 +43,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *EMR
 // AddInstanceGroups addInstanceGroups adds an instance group to a running
 // cluster.
 func (c *EMR) AddInstanceGroups(req *AddInstanceGroupsInput) (resp *AddInstanceGroupsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AddInstanceGroupsOutput{}
 	err = c.client.Do("AddInstanceGroups", "POST", "/", req, resp)
 	return
@@ -66,6 +71,10 @@ func (c *EMR) AddInstanceGroups(req *AddInstanceGroupsInput) (resp *AddInstanceG
 // completed and run successfully. You can only add steps to a job flow
 // that is in one of the following states: or
 func (c *EMR) AddJobFlowSteps(req *AddJobFlowStepsInput) (resp *AddJobFlowStepsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AddJobFlowStepsOutput{}
 	err = c.client.Do("AddJobFlowSteps", "POST", "/", req, resp)
 	return
@@ -76,6 +85,10 @@ func (c *EMR) AddJobFlowSteps(req *AddJobFlowStepsInput) (resp *AddJobFlowStepsO
 // your Amazon EMR resource allocation costs. For more information, see
 // Tagging Amazon EMR Resources .
 func (c *EMR) AddTags(req *AddTagsInput) (resp *AddTagsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AddTagsOutput{}
 	err = c.client.Do("AddTags", "POST", "/", req, resp)
 	return
@@ -85,6 +98,10 @@ func (c *EMR) AddTags(req *AddTagsInput) (resp *AddTagsOutput, err error) {
 // hardware and software configuration, VPC settings, and so on. For
 // information about the cluster steps, see ListSteps
 func (c *EMR) DescribeCluster(req *DescribeClusterInput) (resp *DescribeClusterOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeClusterOutput{}
 	err = c.client.Do("DescribeCluster", "POST", "/", req, resp)
 	return
@@ -103,6 +120,10 @@ func (c *EMR) DescribeCluster(req *DescribeClusterInput) (resp *DescribeClusterO
 // are in one of the following states: , , , Amazon Elastic MapReduce can
 // return a maximum of 512 job flow descriptions.
 func (c *EMR) DescribeJobFlows(req *DescribeJobFlowsInput) (resp *DescribeJobFlowsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeJobFlowsOutput{}
 	err = c.client.Do("DescribeJobFlows", "POST", "/", req, resp)
 	return
@@ -110,6 +131,10 @@ func (c *EMR) DescribeJobFlows(req *DescribeJobFlowsInput) (resp *DescribeJobFlo
 
 // DescribeStep is undocumented.
 func (c *EMR) DescribeStep(req *DescribeStepInput) (resp *DescribeStepOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeStepOutput{}
 	err = c.client.Do("DescribeStep", "POST", "/", req, resp)
 	return
@@ -118,6 +143,10 @@ func (c *EMR) DescribeStep(req *DescribeStepInput) (resp *DescribeStepOutput, er
 // ListBootstrapActions provides information about the bootstrap actions
 // associated with a cluster.
 func (c *EMR) ListBootstrapActions(req *ListBootstrapActionsInput) (resp *ListBootstrapActionsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListBootstrapActionsOutput{}
 	err = c.client.Do("ListBootstrapActions", "POST", "/", req, resp)
 	return
@@ -130,6 +159,10 @@ func (c *EMR) ListBootstrapActions(req *ListBootstrapActionsInput) (resp *ListBo
 // a marker to track the paging of the cluster list across multiple
 // ListClusters calls.
 func (c *EMR) ListClusters(req *ListClustersInput) (resp *ListClustersOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListClustersOutput{}
 	err = c.client.Do("ListClusters", "POST", "/", req, resp)
 	return
@@ -138,6 +171,10 @@ func (c *EMR) ListClusters(req *ListClustersInput) (resp *ListClustersOutput, er
 // ListInstanceGroups provides all available details about the instance
 // groups in a cluster.
 func (c *EMR) ListInstanceGroups(req *ListInstanceGroupsInput) (resp *ListInstanceGroupsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListInstanceGroupsOutput{}
 	err = c.client.Do("ListInstanceGroups", "POST", "/", req, resp)
 	return
@@ -149,6 +186,10 @@ func (c *EMR) ListInstanceGroups(req *ListInstanceGroupsInput) (resp *ListInstan
 // Ready state, when instances become available to Amazon EMR to use for
 // jobs, and the IP addresses for cluster instances, etc.
 func (c *EMR) ListInstances(req *ListInstancesInput) (resp *ListInstancesOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListInstancesOutput{}
 	err = c.client.Do("ListInstances", "POST", "/", req, resp)
 	return
@@ -156,6 +197,10 @@ func (c *EMR) ListInstances(req *ListInstancesInput) (resp *ListInstancesOutput,
 
 // ListSteps is undocumented.
 func (c *EMR) ListSteps(req *ListStepsInput) (resp *ListStepsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListStepsOutput{}
 	err = c.client.Do("ListSteps", "POST", "/", req, resp)
 	return
@@ -166,6 +211,10 @@ func (c *EMR) ListSteps(req *ListStepsInput) (resp *ListStepsOutput, err error) 
 // include the new target instance count for the group and the instance
 // group ID. The call will either succeed or fail atomically.
 func (c *EMR) ModifyInstanceGroups(req *ModifyInstanceGroupsInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ModifyInstanceGroups", "POST", "/", req, nil)
 	return
@@ -177,6 +226,10 @@ func (c *EMR) ModifyInstanceGroups(req *ModifyInstanceGroupsInput) (err error) {
 // see Tagging Amazon EMR Resources . The following example removes the
 // stack tag with value Prod from a cluster:
 func (c *EMR) RemoveTags(req *RemoveTagsInput) (resp *RemoveTagsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RemoveTagsOutput{}
 	err = c.client.Do("RemoveTags", "POST", "/", req, resp)
 	return
@@ -202,6 +255,10 @@ func (c *EMR) RemoveTags(req *RemoveTagsInput) (resp *RemoveTagsOutput, err erro
 // MapReduce Developer's Guide For long running job flows, we recommend
 // that you periodically store your results.
 func (c *EMR) RunJobFlow(req *RunJobFlowInput) (resp *RunJobFlowOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RunJobFlowOutput{}
 	err = c.client.Do("RunJobFlow", "POST", "/", req, resp)
 	return
@@ -222,6 +279,10 @@ func (c *EMR) RunJobFlow(req *RunJobFlowInput) (resp *RunJobFlowOutput, err erro
 // set the value to false . For more information, go to Protecting a Job
 // Flow from Termination in the Amazon Elastic MapReduce Developer's Guide.
 func (c *EMR) SetTerminationProtection(req *SetTerminationProtectionInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetTerminationProtection", "POST", "/", req, nil)
 	return
@@ -235,6 +296,10 @@ func (c *EMR) SetTerminationProtection(req *SetTerminationProtectionInput) (err 
 // IAM user who created the job flow or the AWS account that owns the job
 // flow.
 func (c *EMR) SetVisibleToAllUsers(req *SetVisibleToAllUsersInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetVisibleToAllUsers", "POST", "/", req, nil)
 	return
@@ -249,6 +314,10 @@ func (c *EMR) SetVisibleToAllUsers(req *SetVisibleToAllUsersInput) (err error) {
 // take up to 5-20 minutes for the job flow to completely terminate and
 // release allocated resources, such as Amazon EC2 instances.
 func (c *EMR) TerminateJobFlows(req *TerminateJobFlowsInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("TerminateJobFlows", "POST", "/", req, nil)
 	return
@@ -268,10 +337,54 @@ type AddInstanceGroupsInput struct {
 	JobFlowID      aws.StringValue       `json:"JobFlowId"`
 }
 
+func (v *AddInstanceGroupsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceGroups"); err != nil {
+		errors["InstanceGroups"] = append(errors["InstanceGroups"], err)
+	}
+
+	if err := model.ValidateRequired(v, "JobFlowID"); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "JobFlowID", 256); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "JobFlowID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddInstanceGroupsOutput is undocumented.
 type AddInstanceGroupsOutput struct {
 	InstanceGroupIDs []string        `json:"InstanceGroupIds,omitempty"`
 	JobFlowID        aws.StringValue `json:"JobFlowId,omitempty"`
+}
+
+func (v *AddInstanceGroupsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "JobFlowID", 256); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "JobFlowID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AddJobFlowStepsInput is undocumented.
@@ -280,9 +393,45 @@ type AddJobFlowStepsInput struct {
 	Steps     []StepConfig    `json:"Steps"`
 }
 
+func (v *AddJobFlowStepsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "JobFlowID"); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "JobFlowID", 256); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "JobFlowID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Steps"); err != nil {
+		errors["Steps"] = append(errors["Steps"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddJobFlowStepsOutput is undocumented.
 type AddJobFlowStepsOutput struct {
 	StepIDs []string `json:"StepIds,omitempty"`
+}
+
+func (v *AddJobFlowStepsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AddTagsInput is undocumented.
@@ -291,8 +440,36 @@ type AddTagsInput struct {
 	Tags       []Tag           `json:"Tags"`
 }
 
+func (v *AddTagsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ResourceID"); err != nil {
+		errors["ResourceID"] = append(errors["ResourceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Tags"); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddTagsOutput is undocumented.
 type AddTagsOutput struct {
+}
+
+func (v *AddTagsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Application is undocumented.
@@ -303,15 +480,61 @@ type Application struct {
 	Version        aws.StringValue   `json:"Version,omitempty"`
 }
 
+func (v *Application) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BootstrapActionConfig is undocumented.
 type BootstrapActionConfig struct {
 	Name                  aws.StringValue              `json:"Name"`
 	ScriptBootstrapAction *ScriptBootstrapActionConfig `json:"ScriptBootstrapAction"`
 }
 
+func (v *BootstrapActionConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ScriptBootstrapAction"); err != nil {
+		errors["ScriptBootstrapAction"] = append(errors["ScriptBootstrapAction"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BootstrapActionDetail is undocumented.
 type BootstrapActionDetail struct {
 	BootstrapActionConfig *BootstrapActionConfig `json:"BootstrapActionConfig,omitempty"`
+}
+
+func (v *BootstrapActionDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Cluster is undocumented.
@@ -331,6 +554,16 @@ type Cluster struct {
 	VisibleToAllUsers     aws.BooleanValue       `json:"VisibleToAllUsers,omitempty"`
 }
 
+func (v *Cluster) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EMR.
 const (
 	ClusterStateBootstrapping        = "BOOTSTRAPPING"
@@ -346,6 +579,29 @@ const (
 type ClusterStateChangeReason struct {
 	Code    aws.StringValue `json:"Code,omitempty"`
 	Message aws.StringValue `json:"Message,omitempty"`
+}
+
+func (v *ClusterStateChangeReason) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	CodeEnum := []string{
+		ClusterStateChangeReasonCodeAllStepsCompleted,
+		ClusterStateChangeReasonCodeBootstrapFailure,
+		ClusterStateChangeReasonCodeInstanceFailure,
+		ClusterStateChangeReasonCodeInternalError,
+		ClusterStateChangeReasonCodeStepFailure,
+		ClusterStateChangeReasonCodeUserRequest,
+		ClusterStateChangeReasonCodeValidationError,
+	}
+	if err := model.ValidateEnum(v, "Code", CodeEnum); err != nil {
+		errors["Code"] = append(errors["Code"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EMR.
@@ -366,11 +622,44 @@ type ClusterStatus struct {
 	Timeline          *ClusterTimeline          `json:"Timeline,omitempty"`
 }
 
+func (v *ClusterStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		ClusterStateBootstrapping,
+		ClusterStateRunning,
+		ClusterStateStarting,
+		ClusterStateTerminated,
+		ClusterStateTerminatedWithErrors,
+		ClusterStateTerminating,
+		ClusterStateWaiting,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ClusterSummary is undocumented.
 type ClusterSummary struct {
 	ID     aws.StringValue `json:"Id,omitempty"`
 	Name   aws.StringValue `json:"Name,omitempty"`
 	Status *ClusterStatus  `json:"Status,omitempty"`
+}
+
+func (v *ClusterSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ClusterTimeline is undocumented.
@@ -380,6 +669,16 @@ type ClusterTimeline struct {
 	ReadyDateTime    *aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
 }
 
+func (v *ClusterTimeline) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Command is undocumented.
 type Command struct {
 	Args       []string        `json:"Args,omitempty"`
@@ -387,14 +686,48 @@ type Command struct {
 	ScriptPath aws.StringValue `json:"ScriptPath,omitempty"`
 }
 
+func (v *Command) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeClusterInput is undocumented.
 type DescribeClusterInput struct {
 	ClusterID aws.StringValue `json:"ClusterId"`
 }
 
+func (v *DescribeClusterInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterID"); err != nil {
+		errors["ClusterID"] = append(errors["ClusterID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeClusterOutput is undocumented.
 type DescribeClusterOutput struct {
 	Cluster *Cluster `json:"Cluster,omitempty"`
+}
+
+func (v *DescribeClusterOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeJobFlowsInput is undocumented.
@@ -405,9 +738,29 @@ type DescribeJobFlowsInput struct {
 	JobFlowStates []string           `json:"JobFlowStates,omitempty"`
 }
 
+func (v *DescribeJobFlowsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeJobFlowsOutput is undocumented.
 type DescribeJobFlowsOutput struct {
 	JobFlows []JobFlowDetail `json:"JobFlows,omitempty"`
+}
+
+func (v *DescribeJobFlowsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeStepInput is undocumented.
@@ -416,9 +769,37 @@ type DescribeStepInput struct {
 	StepID    aws.StringValue `json:"StepId"`
 }
 
+func (v *DescribeStepInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterID"); err != nil {
+		errors["ClusterID"] = append(errors["ClusterID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StepID"); err != nil {
+		errors["StepID"] = append(errors["StepID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeStepOutput is undocumented.
 type DescribeStepOutput struct {
 	Step *Step `json:"Step,omitempty"`
+}
+
+func (v *DescribeStepOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EC2InstanceAttributes is undocumented.
@@ -429,6 +810,16 @@ type EC2InstanceAttributes struct {
 	IAMInstanceProfile  aws.StringValue `json:"IamInstanceProfile,omitempty"`
 }
 
+func (v *EC2InstanceAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // HadoopJARStepConfig is undocumented.
 type HadoopJARStepConfig struct {
 	Args       []string        `json:"Args,omitempty"`
@@ -437,12 +828,52 @@ type HadoopJARStepConfig struct {
 	Properties []KeyValue      `json:"Properties,omitempty"`
 }
 
+func (v *HadoopJARStepConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "JAR"); err != nil {
+		errors["JAR"] = append(errors["JAR"], err)
+	}
+
+	if err := model.ValidateMax(v, "JAR", 10280); err != nil {
+		errors["JAR"] = append(errors["JAR"], err)
+	}
+
+	if err := model.ValidatePattern(v, "JAR", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["JAR"] = append(errors["JAR"], err)
+	}
+
+	if err := model.ValidateMax(v, "MainClass", 10280); err != nil {
+		errors["MainClass"] = append(errors["MainClass"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MainClass", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["MainClass"] = append(errors["MainClass"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // HadoopStepConfig is undocumented.
 type HadoopStepConfig struct {
 	Args       []string          `json:"Args,omitempty"`
 	JAR        aws.StringValue   `json:"Jar,omitempty"`
 	MainClass  aws.StringValue   `json:"MainClass,omitempty"`
 	Properties map[string]string `json:"Properties,omitempty"`
+}
+
+func (v *HadoopStepConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Instance is undocumented.
@@ -454,6 +885,16 @@ type Instance struct {
 	PublicDNSName    aws.StringValue `json:"PublicDnsName,omitempty"`
 	PublicIPAddress  aws.StringValue `json:"PublicIpAddress,omitempty"`
 	Status           *InstanceStatus `json:"Status,omitempty"`
+}
+
+func (v *Instance) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // InstanceGroup is undocumented.
@@ -469,6 +910,45 @@ type InstanceGroup struct {
 	Status                 *InstanceGroupStatus `json:"Status,omitempty"`
 }
 
+func (v *InstanceGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	InstanceGroupTypeEnum := []string{
+		InstanceGroupTypeCore,
+		InstanceGroupTypeMaster,
+		InstanceGroupTypeTask,
+	}
+	if err := model.ValidateEnum(v, "InstanceGroupType", InstanceGroupTypeEnum); err != nil {
+		errors["InstanceGroupType"] = append(errors["InstanceGroupType"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceType", 1); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceType", 256); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	MarketEnum := []string{
+		MarketTypeOnDemand,
+		MarketTypeSpot,
+	}
+	if err := model.ValidateEnum(v, "Market", MarketEnum); err != nil {
+		errors["Market"] = append(errors["Market"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceGroupConfig is undocumented.
 type InstanceGroupConfig struct {
 	BidPrice      aws.StringValue  `json:"BidPrice,omitempty"`
@@ -477,6 +957,73 @@ type InstanceGroupConfig struct {
 	InstanceType  aws.StringValue  `json:"InstanceType"`
 	Market        aws.StringValue  `json:"Market,omitempty"`
 	Name          aws.StringValue  `json:"Name,omitempty"`
+}
+
+func (v *InstanceGroupConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "BidPrice", 256); err != nil {
+		errors["BidPrice"] = append(errors["BidPrice"], err)
+	}
+
+	if err := model.ValidatePattern(v, "BidPrice", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["BidPrice"] = append(errors["BidPrice"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceCount"); err != nil {
+		errors["InstanceCount"] = append(errors["InstanceCount"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceRole"); err != nil {
+		errors["InstanceRole"] = append(errors["InstanceRole"], err)
+	}
+
+	InstanceRoleEnum := []string{
+		InstanceRoleTypeCore,
+		InstanceRoleTypeMaster,
+		InstanceRoleTypeTask,
+	}
+	if err := model.ValidateEnum(v, "InstanceRole", InstanceRoleEnum); err != nil {
+		errors["InstanceRole"] = append(errors["InstanceRole"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceType"); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceType", 1); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceType", 256); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	MarketEnum := []string{
+		MarketTypeOnDemand,
+		MarketTypeSpot,
+	}
+	if err := model.ValidateEnum(v, "Market", MarketEnum); err != nil {
+		errors["Market"] = append(errors["Market"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // InstanceGroupDetail is undocumented.
@@ -497,11 +1044,148 @@ type InstanceGroupDetail struct {
 	State                 aws.StringValue    `json:"State"`
 }
 
+func (v *InstanceGroupDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "BidPrice", 256); err != nil {
+		errors["BidPrice"] = append(errors["BidPrice"], err)
+	}
+
+	if err := model.ValidatePattern(v, "BidPrice", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["BidPrice"] = append(errors["BidPrice"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CreationDateTime"); err != nil {
+		errors["CreationDateTime"] = append(errors["CreationDateTime"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceGroupID", 256); err != nil {
+		errors["InstanceGroupID"] = append(errors["InstanceGroupID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceGroupID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceGroupID"] = append(errors["InstanceGroupID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceRequestCount"); err != nil {
+		errors["InstanceRequestCount"] = append(errors["InstanceRequestCount"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceRole"); err != nil {
+		errors["InstanceRole"] = append(errors["InstanceRole"], err)
+	}
+
+	InstanceRoleEnum := []string{
+		InstanceRoleTypeCore,
+		InstanceRoleTypeMaster,
+		InstanceRoleTypeTask,
+	}
+	if err := model.ValidateEnum(v, "InstanceRole", InstanceRoleEnum); err != nil {
+		errors["InstanceRole"] = append(errors["InstanceRole"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceRunningCount"); err != nil {
+		errors["InstanceRunningCount"] = append(errors["InstanceRunningCount"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceType"); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceType", 1); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceType", 256); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "LastStateChangeReason", 10280); err != nil {
+		errors["LastStateChangeReason"] = append(errors["LastStateChangeReason"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LastStateChangeReason", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LastStateChangeReason"] = append(errors["LastStateChangeReason"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Market"); err != nil {
+		errors["Market"] = append(errors["Market"], err)
+	}
+
+	MarketEnum := []string{
+		MarketTypeOnDemand,
+		MarketTypeSpot,
+	}
+	if err := model.ValidateEnum(v, "Market", MarketEnum); err != nil {
+		errors["Market"] = append(errors["Market"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "State"); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	StateEnum := []string{
+		InstanceGroupStateArrested,
+		InstanceGroupStateBootstrapping,
+		InstanceGroupStateEnded,
+		InstanceGroupStateProvisioning,
+		InstanceGroupStateResizing,
+		InstanceGroupStateRunning,
+		InstanceGroupStateShuttingDown,
+		InstanceGroupStateSuspended,
+		InstanceGroupStateTerminated,
+		InstanceGroupStateTerminating,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceGroupModifyConfig is undocumented.
 type InstanceGroupModifyConfig struct {
 	EC2InstanceIDsToTerminate []string         `json:"EC2InstanceIdsToTerminate,omitempty"`
 	InstanceCount             aws.IntegerValue `json:"InstanceCount,omitempty"`
 	InstanceGroupID           aws.StringValue  `json:"InstanceGroupId"`
+}
+
+func (v *InstanceGroupModifyConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceGroupID"); err != nil {
+		errors["InstanceGroupID"] = append(errors["InstanceGroupID"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceGroupID", 256); err != nil {
+		errors["InstanceGroupID"] = append(errors["InstanceGroupID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceGroupID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceGroupID"] = append(errors["InstanceGroupID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EMR.
@@ -524,6 +1208,26 @@ type InstanceGroupStateChangeReason struct {
 	Message aws.StringValue `json:"Message,omitempty"`
 }
 
+func (v *InstanceGroupStateChangeReason) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	CodeEnum := []string{
+		InstanceGroupStateChangeReasonCodeClusterTerminated,
+		InstanceGroupStateChangeReasonCodeInstanceFailure,
+		InstanceGroupStateChangeReasonCodeInternalError,
+		InstanceGroupStateChangeReasonCodeValidationError,
+	}
+	if err := model.ValidateEnum(v, "Code", CodeEnum); err != nil {
+		errors["Code"] = append(errors["Code"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EMR.
 const (
 	InstanceGroupStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
@@ -539,11 +1243,47 @@ type InstanceGroupStatus struct {
 	Timeline          *InstanceGroupTimeline          `json:"Timeline,omitempty"`
 }
 
+func (v *InstanceGroupStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		InstanceGroupStateArrested,
+		InstanceGroupStateBootstrapping,
+		InstanceGroupStateEnded,
+		InstanceGroupStateProvisioning,
+		InstanceGroupStateResizing,
+		InstanceGroupStateRunning,
+		InstanceGroupStateShuttingDown,
+		InstanceGroupStateSuspended,
+		InstanceGroupStateTerminated,
+		InstanceGroupStateTerminating,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceGroupTimeline is undocumented.
 type InstanceGroupTimeline struct {
 	CreationDateTime *aws.LongTimestamp `json:"CreationDateTime,omitempty"`
 	EndDateTime      *aws.LongTimestamp `json:"EndDateTime,omitempty"`
 	ReadyDateTime    *aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
+}
+
+func (v *InstanceGroupTimeline) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EMR.
@@ -575,6 +1315,27 @@ type InstanceStateChangeReason struct {
 	Message aws.StringValue `json:"Message,omitempty"`
 }
 
+func (v *InstanceStateChangeReason) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	CodeEnum := []string{
+		InstanceStateChangeReasonCodeBootstrapFailure,
+		InstanceStateChangeReasonCodeClusterTerminated,
+		InstanceStateChangeReasonCodeInstanceFailure,
+		InstanceStateChangeReasonCodeInternalError,
+		InstanceStateChangeReasonCodeValidationError,
+	}
+	if err := model.ValidateEnum(v, "Code", CodeEnum); err != nil {
+		errors["Code"] = append(errors["Code"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EMR.
 const (
 	InstanceStateChangeReasonCodeBootstrapFailure  = "BOOTSTRAP_FAILURE"
@@ -591,11 +1352,42 @@ type InstanceStatus struct {
 	Timeline          *InstanceTimeline          `json:"Timeline,omitempty"`
 }
 
+func (v *InstanceStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		InstanceStateAwaitingFulfillment,
+		InstanceStateBootstrapping,
+		InstanceStateProvisioning,
+		InstanceStateRunning,
+		InstanceStateTerminated,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceTimeline is undocumented.
 type InstanceTimeline struct {
 	CreationDateTime *aws.LongTimestamp `json:"CreationDateTime,omitempty"`
 	EndDateTime      *aws.LongTimestamp `json:"EndDateTime,omitempty"`
 	ReadyDateTime    *aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
+}
+
+func (v *InstanceTimeline) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // JobFlowDetail is undocumented.
@@ -612,6 +1404,80 @@ type JobFlowDetail struct {
 	Steps                 []StepDetail                  `json:"Steps,omitempty"`
 	SupportedProducts     []string                      `json:"SupportedProducts,omitempty"`
 	VisibleToAllUsers     aws.BooleanValue              `json:"VisibleToAllUsers,omitempty"`
+}
+
+func (v *JobFlowDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "AMIVersion", 256); err != nil {
+		errors["AMIVersion"] = append(errors["AMIVersion"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AMIVersion", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AMIVersion"] = append(errors["AMIVersion"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ExecutionStatusDetail"); err != nil {
+		errors["ExecutionStatusDetail"] = append(errors["ExecutionStatusDetail"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Instances"); err != nil {
+		errors["Instances"] = append(errors["Instances"], err)
+	}
+
+	if err := model.ValidateRequired(v, "JobFlowID"); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "JobFlowID", 256); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "JobFlowID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "JobFlowRole", 10280); err != nil {
+		errors["JobFlowRole"] = append(errors["JobFlowRole"], err)
+	}
+
+	if err := model.ValidatePattern(v, "JobFlowRole", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["JobFlowRole"] = append(errors["JobFlowRole"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogURI", 10280); err != nil {
+		errors["LogURI"] = append(errors["LogURI"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogURI", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LogURI"] = append(errors["LogURI"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "ServiceRole", 10280); err != nil {
+		errors["ServiceRole"] = append(errors["ServiceRole"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ServiceRole", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ServiceRole"] = append(errors["ServiceRole"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EMR.
@@ -636,6 +1502,46 @@ type JobFlowExecutionStatusDetail struct {
 	State                 aws.StringValue    `json:"State"`
 }
 
+func (v *JobFlowExecutionStatusDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CreationDateTime"); err != nil {
+		errors["CreationDateTime"] = append(errors["CreationDateTime"], err)
+	}
+
+	if err := model.ValidateMax(v, "LastStateChangeReason", 10280); err != nil {
+		errors["LastStateChangeReason"] = append(errors["LastStateChangeReason"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LastStateChangeReason", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LastStateChangeReason"] = append(errors["LastStateChangeReason"], err)
+	}
+
+	if err := model.ValidateRequired(v, "State"); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	StateEnum := []string{
+		JobFlowExecutionStateBootstrapping,
+		JobFlowExecutionStateCompleted,
+		JobFlowExecutionStateFailed,
+		JobFlowExecutionStateRunning,
+		JobFlowExecutionStateShuttingDown,
+		JobFlowExecutionStateStarting,
+		JobFlowExecutionStateTerminated,
+		JobFlowExecutionStateWaiting,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // JobFlowInstancesConfig is undocumented.
 type JobFlowInstancesConfig struct {
 	EC2KeyName                  aws.StringValue       `json:"Ec2KeyName,omitempty"`
@@ -648,6 +1554,64 @@ type JobFlowInstancesConfig struct {
 	Placement                   *PlacementType        `json:"Placement,omitempty"`
 	SlaveInstanceType           aws.StringValue       `json:"SlaveInstanceType,omitempty"`
 	TerminationProtected        aws.BooleanValue      `json:"TerminationProtected,omitempty"`
+}
+
+func (v *JobFlowInstancesConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "EC2KeyName", 256); err != nil {
+		errors["EC2KeyName"] = append(errors["EC2KeyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "EC2KeyName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["EC2KeyName"] = append(errors["EC2KeyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EC2SubnetID", 256); err != nil {
+		errors["EC2SubnetID"] = append(errors["EC2SubnetID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "EC2SubnetID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["EC2SubnetID"] = append(errors["EC2SubnetID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HadoopVersion", 256); err != nil {
+		errors["HadoopVersion"] = append(errors["HadoopVersion"], err)
+	}
+
+	if err := model.ValidatePattern(v, "HadoopVersion", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["HadoopVersion"] = append(errors["HadoopVersion"], err)
+	}
+
+	if err := model.ValidateMin(v, "MasterInstanceType", 1); err != nil {
+		errors["MasterInstanceType"] = append(errors["MasterInstanceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "MasterInstanceType", 256); err != nil {
+		errors["MasterInstanceType"] = append(errors["MasterInstanceType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MasterInstanceType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["MasterInstanceType"] = append(errors["MasterInstanceType"], err)
+	}
+
+	if err := model.ValidateMin(v, "SlaveInstanceType", 1); err != nil {
+		errors["SlaveInstanceType"] = append(errors["SlaveInstanceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "SlaveInstanceType", 256); err != nil {
+		errors["SlaveInstanceType"] = append(errors["SlaveInstanceType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SlaveInstanceType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["SlaveInstanceType"] = append(errors["SlaveInstanceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // JobFlowInstancesDetail is undocumented.
@@ -667,10 +1631,122 @@ type JobFlowInstancesDetail struct {
 	TerminationProtected        aws.BooleanValue      `json:"TerminationProtected,omitempty"`
 }
 
+func (v *JobFlowInstancesDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "EC2KeyName", 256); err != nil {
+		errors["EC2KeyName"] = append(errors["EC2KeyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "EC2KeyName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["EC2KeyName"] = append(errors["EC2KeyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EC2SubnetID", 256); err != nil {
+		errors["EC2SubnetID"] = append(errors["EC2SubnetID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "EC2SubnetID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["EC2SubnetID"] = append(errors["EC2SubnetID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HadoopVersion", 256); err != nil {
+		errors["HadoopVersion"] = append(errors["HadoopVersion"], err)
+	}
+
+	if err := model.ValidatePattern(v, "HadoopVersion", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["HadoopVersion"] = append(errors["HadoopVersion"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceCount"); err != nil {
+		errors["InstanceCount"] = append(errors["InstanceCount"], err)
+	}
+
+	if err := model.ValidateMax(v, "MasterInstanceID", 10280); err != nil {
+		errors["MasterInstanceID"] = append(errors["MasterInstanceID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MasterInstanceID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["MasterInstanceID"] = append(errors["MasterInstanceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MasterInstanceType"); err != nil {
+		errors["MasterInstanceType"] = append(errors["MasterInstanceType"], err)
+	}
+
+	if err := model.ValidateMin(v, "MasterInstanceType", 1); err != nil {
+		errors["MasterInstanceType"] = append(errors["MasterInstanceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "MasterInstanceType", 256); err != nil {
+		errors["MasterInstanceType"] = append(errors["MasterInstanceType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MasterInstanceType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["MasterInstanceType"] = append(errors["MasterInstanceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "MasterPublicDNSName", 10280); err != nil {
+		errors["MasterPublicDNSName"] = append(errors["MasterPublicDNSName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MasterPublicDNSName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["MasterPublicDNSName"] = append(errors["MasterPublicDNSName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SlaveInstanceType"); err != nil {
+		errors["SlaveInstanceType"] = append(errors["SlaveInstanceType"], err)
+	}
+
+	if err := model.ValidateMin(v, "SlaveInstanceType", 1); err != nil {
+		errors["SlaveInstanceType"] = append(errors["SlaveInstanceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "SlaveInstanceType", 256); err != nil {
+		errors["SlaveInstanceType"] = append(errors["SlaveInstanceType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SlaveInstanceType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["SlaveInstanceType"] = append(errors["SlaveInstanceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // KeyValue is undocumented.
 type KeyValue struct {
 	Key   aws.StringValue `json:"Key,omitempty"`
 	Value aws.StringValue `json:"Value,omitempty"`
+}
+
+func (v *KeyValue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Key", 10280); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Key", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 10280); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Value", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListBootstrapActionsInput is undocumented.
@@ -679,10 +1755,34 @@ type ListBootstrapActionsInput struct {
 	Marker    aws.StringValue `json:"Marker,omitempty"`
 }
 
+func (v *ListBootstrapActionsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterID"); err != nil {
+		errors["ClusterID"] = append(errors["ClusterID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListBootstrapActionsOutput is undocumented.
 type ListBootstrapActionsOutput struct {
 	BootstrapActions []Command       `json:"BootstrapActions,omitempty"`
 	Marker           aws.StringValue `json:"Marker,omitempty"`
+}
+
+func (v *ListBootstrapActionsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListClustersInput is undocumented.
@@ -693,10 +1793,30 @@ type ListClustersInput struct {
 	Marker        aws.StringValue    `json:"Marker,omitempty"`
 }
 
+func (v *ListClustersInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListClustersOutput is undocumented.
 type ListClustersOutput struct {
 	Clusters []ClusterSummary `json:"Clusters,omitempty"`
 	Marker   aws.StringValue  `json:"Marker,omitempty"`
+}
+
+func (v *ListClustersOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListInstanceGroupsInput is undocumented.
@@ -705,10 +1825,34 @@ type ListInstanceGroupsInput struct {
 	Marker    aws.StringValue `json:"Marker,omitempty"`
 }
 
+func (v *ListInstanceGroupsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterID"); err != nil {
+		errors["ClusterID"] = append(errors["ClusterID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListInstanceGroupsOutput is undocumented.
 type ListInstanceGroupsOutput struct {
 	InstanceGroups []InstanceGroup `json:"InstanceGroups,omitempty"`
 	Marker         aws.StringValue `json:"Marker,omitempty"`
+}
+
+func (v *ListInstanceGroupsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListInstancesInput is undocumented.
@@ -719,10 +1863,34 @@ type ListInstancesInput struct {
 	Marker             aws.StringValue `json:"Marker,omitempty"`
 }
 
+func (v *ListInstancesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterID"); err != nil {
+		errors["ClusterID"] = append(errors["ClusterID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListInstancesOutput is undocumented.
 type ListInstancesOutput struct {
 	Instances []Instance      `json:"Instances,omitempty"`
 	Marker    aws.StringValue `json:"Marker,omitempty"`
+}
+
+func (v *ListInstancesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListStepsInput is undocumented.
@@ -732,10 +1900,34 @@ type ListStepsInput struct {
 	StepStates []string        `json:"StepStates,omitempty"`
 }
 
+func (v *ListStepsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterID"); err != nil {
+		errors["ClusterID"] = append(errors["ClusterID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListStepsOutput is undocumented.
 type ListStepsOutput struct {
 	Marker aws.StringValue `json:"Marker,omitempty"`
 	Steps  []StepSummary   `json:"Steps,omitempty"`
+}
+
+func (v *ListStepsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EMR.
@@ -749,9 +1941,41 @@ type ModifyInstanceGroupsInput struct {
 	InstanceGroups []InstanceGroupModifyConfig `json:"InstanceGroups,omitempty"`
 }
 
+func (v *ModifyInstanceGroupsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PlacementType is undocumented.
 type PlacementType struct {
 	AvailabilityZone aws.StringValue `json:"AvailabilityZone"`
+}
+
+func (v *PlacementType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AvailabilityZone"); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidateMax(v, "AvailabilityZone", 10280); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AvailabilityZone", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RemoveTagsInput is undocumented.
@@ -760,8 +1984,36 @@ type RemoveTagsInput struct {
 	TagKeys    []string        `json:"TagKeys"`
 }
 
+func (v *RemoveTagsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ResourceID"); err != nil {
+		errors["ResourceID"] = append(errors["ResourceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TagKeys"); err != nil {
+		errors["TagKeys"] = append(errors["TagKeys"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RemoveTagsOutput is undocumented.
 type RemoveTagsOutput struct {
+}
+
+func (v *RemoveTagsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RunJobFlowInput is undocumented.
@@ -781,9 +2033,93 @@ type RunJobFlowInput struct {
 	VisibleToAllUsers    aws.BooleanValue         `json:"VisibleToAllUsers,omitempty"`
 }
 
+func (v *RunJobFlowInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "AdditionalInfo", 10280); err != nil {
+		errors["AdditionalInfo"] = append(errors["AdditionalInfo"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AdditionalInfo", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AdditionalInfo"] = append(errors["AdditionalInfo"], err)
+	}
+
+	if err := model.ValidateMax(v, "AMIVersion", 256); err != nil {
+		errors["AMIVersion"] = append(errors["AMIVersion"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AMIVersion", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AMIVersion"] = append(errors["AMIVersion"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Instances"); err != nil {
+		errors["Instances"] = append(errors["Instances"], err)
+	}
+
+	if err := model.ValidateMax(v, "JobFlowRole", 10280); err != nil {
+		errors["JobFlowRole"] = append(errors["JobFlowRole"], err)
+	}
+
+	if err := model.ValidatePattern(v, "JobFlowRole", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["JobFlowRole"] = append(errors["JobFlowRole"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogURI", 10280); err != nil {
+		errors["LogURI"] = append(errors["LogURI"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogURI", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LogURI"] = append(errors["LogURI"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "ServiceRole", 10280); err != nil {
+		errors["ServiceRole"] = append(errors["ServiceRole"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ServiceRole", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ServiceRole"] = append(errors["ServiceRole"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RunJobFlowOutput is undocumented.
 type RunJobFlowOutput struct {
 	JobFlowID aws.StringValue `json:"JobFlowId,omitempty"`
+}
+
+func (v *RunJobFlowOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "JobFlowID", 256); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "JobFlowID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["JobFlowID"] = append(errors["JobFlowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ScriptBootstrapActionConfig is undocumented.
@@ -792,16 +2128,74 @@ type ScriptBootstrapActionConfig struct {
 	Path aws.StringValue `json:"Path"`
 }
 
+func (v *ScriptBootstrapActionConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Path"); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 10280); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetTerminationProtectionInput is undocumented.
 type SetTerminationProtectionInput struct {
 	JobFlowIDs           []string         `json:"JobFlowIds"`
 	TerminationProtected aws.BooleanValue `json:"TerminationProtected"`
 }
 
+func (v *SetTerminationProtectionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "JobFlowIDs"); err != nil {
+		errors["JobFlowIDs"] = append(errors["JobFlowIDs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TerminationProtected"); err != nil {
+		errors["TerminationProtected"] = append(errors["TerminationProtected"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetVisibleToAllUsersInput is undocumented.
 type SetVisibleToAllUsersInput struct {
 	JobFlowIDs        []string         `json:"JobFlowIds"`
 	VisibleToAllUsers aws.BooleanValue `json:"VisibleToAllUsers"`
+}
+
+func (v *SetVisibleToAllUsersInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "JobFlowIDs"); err != nil {
+		errors["JobFlowIDs"] = append(errors["JobFlowIDs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VisibleToAllUsers"); err != nil {
+		errors["VisibleToAllUsers"] = append(errors["VisibleToAllUsers"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Step is undocumented.
@@ -813,6 +2207,26 @@ type Step struct {
 	Status          *StepStatus       `json:"Status,omitempty"`
 }
 
+func (v *Step) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ActionOnFailureEnum := []string{
+		ActionOnFailureCancelAndWait,
+		ActionOnFailureContinue,
+		ActionOnFailureTerminateCluster,
+		ActionOnFailureTerminateJobFlow,
+	}
+	if err := model.ValidateEnum(v, "ActionOnFailure", ActionOnFailureEnum); err != nil {
+		errors["ActionOnFailure"] = append(errors["ActionOnFailure"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StepConfig is undocumented.
 type StepConfig struct {
 	ActionOnFailure aws.StringValue      `json:"ActionOnFailure,omitempty"`
@@ -820,10 +2234,64 @@ type StepConfig struct {
 	Name            aws.StringValue      `json:"Name"`
 }
 
+func (v *StepConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ActionOnFailureEnum := []string{
+		ActionOnFailureCancelAndWait,
+		ActionOnFailureContinue,
+		ActionOnFailureTerminateCluster,
+		ActionOnFailureTerminateJobFlow,
+	}
+	if err := model.ValidateEnum(v, "ActionOnFailure", ActionOnFailureEnum); err != nil {
+		errors["ActionOnFailure"] = append(errors["ActionOnFailure"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HadoopJARStep"); err != nil {
+		errors["HadoopJARStep"] = append(errors["HadoopJARStep"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StepDetail is undocumented.
 type StepDetail struct {
 	ExecutionStatusDetail *StepExecutionStatusDetail `json:"ExecutionStatusDetail"`
 	StepConfig            *StepConfig                `json:"StepConfig"`
+}
+
+func (v *StepDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ExecutionStatusDetail"); err != nil {
+		errors["ExecutionStatusDetail"] = append(errors["ExecutionStatusDetail"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StepConfig"); err != nil {
+		errors["StepConfig"] = append(errors["StepConfig"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EMR.
@@ -846,6 +2314,45 @@ type StepExecutionStatusDetail struct {
 	State                 aws.StringValue    `json:"State"`
 }
 
+func (v *StepExecutionStatusDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CreationDateTime"); err != nil {
+		errors["CreationDateTime"] = append(errors["CreationDateTime"], err)
+	}
+
+	if err := model.ValidateMax(v, "LastStateChangeReason", 10280); err != nil {
+		errors["LastStateChangeReason"] = append(errors["LastStateChangeReason"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LastStateChangeReason", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LastStateChangeReason"] = append(errors["LastStateChangeReason"], err)
+	}
+
+	if err := model.ValidateRequired(v, "State"); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	StateEnum := []string{
+		StepExecutionStateCancelled,
+		StepExecutionStateCompleted,
+		StepExecutionStateContinue,
+		StepExecutionStateFailed,
+		StepExecutionStateInterrupted,
+		StepExecutionStatePending,
+		StepExecutionStateRunning,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EMR.
 const (
 	StepStateCancelled   = "CANCELLED"
@@ -862,6 +2369,23 @@ type StepStateChangeReason struct {
 	Message aws.StringValue `json:"Message,omitempty"`
 }
 
+func (v *StepStateChangeReason) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	CodeEnum := []string{
+		StepStateChangeReasonCodeNone,
+	}
+	if err := model.ValidateEnum(v, "Code", CodeEnum); err != nil {
+		errors["Code"] = append(errors["Code"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EMR.
 const (
 	StepStateChangeReasonCodeNone = "NONE"
@@ -874,11 +2398,43 @@ type StepStatus struct {
 	Timeline          *StepTimeline          `json:"Timeline,omitempty"`
 }
 
+func (v *StepStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		StepStateCancelled,
+		StepStateCompleted,
+		StepStateFailed,
+		StepStateInterrupted,
+		StepStatePending,
+		StepStateRunning,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StepSummary is undocumented.
 type StepSummary struct {
 	ID     aws.StringValue `json:"Id,omitempty"`
 	Name   aws.StringValue `json:"Name,omitempty"`
 	Status *StepStatus     `json:"Status,omitempty"`
+}
+
+func (v *StepSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // StepTimeline is undocumented.
@@ -888,10 +2444,38 @@ type StepTimeline struct {
 	StartDateTime    *aws.LongTimestamp `json:"StartDateTime,omitempty"`
 }
 
+func (v *StepTimeline) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SupportedProductConfig is undocumented.
 type SupportedProductConfig struct {
 	Args []string        `json:"Args,omitempty"`
 	Name aws.StringValue `json:"Name,omitempty"`
+}
+
+func (v *SupportedProductConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Tag is undocumented.
@@ -900,9 +2484,33 @@ type Tag struct {
 	Value aws.StringValue `json:"Value,omitempty"`
 }
 
+func (v *Tag) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TerminateJobFlowsInput is undocumented.
 type TerminateJobFlowsInput struct {
 	JobFlowIDs []string `json:"JobFlowIds"`
+}
+
+func (v *TerminateJobFlowsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "JobFlowIDs"); err != nil {
+		errors["JobFlowIDs"] = append(errors["JobFlowIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

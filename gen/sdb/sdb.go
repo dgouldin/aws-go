@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // SDB is a client for Amazon SimpleDB.
@@ -45,6 +46,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *SDB
 // throughput. The following limitations are enforced for this operation: 1
 // MB request size
 func (c *SDB) BatchDeleteAttributes(req *BatchDeleteAttributesRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("BatchDeleteAttributes", "POST", "/", req, nil)
 	return
@@ -83,6 +88,10 @@ func (c *SDB) BatchDeleteAttributes(req *BatchDeleteAttributesRequest) (err erro
 // Service Unavailable (503) responses. The following limitations are
 // enforced for this operation: 256 attribute name-value pairs per item
 func (c *SDB) BatchPutAttributes(req *BatchPutAttributesRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("BatchPutAttributes", "POST", "/", req, nil)
 	return
@@ -95,6 +104,10 @@ func (c *SDB) BatchPutAttributes(req *BatchPutAttributesRequest) (err error) {
 // account. If the client requires additional domains, go to
 // http://aws.amazon.com/contact-us/simpledb-limit-request/ .
 func (c *SDB) CreateDomain(req *CreateDomainRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateDomain", "POST", "/", req, nil)
 	return
@@ -109,6 +122,10 @@ func (c *SDB) CreateDomain(req *CreateDomainRequest) (err error) {
 // operation (read) immediately after a DeleteAttributes or PutAttributes
 // operation (write) might not return updated item data.
 func (c *SDB) DeleteAttributes(req *DeleteAttributesRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteAttributes", "POST", "/", req, nil)
 	return
@@ -118,6 +135,10 @@ func (c *SDB) DeleteAttributes(req *DeleteAttributesRequest) (err error) {
 // their attributes) in the domain are deleted as well. The DeleteDomain
 // operation might take 10 or more seconds to complete.
 func (c *SDB) DeleteDomain(req *DeleteDomainRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteDomain", "POST", "/", req, nil)
 	return
@@ -127,6 +148,10 @@ func (c *SDB) DeleteDomain(req *DeleteDomainRequest) (err error) {
 // domain was created, the number of items and attributes in the domain,
 // and the size of the attribute names and values.
 func (c *SDB) DomainMetadata(req *DomainMetadataRequest) (resp *DomainMetadataResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DomainMetadataResult{}
 	err = c.client.Do("DomainMetadata", "POST", "/", req, resp)
 	return
@@ -139,6 +164,10 @@ func (c *SDB) DomainMetadata(req *DomainMetadataRequest) (resp *DomainMetadataRe
 // an empty set is returned. The system does not return an error as it
 // cannot guarantee the item does not exist on other replicas.
 func (c *SDB) GetAttributes(req *GetAttributesRequest) (resp *GetAttributesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetAttributesResult{}
 	err = c.client.Do("GetAttributes", "POST", "/", req, resp)
 	return
@@ -151,6 +180,10 @@ func (c *SDB) GetAttributes(req *GetAttributesRequest) (resp *GetAttributesResul
 // the NextToken provided by the operation returns up to MaxNumberOfDomains
 // more domain names with each successive operation call.
 func (c *SDB) ListDomains(req *ListDomainsRequest) (resp *ListDomainsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListDomainsResult{}
 	err = c.client.Do("ListDomains", "POST", "/", req, resp)
 	return
@@ -182,6 +215,10 @@ func (c *SDB) ListDomains(req *ListDomainsRequest) (resp *ListDomainsResult, err
 // enforced for this operation: 256 total attribute name-value pairs per
 // item
 func (c *SDB) PutAttributes(req *PutAttributesRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutAttributes", "POST", "/", req, nil)
 	return
@@ -198,6 +235,10 @@ func (c *SDB) PutAttributes(req *PutAttributesRequest) (err error) {
 // select expressions, see Using Select to Create Amazon SimpleDB Queries
 // in the Developer Guide.
 func (c *SDB) Select(req *SelectRequest) (resp *SelectResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SelectResult{}
 	err = c.client.Do("Select", "POST", "/", req, resp)
 	return
@@ -211,10 +252,46 @@ type Attribute struct {
 	Value                  aws.StringValue `xml:"Value"`
 }
 
+func (v *Attribute) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Value"); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BatchDeleteAttributesRequest is undocumented.
 type BatchDeleteAttributesRequest struct {
 	DomainName aws.StringValue `xml:"DomainName"`
 	Items      []DeletableItem `xml:"Item"`
+}
+
+func (v *BatchDeleteAttributesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Items"); err != nil {
+		errors["Items"] = append(errors["Items"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // BatchPutAttributesRequest is undocumented.
@@ -223,15 +300,61 @@ type BatchPutAttributesRequest struct {
 	Items      []ReplaceableItem `xml:"Item"`
 }
 
+func (v *BatchPutAttributesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Items"); err != nil {
+		errors["Items"] = append(errors["Items"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDomainRequest is undocumented.
 type CreateDomainRequest struct {
 	DomainName aws.StringValue `xml:"DomainName"`
+}
+
+func (v *CreateDomainRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeletableItem is undocumented.
 type DeletableItem struct {
 	Attributes []Attribute     `xml:"Attribute"`
 	Name       aws.StringValue `xml:"ItemName"`
+}
+
+func (v *DeletableItem) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteAttributesRequest is undocumented.
@@ -242,14 +365,60 @@ type DeleteAttributesRequest struct {
 	ItemName   aws.StringValue  `xml:"ItemName"`
 }
 
+func (v *DeleteAttributesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ItemName"); err != nil {
+		errors["ItemName"] = append(errors["ItemName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteDomainRequest is undocumented.
 type DeleteDomainRequest struct {
 	DomainName aws.StringValue `xml:"DomainName"`
 }
 
+func (v *DeleteDomainRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DomainMetadataRequest is undocumented.
 type DomainMetadataRequest struct {
 	DomainName aws.StringValue `xml:"DomainName"`
+}
+
+func (v *DomainMetadataRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DomainMetadataResult is undocumented.
@@ -263,6 +432,16 @@ type DomainMetadataResult struct {
 	Timestamp                aws.IntegerValue `xml:"DomainMetadataResult>Timestamp"`
 }
 
+func (v *DomainMetadataResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetAttributesRequest is undocumented.
 type GetAttributesRequest struct {
 	AttributeNames []string         `xml:"AttributeName"`
@@ -271,9 +450,37 @@ type GetAttributesRequest struct {
 	ItemName       aws.StringValue  `xml:"ItemName"`
 }
 
+func (v *GetAttributesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ItemName"); err != nil {
+		errors["ItemName"] = append(errors["ItemName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetAttributesResult is undocumented.
 type GetAttributesResult struct {
 	Attributes []Attribute `xml:"GetAttributesResult>Attribute"`
+}
+
+func (v *GetAttributesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Item is undocumented.
@@ -283,16 +490,54 @@ type Item struct {
 	Name                  aws.StringValue `xml:"Name"`
 }
 
+func (v *Item) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attributes"); err != nil {
+		errors["Attributes"] = append(errors["Attributes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDomainsRequest is undocumented.
 type ListDomainsRequest struct {
 	MaxNumberOfDomains aws.IntegerValue `xml:"MaxNumberOfDomains"`
 	NextToken          aws.StringValue  `xml:"NextToken"`
 }
 
+func (v *ListDomainsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDomainsResult is undocumented.
 type ListDomainsResult struct {
 	DomainNames []string        `xml:"ListDomainsResult>DomainName"`
 	NextToken   aws.StringValue `xml:"ListDomainsResult>NextToken"`
+}
+
+func (v *ListDomainsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutAttributesRequest is undocumented.
@@ -303,6 +548,28 @@ type PutAttributesRequest struct {
 	ItemName   aws.StringValue        `xml:"ItemName"`
 }
 
+func (v *PutAttributesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attributes"); err != nil {
+		errors["Attributes"] = append(errors["Attributes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ItemName"); err != nil {
+		errors["ItemName"] = append(errors["ItemName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReplaceableAttribute is undocumented.
 type ReplaceableAttribute struct {
 	Name    aws.StringValue  `xml:"Name"`
@@ -310,10 +577,46 @@ type ReplaceableAttribute struct {
 	Value   aws.StringValue  `xml:"Value"`
 }
 
+func (v *ReplaceableAttribute) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Value"); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReplaceableItem is undocumented.
 type ReplaceableItem struct {
 	Attributes []ReplaceableAttribute `xml:"Attribute"`
 	Name       aws.StringValue        `xml:"ItemName"`
+}
+
+func (v *ReplaceableItem) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attributes"); err != nil {
+		errors["Attributes"] = append(errors["Attributes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SelectRequest is undocumented.
@@ -323,10 +626,34 @@ type SelectRequest struct {
 	SelectExpression aws.StringValue  `xml:"SelectExpression"`
 }
 
+func (v *SelectRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SelectExpression"); err != nil {
+		errors["SelectExpression"] = append(errors["SelectExpression"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SelectResult is undocumented.
 type SelectResult struct {
 	Items     []Item          `xml:"SelectResult>Item"`
 	NextToken aws.StringValue `xml:"SelectResult>NextToken"`
+}
+
+func (v *SelectResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateCondition is undocumented.
@@ -334,6 +661,16 @@ type UpdateCondition struct {
 	Exists aws.BooleanValue `xml:"Exists"`
 	Name   aws.StringValue  `xml:"Name"`
 	Value  aws.StringValue  `xml:"Value"`
+}
+
+func (v *UpdateCondition) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

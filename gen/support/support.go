@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // Support is a client for AWS Support.
@@ -50,6 +51,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Sup
 // attachments in a set is 3, and the maximum size of any attachment in the
 // set is 5
 func (c *Support) AddAttachmentsToSet(req *AddAttachmentsToSetRequest) (resp *AddAttachmentsToSetResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AddAttachmentsToSetResponse{}
 	err = c.client.Do("AddAttachmentsToSet", "POST", "/", req, resp)
 	return
@@ -63,6 +68,10 @@ func (c *Support) AddAttachmentsToSet(req *AddAttachmentsToSetRequest) (resp *Ad
 // success or failure of the request. This operation implements a subset of
 // the features of the AWS Support Center.
 func (c *Support) AddCommunicationToCase(req *AddCommunicationToCaseRequest) (resp *AddCommunicationToCaseResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AddCommunicationToCaseResponse{}
 	err = c.client.Do("AddCommunicationToCase", "POST", "/", req, resp)
 	return
@@ -96,6 +105,10 @@ func (c *Support) AddCommunicationToCase(req *AddCommunicationToCaseRequest) (re
 // request returns an AWS Support case number. Case numbers are used by the
 // DescribeCases operation to retrieve existing AWS Support cases.
 func (c *Support) CreateCase(req *CreateCaseRequest) (resp *CreateCaseResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateCaseResponse{}
 	err = c.client.Do("CreateCase", "POST", "/", req, resp)
 	return
@@ -107,6 +120,10 @@ func (c *Support) CreateCase(req *CreateCaseRequest) (resp *CreateCaseResponse, 
 // returned in the AttachmentDetails objects that are returned by the
 // DescribeCommunications operation.
 func (c *Support) DescribeAttachment(req *DescribeAttachmentRequest) (resp *DescribeAttachmentResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeAttachmentResponse{}
 	err = c.client.Do("DescribeAttachment", "POST", "/", req, resp)
 	return
@@ -123,6 +140,10 @@ func (c *Support) DescribeAttachment(req *DescribeAttachmentRequest) (resp *Desc
 // or more NextToken values, which specify where to paginate the returned
 // records represented by the CaseDetails objects.
 func (c *Support) DescribeCases(req *DescribeCasesRequest) (resp *DescribeCasesResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeCasesResponse{}
 	err = c.client.Do("DescribeCases", "POST", "/", req, resp)
 	return
@@ -138,6 +159,10 @@ func (c *Support) DescribeCases(req *DescribeCasesRequest) (resp *DescribeCasesR
 // MaxResults to the number of cases you want displayed on each page, and
 // use NextToken to specify the resumption of pagination.
 func (c *Support) DescribeCommunications(req *DescribeCommunicationsRequest) (resp *DescribeCommunicationsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeCommunicationsResponse{}
 	err = c.client.Do("DescribeCommunications", "POST", "/", req, resp)
 	return
@@ -155,6 +180,10 @@ func (c *Support) DescribeCommunications(req *DescribeCommunicationsRequest) (re
 // ensures that you always have the most recent set of service and category
 // codes.
 func (c *Support) DescribeServices(req *DescribeServicesRequest) (resp *DescribeServicesResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeServicesResponse{}
 	err = c.client.Do("DescribeServices", "POST", "/", req, resp)
 	return
@@ -164,6 +193,10 @@ func (c *Support) DescribeServices(req *DescribeServicesRequest) (resp *Describe
 // assign to an AWS Support case. The severity level for a case is also a
 // field in the CaseDetails data type included in any CreateCase request.
 func (c *Support) DescribeSeverityLevels(req *DescribeSeverityLevelsRequest) (resp *DescribeSeverityLevelsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeSeverityLevelsResponse{}
 	err = c.client.Do("DescribeSeverityLevels", "POST", "/", req, resp)
 	return
@@ -173,6 +206,10 @@ func (c *Support) DescribeSeverityLevels(req *DescribeSeverityLevelsRequest) (re
 // the Trusted Advisor checks that have the specified check IDs. Check IDs
 // can be obtained by calling DescribeTrustedAdvisorChecks
 func (c *Support) DescribeTrustedAdvisorCheckRefreshStatuses(req *DescribeTrustedAdvisorCheckRefreshStatusesRequest) (resp *DescribeTrustedAdvisorCheckRefreshStatusesResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTrustedAdvisorCheckRefreshStatusesResponse{}
 	err = c.client.Do("DescribeTrustedAdvisorCheckRefreshStatuses", "POST", "/", req, resp)
 	return
@@ -187,6 +224,10 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatuses(req *DescribeTruste
 // "not_available". Timestamp. The time of the last refresh of the check.
 // CheckId. The unique identifier for the check.
 func (c *Support) DescribeTrustedAdvisorCheckResult(req *DescribeTrustedAdvisorCheckResultRequest) (resp *DescribeTrustedAdvisorCheckResultResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTrustedAdvisorCheckResultResponse{}
 	err = c.client.Do("DescribeTrustedAdvisorCheckResult", "POST", "/", req, resp)
 	return
@@ -197,6 +238,10 @@ func (c *Support) DescribeTrustedAdvisorCheckResult(req *DescribeTrustedAdvisorC
 // Check IDs can be obtained by calling DescribeTrustedAdvisorChecks The
 // response contains an array of TrustedAdvisorCheckSummary objects.
 func (c *Support) DescribeTrustedAdvisorCheckSummaries(req *DescribeTrustedAdvisorCheckSummariesRequest) (resp *DescribeTrustedAdvisorCheckSummariesResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTrustedAdvisorCheckSummariesResponse{}
 	err = c.client.Do("DescribeTrustedAdvisorCheckSummaries", "POST", "/", req, resp)
 	return
@@ -208,6 +253,10 @@ func (c *Support) DescribeTrustedAdvisorCheckSummaries(req *DescribeTrustedAdvis
 // ("ja") are currently supported. The response contains a
 // TrustedAdvisorCheckDescription for each check.
 func (c *Support) DescribeTrustedAdvisorChecks(req *DescribeTrustedAdvisorChecksRequest) (resp *DescribeTrustedAdvisorChecksResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTrustedAdvisorChecksResponse{}
 	err = c.client.Do("DescribeTrustedAdvisorChecks", "POST", "/", req, resp)
 	return
@@ -222,6 +271,10 @@ func (c *Support) DescribeTrustedAdvisorChecks(req *DescribeTrustedAdvisorChecks
 // amount of time, in milliseconds, until the check is eligible for
 // refresh. CheckId. The unique identifier for the check.
 func (c *Support) RefreshTrustedAdvisorCheck(req *RefreshTrustedAdvisorCheckRequest) (resp *RefreshTrustedAdvisorCheckResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RefreshTrustedAdvisorCheckResponse{}
 	err = c.client.Do("RefreshTrustedAdvisorCheck", "POST", "/", req, resp)
 	return
@@ -231,6 +284,10 @@ func (c *Support) RefreshTrustedAdvisorCheck(req *RefreshTrustedAdvisorCheckRequ
 // along with the state of the case after the call to ResolveCase
 // completed.
 func (c *Support) ResolveCase(req *ResolveCaseRequest) (resp *ResolveCaseResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ResolveCaseResponse{}
 	err = c.client.Do("ResolveCase", "POST", "/", req, resp)
 	return
@@ -242,10 +299,34 @@ type AddAttachmentsToSetRequest struct {
 	Attachments     []Attachment    `json:"attachments"`
 }
 
+func (v *AddAttachmentsToSetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attachments"); err != nil {
+		errors["Attachments"] = append(errors["Attachments"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddAttachmentsToSetResponse is undocumented.
 type AddAttachmentsToSetResponse struct {
 	AttachmentSetID aws.StringValue `json:"attachmentSetId,omitempty"`
 	ExpiryTime      aws.StringValue `json:"expiryTime,omitempty"`
+}
+
+func (v *AddAttachmentsToSetResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AddCommunicationToCaseRequest is undocumented.
@@ -256,9 +337,33 @@ type AddCommunicationToCaseRequest struct {
 	CommunicationBody aws.StringValue `json:"communicationBody"`
 }
 
+func (v *AddCommunicationToCaseRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CommunicationBody"); err != nil {
+		errors["CommunicationBody"] = append(errors["CommunicationBody"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddCommunicationToCaseResponse is undocumented.
 type AddCommunicationToCaseResponse struct {
 	Result aws.BooleanValue `json:"result,omitempty"`
+}
+
+func (v *AddCommunicationToCaseResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Attachment is undocumented.
@@ -267,10 +372,30 @@ type Attachment struct {
 	FileName aws.StringValue `json:"fileName,omitempty"`
 }
 
+func (v *Attachment) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AttachmentDetails is undocumented.
 type AttachmentDetails struct {
 	AttachmentID aws.StringValue `json:"attachmentId,omitempty"`
 	FileName     aws.StringValue `json:"fileName,omitempty"`
+}
+
+func (v *AttachmentDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CaseDetails is undocumented.
@@ -289,10 +414,34 @@ type CaseDetails struct {
 	TimeCreated          aws.StringValue           `json:"timeCreated,omitempty"`
 }
 
+func (v *CaseDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "ServiceCode", `[0-9a-z\-_]+`); err != nil {
+		errors["ServiceCode"] = append(errors["ServiceCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Category is undocumented.
 type Category struct {
 	Code aws.StringValue `json:"code,omitempty"`
 	Name aws.StringValue `json:"name,omitempty"`
+}
+
+func (v *Category) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Communication is undocumented.
@@ -302,6 +451,16 @@ type Communication struct {
 	CaseID        aws.StringValue     `json:"caseId,omitempty"`
 	SubmittedBy   aws.StringValue     `json:"submittedBy,omitempty"`
 	TimeCreated   aws.StringValue     `json:"timeCreated,omitempty"`
+}
+
+func (v *Communication) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateCaseRequest is undocumented.
@@ -317,9 +476,41 @@ type CreateCaseRequest struct {
 	Subject           aws.StringValue `json:"subject"`
 }
 
+func (v *CreateCaseRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CommunicationBody"); err != nil {
+		errors["CommunicationBody"] = append(errors["CommunicationBody"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ServiceCode", `[0-9a-z\-_]+`); err != nil {
+		errors["ServiceCode"] = append(errors["ServiceCode"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Subject"); err != nil {
+		errors["Subject"] = append(errors["Subject"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateCaseResponse is undocumented.
 type CreateCaseResponse struct {
 	CaseID aws.StringValue `json:"caseId,omitempty"`
+}
+
+func (v *CreateCaseResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAttachmentRequest is undocumented.
@@ -327,9 +518,33 @@ type DescribeAttachmentRequest struct {
 	AttachmentID aws.StringValue `json:"attachmentId"`
 }
 
+func (v *DescribeAttachmentRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AttachmentID"); err != nil {
+		errors["AttachmentID"] = append(errors["AttachmentID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAttachmentResponse is undocumented.
 type DescribeAttachmentResponse struct {
 	Attachment *Attachment `json:"attachment,omitempty"`
+}
+
+func (v *DescribeAttachmentResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeCasesRequest is undocumented.
@@ -345,10 +560,42 @@ type DescribeCasesRequest struct {
 	NextToken             aws.StringValue  `json:"nextToken,omitempty"`
 }
 
+func (v *DescribeCasesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "CaseIDList", 100); err != nil {
+		errors["CaseIDList"] = append(errors["CaseIDList"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxResults", 10); err != nil {
+		errors["MaxResults"] = append(errors["MaxResults"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxResults", 100); err != nil {
+		errors["MaxResults"] = append(errors["MaxResults"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeCasesResponse is undocumented.
 type DescribeCasesResponse struct {
 	Cases     []CaseDetails   `json:"cases,omitempty"`
 	NextToken aws.StringValue `json:"nextToken,omitempty"`
+}
+
+func (v *DescribeCasesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeCommunicationsRequest is undocumented.
@@ -360,10 +607,42 @@ type DescribeCommunicationsRequest struct {
 	NextToken  aws.StringValue  `json:"nextToken,omitempty"`
 }
 
+func (v *DescribeCommunicationsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CaseID"); err != nil {
+		errors["CaseID"] = append(errors["CaseID"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxResults", 10); err != nil {
+		errors["MaxResults"] = append(errors["MaxResults"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxResults", 100); err != nil {
+		errors["MaxResults"] = append(errors["MaxResults"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeCommunicationsResponse is undocumented.
 type DescribeCommunicationsResponse struct {
 	Communications []Communication `json:"communications,omitempty"`
 	NextToken      aws.StringValue `json:"nextToken,omitempty"`
+}
+
+func (v *DescribeCommunicationsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeServicesRequest is undocumented.
@@ -372,9 +651,33 @@ type DescribeServicesRequest struct {
 	ServiceCodeList []string        `json:"serviceCodeList,omitempty"`
 }
 
+func (v *DescribeServicesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "ServiceCodeList", 100); err != nil {
+		errors["ServiceCodeList"] = append(errors["ServiceCodeList"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeServicesResponse is undocumented.
 type DescribeServicesResponse struct {
 	Services []Service `json:"services,omitempty"`
+}
+
+func (v *DescribeServicesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeSeverityLevelsRequest is undocumented.
@@ -382,9 +685,29 @@ type DescribeSeverityLevelsRequest struct {
 	Language aws.StringValue `json:"language,omitempty"`
 }
 
+func (v *DescribeSeverityLevelsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeSeverityLevelsResponse is undocumented.
 type DescribeSeverityLevelsResponse struct {
 	SeverityLevels []SeverityLevel `json:"severityLevels,omitempty"`
+}
+
+func (v *DescribeSeverityLevelsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTrustedAdvisorCheckRefreshStatusesRequest is undocumented.
@@ -392,9 +715,37 @@ type DescribeTrustedAdvisorCheckRefreshStatusesRequest struct {
 	CheckIDs []string `json:"checkIds"`
 }
 
+func (v *DescribeTrustedAdvisorCheckRefreshStatusesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CheckIDs"); err != nil {
+		errors["CheckIDs"] = append(errors["CheckIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTrustedAdvisorCheckRefreshStatusesResponse is undocumented.
 type DescribeTrustedAdvisorCheckRefreshStatusesResponse struct {
 	Statuses []TrustedAdvisorCheckRefreshStatus `json:"statuses"`
+}
+
+func (v *DescribeTrustedAdvisorCheckRefreshStatusesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Statuses"); err != nil {
+		errors["Statuses"] = append(errors["Statuses"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTrustedAdvisorCheckResultRequest is undocumented.
@@ -403,9 +754,33 @@ type DescribeTrustedAdvisorCheckResultRequest struct {
 	Language aws.StringValue `json:"language,omitempty"`
 }
 
+func (v *DescribeTrustedAdvisorCheckResultRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CheckID"); err != nil {
+		errors["CheckID"] = append(errors["CheckID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTrustedAdvisorCheckResultResponse is undocumented.
 type DescribeTrustedAdvisorCheckResultResponse struct {
 	Result *TrustedAdvisorCheckResult `json:"result,omitempty"`
+}
+
+func (v *DescribeTrustedAdvisorCheckResultResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTrustedAdvisorCheckSummariesRequest is undocumented.
@@ -413,9 +788,37 @@ type DescribeTrustedAdvisorCheckSummariesRequest struct {
 	CheckIDs []string `json:"checkIds"`
 }
 
+func (v *DescribeTrustedAdvisorCheckSummariesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CheckIDs"); err != nil {
+		errors["CheckIDs"] = append(errors["CheckIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTrustedAdvisorCheckSummariesResponse is undocumented.
 type DescribeTrustedAdvisorCheckSummariesResponse struct {
 	Summaries []TrustedAdvisorCheckSummary `json:"summaries"`
+}
+
+func (v *DescribeTrustedAdvisorCheckSummariesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Summaries"); err != nil {
+		errors["Summaries"] = append(errors["Summaries"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTrustedAdvisorChecksRequest is undocumented.
@@ -423,9 +826,37 @@ type DescribeTrustedAdvisorChecksRequest struct {
 	Language aws.StringValue `json:"language"`
 }
 
+func (v *DescribeTrustedAdvisorChecksRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Language"); err != nil {
+		errors["Language"] = append(errors["Language"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTrustedAdvisorChecksResponse is undocumented.
 type DescribeTrustedAdvisorChecksResponse struct {
 	Checks []TrustedAdvisorCheckDescription `json:"checks"`
+}
+
+func (v *DescribeTrustedAdvisorChecksResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Checks"); err != nil {
+		errors["Checks"] = append(errors["Checks"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RecentCaseCommunications is undocumented.
@@ -434,9 +865,33 @@ type RecentCaseCommunications struct {
 	NextToken      aws.StringValue `json:"nextToken,omitempty"`
 }
 
+func (v *RecentCaseCommunications) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RefreshTrustedAdvisorCheckRequest is undocumented.
 type RefreshTrustedAdvisorCheckRequest struct {
 	CheckID aws.StringValue `json:"checkId"`
+}
+
+func (v *RefreshTrustedAdvisorCheckRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CheckID"); err != nil {
+		errors["CheckID"] = append(errors["CheckID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RefreshTrustedAdvisorCheckResponse is undocumented.
@@ -444,15 +899,49 @@ type RefreshTrustedAdvisorCheckResponse struct {
 	Status *TrustedAdvisorCheckRefreshStatus `json:"status"`
 }
 
+func (v *RefreshTrustedAdvisorCheckResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ResolveCaseRequest is undocumented.
 type ResolveCaseRequest struct {
 	CaseID aws.StringValue `json:"caseId,omitempty"`
+}
+
+func (v *ResolveCaseRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ResolveCaseResponse is undocumented.
 type ResolveCaseResponse struct {
 	FinalCaseStatus   aws.StringValue `json:"finalCaseStatus,omitempty"`
 	InitialCaseStatus aws.StringValue `json:"initialCaseStatus,omitempty"`
+}
+
+func (v *ResolveCaseResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Service is undocumented.
@@ -462,15 +951,49 @@ type Service struct {
 	Name       aws.StringValue `json:"name,omitempty"`
 }
 
+func (v *Service) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Code", `[0-9a-z\-_]+`); err != nil {
+		errors["Code"] = append(errors["Code"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SeverityLevel is undocumented.
 type SeverityLevel struct {
 	Code aws.StringValue `json:"code,omitempty"`
 	Name aws.StringValue `json:"name,omitempty"`
 }
 
+func (v *SeverityLevel) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TrustedAdvisorCategorySpecificSummary is undocumented.
 type TrustedAdvisorCategorySpecificSummary struct {
 	CostOptimizing *TrustedAdvisorCostOptimizingSummary `json:"costOptimizing,omitempty"`
+}
+
+func (v *TrustedAdvisorCategorySpecificSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TrustedAdvisorCheckDescription is undocumented.
@@ -482,11 +1005,63 @@ type TrustedAdvisorCheckDescription struct {
 	Name        aws.StringValue `json:"name"`
 }
 
+func (v *TrustedAdvisorCheckDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Category"); err != nil {
+		errors["Category"] = append(errors["Category"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Description"); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Metadata"); err != nil {
+		errors["Metadata"] = append(errors["Metadata"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TrustedAdvisorCheckRefreshStatus is undocumented.
 type TrustedAdvisorCheckRefreshStatus struct {
 	CheckID                    aws.StringValue `json:"checkId"`
 	MillisUntilNextRefreshable aws.LongValue   `json:"millisUntilNextRefreshable"`
 	Status                     aws.StringValue `json:"status"`
+}
+
+func (v *TrustedAdvisorCheckRefreshStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CheckID"); err != nil {
+		errors["CheckID"] = append(errors["CheckID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MillisUntilNextRefreshable"); err != nil {
+		errors["MillisUntilNextRefreshable"] = append(errors["MillisUntilNextRefreshable"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TrustedAdvisorCheckResult is undocumented.
@@ -499,6 +1074,40 @@ type TrustedAdvisorCheckResult struct {
 	Timestamp               aws.StringValue                        `json:"timestamp"`
 }
 
+func (v *TrustedAdvisorCheckResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CategorySpecificSummary"); err != nil {
+		errors["CategorySpecificSummary"] = append(errors["CategorySpecificSummary"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CheckID"); err != nil {
+		errors["CheckID"] = append(errors["CheckID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "FlaggedResources"); err != nil {
+		errors["FlaggedResources"] = append(errors["FlaggedResources"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourcesSummary"); err != nil {
+		errors["ResourcesSummary"] = append(errors["ResourcesSummary"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Timestamp"); err != nil {
+		errors["Timestamp"] = append(errors["Timestamp"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TrustedAdvisorCheckSummary is undocumented.
 type TrustedAdvisorCheckSummary struct {
 	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `json:"categorySpecificSummary"`
@@ -509,10 +1118,58 @@ type TrustedAdvisorCheckSummary struct {
 	Timestamp               aws.StringValue                        `json:"timestamp"`
 }
 
+func (v *TrustedAdvisorCheckSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CategorySpecificSummary"); err != nil {
+		errors["CategorySpecificSummary"] = append(errors["CategorySpecificSummary"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CheckID"); err != nil {
+		errors["CheckID"] = append(errors["CheckID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourcesSummary"); err != nil {
+		errors["ResourcesSummary"] = append(errors["ResourcesSummary"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Timestamp"); err != nil {
+		errors["Timestamp"] = append(errors["Timestamp"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TrustedAdvisorCostOptimizingSummary is undocumented.
 type TrustedAdvisorCostOptimizingSummary struct {
 	EstimatedMonthlySavings        aws.DoubleValue `json:"estimatedMonthlySavings"`
 	EstimatedPercentMonthlySavings aws.DoubleValue `json:"estimatedPercentMonthlySavings"`
+}
+
+func (v *TrustedAdvisorCostOptimizingSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EstimatedMonthlySavings"); err != nil {
+		errors["EstimatedMonthlySavings"] = append(errors["EstimatedMonthlySavings"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EstimatedPercentMonthlySavings"); err != nil {
+		errors["EstimatedPercentMonthlySavings"] = append(errors["EstimatedPercentMonthlySavings"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TrustedAdvisorResourceDetail is undocumented.
@@ -524,12 +1181,64 @@ type TrustedAdvisorResourceDetail struct {
 	Status       aws.StringValue  `json:"status"`
 }
 
+func (v *TrustedAdvisorResourceDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Metadata"); err != nil {
+		errors["Metadata"] = append(errors["Metadata"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Region"); err != nil {
+		errors["Region"] = append(errors["Region"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceID"); err != nil {
+		errors["ResourceID"] = append(errors["ResourceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TrustedAdvisorResourcesSummary is undocumented.
 type TrustedAdvisorResourcesSummary struct {
 	ResourcesFlagged    aws.LongValue `json:"resourcesFlagged"`
 	ResourcesIgnored    aws.LongValue `json:"resourcesIgnored"`
 	ResourcesProcessed  aws.LongValue `json:"resourcesProcessed"`
 	ResourcesSuppressed aws.LongValue `json:"resourcesSuppressed"`
+}
+
+func (v *TrustedAdvisorResourcesSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ResourcesFlagged"); err != nil {
+		errors["ResourcesFlagged"] = append(errors["ResourcesFlagged"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourcesIgnored"); err != nil {
+		errors["ResourcesIgnored"] = append(errors["ResourcesIgnored"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourcesProcessed"); err != nil {
+		errors["ResourcesProcessed"] = append(errors["ResourcesProcessed"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourcesSuppressed"); err != nil {
+		errors["ResourcesSuppressed"] = append(errors["ResourcesSuppressed"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

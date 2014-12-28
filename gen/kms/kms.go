@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // KMS is a client for AWS Key Management Service.
@@ -47,6 +48,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *KMS
 // slash (alias/). An alias that begins with "aws" after the forward slash
 // (alias/aws...) is reserved by Amazon Web Services
 func (c *KMS) CreateAlias(req *CreateAliasRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateAlias", "POST", "/", req, nil)
 	return
@@ -61,6 +66,10 @@ func (c *KMS) CreateAlias(req *CreateAliasRequest) (err error) {
 // want to end a grant immediately, revoke it. For more information about
 // grants, see Grants .
 func (c *KMS) CreateGrant(req *CreateGrantRequest) (resp *CreateGrantResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateGrantResponse{}
 	err = c.client.Do("CreateGrant", "POST", "/", req, resp)
 	return
@@ -72,6 +81,10 @@ func (c *KMS) CreateGrant(req *CreateGrantRequest) (resp *CreateGrantResponse, e
 // used to encrypt customer data. For more information about data keys, see
 // GenerateDataKey and GenerateDataKeyWithoutPlaintext
 func (c *KMS) CreateKey(req *CreateKeyRequest) (resp *CreateKeyResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateKeyResponse{}
 	err = c.client.Do("CreateKey", "POST", "/", req, resp)
 	return
@@ -80,6 +93,10 @@ func (c *KMS) CreateKey(req *CreateKeyRequest) (resp *CreateKeyResponse, err err
 // Decrypt decrypts ciphertext. Ciphertext is plaintext that has been
 // previously encrypted by using the Encrypt function.
 func (c *KMS) Decrypt(req *DecryptRequest) (resp *DecryptResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DecryptResponse{}
 	err = c.client.Do("Decrypt", "POST", "/", req, resp)
 	return
@@ -87,6 +104,10 @@ func (c *KMS) Decrypt(req *DecryptRequest) (resp *DecryptResponse, err error) {
 
 // DeleteAlias is undocumented.
 func (c *KMS) DeleteAlias(req *DeleteAliasRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteAlias", "POST", "/", req, nil)
 	return
@@ -95,6 +116,10 @@ func (c *KMS) DeleteAlias(req *DeleteAliasRequest) (err error) {
 // DescribeKey provides detailed information about the specified customer
 // master key.
 func (c *KMS) DescribeKey(req *DescribeKeyRequest) (resp *DescribeKeyResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeKeyResponse{}
 	err = c.client.Do("DescribeKey", "POST", "/", req, resp)
 	return
@@ -102,6 +127,10 @@ func (c *KMS) DescribeKey(req *DescribeKeyRequest) (resp *DescribeKeyResponse, e
 
 // DisableKey marks a key as disabled, thereby preventing its use.
 func (c *KMS) DisableKey(req *DisableKeyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DisableKey", "POST", "/", req, nil)
 	return
@@ -109,6 +138,10 @@ func (c *KMS) DisableKey(req *DisableKeyRequest) (err error) {
 
 // DisableKeyRotation is undocumented.
 func (c *KMS) DisableKeyRotation(req *DisableKeyRotationRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DisableKeyRotation", "POST", "/", req, nil)
 	return
@@ -117,6 +150,10 @@ func (c *KMS) DisableKeyRotation(req *DisableKeyRotationRequest) (err error) {
 // EnableKey marks a key as enabled, thereby permitting its use. You can
 // have up to 25 enabled keys at one time.
 func (c *KMS) EnableKey(req *EnableKeyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("EnableKey", "POST", "/", req, nil)
 	return
@@ -124,6 +161,10 @@ func (c *KMS) EnableKey(req *EnableKeyRequest) (err error) {
 
 // EnableKeyRotation enables rotation of the specified customer master key.
 func (c *KMS) EnableKeyRotation(req *EnableKeyRotationRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("EnableKeyRotation", "POST", "/", req, nil)
 	return
@@ -132,6 +173,10 @@ func (c *KMS) EnableKeyRotation(req *EnableKeyRotationRequest) (err error) {
 // Encrypt encrypts plaintext into ciphertext by using a customer master
 // key.
 func (c *KMS) Encrypt(req *EncryptRequest) (resp *EncryptResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &EncryptResponse{}
 	err = c.client.Do("Encrypt", "POST", "/", req, resp)
 	return
@@ -140,6 +185,10 @@ func (c *KMS) Encrypt(req *EncryptRequest) (resp *EncryptResponse, err error) {
 // GenerateDataKey generates a secure data key. Data keys are used to
 // encrypt and decrypt data. They are wrapped by customer master keys.
 func (c *KMS) GenerateDataKey(req *GenerateDataKeyRequest) (resp *GenerateDataKeyResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GenerateDataKeyResponse{}
 	err = c.client.Do("GenerateDataKey", "POST", "/", req, resp)
 	return
@@ -149,6 +198,10 @@ func (c *KMS) GenerateDataKey(req *GenerateDataKeyRequest) (resp *GenerateDataKe
 // master key without the plaintext copy of that key. To retrieve the
 // plaintext, see GenerateDataKey .
 func (c *KMS) GenerateDataKeyWithoutPlaintext(req *GenerateDataKeyWithoutPlaintextRequest) (resp *GenerateDataKeyWithoutPlaintextResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GenerateDataKeyWithoutPlaintextResponse{}
 	err = c.client.Do("GenerateDataKeyWithoutPlaintext", "POST", "/", req, resp)
 	return
@@ -156,6 +209,10 @@ func (c *KMS) GenerateDataKeyWithoutPlaintext(req *GenerateDataKeyWithoutPlainte
 
 // GenerateRandom is undocumented.
 func (c *KMS) GenerateRandom(req *GenerateRandomRequest) (resp *GenerateRandomResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GenerateRandomResponse{}
 	err = c.client.Do("GenerateRandom", "POST", "/", req, resp)
 	return
@@ -163,6 +220,10 @@ func (c *KMS) GenerateRandom(req *GenerateRandomRequest) (resp *GenerateRandomRe
 
 // GetKeyPolicy is undocumented.
 func (c *KMS) GetKeyPolicy(req *GetKeyPolicyRequest) (resp *GetKeyPolicyResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetKeyPolicyResponse{}
 	err = c.client.Do("GetKeyPolicy", "POST", "/", req, resp)
 	return
@@ -171,6 +232,10 @@ func (c *KMS) GetKeyPolicy(req *GetKeyPolicyRequest) (resp *GetKeyPolicyResponse
 // GetKeyRotationStatus retrieves a Boolean value that indicates whether
 // key rotation is enabled for the specified key.
 func (c *KMS) GetKeyRotationStatus(req *GetKeyRotationStatusRequest) (resp *GetKeyRotationStatusResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetKeyRotationStatusResponse{}
 	err = c.client.Do("GetKeyRotationStatus", "POST", "/", req, resp)
 	return
@@ -178,6 +243,10 @@ func (c *KMS) GetKeyRotationStatus(req *GetKeyRotationStatusRequest) (resp *GetK
 
 // ListAliases is undocumented.
 func (c *KMS) ListAliases(req *ListAliasesRequest) (resp *ListAliasesResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListAliasesResponse{}
 	err = c.client.Do("ListAliases", "POST", "/", req, resp)
 	return
@@ -185,6 +254,10 @@ func (c *KMS) ListAliases(req *ListAliasesRequest) (resp *ListAliasesResponse, e
 
 // ListGrants is undocumented.
 func (c *KMS) ListGrants(req *ListGrantsRequest) (resp *ListGrantsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListGrantsResponse{}
 	err = c.client.Do("ListGrants", "POST", "/", req, resp)
 	return
@@ -192,6 +265,10 @@ func (c *KMS) ListGrants(req *ListGrantsRequest) (resp *ListGrantsResponse, err 
 
 // ListKeyPolicies is undocumented.
 func (c *KMS) ListKeyPolicies(req *ListKeyPoliciesRequest) (resp *ListKeyPoliciesResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListKeyPoliciesResponse{}
 	err = c.client.Do("ListKeyPolicies", "POST", "/", req, resp)
 	return
@@ -199,6 +276,10 @@ func (c *KMS) ListKeyPolicies(req *ListKeyPoliciesRequest) (resp *ListKeyPolicie
 
 // ListKeys is undocumented.
 func (c *KMS) ListKeys(req *ListKeysRequest) (resp *ListKeysResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListKeysResponse{}
 	err = c.client.Do("ListKeys", "POST", "/", req, resp)
 	return
@@ -206,6 +287,10 @@ func (c *KMS) ListKeys(req *ListKeysRequest) (resp *ListKeysResponse, err error)
 
 // PutKeyPolicy is undocumented.
 func (c *KMS) PutKeyPolicy(req *PutKeyPolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutKeyPolicy", "POST", "/", req, nil)
 	return
@@ -216,6 +301,10 @@ func (c *KMS) PutKeyPolicy(req *PutKeyPolicyRequest) (err error) {
 // data is first decrypted and then encrypted. This operation can also be
 // used to change the encryption context of a ciphertext.
 func (c *KMS) ReEncrypt(req *ReEncryptRequest) (resp *ReEncryptResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ReEncryptResponse{}
 	err = c.client.Do("ReEncrypt", "POST", "/", req, resp)
 	return
@@ -225,6 +314,10 @@ func (c *KMS) ReEncrypt(req *ReEncryptRequest) (resp *ReEncryptResponse, err err
 // using it to clean up. You should revoke a grant when you intend to
 // actively deny operations that depend on it.
 func (c *KMS) RetireGrant(req *RetireGrantRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RetireGrant", "POST", "/", req, nil)
 	return
@@ -233,6 +326,10 @@ func (c *KMS) RetireGrant(req *RetireGrantRequest) (err error) {
 // RevokeGrant revokes a grant. You can revoke a grant to actively deny
 // operations that depend on it.
 func (c *KMS) RevokeGrant(req *RevokeGrantRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RevokeGrant", "POST", "/", req, nil)
 	return
@@ -240,6 +337,10 @@ func (c *KMS) RevokeGrant(req *RevokeGrantRequest) (err error) {
 
 // UpdateKeyDescription <nil>
 func (c *KMS) UpdateKeyDescription(req *UpdateKeyDescriptionRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateKeyDescription", "POST", "/", req, nil)
 	return
@@ -252,10 +353,86 @@ type AliasListEntry struct {
 	TargetKeyID aws.StringValue `json:"TargetKeyId,omitempty"`
 }
 
+func (v *AliasListEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AliasARN", 20); err != nil {
+		errors["AliasARN"] = append(errors["AliasARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "AliasARN", 2048); err != nil {
+		errors["AliasARN"] = append(errors["AliasARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "AliasName", 1); err != nil {
+		errors["AliasName"] = append(errors["AliasName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AliasName", 256); err != nil {
+		errors["AliasName"] = append(errors["AliasName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AliasName", `^[a-zA-Z0-9:/_-]+$`); err != nil {
+		errors["AliasName"] = append(errors["AliasName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TargetKeyID", 1); err != nil {
+		errors["TargetKeyID"] = append(errors["TargetKeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetKeyID", 256); err != nil {
+		errors["TargetKeyID"] = append(errors["TargetKeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateAliasRequest is undocumented.
 type CreateAliasRequest struct {
 	AliasName   aws.StringValue `json:"AliasName"`
 	TargetKeyID aws.StringValue `json:"TargetKeyId"`
+}
+
+func (v *CreateAliasRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AliasName"); err != nil {
+		errors["AliasName"] = append(errors["AliasName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AliasName", 1); err != nil {
+		errors["AliasName"] = append(errors["AliasName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AliasName", 256); err != nil {
+		errors["AliasName"] = append(errors["AliasName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AliasName", `^[a-zA-Z0-9:/_-]+$`); err != nil {
+		errors["AliasName"] = append(errors["AliasName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetKeyID"); err != nil {
+		errors["TargetKeyID"] = append(errors["TargetKeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TargetKeyID", 1); err != nil {
+		errors["TargetKeyID"] = append(errors["TargetKeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetKeyID", 256); err != nil {
+		errors["TargetKeyID"] = append(errors["TargetKeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateGrantRequest is undocumented.
@@ -268,10 +445,82 @@ type CreateGrantRequest struct {
 	RetiringPrincipal aws.StringValue   `json:"RetiringPrincipal,omitempty"`
 }
 
+func (v *CreateGrantRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "GrantTokens", 10); err != nil {
+		errors["GrantTokens"] = append(errors["GrantTokens"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GranteePrincipal"); err != nil {
+		errors["GranteePrincipal"] = append(errors["GranteePrincipal"], err)
+	}
+
+	if err := model.ValidateMin(v, "GranteePrincipal", 1); err != nil {
+		errors["GranteePrincipal"] = append(errors["GranteePrincipal"], err)
+	}
+
+	if err := model.ValidateMax(v, "GranteePrincipal", 256); err != nil {
+		errors["GranteePrincipal"] = append(errors["GranteePrincipal"], err)
+	}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "RetiringPrincipal", 1); err != nil {
+		errors["RetiringPrincipal"] = append(errors["RetiringPrincipal"], err)
+	}
+
+	if err := model.ValidateMax(v, "RetiringPrincipal", 256); err != nil {
+		errors["RetiringPrincipal"] = append(errors["RetiringPrincipal"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateGrantResponse is undocumented.
 type CreateGrantResponse struct {
 	GrantID    aws.StringValue `json:"GrantId,omitempty"`
 	GrantToken aws.StringValue `json:"GrantToken,omitempty"`
+}
+
+func (v *CreateGrantResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GrantID", 1); err != nil {
+		errors["GrantID"] = append(errors["GrantID"], err)
+	}
+
+	if err := model.ValidateMax(v, "GrantID", 128); err != nil {
+		errors["GrantID"] = append(errors["GrantID"], err)
+	}
+
+	if err := model.ValidateMin(v, "GrantToken", 1); err != nil {
+		errors["GrantToken"] = append(errors["GrantToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "GrantToken", 8192); err != nil {
+		errors["GrantToken"] = append(errors["GrantToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateKeyRequest is undocumented.
@@ -281,9 +530,52 @@ type CreateKeyRequest struct {
 	Policy      aws.StringValue `json:"Policy,omitempty"`
 }
 
+func (v *CreateKeyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Description", 8192); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	KeyUsageEnum := []string{
+		KeyUsageTypeEncryptDecrypt,
+	}
+	if err := model.ValidateEnum(v, "KeyUsage", KeyUsageEnum); err != nil {
+		errors["KeyUsage"] = append(errors["KeyUsage"], err)
+	}
+
+	if err := model.ValidateMin(v, "Policy", 1); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidateMax(v, "Policy", 131072); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Policy", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateKeyResponse is undocumented.
 type CreateKeyResponse struct {
 	KeyMetadata *KeyMetadata `json:"KeyMetadata,omitempty"`
+}
+
+func (v *CreateKeyResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for KMS.
@@ -299,10 +591,62 @@ type DecryptRequest struct {
 	GrantTokens       []string          `json:"GrantTokens,omitempty"`
 }
 
+func (v *DecryptRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CiphertextBlob"); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMin(v, "CiphertextBlob", 1); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMax(v, "CiphertextBlob", 6144); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMax(v, "GrantTokens", 10); err != nil {
+		errors["GrantTokens"] = append(errors["GrantTokens"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DecryptResponse is undocumented.
 type DecryptResponse struct {
 	KeyID     aws.StringValue `json:"KeyId,omitempty"`
 	Plaintext []byte          `json:"Plaintext,omitempty"`
+}
+
+func (v *DecryptResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "Plaintext", 1); err != nil {
+		errors["Plaintext"] = append(errors["Plaintext"], err)
+	}
+
+	if err := model.ValidateMax(v, "Plaintext", 4096); err != nil {
+		errors["Plaintext"] = append(errors["Plaintext"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteAliasRequest is undocumented.
@@ -310,9 +654,57 @@ type DeleteAliasRequest struct {
 	AliasName aws.StringValue `json:"AliasName"`
 }
 
+func (v *DeleteAliasRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AliasName"); err != nil {
+		errors["AliasName"] = append(errors["AliasName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AliasName", 1); err != nil {
+		errors["AliasName"] = append(errors["AliasName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AliasName", 256); err != nil {
+		errors["AliasName"] = append(errors["AliasName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AliasName", `^[a-zA-Z0-9:/_-]+$`); err != nil {
+		errors["AliasName"] = append(errors["AliasName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeKeyRequest is undocumented.
 type DescribeKeyRequest struct {
 	KeyID aws.StringValue `json:"KeyId"`
+}
+
+func (v *DescribeKeyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeKeyResponse is undocumented.
@@ -320,9 +712,41 @@ type DescribeKeyResponse struct {
 	KeyMetadata *KeyMetadata `json:"KeyMetadata,omitempty"`
 }
 
+func (v *DescribeKeyResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DisableKeyRequest is undocumented.
 type DisableKeyRequest struct {
 	KeyID aws.StringValue `json:"KeyId"`
+}
+
+func (v *DisableKeyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DisableKeyRotationRequest is undocumented.
@@ -330,14 +754,80 @@ type DisableKeyRotationRequest struct {
 	KeyID aws.StringValue `json:"KeyId"`
 }
 
+func (v *DisableKeyRotationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnableKeyRequest is undocumented.
 type EnableKeyRequest struct {
 	KeyID aws.StringValue `json:"KeyId"`
 }
 
+func (v *EnableKeyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnableKeyRotationRequest is undocumented.
 type EnableKeyRotationRequest struct {
 	KeyID aws.StringValue `json:"KeyId"`
+}
+
+func (v *EnableKeyRotationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EncryptRequest is undocumented.
@@ -348,10 +838,74 @@ type EncryptRequest struct {
 	Plaintext         []byte            `json:"Plaintext"`
 }
 
+func (v *EncryptRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "GrantTokens", 10); err != nil {
+		errors["GrantTokens"] = append(errors["GrantTokens"], err)
+	}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Plaintext"); err != nil {
+		errors["Plaintext"] = append(errors["Plaintext"], err)
+	}
+
+	if err := model.ValidateMin(v, "Plaintext", 1); err != nil {
+		errors["Plaintext"] = append(errors["Plaintext"], err)
+	}
+
+	if err := model.ValidateMax(v, "Plaintext", 4096); err != nil {
+		errors["Plaintext"] = append(errors["Plaintext"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EncryptResponse is undocumented.
 type EncryptResponse struct {
 	CiphertextBlob []byte          `json:"CiphertextBlob,omitempty"`
 	KeyID          aws.StringValue `json:"KeyId,omitempty"`
+}
+
+func (v *EncryptResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "CiphertextBlob", 1); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMax(v, "CiphertextBlob", 6144); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GenerateDataKeyRequest is undocumented.
@@ -363,11 +917,87 @@ type GenerateDataKeyRequest struct {
 	NumberOfBytes     aws.IntegerValue  `json:"NumberOfBytes,omitempty"`
 }
 
+func (v *GenerateDataKeyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "GrantTokens", 10); err != nil {
+		errors["GrantTokens"] = append(errors["GrantTokens"], err)
+	}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	KeySpecEnum := []string{
+		DataKeySpecAES128,
+		DataKeySpecAES256,
+	}
+	if err := model.ValidateEnum(v, "KeySpec", KeySpecEnum); err != nil {
+		errors["KeySpec"] = append(errors["KeySpec"], err)
+	}
+
+	if err := model.ValidateMin(v, "NumberOfBytes", 1); err != nil {
+		errors["NumberOfBytes"] = append(errors["NumberOfBytes"], err)
+	}
+
+	if err := model.ValidateMax(v, "NumberOfBytes", 1024); err != nil {
+		errors["NumberOfBytes"] = append(errors["NumberOfBytes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GenerateDataKeyResponse is undocumented.
 type GenerateDataKeyResponse struct {
 	CiphertextBlob []byte          `json:"CiphertextBlob,omitempty"`
 	KeyID          aws.StringValue `json:"KeyId,omitempty"`
 	Plaintext      []byte          `json:"Plaintext,omitempty"`
+}
+
+func (v *GenerateDataKeyResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "CiphertextBlob", 1); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMax(v, "CiphertextBlob", 6144); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "Plaintext", 1); err != nil {
+		errors["Plaintext"] = append(errors["Plaintext"], err)
+	}
+
+	if err := model.ValidateMax(v, "Plaintext", 4096); err != nil {
+		errors["Plaintext"] = append(errors["Plaintext"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GenerateDataKeyWithoutPlaintextRequest is undocumented.
@@ -379,10 +1009,78 @@ type GenerateDataKeyWithoutPlaintextRequest struct {
 	NumberOfBytes     aws.IntegerValue  `json:"NumberOfBytes,omitempty"`
 }
 
+func (v *GenerateDataKeyWithoutPlaintextRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "GrantTokens", 10); err != nil {
+		errors["GrantTokens"] = append(errors["GrantTokens"], err)
+	}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	KeySpecEnum := []string{
+		DataKeySpecAES128,
+		DataKeySpecAES256,
+	}
+	if err := model.ValidateEnum(v, "KeySpec", KeySpecEnum); err != nil {
+		errors["KeySpec"] = append(errors["KeySpec"], err)
+	}
+
+	if err := model.ValidateMin(v, "NumberOfBytes", 1); err != nil {
+		errors["NumberOfBytes"] = append(errors["NumberOfBytes"], err)
+	}
+
+	if err := model.ValidateMax(v, "NumberOfBytes", 1024); err != nil {
+		errors["NumberOfBytes"] = append(errors["NumberOfBytes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GenerateDataKeyWithoutPlaintextResponse is undocumented.
 type GenerateDataKeyWithoutPlaintextResponse struct {
 	CiphertextBlob []byte          `json:"CiphertextBlob,omitempty"`
 	KeyID          aws.StringValue `json:"KeyId,omitempty"`
+}
+
+func (v *GenerateDataKeyWithoutPlaintextResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "CiphertextBlob", 1); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMax(v, "CiphertextBlob", 6144); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GenerateRandomRequest is undocumented.
@@ -390,9 +1088,45 @@ type GenerateRandomRequest struct {
 	NumberOfBytes aws.IntegerValue `json:"NumberOfBytes,omitempty"`
 }
 
+func (v *GenerateRandomRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NumberOfBytes", 1); err != nil {
+		errors["NumberOfBytes"] = append(errors["NumberOfBytes"], err)
+	}
+
+	if err := model.ValidateMax(v, "NumberOfBytes", 1024); err != nil {
+		errors["NumberOfBytes"] = append(errors["NumberOfBytes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GenerateRandomResponse is undocumented.
 type GenerateRandomResponse struct {
 	Plaintext []byte `json:"Plaintext,omitempty"`
+}
+
+func (v *GenerateRandomResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Plaintext", 1); err != nil {
+		errors["Plaintext"] = append(errors["Plaintext"], err)
+	}
+
+	if err := model.ValidateMax(v, "Plaintext", 4096); err != nil {
+		errors["Plaintext"] = append(errors["Plaintext"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetKeyPolicyRequest is undocumented.
@@ -401,9 +1135,69 @@ type GetKeyPolicyRequest struct {
 	PolicyName aws.StringValue `json:"PolicyName"`
 }
 
+func (v *GetKeyPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w]+`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetKeyPolicyResponse is undocumented.
 type GetKeyPolicyResponse struct {
 	Policy aws.StringValue `json:"Policy,omitempty"`
+}
+
+func (v *GetKeyPolicyResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Policy", 1); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidateMax(v, "Policy", 131072); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Policy", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetKeyRotationStatusRequest is undocumented.
@@ -411,15 +1205,57 @@ type GetKeyRotationStatusRequest struct {
 	KeyID aws.StringValue `json:"KeyId"`
 }
 
+func (v *GetKeyRotationStatusRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetKeyRotationStatusResponse is undocumented.
 type GetKeyRotationStatusResponse struct {
 	KeyRotationEnabled aws.BooleanValue `json:"KeyRotationEnabled,omitempty"`
+}
+
+func (v *GetKeyRotationStatusResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GrantConstraints is undocumented.
 type GrantConstraints struct {
 	EncryptionContextEquals map[string]string `json:"EncryptionContextEquals,omitempty"`
 	EncryptionContextSubset map[string]string `json:"EncryptionContextSubset,omitempty"`
+}
+
+func (v *GrantConstraints) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GrantListEntry is undocumented.
@@ -430,6 +1266,48 @@ type GrantListEntry struct {
 	IssuingAccount    aws.StringValue   `json:"IssuingAccount,omitempty"`
 	Operations        []string          `json:"Operations,omitempty"`
 	RetiringPrincipal aws.StringValue   `json:"RetiringPrincipal,omitempty"`
+}
+
+func (v *GrantListEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GrantID", 1); err != nil {
+		errors["GrantID"] = append(errors["GrantID"], err)
+	}
+
+	if err := model.ValidateMax(v, "GrantID", 128); err != nil {
+		errors["GrantID"] = append(errors["GrantID"], err)
+	}
+
+	if err := model.ValidateMin(v, "GranteePrincipal", 1); err != nil {
+		errors["GranteePrincipal"] = append(errors["GranteePrincipal"], err)
+	}
+
+	if err := model.ValidateMax(v, "GranteePrincipal", 256); err != nil {
+		errors["GranteePrincipal"] = append(errors["GranteePrincipal"], err)
+	}
+
+	if err := model.ValidateMin(v, "IssuingAccount", 1); err != nil {
+		errors["IssuingAccount"] = append(errors["IssuingAccount"], err)
+	}
+
+	if err := model.ValidateMax(v, "IssuingAccount", 256); err != nil {
+		errors["IssuingAccount"] = append(errors["IssuingAccount"], err)
+	}
+
+	if err := model.ValidateMin(v, "RetiringPrincipal", 1); err != nil {
+		errors["RetiringPrincipal"] = append(errors["RetiringPrincipal"], err)
+	}
+
+	if err := model.ValidateMax(v, "RetiringPrincipal", 256); err != nil {
+		errors["RetiringPrincipal"] = append(errors["RetiringPrincipal"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for KMS.
@@ -450,6 +1328,32 @@ type KeyListEntry struct {
 	KeyID  aws.StringValue `json:"KeyId,omitempty"`
 }
 
+func (v *KeyListEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "KeyARN", 20); err != nil {
+		errors["KeyARN"] = append(errors["KeyARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyARN", 2048); err != nil {
+		errors["KeyARN"] = append(errors["KeyARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // KeyMetadata is undocumented.
 type KeyMetadata struct {
 	AWSAccountID aws.StringValue  `json:"AWSAccountId,omitempty"`
@@ -459,6 +1363,47 @@ type KeyMetadata struct {
 	Enabled      aws.BooleanValue `json:"Enabled,omitempty"`
 	KeyID        aws.StringValue  `json:"KeyId"`
 	KeyUsage     aws.StringValue  `json:"KeyUsage,omitempty"`
+}
+
+func (v *KeyMetadata) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 8192); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	KeyUsageEnum := []string{
+		KeyUsageTypeEncryptDecrypt,
+	}
+	if err := model.ValidateEnum(v, "KeyUsage", KeyUsageEnum); err != nil {
+		errors["KeyUsage"] = append(errors["KeyUsage"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for KMS.
@@ -472,11 +1417,63 @@ type ListAliasesRequest struct {
 	Marker aws.StringValue  `json:"Marker,omitempty"`
 }
 
+func (v *ListAliasesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 1000); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListAliasesResponse is undocumented.
 type ListAliasesResponse struct {
 	Aliases    []AliasListEntry `json:"Aliases,omitempty"`
 	NextMarker aws.StringValue  `json:"NextMarker,omitempty"`
 	Truncated  aws.BooleanValue `json:"Truncated,omitempty"`
+}
+
+func (v *ListAliasesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextMarker", 1); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextMarker", 320); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NextMarker", `[\u0020-\u00FF]*`); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListGrantsRequest is undocumented.
@@ -486,11 +1483,75 @@ type ListGrantsRequest struct {
 	Marker aws.StringValue  `json:"Marker,omitempty"`
 }
 
+func (v *ListGrantsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 1000); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListGrantsResponse is undocumented.
 type ListGrantsResponse struct {
 	Grants     []GrantListEntry `json:"Grants,omitempty"`
 	NextMarker aws.StringValue  `json:"NextMarker,omitempty"`
 	Truncated  aws.BooleanValue `json:"Truncated,omitempty"`
+}
+
+func (v *ListGrantsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextMarker", 1); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextMarker", 320); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NextMarker", `[\u0020-\u00FF]*`); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListKeyPoliciesRequest is undocumented.
@@ -500,6 +1561,48 @@ type ListKeyPoliciesRequest struct {
 	Marker aws.StringValue  `json:"Marker,omitempty"`
 }
 
+func (v *ListKeyPoliciesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 1000); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListKeyPoliciesResponse is undocumented.
 type ListKeyPoliciesResponse struct {
 	NextMarker  aws.StringValue  `json:"NextMarker,omitempty"`
@@ -507,10 +1610,62 @@ type ListKeyPoliciesResponse struct {
 	Truncated   aws.BooleanValue `json:"Truncated,omitempty"`
 }
 
+func (v *ListKeyPoliciesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextMarker", 1); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextMarker", 320); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NextMarker", `[\u0020-\u00FF]*`); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListKeysRequest is undocumented.
 type ListKeysRequest struct {
 	Limit  aws.IntegerValue `json:"Limit,omitempty"`
 	Marker aws.StringValue  `json:"Marker,omitempty"`
+}
+
+func (v *ListKeysRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 1000); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListKeysResponse is undocumented.
@@ -520,11 +1675,87 @@ type ListKeysResponse struct {
 	Truncated  aws.BooleanValue `json:"Truncated,omitempty"`
 }
 
+func (v *ListKeysResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextMarker", 1); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextMarker", 320); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NextMarker", `[\u0020-\u00FF]*`); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutKeyPolicyRequest is undocumented.
 type PutKeyPolicyRequest struct {
 	KeyID      aws.StringValue `json:"KeyId"`
 	Policy     aws.StringValue `json:"Policy"`
 	PolicyName aws.StringValue `json:"PolicyName"`
+}
+
+func (v *PutKeyPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Policy"); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidateMin(v, "Policy", 1); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidateMax(v, "Policy", 131072); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Policy", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w]+`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReEncryptRequest is undocumented.
@@ -536,6 +1767,44 @@ type ReEncryptRequest struct {
 	SourceEncryptionContext      map[string]string `json:"SourceEncryptionContext,omitempty"`
 }
 
+func (v *ReEncryptRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CiphertextBlob"); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMin(v, "CiphertextBlob", 1); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMax(v, "CiphertextBlob", 6144); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DestinationKeyID"); err != nil {
+		errors["DestinationKeyID"] = append(errors["DestinationKeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "DestinationKeyID", 1); err != nil {
+		errors["DestinationKeyID"] = append(errors["DestinationKeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "DestinationKeyID", 256); err != nil {
+		errors["DestinationKeyID"] = append(errors["DestinationKeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "GrantTokens", 10); err != nil {
+		errors["GrantTokens"] = append(errors["GrantTokens"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReEncryptResponse is undocumented.
 type ReEncryptResponse struct {
 	CiphertextBlob []byte          `json:"CiphertextBlob,omitempty"`
@@ -543,9 +1812,65 @@ type ReEncryptResponse struct {
 	SourceKeyID    aws.StringValue `json:"SourceKeyId,omitempty"`
 }
 
+func (v *ReEncryptResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "CiphertextBlob", 1); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMax(v, "CiphertextBlob", 6144); err != nil {
+		errors["CiphertextBlob"] = append(errors["CiphertextBlob"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "SourceKeyID", 1); err != nil {
+		errors["SourceKeyID"] = append(errors["SourceKeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "SourceKeyID", 256); err != nil {
+		errors["SourceKeyID"] = append(errors["SourceKeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RetireGrantRequest is undocumented.
 type RetireGrantRequest struct {
 	GrantToken aws.StringValue `json:"GrantToken"`
+}
+
+func (v *RetireGrantRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GrantToken"); err != nil {
+		errors["GrantToken"] = append(errors["GrantToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "GrantToken", 1); err != nil {
+		errors["GrantToken"] = append(errors["GrantToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "GrantToken", 8192); err != nil {
+		errors["GrantToken"] = append(errors["GrantToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RevokeGrantRequest is undocumented.
@@ -554,10 +1879,74 @@ type RevokeGrantRequest struct {
 	KeyID   aws.StringValue `json:"KeyId"`
 }
 
+func (v *RevokeGrantRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GrantID"); err != nil {
+		errors["GrantID"] = append(errors["GrantID"], err)
+	}
+
+	if err := model.ValidateMin(v, "GrantID", 1); err != nil {
+		errors["GrantID"] = append(errors["GrantID"], err)
+	}
+
+	if err := model.ValidateMax(v, "GrantID", 128); err != nil {
+		errors["GrantID"] = append(errors["GrantID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateKeyDescriptionRequest is undocumented.
 type UpdateKeyDescriptionRequest struct {
 	Description aws.StringValue `json:"Description"`
 	KeyID       aws.StringValue `json:"KeyId"`
+}
+
+func (v *UpdateKeyDescriptionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Description"); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 8192); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "KeyID"); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyID", 1); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyID", 256); err != nil {
+		errors["KeyID"] = append(errors["KeyID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

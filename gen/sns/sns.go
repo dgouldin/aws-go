@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // SNS is a client for Amazon Simple Notification Service.
@@ -42,6 +43,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *SNS
 // AddPermission adds a statement to a topic's access control policy,
 // granting access for the specified AWS accounts to the specified actions.
 func (c *SNS) AddPermission(req *AddPermissionInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AddPermission", "POST", "/", req, nil)
 	return
@@ -54,6 +59,10 @@ func (c *SNS) AddPermission(req *AddPermissionInput) (err error) {
 // AWS signature only when the AuthenticateOnUnsubscribe flag is set to
 // "true".
 func (c *SNS) ConfirmSubscription(req *ConfirmSubscriptionInput) (resp *ConfirmSubscriptionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ConfirmSubscriptionResult{}
 	err = c.client.Do("ConfirmSubscription", "POST", "/", req, resp)
 	return
@@ -74,6 +83,10 @@ func (c *SNS) ConfirmSubscription(req *ConfirmSubscriptionInput) (resp *ConfirmS
 // CreatePlatformEndpoint action. For more information, see Using Amazon
 // SNS Mobile Push Notifications .
 func (c *SNS) CreatePlatformApplication(req *CreatePlatformApplicationInput) (resp *CreatePlatformApplicationResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreatePlatformApplicationResult{}
 	err = c.client.Do("CreatePlatformApplication", "POST", "/", req, resp)
 	return
@@ -94,6 +107,10 @@ func (c *SNS) CreatePlatformApplication(req *CreatePlatformApplicationInput) (re
 // field must also contain the ChannelId. For more information, see
 // Creating an Amazon SNS Endpoint for Baidu .
 func (c *SNS) CreatePlatformEndpoint(req *CreatePlatformEndpointInput) (resp *CreatePlatformEndpointResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreatePlatformEndpointResult{}
 	err = c.client.Do("CreatePlatformEndpoint", "POST", "/", req, resp)
 	return
@@ -105,6 +122,10 @@ func (c *SNS) CreatePlatformEndpoint(req *CreatePlatformEndpointInput) (resp *Cr
 // requester already owns a topic with the specified name, that topic's ARN
 // is returned without creating a new topic.
 func (c *SNS) CreateTopic(req *CreateTopicInput) (resp *CreateTopicResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateTopicResult{}
 	err = c.client.Do("CreateTopic", "POST", "/", req, resp)
 	return
@@ -114,6 +135,10 @@ func (c *SNS) CreateTopic(req *CreateTopicInput) (resp *CreateTopicResult, err e
 // idempotent. For more information, see Using Amazon SNS Mobile Push
 // Notifications .
 func (c *SNS) DeleteEndpoint(req *DeleteEndpointInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteEndpoint", "POST", "/", req, nil)
 	return
@@ -123,6 +148,10 @@ func (c *SNS) DeleteEndpoint(req *DeleteEndpointInput) (err error) {
 // of the supported push notification services, such as and For more
 // information, see Using Amazon SNS Mobile Push Notifications .
 func (c *SNS) DeletePlatformApplication(req *DeletePlatformApplicationInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeletePlatformApplication", "POST", "/", req, nil)
 	return
@@ -133,6 +162,10 @@ func (c *SNS) DeletePlatformApplication(req *DeletePlatformApplicationInput) (er
 // delivered to subscribers. This action is idempotent, so deleting a topic
 // that does not exist does not result in an error.
 func (c *SNS) DeleteTopic(req *DeleteTopicInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteTopic", "POST", "/", req, nil)
 	return
@@ -142,6 +175,10 @@ func (c *SNS) DeleteTopic(req *DeleteTopicInput) (err error) {
 // one of the supported push notification services, such as GCM and For
 // more information, see Using Amazon SNS Mobile Push Notifications .
 func (c *SNS) GetEndpointAttributes(req *GetEndpointAttributesInput) (resp *GetEndpointAttributesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetEndpointAttributesResult{}
 	err = c.client.Do("GetEndpointAttributes", "POST", "/", req, resp)
 	return
@@ -152,6 +189,10 @@ func (c *SNS) GetEndpointAttributes(req *GetEndpointAttributesInput) (resp *GetE
 // services, such as and For more information, see Using Amazon SNS Mobile
 // Push Notifications .
 func (c *SNS) GetPlatformApplicationAttributes(req *GetPlatformApplicationAttributesInput) (resp *GetPlatformApplicationAttributesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetPlatformApplicationAttributesResult{}
 	err = c.client.Do("GetPlatformApplicationAttributes", "POST", "/", req, resp)
 	return
@@ -159,6 +200,10 @@ func (c *SNS) GetPlatformApplicationAttributes(req *GetPlatformApplicationAttrib
 
 // GetSubscriptionAttributes is undocumented.
 func (c *SNS) GetSubscriptionAttributes(req *GetSubscriptionAttributesInput) (resp *GetSubscriptionAttributesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetSubscriptionAttributesResult{}
 	err = c.client.Do("GetSubscriptionAttributes", "POST", "/", req, resp)
 	return
@@ -167,6 +212,10 @@ func (c *SNS) GetSubscriptionAttributes(req *GetSubscriptionAttributesInput) (re
 // GetTopicAttributes returns all of the properties of a topic. Topic
 // properties returned might differ based on the authorization of the user.
 func (c *SNS) GetTopicAttributes(req *GetTopicAttributesInput) (resp *GetTopicAttributesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetTopicAttributesResult{}
 	err = c.client.Do("GetTopicAttributes", "POST", "/", req, resp)
 	return
@@ -183,6 +232,10 @@ func (c *SNS) GetTopicAttributes(req *GetTopicAttributesInput) (resp *GetTopicAt
 // return, NextToken will be null. For more information, see Using Amazon
 // SNS Mobile Push Notifications .
 func (c *SNS) ListEndpointsByPlatformApplication(req *ListEndpointsByPlatformApplicationInput) (resp *ListEndpointsByPlatformApplicationResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListEndpointsByPlatformApplicationResult{}
 	err = c.client.Do("ListEndpointsByPlatformApplication", "POST", "/", req, resp)
 	return
@@ -198,6 +251,10 @@ func (c *SNS) ListEndpointsByPlatformApplication(req *ListEndpointsByPlatformApp
 // to return, NextToken will be null. For more information, see Using
 // Amazon SNS Mobile Push Notifications .
 func (c *SNS) ListPlatformApplications(req *ListPlatformApplicationsInput) (resp *ListPlatformApplicationsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListPlatformApplicationsResult{}
 	err = c.client.Do("ListPlatformApplications", "POST", "/", req, resp)
 	return
@@ -208,6 +265,10 @@ func (c *SNS) ListPlatformApplications(req *ListPlatformApplicationsInput) (resp
 // more subscriptions, a NextToken is also returned. Use the NextToken
 // parameter in a new ListSubscriptions call to get further results.
 func (c *SNS) ListSubscriptions(req *ListSubscriptionsInput) (resp *ListSubscriptionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListSubscriptionsResult{}
 	err = c.client.Do("ListSubscriptions", "POST", "/", req, resp)
 	return
@@ -219,6 +280,10 @@ func (c *SNS) ListSubscriptions(req *ListSubscriptionsInput) (resp *ListSubscrip
 // the NextToken parameter in a new ListSubscriptionsByTopic call to get
 // further results.
 func (c *SNS) ListSubscriptionsByTopic(req *ListSubscriptionsByTopicInput) (resp *ListSubscriptionsByTopicResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListSubscriptionsByTopicResult{}
 	err = c.client.Do("ListSubscriptionsByTopic", "POST", "/", req, resp)
 	return
@@ -229,6 +294,10 @@ func (c *SNS) ListSubscriptionsByTopic(req *ListSubscriptionsByTopicInput) (resp
 // is also returned. Use the NextToken parameter in a new ListTopics call
 // to get further results.
 func (c *SNS) ListTopics(req *ListTopicsInput) (resp *ListTopicsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListTopicsResult{}
 	err = c.client.Do("ListTopics", "POST", "/", req, resp)
 	return
@@ -245,6 +314,10 @@ func (c *SNS) ListTopics(req *ListTopicsInput) (resp *ListTopicsResult, err erro
 // second example below shows a request and response for publishing to a
 // mobile endpoint.
 func (c *SNS) Publish(req *PublishInput) (resp *PublishResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PublishResult{}
 	err = c.client.Do("Publish", "POST", "/", req, resp)
 	return
@@ -253,6 +326,10 @@ func (c *SNS) Publish(req *PublishInput) (resp *PublishResult, err error) {
 // RemovePermission removes a statement from a topic's access control
 // policy.
 func (c *SNS) RemovePermission(req *RemovePermissionInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RemovePermission", "POST", "/", req, nil)
 	return
@@ -262,6 +339,10 @@ func (c *SNS) RemovePermission(req *RemovePermissionInput) (err error) {
 // on one of the supported push notification services, such as GCM and For
 // more information, see Using Amazon SNS Mobile Push Notifications .
 func (c *SNS) SetEndpointAttributes(req *SetEndpointAttributesInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetEndpointAttributes", "POST", "/", req, nil)
 	return
@@ -272,6 +353,10 @@ func (c *SNS) SetEndpointAttributes(req *SetEndpointAttributesInput) (err error)
 // and For more information, see Using Amazon SNS Mobile Push Notifications
 // .
 func (c *SNS) SetPlatformApplicationAttributes(req *SetPlatformApplicationAttributesInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetPlatformApplicationAttributes", "POST", "/", req, nil)
 	return
@@ -280,6 +365,10 @@ func (c *SNS) SetPlatformApplicationAttributes(req *SetPlatformApplicationAttrib
 // SetSubscriptionAttributes allows a subscription owner to set an
 // attribute of the topic to a new value.
 func (c *SNS) SetSubscriptionAttributes(req *SetSubscriptionAttributesInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetSubscriptionAttributes", "POST", "/", req, nil)
 	return
@@ -288,6 +377,10 @@ func (c *SNS) SetSubscriptionAttributes(req *SetSubscriptionAttributesInput) (er
 // SetTopicAttributes allows a topic owner to set an attribute of the topic
 // to a new value.
 func (c *SNS) SetTopicAttributes(req *SetTopicAttributesInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetTopicAttributes", "POST", "/", req, nil)
 	return
@@ -298,6 +391,10 @@ func (c *SNS) SetTopicAttributes(req *SetTopicAttributesInput) (err error) {
 // owner must call the ConfirmSubscription action with the token from the
 // confirmation message. Confirmation tokens are valid for three days.
 func (c *SNS) Subscribe(req *SubscribeInput) (resp *SubscribeResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SubscribeResult{}
 	err = c.client.Do("Subscribe", "POST", "/", req, resp)
 	return
@@ -311,6 +408,10 @@ func (c *SNS) Subscribe(req *SubscribeInput) (resp *SubscribeResult, err error) 
 // the endpoint, so that the endpoint owner can easily resubscribe to the
 // topic if the Unsubscribe request was unintended.
 func (c *SNS) Unsubscribe(req *UnsubscribeInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("Unsubscribe", "POST", "/", req, nil)
 	return
@@ -324,6 +425,32 @@ type AddPermissionInput struct {
 	TopicARN     aws.StringValue `xml:"TopicArn"`
 }
 
+func (v *AddPermissionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AWSAccountID"); err != nil {
+		errors["AWSAccountID"] = append(errors["AWSAccountID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ActionName"); err != nil {
+		errors["ActionName"] = append(errors["ActionName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Label"); err != nil {
+		errors["Label"] = append(errors["Label"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TopicARN"); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfirmSubscriptionInput is undocumented.
 type ConfirmSubscriptionInput struct {
 	AuthenticateOnUnsubscribe aws.StringValue `xml:"AuthenticateOnUnsubscribe"`
@@ -331,14 +458,52 @@ type ConfirmSubscriptionInput struct {
 	TopicARN                  aws.StringValue `xml:"TopicArn"`
 }
 
+func (v *ConfirmSubscriptionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Token"); err != nil {
+		errors["Token"] = append(errors["Token"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TopicARN"); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfirmSubscriptionResponse is undocumented.
 type ConfirmSubscriptionResponse struct {
 	SubscriptionARN aws.StringValue `xml:"ConfirmSubscriptionResult>SubscriptionArn"`
 }
 
+func (v *ConfirmSubscriptionResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateEndpointResponse is undocumented.
 type CreateEndpointResponse struct {
 	EndpointARN aws.StringValue `xml:"CreatePlatformEndpointResult>EndpointArn"`
+}
+
+func (v *CreateEndpointResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreatePlatformApplicationInput is undocumented.
@@ -348,9 +513,41 @@ type CreatePlatformApplicationInput struct {
 	Platform   aws.StringValue   `xml:"Platform"`
 }
 
+func (v *CreatePlatformApplicationInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attributes"); err != nil {
+		errors["Attributes"] = append(errors["Attributes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Platform"); err != nil {
+		errors["Platform"] = append(errors["Platform"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreatePlatformApplicationResponse is undocumented.
 type CreatePlatformApplicationResponse struct {
 	PlatformApplicationARN aws.StringValue `xml:"CreatePlatformApplicationResult>PlatformApplicationArn"`
+}
+
+func (v *CreatePlatformApplicationResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreatePlatformEndpointInput is undocumented.
@@ -361,9 +558,41 @@ type CreatePlatformEndpointInput struct {
 	Token                  aws.StringValue   `xml:"Token"`
 }
 
+func (v *CreatePlatformEndpointInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PlatformApplicationARN"); err != nil {
+		errors["PlatformApplicationARN"] = append(errors["PlatformApplicationARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Token"); err != nil {
+		errors["Token"] = append(errors["Token"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateTopicInput is undocumented.
 type CreateTopicInput struct {
 	Name aws.StringValue `xml:"Name"`
+}
+
+func (v *CreateTopicInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateTopicResponse is undocumented.
@@ -371,9 +600,33 @@ type CreateTopicResponse struct {
 	TopicARN aws.StringValue `xml:"CreateTopicResult>TopicArn"`
 }
 
+func (v *CreateTopicResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteEndpointInput is undocumented.
 type DeleteEndpointInput struct {
 	EndpointARN aws.StringValue `xml:"EndpointArn"`
+}
+
+func (v *DeleteEndpointInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EndpointARN"); err != nil {
+		errors["EndpointARN"] = append(errors["EndpointARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeletePlatformApplicationInput is undocumented.
@@ -381,9 +634,37 @@ type DeletePlatformApplicationInput struct {
 	PlatformApplicationARN aws.StringValue `xml:"PlatformApplicationArn"`
 }
 
+func (v *DeletePlatformApplicationInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PlatformApplicationARN"); err != nil {
+		errors["PlatformApplicationARN"] = append(errors["PlatformApplicationARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteTopicInput is undocumented.
 type DeleteTopicInput struct {
 	TopicARN aws.StringValue `xml:"TopicArn"`
+}
+
+func (v *DeleteTopicInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "TopicARN"); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Endpoint is undocumented.
@@ -392,9 +673,33 @@ type Endpoint struct {
 	EndpointARN aws.StringValue   `xml:"EndpointArn"`
 }
 
+func (v *Endpoint) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetEndpointAttributesInput is undocumented.
 type GetEndpointAttributesInput struct {
 	EndpointARN aws.StringValue `xml:"EndpointArn"`
+}
+
+func (v *GetEndpointAttributesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EndpointARN"); err != nil {
+		errors["EndpointARN"] = append(errors["EndpointARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetEndpointAttributesResponse is undocumented.
@@ -402,9 +707,33 @@ type GetEndpointAttributesResponse struct {
 	Attributes map[string]string `xml:"GetEndpointAttributesResult>Attributes"`
 }
 
+func (v *GetEndpointAttributesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetPlatformApplicationAttributesInput is undocumented.
 type GetPlatformApplicationAttributesInput struct {
 	PlatformApplicationARN aws.StringValue `xml:"PlatformApplicationArn"`
+}
+
+func (v *GetPlatformApplicationAttributesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PlatformApplicationARN"); err != nil {
+		errors["PlatformApplicationARN"] = append(errors["PlatformApplicationARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetPlatformApplicationAttributesResponse is undocumented.
@@ -412,9 +741,33 @@ type GetPlatformApplicationAttributesResponse struct {
 	Attributes map[string]string `xml:"GetPlatformApplicationAttributesResult>Attributes"`
 }
 
+func (v *GetPlatformApplicationAttributesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetSubscriptionAttributesInput is undocumented.
 type GetSubscriptionAttributesInput struct {
 	SubscriptionARN aws.StringValue `xml:"SubscriptionArn"`
+}
+
+func (v *GetSubscriptionAttributesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SubscriptionARN"); err != nil {
+		errors["SubscriptionARN"] = append(errors["SubscriptionARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetSubscriptionAttributesResponse is undocumented.
@@ -422,14 +775,48 @@ type GetSubscriptionAttributesResponse struct {
 	Attributes map[string]string `xml:"GetSubscriptionAttributesResult>Attributes"`
 }
 
+func (v *GetSubscriptionAttributesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetTopicAttributesInput is undocumented.
 type GetTopicAttributesInput struct {
 	TopicARN aws.StringValue `xml:"TopicArn"`
 }
 
+func (v *GetTopicAttributesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "TopicARN"); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetTopicAttributesResponse is undocumented.
 type GetTopicAttributesResponse struct {
 	Attributes map[string]string `xml:"GetTopicAttributesResult>Attributes"`
+}
+
+func (v *GetTopicAttributesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListEndpointsByPlatformApplicationInput is undocumented.
@@ -438,15 +825,49 @@ type ListEndpointsByPlatformApplicationInput struct {
 	PlatformApplicationARN aws.StringValue `xml:"PlatformApplicationArn"`
 }
 
+func (v *ListEndpointsByPlatformApplicationInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PlatformApplicationARN"); err != nil {
+		errors["PlatformApplicationARN"] = append(errors["PlatformApplicationARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListEndpointsByPlatformApplicationResponse is undocumented.
 type ListEndpointsByPlatformApplicationResponse struct {
 	Endpoints []Endpoint      `xml:"ListEndpointsByPlatformApplicationResult>Endpoints>member"`
 	NextToken aws.StringValue `xml:"ListEndpointsByPlatformApplicationResult>NextToken"`
 }
 
+func (v *ListEndpointsByPlatformApplicationResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListPlatformApplicationsInput is undocumented.
 type ListPlatformApplicationsInput struct {
 	NextToken aws.StringValue `xml:"NextToken"`
+}
+
+func (v *ListPlatformApplicationsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListPlatformApplicationsResponse is undocumented.
@@ -455,10 +876,34 @@ type ListPlatformApplicationsResponse struct {
 	PlatformApplications []PlatformApplication `xml:"ListPlatformApplicationsResult>PlatformApplications>member"`
 }
 
+func (v *ListPlatformApplicationsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListSubscriptionsByTopicInput is undocumented.
 type ListSubscriptionsByTopicInput struct {
 	NextToken aws.StringValue `xml:"NextToken"`
 	TopicARN  aws.StringValue `xml:"TopicArn"`
+}
+
+func (v *ListSubscriptionsByTopicInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "TopicARN"); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListSubscriptionsByTopicResponse is undocumented.
@@ -467,9 +912,29 @@ type ListSubscriptionsByTopicResponse struct {
 	Subscriptions []Subscription  `xml:"ListSubscriptionsByTopicResult>Subscriptions>member"`
 }
 
+func (v *ListSubscriptionsByTopicResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListSubscriptionsInput is undocumented.
 type ListSubscriptionsInput struct {
 	NextToken aws.StringValue `xml:"NextToken"`
+}
+
+func (v *ListSubscriptionsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListSubscriptionsResponse is undocumented.
@@ -478,15 +943,45 @@ type ListSubscriptionsResponse struct {
 	Subscriptions []Subscription  `xml:"ListSubscriptionsResult>Subscriptions>member"`
 }
 
+func (v *ListSubscriptionsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListTopicsInput is undocumented.
 type ListTopicsInput struct {
 	NextToken aws.StringValue `xml:"NextToken"`
+}
+
+func (v *ListTopicsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListTopicsResponse is undocumented.
 type ListTopicsResponse struct {
 	NextToken aws.StringValue `xml:"ListTopicsResult>NextToken"`
 	Topics    []Topic         `xml:"ListTopicsResult>Topics>member"`
+}
+
+func (v *ListTopicsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // MessageAttributeValue is undocumented.
@@ -496,10 +991,34 @@ type MessageAttributeValue struct {
 	StringValue aws.StringValue `xml:"StringValue"`
 }
 
+func (v *MessageAttributeValue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DataType"); err != nil {
+		errors["DataType"] = append(errors["DataType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PlatformApplication is undocumented.
 type PlatformApplication struct {
 	Attributes             map[string]string `xml:"Attributes"`
 	PlatformApplicationARN aws.StringValue   `xml:"PlatformApplicationArn"`
+}
+
+func (v *PlatformApplication) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PublishInput is undocumented.
@@ -512,9 +1031,33 @@ type PublishInput struct {
 	TopicARN          aws.StringValue                  `xml:"TopicArn"`
 }
 
+func (v *PublishInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Message"); err != nil {
+		errors["Message"] = append(errors["Message"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PublishResponse is undocumented.
 type PublishResponse struct {
 	MessageID aws.StringValue `xml:"PublishResult>MessageId"`
+}
+
+func (v *PublishResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RemovePermissionInput is undocumented.
@@ -523,16 +1066,70 @@ type RemovePermissionInput struct {
 	TopicARN aws.StringValue `xml:"TopicArn"`
 }
 
+func (v *RemovePermissionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Label"); err != nil {
+		errors["Label"] = append(errors["Label"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TopicARN"); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetEndpointAttributesInput is undocumented.
 type SetEndpointAttributesInput struct {
 	Attributes  map[string]string `xml:"Attributes"`
 	EndpointARN aws.StringValue   `xml:"EndpointArn"`
 }
 
+func (v *SetEndpointAttributesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attributes"); err != nil {
+		errors["Attributes"] = append(errors["Attributes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EndpointARN"); err != nil {
+		errors["EndpointARN"] = append(errors["EndpointARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetPlatformApplicationAttributesInput is undocumented.
 type SetPlatformApplicationAttributesInput struct {
 	Attributes             map[string]string `xml:"Attributes"`
 	PlatformApplicationARN aws.StringValue   `xml:"PlatformApplicationArn"`
+}
+
+func (v *SetPlatformApplicationAttributesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attributes"); err != nil {
+		errors["Attributes"] = append(errors["Attributes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PlatformApplicationARN"); err != nil {
+		errors["PlatformApplicationARN"] = append(errors["PlatformApplicationARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SetSubscriptionAttributesInput is undocumented.
@@ -542,11 +1139,47 @@ type SetSubscriptionAttributesInput struct {
 	SubscriptionARN aws.StringValue `xml:"SubscriptionArn"`
 }
 
+func (v *SetSubscriptionAttributesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AttributeName"); err != nil {
+		errors["AttributeName"] = append(errors["AttributeName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubscriptionARN"); err != nil {
+		errors["SubscriptionARN"] = append(errors["SubscriptionARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetTopicAttributesInput is undocumented.
 type SetTopicAttributesInput struct {
 	AttributeName  aws.StringValue `xml:"AttributeName"`
 	AttributeValue aws.StringValue `xml:"AttributeValue"`
 	TopicARN       aws.StringValue `xml:"TopicArn"`
+}
+
+func (v *SetTopicAttributesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AttributeName"); err != nil {
+		errors["AttributeName"] = append(errors["AttributeName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TopicARN"); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SubscribeInput is undocumented.
@@ -556,9 +1189,37 @@ type SubscribeInput struct {
 	TopicARN aws.StringValue `xml:"TopicArn"`
 }
 
+func (v *SubscribeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Protocol"); err != nil {
+		errors["Protocol"] = append(errors["Protocol"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TopicARN"); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SubscribeResponse is undocumented.
 type SubscribeResponse struct {
 	SubscriptionARN aws.StringValue `xml:"SubscribeResult>SubscriptionArn"`
+}
+
+func (v *SubscribeResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Subscription is undocumented.
@@ -570,14 +1231,48 @@ type Subscription struct {
 	TopicARN        aws.StringValue `xml:"TopicArn"`
 }
 
+func (v *Subscription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Topic is undocumented.
 type Topic struct {
 	TopicARN aws.StringValue `xml:"TopicArn"`
 }
 
+func (v *Topic) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UnsubscribeInput is undocumented.
 type UnsubscribeInput struct {
 	SubscriptionARN aws.StringValue `xml:"SubscriptionArn"`
+}
+
+func (v *UnsubscribeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SubscriptionARN"); err != nil {
+		errors["SubscriptionARN"] = append(errors["SubscriptionARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ConfirmSubscriptionResult is a wrapper for ConfirmSubscriptionResponse.

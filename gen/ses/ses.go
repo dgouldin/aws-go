@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // SES is a client for Amazon Simple Email Service.
@@ -43,6 +44,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *SES
 // from the list of verified identities. This action is throttled at one
 // request per second.
 func (c *SES) DeleteIdentity(req *DeleteIdentityRequest) (resp *DeleteIdentityResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteIdentityResult{}
 	err = c.client.Do("DeleteIdentity", "POST", "/", req, resp)
 	return
@@ -54,6 +59,10 @@ func (c *SES) DeleteIdentity(req *DeleteIdentityRequest) (resp *DeleteIdentityRe
 // DeleteIdentity action is now preferred. This action is throttled at one
 // request per second.
 func (c *SES) DeleteVerifiedEmailAddress(req *DeleteVerifiedEmailAddressRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteVerifiedEmailAddress", "POST", "/", req, nil)
 	return
@@ -73,6 +82,10 @@ func (c *SES) DeleteVerifiedEmailAddress(req *DeleteVerifiedEmailAddressRequest)
 // information about creating DNS records using tokens, go to the Amazon
 // SES Developer Guide
 func (c *SES) GetIdentityDkimAttributes(req *GetIdentityDkimAttributesRequest) (resp *GetIdentityDkimAttributesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetIdentityDkimAttributesResult{}
 	err = c.client.Do("GetIdentityDkimAttributes", "POST", "/", req, resp)
 	return
@@ -84,6 +97,10 @@ func (c *SES) GetIdentityDkimAttributes(req *GetIdentityDkimAttributesRequest) (
 // request per second. For more information about using notifications with
 // Amazon see the Amazon SES Developer Guide
 func (c *SES) GetIdentityNotificationAttributes(req *GetIdentityNotificationAttributesRequest) (resp *GetIdentityNotificationAttributesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetIdentityNotificationAttributesResult{}
 	err = c.client.Do("GetIdentityNotificationAttributes", "POST", "/", req, resp)
 	return
@@ -94,6 +111,10 @@ func (c *SES) GetIdentityNotificationAttributes(req *GetIdentityNotificationAttr
 // domain identities) the verification token for each identity. This action
 // is throttled at one request per second.
 func (c *SES) GetIdentityVerificationAttributes(req *GetIdentityVerificationAttributesRequest) (resp *GetIdentityVerificationAttributesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetIdentityVerificationAttributesResult{}
 	err = c.client.Do("GetIdentityVerificationAttributes", "POST", "/", req, resp)
 	return
@@ -121,6 +142,10 @@ func (c *SES) GetSendStatistics() (resp *GetSendStatisticsResult, err error) {
 // addresses and domains) for a specific AWS Account, regardless of
 // verification status. This action is throttled at one request per second.
 func (c *SES) ListIdentities(req *ListIdentitiesRequest) (resp *ListIdentitiesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListIdentitiesResult{}
 	err = c.client.Do("ListIdentities", "POST", "/", req, resp)
 	return
@@ -154,6 +179,10 @@ func (c *SES) ListVerifiedEmailAddresses() (resp *ListVerifiedEmailAddressesResu
 // information about your sending quota, go to the Amazon SES Developer
 // Guide .
 func (c *SES) SendEmail(req *SendEmailRequest) (resp *SendEmailResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SendEmailResult{}
 	err = c.client.Do("SendEmail", "POST", "/", req, resp)
 	return
@@ -181,6 +210,10 @@ func (c *SES) SendEmail(req *SendEmailRequest) (resp *SendEmailResult, err error
 // in a 24-hour period. For information about your sending quota, go to the
 // Amazon SES Developer Guide .
 func (c *SES) SendRawEmail(req *SendRawEmailRequest) (resp *SendRawEmailResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SendRawEmailResult{}
 	err = c.client.Do("SendRawEmail", "POST", "/", req, resp)
 	return
@@ -198,6 +231,10 @@ func (c *SES) SendRawEmail(req *SendRawEmailRequest) (resp *SendRawEmailResult, 
 // at one request per second. For more information about Easy signing, go
 // to the Amazon SES Developer Guide
 func (c *SES) SetIdentityDkimEnabled(req *SetIdentityDkimEnabledRequest) (resp *SetIdentityDkimEnabledResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SetIdentityDkimEnabledResult{}
 	err = c.client.Do("SetIdentityDkimEnabled", "POST", "/", req, resp)
 	return
@@ -211,6 +248,10 @@ func (c *SES) SetIdentityDkimEnabled(req *SetIdentityDkimEnabledRequest) (resp *
 // one request per second. For more information about using notifications
 // with Amazon see the Amazon SES Developer Guide
 func (c *SES) SetIdentityFeedbackForwardingEnabled(req *SetIdentityFeedbackForwardingEnabledRequest) (resp *SetIdentityFeedbackForwardingEnabledResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SetIdentityFeedbackForwardingEnabledResult{}
 	err = c.client.Do("SetIdentityFeedbackForwardingEnabled", "POST", "/", req, resp)
 	return
@@ -223,6 +264,10 @@ func (c *SES) SetIdentityFeedbackForwardingEnabled(req *SetIdentityFeedbackForwa
 // action is throttled at one request per second. For more information
 // about feedback notification, see the Amazon SES Developer Guide
 func (c *SES) SetIdentityNotificationTopic(req *SetIdentityNotificationTopicRequest) (resp *SetIdentityNotificationTopicResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SetIdentityNotificationTopicResult{}
 	err = c.client.Do("SetIdentityNotificationTopic", "POST", "/", req, resp)
 	return
@@ -239,6 +284,10 @@ func (c *SES) SetIdentityNotificationTopic(req *SetIdentityNotificationTopicRequ
 // the SetIdentityDkimEnabled action. For more information about creating
 // DNS records using tokens, go to the Amazon SES Developer Guide
 func (c *SES) VerifyDomainDkim(req *VerifyDomainDkimRequest) (resp *VerifyDomainDkimResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &VerifyDomainDkimResult{}
 	err = c.client.Do("VerifyDomainDkim", "POST", "/", req, resp)
 	return
@@ -247,6 +296,10 @@ func (c *SES) VerifyDomainDkim(req *VerifyDomainDkimRequest) (resp *VerifyDomain
 // VerifyDomainIdentity verifies a domain. This action is throttled at one
 // request per second.
 func (c *SES) VerifyDomainIdentity(req *VerifyDomainIdentityRequest) (resp *VerifyDomainIdentityResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &VerifyDomainIdentityResult{}
 	err = c.client.Do("VerifyDomainIdentity", "POST", "/", req, resp)
 	return
@@ -258,6 +311,10 @@ func (c *SES) VerifyDomainIdentity(req *VerifyDomainIdentityRequest) (resp *Veri
 // of Domain Verification. The VerifyEmailIdentity action is now preferred.
 // This action is throttled at one request per second.
 func (c *SES) VerifyEmailAddress(req *VerifyEmailAddressRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("VerifyEmailAddress", "POST", "/", req, nil)
 	return
@@ -267,6 +324,10 @@ func (c *SES) VerifyEmailAddress(req *VerifyEmailAddressRequest) (err error) {
 // confirmation email message to be sent to the specified address. This
 // action is throttled at one request per second.
 func (c *SES) VerifyEmailIdentity(req *VerifyEmailIdentityRequest) (resp *VerifyEmailIdentityResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &VerifyEmailIdentityResult{}
 	err = c.client.Do("VerifyEmailIdentity", "POST", "/", req, resp)
 	return
@@ -278,10 +339,34 @@ type Body struct {
 	Text *Content `xml:"Text"`
 }
 
+func (v *Body) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Content is undocumented.
 type Content struct {
 	Charset aws.StringValue `xml:"Charset"`
 	Data    aws.StringValue `xml:"Data"`
+}
+
+func (v *Content) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Data"); err != nil {
+		errors["Data"] = append(errors["Data"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteIdentityRequest is undocumented.
@@ -289,13 +374,51 @@ type DeleteIdentityRequest struct {
 	Identity aws.StringValue `xml:"Identity"`
 }
 
+func (v *DeleteIdentityRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Identity"); err != nil {
+		errors["Identity"] = append(errors["Identity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteIdentityResponse is undocumented.
 type DeleteIdentityResponse struct {
+}
+
+func (v *DeleteIdentityResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteVerifiedEmailAddressRequest is undocumented.
 type DeleteVerifiedEmailAddressRequest struct {
 	EmailAddress aws.StringValue `xml:"EmailAddress"`
+}
+
+func (v *DeleteVerifiedEmailAddressRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EmailAddress"); err != nil {
+		errors["EmailAddress"] = append(errors["EmailAddress"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Destination is undocumented.
@@ -305,9 +428,33 @@ type Destination struct {
 	ToAddresses  []string `xml:"ToAddresses>member"`
 }
 
+func (v *Destination) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetIdentityDkimAttributesRequest is undocumented.
 type GetIdentityDkimAttributesRequest struct {
 	Identities []string `xml:"Identities>member"`
+}
+
+func (v *GetIdentityDkimAttributesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Identities"); err != nil {
+		errors["Identities"] = append(errors["Identities"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetIdentityDkimAttributesResponse is undocumented.
@@ -315,9 +462,37 @@ type GetIdentityDkimAttributesResponse struct {
 	DkimAttributes map[string]IdentityDkimAttributes `xml:"GetIdentityDkimAttributesResult>DkimAttributes"`
 }
 
+func (v *GetIdentityDkimAttributesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DkimAttributes"); err != nil {
+		errors["DkimAttributes"] = append(errors["DkimAttributes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetIdentityNotificationAttributesRequest is undocumented.
 type GetIdentityNotificationAttributesRequest struct {
 	Identities []string `xml:"Identities>member"`
+}
+
+func (v *GetIdentityNotificationAttributesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Identities"); err != nil {
+		errors["Identities"] = append(errors["Identities"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetIdentityNotificationAttributesResponse is undocumented.
@@ -325,14 +500,56 @@ type GetIdentityNotificationAttributesResponse struct {
 	NotificationAttributes map[string]IdentityNotificationAttributes `xml:"GetIdentityNotificationAttributesResult>NotificationAttributes"`
 }
 
+func (v *GetIdentityNotificationAttributesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "NotificationAttributes"); err != nil {
+		errors["NotificationAttributes"] = append(errors["NotificationAttributes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetIdentityVerificationAttributesRequest is undocumented.
 type GetIdentityVerificationAttributesRequest struct {
 	Identities []string `xml:"Identities>member"`
 }
 
+func (v *GetIdentityVerificationAttributesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Identities"); err != nil {
+		errors["Identities"] = append(errors["Identities"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetIdentityVerificationAttributesResponse is undocumented.
 type GetIdentityVerificationAttributesResponse struct {
 	VerificationAttributes map[string]IdentityVerificationAttributes `xml:"GetIdentityVerificationAttributesResult>VerificationAttributes"`
+}
+
+func (v *GetIdentityVerificationAttributesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VerificationAttributes"); err != nil {
+		errors["VerificationAttributes"] = append(errors["VerificationAttributes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetSendQuotaResponse is undocumented.
@@ -342,9 +559,29 @@ type GetSendQuotaResponse struct {
 	SentLast24Hours aws.DoubleValue `xml:"GetSendQuotaResult>SentLast24Hours"`
 }
 
+func (v *GetSendQuotaResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetSendStatisticsResponse is undocumented.
 type GetSendStatisticsResponse struct {
 	SendDataPoints []SendDataPoint `xml:"GetSendStatisticsResult>SendDataPoints>member"`
+}
+
+func (v *GetSendStatisticsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // IdentityDkimAttributes is undocumented.
@@ -354,12 +591,67 @@ type IdentityDkimAttributes struct {
 	DkimVerificationStatus aws.StringValue  `xml:"DkimVerificationStatus"`
 }
 
+func (v *IdentityDkimAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DkimEnabled"); err != nil {
+		errors["DkimEnabled"] = append(errors["DkimEnabled"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DkimVerificationStatus"); err != nil {
+		errors["DkimVerificationStatus"] = append(errors["DkimVerificationStatus"], err)
+	}
+
+	DkimVerificationStatusEnum := []string{
+		VerificationStatusFailed,
+		VerificationStatusNotStarted,
+		VerificationStatusPending,
+		VerificationStatusSuccess,
+		VerificationStatusTemporaryFailure,
+	}
+	if err := model.ValidateEnum(v, "DkimVerificationStatus", DkimVerificationStatusEnum); err != nil {
+		errors["DkimVerificationStatus"] = append(errors["DkimVerificationStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // IdentityNotificationAttributes is undocumented.
 type IdentityNotificationAttributes struct {
 	BounceTopic       aws.StringValue  `xml:"BounceTopic"`
 	ComplaintTopic    aws.StringValue  `xml:"ComplaintTopic"`
 	DeliveryTopic     aws.StringValue  `xml:"DeliveryTopic"`
 	ForwardingEnabled aws.BooleanValue `xml:"ForwardingEnabled"`
+}
+
+func (v *IdentityNotificationAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "BounceTopic"); err != nil {
+		errors["BounceTopic"] = append(errors["BounceTopic"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ComplaintTopic"); err != nil {
+		errors["ComplaintTopic"] = append(errors["ComplaintTopic"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DeliveryTopic"); err != nil {
+		errors["DeliveryTopic"] = append(errors["DeliveryTopic"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ForwardingEnabled"); err != nil {
+		errors["ForwardingEnabled"] = append(errors["ForwardingEnabled"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SES.
@@ -374,11 +666,54 @@ type IdentityVerificationAttributes struct {
 	VerificationToken  aws.StringValue `xml:"VerificationToken"`
 }
 
+func (v *IdentityVerificationAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VerificationStatus"); err != nil {
+		errors["VerificationStatus"] = append(errors["VerificationStatus"], err)
+	}
+
+	VerificationStatusEnum := []string{
+		VerificationStatusFailed,
+		VerificationStatusNotStarted,
+		VerificationStatusPending,
+		VerificationStatusSuccess,
+		VerificationStatusTemporaryFailure,
+	}
+	if err := model.ValidateEnum(v, "VerificationStatus", VerificationStatusEnum); err != nil {
+		errors["VerificationStatus"] = append(errors["VerificationStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListIdentitiesRequest is undocumented.
 type ListIdentitiesRequest struct {
 	IdentityType aws.StringValue  `xml:"IdentityType"`
 	MaxItems     aws.IntegerValue `xml:"MaxItems"`
 	NextToken    aws.StringValue  `xml:"NextToken"`
+}
+
+func (v *ListIdentitiesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	IdentityTypeEnum := []string{
+		IdentityTypeDomain,
+		IdentityTypeEmailAddress,
+	}
+	if err := model.ValidateEnum(v, "IdentityType", IdentityTypeEnum); err != nil {
+		errors["IdentityType"] = append(errors["IdentityType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListIdentitiesResponse is undocumented.
@@ -387,15 +722,57 @@ type ListIdentitiesResponse struct {
 	NextToken  aws.StringValue `xml:"ListIdentitiesResult>NextToken"`
 }
 
+func (v *ListIdentitiesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Identities"); err != nil {
+		errors["Identities"] = append(errors["Identities"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListVerifiedEmailAddressesResponse is undocumented.
 type ListVerifiedEmailAddressesResponse struct {
 	VerifiedEmailAddresses []string `xml:"ListVerifiedEmailAddressesResult>VerifiedEmailAddresses>member"`
+}
+
+func (v *ListVerifiedEmailAddressesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Message is undocumented.
 type Message struct {
 	Body    *Body    `xml:"Body"`
 	Subject *Content `xml:"Subject"`
+}
+
+func (v *Message) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Body"); err != nil {
+		errors["Body"] = append(errors["Body"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Subject"); err != nil {
+		errors["Subject"] = append(errors["Subject"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SES.
@@ -410,6 +787,20 @@ type RawMessage struct {
 	Data []byte `xml:"Data"`
 }
 
+func (v *RawMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Data"); err != nil {
+		errors["Data"] = append(errors["Data"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SendDataPoint is undocumented.
 type SendDataPoint struct {
 	Bounces          aws.LongValue `xml:"Bounces"`
@@ -417,6 +808,16 @@ type SendDataPoint struct {
 	DeliveryAttempts aws.LongValue `xml:"DeliveryAttempts"`
 	Rejects          aws.LongValue `xml:"Rejects"`
 	Timestamp        time.Time     `xml:"Timestamp"`
+}
+
+func (v *SendDataPoint) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SendEmailRequest is undocumented.
@@ -428,9 +829,45 @@ type SendEmailRequest struct {
 	Source           aws.StringValue `xml:"Source"`
 }
 
+func (v *SendEmailRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Destination"); err != nil {
+		errors["Destination"] = append(errors["Destination"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Message"); err != nil {
+		errors["Message"] = append(errors["Message"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Source"); err != nil {
+		errors["Source"] = append(errors["Source"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SendEmailResponse is undocumented.
 type SendEmailResponse struct {
 	MessageID aws.StringValue `xml:"SendEmailResult>MessageId"`
+}
+
+func (v *SendEmailResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "MessageID"); err != nil {
+		errors["MessageID"] = append(errors["MessageID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SendRawEmailRequest is undocumented.
@@ -440,9 +877,37 @@ type SendRawEmailRequest struct {
 	Source       aws.StringValue `xml:"Source"`
 }
 
+func (v *SendRawEmailRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "RawMessage"); err != nil {
+		errors["RawMessage"] = append(errors["RawMessage"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SendRawEmailResponse is undocumented.
 type SendRawEmailResponse struct {
 	MessageID aws.StringValue `xml:"SendRawEmailResult>MessageId"`
+}
+
+func (v *SendRawEmailResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "MessageID"); err != nil {
+		errors["MessageID"] = append(errors["MessageID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SetIdentityDkimEnabledRequest is undocumented.
@@ -451,8 +916,36 @@ type SetIdentityDkimEnabledRequest struct {
 	Identity    aws.StringValue  `xml:"Identity"`
 }
 
+func (v *SetIdentityDkimEnabledRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DkimEnabled"); err != nil {
+		errors["DkimEnabled"] = append(errors["DkimEnabled"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Identity"); err != nil {
+		errors["Identity"] = append(errors["Identity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetIdentityDkimEnabledResponse is undocumented.
 type SetIdentityDkimEnabledResponse struct {
+}
+
+func (v *SetIdentityDkimEnabledResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SetIdentityFeedbackForwardingEnabledRequest is undocumented.
@@ -461,8 +954,36 @@ type SetIdentityFeedbackForwardingEnabledRequest struct {
 	Identity          aws.StringValue  `xml:"Identity"`
 }
 
+func (v *SetIdentityFeedbackForwardingEnabledRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ForwardingEnabled"); err != nil {
+		errors["ForwardingEnabled"] = append(errors["ForwardingEnabled"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Identity"); err != nil {
+		errors["Identity"] = append(errors["Identity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetIdentityFeedbackForwardingEnabledResponse is undocumented.
 type SetIdentityFeedbackForwardingEnabledResponse struct {
+}
+
+func (v *SetIdentityFeedbackForwardingEnabledResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SetIdentityNotificationTopicRequest is undocumented.
@@ -472,8 +993,45 @@ type SetIdentityNotificationTopicRequest struct {
 	SNSTopic         aws.StringValue `xml:"SnsTopic"`
 }
 
+func (v *SetIdentityNotificationTopicRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Identity"); err != nil {
+		errors["Identity"] = append(errors["Identity"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NotificationType"); err != nil {
+		errors["NotificationType"] = append(errors["NotificationType"], err)
+	}
+
+	NotificationTypeEnum := []string{
+		NotificationTypeBounce,
+		NotificationTypeComplaint,
+		NotificationTypeDelivery,
+	}
+	if err := model.ValidateEnum(v, "NotificationType", NotificationTypeEnum); err != nil {
+		errors["NotificationType"] = append(errors["NotificationType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetIdentityNotificationTopicResponse is undocumented.
 type SetIdentityNotificationTopicResponse struct {
+}
+
+func (v *SetIdentityNotificationTopicResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SES.
@@ -490,9 +1048,37 @@ type VerifyDomainDkimRequest struct {
 	Domain aws.StringValue `xml:"Domain"`
 }
 
+func (v *VerifyDomainDkimRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VerifyDomainDkimResponse is undocumented.
 type VerifyDomainDkimResponse struct {
 	DkimTokens []string `xml:"VerifyDomainDkimResult>DkimTokens>member"`
+}
+
+func (v *VerifyDomainDkimResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DkimTokens"); err != nil {
+		errors["DkimTokens"] = append(errors["DkimTokens"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // VerifyDomainIdentityRequest is undocumented.
@@ -500,9 +1086,37 @@ type VerifyDomainIdentityRequest struct {
 	Domain aws.StringValue `xml:"Domain"`
 }
 
+func (v *VerifyDomainIdentityRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VerifyDomainIdentityResponse is undocumented.
 type VerifyDomainIdentityResponse struct {
 	VerificationToken aws.StringValue `xml:"VerifyDomainIdentityResult>VerificationToken"`
+}
+
+func (v *VerifyDomainIdentityResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VerificationToken"); err != nil {
+		errors["VerificationToken"] = append(errors["VerificationToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // VerifyEmailAddressRequest is undocumented.
@@ -510,13 +1124,51 @@ type VerifyEmailAddressRequest struct {
 	EmailAddress aws.StringValue `xml:"EmailAddress"`
 }
 
+func (v *VerifyEmailAddressRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EmailAddress"); err != nil {
+		errors["EmailAddress"] = append(errors["EmailAddress"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VerifyEmailIdentityRequest is undocumented.
 type VerifyEmailIdentityRequest struct {
 	EmailAddress aws.StringValue `xml:"EmailAddress"`
 }
 
+func (v *VerifyEmailIdentityRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EmailAddress"); err != nil {
+		errors["EmailAddress"] = append(errors["EmailAddress"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VerifyEmailIdentityResponse is undocumented.
 type VerifyEmailIdentityResponse struct {
+}
+
+func (v *VerifyEmailIdentityResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteIdentityResult is a wrapper for DeleteIdentityResponse.

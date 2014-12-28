@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // StorageGateway is a client for AWS Storage Gateway.
@@ -48,6 +49,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Sto
 // associates your gateway with your account; for more information, see
 // UpdateGatewayInformation
 func (c *StorageGateway) ActivateGateway(req *ActivateGatewayInput) (resp *ActivateGatewayOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ActivateGatewayOutput{}
 	err = c.client.Do("ActivateGateway", "POST", "/", req, resp)
 	return
@@ -60,6 +65,10 @@ func (c *StorageGateway) ActivateGateway(req *ActivateGatewayInput) (resp *Activ
 // want to add cache, and one or more disk IDs that you want to configure
 // as cache.
 func (c *StorageGateway) AddCache(req *AddCacheInput) (resp *AddCacheOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AddCacheOutput{}
 	err = c.client.Do("AddCache", "POST", "/", req, resp)
 	return
@@ -72,6 +81,10 @@ func (c *StorageGateway) AddCache(req *AddCacheInput) (resp *AddCacheOutput, err
 // Name to which you want to add upload buffer, and one or more disk IDs
 // that you want to configure as upload buffer.
 func (c *StorageGateway) AddUploadBuffer(req *AddUploadBufferInput) (resp *AddUploadBufferOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AddUploadBufferOutput{}
 	err = c.client.Do("AddUploadBuffer", "POST", "/", req, resp)
 	return
@@ -85,6 +98,10 @@ func (c *StorageGateway) AddUploadBuffer(req *AddUploadBufferInput) (resp *AddUp
 // which you want to add working storage, and one or more disk IDs that you
 // want to configure as working storage.
 func (c *StorageGateway) AddWorkingStorage(req *AddWorkingStorageInput) (resp *AddWorkingStorageOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AddWorkingStorageOutput{}
 	err = c.client.Do("AddWorkingStorage", "POST", "/", req, resp)
 	return
@@ -93,6 +110,10 @@ func (c *StorageGateway) AddWorkingStorage(req *AddWorkingStorageInput) (resp *A
 // CancelArchival cancels archiving of a virtual tape to the virtual tape
 // shelf after the archiving process is initiated.
 func (c *StorageGateway) CancelArchival(req *CancelArchivalInput) (resp *CancelArchivalOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CancelArchivalOutput{}
 	err = c.client.Do("CancelArchival", "POST", "/", req, resp)
 	return
@@ -102,6 +123,10 @@ func (c *StorageGateway) CancelArchival(req *CancelArchivalInput) (resp *CancelA
 // tape shelf to a gateway after the retrieval process is initiated. The
 // virtual tape is returned to the
 func (c *StorageGateway) CancelRetrieval(req *CancelRetrievalInput) (resp *CancelRetrievalOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CancelRetrievalOutput{}
 	err = c.client.Do("CancelRetrieval", "POST", "/", req, resp)
 	return
@@ -116,6 +141,10 @@ func (c *StorageGateway) CancelRetrieval(req *CancelRetrievalInput) (resp *Cance
 // about it such as the volume Amazon Resource Name its size, and the iSCSI
 // target ARN that initiators can use to connect to the volume target.
 func (c *StorageGateway) CreateCachediSCSIVolume(req *CreateCachediSCSIVolumeInput) (resp *CreateCachediSCSIVolumeOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateCachediSCSIVolumeOutput{}
 	err = c.client.Do("CreateCachediSCSIVolume", "POST", "/", req, resp)
 	return
@@ -137,6 +166,10 @@ func (c *StorageGateway) CreateCachediSCSIVolume(req *CreateCachediSCSIVolumeInp
 // to check the snapshot progress or later use it when you want to create a
 // volume from a snapshot.
 func (c *StorageGateway) CreateSnapshot(req *CreateSnapshotInput) (resp *CreateSnapshotOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateSnapshotOutput{}
 	err = c.client.Do("CreateSnapshot", "POST", "/", req, resp)
 	return
@@ -157,6 +190,10 @@ func (c *StorageGateway) CreateSnapshot(req *CreateSnapshotInput) (resp *CreateS
 // to check the snapshot progress or later use it when you want to create a
 // volume from a snapshot.
 func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPoint(req *CreateSnapshotFromVolumeRecoveryPointInput) (resp *CreateSnapshotFromVolumeRecoveryPointOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateSnapshotFromVolumeRecoveryPointOutput{}
 	err = c.client.Do("CreateSnapshotFromVolumeRecoveryPoint", "POST", "/", req, resp)
 	return
@@ -174,6 +211,10 @@ func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPoint(req *CreateSnapsh
 // as the volume Amazon Resource Name its size, and the iSCSI target ARN
 // that initiators can use to connect to the volume target.
 func (c *StorageGateway) CreateStorediSCSIVolume(req *CreateStorediSCSIVolumeInput) (resp *CreateStorediSCSIVolumeOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateStorediSCSIVolumeOutput{}
 	err = c.client.Do("CreateStorediSCSIVolume", "POST", "/", req, resp)
 	return
@@ -182,6 +223,10 @@ func (c *StorageGateway) CreateStorediSCSIVolume(req *CreateStorediSCSIVolumeInp
 // CreateTapes creates one or more virtual tapes. You write data to the
 // virtual tapes and then archive the tapes.
 func (c *StorageGateway) CreateTapes(req *CreateTapesInput) (resp *CreateTapesOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateTapesOutput{}
 	err = c.client.Do("CreateTapes", "POST", "/", req, resp)
 	return
@@ -194,6 +239,10 @@ func (c *StorageGateway) CreateTapes(req *CreateTapesInput) (resp *CreateTapesOu
 // to work with, use the Amazon Resource Name of the gateway in your
 // request.
 func (c *StorageGateway) DeleteBandwidthRateLimit(req *DeleteBandwidthRateLimitInput) (resp *DeleteBandwidthRateLimitOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteBandwidthRateLimitOutput{}
 	err = c.client.Do("DeleteBandwidthRateLimit", "POST", "/", req, resp)
 	return
@@ -203,6 +252,10 @@ func (c *StorageGateway) DeleteBandwidthRateLimit(req *DeleteBandwidthRateLimitI
 // Authentication Protocol credentials for a specified iSCSI target and
 // initiator pair.
 func (c *StorageGateway) DeleteChapCredentials(req *DeleteChapCredentialsInput) (resp *DeleteChapCredentialsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteChapCredentialsOutput{}
 	err = c.client.Do("DeleteChapCredentials", "POST", "/", req, resp)
 	return
@@ -224,6 +277,10 @@ func (c *StorageGateway) DeleteChapCredentials(req *DeleteChapCredentialsInput) 
 // Amazon EC2 console. For more information, see the AWS Storage Gateway
 // Detail Page .
 func (c *StorageGateway) DeleteGateway(req *DeleteGatewayInput) (resp *DeleteGatewayOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteGatewayOutput{}
 	err = c.client.Do("DeleteGateway", "POST", "/", req, resp)
 	return
@@ -236,6 +293,10 @@ func (c *StorageGateway) DeleteGateway(req *DeleteGatewayInput) (resp *DeleteGat
 // DeleteSnapshotSchedule request, you identify the volume by providing its
 // Amazon Resource Name
 func (c *StorageGateway) DeleteSnapshotSchedule(req *DeleteSnapshotScheduleInput) (resp *DeleteSnapshotScheduleOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteSnapshotScheduleOutput{}
 	err = c.client.Do("DeleteSnapshotSchedule", "POST", "/", req, resp)
 	return
@@ -243,6 +304,10 @@ func (c *StorageGateway) DeleteSnapshotSchedule(req *DeleteSnapshotScheduleInput
 
 // DeleteTape is undocumented.
 func (c *StorageGateway) DeleteTape(req *DeleteTapeInput) (resp *DeleteTapeOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteTapeOutput{}
 	err = c.client.Do("DeleteTape", "POST", "/", req, resp)
 	return
@@ -251,6 +316,10 @@ func (c *StorageGateway) DeleteTape(req *DeleteTapeInput) (resp *DeleteTapeOutpu
 // DeleteTapeArchive deletes the specified virtual tape from the virtual
 // tape shelf
 func (c *StorageGateway) DeleteTapeArchive(req *DeleteTapeArchiveInput) (resp *DeleteTapeArchiveOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteTapeArchiveOutput{}
 	err = c.client.Do("DeleteTapeArchive", "POST", "/", req, resp)
 	return
@@ -269,6 +338,10 @@ func (c *StorageGateway) DeleteTapeArchive(req *DeleteTapeArchiveInput) (resp *D
 // the request, you must provide the Amazon Resource Name of the storage
 // volume you want to delete.
 func (c *StorageGateway) DeleteVolume(req *DeleteVolumeInput) (resp *DeleteVolumeOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteVolumeOutput{}
 	err = c.client.Do("DeleteVolume", "POST", "/", req, resp)
 	return
@@ -282,6 +355,10 @@ func (c *StorageGateway) DeleteVolume(req *DeleteVolumeInput) (resp *DeleteVolum
 // ARN in the response body. To specify which gateway to describe, use the
 // Amazon Resource Name of the gateway in your request.
 func (c *StorageGateway) DescribeBandwidthRateLimit(req *DescribeBandwidthRateLimitInput) (resp *DescribeBandwidthRateLimitOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeBandwidthRateLimitOutput{}
 	err = c.client.Do("DescribeBandwidthRateLimit", "POST", "/", req, resp)
 	return
@@ -292,6 +369,10 @@ func (c *StorageGateway) DescribeBandwidthRateLimit(req *DescribeBandwidthRateLi
 // architecture. The response includes disk IDs that are configured as
 // cache, and it includes the amount of cache allocated and used.
 func (c *StorageGateway) DescribeCache(req *DescribeCacheInput) (resp *DescribeCacheOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeCacheOutput{}
 	err = c.client.Do("DescribeCache", "POST", "/", req, resp)
 	return
@@ -304,6 +385,10 @@ func (c *StorageGateway) DescribeCache(req *DescribeCacheInput) (resp *DescribeC
 // Storage Gateway returns volume information sorted by volume Amazon
 // Resource Name
 func (c *StorageGateway) DescribeCachediSCSIVolumes(req *DescribeCachediSCSIVolumesInput) (resp *DescribeCachediSCSIVolumesOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeCachediSCSIVolumesOutput{}
 	err = c.client.Do("DescribeCachediSCSIVolumes", "POST", "/", req, resp)
 	return
@@ -313,6 +398,10 @@ func (c *StorageGateway) DescribeCachediSCSIVolumes(req *DescribeCachediSCSIVolu
 // Challenge-Handshake Authentication Protocol credentials information for
 // a specified iSCSI target, one for each target-initiator pair.
 func (c *StorageGateway) DescribeChapCredentials(req *DescribeChapCredentialsInput) (resp *DescribeChapCredentialsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeChapCredentialsOutput{}
 	err = c.client.Do("DescribeChapCredentials", "POST", "/", req, resp)
 	return
@@ -324,6 +413,10 @@ func (c *StorageGateway) DescribeChapCredentials(req *DescribeChapCredentialsInp
 // gateway to describe, use the Amazon Resource Name of the gateway in your
 // request.
 func (c *StorageGateway) DescribeGatewayInformation(req *DescribeGatewayInformationInput) (resp *DescribeGatewayInformationOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeGatewayInformationOutput{}
 	err = c.client.Do("DescribeGatewayInformation", "POST", "/", req, resp)
 	return
@@ -333,6 +426,10 @@ func (c *StorageGateway) DescribeGatewayInformation(req *DescribeGatewayInformat
 // weekly maintenance start time including the day and time of the week.
 // Note that values are in terms of the gateway's time zone.
 func (c *StorageGateway) DescribeMaintenanceStartTime(req *DescribeMaintenanceStartTimeInput) (resp *DescribeMaintenanceStartTimeOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeMaintenanceStartTimeOutput{}
 	err = c.client.Do("DescribeMaintenanceStartTime", "POST", "/", req, resp)
 	return
@@ -343,6 +440,10 @@ func (c *StorageGateway) DescribeMaintenanceStartTime(req *DescribeMaintenanceSt
 // includes intervals at which snapshots are automatically initiated on the
 // volume.
 func (c *StorageGateway) DescribeSnapshotSchedule(req *DescribeSnapshotScheduleInput) (resp *DescribeSnapshotScheduleOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeSnapshotScheduleOutput{}
 	err = c.client.Do("DescribeSnapshotSchedule", "POST", "/", req, resp)
 	return
@@ -353,6 +454,10 @@ func (c *StorageGateway) DescribeSnapshotSchedule(req *DescribeSnapshotScheduleI
 // the request must be from one gateway. In the response Amazon Storage
 // Gateway returns volume information sorted by volume ARNs.
 func (c *StorageGateway) DescribeStorediSCSIVolumes(req *DescribeStorediSCSIVolumesInput) (resp *DescribeStorediSCSIVolumesOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeStorediSCSIVolumesOutput{}
 	err = c.client.Do("DescribeStorediSCSIVolumes", "POST", "/", req, resp)
 	return
@@ -363,6 +468,10 @@ func (c *StorageGateway) DescribeStorediSCSIVolumes(req *DescribeStorediSCSIVolu
 // Storage Gateway returns a description of all virtual tapes found in the
 // VTS associated with your account.
 func (c *StorageGateway) DescribeTapeArchives(req *DescribeTapeArchivesInput) (resp *DescribeTapeArchivesOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTapeArchivesOutput{}
 	err = c.client.Do("DescribeTapeArchives", "POST", "/", req, resp)
 	return
@@ -374,6 +483,10 @@ func (c *StorageGateway) DescribeTapeArchives(req *DescribeTapeArchivesInput) (r
 // the virtual tape is consistent. If your gateway crashes, virtual tapes
 // that have recovery points can be recovered to a new gateway.
 func (c *StorageGateway) DescribeTapeRecoveryPoints(req *DescribeTapeRecoveryPointsInput) (resp *DescribeTapeRecoveryPointsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTapeRecoveryPointsOutput{}
 	err = c.client.Do("DescribeTapeRecoveryPoints", "POST", "/", req, resp)
 	return
@@ -383,6 +496,10 @@ func (c *StorageGateway) DescribeTapeRecoveryPoints(req *DescribeTapeRecoveryPoi
 // Name of virtual tapes. If a TapeARN is not specified, returns a
 // description of all virtual tapes associated with the specified gateway.
 func (c *StorageGateway) DescribeTapes(req *DescribeTapesInput) (resp *DescribeTapesOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTapesOutput{}
 	err = c.client.Do("DescribeTapes", "POST", "/", req, resp)
 	return
@@ -394,6 +511,10 @@ func (c *StorageGateway) DescribeTapes(req *DescribeTapesInput) (resp *DescribeT
 // includes disk IDs that are configured as upload buffer space, and it
 // includes the amount of upload buffer space allocated and used.
 func (c *StorageGateway) DescribeUploadBuffer(req *DescribeUploadBufferInput) (resp *DescribeUploadBufferOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeUploadBufferOutput{}
 	err = c.client.Do("DescribeUploadBuffer", "POST", "/", req, resp)
 	return
@@ -404,6 +525,10 @@ func (c *StorageGateway) DescribeUploadBuffer(req *DescribeUploadBufferInput) (r
 // VTL device information. The list of VTL devices must be from one
 // gateway.
 func (c *StorageGateway) DescribeVTLDevices(req *DescribeVTLDevicesInput) (resp *DescribeVTLDevicesOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeVTLDevicesOutput{}
 	err = c.client.Do("DescribeVTLDevices", "POST", "/", req, resp)
 	return
@@ -416,6 +541,10 @@ func (c *StorageGateway) DescribeVTLDevices(req *DescribeVTLDevicesInput) (resp 
 // The response includes disk IDs that are configured as working storage,
 // and it includes the amount of working storage allocated and used.
 func (c *StorageGateway) DescribeWorkingStorage(req *DescribeWorkingStorageInput) (resp *DescribeWorkingStorageOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeWorkingStorageOutput{}
 	err = c.client.Do("DescribeWorkingStorage", "POST", "/", req, resp)
 	return
@@ -427,6 +556,10 @@ func (c *StorageGateway) DescribeWorkingStorage(req *DescribeWorkingStorageInput
 // gateway-VTL that is not reachable or not functioning. Once a gateway is
 // disabled it cannot be enabled.
 func (c *StorageGateway) DisableGateway(req *DisableGatewayInput) (resp *DisableGatewayOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DisableGatewayOutput{}
 	err = c.client.Do("DisableGateway", "POST", "/", req, resp)
 	return
@@ -442,6 +575,10 @@ func (c *StorageGateway) DisableGateway(req *DisableGatewayInput) (resp *Disable
 // marker that you can specify in your next request to fetch the next page
 // of gateways.
 func (c *StorageGateway) ListGateways(req *ListGatewaysInput) (resp *ListGatewaysOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListGatewaysOutput{}
 	err = c.client.Do("ListGateways", "POST", "/", req, resp)
 	return
@@ -453,6 +590,10 @@ func (c *StorageGateway) ListGateways(req *ListGatewaysInput) (resp *ListGateway
 // returns all disks, specifying which are configured as working storage,
 // stored volume or not configured at all.
 func (c *StorageGateway) ListLocalDisks(req *ListLocalDisksInput) (resp *ListLocalDisksOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListLocalDisksOutput{}
 	err = c.client.Do("ListLocalDisks", "POST", "/", req, resp)
 	return
@@ -466,6 +607,10 @@ func (c *StorageGateway) ListLocalDisks(req *ListLocalDisksInput) (resp *ListLoc
 // snapshot. To create a snapshot from a volume recovery point use the
 // CreateSnapshotFromVolumeRecoveryPoint operation.
 func (c *StorageGateway) ListVolumeRecoveryPoints(req *ListVolumeRecoveryPointsInput) (resp *ListVolumeRecoveryPointsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListVolumeRecoveryPointsOutput{}
 	err = c.client.Do("ListVolumeRecoveryPoints", "POST", "/", req, resp)
 	return
@@ -482,6 +627,10 @@ func (c *StorageGateway) ListVolumeRecoveryPoints(req *ListVolumeRecoveryPointsI
 // this Marker value in your subsequent request to retrieve the next set of
 // volumes.
 func (c *StorageGateway) ListVolumes(req *ListVolumesInput) (resp *ListVolumesOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListVolumesOutput{}
 	err = c.client.Do("ListVolumes", "POST", "/", req, resp)
 	return
@@ -495,6 +644,10 @@ func (c *StorageGateway) ListVolumes(req *ListVolumesInput) (resp *ListVolumesOu
 // again to another gateway. You must archive the tape again before you can
 // retrieve it to another gateway.
 func (c *StorageGateway) RetrieveTapeArchive(req *RetrieveTapeArchiveInput) (resp *RetrieveTapeArchiveOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RetrieveTapeArchiveOutput{}
 	err = c.client.Do("RetrieveTapeArchive", "POST", "/", req, resp)
 	return
@@ -506,6 +659,10 @@ func (c *StorageGateway) RetrieveTapeArchive(req *RetrieveTapeArchiveInput) (res
 // crashes, virtual tapes that have recovery points can be recovered to a
 // new gateway.
 func (c *StorageGateway) RetrieveTapeRecoveryPoint(req *RetrieveTapeRecoveryPointInput) (resp *RetrieveTapeRecoveryPointOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RetrieveTapeRecoveryPointOutput{}
 	err = c.client.Do("RetrieveTapeRecoveryPoint", "POST", "/", req, resp)
 	return
@@ -523,6 +680,10 @@ func (c *StorageGateway) RetrieveTapeRecoveryPoint(req *RetrieveTapeRecoveryPoin
 // gateway (using DeleteGateway ) to no longer pay software charges
 // associated with the gateway.
 func (c *StorageGateway) ShutdownGateway(req *ShutdownGatewayInput) (resp *ShutdownGatewayOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ShutdownGatewayOutput{}
 	err = c.client.Do("ShutdownGateway", "POST", "/", req, resp)
 	return
@@ -535,6 +696,10 @@ func (c *StorageGateway) ShutdownGateway(req *ShutdownGatewayInput) (resp *Shutd
 // To specify which gateway to start, use the Amazon Resource Name of the
 // gateway in your request.
 func (c *StorageGateway) StartGateway(req *StartGatewayInput) (resp *StartGatewayOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &StartGatewayOutput{}
 	err = c.client.Do("StartGateway", "POST", "/", req, resp)
 	return
@@ -550,6 +715,10 @@ func (c *StorageGateway) StartGateway(req *StartGatewayInput) (resp *StartGatewa
 // gateway to update, use the Amazon Resource Name of the gateway in your
 // request.
 func (c *StorageGateway) UpdateBandwidthRateLimit(req *UpdateBandwidthRateLimitInput) (resp *UpdateBandwidthRateLimitOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateBandwidthRateLimitOutput{}
 	err = c.client.Do("UpdateBandwidthRateLimit", "POST", "/", req, resp)
 	return
@@ -562,6 +731,10 @@ func (c *StorageGateway) UpdateBandwidthRateLimit(req *UpdateBandwidthRateLimitI
 // on the target are closed and initiators must reconnect with the new
 // credentials.
 func (c *StorageGateway) UpdateChapCredentials(req *UpdateChapCredentialsInput) (resp *UpdateChapCredentialsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateChapCredentialsOutput{}
 	err = c.client.Do("UpdateChapCredentials", "POST", "/", req, resp)
 	return
@@ -572,6 +745,10 @@ func (c *StorageGateway) UpdateChapCredentials(req *UpdateChapCredentialsInput) 
 // gateway to update, use the Amazon Resource Name of the gateway in your
 // request.
 func (c *StorageGateway) UpdateGatewayInformation(req *UpdateGatewayInformationInput) (resp *UpdateGatewayInformationOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateGatewayInformationOutput{}
 	err = c.client.Do("UpdateGatewayInformation", "POST", "/", req, resp)
 	return
@@ -586,6 +763,10 @@ func (c *StorageGateway) UpdateGatewayInformation(req *UpdateGatewayInformationI
 // Windows iSCSI Settings and Customizing Your Linux iSCSI Settings ,
 // respectively.
 func (c *StorageGateway) UpdateGatewaySoftwareNow(req *UpdateGatewaySoftwareNowInput) (resp *UpdateGatewaySoftwareNowOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateGatewaySoftwareNowOutput{}
 	err = c.client.Do("UpdateGatewaySoftwareNow", "POST", "/", req, resp)
 	return
@@ -595,6 +776,10 @@ func (c *StorageGateway) UpdateGatewaySoftwareNow(req *UpdateGatewaySoftwareNowI
 // maintenance start time information, including day and time of the week.
 // The maintenance time is the time in your gateway's time zone.
 func (c *StorageGateway) UpdateMaintenanceStartTime(req *UpdateMaintenanceStartTimeInput) (resp *UpdateMaintenanceStartTimeOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateMaintenanceStartTimeOutput{}
 	err = c.client.Do("UpdateMaintenanceStartTime", "POST", "/", req, resp)
 	return
@@ -609,6 +794,10 @@ func (c *StorageGateway) UpdateMaintenanceStartTime(req *UpdateMaintenanceStartT
 // information, including when you want the snapshot to begin on a day and
 // the frequency (in hours) of snapshots.
 func (c *StorageGateway) UpdateSnapshotSchedule(req *UpdateSnapshotScheduleInput) (resp *UpdateSnapshotScheduleOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateSnapshotScheduleOutput{}
 	err = c.client.Do("UpdateSnapshotSchedule", "POST", "/", req, resp)
 	return
@@ -625,9 +814,113 @@ type ActivateGatewayInput struct {
 	TapeDriveType     aws.StringValue `json:"TapeDriveType,omitempty"`
 }
 
+func (v *ActivateGatewayInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActivationKey"); err != nil {
+		errors["ActivationKey"] = append(errors["ActivationKey"], err)
+	}
+
+	if err := model.ValidateMin(v, "ActivationKey", 1); err != nil {
+		errors["ActivationKey"] = append(errors["ActivationKey"], err)
+	}
+
+	if err := model.ValidateMax(v, "ActivationKey", 50); err != nil {
+		errors["ActivationKey"] = append(errors["ActivationKey"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GatewayName"); err != nil {
+		errors["GatewayName"] = append(errors["GatewayName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayName", 2); err != nil {
+		errors["GatewayName"] = append(errors["GatewayName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayName", 255); err != nil {
+		errors["GatewayName"] = append(errors["GatewayName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GatewayName", `^[ -\.0-\[\]-~]*[!-\.0-\[\]-~][ -\.0-\[\]-~]*$`); err != nil {
+		errors["GatewayName"] = append(errors["GatewayName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GatewayRegion"); err != nil {
+		errors["GatewayRegion"] = append(errors["GatewayRegion"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayRegion", 1); err != nil {
+		errors["GatewayRegion"] = append(errors["GatewayRegion"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayRegion", 25); err != nil {
+		errors["GatewayRegion"] = append(errors["GatewayRegion"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GatewayTimezone"); err != nil {
+		errors["GatewayTimezone"] = append(errors["GatewayTimezone"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayTimezone", 3); err != nil {
+		errors["GatewayTimezone"] = append(errors["GatewayTimezone"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayTimezone", 10); err != nil {
+		errors["GatewayTimezone"] = append(errors["GatewayTimezone"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayType", 2); err != nil {
+		errors["GatewayType"] = append(errors["GatewayType"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayType", 20); err != nil {
+		errors["GatewayType"] = append(errors["GatewayType"], err)
+	}
+
+	if err := model.ValidateMin(v, "MediumChangerType", 2); err != nil {
+		errors["MediumChangerType"] = append(errors["MediumChangerType"], err)
+	}
+
+	if err := model.ValidateMax(v, "MediumChangerType", 50); err != nil {
+		errors["MediumChangerType"] = append(errors["MediumChangerType"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeDriveType", 2); err != nil {
+		errors["TapeDriveType"] = append(errors["TapeDriveType"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeDriveType", 50); err != nil {
+		errors["TapeDriveType"] = append(errors["TapeDriveType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ActivateGatewayOutput is undocumented.
 type ActivateGatewayOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *ActivateGatewayOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AddCacheInput is undocumented.
@@ -636,9 +929,53 @@ type AddCacheInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 }
 
+func (v *AddCacheInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DiskIDs"); err != nil {
+		errors["DiskIDs"] = append(errors["DiskIDs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddCacheOutput is undocumented.
 type AddCacheOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *AddCacheOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AddUploadBufferInput is undocumented.
@@ -647,9 +984,53 @@ type AddUploadBufferInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 }
 
+func (v *AddUploadBufferInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DiskIDs"); err != nil {
+		errors["DiskIDs"] = append(errors["DiskIDs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddUploadBufferOutput is undocumented.
 type AddUploadBufferOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *AddUploadBufferOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AddWorkingStorageInput is undocumented.
@@ -658,9 +1039,53 @@ type AddWorkingStorageInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 }
 
+func (v *AddWorkingStorageInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DiskIDs"); err != nil {
+		errors["DiskIDs"] = append(errors["DiskIDs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddWorkingStorageOutput is undocumented.
 type AddWorkingStorageOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *AddWorkingStorageOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CachediSCSIVolume is undocumented.
@@ -675,15 +1100,113 @@ type CachediSCSIVolume struct {
 	VolumeiSCSIAttributes *VolumeiSCSIAttributes `json:"VolumeiSCSIAttributes,omitempty"`
 }
 
+func (v *CachediSCSIVolume) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "SourceSnapshotID", `\Asnap-[0-9a-fA-F]{8}\z`); err != nil {
+		errors["SourceSnapshotID"] = append(errors["SourceSnapshotID"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeID", 12); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeID", 30); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeStatus", 3); err != nil {
+		errors["VolumeStatus"] = append(errors["VolumeStatus"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeStatus", 50); err != nil {
+		errors["VolumeStatus"] = append(errors["VolumeStatus"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeType", 3); err != nil {
+		errors["VolumeType"] = append(errors["VolumeType"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeType", 100); err != nil {
+		errors["VolumeType"] = append(errors["VolumeType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CancelArchivalInput is undocumented.
 type CancelArchivalInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 	TapeARN    aws.StringValue `json:"TapeARN"`
 }
 
+func (v *CancelArchivalInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TapeARN"); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CancelArchivalOutput is undocumented.
 type CancelArchivalOutput struct {
 	TapeARN aws.StringValue `json:"TapeARN,omitempty"`
+}
+
+func (v *CancelArchivalOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CancelRetrievalInput is undocumented.
@@ -692,9 +1215,61 @@ type CancelRetrievalInput struct {
 	TapeARN    aws.StringValue `json:"TapeARN"`
 }
 
+func (v *CancelRetrievalInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TapeARN"); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CancelRetrievalOutput is undocumented.
 type CancelRetrievalOutput struct {
 	TapeARN aws.StringValue `json:"TapeARN,omitempty"`
+}
+
+func (v *CancelRetrievalOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ChapInfo is undocumented.
@@ -703,6 +1278,52 @@ type ChapInfo struct {
 	SecretToAuthenticateInitiator aws.StringValue `json:"SecretToAuthenticateInitiator,omitempty"`
 	SecretToAuthenticateTarget    aws.StringValue `json:"SecretToAuthenticateTarget,omitempty"`
 	TargetARN                     aws.StringValue `json:"TargetARN,omitempty"`
+}
+
+func (v *ChapInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "InitiatorName", 1); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidateMax(v, "InitiatorName", 255); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InitiatorName", `[0-9a-z:.-]+`); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidateMin(v, "SecretToAuthenticateInitiator", 12); err != nil {
+		errors["SecretToAuthenticateInitiator"] = append(errors["SecretToAuthenticateInitiator"], err)
+	}
+
+	if err := model.ValidateMax(v, "SecretToAuthenticateInitiator", 16); err != nil {
+		errors["SecretToAuthenticateInitiator"] = append(errors["SecretToAuthenticateInitiator"], err)
+	}
+
+	if err := model.ValidateMin(v, "SecretToAuthenticateTarget", 12); err != nil {
+		errors["SecretToAuthenticateTarget"] = append(errors["SecretToAuthenticateTarget"], err)
+	}
+
+	if err := model.ValidateMax(v, "SecretToAuthenticateTarget", 16); err != nil {
+		errors["SecretToAuthenticateTarget"] = append(errors["SecretToAuthenticateTarget"], err)
+	}
+
+	if err := model.ValidateMin(v, "TargetARN", 50); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetARN", 800); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateCachediSCSIVolumeInput is undocumented.
@@ -715,16 +1336,142 @@ type CreateCachediSCSIVolumeInput struct {
 	VolumeSizeInBytes  aws.LongValue   `json:"VolumeSizeInBytes"`
 }
 
+func (v *CreateCachediSCSIVolumeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClientToken"); err != nil {
+		errors["ClientToken"] = append(errors["ClientToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "ClientToken", 5); err != nil {
+		errors["ClientToken"] = append(errors["ClientToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "ClientToken", 100); err != nil {
+		errors["ClientToken"] = append(errors["ClientToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NetworkInterfaceID"); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NetworkInterfaceID", `\A(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\z`); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SnapshotID", `\Asnap-[0-9a-fA-F]{8}\z`); err != nil {
+		errors["SnapshotID"] = append(errors["SnapshotID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetName"); err != nil {
+		errors["TargetName"] = append(errors["TargetName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TargetName", 1); err != nil {
+		errors["TargetName"] = append(errors["TargetName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetName", 200); err != nil {
+		errors["TargetName"] = append(errors["TargetName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TargetName", `^[-\.;a-z0-9]+$`); err != nil {
+		errors["TargetName"] = append(errors["TargetName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VolumeSizeInBytes"); err != nil {
+		errors["VolumeSizeInBytes"] = append(errors["VolumeSizeInBytes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateCachediSCSIVolumeOutput is undocumented.
 type CreateCachediSCSIVolumeOutput struct {
 	TargetARN aws.StringValue `json:"TargetARN,omitempty"`
 	VolumeARN aws.StringValue `json:"VolumeARN,omitempty"`
 }
 
+func (v *CreateCachediSCSIVolumeOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TargetARN", 50); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetARN", 800); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateSnapshotFromVolumeRecoveryPointInput is undocumented.
 type CreateSnapshotFromVolumeRecoveryPointInput struct {
 	SnapshotDescription aws.StringValue `json:"SnapshotDescription"`
 	VolumeARN           aws.StringValue `json:"VolumeARN"`
+}
+
+func (v *CreateSnapshotFromVolumeRecoveryPointInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SnapshotDescription"); err != nil {
+		errors["SnapshotDescription"] = append(errors["SnapshotDescription"], err)
+	}
+
+	if err := model.ValidateMin(v, "SnapshotDescription", 1); err != nil {
+		errors["SnapshotDescription"] = append(errors["SnapshotDescription"], err)
+	}
+
+	if err := model.ValidateMax(v, "SnapshotDescription", 255); err != nil {
+		errors["SnapshotDescription"] = append(errors["SnapshotDescription"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VolumeARN"); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateSnapshotFromVolumeRecoveryPointOutput is undocumented.
@@ -734,16 +1481,94 @@ type CreateSnapshotFromVolumeRecoveryPointOutput struct {
 	VolumeRecoveryPointTime aws.StringValue `json:"VolumeRecoveryPointTime,omitempty"`
 }
 
+func (v *CreateSnapshotFromVolumeRecoveryPointOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "SnapshotID", `\Asnap-[0-9a-fA-F]{8}\z`); err != nil {
+		errors["SnapshotID"] = append(errors["SnapshotID"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateSnapshotInput is undocumented.
 type CreateSnapshotInput struct {
 	SnapshotDescription aws.StringValue `json:"SnapshotDescription"`
 	VolumeARN           aws.StringValue `json:"VolumeARN"`
 }
 
+func (v *CreateSnapshotInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SnapshotDescription"); err != nil {
+		errors["SnapshotDescription"] = append(errors["SnapshotDescription"], err)
+	}
+
+	if err := model.ValidateMin(v, "SnapshotDescription", 1); err != nil {
+		errors["SnapshotDescription"] = append(errors["SnapshotDescription"], err)
+	}
+
+	if err := model.ValidateMax(v, "SnapshotDescription", 255); err != nil {
+		errors["SnapshotDescription"] = append(errors["SnapshotDescription"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VolumeARN"); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateSnapshotOutput is undocumented.
 type CreateSnapshotOutput struct {
 	SnapshotID aws.StringValue `json:"SnapshotId,omitempty"`
 	VolumeARN  aws.StringValue `json:"VolumeARN,omitempty"`
+}
+
+func (v *CreateSnapshotOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "SnapshotID", `\Asnap-[0-9a-fA-F]{8}\z`); err != nil {
+		errors["SnapshotID"] = append(errors["SnapshotID"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateStorediSCSIVolumeInput is undocumented.
@@ -756,11 +1581,103 @@ type CreateStorediSCSIVolumeInput struct {
 	TargetName           aws.StringValue  `json:"TargetName"`
 }
 
+func (v *CreateStorediSCSIVolumeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DiskID"); err != nil {
+		errors["DiskID"] = append(errors["DiskID"], err)
+	}
+
+	if err := model.ValidateMin(v, "DiskID", 1); err != nil {
+		errors["DiskID"] = append(errors["DiskID"], err)
+	}
+
+	if err := model.ValidateMax(v, "DiskID", 300); err != nil {
+		errors["DiskID"] = append(errors["DiskID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NetworkInterfaceID"); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NetworkInterfaceID", `\A(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\z`); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PreserveExistingData"); err != nil {
+		errors["PreserveExistingData"] = append(errors["PreserveExistingData"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SnapshotID", `\Asnap-[0-9a-fA-F]{8}\z`); err != nil {
+		errors["SnapshotID"] = append(errors["SnapshotID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetName"); err != nil {
+		errors["TargetName"] = append(errors["TargetName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TargetName", 1); err != nil {
+		errors["TargetName"] = append(errors["TargetName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetName", 200); err != nil {
+		errors["TargetName"] = append(errors["TargetName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TargetName", `^[-\.;a-z0-9]+$`); err != nil {
+		errors["TargetName"] = append(errors["TargetName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateStorediSCSIVolumeOutput is undocumented.
 type CreateStorediSCSIVolumeOutput struct {
 	TargetARN         aws.StringValue `json:"TargetARN,omitempty"`
 	VolumeARN         aws.StringValue `json:"VolumeARN,omitempty"`
 	VolumeSizeInBytes aws.LongValue   `json:"VolumeSizeInBytes,omitempty"`
+}
+
+func (v *CreateStorediSCSIVolumeOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TargetARN", 50); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetARN", 800); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateTapesInput is undocumented.
@@ -772,9 +1689,93 @@ type CreateTapesInput struct {
 	TapeSizeInBytes   aws.LongValue    `json:"TapeSizeInBytes"`
 }
 
+func (v *CreateTapesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClientToken"); err != nil {
+		errors["ClientToken"] = append(errors["ClientToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "ClientToken", 5); err != nil {
+		errors["ClientToken"] = append(errors["ClientToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "ClientToken", 100); err != nil {
+		errors["ClientToken"] = append(errors["ClientToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NumTapesToCreate"); err != nil {
+		errors["NumTapesToCreate"] = append(errors["NumTapesToCreate"], err)
+	}
+
+	if err := model.ValidateMin(v, "NumTapesToCreate", 1); err != nil {
+		errors["NumTapesToCreate"] = append(errors["NumTapesToCreate"], err)
+	}
+
+	if err := model.ValidateMax(v, "NumTapesToCreate", 10); err != nil {
+		errors["NumTapesToCreate"] = append(errors["NumTapesToCreate"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TapeBarcodePrefix"); err != nil {
+		errors["TapeBarcodePrefix"] = append(errors["TapeBarcodePrefix"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeBarcodePrefix", 1); err != nil {
+		errors["TapeBarcodePrefix"] = append(errors["TapeBarcodePrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeBarcodePrefix", 4); err != nil {
+		errors["TapeBarcodePrefix"] = append(errors["TapeBarcodePrefix"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TapeBarcodePrefix", `^[A-Z]*$`); err != nil {
+		errors["TapeBarcodePrefix"] = append(errors["TapeBarcodePrefix"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TapeSizeInBytes"); err != nil {
+		errors["TapeSizeInBytes"] = append(errors["TapeSizeInBytes"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeSizeInBytes", 107374182400); err != nil {
+		errors["TapeSizeInBytes"] = append(errors["TapeSizeInBytes"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeSizeInBytes", 2748779069440); err != nil {
+		errors["TapeSizeInBytes"] = append(errors["TapeSizeInBytes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateTapesOutput is undocumented.
 type CreateTapesOutput struct {
 	TapeARNs []string `json:"TapeARNs,omitempty"`
+}
+
+func (v *CreateTapesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteBandwidthRateLimitInput is undocumented.
@@ -783,9 +1784,61 @@ type DeleteBandwidthRateLimitInput struct {
 	GatewayARN    aws.StringValue `json:"GatewayARN"`
 }
 
+func (v *DeleteBandwidthRateLimitInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "BandwidthType"); err != nil {
+		errors["BandwidthType"] = append(errors["BandwidthType"], err)
+	}
+
+	if err := model.ValidateMin(v, "BandwidthType", 3); err != nil {
+		errors["BandwidthType"] = append(errors["BandwidthType"], err)
+	}
+
+	if err := model.ValidateMax(v, "BandwidthType", 25); err != nil {
+		errors["BandwidthType"] = append(errors["BandwidthType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteBandwidthRateLimitOutput is undocumented.
 type DeleteBandwidthRateLimitOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *DeleteBandwidthRateLimitOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteChapCredentialsInput is undocumented.
@@ -794,10 +1847,78 @@ type DeleteChapCredentialsInput struct {
 	TargetARN     aws.StringValue `json:"TargetARN"`
 }
 
+func (v *DeleteChapCredentialsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InitiatorName"); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidateMin(v, "InitiatorName", 1); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidateMax(v, "InitiatorName", 255); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InitiatorName", `[0-9a-z:.-]+`); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetARN"); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TargetARN", 50); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetARN", 800); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteChapCredentialsOutput is undocumented.
 type DeleteChapCredentialsOutput struct {
 	InitiatorName aws.StringValue `json:"InitiatorName,omitempty"`
 	TargetARN     aws.StringValue `json:"TargetARN,omitempty"`
+}
+
+func (v *DeleteChapCredentialsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "InitiatorName", 1); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidateMax(v, "InitiatorName", 255); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InitiatorName", `[0-9a-z:.-]+`); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TargetARN", 50); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetARN", 800); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteGatewayInput is undocumented.
@@ -805,9 +1926,49 @@ type DeleteGatewayInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 }
 
+func (v *DeleteGatewayInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteGatewayOutput is undocumented.
 type DeleteGatewayOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *DeleteGatewayOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteSnapshotScheduleInput is undocumented.
@@ -815,9 +1976,49 @@ type DeleteSnapshotScheduleInput struct {
 	VolumeARN aws.StringValue `json:"VolumeARN"`
 }
 
+func (v *DeleteSnapshotScheduleInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeARN"); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteSnapshotScheduleOutput is undocumented.
 type DeleteSnapshotScheduleOutput struct {
 	VolumeARN aws.StringValue `json:"VolumeARN,omitempty"`
+}
+
+func (v *DeleteSnapshotScheduleOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteTapeArchiveInput is undocumented.
@@ -825,9 +2026,49 @@ type DeleteTapeArchiveInput struct {
 	TapeARN aws.StringValue `json:"TapeARN"`
 }
 
+func (v *DeleteTapeArchiveInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "TapeARN"); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteTapeArchiveOutput is undocumented.
 type DeleteTapeArchiveOutput struct {
 	TapeARN aws.StringValue `json:"TapeARN,omitempty"`
+}
+
+func (v *DeleteTapeArchiveOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteTapeInput is undocumented.
@@ -836,9 +2077,61 @@ type DeleteTapeInput struct {
 	TapeARN    aws.StringValue `json:"TapeARN"`
 }
 
+func (v *DeleteTapeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TapeARN"); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteTapeOutput is undocumented.
 type DeleteTapeOutput struct {
 	TapeARN aws.StringValue `json:"TapeARN,omitempty"`
+}
+
+func (v *DeleteTapeOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteVolumeInput is undocumented.
@@ -846,14 +2139,76 @@ type DeleteVolumeInput struct {
 	VolumeARN aws.StringValue `json:"VolumeARN"`
 }
 
+func (v *DeleteVolumeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeARN"); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteVolumeOutput is undocumented.
 type DeleteVolumeOutput struct {
 	VolumeARN aws.StringValue `json:"VolumeARN,omitempty"`
 }
 
+func (v *DeleteVolumeOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeBandwidthRateLimitInput is undocumented.
 type DescribeBandwidthRateLimitInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
+}
+
+func (v *DescribeBandwidthRateLimitInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeBandwidthRateLimitOutput is undocumented.
@@ -863,9 +2218,57 @@ type DescribeBandwidthRateLimitOutput struct {
 	GatewayARN                           aws.StringValue `json:"GatewayARN,omitempty"`
 }
 
+func (v *DescribeBandwidthRateLimitOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AverageDownloadRateLimitInBitsPerSec", 102400); err != nil {
+		errors["AverageDownloadRateLimitInBitsPerSec"] = append(errors["AverageDownloadRateLimitInBitsPerSec"], err)
+	}
+
+	if err := model.ValidateMin(v, "AverageUploadRateLimitInBitsPerSec", 51200); err != nil {
+		errors["AverageUploadRateLimitInBitsPerSec"] = append(errors["AverageUploadRateLimitInBitsPerSec"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeCacheInput is undocumented.
 type DescribeCacheInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
+}
+
+func (v *DescribeCacheInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeCacheOutput is undocumented.
@@ -879,9 +2282,41 @@ type DescribeCacheOutput struct {
 	GatewayARN            aws.StringValue `json:"GatewayARN,omitempty"`
 }
 
+func (v *DescribeCacheOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeCachediSCSIVolumesInput is undocumented.
 type DescribeCachediSCSIVolumesInput struct {
 	VolumeARNs []string `json:"VolumeARNs"`
+}
+
+func (v *DescribeCachediSCSIVolumesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeARNs"); err != nil {
+		errors["VolumeARNs"] = append(errors["VolumeARNs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeCachediSCSIVolumesOutput is undocumented.
@@ -889,9 +2324,41 @@ type DescribeCachediSCSIVolumesOutput struct {
 	CachediSCSIVolumes []CachediSCSIVolume `json:"CachediSCSIVolumes,omitempty"`
 }
 
+func (v *DescribeCachediSCSIVolumesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeChapCredentialsInput is undocumented.
 type DescribeChapCredentialsInput struct {
 	TargetARN aws.StringValue `json:"TargetARN"`
+}
+
+func (v *DescribeChapCredentialsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "TargetARN"); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TargetARN", 50); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetARN", 800); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeChapCredentialsOutput is undocumented.
@@ -899,9 +2366,41 @@ type DescribeChapCredentialsOutput struct {
 	ChapCredentials []ChapInfo `json:"ChapCredentials,omitempty"`
 }
 
+func (v *DescribeChapCredentialsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeGatewayInformationInput is undocumented.
 type DescribeGatewayInformationInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
+}
+
+func (v *DescribeGatewayInformationInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeGatewayInformationOutput is undocumented.
@@ -915,9 +2414,89 @@ type DescribeGatewayInformationOutput struct {
 	NextUpdateAvailabilityDate aws.StringValue    `json:"NextUpdateAvailabilityDate,omitempty"`
 }
 
+func (v *DescribeGatewayInformationOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayID", 12); err != nil {
+		errors["GatewayID"] = append(errors["GatewayID"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayID", 30); err != nil {
+		errors["GatewayID"] = append(errors["GatewayID"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayState", 2); err != nil {
+		errors["GatewayState"] = append(errors["GatewayState"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayState", 25); err != nil {
+		errors["GatewayState"] = append(errors["GatewayState"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayTimezone", 3); err != nil {
+		errors["GatewayTimezone"] = append(errors["GatewayTimezone"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayTimezone", 10); err != nil {
+		errors["GatewayTimezone"] = append(errors["GatewayTimezone"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayType", 2); err != nil {
+		errors["GatewayType"] = append(errors["GatewayType"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayType", 20); err != nil {
+		errors["GatewayType"] = append(errors["GatewayType"], err)
+	}
+
+	if err := model.ValidateMin(v, "NextUpdateAvailabilityDate", 1); err != nil {
+		errors["NextUpdateAvailabilityDate"] = append(errors["NextUpdateAvailabilityDate"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextUpdateAvailabilityDate", 25); err != nil {
+		errors["NextUpdateAvailabilityDate"] = append(errors["NextUpdateAvailabilityDate"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeMaintenanceStartTimeInput is undocumented.
 type DescribeMaintenanceStartTimeInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
+}
+
+func (v *DescribeMaintenanceStartTimeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeMaintenanceStartTimeOutput is undocumented.
@@ -929,9 +2508,69 @@ type DescribeMaintenanceStartTimeOutput struct {
 	Timezone     aws.StringValue  `json:"Timezone,omitempty"`
 }
 
+func (v *DescribeMaintenanceStartTimeOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "DayOfWeek", 6); err != nil {
+		errors["DayOfWeek"] = append(errors["DayOfWeek"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "HourOfDay", 23); err != nil {
+		errors["HourOfDay"] = append(errors["HourOfDay"], err)
+	}
+
+	if err := model.ValidateMax(v, "MinuteOfHour", 59); err != nil {
+		errors["MinuteOfHour"] = append(errors["MinuteOfHour"], err)
+	}
+
+	if err := model.ValidateMin(v, "Timezone", 3); err != nil {
+		errors["Timezone"] = append(errors["Timezone"], err)
+	}
+
+	if err := model.ValidateMax(v, "Timezone", 10); err != nil {
+		errors["Timezone"] = append(errors["Timezone"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeSnapshotScheduleInput is undocumented.
 type DescribeSnapshotScheduleInput struct {
 	VolumeARN aws.StringValue `json:"VolumeARN"`
+}
+
+func (v *DescribeSnapshotScheduleInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeARN"); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeSnapshotScheduleOutput is undocumented.
@@ -943,14 +2582,84 @@ type DescribeSnapshotScheduleOutput struct {
 	VolumeARN         aws.StringValue  `json:"VolumeARN,omitempty"`
 }
 
+func (v *DescribeSnapshotScheduleOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Description", 1); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 255); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateMin(v, "RecurrenceInHours", 1); err != nil {
+		errors["RecurrenceInHours"] = append(errors["RecurrenceInHours"], err)
+	}
+
+	if err := model.ValidateMax(v, "RecurrenceInHours", 24); err != nil {
+		errors["RecurrenceInHours"] = append(errors["RecurrenceInHours"], err)
+	}
+
+	if err := model.ValidateMax(v, "StartAt", 23); err != nil {
+		errors["StartAt"] = append(errors["StartAt"], err)
+	}
+
+	if err := model.ValidateMin(v, "Timezone", 3); err != nil {
+		errors["Timezone"] = append(errors["Timezone"], err)
+	}
+
+	if err := model.ValidateMax(v, "Timezone", 10); err != nil {
+		errors["Timezone"] = append(errors["Timezone"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeStorediSCSIVolumesInput is undocumented.
 type DescribeStorediSCSIVolumesInput struct {
 	VolumeARNs []string `json:"VolumeARNs"`
 }
 
+func (v *DescribeStorediSCSIVolumesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeARNs"); err != nil {
+		errors["VolumeARNs"] = append(errors["VolumeARNs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeStorediSCSIVolumesOutput is undocumented.
 type DescribeStorediSCSIVolumesOutput struct {
 	StorediSCSIVolumes []StorediSCSIVolume `json:"StorediSCSIVolumes,omitempty"`
+}
+
+func (v *DescribeStorediSCSIVolumesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTapeArchivesInput is undocumented.
@@ -960,10 +2669,50 @@ type DescribeTapeArchivesInput struct {
 	TapeARNs []string         `json:"TapeARNs,omitempty"`
 }
 
+func (v *DescribeTapeArchivesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 1000); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTapeArchivesOutput is undocumented.
 type DescribeTapeArchivesOutput struct {
 	Marker       aws.StringValue `json:"Marker,omitempty"`
 	TapeArchives []TapeArchive   `json:"TapeArchives,omitempty"`
+}
+
+func (v *DescribeTapeArchivesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 1000); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTapeRecoveryPointsInput is undocumented.
@@ -973,11 +2722,71 @@ type DescribeTapeRecoveryPointsInput struct {
 	Marker     aws.StringValue  `json:"Marker,omitempty"`
 }
 
+func (v *DescribeTapeRecoveryPointsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 1000); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTapeRecoveryPointsOutput is undocumented.
 type DescribeTapeRecoveryPointsOutput struct {
 	GatewayARN             aws.StringValue         `json:"GatewayARN,omitempty"`
 	Marker                 aws.StringValue         `json:"Marker,omitempty"`
 	TapeRecoveryPointInfos []TapeRecoveryPointInfo `json:"TapeRecoveryPointInfos,omitempty"`
+}
+
+func (v *DescribeTapeRecoveryPointsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 1000); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTapesInput is undocumented.
@@ -988,15 +2797,89 @@ type DescribeTapesInput struct {
 	TapeARNs   []string         `json:"TapeARNs,omitempty"`
 }
 
+func (v *DescribeTapesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 1000); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTapesOutput is undocumented.
 type DescribeTapesOutput struct {
 	Marker aws.StringValue `json:"Marker,omitempty"`
 	Tapes  []Tape          `json:"Tapes,omitempty"`
 }
 
+func (v *DescribeTapesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 1000); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeUploadBufferInput is undocumented.
 type DescribeUploadBufferInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
+}
+
+func (v *DescribeUploadBufferInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeUploadBufferOutput is undocumented.
@@ -1007,12 +2890,64 @@ type DescribeUploadBufferOutput struct {
 	UploadBufferUsedInBytes      aws.LongValue   `json:"UploadBufferUsedInBytes,omitempty"`
 }
 
+func (v *DescribeUploadBufferOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeVTLDevicesInput is undocumented.
 type DescribeVTLDevicesInput struct {
 	GatewayARN    aws.StringValue  `json:"GatewayARN"`
 	Limit         aws.IntegerValue `json:"Limit,omitempty"`
 	Marker        aws.StringValue  `json:"Marker,omitempty"`
 	VTLDeviceARNs []string         `json:"VTLDeviceARNs,omitempty"`
+}
+
+func (v *DescribeVTLDevicesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 1000); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeVTLDevicesOutput is undocumented.
@@ -1022,9 +2957,57 @@ type DescribeVTLDevicesOutput struct {
 	VTLDevices []VTLDevice     `json:"VTLDevices,omitempty"`
 }
 
+func (v *DescribeVTLDevicesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 1000); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeWorkingStorageInput is undocumented.
 type DescribeWorkingStorageInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
+}
+
+func (v *DescribeWorkingStorageInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeWorkingStorageOutput is undocumented.
@@ -1035,6 +3018,24 @@ type DescribeWorkingStorageOutput struct {
 	WorkingStorageUsedInBytes      aws.LongValue   `json:"WorkingStorageUsedInBytes,omitempty"`
 }
 
+func (v *DescribeWorkingStorageOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeviceiSCSIAttributes is undocumented.
 type DeviceiSCSIAttributes struct {
 	ChapEnabled          aws.BooleanValue `json:"ChapEnabled,omitempty"`
@@ -1043,14 +3044,76 @@ type DeviceiSCSIAttributes struct {
 	TargetARN            aws.StringValue  `json:"TargetARN,omitempty"`
 }
 
+func (v *DeviceiSCSIAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NetworkInterfaceID", `\A(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\z`); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TargetARN", 50); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetARN", 800); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DisableGatewayInput is undocumented.
 type DisableGatewayInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 }
 
+func (v *DisableGatewayInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DisableGatewayOutput is undocumented.
 type DisableGatewayOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *DisableGatewayOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Disk is undocumented.
@@ -1061,6 +3124,32 @@ type Disk struct {
 	DiskNode               aws.StringValue `json:"DiskNode,omitempty"`
 	DiskPath               aws.StringValue `json:"DiskPath,omitempty"`
 	DiskSizeInBytes        aws.LongValue   `json:"DiskSizeInBytes,omitempty"`
+}
+
+func (v *Disk) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "DiskAllocationType", 3); err != nil {
+		errors["DiskAllocationType"] = append(errors["DiskAllocationType"], err)
+	}
+
+	if err := model.ValidateMax(v, "DiskAllocationType", 100); err != nil {
+		errors["DiskAllocationType"] = append(errors["DiskAllocationType"], err)
+	}
+
+	if err := model.ValidateMin(v, "DiskID", 1); err != nil {
+		errors["DiskID"] = append(errors["DiskID"], err)
+	}
+
+	if err := model.ValidateMax(v, "DiskID", 300); err != nil {
+		errors["DiskID"] = append(errors["DiskID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for StorageGateway.
@@ -1135,10 +3224,66 @@ type GatewayInfo struct {
 	GatewayType             aws.StringValue `json:"GatewayType,omitempty"`
 }
 
+func (v *GatewayInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayOperationalState", 2); err != nil {
+		errors["GatewayOperationalState"] = append(errors["GatewayOperationalState"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayOperationalState", 25); err != nil {
+		errors["GatewayOperationalState"] = append(errors["GatewayOperationalState"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayType", 2); err != nil {
+		errors["GatewayType"] = append(errors["GatewayType"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayType", 20); err != nil {
+		errors["GatewayType"] = append(errors["GatewayType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListGatewaysInput is undocumented.
 type ListGatewaysInput struct {
 	Limit  aws.IntegerValue `json:"Limit,omitempty"`
 	Marker aws.StringValue  `json:"Marker,omitempty"`
+}
+
+func (v *ListGatewaysInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 1000); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListGatewaysOutput is undocumented.
@@ -1147,9 +3292,49 @@ type ListGatewaysOutput struct {
 	Marker   aws.StringValue `json:"Marker,omitempty"`
 }
 
+func (v *ListGatewaysOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 1000); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListLocalDisksInput is undocumented.
 type ListLocalDisksInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
+}
+
+func (v *ListLocalDisksInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListLocalDisksOutput is undocumented.
@@ -1158,15 +3343,73 @@ type ListLocalDisksOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
 }
 
+func (v *ListLocalDisksOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListVolumeRecoveryPointsInput is undocumented.
 type ListVolumeRecoveryPointsInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
+}
+
+func (v *ListVolumeRecoveryPointsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListVolumeRecoveryPointsOutput is undocumented.
 type ListVolumeRecoveryPointsOutput struct {
 	GatewayARN               aws.StringValue           `json:"GatewayARN,omitempty"`
 	VolumeRecoveryPointInfos []VolumeRecoveryPointInfo `json:"VolumeRecoveryPointInfos,omitempty"`
+}
+
+func (v *ListVolumeRecoveryPointsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListVolumesInput is undocumented.
@@ -1176,11 +3419,71 @@ type ListVolumesInput struct {
 	Marker     aws.StringValue  `json:"Marker,omitempty"`
 }
 
+func (v *ListVolumesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 1000); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListVolumesOutput is undocumented.
 type ListVolumesOutput struct {
 	GatewayARN  aws.StringValue `json:"GatewayARN,omitempty"`
 	Marker      aws.StringValue `json:"Marker,omitempty"`
 	VolumeInfos []VolumeInfo    `json:"VolumeInfos,omitempty"`
+}
+
+func (v *ListVolumesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 1000); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // NetworkInterface is undocumented.
@@ -1190,15 +3493,77 @@ type NetworkInterface struct {
 	MACAddress  aws.StringValue `json:"MacAddress,omitempty"`
 }
 
+func (v *NetworkInterface) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RetrieveTapeArchiveInput is undocumented.
 type RetrieveTapeArchiveInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 	TapeARN    aws.StringValue `json:"TapeARN"`
 }
 
+func (v *RetrieveTapeArchiveInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TapeARN"); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RetrieveTapeArchiveOutput is undocumented.
 type RetrieveTapeArchiveOutput struct {
 	TapeARN aws.StringValue `json:"TapeARN,omitempty"`
+}
+
+func (v *RetrieveTapeArchiveOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RetrieveTapeRecoveryPointInput is undocumented.
@@ -1207,9 +3572,61 @@ type RetrieveTapeRecoveryPointInput struct {
 	TapeARN    aws.StringValue `json:"TapeARN"`
 }
 
+func (v *RetrieveTapeRecoveryPointInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TapeARN"); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RetrieveTapeRecoveryPointOutput is undocumented.
 type RetrieveTapeRecoveryPointOutput struct {
 	TapeARN aws.StringValue `json:"TapeARN,omitempty"`
+}
+
+func (v *RetrieveTapeRecoveryPointOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ShutdownGatewayInput is undocumented.
@@ -1217,9 +3634,49 @@ type ShutdownGatewayInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 }
 
+func (v *ShutdownGatewayInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ShutdownGatewayOutput is undocumented.
 type ShutdownGatewayOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *ShutdownGatewayOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // StartGatewayInput is undocumented.
@@ -1227,15 +3684,132 @@ type StartGatewayInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 }
 
+func (v *StartGatewayInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StartGatewayOutput is undocumented.
 type StartGatewayOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *StartGatewayOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // StorageGatewayError is undocumented.
 type StorageGatewayError struct {
 	ErrorCode    aws.StringValue   `json:"errorCode,omitempty"`
 	ErrorDetails map[string]string `json:"errorDetails,omitempty"`
+}
+
+func (v *StorageGatewayError) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	errorCodeEnum := []string{
+		ErrorCodeActivationKeyExpired,
+		ErrorCodeActivationKeyInvalid,
+		ErrorCodeActivationKeyNotFound,
+		ErrorCodeAuthenticationFailure,
+		ErrorCodeBandwidthThrottleScheduleNotFound,
+		ErrorCodeBlocked,
+		ErrorCodeCannotExportSnapshot,
+		ErrorCodeChapCredentialNotFound,
+		ErrorCodeDiskAlreadyAllocated,
+		ErrorCodeDiskDoesNotExist,
+		ErrorCodeDiskSizeGreaterThanVolumeMaxSize,
+		ErrorCodeDiskSizeLessThanVolumeSize,
+		ErrorCodeDiskSizeNotGigAligned,
+		ErrorCodeDuplicateCertificateInfo,
+		ErrorCodeDuplicateSchedule,
+		ErrorCodeEndpointNotFound,
+		ErrorCodeGatewayInternalError,
+		ErrorCodeGatewayNotConnected,
+		ErrorCodeGatewayNotFound,
+		ErrorCodeGatewayProxyNetworkConnectionBusy,
+		ErrorCodeIAMnotSupported,
+		ErrorCodeInitiatorInvalid,
+		ErrorCodeInitiatorNotFound,
+		ErrorCodeInternalError,
+		ErrorCodeInvalidEndpoint,
+		ErrorCodeInvalidGateway,
+		ErrorCodeInvalidParameters,
+		ErrorCodeInvalidSchedule,
+		ErrorCodeLocalStorageLimitExceeded,
+		ErrorCodeLunAlreadyAllocated,
+		ErrorCodeLunInvalid,
+		ErrorCodeMaximumContentLengthExceeded,
+		ErrorCodeMaximumTapeCartridgeCountExceeded,
+		ErrorCodeMaximumVolumeCountExceeded,
+		ErrorCodeNetworkConfigurationChanged,
+		ErrorCodeNoDisksAvailable,
+		ErrorCodeNotImplemented,
+		ErrorCodeNotSupported,
+		ErrorCodeOperationAborted,
+		ErrorCodeOutdatedGateway,
+		ErrorCodeParametersNotImplemented,
+		ErrorCodeRegionInvalid,
+		ErrorCodeRequestTimeout,
+		ErrorCodeServiceUnavailable,
+		ErrorCodeSnapshotDeleted,
+		ErrorCodeSnapshotIDInvalid,
+		ErrorCodeSnapshotInProgress,
+		ErrorCodeSnapshotNotFound,
+		ErrorCodeSnapshotScheduleNotFound,
+		ErrorCodeStagingAreaFull,
+		ErrorCodeStorageFailure,
+		ErrorCodeTapeCartridgeNotFound,
+		ErrorCodeTargetAlreadyExists,
+		ErrorCodeTargetInvalid,
+		ErrorCodeTargetNotFound,
+		ErrorCodeUnauthorizedOperation,
+		ErrorCodeVolumeAlreadyExists,
+		ErrorCodeVolumeIDInvalid,
+		ErrorCodeVolumeInUse,
+		ErrorCodeVolumeNotFound,
+		ErrorCodeVolumeNotReady,
+	}
+	if err := model.ValidateEnum(v, "ErrorCode", errorCodeEnum); err != nil {
+		errors["ErrorCode"] = append(errors["ErrorCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // StorediSCSIVolume is undocumented.
@@ -1252,6 +3826,60 @@ type StorediSCSIVolume struct {
 	VolumeiSCSIAttributes *VolumeiSCSIAttributes `json:"VolumeiSCSIAttributes,omitempty"`
 }
 
+func (v *StorediSCSIVolume) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "SourceSnapshotID", `\Asnap-[0-9a-fA-F]{8}\z`); err != nil {
+		errors["SourceSnapshotID"] = append(errors["SourceSnapshotID"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeDiskID", 1); err != nil {
+		errors["VolumeDiskID"] = append(errors["VolumeDiskID"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeDiskID", 300); err != nil {
+		errors["VolumeDiskID"] = append(errors["VolumeDiskID"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeID", 12); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeID", 30); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeStatus", 3); err != nil {
+		errors["VolumeStatus"] = append(errors["VolumeStatus"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeStatus", 50); err != nil {
+		errors["VolumeStatus"] = append(errors["VolumeStatus"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeType", 3); err != nil {
+		errors["VolumeType"] = append(errors["VolumeType"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeType", 100); err != nil {
+		errors["VolumeType"] = append(errors["VolumeType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Tape is undocumented.
 type Tape struct {
 	Progress        aws.DoubleValue `json:"Progress,omitempty"`
@@ -1260,6 +3888,52 @@ type Tape struct {
 	TapeSizeInBytes aws.LongValue   `json:"TapeSizeInBytes,omitempty"`
 	TapeStatus      aws.StringValue `json:"TapeStatus,omitempty"`
 	VTLDevice       aws.StringValue `json:"VTLDevice,omitempty"`
+}
+
+func (v *Tape) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeBarcode", 8); err != nil {
+		errors["TapeBarcode"] = append(errors["TapeBarcode"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeBarcode", 16); err != nil {
+		errors["TapeBarcode"] = append(errors["TapeBarcode"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TapeBarcode", `^[A-Z0-9]*$`); err != nil {
+		errors["TapeBarcode"] = append(errors["TapeBarcode"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeSizeInBytes", 107374182400); err != nil {
+		errors["TapeSizeInBytes"] = append(errors["TapeSizeInBytes"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeSizeInBytes", 2748779069440); err != nil {
+		errors["TapeSizeInBytes"] = append(errors["TapeSizeInBytes"], err)
+	}
+
+	if err := model.ValidateMin(v, "VTLDevice", 50); err != nil {
+		errors["VTLDevice"] = append(errors["VTLDevice"], err)
+	}
+
+	if err := model.ValidateMax(v, "VTLDevice", 500); err != nil {
+		errors["VTLDevice"] = append(errors["VTLDevice"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TapeArchive is undocumented.
@@ -1272,12 +3946,84 @@ type TapeArchive struct {
 	TapeStatus      aws.StringValue `json:"TapeStatus,omitempty"`
 }
 
+func (v *TapeArchive) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "RetrievedTo", 50); err != nil {
+		errors["RetrievedTo"] = append(errors["RetrievedTo"], err)
+	}
+
+	if err := model.ValidateMax(v, "RetrievedTo", 500); err != nil {
+		errors["RetrievedTo"] = append(errors["RetrievedTo"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeBarcode", 8); err != nil {
+		errors["TapeBarcode"] = append(errors["TapeBarcode"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeBarcode", 16); err != nil {
+		errors["TapeBarcode"] = append(errors["TapeBarcode"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TapeBarcode", `^[A-Z0-9]*$`); err != nil {
+		errors["TapeBarcode"] = append(errors["TapeBarcode"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeSizeInBytes", 107374182400); err != nil {
+		errors["TapeSizeInBytes"] = append(errors["TapeSizeInBytes"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeSizeInBytes", 2748779069440); err != nil {
+		errors["TapeSizeInBytes"] = append(errors["TapeSizeInBytes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TapeRecoveryPointInfo is undocumented.
 type TapeRecoveryPointInfo struct {
 	TapeARN               aws.StringValue `json:"TapeARN,omitempty"`
 	TapeRecoveryPointTime time.Time       `json:"TapeRecoveryPointTime,omitempty"`
 	TapeSizeInBytes       aws.LongValue   `json:"TapeSizeInBytes,omitempty"`
 	TapeStatus            aws.StringValue `json:"TapeStatus,omitempty"`
+}
+
+func (v *TapeRecoveryPointInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TapeARN", 50); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeARN", 500); err != nil {
+		errors["TapeARN"] = append(errors["TapeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TapeSizeInBytes", 107374182400); err != nil {
+		errors["TapeSizeInBytes"] = append(errors["TapeSizeInBytes"], err)
+	}
+
+	if err := model.ValidateMax(v, "TapeSizeInBytes", 2748779069440); err != nil {
+		errors["TapeSizeInBytes"] = append(errors["TapeSizeInBytes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateBandwidthRateLimitInput is undocumented.
@@ -1287,9 +4033,57 @@ type UpdateBandwidthRateLimitInput struct {
 	GatewayARN                           aws.StringValue `json:"GatewayARN"`
 }
 
+func (v *UpdateBandwidthRateLimitInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AverageDownloadRateLimitInBitsPerSec", 102400); err != nil {
+		errors["AverageDownloadRateLimitInBitsPerSec"] = append(errors["AverageDownloadRateLimitInBitsPerSec"], err)
+	}
+
+	if err := model.ValidateMin(v, "AverageUploadRateLimitInBitsPerSec", 51200); err != nil {
+		errors["AverageUploadRateLimitInBitsPerSec"] = append(errors["AverageUploadRateLimitInBitsPerSec"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateBandwidthRateLimitOutput is undocumented.
 type UpdateBandwidthRateLimitOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *UpdateBandwidthRateLimitOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateChapCredentialsInput is undocumented.
@@ -1300,10 +4094,98 @@ type UpdateChapCredentialsInput struct {
 	TargetARN                     aws.StringValue `json:"TargetARN"`
 }
 
+func (v *UpdateChapCredentialsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InitiatorName"); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidateMin(v, "InitiatorName", 1); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidateMax(v, "InitiatorName", 255); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InitiatorName", `[0-9a-z:.-]+`); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SecretToAuthenticateInitiator"); err != nil {
+		errors["SecretToAuthenticateInitiator"] = append(errors["SecretToAuthenticateInitiator"], err)
+	}
+
+	if err := model.ValidateMin(v, "SecretToAuthenticateInitiator", 12); err != nil {
+		errors["SecretToAuthenticateInitiator"] = append(errors["SecretToAuthenticateInitiator"], err)
+	}
+
+	if err := model.ValidateMax(v, "SecretToAuthenticateInitiator", 16); err != nil {
+		errors["SecretToAuthenticateInitiator"] = append(errors["SecretToAuthenticateInitiator"], err)
+	}
+
+	if err := model.ValidateMin(v, "SecretToAuthenticateTarget", 12); err != nil {
+		errors["SecretToAuthenticateTarget"] = append(errors["SecretToAuthenticateTarget"], err)
+	}
+
+	if err := model.ValidateMax(v, "SecretToAuthenticateTarget", 16); err != nil {
+		errors["SecretToAuthenticateTarget"] = append(errors["SecretToAuthenticateTarget"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetARN"); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TargetARN", 50); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetARN", 800); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateChapCredentialsOutput is undocumented.
 type UpdateChapCredentialsOutput struct {
 	InitiatorName aws.StringValue `json:"InitiatorName,omitempty"`
 	TargetARN     aws.StringValue `json:"TargetARN,omitempty"`
+}
+
+func (v *UpdateChapCredentialsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "InitiatorName", 1); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidateMax(v, "InitiatorName", 255); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InitiatorName", `[0-9a-z:.-]+`); err != nil {
+		errors["InitiatorName"] = append(errors["InitiatorName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TargetARN", 50); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetARN", 800); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateGatewayInformationInput is undocumented.
@@ -1313,9 +4195,69 @@ type UpdateGatewayInformationInput struct {
 	GatewayTimezone aws.StringValue `json:"GatewayTimezone,omitempty"`
 }
 
+func (v *UpdateGatewayInformationInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayName", 2); err != nil {
+		errors["GatewayName"] = append(errors["GatewayName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayName", 255); err != nil {
+		errors["GatewayName"] = append(errors["GatewayName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GatewayName", `^[ -\.0-\[\]-~]*[!-\.0-\[\]-~][ -\.0-\[\]-~]*$`); err != nil {
+		errors["GatewayName"] = append(errors["GatewayName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayTimezone", 3); err != nil {
+		errors["GatewayTimezone"] = append(errors["GatewayTimezone"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayTimezone", 10); err != nil {
+		errors["GatewayTimezone"] = append(errors["GatewayTimezone"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateGatewayInformationOutput is undocumented.
 type UpdateGatewayInformationOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *UpdateGatewayInformationOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateGatewaySoftwareNowInput is undocumented.
@@ -1323,9 +4265,49 @@ type UpdateGatewaySoftwareNowInput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 }
 
+func (v *UpdateGatewaySoftwareNowInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateGatewaySoftwareNowOutput is undocumented.
 type UpdateGatewaySoftwareNowOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *UpdateGatewaySoftwareNowOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateMaintenanceStartTimeInput is undocumented.
@@ -1336,9 +4318,73 @@ type UpdateMaintenanceStartTimeInput struct {
 	MinuteOfHour aws.IntegerValue `json:"MinuteOfHour"`
 }
 
+func (v *UpdateMaintenanceStartTimeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DayOfWeek"); err != nil {
+		errors["DayOfWeek"] = append(errors["DayOfWeek"], err)
+	}
+
+	if err := model.ValidateMax(v, "DayOfWeek", 6); err != nil {
+		errors["DayOfWeek"] = append(errors["DayOfWeek"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GatewayARN"); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HourOfDay"); err != nil {
+		errors["HourOfDay"] = append(errors["HourOfDay"], err)
+	}
+
+	if err := model.ValidateMax(v, "HourOfDay", 23); err != nil {
+		errors["HourOfDay"] = append(errors["HourOfDay"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MinuteOfHour"); err != nil {
+		errors["MinuteOfHour"] = append(errors["MinuteOfHour"], err)
+	}
+
+	if err := model.ValidateMax(v, "MinuteOfHour", 59); err != nil {
+		errors["MinuteOfHour"] = append(errors["MinuteOfHour"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateMaintenanceStartTimeOutput is undocumented.
 type UpdateMaintenanceStartTimeOutput struct {
 	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
+}
+
+func (v *UpdateMaintenanceStartTimeOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "GatewayARN", 50); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "GatewayARN", 500); err != nil {
+		errors["GatewayARN"] = append(errors["GatewayARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateSnapshotScheduleInput is undocumented.
@@ -1349,9 +4395,77 @@ type UpdateSnapshotScheduleInput struct {
 	VolumeARN         aws.StringValue  `json:"VolumeARN"`
 }
 
+func (v *UpdateSnapshotScheduleInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Description", 1); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 255); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RecurrenceInHours"); err != nil {
+		errors["RecurrenceInHours"] = append(errors["RecurrenceInHours"], err)
+	}
+
+	if err := model.ValidateMin(v, "RecurrenceInHours", 1); err != nil {
+		errors["RecurrenceInHours"] = append(errors["RecurrenceInHours"], err)
+	}
+
+	if err := model.ValidateMax(v, "RecurrenceInHours", 24); err != nil {
+		errors["RecurrenceInHours"] = append(errors["RecurrenceInHours"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartAt"); err != nil {
+		errors["StartAt"] = append(errors["StartAt"], err)
+	}
+
+	if err := model.ValidateMax(v, "StartAt", 23); err != nil {
+		errors["StartAt"] = append(errors["StartAt"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VolumeARN"); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateSnapshotScheduleOutput is undocumented.
 type UpdateSnapshotScheduleOutput struct {
 	VolumeARN aws.StringValue `json:"VolumeARN,omitempty"`
+}
+
+func (v *UpdateSnapshotScheduleOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // VTLDevice is undocumented.
@@ -1363,10 +4477,54 @@ type VTLDevice struct {
 	VTLDeviceVendor            aws.StringValue        `json:"VTLDeviceVendor,omitempty"`
 }
 
+func (v *VTLDevice) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "VTLDeviceARN", 50); err != nil {
+		errors["VTLDeviceARN"] = append(errors["VTLDeviceARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VTLDeviceARN", 500); err != nil {
+		errors["VTLDeviceARN"] = append(errors["VTLDeviceARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VolumeInfo is undocumented.
 type VolumeInfo struct {
 	VolumeARN  aws.StringValue `json:"VolumeARN,omitempty"`
 	VolumeType aws.StringValue `json:"VolumeType,omitempty"`
+}
+
+func (v *VolumeInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeType", 3); err != nil {
+		errors["VolumeType"] = append(errors["VolumeType"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeType", 100); err != nil {
+		errors["VolumeType"] = append(errors["VolumeType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // VolumeRecoveryPointInfo is undocumented.
@@ -1377,6 +4535,24 @@ type VolumeRecoveryPointInfo struct {
 	VolumeUsageInBytes      aws.LongValue   `json:"VolumeUsageInBytes,omitempty"`
 }
 
+func (v *VolumeRecoveryPointInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "VolumeARN", 50); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeARN", 500); err != nil {
+		errors["VolumeARN"] = append(errors["VolumeARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VolumeiSCSIAttributes is undocumented.
 type VolumeiSCSIAttributes struct {
 	ChapEnabled          aws.BooleanValue `json:"ChapEnabled,omitempty"`
@@ -1384,6 +4560,32 @@ type VolumeiSCSIAttributes struct {
 	NetworkInterfaceID   aws.StringValue  `json:"NetworkInterfaceId,omitempty"`
 	NetworkInterfacePort aws.IntegerValue `json:"NetworkInterfacePort,omitempty"`
 	TargetARN            aws.StringValue  `json:"TargetARN,omitempty"`
+}
+
+func (v *VolumeiSCSIAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "LunNumber", 1); err != nil {
+		errors["LunNumber"] = append(errors["LunNumber"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NetworkInterfaceID", `\A(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\z`); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TargetARN", 50); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TargetARN", 800); err != nil {
+		errors["TargetARN"] = append(errors["TargetARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

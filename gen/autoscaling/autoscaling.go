@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // AutoScaling is a client for Auto Scaling.
@@ -43,6 +44,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Aut
 // Scaling group. For more information, see Attach Amazon EC2 Instances to
 // Your Existing Auto Scaling Group in the Auto Scaling Developer Guide
 func (c *AutoScaling) AttachInstances(req *AttachInstancesQuery) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AttachInstances", "POST", "/", req, nil)
 	return
@@ -61,6 +66,10 @@ func (c *AutoScaling) AttachInstances(req *AttachInstancesQuery) (err error) {
 // lifecycle action For more information, see Auto Scaling Pending State
 // and Auto Scaling Terminating State in the Auto Scaling Developer Guide
 func (c *AutoScaling) CompleteLifecycleAction(req *CompleteLifecycleActionType) (resp *CompleteLifecycleActionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CompleteLifecycleActionResult{}
 	err = c.client.Do("CompleteLifecycleAction", "POST", "/", req, resp)
 	return
@@ -72,6 +81,10 @@ func (c *AutoScaling) CompleteLifecycleAction(req *CompleteLifecycleActionType) 
 // information about viewing and updating these limits, see
 // DescribeAccountLimits
 func (c *AutoScaling) CreateAutoScalingGroup(req *CreateAutoScalingGroupType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateAutoScalingGroup", "POST", "/", req, nil)
 	return
@@ -82,6 +95,10 @@ func (c *AutoScaling) CreateAutoScalingGroup(req *CreateAutoScalingGroupType) (e
 // region, the call fails. For information about viewing and updating these
 // limits, see DescribeAccountLimits
 func (c *AutoScaling) CreateLaunchConfiguration(req *CreateLaunchConfigurationType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateLaunchConfiguration", "POST", "/", req, nil)
 	return
@@ -94,6 +111,10 @@ func (c *AutoScaling) CreateLaunchConfiguration(req *CreateLaunchConfigurationTy
 // information. For more information, see Add, Modify, or Remove Auto
 // Scaling Group Tags in the Auto Scaling Developer Guide
 func (c *AutoScaling) CreateOrUpdateTags(req *CreateOrUpdateTagsType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateOrUpdateTags", "POST", "/", req, nil)
 	return
@@ -105,6 +126,10 @@ func (c *AutoScaling) CreateOrUpdateTags(req *CreateOrUpdateTagsType) (err error
 // call UpdateAutoScalingGroup to set the minimum and maximum size of the
 // AutoScalingGroup to zero.
 func (c *AutoScaling) DeleteAutoScalingGroup(req *DeleteAutoScalingGroupType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteAutoScalingGroup", "POST", "/", req, nil)
 	return
@@ -115,6 +140,10 @@ func (c *AutoScaling) DeleteAutoScalingGroup(req *DeleteAutoScalingGroupType) (e
 // When this call completes, the launch configuration is no longer
 // available for use.
 func (c *AutoScaling) DeleteLaunchConfiguration(req *LaunchConfigurationNameType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteLaunchConfiguration", "POST", "/", req, nil)
 	return
@@ -124,6 +153,10 @@ func (c *AutoScaling) DeleteLaunchConfiguration(req *LaunchConfigurationNameType
 // any outstanding lifecycle actions, they are completed first for
 // launching instances, for terminating instances).
 func (c *AutoScaling) DeleteLifecycleHook(req *DeleteLifecycleHookType) (resp *DeleteLifecycleHookResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteLifecycleHookResult{}
 	err = c.client.Do("DeleteLifecycleHook", "POST", "/", req, resp)
 	return
@@ -131,6 +164,10 @@ func (c *AutoScaling) DeleteLifecycleHook(req *DeleteLifecycleHookType) (resp *D
 
 // DeleteNotificationConfiguration is undocumented.
 func (c *AutoScaling) DeleteNotificationConfiguration(req *DeleteNotificationConfigurationType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteNotificationConfiguration", "POST", "/", req, nil)
 	return
@@ -138,6 +175,10 @@ func (c *AutoScaling) DeleteNotificationConfiguration(req *DeleteNotificationCon
 
 // DeletePolicy is undocumented.
 func (c *AutoScaling) DeletePolicy(req *DeletePolicyType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeletePolicy", "POST", "/", req, nil)
 	return
@@ -145,6 +186,10 @@ func (c *AutoScaling) DeletePolicy(req *DeletePolicyType) (err error) {
 
 // DeleteScheduledAction is undocumented.
 func (c *AutoScaling) DeleteScheduledAction(req *DeleteScheduledActionType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteScheduledAction", "POST", "/", req, nil)
 	return
@@ -152,6 +197,10 @@ func (c *AutoScaling) DeleteScheduledAction(req *DeleteScheduledActionType) (err
 
 // DeleteTags is undocumented.
 func (c *AutoScaling) DeleteTags(req *DeleteTagsType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteTags", "POST", "/", req, nil)
 	return
@@ -181,6 +230,10 @@ func (c *AutoScaling) DescribeAdjustmentTypes() (resp *DescribeAdjustmentTypesRe
 // token. To get the next set of items, repeat the call with the returned
 // token in the NextToken parameter.
 func (c *AutoScaling) DescribeAutoScalingGroups(req *AutoScalingGroupNamesType) (resp *DescribeAutoScalingGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeAutoScalingGroupsResult{}
 	err = c.client.Do("DescribeAutoScalingGroups", "POST", "/", req, resp)
 	return
@@ -193,6 +246,10 @@ func (c *AutoScaling) DescribeAutoScalingGroups(req *AutoScalingGroupNamesType) 
 // return, the call returns a token. To get the next set of items, repeat
 // the call with the returned token in the NextToken parameter.
 func (c *AutoScaling) DescribeAutoScalingInstances(req *DescribeAutoScalingInstancesType) (resp *DescribeAutoScalingInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeAutoScalingInstancesResult{}
 	err = c.client.Do("DescribeAutoScalingInstances", "POST", "/", req, resp)
 	return
@@ -213,6 +270,10 @@ func (c *AutoScaling) DescribeAutoScalingNotificationTypes() (resp *DescribeAuto
 // call returns a token. To get the next set of items, repeat the call with
 // the returned token in the NextToken parameter.
 func (c *AutoScaling) DescribeLaunchConfigurations(req *LaunchConfigurationNamesType) (resp *DescribeLaunchConfigurationsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeLaunchConfigurationsResult{}
 	err = c.client.Do("DescribeLaunchConfigurations", "POST", "/", req, resp)
 	return
@@ -228,6 +289,10 @@ func (c *AutoScaling) DescribeLifecycleHookTypes() (resp *DescribeLifecycleHookT
 // DescribeLifecycleHooks describes the lifecycle hooks for the specified
 // Auto Scaling group.
 func (c *AutoScaling) DescribeLifecycleHooks(req *DescribeLifecycleHooksType) (resp *DescribeLifecycleHooksResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeLifecycleHooksResult{}
 	err = c.client.Do("DescribeLifecycleHooks", "POST", "/", req, resp)
 	return
@@ -246,6 +311,10 @@ func (c *AutoScaling) DescribeMetricCollectionTypes() (resp *DescribeMetricColle
 // DescribeNotificationConfigurations describes the notification actions
 // associated with the specified Auto Scaling group.
 func (c *AutoScaling) DescribeNotificationConfigurations(req *DescribeNotificationConfigurationsType) (resp *DescribeNotificationConfigurationsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeNotificationConfigurationsResult{}
 	err = c.client.Do("DescribeNotificationConfigurations", "POST", "/", req, resp)
 	return
@@ -257,6 +326,10 @@ func (c *AutoScaling) DescribeNotificationConfigurations(req *DescribeNotificati
 // token. To get the next set of items, repeat the call with the returned
 // token in the NextToken parameter.
 func (c *AutoScaling) DescribePolicies(req *DescribePoliciesType) (resp *DescribePoliciesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribePoliciesResult{}
 	err = c.client.Do("DescribePolicies", "POST", "/", req, resp)
 	return
@@ -271,6 +344,10 @@ func (c *AutoScaling) DescribePolicies(req *DescribePoliciesType) (resp *Describ
 // get the next set of items, repeat the call with the returned token in
 // the NextToken parameter.
 func (c *AutoScaling) DescribeScalingActivities(req *DescribeScalingActivitiesType) (resp *DescribeScalingActivitiesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeScalingActivitiesResult{}
 	err = c.client.Do("DescribeScalingActivities", "POST", "/", req, resp)
 	return
@@ -288,6 +365,10 @@ func (c *AutoScaling) DescribeScalingProcessTypes() (resp *DescribeScalingProces
 // Scaling group that haven't been executed. To list the actions that were
 // already executed, use DescribeScalingActivities
 func (c *AutoScaling) DescribeScheduledActions(req *DescribeScheduledActionsType) (resp *DescribeScheduledActionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeScheduledActionsResult{}
 	err = c.client.Do("DescribeScheduledActions", "POST", "/", req, resp)
 	return
@@ -301,6 +382,10 @@ func (c *AutoScaling) DescribeScheduledActions(req *DescribeScheduledActionsType
 // information for a particular tag only if it matches all the filters. If
 // there's no match, no special message is returned.
 func (c *AutoScaling) DescribeTags(req *DescribeTagsType) (resp *DescribeTagsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTagsResult{}
 	err = c.client.Do("DescribeTags", "POST", "/", req, resp)
 	return
@@ -320,6 +405,10 @@ func (c *AutoScaling) DescribeTerminationPolicyTypes() (resp *DescribeTerminatio
 // information, see Detach EC2 Instances from Your Auto Scaling Group in
 // the Auto Scaling Developer Guide
 func (c *AutoScaling) DetachInstances(req *DetachInstancesQuery) (resp *DetachInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DetachInstancesResult{}
 	err = c.client.Do("DetachInstances", "POST", "/", req, resp)
 	return
@@ -328,6 +417,10 @@ func (c *AutoScaling) DetachInstances(req *DetachInstancesQuery) (resp *DetachIn
 // DisableMetricsCollection disables monitoring of the specified metrics
 // for the specified Auto Scaling group.
 func (c *AutoScaling) DisableMetricsCollection(req *DisableMetricsCollectionQuery) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DisableMetricsCollection", "POST", "/", req, nil)
 	return
@@ -338,6 +431,10 @@ func (c *AutoScaling) DisableMetricsCollection(req *DisableMetricsCollectionQuer
 // if InstanceMonitoring in the launch configuration for the group is set
 // to True
 func (c *AutoScaling) EnableMetricsCollection(req *EnableMetricsCollectionQuery) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("EnableMetricsCollection", "POST", "/", req, nil)
 	return
@@ -347,6 +444,10 @@ func (c *AutoScaling) EnableMetricsCollection(req *EnableMetricsCollectionQuery)
 // information, see Auto Scaling InService State in the Auto Scaling
 // Developer Guide
 func (c *AutoScaling) EnterStandby(req *EnterStandbyQuery) (resp *EnterStandbyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &EnterStandbyResult{}
 	err = c.client.Do("EnterStandby", "POST", "/", req, resp)
 	return
@@ -354,6 +455,10 @@ func (c *AutoScaling) EnterStandby(req *EnterStandbyQuery) (resp *EnterStandbyRe
 
 // ExecutePolicy is undocumented.
 func (c *AutoScaling) ExecutePolicy(req *ExecutePolicyType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ExecutePolicy", "POST", "/", req, nil)
 	return
@@ -363,6 +468,10 @@ func (c *AutoScaling) ExecutePolicy(req *ExecutePolicyType) (err error) {
 // information, see Auto Scaling InService State in the Auto Scaling
 // Developer Guide
 func (c *AutoScaling) ExitStandby(req *ExitStandbyQuery) (resp *ExitStandbyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ExitStandbyResult{}
 	err = c.client.Do("ExitStandby", "POST", "/", req, resp)
 	return
@@ -383,6 +492,10 @@ func (c *AutoScaling) ExitStandby(req *ExitStandbyQuery) (resp *ExitStandbyResul
 // lifecycle action. For more information, see Auto Scaling Pending State
 // and Auto Scaling Terminating State in the Auto Scaling Developer Guide
 func (c *AutoScaling) PutLifecycleHook(req *PutLifecycleHookType) (resp *PutLifecycleHookResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PutLifecycleHookResult{}
 	err = c.client.Do("PutLifecycleHook", "POST", "/", req, resp)
 	return
@@ -395,6 +508,10 @@ func (c *AutoScaling) PutLifecycleHook(req *PutLifecycleHookType) (resp *PutLife
 // Notifications When Your Auto Scaling Group Changes in the Auto Scaling
 // Developer Guide This configuration overwrites an existing configuration.
 func (c *AutoScaling) PutNotificationConfiguration(req *PutNotificationConfigurationType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutNotificationConfiguration", "POST", "/", req, nil)
 	return
@@ -405,6 +522,10 @@ func (c *AutoScaling) PutNotificationConfiguration(req *PutNotificationConfigura
 // parameters you want to change. Any existing parameter not changed in an
 // update to an existing policy is not changed in this update request.
 func (c *AutoScaling) PutScalingPolicy(req *PutScalingPolicyType) (resp *PutScalingPolicyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PutScalingPolicyResult{}
 	err = c.client.Do("PutScalingPolicy", "POST", "/", req, resp)
 	return
@@ -418,6 +539,10 @@ func (c *AutoScaling) PutScalingPolicy(req *PutScalingPolicyType) (resp *PutScal
 // Auto Scaling supports the date and time expressed in
 // "YYYY-MM-DDThh:mm:ssZ" format in only.
 func (c *AutoScaling) PutScheduledUpdateGroupAction(req *PutScheduledUpdateGroupActionType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutScheduledUpdateGroupAction", "POST", "/", req, nil)
 	return
@@ -437,6 +562,10 @@ func (c *AutoScaling) PutScheduledUpdateGroupAction(req *PutScheduledUpdateGroup
 // lifecycle action. For more information, see Auto Scaling Pending State
 // and Auto Scaling Terminating State in the Auto Scaling Developer Guide
 func (c *AutoScaling) RecordLifecycleActionHeartbeat(req *RecordLifecycleActionHeartbeatType) (resp *RecordLifecycleActionHeartbeatResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RecordLifecycleActionHeartbeatResult{}
 	err = c.client.Do("RecordLifecycleActionHeartbeat", "POST", "/", req, resp)
 	return
@@ -448,6 +577,10 @@ func (c *AutoScaling) RecordLifecycleActionHeartbeat(req *RecordLifecycleActionH
 // ScalingProcesses parameter. For more information, see Suspend and Resume
 // Auto Scaling Processes in the Auto Scaling Developer Guide
 func (c *AutoScaling) ResumeProcesses(req *ScalingProcessQuery) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ResumeProcesses", "POST", "/", req, nil)
 	return
@@ -455,6 +588,10 @@ func (c *AutoScaling) ResumeProcesses(req *ScalingProcessQuery) (err error) {
 
 // SetDesiredCapacity is undocumented.
 func (c *AutoScaling) SetDesiredCapacity(req *SetDesiredCapacityType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetDesiredCapacity", "POST", "/", req, nil)
 	return
@@ -463,6 +600,10 @@ func (c *AutoScaling) SetDesiredCapacity(req *SetDesiredCapacityType) (err error
 // SetInstanceHealth sets the health status of the specified instance. For
 // more information, see Health Checks in the Auto Scaling Developer Guide
 func (c *AutoScaling) SetInstanceHealth(req *SetInstanceHealthQuery) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetInstanceHealth", "POST", "/", req, nil)
 	return
@@ -477,6 +618,10 @@ func (c *AutoScaling) SetInstanceHealth(req *SetInstanceHealthQuery) (err error)
 // ResumeProcesses For more information, see Suspend and Resume Auto
 // Scaling Processes in the Auto Scaling Developer Guide
 func (c *AutoScaling) SuspendProcesses(req *ScalingProcessQuery) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SuspendProcesses", "POST", "/", req, nil)
 	return
@@ -486,6 +631,10 @@ func (c *AutoScaling) SuspendProcesses(req *ScalingProcessQuery) (err error) {
 // and optionally adjusts the desired group size. This call simply makes a
 // termination request. The instances is not terminated immediately.
 func (c *AutoScaling) TerminateInstanceInAutoScalingGroup(req *TerminateInstanceInAutoScalingGroupType) (resp *TerminateInstanceInAutoScalingGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &TerminateInstanceInAutoScalingGroupResult{}
 	err = c.client.Do("TerminateInstanceInAutoScalingGroup", "POST", "/", req, resp)
 	return
@@ -511,6 +660,10 @@ func (c *AutoScaling) TerminateInstanceInAutoScalingGroup(req *TerminateInstance
 // SetDesiredCapacity to set the group to the new MaxSize . All other
 // optional parameters are left unchanged if not passed in the request.
 func (c *AutoScaling) UpdateAutoScalingGroup(req *UpdateAutoScalingGroupType) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateAutoScalingGroup", "POST", "/", req, nil)
 	return
@@ -520,6 +673,24 @@ func (c *AutoScaling) UpdateAutoScalingGroup(req *UpdateAutoScalingGroupType) (e
 type ActivitiesType struct {
 	Activities []Activity      `xml:"DescribeScalingActivitiesResult>Activities>member"`
 	NextToken  aws.StringValue `xml:"DescribeScalingActivitiesResult>NextToken"`
+}
+
+func (v *ActivitiesType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Activities"); err != nil {
+		errors["Activities"] = append(errors["Activities"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Activity is undocumented.
@@ -536,14 +707,140 @@ type Activity struct {
 	StatusMessage        aws.StringValue  `xml:"StatusMessage"`
 }
 
+func (v *Activity) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActivityID"); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ActivityID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 255); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateMin(v, "Cause", 1); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateMax(v, "Cause", 1023); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Cause", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Description", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Details", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartTime"); err != nil {
+		errors["StartTime"] = append(errors["StartTime"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StatusCode"); err != nil {
+		errors["StatusCode"] = append(errors["StatusCode"], err)
+	}
+
+	StatusCodeEnum := []string{
+		ScalingActivityStatusCodeCancelled,
+		ScalingActivityStatusCodeFailed,
+		ScalingActivityStatusCodeInProgress,
+		ScalingActivityStatusCodeMidLifecycleAction,
+		ScalingActivityStatusCodePreInService,
+		ScalingActivityStatusCodeSuccessful,
+		ScalingActivityStatusCodeWaitingForElbconnectionDraining,
+		ScalingActivityStatusCodeWaitingForInstanceID,
+		ScalingActivityStatusCodeWaitingForSpotInstanceID,
+		ScalingActivityStatusCodeWaitingForSpotInstanceRequestID,
+	}
+	if err := model.ValidateEnum(v, "StatusCode", StatusCodeEnum); err != nil {
+		errors["StatusCode"] = append(errors["StatusCode"], err)
+	}
+
+	if err := model.ValidateMin(v, "StatusMessage", 1); err != nil {
+		errors["StatusMessage"] = append(errors["StatusMessage"], err)
+	}
+
+	if err := model.ValidateMax(v, "StatusMessage", 255); err != nil {
+		errors["StatusMessage"] = append(errors["StatusMessage"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StatusMessage", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["StatusMessage"] = append(errors["StatusMessage"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ActivityType is undocumented.
 type ActivityType struct {
 	Activity *Activity `xml:"TerminateInstanceInAutoScalingGroupResult>Activity"`
 }
 
+func (v *ActivityType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AdjustmentType is undocumented.
 type AdjustmentType struct {
 	AdjustmentType aws.StringValue `xml:"AdjustmentType"`
+}
+
+func (v *AdjustmentType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AdjustmentType", 1); err != nil {
+		errors["AdjustmentType"] = append(errors["AdjustmentType"], err)
+	}
+
+	if err := model.ValidateMax(v, "AdjustmentType", 255); err != nil {
+		errors["AdjustmentType"] = append(errors["AdjustmentType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AdjustmentType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AdjustmentType"] = append(errors["AdjustmentType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Alarm is undocumented.
@@ -552,10 +849,70 @@ type Alarm struct {
 	AlarmName aws.StringValue `xml:"AlarmName"`
 }
 
+func (v *Alarm) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AlarmARN", 1); err != nil {
+		errors["AlarmARN"] = append(errors["AlarmARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmARN", 1600); err != nil {
+		errors["AlarmARN"] = append(errors["AlarmARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AlarmARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AlarmARN"] = append(errors["AlarmARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "AlarmName", 1); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmName", 255); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AlarmName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AttachInstancesQuery is undocumented.
 type AttachInstancesQuery struct {
 	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
 	InstanceIDs          []string        `xml:"InstanceIds>member"`
+}
+
+func (v *AttachInstancesQuery) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AutoScalingGroup is undocumented.
@@ -582,6 +939,140 @@ type AutoScalingGroup struct {
 	VPCZoneIdentifier       aws.StringValue    `xml:"VPCZoneIdentifier"`
 }
 
+func (v *AutoScalingGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupARN", 1); err != nil {
+		errors["AutoScalingGroupARN"] = append(errors["AutoScalingGroupARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupARN", 1600); err != nil {
+		errors["AutoScalingGroupARN"] = append(errors["AutoScalingGroupARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupARN"] = append(errors["AutoScalingGroupARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 255); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "AvailabilityZones"); err != nil {
+		errors["AvailabilityZones"] = append(errors["AvailabilityZones"], err)
+	}
+
+	if err := model.ValidateMin(v, "AvailabilityZones", 1); err != nil {
+		errors["AvailabilityZones"] = append(errors["AvailabilityZones"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CreatedTime"); err != nil {
+		errors["CreatedTime"] = append(errors["CreatedTime"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DefaultCooldown"); err != nil {
+		errors["DefaultCooldown"] = append(errors["DefaultCooldown"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DesiredCapacity"); err != nil {
+		errors["DesiredCapacity"] = append(errors["DesiredCapacity"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HealthCheckType"); err != nil {
+		errors["HealthCheckType"] = append(errors["HealthCheckType"], err)
+	}
+
+	if err := model.ValidateMin(v, "HealthCheckType", 1); err != nil {
+		errors["HealthCheckType"] = append(errors["HealthCheckType"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthCheckType", 32); err != nil {
+		errors["HealthCheckType"] = append(errors["HealthCheckType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "HealthCheckType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["HealthCheckType"] = append(errors["HealthCheckType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LaunchConfigurationName"); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LaunchConfigurationName", 1); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LaunchConfigurationName", 255); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LaunchConfigurationName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaxSize"); err != nil {
+		errors["MaxSize"] = append(errors["MaxSize"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MinSize"); err != nil {
+		errors["MinSize"] = append(errors["MinSize"], err)
+	}
+
+	if err := model.ValidateMin(v, "PlacementGroup", 1); err != nil {
+		errors["PlacementGroup"] = append(errors["PlacementGroup"], err)
+	}
+
+	if err := model.ValidateMax(v, "PlacementGroup", 255); err != nil {
+		errors["PlacementGroup"] = append(errors["PlacementGroup"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PlacementGroup", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PlacementGroup"] = append(errors["PlacementGroup"], err)
+	}
+
+	if err := model.ValidateMin(v, "Status", 1); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateMax(v, "Status", 255); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Status", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateMin(v, "VPCZoneIdentifier", 1); err != nil {
+		errors["VPCZoneIdentifier"] = append(errors["VPCZoneIdentifier"], err)
+	}
+
+	if err := model.ValidateMax(v, "VPCZoneIdentifier", 255); err != nil {
+		errors["VPCZoneIdentifier"] = append(errors["VPCZoneIdentifier"], err)
+	}
+
+	if err := model.ValidatePattern(v, "VPCZoneIdentifier", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["VPCZoneIdentifier"] = append(errors["VPCZoneIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AutoScalingGroupNamesType is undocumented.
 type AutoScalingGroupNamesType struct {
 	AutoScalingGroupNames []string         `xml:"AutoScalingGroupNames>member"`
@@ -589,10 +1080,42 @@ type AutoScalingGroupNamesType struct {
 	NextToken             aws.StringValue  `xml:"NextToken"`
 }
 
+func (v *AutoScalingGroupNamesType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AutoScalingGroupsType is undocumented.
 type AutoScalingGroupsType struct {
 	AutoScalingGroups []AutoScalingGroup `xml:"DescribeAutoScalingGroupsResult>AutoScalingGroups>member"`
 	NextToken         aws.StringValue    `xml:"DescribeAutoScalingGroupsResult>NextToken"`
+}
+
+func (v *AutoScalingGroupsType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroups"); err != nil {
+		errors["AutoScalingGroups"] = append(errors["AutoScalingGroups"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AutoScalingInstanceDetails is undocumented.
@@ -605,10 +1128,130 @@ type AutoScalingInstanceDetails struct {
 	LifecycleState          aws.StringValue `xml:"LifecycleState"`
 }
 
+func (v *AutoScalingInstanceDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 255); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "AvailabilityZone"); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidateMin(v, "AvailabilityZone", 1); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidateMax(v, "AvailabilityZone", 255); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AvailabilityZone", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HealthStatus"); err != nil {
+		errors["HealthStatus"] = append(errors["HealthStatus"], err)
+	}
+
+	if err := model.ValidateMin(v, "HealthStatus", 1); err != nil {
+		errors["HealthStatus"] = append(errors["HealthStatus"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthStatus", 32); err != nil {
+		errors["HealthStatus"] = append(errors["HealthStatus"], err)
+	}
+
+	if err := model.ValidatePattern(v, "HealthStatus", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["HealthStatus"] = append(errors["HealthStatus"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceID", 1); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceID", 16); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LaunchConfigurationName"); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LaunchConfigurationName", 1); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LaunchConfigurationName", 255); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LaunchConfigurationName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LifecycleState"); err != nil {
+		errors["LifecycleState"] = append(errors["LifecycleState"], err)
+	}
+
+	if err := model.ValidateMin(v, "LifecycleState", 1); err != nil {
+		errors["LifecycleState"] = append(errors["LifecycleState"], err)
+	}
+
+	if err := model.ValidateMax(v, "LifecycleState", 32); err != nil {
+		errors["LifecycleState"] = append(errors["LifecycleState"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LifecycleState", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LifecycleState"] = append(errors["LifecycleState"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AutoScalingInstancesType is undocumented.
 type AutoScalingInstancesType struct {
 	AutoScalingInstances []AutoScalingInstanceDetails `xml:"DescribeAutoScalingInstancesResult>AutoScalingInstances>member"`
 	NextToken            aws.StringValue              `xml:"DescribeAutoScalingInstancesResult>NextToken"`
+}
+
+func (v *AutoScalingInstancesType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // BlockDeviceMapping is undocumented.
@@ -619,8 +1262,56 @@ type BlockDeviceMapping struct {
 	VirtualName aws.StringValue  `xml:"VirtualName"`
 }
 
+func (v *BlockDeviceMapping) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DeviceName"); err != nil {
+		errors["DeviceName"] = append(errors["DeviceName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeviceName", 1); err != nil {
+		errors["DeviceName"] = append(errors["DeviceName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeviceName", 255); err != nil {
+		errors["DeviceName"] = append(errors["DeviceName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DeviceName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["DeviceName"] = append(errors["DeviceName"], err)
+	}
+
+	if err := model.ValidateMin(v, "VirtualName", 1); err != nil {
+		errors["VirtualName"] = append(errors["VirtualName"], err)
+	}
+
+	if err := model.ValidateMax(v, "VirtualName", 255); err != nil {
+		errors["VirtualName"] = append(errors["VirtualName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "VirtualName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["VirtualName"] = append(errors["VirtualName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CompleteLifecycleActionAnswer is undocumented.
 type CompleteLifecycleActionAnswer struct {
+}
+
+func (v *CompleteLifecycleActionAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CompleteLifecycleActionType is undocumented.
@@ -629,6 +1320,64 @@ type CompleteLifecycleActionType struct {
 	LifecycleActionResult aws.StringValue `xml:"LifecycleActionResult"`
 	LifecycleActionToken  aws.StringValue `xml:"LifecycleActionToken"`
 	LifecycleHookName     aws.StringValue `xml:"LifecycleHookName"`
+}
+
+func (v *CompleteLifecycleActionType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LifecycleActionResult"); err != nil {
+		errors["LifecycleActionResult"] = append(errors["LifecycleActionResult"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LifecycleActionToken"); err != nil {
+		errors["LifecycleActionToken"] = append(errors["LifecycleActionToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "LifecycleActionToken", 36); err != nil {
+		errors["LifecycleActionToken"] = append(errors["LifecycleActionToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "LifecycleActionToken", 36); err != nil {
+		errors["LifecycleActionToken"] = append(errors["LifecycleActionToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LifecycleHookName"); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LifecycleHookName", 1); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LifecycleHookName", 255); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LifecycleHookName", `[A-Za-z0-9\-_\/]+`); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateAutoScalingGroupType is undocumented.
@@ -648,6 +1397,104 @@ type CreateAutoScalingGroupType struct {
 	Tags                    []Tag            `xml:"Tags>member"`
 	TerminationPolicies     []string         `xml:"TerminationPolicies>member"`
 	VPCZoneIdentifier       aws.StringValue  `xml:"VPCZoneIdentifier"`
+}
+
+func (v *CreateAutoScalingGroupType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 255); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AvailabilityZones", 1); err != nil {
+		errors["AvailabilityZones"] = append(errors["AvailabilityZones"], err)
+	}
+
+	if err := model.ValidateMin(v, "HealthCheckType", 1); err != nil {
+		errors["HealthCheckType"] = append(errors["HealthCheckType"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthCheckType", 32); err != nil {
+		errors["HealthCheckType"] = append(errors["HealthCheckType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "HealthCheckType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["HealthCheckType"] = append(errors["HealthCheckType"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceID", 1); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceID", 16); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateMin(v, "LaunchConfigurationName", 1); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LaunchConfigurationName", 1600); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LaunchConfigurationName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaxSize"); err != nil {
+		errors["MaxSize"] = append(errors["MaxSize"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MinSize"); err != nil {
+		errors["MinSize"] = append(errors["MinSize"], err)
+	}
+
+	if err := model.ValidateMin(v, "PlacementGroup", 1); err != nil {
+		errors["PlacementGroup"] = append(errors["PlacementGroup"], err)
+	}
+
+	if err := model.ValidateMax(v, "PlacementGroup", 255); err != nil {
+		errors["PlacementGroup"] = append(errors["PlacementGroup"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PlacementGroup", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PlacementGroup"] = append(errors["PlacementGroup"], err)
+	}
+
+	if err := model.ValidateMin(v, "VPCZoneIdentifier", 1); err != nil {
+		errors["VPCZoneIdentifier"] = append(errors["VPCZoneIdentifier"], err)
+	}
+
+	if err := model.ValidateMax(v, "VPCZoneIdentifier", 255); err != nil {
+		errors["VPCZoneIdentifier"] = append(errors["VPCZoneIdentifier"], err)
+	}
+
+	if err := model.ValidatePattern(v, "VPCZoneIdentifier", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["VPCZoneIdentifier"] = append(errors["VPCZoneIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateLaunchConfigurationType is undocumented.
@@ -670,9 +1517,161 @@ type CreateLaunchConfigurationType struct {
 	UserData                 aws.StringValue      `xml:"UserData"`
 }
 
+func (v *CreateLaunchConfigurationType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "IAMInstanceProfile", 1); err != nil {
+		errors["IAMInstanceProfile"] = append(errors["IAMInstanceProfile"], err)
+	}
+
+	if err := model.ValidateMax(v, "IAMInstanceProfile", 1600); err != nil {
+		errors["IAMInstanceProfile"] = append(errors["IAMInstanceProfile"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IAMInstanceProfile", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["IAMInstanceProfile"] = append(errors["IAMInstanceProfile"], err)
+	}
+
+	if err := model.ValidateMin(v, "ImageID", 1); err != nil {
+		errors["ImageID"] = append(errors["ImageID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ImageID", 255); err != nil {
+		errors["ImageID"] = append(errors["ImageID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ImageID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ImageID"] = append(errors["ImageID"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceID", 1); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceID", 16); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceType", 1); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceType", 255); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateMin(v, "KernelID", 1); err != nil {
+		errors["KernelID"] = append(errors["KernelID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KernelID", 255); err != nil {
+		errors["KernelID"] = append(errors["KernelID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "KernelID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["KernelID"] = append(errors["KernelID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyName", 1); err != nil {
+		errors["KeyName"] = append(errors["KeyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyName", 255); err != nil {
+		errors["KeyName"] = append(errors["KeyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "KeyName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["KeyName"] = append(errors["KeyName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LaunchConfigurationName"); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LaunchConfigurationName", 1); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LaunchConfigurationName", 255); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LaunchConfigurationName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PlacementTenancy", 1); err != nil {
+		errors["PlacementTenancy"] = append(errors["PlacementTenancy"], err)
+	}
+
+	if err := model.ValidateMax(v, "PlacementTenancy", 64); err != nil {
+		errors["PlacementTenancy"] = append(errors["PlacementTenancy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PlacementTenancy", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PlacementTenancy"] = append(errors["PlacementTenancy"], err)
+	}
+
+	if err := model.ValidateMin(v, "RAMDiskID", 1); err != nil {
+		errors["RAMDiskID"] = append(errors["RAMDiskID"], err)
+	}
+
+	if err := model.ValidateMax(v, "RAMDiskID", 255); err != nil {
+		errors["RAMDiskID"] = append(errors["RAMDiskID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RAMDiskID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["RAMDiskID"] = append(errors["RAMDiskID"], err)
+	}
+
+	if err := model.ValidateMin(v, "SpotPrice", 1); err != nil {
+		errors["SpotPrice"] = append(errors["SpotPrice"], err)
+	}
+
+	if err := model.ValidateMax(v, "SpotPrice", 255); err != nil {
+		errors["SpotPrice"] = append(errors["SpotPrice"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserData", 21847); err != nil {
+		errors["UserData"] = append(errors["UserData"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserData", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["UserData"] = append(errors["UserData"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateOrUpdateTagsType is undocumented.
 type CreateOrUpdateTagsType struct {
 	Tags []Tag `xml:"Tags>member"`
+}
+
+func (v *CreateOrUpdateTagsType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Tags"); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteAutoScalingGroupType is undocumented.
@@ -681,8 +1680,44 @@ type DeleteAutoScalingGroupType struct {
 	ForceDelete          aws.BooleanValue `xml:"ForceDelete"`
 }
 
+func (v *DeleteAutoScalingGroupType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteLifecycleHookAnswer is undocumented.
 type DeleteLifecycleHookAnswer struct {
+}
+
+func (v *DeleteLifecycleHookAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteLifecycleHookType is undocumented.
@@ -691,10 +1726,94 @@ type DeleteLifecycleHookType struct {
 	LifecycleHookName    aws.StringValue `xml:"LifecycleHookName"`
 }
 
+func (v *DeleteLifecycleHookType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LifecycleHookName"); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LifecycleHookName", 1); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LifecycleHookName", 255); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LifecycleHookName", `[A-Za-z0-9\-_\/]+`); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteNotificationConfigurationType is undocumented.
 type DeleteNotificationConfigurationType struct {
 	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
 	TopicARN             aws.StringValue `xml:"TopicARN"`
+}
+
+func (v *DeleteNotificationConfigurationType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TopicARN"); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TopicARN", 1); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TopicARN", 1600); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TopicARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeletePolicyType is undocumented.
@@ -703,15 +1822,105 @@ type DeletePolicyType struct {
 	PolicyName           aws.StringValue `xml:"PolicyName"`
 }
 
+func (v *DeletePolicyType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 1600); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteScheduledActionType is undocumented.
 type DeleteScheduledActionType struct {
 	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
 	ScheduledActionName  aws.StringValue `xml:"ScheduledActionName"`
 }
 
+func (v *DeleteScheduledActionType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ScheduledActionName"); err != nil {
+		errors["ScheduledActionName"] = append(errors["ScheduledActionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ScheduledActionName", 1); err != nil {
+		errors["ScheduledActionName"] = append(errors["ScheduledActionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ScheduledActionName", 1600); err != nil {
+		errors["ScheduledActionName"] = append(errors["ScheduledActionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ScheduledActionName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ScheduledActionName"] = append(errors["ScheduledActionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteTagsType is undocumented.
 type DeleteTagsType struct {
 	Tags []Tag `xml:"Tags>member"`
+}
+
+func (v *DeleteTagsType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Tags"); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAccountLimitsAnswer is undocumented.
@@ -720,9 +1929,29 @@ type DescribeAccountLimitsAnswer struct {
 	MaxNumberOfLaunchConfigurations aws.IntegerValue `xml:"DescribeAccountLimitsResult>MaxNumberOfLaunchConfigurations"`
 }
 
+func (v *DescribeAccountLimitsAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAdjustmentTypesAnswer is undocumented.
 type DescribeAdjustmentTypesAnswer struct {
 	AdjustmentTypes []AdjustmentType `xml:"DescribeAdjustmentTypesResult>AdjustmentTypes>member"`
+}
+
+func (v *DescribeAdjustmentTypesAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAutoScalingInstancesType is undocumented.
@@ -732,9 +1961,33 @@ type DescribeAutoScalingInstancesType struct {
 	NextToken   aws.StringValue  `xml:"NextToken"`
 }
 
+func (v *DescribeAutoScalingInstancesType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAutoScalingNotificationTypesAnswer is undocumented.
 type DescribeAutoScalingNotificationTypesAnswer struct {
 	AutoScalingNotificationTypes []string `xml:"DescribeAutoScalingNotificationTypesResult>AutoScalingNotificationTypes>member"`
+}
+
+func (v *DescribeAutoScalingNotificationTypesAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeLifecycleHookTypesAnswer is undocumented.
@@ -742,9 +1995,29 @@ type DescribeLifecycleHookTypesAnswer struct {
 	LifecycleHookTypes []string `xml:"DescribeLifecycleHookTypesResult>LifecycleHookTypes>member"`
 }
 
+func (v *DescribeLifecycleHookTypesAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeLifecycleHooksAnswer is undocumented.
 type DescribeLifecycleHooksAnswer struct {
 	LifecycleHooks []LifecycleHook `xml:"DescribeLifecycleHooksResult>LifecycleHooks>member"`
+}
+
+func (v *DescribeLifecycleHooksAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeLifecycleHooksType is undocumented.
@@ -753,10 +2026,46 @@ type DescribeLifecycleHooksType struct {
 	LifecycleHookNames   []string        `xml:"LifecycleHookNames>member"`
 }
 
+func (v *DescribeLifecycleHooksType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeMetricCollectionTypesAnswer is undocumented.
 type DescribeMetricCollectionTypesAnswer struct {
 	Granularities []MetricGranularityType `xml:"DescribeMetricCollectionTypesResult>Granularities>member"`
 	Metrics       []MetricCollectionType  `xml:"DescribeMetricCollectionTypesResult>Metrics>member"`
+}
+
+func (v *DescribeMetricCollectionTypesAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeNotificationConfigurationsAnswer is undocumented.
@@ -765,11 +2074,43 @@ type DescribeNotificationConfigurationsAnswer struct {
 	NotificationConfigurations []NotificationConfiguration `xml:"DescribeNotificationConfigurationsResult>NotificationConfigurations>member"`
 }
 
+func (v *DescribeNotificationConfigurationsAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NotificationConfigurations"); err != nil {
+		errors["NotificationConfigurations"] = append(errors["NotificationConfigurations"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeNotificationConfigurationsType is undocumented.
 type DescribeNotificationConfigurationsType struct {
 	AutoScalingGroupNames []string         `xml:"AutoScalingGroupNames>member"`
 	MaxRecords            aws.IntegerValue `xml:"MaxRecords"`
 	NextToken             aws.StringValue  `xml:"NextToken"`
+}
+
+func (v *DescribeNotificationConfigurationsType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribePoliciesType is undocumented.
@@ -780,12 +2121,64 @@ type DescribePoliciesType struct {
 	PolicyNames          []string         `xml:"PolicyNames>member"`
 }
 
+func (v *DescribePoliciesType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeScalingActivitiesType is undocumented.
 type DescribeScalingActivitiesType struct {
 	ActivityIDs          []string         `xml:"ActivityIds>member"`
 	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
 	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
 	NextToken            aws.StringValue  `xml:"NextToken"`
+}
+
+func (v *DescribeScalingActivitiesType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeScheduledActionsType is undocumented.
@@ -798,6 +2191,32 @@ type DescribeScheduledActionsType struct {
 	StartTime            time.Time        `xml:"StartTime"`
 }
 
+func (v *DescribeScheduledActionsType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTagsType is undocumented.
 type DescribeTagsType struct {
 	Filters    []Filter         `xml:"Filters>member"`
@@ -805,14 +2224,48 @@ type DescribeTagsType struct {
 	NextToken  aws.StringValue  `xml:"NextToken"`
 }
 
+func (v *DescribeTagsType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTerminationPolicyTypesAnswer is undocumented.
 type DescribeTerminationPolicyTypesAnswer struct {
 	TerminationPolicyTypes []string `xml:"DescribeTerminationPolicyTypesResult>TerminationPolicyTypes>member"`
 }
 
+func (v *DescribeTerminationPolicyTypesAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DetachInstancesAnswer is undocumented.
 type DetachInstancesAnswer struct {
 	Activities []Activity `xml:"DetachInstancesResult>Activities>member"`
+}
+
+func (v *DetachInstancesAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DetachInstancesQuery is undocumented.
@@ -822,10 +2275,66 @@ type DetachInstancesQuery struct {
 	ShouldDecrementDesiredCapacity aws.BooleanValue `xml:"ShouldDecrementDesiredCapacity"`
 }
 
+func (v *DetachInstancesQuery) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ShouldDecrementDesiredCapacity"); err != nil {
+		errors["ShouldDecrementDesiredCapacity"] = append(errors["ShouldDecrementDesiredCapacity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DisableMetricsCollectionQuery is undocumented.
 type DisableMetricsCollectionQuery struct {
 	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
 	Metrics              []string        `xml:"Metrics>member"`
+}
+
+func (v *DisableMetricsCollectionQuery) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EBS is undocumented.
@@ -837,11 +2346,99 @@ type EBS struct {
 	VolumeType          aws.StringValue  `xml:"VolumeType"`
 }
 
+func (v *EBS) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "IOPS", 100); err != nil {
+		errors["IOPS"] = append(errors["IOPS"], err)
+	}
+
+	if err := model.ValidateMax(v, "IOPS", 4000); err != nil {
+		errors["IOPS"] = append(errors["IOPS"], err)
+	}
+
+	if err := model.ValidateMin(v, "SnapshotID", 1); err != nil {
+		errors["SnapshotID"] = append(errors["SnapshotID"], err)
+	}
+
+	if err := model.ValidateMax(v, "SnapshotID", 255); err != nil {
+		errors["SnapshotID"] = append(errors["SnapshotID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SnapshotID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["SnapshotID"] = append(errors["SnapshotID"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeSize", 1); err != nil {
+		errors["VolumeSize"] = append(errors["VolumeSize"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeSize", 1024); err != nil {
+		errors["VolumeSize"] = append(errors["VolumeSize"], err)
+	}
+
+	if err := model.ValidateMin(v, "VolumeType", 1); err != nil {
+		errors["VolumeType"] = append(errors["VolumeType"], err)
+	}
+
+	if err := model.ValidateMax(v, "VolumeType", 255); err != nil {
+		errors["VolumeType"] = append(errors["VolumeType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnableMetricsCollectionQuery is undocumented.
 type EnableMetricsCollectionQuery struct {
 	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
 	Granularity          aws.StringValue `xml:"Granularity"`
 	Metrics              []string        `xml:"Metrics>member"`
+}
+
+func (v *EnableMetricsCollectionQuery) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Granularity"); err != nil {
+		errors["Granularity"] = append(errors["Granularity"], err)
+	}
+
+	if err := model.ValidateMin(v, "Granularity", 1); err != nil {
+		errors["Granularity"] = append(errors["Granularity"], err)
+	}
+
+	if err := model.ValidateMax(v, "Granularity", 255); err != nil {
+		errors["Granularity"] = append(errors["Granularity"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Granularity", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Granularity"] = append(errors["Granularity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EnabledMetric is undocumented.
@@ -850,9 +2447,53 @@ type EnabledMetric struct {
 	Metric      aws.StringValue `xml:"Metric"`
 }
 
+func (v *EnabledMetric) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Granularity", 1); err != nil {
+		errors["Granularity"] = append(errors["Granularity"], err)
+	}
+
+	if err := model.ValidateMax(v, "Granularity", 255); err != nil {
+		errors["Granularity"] = append(errors["Granularity"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Granularity", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Granularity"] = append(errors["Granularity"], err)
+	}
+
+	if err := model.ValidateMin(v, "Metric", 1); err != nil {
+		errors["Metric"] = append(errors["Metric"], err)
+	}
+
+	if err := model.ValidateMax(v, "Metric", 255); err != nil {
+		errors["Metric"] = append(errors["Metric"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Metric", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Metric"] = append(errors["Metric"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnterStandbyAnswer is undocumented.
 type EnterStandbyAnswer struct {
 	Activities []Activity `xml:"EnterStandbyResult>Activities>member"`
+}
+
+func (v *EnterStandbyAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EnterStandbyQuery is undocumented.
@@ -862,6 +2503,36 @@ type EnterStandbyQuery struct {
 	ShouldDecrementDesiredCapacity aws.BooleanValue `xml:"ShouldDecrementDesiredCapacity"`
 }
 
+func (v *EnterStandbyQuery) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ShouldDecrementDesiredCapacity"); err != nil {
+		errors["ShouldDecrementDesiredCapacity"] = append(errors["ShouldDecrementDesiredCapacity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ExecutePolicyType is undocumented.
 type ExecutePolicyType struct {
 	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
@@ -869,9 +2540,57 @@ type ExecutePolicyType struct {
 	PolicyName           aws.StringValue  `xml:"PolicyName"`
 }
 
+func (v *ExecutePolicyType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 1600); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ExitStandbyAnswer is undocumented.
 type ExitStandbyAnswer struct {
 	Activities []Activity `xml:"ExitStandbyResult>Activities>member"`
+}
+
+func (v *ExitStandbyAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ExitStandbyQuery is undocumented.
@@ -880,10 +2599,50 @@ type ExitStandbyQuery struct {
 	InstanceIDs          []string        `xml:"InstanceIds>member"`
 }
 
+func (v *ExitStandbyQuery) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Filter is undocumented.
 type Filter struct {
 	Name   aws.StringValue `xml:"Name"`
 	Values []string        `xml:"Values>member"`
+}
+
+func (v *Filter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "Name", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Instance is undocumented.
@@ -895,9 +2654,116 @@ type Instance struct {
 	LifecycleState          aws.StringValue `xml:"LifecycleState"`
 }
 
+func (v *Instance) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AvailabilityZone"); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidateMin(v, "AvailabilityZone", 1); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidateMax(v, "AvailabilityZone", 255); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AvailabilityZone", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HealthStatus"); err != nil {
+		errors["HealthStatus"] = append(errors["HealthStatus"], err)
+	}
+
+	if err := model.ValidateMin(v, "HealthStatus", 1); err != nil {
+		errors["HealthStatus"] = append(errors["HealthStatus"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthStatus", 32); err != nil {
+		errors["HealthStatus"] = append(errors["HealthStatus"], err)
+	}
+
+	if err := model.ValidatePattern(v, "HealthStatus", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["HealthStatus"] = append(errors["HealthStatus"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceID", 1); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceID", 16); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LaunchConfigurationName"); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LaunchConfigurationName", 1); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LaunchConfigurationName", 255); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LaunchConfigurationName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LifecycleState"); err != nil {
+		errors["LifecycleState"] = append(errors["LifecycleState"], err)
+	}
+
+	LifecycleStateEnum := []string{
+		LifecycleStateDetached,
+		LifecycleStateDetaching,
+		LifecycleStateEnteringStandby,
+		LifecycleStateInService,
+		LifecycleStatePending,
+		LifecycleStatePendingProceed,
+		LifecycleStatePendingWait,
+		LifecycleStateQuarantined,
+		LifecycleStateStandby,
+		LifecycleStateTerminated,
+		LifecycleStateTerminating,
+		LifecycleStateTerminatingProceed,
+		LifecycleStateTerminatingWait,
+	}
+	if err := model.ValidateEnum(v, "LifecycleState", LifecycleStateEnum); err != nil {
+		errors["LifecycleState"] = append(errors["LifecycleState"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceMonitoring is undocumented.
 type InstanceMonitoring struct {
 	Enabled aws.BooleanValue `xml:"Enabled"`
+}
+
+func (v *InstanceMonitoring) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LaunchConfiguration is undocumented.
@@ -921,9 +2787,185 @@ type LaunchConfiguration struct {
 	UserData                 aws.StringValue      `xml:"UserData"`
 }
 
+func (v *LaunchConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CreatedTime"); err != nil {
+		errors["CreatedTime"] = append(errors["CreatedTime"], err)
+	}
+
+	if err := model.ValidateMin(v, "IAMInstanceProfile", 1); err != nil {
+		errors["IAMInstanceProfile"] = append(errors["IAMInstanceProfile"], err)
+	}
+
+	if err := model.ValidateMax(v, "IAMInstanceProfile", 1600); err != nil {
+		errors["IAMInstanceProfile"] = append(errors["IAMInstanceProfile"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IAMInstanceProfile", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["IAMInstanceProfile"] = append(errors["IAMInstanceProfile"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ImageID"); err != nil {
+		errors["ImageID"] = append(errors["ImageID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ImageID", 1); err != nil {
+		errors["ImageID"] = append(errors["ImageID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ImageID", 255); err != nil {
+		errors["ImageID"] = append(errors["ImageID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ImageID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ImageID"] = append(errors["ImageID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceType"); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceType", 1); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceType", 255); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateMin(v, "KernelID", 1); err != nil {
+		errors["KernelID"] = append(errors["KernelID"], err)
+	}
+
+	if err := model.ValidateMax(v, "KernelID", 255); err != nil {
+		errors["KernelID"] = append(errors["KernelID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "KernelID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["KernelID"] = append(errors["KernelID"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeyName", 1); err != nil {
+		errors["KeyName"] = append(errors["KeyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeyName", 255); err != nil {
+		errors["KeyName"] = append(errors["KeyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "KeyName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["KeyName"] = append(errors["KeyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LaunchConfigurationARN", 1); err != nil {
+		errors["LaunchConfigurationARN"] = append(errors["LaunchConfigurationARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "LaunchConfigurationARN", 1600); err != nil {
+		errors["LaunchConfigurationARN"] = append(errors["LaunchConfigurationARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LaunchConfigurationARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LaunchConfigurationARN"] = append(errors["LaunchConfigurationARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LaunchConfigurationName"); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LaunchConfigurationName", 1); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LaunchConfigurationName", 255); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LaunchConfigurationName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PlacementTenancy", 1); err != nil {
+		errors["PlacementTenancy"] = append(errors["PlacementTenancy"], err)
+	}
+
+	if err := model.ValidateMax(v, "PlacementTenancy", 64); err != nil {
+		errors["PlacementTenancy"] = append(errors["PlacementTenancy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PlacementTenancy", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PlacementTenancy"] = append(errors["PlacementTenancy"], err)
+	}
+
+	if err := model.ValidateMin(v, "RAMDiskID", 1); err != nil {
+		errors["RAMDiskID"] = append(errors["RAMDiskID"], err)
+	}
+
+	if err := model.ValidateMax(v, "RAMDiskID", 255); err != nil {
+		errors["RAMDiskID"] = append(errors["RAMDiskID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RAMDiskID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["RAMDiskID"] = append(errors["RAMDiskID"], err)
+	}
+
+	if err := model.ValidateMin(v, "SpotPrice", 1); err != nil {
+		errors["SpotPrice"] = append(errors["SpotPrice"], err)
+	}
+
+	if err := model.ValidateMax(v, "SpotPrice", 255); err != nil {
+		errors["SpotPrice"] = append(errors["SpotPrice"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserData", 21847); err != nil {
+		errors["UserData"] = append(errors["UserData"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserData", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["UserData"] = append(errors["UserData"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // LaunchConfigurationNameType is undocumented.
 type LaunchConfigurationNameType struct {
 	LaunchConfigurationName aws.StringValue `xml:"LaunchConfigurationName"`
+}
+
+func (v *LaunchConfigurationNameType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LaunchConfigurationName"); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LaunchConfigurationName", 1); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LaunchConfigurationName", 1600); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LaunchConfigurationName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LaunchConfigurationNamesType is undocumented.
@@ -933,10 +2975,42 @@ type LaunchConfigurationNamesType struct {
 	NextToken                aws.StringValue  `xml:"NextToken"`
 }
 
+func (v *LaunchConfigurationNamesType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // LaunchConfigurationsType is undocumented.
 type LaunchConfigurationsType struct {
 	LaunchConfigurations []LaunchConfiguration `xml:"DescribeLaunchConfigurationsResult>LaunchConfigurations>member"`
 	NextToken            aws.StringValue       `xml:"DescribeLaunchConfigurationsResult>NextToken"`
+}
+
+func (v *LaunchConfigurationsType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LaunchConfigurations"); err != nil {
+		errors["LaunchConfigurations"] = append(errors["LaunchConfigurations"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LifecycleHook is undocumented.
@@ -950,6 +3024,76 @@ type LifecycleHook struct {
 	NotificationMetadata  aws.StringValue  `xml:"NotificationMetadata"`
 	NotificationTargetARN aws.StringValue  `xml:"NotificationTargetARN"`
 	RoleARN               aws.StringValue  `xml:"RoleARN"`
+}
+
+func (v *LifecycleHook) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LifecycleHookName", 1); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LifecycleHookName", 255); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LifecycleHookName", `[A-Za-z0-9\-_\/]+`); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidateMin(v, "NotificationMetadata", 1); err != nil {
+		errors["NotificationMetadata"] = append(errors["NotificationMetadata"], err)
+	}
+
+	if err := model.ValidateMax(v, "NotificationMetadata", 1023); err != nil {
+		errors["NotificationMetadata"] = append(errors["NotificationMetadata"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NotificationMetadata", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NotificationMetadata"] = append(errors["NotificationMetadata"], err)
+	}
+
+	if err := model.ValidateMin(v, "NotificationTargetARN", 1); err != nil {
+		errors["NotificationTargetARN"] = append(errors["NotificationTargetARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "NotificationTargetARN", 1600); err != nil {
+		errors["NotificationTargetARN"] = append(errors["NotificationTargetARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NotificationTargetARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NotificationTargetARN"] = append(errors["NotificationTargetARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleARN", 1); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleARN", 1600); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for AutoScaling.
@@ -974,9 +3118,53 @@ type MetricCollectionType struct {
 	Metric aws.StringValue `xml:"Metric"`
 }
 
+func (v *MetricCollectionType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Metric", 1); err != nil {
+		errors["Metric"] = append(errors["Metric"], err)
+	}
+
+	if err := model.ValidateMax(v, "Metric", 255); err != nil {
+		errors["Metric"] = append(errors["Metric"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Metric", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Metric"] = append(errors["Metric"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // MetricGranularityType is undocumented.
 type MetricGranularityType struct {
 	Granularity aws.StringValue `xml:"Granularity"`
+}
+
+func (v *MetricGranularityType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Granularity", 1); err != nil {
+		errors["Granularity"] = append(errors["Granularity"], err)
+	}
+
+	if err := model.ValidateMax(v, "Granularity", 255); err != nil {
+		errors["Granularity"] = append(errors["Granularity"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Granularity", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Granularity"] = append(errors["Granularity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // NotificationConfiguration is undocumented.
@@ -986,10 +3174,70 @@ type NotificationConfiguration struct {
 	TopicARN             aws.StringValue `xml:"TopicARN"`
 }
 
+func (v *NotificationConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "NotificationType", 1); err != nil {
+		errors["NotificationType"] = append(errors["NotificationType"], err)
+	}
+
+	if err := model.ValidateMax(v, "NotificationType", 255); err != nil {
+		errors["NotificationType"] = append(errors["NotificationType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NotificationType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NotificationType"] = append(errors["NotificationType"], err)
+	}
+
+	if err := model.ValidateMin(v, "TopicARN", 1); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TopicARN", 1600); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TopicARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PoliciesType is undocumented.
 type PoliciesType struct {
 	NextToken       aws.StringValue `xml:"DescribePoliciesResult>NextToken"`
 	ScalingPolicies []ScalingPolicy `xml:"DescribePoliciesResult>ScalingPolicies>member"`
+}
+
+func (v *PoliciesType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PolicyARNType is undocumented.
@@ -997,9 +3245,57 @@ type PolicyARNType struct {
 	PolicyARN aws.StringValue `xml:"PutScalingPolicyResult>PolicyARN"`
 }
 
+func (v *PolicyARNType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "PolicyARN", 1); err != nil {
+		errors["PolicyARN"] = append(errors["PolicyARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyARN", 1600); err != nil {
+		errors["PolicyARN"] = append(errors["PolicyARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PolicyARN"] = append(errors["PolicyARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ProcessType is undocumented.
 type ProcessType struct {
 	ProcessName aws.StringValue `xml:"ProcessName"`
+}
+
+func (v *ProcessType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ProcessName"); err != nil {
+		errors["ProcessName"] = append(errors["ProcessName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ProcessName", 1); err != nil {
+		errors["ProcessName"] = append(errors["ProcessName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ProcessName", 255); err != nil {
+		errors["ProcessName"] = append(errors["ProcessName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ProcessName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ProcessName"] = append(errors["ProcessName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ProcessesType is undocumented.
@@ -1007,8 +3303,28 @@ type ProcessesType struct {
 	Processes []ProcessType `xml:"DescribeScalingProcessTypesResult>Processes>member"`
 }
 
+func (v *ProcessesType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutLifecycleHookAnswer is undocumented.
 type PutLifecycleHookAnswer struct {
+}
+
+func (v *PutLifecycleHookAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutLifecycleHookType is undocumented.
@@ -1023,11 +3339,135 @@ type PutLifecycleHookType struct {
 	RoleARN               aws.StringValue  `xml:"RoleARN"`
 }
 
+func (v *PutLifecycleHookType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LifecycleHookName"); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LifecycleHookName", 1); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LifecycleHookName", 255); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LifecycleHookName", `[A-Za-z0-9\-_\/]+`); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidateMin(v, "NotificationMetadata", 1); err != nil {
+		errors["NotificationMetadata"] = append(errors["NotificationMetadata"], err)
+	}
+
+	if err := model.ValidateMax(v, "NotificationMetadata", 1023); err != nil {
+		errors["NotificationMetadata"] = append(errors["NotificationMetadata"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NotificationMetadata", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NotificationMetadata"] = append(errors["NotificationMetadata"], err)
+	}
+
+	if err := model.ValidateMin(v, "NotificationTargetARN", 1); err != nil {
+		errors["NotificationTargetARN"] = append(errors["NotificationTargetARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "NotificationTargetARN", 1600); err != nil {
+		errors["NotificationTargetARN"] = append(errors["NotificationTargetARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NotificationTargetARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NotificationTargetARN"] = append(errors["NotificationTargetARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleARN", 1); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleARN", 1600); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutNotificationConfigurationType is undocumented.
 type PutNotificationConfigurationType struct {
 	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
 	NotificationTypes    []string        `xml:"NotificationTypes>member"`
 	TopicARN             aws.StringValue `xml:"TopicARN"`
+}
+
+func (v *PutNotificationConfigurationType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NotificationTypes"); err != nil {
+		errors["NotificationTypes"] = append(errors["NotificationTypes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TopicARN"); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "TopicARN", 1); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "TopicARN", 1600); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TopicARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["TopicARN"] = append(errors["TopicARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutScalingPolicyType is undocumented.
@@ -1038,6 +3478,68 @@ type PutScalingPolicyType struct {
 	MinAdjustmentStep    aws.IntegerValue `xml:"MinAdjustmentStep"`
 	PolicyName           aws.StringValue  `xml:"PolicyName"`
 	ScalingAdjustment    aws.IntegerValue `xml:"ScalingAdjustment"`
+}
+
+func (v *PutScalingPolicyType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AdjustmentType"); err != nil {
+		errors["AdjustmentType"] = append(errors["AdjustmentType"], err)
+	}
+
+	if err := model.ValidateMin(v, "AdjustmentType", 1); err != nil {
+		errors["AdjustmentType"] = append(errors["AdjustmentType"], err)
+	}
+
+	if err := model.ValidateMax(v, "AdjustmentType", 255); err != nil {
+		errors["AdjustmentType"] = append(errors["AdjustmentType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AdjustmentType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AdjustmentType"] = append(errors["AdjustmentType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 255); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ScalingAdjustment"); err != nil {
+		errors["ScalingAdjustment"] = append(errors["ScalingAdjustment"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutScheduledUpdateGroupActionType is undocumented.
@@ -1053,8 +3555,72 @@ type PutScheduledUpdateGroupActionType struct {
 	Time                 time.Time        `xml:"Time"`
 }
 
+func (v *PutScheduledUpdateGroupActionType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Recurrence", 1); err != nil {
+		errors["Recurrence"] = append(errors["Recurrence"], err)
+	}
+
+	if err := model.ValidateMax(v, "Recurrence", 255); err != nil {
+		errors["Recurrence"] = append(errors["Recurrence"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Recurrence", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Recurrence"] = append(errors["Recurrence"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ScheduledActionName"); err != nil {
+		errors["ScheduledActionName"] = append(errors["ScheduledActionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ScheduledActionName", 1); err != nil {
+		errors["ScheduledActionName"] = append(errors["ScheduledActionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ScheduledActionName", 255); err != nil {
+		errors["ScheduledActionName"] = append(errors["ScheduledActionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ScheduledActionName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ScheduledActionName"] = append(errors["ScheduledActionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RecordLifecycleActionHeartbeatAnswer is undocumented.
 type RecordLifecycleActionHeartbeatAnswer struct {
+}
+
+func (v *RecordLifecycleActionHeartbeatAnswer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RecordLifecycleActionHeartbeatType is undocumented.
@@ -1062,6 +3628,60 @@ type RecordLifecycleActionHeartbeatType struct {
 	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
 	LifecycleActionToken aws.StringValue `xml:"LifecycleActionToken"`
 	LifecycleHookName    aws.StringValue `xml:"LifecycleHookName"`
+}
+
+func (v *RecordLifecycleActionHeartbeatType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LifecycleActionToken"); err != nil {
+		errors["LifecycleActionToken"] = append(errors["LifecycleActionToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "LifecycleActionToken", 36); err != nil {
+		errors["LifecycleActionToken"] = append(errors["LifecycleActionToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "LifecycleActionToken", 36); err != nil {
+		errors["LifecycleActionToken"] = append(errors["LifecycleActionToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LifecycleHookName"); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LifecycleHookName", 1); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LifecycleHookName", 255); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LifecycleHookName", `[A-Za-z0-9\-_\/]+`); err != nil {
+		errors["LifecycleHookName"] = append(errors["LifecycleHookName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for AutoScaling.
@@ -1090,16 +3710,114 @@ type ScalingPolicy struct {
 	ScalingAdjustment    aws.IntegerValue `xml:"ScalingAdjustment"`
 }
 
+func (v *ScalingPolicy) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AdjustmentType", 1); err != nil {
+		errors["AdjustmentType"] = append(errors["AdjustmentType"], err)
+	}
+
+	if err := model.ValidateMax(v, "AdjustmentType", 255); err != nil {
+		errors["AdjustmentType"] = append(errors["AdjustmentType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AdjustmentType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AdjustmentType"] = append(errors["AdjustmentType"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 255); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyARN", 1); err != nil {
+		errors["PolicyARN"] = append(errors["PolicyARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyARN", 1600); err != nil {
+		errors["PolicyARN"] = append(errors["PolicyARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PolicyARN"] = append(errors["PolicyARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 255); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ScalingProcessQuery is undocumented.
 type ScalingProcessQuery struct {
 	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
 	ScalingProcesses     []string        `xml:"ScalingProcesses>member"`
 }
 
+func (v *ScalingProcessQuery) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ScheduledActionsType is undocumented.
 type ScheduledActionsType struct {
 	NextToken                   aws.StringValue              `xml:"DescribeScheduledActionsResult>NextToken"`
 	ScheduledUpdateGroupActions []ScheduledUpdateGroupAction `xml:"DescribeScheduledActionsResult>ScheduledUpdateGroupActions>member"`
+}
+
+func (v *ScheduledActionsType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ScheduledUpdateGroupAction is undocumented.
@@ -1116,11 +3834,99 @@ type ScheduledUpdateGroupAction struct {
 	Time                 time.Time        `xml:"Time"`
 }
 
+func (v *ScheduledUpdateGroupAction) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 255); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Recurrence", 1); err != nil {
+		errors["Recurrence"] = append(errors["Recurrence"], err)
+	}
+
+	if err := model.ValidateMax(v, "Recurrence", 255); err != nil {
+		errors["Recurrence"] = append(errors["Recurrence"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Recurrence", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Recurrence"] = append(errors["Recurrence"], err)
+	}
+
+	if err := model.ValidateMin(v, "ScheduledActionARN", 1); err != nil {
+		errors["ScheduledActionARN"] = append(errors["ScheduledActionARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ScheduledActionARN", 1600); err != nil {
+		errors["ScheduledActionARN"] = append(errors["ScheduledActionARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ScheduledActionARN", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ScheduledActionARN"] = append(errors["ScheduledActionARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "ScheduledActionName", 1); err != nil {
+		errors["ScheduledActionName"] = append(errors["ScheduledActionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ScheduledActionName", 255); err != nil {
+		errors["ScheduledActionName"] = append(errors["ScheduledActionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ScheduledActionName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ScheduledActionName"] = append(errors["ScheduledActionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetDesiredCapacityType is undocumented.
 type SetDesiredCapacityType struct {
 	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
 	DesiredCapacity      aws.IntegerValue `xml:"DesiredCapacity"`
 	HonorCooldown        aws.BooleanValue `xml:"HonorCooldown"`
+}
+
+func (v *SetDesiredCapacityType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DesiredCapacity"); err != nil {
+		errors["DesiredCapacity"] = append(errors["DesiredCapacity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SetInstanceHealthQuery is undocumented.
@@ -1130,10 +3936,86 @@ type SetInstanceHealthQuery struct {
 	ShouldRespectGracePeriod aws.BooleanValue `xml:"ShouldRespectGracePeriod"`
 }
 
+func (v *SetInstanceHealthQuery) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthStatus"); err != nil {
+		errors["HealthStatus"] = append(errors["HealthStatus"], err)
+	}
+
+	if err := model.ValidateMin(v, "HealthStatus", 1); err != nil {
+		errors["HealthStatus"] = append(errors["HealthStatus"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthStatus", 32); err != nil {
+		errors["HealthStatus"] = append(errors["HealthStatus"], err)
+	}
+
+	if err := model.ValidatePattern(v, "HealthStatus", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["HealthStatus"] = append(errors["HealthStatus"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceID", 1); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceID", 16); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SuspendedProcess is undocumented.
 type SuspendedProcess struct {
 	ProcessName      aws.StringValue `xml:"ProcessName"`
 	SuspensionReason aws.StringValue `xml:"SuspensionReason"`
+}
+
+func (v *SuspendedProcess) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ProcessName", 1); err != nil {
+		errors["ProcessName"] = append(errors["ProcessName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ProcessName", 255); err != nil {
+		errors["ProcessName"] = append(errors["ProcessName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ProcessName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ProcessName"] = append(errors["ProcessName"], err)
+	}
+
+	if err := model.ValidateMin(v, "SuspensionReason", 1); err != nil {
+		errors["SuspensionReason"] = append(errors["SuspensionReason"], err)
+	}
+
+	if err := model.ValidateMax(v, "SuspensionReason", 255); err != nil {
+		errors["SuspensionReason"] = append(errors["SuspensionReason"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SuspensionReason", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["SuspensionReason"] = append(errors["SuspensionReason"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Tag is undocumented.
@@ -1145,6 +4027,48 @@ type Tag struct {
 	Value             aws.StringValue  `xml:"Value"`
 }
 
+func (v *Tag) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 128); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Key", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ResourceID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ResourceID"] = append(errors["ResourceID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ResourceType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 256); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Value", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TagDescription is undocumented.
 type TagDescription struct {
 	Key               aws.StringValue  `xml:"Key"`
@@ -1154,16 +4078,98 @@ type TagDescription struct {
 	Value             aws.StringValue  `xml:"Value"`
 }
 
+func (v *TagDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 128); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Key", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ResourceID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ResourceID"] = append(errors["ResourceID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ResourceType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 256); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Value", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TagsType is undocumented.
 type TagsType struct {
 	NextToken aws.StringValue  `xml:"DescribeTagsResult>NextToken"`
 	Tags      []TagDescription `xml:"DescribeTagsResult>Tags>member"`
 }
 
+func (v *TagsType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "NextToken", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TerminateInstanceInAutoScalingGroupType is undocumented.
 type TerminateInstanceInAutoScalingGroupType struct {
 	InstanceID                     aws.StringValue  `xml:"InstanceId"`
 	ShouldDecrementDesiredCapacity aws.BooleanValue `xml:"ShouldDecrementDesiredCapacity"`
+}
+
+func (v *TerminateInstanceInAutoScalingGroupType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceID", 1); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceID", 16); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ShouldDecrementDesiredCapacity"); err != nil {
+		errors["ShouldDecrementDesiredCapacity"] = append(errors["ShouldDecrementDesiredCapacity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateAutoScalingGroupType is undocumented.
@@ -1180,6 +4186,84 @@ type UpdateAutoScalingGroupType struct {
 	PlacementGroup          aws.StringValue  `xml:"PlacementGroup"`
 	TerminationPolicies     []string         `xml:"TerminationPolicies>member"`
 	VPCZoneIdentifier       aws.StringValue  `xml:"VPCZoneIdentifier"`
+}
+
+func (v *UpdateAutoScalingGroupType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AutoScalingGroupName"); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AutoScalingGroupName", 1); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AutoScalingGroupName", 1600); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AutoScalingGroupName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AutoScalingGroupName"] = append(errors["AutoScalingGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AvailabilityZones", 1); err != nil {
+		errors["AvailabilityZones"] = append(errors["AvailabilityZones"], err)
+	}
+
+	if err := model.ValidateMin(v, "HealthCheckType", 1); err != nil {
+		errors["HealthCheckType"] = append(errors["HealthCheckType"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthCheckType", 32); err != nil {
+		errors["HealthCheckType"] = append(errors["HealthCheckType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "HealthCheckType", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["HealthCheckType"] = append(errors["HealthCheckType"], err)
+	}
+
+	if err := model.ValidateMin(v, "LaunchConfigurationName", 1); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LaunchConfigurationName", 1600); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LaunchConfigurationName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["LaunchConfigurationName"] = append(errors["LaunchConfigurationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PlacementGroup", 1); err != nil {
+		errors["PlacementGroup"] = append(errors["PlacementGroup"], err)
+	}
+
+	if err := model.ValidateMax(v, "PlacementGroup", 255); err != nil {
+		errors["PlacementGroup"] = append(errors["PlacementGroup"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PlacementGroup", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PlacementGroup"] = append(errors["PlacementGroup"], err)
+	}
+
+	if err := model.ValidateMin(v, "VPCZoneIdentifier", 1); err != nil {
+		errors["VPCZoneIdentifier"] = append(errors["VPCZoneIdentifier"], err)
+	}
+
+	if err := model.ValidateMax(v, "VPCZoneIdentifier", 255); err != nil {
+		errors["VPCZoneIdentifier"] = append(errors["VPCZoneIdentifier"], err)
+	}
+
+	if err := model.ValidatePattern(v, "VPCZoneIdentifier", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["VPCZoneIdentifier"] = append(errors["VPCZoneIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CompleteLifecycleActionResult is a wrapper for CompleteLifecycleActionAnswer.

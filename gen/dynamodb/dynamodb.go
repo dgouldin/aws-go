@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // DynamoDB is a client for Amazon DynamoDB.
@@ -79,6 +80,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Dyn
 // information, see Capacity Units Calculations in the Amazon DynamoDB
 // Developer Guide
 func (c *DynamoDB) BatchGetItem(req *BatchGetItemInput) (resp *BatchGetItemOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &BatchGetItemOutput{}
 	err = c.client.Do("BatchGetItem", "POST", "/", req, resp)
 	return
@@ -135,6 +140,10 @@ func (c *DynamoDB) BatchGetItem(req *BatchGetItemInput) (resp *BatchGetItemOutpu
 // same item in the same BatchWriteItem request. There are more than 25
 // requests in the batch.
 func (c *DynamoDB) BatchWriteItem(req *BatchWriteItemInput) (resp *BatchWriteItemOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &BatchWriteItemOutput{}
 	err = c.client.Do("BatchWriteItem", "POST", "/", req, resp)
 	return
@@ -152,6 +161,10 @@ func (c *DynamoDB) BatchWriteItem(req *BatchWriteItemInput) (resp *BatchWriteIte
 // indexes can be in the state at any given time. You can use the
 // DescribeTable API to check the table status.
 func (c *DynamoDB) CreateTable(req *CreateTableInput) (resp *CreateTableOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateTableOutput{}
 	err = c.client.Do("CreateTable", "POST", "/", req, resp)
 	return
@@ -168,6 +181,10 @@ func (c *DynamoDB) CreateTable(req *CreateTableInput) (resp *CreateTableOutput, 
 // specific conditions are met. If those conditions are met, DynamoDB
 // performs the delete. Otherwise, the item is not deleted.
 func (c *DynamoDB) DeleteItem(req *DeleteItemInput) (resp *DeleteItemOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteItemOutput{}
 	err = c.client.Do("DeleteItem", "POST", "/", req, resp)
 	return
@@ -183,6 +200,10 @@ func (c *DynamoDB) DeleteItem(req *DeleteItemInput) (resp *DeleteItemOutput, err
 // are also deleted. Use the DescribeTable API to check the status of the
 // table.
 func (c *DynamoDB) DeleteTable(req *DeleteTableInput) (resp *DeleteTableOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteTableOutput{}
 	err = c.client.Do("DeleteTable", "POST", "/", req, resp)
 	return
@@ -192,6 +213,10 @@ func (c *DynamoDB) DeleteTable(req *DeleteTableInput) (resp *DeleteTableOutput, 
 // status of the table, when it was created, the primary key schema, and
 // any indexes on the table.
 func (c *DynamoDB) DescribeTable(req *DescribeTableInput) (resp *DescribeTableOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTableOutput{}
 	err = c.client.Do("DescribeTable", "POST", "/", req, resp)
 	return
@@ -205,6 +230,10 @@ func (c *DynamoDB) DescribeTable(req *DescribeTableInput) (resp *DescribeTableOu
 // more time than an eventually consistent read, it always returns the last
 // updated value.
 func (c *DynamoDB) GetItem(req *GetItemInput) (resp *GetItemOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetItemOutput{}
 	err = c.client.Do("GetItem", "POST", "/", req, resp)
 	return
@@ -214,6 +243,10 @@ func (c *DynamoDB) GetItem(req *GetItemInput) (resp *GetItemOutput, err error) {
 // account and endpoint. The output from ListTables is paginated, with each
 // page returning a maximum of 100 table names.
 func (c *DynamoDB) ListTables(req *ListTablesInput) (resp *ListTablesOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListTablesOutput{}
 	err = c.client.Do("ListTables", "POST", "/", req, resp)
 	return
@@ -237,6 +270,10 @@ func (c *DynamoDB) ListTables(req *ListTablesInput) (resp *ListTablesOutput, err
 // information about using this see Working with Items in the Amazon
 // DynamoDB Developer Guide
 func (c *DynamoDB) PutItem(req *PutItemInput) (resp *PutItemOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PutItemOutput{}
 	err = c.client.Do("PutItem", "POST", "/", req, resp)
 	return
@@ -262,6 +299,10 @@ func (c *DynamoDB) PutItem(req *PutItemInput) (resp *PutItemOutput, err error) {
 // eventually consistent reads only, so do not specify ConsistentRead when
 // querying a global secondary index.
 func (c *DynamoDB) Query(req *QueryInput) (resp *QueryOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &QueryOutput{}
 	err = c.client.Do("Query", "POST", "/", req, resp)
 	return
@@ -281,6 +322,10 @@ func (c *DynamoDB) Query(req *QueryInput) (resp *QueryOutput, err error) {
 // parameters. For more information, see Parallel Scan in the Amazon
 // DynamoDB Developer Guide
 func (c *DynamoDB) Scan(req *ScanInput) (resp *ScanOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ScanOutput{}
 	err = c.client.Do("Scan", "POST", "/", req, resp)
 	return
@@ -294,6 +339,10 @@ func (c *DynamoDB) Scan(req *ScanInput) (resp *ScanOutput, err error) {
 // You can also return the item's attribute values in the same UpdateItem
 // operation using the ReturnValues parameter.
 func (c *DynamoDB) UpdateItem(req *UpdateItemInput) (resp *UpdateItemOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateItemOutput{}
 	err = c.client.Do("UpdateItem", "POST", "/", req, resp)
 	return
@@ -313,6 +362,10 @@ func (c *DynamoDB) UpdateItem(req *UpdateItemInput) (resp *UpdateItemOutput, err
 // modify or delete indexes using UpdateTable . Indexes can only be defined
 // at table creation time.
 func (c *DynamoDB) UpdateTable(req *UpdateTableInput) (resp *UpdateTableOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateTableOutput{}
 	err = c.client.Do("UpdateTable", "POST", "/", req, resp)
 	return
@@ -331,6 +384,41 @@ type AttributeDefinition struct {
 	AttributeType aws.StringValue `json:"AttributeType"`
 }
 
+func (v *AttributeDefinition) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AttributeName"); err != nil {
+		errors["AttributeName"] = append(errors["AttributeName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AttributeName", 1); err != nil {
+		errors["AttributeName"] = append(errors["AttributeName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AttributeName", 255); err != nil {
+		errors["AttributeName"] = append(errors["AttributeName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "AttributeType"); err != nil {
+		errors["AttributeType"] = append(errors["AttributeType"], err)
+	}
+
+	AttributeTypeEnum := []string{
+		ScalarAttributeTypeB,
+		ScalarAttributeTypeN,
+		ScalarAttributeTypeS,
+	}
+	if err := model.ValidateEnum(v, "AttributeType", AttributeTypeEnum); err != nil {
+		errors["AttributeType"] = append(errors["AttributeType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AttributeValue is undocumented.
 type AttributeValue struct {
 	B    []byte                    `json:"B,omitempty"`
@@ -345,16 +433,76 @@ type AttributeValue struct {
 	SS   []string                  `json:"SS,omitempty"`
 }
 
+func (v *AttributeValue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AttributeValueUpdate is undocumented.
 type AttributeValueUpdate struct {
 	Action aws.StringValue `json:"Action,omitempty"`
 	Value  *AttributeValue `json:"Value,omitempty"`
 }
 
+func (v *AttributeValueUpdate) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ActionEnum := []string{
+		AttributeActionAdd,
+		AttributeActionDelete,
+		AttributeActionPut,
+	}
+	if err := model.ValidateEnum(v, "Action", ActionEnum); err != nil {
+		errors["Action"] = append(errors["Action"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BatchGetItemInput is undocumented.
 type BatchGetItemInput struct {
 	RequestItems           map[string]KeysAndAttributes `json:"RequestItems"`
 	ReturnConsumedCapacity aws.StringValue              `json:"ReturnConsumedCapacity,omitempty"`
+}
+
+func (v *BatchGetItemInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "RequestItems"); err != nil {
+		errors["RequestItems"] = append(errors["RequestItems"], err)
+	}
+
+	if err := model.ValidateMin(v, "RequestItems", 1); err != nil {
+		errors["RequestItems"] = append(errors["RequestItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "RequestItems", 100); err != nil {
+		errors["RequestItems"] = append(errors["RequestItems"], err)
+	}
+
+	ReturnConsumedCapacityEnum := []string{
+		ReturnConsumedCapacityIndexes,
+		ReturnConsumedCapacityNone,
+		ReturnConsumedCapacityTotal,
+	}
+	if err := model.ValidateEnum(v, "ReturnConsumedCapacity", ReturnConsumedCapacityEnum); err != nil {
+		errors["ReturnConsumedCapacity"] = append(errors["ReturnConsumedCapacity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // BatchGetItemOutput is undocumented.
@@ -364,11 +512,68 @@ type BatchGetItemOutput struct {
 	UnprocessedKeys  map[string]KeysAndAttributes           `json:"UnprocessedKeys,omitempty"`
 }
 
+func (v *BatchGetItemOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "UnprocessedKeys", 1); err != nil {
+		errors["UnprocessedKeys"] = append(errors["UnprocessedKeys"], err)
+	}
+
+	if err := model.ValidateMax(v, "UnprocessedKeys", 100); err != nil {
+		errors["UnprocessedKeys"] = append(errors["UnprocessedKeys"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BatchWriteItemInput is undocumented.
 type BatchWriteItemInput struct {
 	RequestItems                map[string][]WriteRequest `json:"RequestItems"`
 	ReturnConsumedCapacity      aws.StringValue           `json:"ReturnConsumedCapacity,omitempty"`
 	ReturnItemCollectionMetrics aws.StringValue           `json:"ReturnItemCollectionMetrics,omitempty"`
+}
+
+func (v *BatchWriteItemInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "RequestItems"); err != nil {
+		errors["RequestItems"] = append(errors["RequestItems"], err)
+	}
+
+	if err := model.ValidateMin(v, "RequestItems", 1); err != nil {
+		errors["RequestItems"] = append(errors["RequestItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "RequestItems", 25); err != nil {
+		errors["RequestItems"] = append(errors["RequestItems"], err)
+	}
+
+	ReturnConsumedCapacityEnum := []string{
+		ReturnConsumedCapacityIndexes,
+		ReturnConsumedCapacityNone,
+		ReturnConsumedCapacityTotal,
+	}
+	if err := model.ValidateEnum(v, "ReturnConsumedCapacity", ReturnConsumedCapacityEnum); err != nil {
+		errors["ReturnConsumedCapacity"] = append(errors["ReturnConsumedCapacity"], err)
+	}
+
+	ReturnItemCollectionMetricsEnum := []string{
+		ReturnItemCollectionMetricsNone,
+		ReturnItemCollectionMetricsSize,
+	}
+	if err := model.ValidateEnum(v, "ReturnItemCollectionMetrics", ReturnItemCollectionMetricsEnum); err != nil {
+		errors["ReturnItemCollectionMetrics"] = append(errors["ReturnItemCollectionMetrics"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // BatchWriteItemOutput is undocumented.
@@ -378,9 +583,37 @@ type BatchWriteItemOutput struct {
 	UnprocessedItems      map[string][]WriteRequest          `json:"UnprocessedItems,omitempty"`
 }
 
+func (v *BatchWriteItemOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "UnprocessedItems", 1); err != nil {
+		errors["UnprocessedItems"] = append(errors["UnprocessedItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "UnprocessedItems", 25); err != nil {
+		errors["UnprocessedItems"] = append(errors["UnprocessedItems"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Capacity is undocumented.
 type Capacity struct {
 	CapacityUnits aws.DoubleValue `json:"CapacityUnits,omitempty"`
+}
+
+func (v *Capacity) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for DynamoDB.
@@ -406,6 +639,39 @@ type Condition struct {
 	ComparisonOperator aws.StringValue  `json:"ComparisonOperator"`
 }
 
+func (v *Condition) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ComparisonOperator"); err != nil {
+		errors["ComparisonOperator"] = append(errors["ComparisonOperator"], err)
+	}
+
+	ComparisonOperatorEnum := []string{
+		ComparisonOperatorBeginsWith,
+		ComparisonOperatorBetween,
+		ComparisonOperatorContains,
+		ComparisonOperatorEq,
+		ComparisonOperatorGe,
+		ComparisonOperatorGt,
+		ComparisonOperatorIn,
+		ComparisonOperatorLe,
+		ComparisonOperatorLt,
+		ComparisonOperatorNe,
+		ComparisonOperatorNotContains,
+		ComparisonOperatorNotNull,
+		ComparisonOperatorNull,
+	}
+	if err := model.ValidateEnum(v, "ComparisonOperator", ComparisonOperatorEnum); err != nil {
+		errors["ComparisonOperator"] = append(errors["ComparisonOperator"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for DynamoDB.
 const (
 	ConditionalOperatorAnd = "AND"
@@ -421,6 +687,28 @@ type ConsumedCapacity struct {
 	TableName              aws.StringValue     `json:"TableName,omitempty"`
 }
 
+func (v *ConsumedCapacity) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TableName", 3); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TableName", 255); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateTableInput is undocumented.
 type CreateTableInput struct {
 	AttributeDefinitions   []AttributeDefinition  `json:"AttributeDefinitions"`
@@ -431,9 +719,65 @@ type CreateTableInput struct {
 	TableName              aws.StringValue        `json:"TableName"`
 }
 
+func (v *CreateTableInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AttributeDefinitions"); err != nil {
+		errors["AttributeDefinitions"] = append(errors["AttributeDefinitions"], err)
+	}
+
+	if err := model.ValidateRequired(v, "KeySchema"); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeySchema", 1); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeySchema", 2); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ProvisionedThroughput"); err != nil {
+		errors["ProvisionedThroughput"] = append(errors["ProvisionedThroughput"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TableName"); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TableName", 3); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TableName", 255); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateTableOutput is undocumented.
 type CreateTableOutput struct {
 	TableDescription *TableDescription `json:"TableDescription,omitempty"`
+}
+
+func (v *CreateTableOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteItemInput is undocumented.
@@ -450,6 +794,72 @@ type DeleteItemInput struct {
 	TableName                   aws.StringValue                   `json:"TableName"`
 }
 
+func (v *DeleteItemInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ConditionalOperatorEnum := []string{
+		ConditionalOperatorAnd,
+		ConditionalOperatorOr,
+	}
+	if err := model.ValidateEnum(v, "ConditionalOperator", ConditionalOperatorEnum); err != nil {
+		errors["ConditionalOperator"] = append(errors["ConditionalOperator"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	ReturnConsumedCapacityEnum := []string{
+		ReturnConsumedCapacityIndexes,
+		ReturnConsumedCapacityNone,
+		ReturnConsumedCapacityTotal,
+	}
+	if err := model.ValidateEnum(v, "ReturnConsumedCapacity", ReturnConsumedCapacityEnum); err != nil {
+		errors["ReturnConsumedCapacity"] = append(errors["ReturnConsumedCapacity"], err)
+	}
+
+	ReturnItemCollectionMetricsEnum := []string{
+		ReturnItemCollectionMetricsNone,
+		ReturnItemCollectionMetricsSize,
+	}
+	if err := model.ValidateEnum(v, "ReturnItemCollectionMetrics", ReturnItemCollectionMetricsEnum); err != nil {
+		errors["ReturnItemCollectionMetrics"] = append(errors["ReturnItemCollectionMetrics"], err)
+	}
+
+	ReturnValuesEnum := []string{
+		ReturnValueAllNew,
+		ReturnValueAllOld,
+		ReturnValueNone,
+		ReturnValueUpdatedNew,
+		ReturnValueUpdatedOld,
+	}
+	if err := model.ValidateEnum(v, "ReturnValues", ReturnValuesEnum); err != nil {
+		errors["ReturnValues"] = append(errors["ReturnValues"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TableName"); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TableName", 3); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TableName", 255); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteItemOutput is undocumented.
 type DeleteItemOutput struct {
 	Attributes            map[string]AttributeValue `json:"Attributes,omitempty"`
@@ -457,9 +867,33 @@ type DeleteItemOutput struct {
 	ItemCollectionMetrics *ItemCollectionMetrics    `json:"ItemCollectionMetrics,omitempty"`
 }
 
+func (v *DeleteItemOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteRequest is undocumented.
 type DeleteRequest struct {
 	Key map[string]AttributeValue `json:"Key"`
+}
+
+func (v *DeleteRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteTableInput is undocumented.
@@ -467,9 +901,45 @@ type DeleteTableInput struct {
 	TableName aws.StringValue `json:"TableName"`
 }
 
+func (v *DeleteTableInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "TableName"); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TableName", 3); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TableName", 255); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteTableOutput is undocumented.
 type DeleteTableOutput struct {
 	TableDescription *TableDescription `json:"TableDescription,omitempty"`
+}
+
+func (v *DeleteTableOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTableInput is undocumented.
@@ -477,9 +947,45 @@ type DescribeTableInput struct {
 	TableName aws.StringValue `json:"TableName"`
 }
 
+func (v *DescribeTableInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "TableName"); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TableName", 3); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TableName", 255); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTableOutput is undocumented.
 type DescribeTableOutput struct {
 	Table *TableDescription `json:"Table,omitempty"`
+}
+
+func (v *DescribeTableOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ExpectedAttributeValue is undocumented.
@@ -488,6 +994,35 @@ type ExpectedAttributeValue struct {
 	ComparisonOperator aws.StringValue  `json:"ComparisonOperator,omitempty"`
 	Exists             aws.BooleanValue `json:"Exists,omitempty"`
 	Value              *AttributeValue  `json:"Value,omitempty"`
+}
+
+func (v *ExpectedAttributeValue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ComparisonOperatorEnum := []string{
+		ComparisonOperatorBeginsWith,
+		ComparisonOperatorBetween,
+		ComparisonOperatorContains,
+		ComparisonOperatorEq,
+		ComparisonOperatorGe,
+		ComparisonOperatorGt,
+		ComparisonOperatorIn,
+		ComparisonOperatorLe,
+		ComparisonOperatorLt,
+		ComparisonOperatorNe,
+		ComparisonOperatorNotContains,
+		ComparisonOperatorNotNull,
+		ComparisonOperatorNull,
+	}
+	if err := model.ValidateEnum(v, "ComparisonOperator", ComparisonOperatorEnum); err != nil {
+		errors["ComparisonOperator"] = append(errors["ComparisonOperator"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetItemInput is undocumented.
@@ -501,10 +1036,63 @@ type GetItemInput struct {
 	TableName                aws.StringValue           `json:"TableName"`
 }
 
+func (v *GetItemInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AttributesToGet", 1); err != nil {
+		errors["AttributesToGet"] = append(errors["AttributesToGet"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	ReturnConsumedCapacityEnum := []string{
+		ReturnConsumedCapacityIndexes,
+		ReturnConsumedCapacityNone,
+		ReturnConsumedCapacityTotal,
+	}
+	if err := model.ValidateEnum(v, "ReturnConsumedCapacity", ReturnConsumedCapacityEnum); err != nil {
+		errors["ReturnConsumedCapacity"] = append(errors["ReturnConsumedCapacity"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TableName"); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TableName", 3); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TableName", 255); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetItemOutput is undocumented.
 type GetItemOutput struct {
 	ConsumedCapacity *ConsumedCapacity         `json:"ConsumedCapacity,omitempty"`
 	Item             map[string]AttributeValue `json:"Item,omitempty"`
+}
+
+func (v *GetItemOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GlobalSecondaryIndex is undocumented.
@@ -513,6 +1101,52 @@ type GlobalSecondaryIndex struct {
 	KeySchema             []KeySchemaElement     `json:"KeySchema"`
 	Projection            *Projection            `json:"Projection"`
 	ProvisionedThroughput *ProvisionedThroughput `json:"ProvisionedThroughput"`
+}
+
+func (v *GlobalSecondaryIndex) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IndexName"); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateMin(v, "IndexName", 3); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateMax(v, "IndexName", 255); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IndexName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "KeySchema"); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeySchema", 1); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeySchema", 2); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Projection"); err != nil {
+		errors["Projection"] = append(errors["Projection"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ProvisionedThroughput"); err != nil {
+		errors["ProvisionedThroughput"] = append(errors["ProvisionedThroughput"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GlobalSecondaryIndexDescription is undocumented.
@@ -526,9 +1160,59 @@ type GlobalSecondaryIndexDescription struct {
 	ProvisionedThroughput *ProvisionedThroughputDescription `json:"ProvisionedThroughput,omitempty"`
 }
 
+func (v *GlobalSecondaryIndexDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "IndexName", 3); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateMax(v, "IndexName", 255); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IndexName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	IndexStatusEnum := []string{
+		IndexStatusActive,
+		IndexStatusCreating,
+		IndexStatusDeleting,
+		IndexStatusUpdating,
+	}
+	if err := model.ValidateEnum(v, "IndexStatus", IndexStatusEnum); err != nil {
+		errors["IndexStatus"] = append(errors["IndexStatus"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeySchema", 1); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeySchema", 2); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GlobalSecondaryIndexUpdate is undocumented.
 type GlobalSecondaryIndexUpdate struct {
 	Update *UpdateGlobalSecondaryIndexAction `json:"Update,omitempty"`
+}
+
+func (v *GlobalSecondaryIndexUpdate) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for DynamoDB.
@@ -545,10 +1229,54 @@ type ItemCollectionMetrics struct {
 	SizeEstimateRangeGB []float64                 `json:"SizeEstimateRangeGB,omitempty"`
 }
 
+func (v *ItemCollectionMetrics) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // KeySchemaElement is undocumented.
 type KeySchemaElement struct {
 	AttributeName aws.StringValue `json:"AttributeName"`
 	KeyType       aws.StringValue `json:"KeyType"`
+}
+
+func (v *KeySchemaElement) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AttributeName"); err != nil {
+		errors["AttributeName"] = append(errors["AttributeName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AttributeName", 1); err != nil {
+		errors["AttributeName"] = append(errors["AttributeName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AttributeName", 255); err != nil {
+		errors["AttributeName"] = append(errors["AttributeName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "KeyType"); err != nil {
+		errors["KeyType"] = append(errors["KeyType"], err)
+	}
+
+	KeyTypeEnum := []string{
+		KeyTypeHash,
+		KeyTypeRange,
+	}
+	if err := model.ValidateEnum(v, "KeyType", KeyTypeEnum); err != nil {
+		errors["KeyType"] = append(errors["KeyType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for DynamoDB.
@@ -566,10 +1294,66 @@ type KeysAndAttributes struct {
 	ProjectionExpression     aws.StringValue             `json:"ProjectionExpression,omitempty"`
 }
 
+func (v *KeysAndAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AttributesToGet", 1); err != nil {
+		errors["AttributesToGet"] = append(errors["AttributesToGet"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Keys"); err != nil {
+		errors["Keys"] = append(errors["Keys"], err)
+	}
+
+	if err := model.ValidateMin(v, "Keys", 1); err != nil {
+		errors["Keys"] = append(errors["Keys"], err)
+	}
+
+	if err := model.ValidateMax(v, "Keys", 100); err != nil {
+		errors["Keys"] = append(errors["Keys"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListTablesInput is undocumented.
 type ListTablesInput struct {
 	ExclusiveStartTableName aws.StringValue  `json:"ExclusiveStartTableName,omitempty"`
 	Limit                   aws.IntegerValue `json:"Limit,omitempty"`
+}
+
+func (v *ListTablesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ExclusiveStartTableName", 3); err != nil {
+		errors["ExclusiveStartTableName"] = append(errors["ExclusiveStartTableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExclusiveStartTableName", 255); err != nil {
+		errors["ExclusiveStartTableName"] = append(errors["ExclusiveStartTableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ExclusiveStartTableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["ExclusiveStartTableName"] = append(errors["ExclusiveStartTableName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 100); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListTablesOutput is undocumented.
@@ -578,11 +1362,75 @@ type ListTablesOutput struct {
 	TableNames             []string        `json:"TableNames,omitempty"`
 }
 
+func (v *ListTablesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "LastEvaluatedTableName", 3); err != nil {
+		errors["LastEvaluatedTableName"] = append(errors["LastEvaluatedTableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LastEvaluatedTableName", 255); err != nil {
+		errors["LastEvaluatedTableName"] = append(errors["LastEvaluatedTableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LastEvaluatedTableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["LastEvaluatedTableName"] = append(errors["LastEvaluatedTableName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // LocalSecondaryIndex is undocumented.
 type LocalSecondaryIndex struct {
 	IndexName  aws.StringValue    `json:"IndexName"`
 	KeySchema  []KeySchemaElement `json:"KeySchema"`
 	Projection *Projection        `json:"Projection"`
+}
+
+func (v *LocalSecondaryIndex) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IndexName"); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateMin(v, "IndexName", 3); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateMax(v, "IndexName", 255); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IndexName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "KeySchema"); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeySchema", 1); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeySchema", 2); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Projection"); err != nil {
+		errors["Projection"] = append(errors["Projection"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LocalSecondaryIndexDescription is undocumented.
@@ -594,10 +1442,67 @@ type LocalSecondaryIndexDescription struct {
 	Projection     *Projection        `json:"Projection,omitempty"`
 }
 
+func (v *LocalSecondaryIndexDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "IndexName", 3); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateMax(v, "IndexName", 255); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IndexName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateMin(v, "KeySchema", 1); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeySchema", 2); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Projection is undocumented.
 type Projection struct {
 	NonKeyAttributes []string        `json:"NonKeyAttributes,omitempty"`
 	ProjectionType   aws.StringValue `json:"ProjectionType,omitempty"`
+}
+
+func (v *Projection) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NonKeyAttributes", 1); err != nil {
+		errors["NonKeyAttributes"] = append(errors["NonKeyAttributes"], err)
+	}
+
+	if err := model.ValidateMax(v, "NonKeyAttributes", 20); err != nil {
+		errors["NonKeyAttributes"] = append(errors["NonKeyAttributes"], err)
+	}
+
+	ProjectionTypeEnum := []string{
+		ProjectionTypeAll,
+		ProjectionTypeInclude,
+		ProjectionTypeKeysOnly,
+	}
+	if err := model.ValidateEnum(v, "ProjectionType", ProjectionTypeEnum); err != nil {
+		errors["ProjectionType"] = append(errors["ProjectionType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for DynamoDB.
@@ -613,6 +1518,32 @@ type ProvisionedThroughput struct {
 	WriteCapacityUnits aws.LongValue `json:"WriteCapacityUnits"`
 }
 
+func (v *ProvisionedThroughput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ReadCapacityUnits"); err != nil {
+		errors["ReadCapacityUnits"] = append(errors["ReadCapacityUnits"], err)
+	}
+
+	if err := model.ValidateMin(v, "ReadCapacityUnits", 1); err != nil {
+		errors["ReadCapacityUnits"] = append(errors["ReadCapacityUnits"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WriteCapacityUnits"); err != nil {
+		errors["WriteCapacityUnits"] = append(errors["WriteCapacityUnits"], err)
+	}
+
+	if err := model.ValidateMin(v, "WriteCapacityUnits", 1); err != nil {
+		errors["WriteCapacityUnits"] = append(errors["WriteCapacityUnits"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ProvisionedThroughputDescription is undocumented.
 type ProvisionedThroughputDescription struct {
 	LastDecreaseDateTime   *aws.FloatTimestamp `json:"LastDecreaseDateTime,omitempty"`
@@ -620,6 +1551,28 @@ type ProvisionedThroughputDescription struct {
 	NumberOfDecreasesToday aws.LongValue       `json:"NumberOfDecreasesToday,omitempty"`
 	ReadCapacityUnits      aws.LongValue       `json:"ReadCapacityUnits,omitempty"`
 	WriteCapacityUnits     aws.LongValue       `json:"WriteCapacityUnits,omitempty"`
+}
+
+func (v *ProvisionedThroughputDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NumberOfDecreasesToday", 1); err != nil {
+		errors["NumberOfDecreasesToday"] = append(errors["NumberOfDecreasesToday"], err)
+	}
+
+	if err := model.ValidateMin(v, "ReadCapacityUnits", 1); err != nil {
+		errors["ReadCapacityUnits"] = append(errors["ReadCapacityUnits"], err)
+	}
+
+	if err := model.ValidateMin(v, "WriteCapacityUnits", 1); err != nil {
+		errors["WriteCapacityUnits"] = append(errors["WriteCapacityUnits"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutItemInput is undocumented.
@@ -636,6 +1589,72 @@ type PutItemInput struct {
 	TableName                   aws.StringValue                   `json:"TableName"`
 }
 
+func (v *PutItemInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ConditionalOperatorEnum := []string{
+		ConditionalOperatorAnd,
+		ConditionalOperatorOr,
+	}
+	if err := model.ValidateEnum(v, "ConditionalOperator", ConditionalOperatorEnum); err != nil {
+		errors["ConditionalOperator"] = append(errors["ConditionalOperator"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Item"); err != nil {
+		errors["Item"] = append(errors["Item"], err)
+	}
+
+	ReturnConsumedCapacityEnum := []string{
+		ReturnConsumedCapacityIndexes,
+		ReturnConsumedCapacityNone,
+		ReturnConsumedCapacityTotal,
+	}
+	if err := model.ValidateEnum(v, "ReturnConsumedCapacity", ReturnConsumedCapacityEnum); err != nil {
+		errors["ReturnConsumedCapacity"] = append(errors["ReturnConsumedCapacity"], err)
+	}
+
+	ReturnItemCollectionMetricsEnum := []string{
+		ReturnItemCollectionMetricsNone,
+		ReturnItemCollectionMetricsSize,
+	}
+	if err := model.ValidateEnum(v, "ReturnItemCollectionMetrics", ReturnItemCollectionMetricsEnum); err != nil {
+		errors["ReturnItemCollectionMetrics"] = append(errors["ReturnItemCollectionMetrics"], err)
+	}
+
+	ReturnValuesEnum := []string{
+		ReturnValueAllNew,
+		ReturnValueAllOld,
+		ReturnValueNone,
+		ReturnValueUpdatedNew,
+		ReturnValueUpdatedOld,
+	}
+	if err := model.ValidateEnum(v, "ReturnValues", ReturnValuesEnum); err != nil {
+		errors["ReturnValues"] = append(errors["ReturnValues"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TableName"); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TableName", 3); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TableName", 255); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutItemOutput is undocumented.
 type PutItemOutput struct {
 	Attributes            map[string]AttributeValue `json:"Attributes,omitempty"`
@@ -643,9 +1662,33 @@ type PutItemOutput struct {
 	ItemCollectionMetrics *ItemCollectionMetrics    `json:"ItemCollectionMetrics,omitempty"`
 }
 
+func (v *PutItemOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutRequest is undocumented.
 type PutRequest struct {
 	Item map[string]AttributeValue `json:"Item"`
+}
+
+func (v *PutRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Item"); err != nil {
+		errors["Item"] = append(errors["Item"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // QueryInput is undocumented.
@@ -668,6 +1711,83 @@ type QueryInput struct {
 	TableName                 aws.StringValue           `json:"TableName"`
 }
 
+func (v *QueryInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AttributesToGet", 1); err != nil {
+		errors["AttributesToGet"] = append(errors["AttributesToGet"], err)
+	}
+
+	ConditionalOperatorEnum := []string{
+		ConditionalOperatorAnd,
+		ConditionalOperatorOr,
+	}
+	if err := model.ValidateEnum(v, "ConditionalOperator", ConditionalOperatorEnum); err != nil {
+		errors["ConditionalOperator"] = append(errors["ConditionalOperator"], err)
+	}
+
+	if err := model.ValidateMin(v, "IndexName", 3); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateMax(v, "IndexName", 255); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IndexName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "KeyConditions"); err != nil {
+		errors["KeyConditions"] = append(errors["KeyConditions"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	ReturnConsumedCapacityEnum := []string{
+		ReturnConsumedCapacityIndexes,
+		ReturnConsumedCapacityNone,
+		ReturnConsumedCapacityTotal,
+	}
+	if err := model.ValidateEnum(v, "ReturnConsumedCapacity", ReturnConsumedCapacityEnum); err != nil {
+		errors["ReturnConsumedCapacity"] = append(errors["ReturnConsumedCapacity"], err)
+	}
+
+	SelectEnum := []string{
+		SelectAllAttributes,
+		SelectAllProjectedAttributes,
+		SelectCount,
+		SelectSpecificAttributes,
+	}
+	if err := model.ValidateEnum(v, "Select", SelectEnum); err != nil {
+		errors["Select"] = append(errors["Select"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TableName"); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TableName", 3); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TableName", 255); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // QueryOutput is undocumented.
 type QueryOutput struct {
 	ConsumedCapacity *ConsumedCapacity           `json:"ConsumedCapacity,omitempty"`
@@ -675,6 +1795,16 @@ type QueryOutput struct {
 	Items            []map[string]AttributeValue `json:"Items,omitempty"`
 	LastEvaluatedKey map[string]AttributeValue   `json:"LastEvaluatedKey,omitempty"`
 	ScannedCount     aws.IntegerValue            `json:"ScannedCount,omitempty"`
+}
+
+func (v *QueryOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for DynamoDB.
@@ -724,6 +1854,79 @@ type ScanInput struct {
 	TotalSegments             aws.IntegerValue          `json:"TotalSegments,omitempty"`
 }
 
+func (v *ScanInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AttributesToGet", 1); err != nil {
+		errors["AttributesToGet"] = append(errors["AttributesToGet"], err)
+	}
+
+	ConditionalOperatorEnum := []string{
+		ConditionalOperatorAnd,
+		ConditionalOperatorOr,
+	}
+	if err := model.ValidateEnum(v, "ConditionalOperator", ConditionalOperatorEnum); err != nil {
+		errors["ConditionalOperator"] = append(errors["ConditionalOperator"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	ReturnConsumedCapacityEnum := []string{
+		ReturnConsumedCapacityIndexes,
+		ReturnConsumedCapacityNone,
+		ReturnConsumedCapacityTotal,
+	}
+	if err := model.ValidateEnum(v, "ReturnConsumedCapacity", ReturnConsumedCapacityEnum); err != nil {
+		errors["ReturnConsumedCapacity"] = append(errors["ReturnConsumedCapacity"], err)
+	}
+
+	if err := model.ValidateMax(v, "Segment", 999999); err != nil {
+		errors["Segment"] = append(errors["Segment"], err)
+	}
+
+	SelectEnum := []string{
+		SelectAllAttributes,
+		SelectAllProjectedAttributes,
+		SelectCount,
+		SelectSpecificAttributes,
+	}
+	if err := model.ValidateEnum(v, "Select", SelectEnum); err != nil {
+		errors["Select"] = append(errors["Select"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TableName"); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TableName", 3); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TableName", 255); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TotalSegments", 1); err != nil {
+		errors["TotalSegments"] = append(errors["TotalSegments"], err)
+	}
+
+	if err := model.ValidateMax(v, "TotalSegments", 1000000); err != nil {
+		errors["TotalSegments"] = append(errors["TotalSegments"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ScanOutput is undocumented.
 type ScanOutput struct {
 	ConsumedCapacity *ConsumedCapacity           `json:"ConsumedCapacity,omitempty"`
@@ -731,6 +1934,16 @@ type ScanOutput struct {
 	Items            []map[string]AttributeValue `json:"Items,omitempty"`
 	LastEvaluatedKey map[string]AttributeValue   `json:"LastEvaluatedKey,omitempty"`
 	ScannedCount     aws.IntegerValue            `json:"ScannedCount,omitempty"`
+}
+
+func (v *ScanOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for DynamoDB.
@@ -755,6 +1968,46 @@ type TableDescription struct {
 	TableStatus            aws.StringValue                   `json:"TableStatus,omitempty"`
 }
 
+func (v *TableDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "KeySchema", 1); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateMax(v, "KeySchema", 2); err != nil {
+		errors["KeySchema"] = append(errors["KeySchema"], err)
+	}
+
+	if err := model.ValidateMin(v, "TableName", 3); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TableName", 255); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	TableStatusEnum := []string{
+		TableStatusActive,
+		TableStatusCreating,
+		TableStatusDeleting,
+		TableStatusUpdating,
+	}
+	if err := model.ValidateEnum(v, "TableStatus", TableStatusEnum); err != nil {
+		errors["TableStatus"] = append(errors["TableStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for DynamoDB.
 const (
 	TableStatusActive   = "ACTIVE"
@@ -767,6 +2020,36 @@ const (
 type UpdateGlobalSecondaryIndexAction struct {
 	IndexName             aws.StringValue        `json:"IndexName"`
 	ProvisionedThroughput *ProvisionedThroughput `json:"ProvisionedThroughput"`
+}
+
+func (v *UpdateGlobalSecondaryIndexAction) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IndexName"); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateMin(v, "IndexName", 3); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateMax(v, "IndexName", 255); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IndexName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["IndexName"] = append(errors["IndexName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ProvisionedThroughput"); err != nil {
+		errors["ProvisionedThroughput"] = append(errors["ProvisionedThroughput"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateItemInput is undocumented.
@@ -785,11 +2068,87 @@ type UpdateItemInput struct {
 	UpdateExpression            aws.StringValue                   `json:"UpdateExpression,omitempty"`
 }
 
+func (v *UpdateItemInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ConditionalOperatorEnum := []string{
+		ConditionalOperatorAnd,
+		ConditionalOperatorOr,
+	}
+	if err := model.ValidateEnum(v, "ConditionalOperator", ConditionalOperatorEnum); err != nil {
+		errors["ConditionalOperator"] = append(errors["ConditionalOperator"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	ReturnConsumedCapacityEnum := []string{
+		ReturnConsumedCapacityIndexes,
+		ReturnConsumedCapacityNone,
+		ReturnConsumedCapacityTotal,
+	}
+	if err := model.ValidateEnum(v, "ReturnConsumedCapacity", ReturnConsumedCapacityEnum); err != nil {
+		errors["ReturnConsumedCapacity"] = append(errors["ReturnConsumedCapacity"], err)
+	}
+
+	ReturnItemCollectionMetricsEnum := []string{
+		ReturnItemCollectionMetricsNone,
+		ReturnItemCollectionMetricsSize,
+	}
+	if err := model.ValidateEnum(v, "ReturnItemCollectionMetrics", ReturnItemCollectionMetricsEnum); err != nil {
+		errors["ReturnItemCollectionMetrics"] = append(errors["ReturnItemCollectionMetrics"], err)
+	}
+
+	ReturnValuesEnum := []string{
+		ReturnValueAllNew,
+		ReturnValueAllOld,
+		ReturnValueNone,
+		ReturnValueUpdatedNew,
+		ReturnValueUpdatedOld,
+	}
+	if err := model.ValidateEnum(v, "ReturnValues", ReturnValuesEnum); err != nil {
+		errors["ReturnValues"] = append(errors["ReturnValues"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TableName"); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TableName", 3); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TableName", 255); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateItemOutput is undocumented.
 type UpdateItemOutput struct {
 	Attributes            map[string]AttributeValue `json:"Attributes,omitempty"`
 	ConsumedCapacity      *ConsumedCapacity         `json:"ConsumedCapacity,omitempty"`
 	ItemCollectionMetrics *ItemCollectionMetrics    `json:"ItemCollectionMetrics,omitempty"`
+}
+
+func (v *UpdateItemOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateTableInput is undocumented.
@@ -799,15 +2158,61 @@ type UpdateTableInput struct {
 	TableName                   aws.StringValue              `json:"TableName"`
 }
 
+func (v *UpdateTableInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "TableName"); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TableName", 3); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TableName", 255); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TableName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["TableName"] = append(errors["TableName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateTableOutput is undocumented.
 type UpdateTableOutput struct {
 	TableDescription *TableDescription `json:"TableDescription,omitempty"`
+}
+
+func (v *UpdateTableOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // WriteRequest is undocumented.
 type WriteRequest struct {
 	DeleteRequest *DeleteRequest `json:"DeleteRequest,omitempty"`
 	PutRequest    *PutRequest    `json:"PutRequest,omitempty"`
+}
+
+func (v *WriteRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

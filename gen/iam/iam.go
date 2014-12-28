@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // IAM is a client for AWS Identity and Access Management.
@@ -44,6 +45,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *IAM
 // IAM OpenID Connect provider. This action is idempotent; it does not fail
 // or return an error if you add an existing client ID to the provider.
 func (c *IAM) AddClientIDToOpenIDConnectProvider(req *AddClientIDToOpenIDConnectProviderRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AddClientIDToOpenIDConnectProvider", "POST", "/", req, nil)
 	return
@@ -54,6 +59,10 @@ func (c *IAM) AddClientIDToOpenIDConnectProvider(req *AddClientIDToOpenIDConnect
 // Roles . For more information about instance profiles, go to About
 // Instance Profiles .
 func (c *IAM) AddRoleToInstanceProfile(req *AddRoleToInstanceProfileRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AddRoleToInstanceProfile", "POST", "/", req, nil)
 	return
@@ -61,6 +70,10 @@ func (c *IAM) AddRoleToInstanceProfile(req *AddRoleToInstanceProfileRequest) (er
 
 // AddUserToGroup is undocumented.
 func (c *IAM) AddUserToGroup(req *AddUserToGroupRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AddUserToGroup", "POST", "/", req, nil)
 	return
@@ -72,6 +85,10 @@ func (c *IAM) AddUserToGroup(req *AddUserToGroupRequest) (err error) {
 // more information about modifying passwords, see Managing Passwords in
 // the Using guide.
 func (c *IAM) ChangePassword(req *ChangePasswordRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ChangePassword", "POST", "/", req, nil)
 	return
@@ -91,6 +108,10 @@ func (c *IAM) ChangePassword(req *ChangePasswordRequest) (err error) {
 // secret key is lost, you can delete the access keys for the associated
 // user and then create new keys.
 func (c *IAM) CreateAccessKey(req *CreateAccessKeyRequest) (resp *CreateAccessKeyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateAccessKeyResult{}
 	err = c.client.Do("CreateAccessKey", "POST", "/", req, resp)
 	return
@@ -100,6 +121,10 @@ func (c *IAM) CreateAccessKey(req *CreateAccessKeyRequest) (resp *CreateAccessKe
 // information about using an AWS account alias, see Using an Alias for
 // Your AWS Account in the Using guide.
 func (c *IAM) CreateAccountAlias(req *CreateAccountAliasRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateAccountAlias", "POST", "/", req, nil)
 	return
@@ -109,6 +134,10 @@ func (c *IAM) CreateAccountAlias(req *CreateAccountAliasRequest) (err error) {
 // groups you can create, see Limitations on IAM Entities in the Using
 // guide.
 func (c *IAM) CreateGroup(req *CreateGroupRequest) (resp *CreateGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateGroupResult{}
 	err = c.client.Do("CreateGroup", "POST", "/", req, resp)
 	return
@@ -119,6 +148,10 @@ func (c *IAM) CreateGroup(req *CreateGroupRequest) (resp *CreateGroupResult, err
 // about the number of instance profiles you can create, see Limitations on
 // IAM Entities in the Using guide.
 func (c *IAM) CreateInstanceProfile(req *CreateInstanceProfileRequest) (resp *CreateInstanceProfileResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateInstanceProfileResult{}
 	err = c.client.Do("CreateInstanceProfile", "POST", "/", req, resp)
 	return
@@ -129,6 +162,10 @@ func (c *IAM) CreateInstanceProfile(req *CreateInstanceProfileRequest) (resp *Cr
 // Console. For more information about managing passwords, see Managing
 // Passwords in the Using guide.
 func (c *IAM) CreateLoginProfile(req *CreateLoginProfileRequest) (resp *CreateLoginProfileResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateLoginProfileResult{}
 	err = c.client.Do("CreateLoginProfile", "POST", "/", req, resp)
 	return
@@ -148,6 +185,10 @@ func (c *IAM) CreateLoginProfile(req *CreateLoginProfileRequest) (resp *CreateLo
 // this action creates, it is a best practice to limit access to the
 // CreateOpenIDConnectProvider action to highly-privileged users.
 func (c *IAM) CreateOpenIDConnectProvider(req *CreateOpenIDConnectProviderRequest) (resp *CreateOpenIDConnectProviderResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateOpenIDConnectProviderResult{}
 	err = c.client.Do("CreateOpenIDConnectProvider", "POST", "/", req, resp)
 	return
@@ -161,6 +202,10 @@ func (c *IAM) CreateOpenIDConnectProvider(req *CreateOpenIDConnectProviderReques
 // URL-encoded according to RFC 3986. For more information about RFC 3986,
 // go to http://www.faqs.org/rfcs/rfc3986.html .
 func (c *IAM) CreateRole(req *CreateRoleRequest) (resp *CreateRoleResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateRoleResult{}
 	err = c.client.Do("CreateRole", "POST", "/", req, resp)
 	return
@@ -182,6 +227,10 @@ func (c *IAM) CreateRole(req *CreateRoleRequest) (resp *CreateRoleResult, err er
 // Temporary Security Credentials for Federation in the Using Temporary
 // Credentials guide.
 func (c *IAM) CreateSAMLProvider(req *CreateSAMLProviderRequest) (resp *CreateSAMLProviderResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateSAMLProviderResult{}
 	err = c.client.Do("CreateSAMLProvider", "POST", "/", req, resp)
 	return
@@ -191,6 +240,10 @@ func (c *IAM) CreateSAMLProvider(req *CreateSAMLProviderRequest) (resp *CreateSA
 // about limitations on the number of users you can create, see Limitations
 // on IAM Entities in the Using guide.
 func (c *IAM) CreateUser(req *CreateUserRequest) (resp *CreateUserResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateUserResult{}
 	err = c.client.Do("CreateUser", "POST", "/", req, resp)
 	return
@@ -208,6 +261,10 @@ func (c *IAM) CreateUser(req *CreateUserRequest) (resp *CreateUserResult, err er
 // device, you should ensure that the information is destroyed following
 // secure procedures.
 func (c *IAM) CreateVirtualMFADevice(req *CreateVirtualMFADeviceRequest) (resp *CreateVirtualMFADeviceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateVirtualMFADeviceResult{}
 	err = c.client.Do("CreateVirtualMFADevice", "POST", "/", req, resp)
 	return
@@ -218,6 +275,10 @@ func (c *IAM) CreateVirtualMFADevice(req *CreateVirtualMFADeviceRequest) (resp *
 // For more information about creating and working with virtual MFA
 // devices, go to Using a Virtual MFA Device in the Using guide.
 func (c *IAM) DeactivateMFADevice(req *DeactivateMFADeviceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeactivateMFADevice", "POST", "/", req, nil)
 	return
@@ -230,6 +291,10 @@ func (c *IAM) DeactivateMFADevice(req *DeactivateMFADeviceRequest) (err error) {
 // this action to manage root credentials even if the AWS account has no
 // associated users.
 func (c *IAM) DeleteAccessKey(req *DeleteAccessKeyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteAccessKey", "POST", "/", req, nil)
 	return
@@ -239,6 +304,10 @@ func (c *IAM) DeleteAccessKey(req *DeleteAccessKeyRequest) (err error) {
 // information about using an AWS account alias, see Using an Alias for
 // Your AWS Account in the Using guide.
 func (c *IAM) DeleteAccountAlias(req *DeleteAccountAliasRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteAccountAlias", "POST", "/", req, nil)
 	return
@@ -254,6 +323,10 @@ func (c *IAM) DeleteAccountPasswordPolicy() (err error) {
 // DeleteGroup deletes the specified group. The group must not contain any
 // users or have any attached policies.
 func (c *IAM) DeleteGroup(req *DeleteGroupRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteGroup", "POST", "/", req, nil)
 	return
@@ -262,6 +335,10 @@ func (c *IAM) DeleteGroup(req *DeleteGroupRequest) (err error) {
 // DeleteGroupPolicy deletes the specified policy that is associated with
 // the specified group.
 func (c *IAM) DeleteGroupPolicy(req *DeleteGroupPolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteGroupPolicy", "POST", "/", req, nil)
 	return
@@ -275,6 +352,10 @@ func (c *IAM) DeleteGroupPolicy(req *DeleteGroupPolicyRequest) (err error) {
 // instance. For more information about instance profiles, go to About
 // Instance Profiles .
 func (c *IAM) DeleteInstanceProfile(req *DeleteInstanceProfileRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteInstanceProfile", "POST", "/", req, nil)
 	return
@@ -288,6 +369,10 @@ func (c *IAM) DeleteInstanceProfile(req *DeleteInstanceProfileRequest) (err erro
 // delete it. For more information about making keys inactive or deleting
 // them, see UpdateAccessKey and DeleteAccessKey .
 func (c *IAM) DeleteLoginProfile(req *DeleteLoginProfileRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteLoginProfile", "POST", "/", req, nil)
 	return
@@ -300,6 +385,10 @@ func (c *IAM) DeleteLoginProfile(req *DeleteLoginProfileRequest) (err error) {
 // fail. This action is idempotent; it does not fail or return an error if
 // you call the action for a provider that was already deleted.
 func (c *IAM) DeleteOpenIDConnectProvider(req *DeleteOpenIDConnectProviderRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteOpenIDConnectProvider", "POST", "/", req, nil)
 	return
@@ -312,6 +401,10 @@ func (c *IAM) DeleteOpenIDConnectProvider(req *DeleteOpenIDConnectProviderReques
 // that is associated with a running instance will break any applications
 // running on the instance.
 func (c *IAM) DeleteRole(req *DeleteRoleRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteRole", "POST", "/", req, nil)
 	return
@@ -320,6 +413,10 @@ func (c *IAM) DeleteRole(req *DeleteRoleRequest) (err error) {
 // DeleteRolePolicy deletes the specified policy associated with the
 // specified role.
 func (c *IAM) DeleteRolePolicy(req *DeleteRolePolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteRolePolicy", "POST", "/", req, nil)
 	return
@@ -331,6 +428,10 @@ func (c *IAM) DeleteRolePolicy(req *DeleteRolePolicyRequest) (err error) {
 // that has been deleted will fail. This operation requires Signature
 // Version 4 .
 func (c *IAM) DeleteSAMLProvider(req *DeleteSAMLProviderRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteSAMLProvider", "POST", "/", req, nil)
 	return
@@ -347,6 +448,10 @@ func (c *IAM) DeleteSAMLProvider(req *DeleteSAMLProviderRequest) (err error) {
 // DeleteLoadBalancerListeners in the Elastic Load Balancing API Reference
 // .
 func (c *IAM) DeleteServerCertificate(req *DeleteServerCertificateRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteServerCertificate", "POST", "/", req, nil)
 	return
@@ -359,6 +464,10 @@ func (c *IAM) DeleteServerCertificate(req *DeleteServerCertificateRequest) (err 
 // AWS account, you can use this action to manage root credentials even if
 // the AWS account has no associated users.
 func (c *IAM) DeleteSigningCertificate(req *DeleteSigningCertificateRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteSigningCertificate", "POST", "/", req, nil)
 	return
@@ -368,6 +477,10 @@ func (c *IAM) DeleteSigningCertificate(req *DeleteSigningCertificateRequest) (er
 // groups, have any keys or signing certificates, or have any attached
 // policies.
 func (c *IAM) DeleteUser(req *DeleteUserRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteUser", "POST", "/", req, nil)
 	return
@@ -376,6 +489,10 @@ func (c *IAM) DeleteUser(req *DeleteUserRequest) (err error) {
 // DeleteUserPolicy deletes the specified policy associated with the
 // specified user.
 func (c *IAM) DeleteUserPolicy(req *DeleteUserPolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteUserPolicy", "POST", "/", req, nil)
 	return
@@ -385,6 +502,10 @@ func (c *IAM) DeleteUserPolicy(req *DeleteUserPolicyRequest) (err error) {
 // a user's virtual MFA device before you can delete it. For information
 // about deactivating MFA devices, see DeactivateMFADevice .
 func (c *IAM) DeleteVirtualMFADevice(req *DeleteVirtualMFADeviceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteVirtualMFADevice", "POST", "/", req, nil)
 	return
@@ -394,6 +515,10 @@ func (c *IAM) DeleteVirtualMFADevice(req *DeleteVirtualMFADeviceRequest) (err er
 // the specified user name. When enabled, the MFA device is required for
 // every subsequent login by the user name associated with the device.
 func (c *IAM) EnableMFADevice(req *EnableMFADeviceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("EnableMFADevice", "POST", "/", req, nil)
 	return
@@ -416,6 +541,10 @@ func (c *IAM) GenerateCredentialReport() (resp *GenerateCredentialReportResult, 
 // using the Filter parameter. You can paginate the results using the
 // MaxItems and Marker parameters.
 func (c *IAM) GetAccountAuthorizationDetails(req *GetAccountAuthorizationDetailsRequest) (resp *GetAccountAuthorizationDetailsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetAccountAuthorizationDetailsResult{}
 	err = c.client.Do("GetAccountAuthorizationDetails", "POST", "/", req, resp)
 	return
@@ -451,6 +580,10 @@ func (c *IAM) GetCredentialReport() (resp *GetCredentialReportResult, err error)
 // GetGroup returns a list of users that are in the specified group. You
 // can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) GetGroup(req *GetGroupRequest) (resp *GetGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetGroupResult{}
 	err = c.client.Do("GetGroup", "POST", "/", req, resp)
 	return
@@ -461,6 +594,10 @@ func (c *IAM) GetGroup(req *GetGroupRequest) (resp *GetGroupResult, err error) {
 // more information about RFC 3986, go to
 // http://www.faqs.org/rfcs/rfc3986.html .
 func (c *IAM) GetGroupPolicy(req *GetGroupPolicyRequest) (resp *GetGroupPolicyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetGroupPolicyResult{}
 	err = c.client.Do("GetGroupPolicy", "POST", "/", req, resp)
 	return
@@ -471,6 +608,10 @@ func (c *IAM) GetGroupPolicy(req *GetGroupPolicyRequest) (resp *GetGroupPolicyRe
 // information about instance profiles, go to About Instance Profiles . For
 // more information about ARNs, go to ARNs .
 func (c *IAM) GetInstanceProfile(req *GetInstanceProfileRequest) (resp *GetInstanceProfileResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetInstanceProfileResult{}
 	err = c.client.Do("GetInstanceProfile", "POST", "/", req, resp)
 	return
@@ -480,6 +621,10 @@ func (c *IAM) GetInstanceProfile(req *GetInstanceProfileRequest) (resp *GetInsta
 // the specified user. If the user has not been assigned a password, the
 // action returns a 404 NoSuchEntity ) error.
 func (c *IAM) GetLoginProfile(req *GetLoginProfileRequest) (resp *GetLoginProfileResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetLoginProfileResult{}
 	err = c.client.Do("GetLoginProfile", "POST", "/", req, resp)
 	return
@@ -488,6 +633,10 @@ func (c *IAM) GetLoginProfile(req *GetLoginProfileRequest) (resp *GetLoginProfil
 // GetOpenIDConnectProvider returns information about the specified OpenID
 // Connect provider.
 func (c *IAM) GetOpenIDConnectProvider(req *GetOpenIDConnectProviderRequest) (resp *GetOpenIDConnectProviderResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetOpenIDConnectProviderResult{}
 	err = c.client.Do("GetOpenIDConnectProvider", "POST", "/", req, resp)
 	return
@@ -500,6 +649,10 @@ func (c *IAM) GetOpenIDConnectProvider(req *GetOpenIDConnectProviderRequest) (re
 // according to RFC 3986. For more information about RFC 3986, go to
 // http://www.faqs.org/rfcs/rfc3986.html .
 func (c *IAM) GetRole(req *GetRoleRequest) (resp *GetRoleResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetRoleResult{}
 	err = c.client.Do("GetRole", "POST", "/", req, resp)
 	return
@@ -511,6 +664,10 @@ func (c *IAM) GetRole(req *GetRoleRequest) (resp *GetRoleResult, err error) {
 // information about RFC 3986, go to http://www.faqs.org/rfcs/rfc3986.html
 // .
 func (c *IAM) GetRolePolicy(req *GetRolePolicyRequest) (resp *GetRolePolicyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetRolePolicyResult{}
 	err = c.client.Do("GetRolePolicy", "POST", "/", req, resp)
 	return
@@ -520,6 +677,10 @@ func (c *IAM) GetRolePolicy(req *GetRolePolicyRequest) (resp *GetRolePolicyResul
 // the provider was created or updated. This operation requires Signature
 // Version 4 .
 func (c *IAM) GetSAMLProvider(req *GetSAMLProviderRequest) (resp *GetSAMLProviderResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetSAMLProviderResult{}
 	err = c.client.Do("GetSAMLProvider", "POST", "/", req, resp)
 	return
@@ -528,6 +689,10 @@ func (c *IAM) GetSAMLProvider(req *GetSAMLProviderRequest) (resp *GetSAMLProvide
 // GetServerCertificate retrieves information about the specified server
 // certificate.
 func (c *IAM) GetServerCertificate(req *GetServerCertificateRequest) (resp *GetServerCertificateResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetServerCertificateResult{}
 	err = c.client.Do("GetServerCertificate", "POST", "/", req, resp)
 	return
@@ -538,6 +703,10 @@ func (c *IAM) GetServerCertificate(req *GetServerCertificateRequest) (resp *GetS
 // name, IAM determines the user name implicitly based on the AWS access
 // key ID used to sign the request.
 func (c *IAM) GetUser(req *GetUserRequest) (resp *GetUserResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetUserResult{}
 	err = c.client.Do("GetUser", "POST", "/", req, resp)
 	return
@@ -548,6 +717,10 @@ func (c *IAM) GetUser(req *GetUserRequest) (resp *GetUserResult, err error) {
 // information about RFC 3986, go to http://www.faqs.org/rfcs/rfc3986.html
 // .
 func (c *IAM) GetUserPolicy(req *GetUserPolicyRequest) (resp *GetUserPolicyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetUserPolicyResult{}
 	err = c.client.Do("GetUserPolicy", "POST", "/", req, resp)
 	return
@@ -564,6 +737,10 @@ func (c *IAM) GetUserPolicy(req *GetUserPolicyRequest) (resp *GetUserPolicyResul
 // no associated users. To ensure the security of your AWS account, the
 // secret access key is accessible only during key and user creation.
 func (c *IAM) ListAccessKeys(req *ListAccessKeysRequest) (resp *ListAccessKeysResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListAccessKeysResult{}
 	err = c.client.Do("ListAccessKeys", "POST", "/", req, resp)
 	return
@@ -574,6 +751,10 @@ func (c *IAM) ListAccessKeys(req *ListAccessKeysRequest) (resp *ListAccessKeysRe
 // Alias for Your AWS Account in the Using guide. You can paginate the
 // results using the MaxItems and Marker parameters.
 func (c *IAM) ListAccountAliases(req *ListAccountAliasesRequest) (resp *ListAccountAliasesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListAccountAliasesResult{}
 	err = c.client.Do("ListAccountAliases", "POST", "/", req, resp)
 	return
@@ -583,6 +764,10 @@ func (c *IAM) ListAccountAliases(req *ListAccountAliasesRequest) (resp *ListAcco
 // specified group. If there are none, the action returns an empty list.
 // You can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListGroupPolicies(req *ListGroupPoliciesRequest) (resp *ListGroupPoliciesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListGroupPoliciesResult{}
 	err = c.client.Do("ListGroupPolicies", "POST", "/", req, resp)
 	return
@@ -591,6 +776,10 @@ func (c *IAM) ListGroupPolicies(req *ListGroupPoliciesRequest) (resp *ListGroupP
 // ListGroups lists the groups that have the specified path prefix. You can
 // paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListGroups(req *ListGroupsRequest) (resp *ListGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListGroupsResult{}
 	err = c.client.Do("ListGroups", "POST", "/", req, resp)
 	return
@@ -599,6 +788,10 @@ func (c *IAM) ListGroups(req *ListGroupsRequest) (resp *ListGroupsResult, err er
 // ListGroupsForUser lists the groups the specified user belongs to. You
 // can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListGroupsForUser(req *ListGroupsForUserRequest) (resp *ListGroupsForUserResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListGroupsForUserResult{}
 	err = c.client.Do("ListGroupsForUser", "POST", "/", req, resp)
 	return
@@ -609,6 +802,10 @@ func (c *IAM) ListGroupsForUser(req *ListGroupsForUserRequest) (resp *ListGroups
 // more information about instance profiles, go to About Instance Profiles
 // . You can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListInstanceProfiles(req *ListInstanceProfilesRequest) (resp *ListInstanceProfilesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListInstanceProfilesResult{}
 	err = c.client.Do("ListInstanceProfiles", "POST", "/", req, resp)
 	return
@@ -620,6 +817,10 @@ func (c *IAM) ListInstanceProfiles(req *ListInstanceProfilesRequest) (resp *List
 // Instance Profiles . You can paginate the results using the MaxItems and
 // Marker parameters.
 func (c *IAM) ListInstanceProfilesForRole(req *ListInstanceProfilesForRoleRequest) (resp *ListInstanceProfilesForRoleResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListInstanceProfilesForRoleResult{}
 	err = c.client.Do("ListInstanceProfilesForRole", "POST", "/", req, resp)
 	return
@@ -632,6 +833,10 @@ func (c *IAM) ListInstanceProfilesForRole(req *ListInstanceProfilesForRoleReques
 // request. You can paginate the results using the MaxItems and Marker
 // parameters.
 func (c *IAM) ListMFADevices(req *ListMFADevicesRequest) (resp *ListMFADevicesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListMFADevicesResult{}
 	err = c.client.Do("ListMFADevices", "POST", "/", req, resp)
 	return
@@ -640,6 +845,10 @@ func (c *IAM) ListMFADevices(req *ListMFADevicesRequest) (resp *ListMFADevicesRe
 // ListOpenIDConnectProviders lists information about the OpenID Connect
 // providers in the AWS account.
 func (c *IAM) ListOpenIDConnectProviders(req *ListOpenIDConnectProvidersRequest) (resp *ListOpenIDConnectProvidersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListOpenIDConnectProvidersResult{}
 	err = c.client.Do("ListOpenIDConnectProviders", "POST", "/", req, resp)
 	return
@@ -649,6 +858,10 @@ func (c *IAM) ListOpenIDConnectProviders(req *ListOpenIDConnectProvidersRequest)
 // specified role. If there are none, the action returns an empty list. You
 // can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListRolePolicies(req *ListRolePoliciesRequest) (resp *ListRolePoliciesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListRolePoliciesResult{}
 	err = c.client.Do("ListRolePolicies", "POST", "/", req, resp)
 	return
@@ -661,6 +874,10 @@ func (c *IAM) ListRolePolicies(req *ListRolePoliciesRequest) (resp *ListRolePoli
 // according to RFC 3986. For more information about RFC 3986, go to
 // http://www.faqs.org/rfcs/rfc3986.html .
 func (c *IAM) ListRoles(req *ListRolesRequest) (resp *ListRolesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListRolesResult{}
 	err = c.client.Do("ListRoles", "POST", "/", req, resp)
 	return
@@ -668,6 +885,10 @@ func (c *IAM) ListRoles(req *ListRolesRequest) (resp *ListRolesResult, err error
 
 // ListSAMLProviders is undocumented.
 func (c *IAM) ListSAMLProviders(req *ListSAMLProvidersRequest) (resp *ListSAMLProvidersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListSAMLProvidersResult{}
 	err = c.client.Do("ListSAMLProviders", "POST", "/", req, resp)
 	return
@@ -677,6 +898,10 @@ func (c *IAM) ListSAMLProviders(req *ListSAMLProvidersRequest) (resp *ListSAMLPr
 // specified path prefix. If none exist, the action returns an empty list.
 // You can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListServerCertificates(req *ListServerCertificatesRequest) (resp *ListServerCertificatesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListServerCertificatesResult{}
 	err = c.client.Do("ListServerCertificates", "POST", "/", req, resp)
 	return
@@ -692,6 +917,10 @@ func (c *IAM) ListServerCertificates(req *ListServerCertificatesRequest) (resp *
 // access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
 func (c *IAM) ListSigningCertificates(req *ListSigningCertificatesRequest) (resp *ListSigningCertificatesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListSigningCertificatesResult{}
 	err = c.client.Do("ListSigningCertificates", "POST", "/", req, resp)
 	return
@@ -701,6 +930,10 @@ func (c *IAM) ListSigningCertificates(req *ListSigningCertificatesRequest) (resp
 // specified user. If there are none, the action returns an empty list. You
 // can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListUserPolicies(req *ListUserPoliciesRequest) (resp *ListUserPoliciesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListUserPoliciesResult{}
 	err = c.client.Do("ListUserPolicies", "POST", "/", req, resp)
 	return
@@ -711,6 +944,10 @@ func (c *IAM) ListUserPolicies(req *ListUserPoliciesRequest) (resp *ListUserPoli
 // account. If there are none, the action returns an empty list. You can
 // paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListUsers(req *ListUsersRequest) (resp *ListUsersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListUsersResult{}
 	err = c.client.Do("ListUsers", "POST", "/", req, resp)
 	return
@@ -722,6 +959,10 @@ func (c *IAM) ListUsers(req *ListUsersRequest) (resp *ListUsersResult, err error
 // status can be Assigned , Unassigned , or Any . You can paginate the
 // results using the MaxItems and Marker parameters.
 func (c *IAM) ListVirtualMFADevices(req *ListVirtualMFADevicesRequest) (resp *ListVirtualMFADevicesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListVirtualMFADevicesResult{}
 	err = c.client.Do("ListVirtualMFADevices", "POST", "/", req, resp)
 	return
@@ -738,6 +979,10 @@ func (c *IAM) ListVirtualMFADevices(req *ListVirtualMFADevicesRequest) (resp *Li
 // about using the Query API with go to Making Query Requests in the Using
 // guide.
 func (c *IAM) PutGroupPolicy(req *PutGroupPolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutGroupPolicy", "POST", "/", req, nil)
 	return
@@ -754,6 +999,10 @@ func (c *IAM) PutGroupPolicy(req *PutGroupPolicyRequest) (err error) {
 // about using the Query API with go to Making Query Requests in the Using
 // guide.
 func (c *IAM) PutRolePolicy(req *PutRolePolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutRolePolicy", "POST", "/", req, nil)
 	return
@@ -770,6 +1019,10 @@ func (c *IAM) PutRolePolicy(req *PutRolePolicyRequest) (err error) {
 // about using the Query API with go to Making Query Requests in the Using
 // guide.
 func (c *IAM) PutUserPolicy(req *PutUserPolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutUserPolicy", "POST", "/", req, nil)
 	return
@@ -781,6 +1034,10 @@ func (c *IAM) PutUserPolicy(req *PutUserPolicyRequest) (err error) {
 // does not fail or return an error if you try to remove a client ID that
 // was removed previously.
 func (c *IAM) RemoveClientIDFromOpenIDConnectProvider(req *RemoveClientIDFromOpenIDConnectProviderRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RemoveClientIDFromOpenIDConnectProvider", "POST", "/", req, nil)
 	return
@@ -795,6 +1052,10 @@ func (c *IAM) RemoveClientIDFromOpenIDConnectProvider(req *RemoveClientIDFromOpe
 // Roles . For more information about instance profiles, go to About
 // Instance Profiles .
 func (c *IAM) RemoveRoleFromInstanceProfile(req *RemoveRoleFromInstanceProfileRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RemoveRoleFromInstanceProfile", "POST", "/", req, nil)
 	return
@@ -802,6 +1063,10 @@ func (c *IAM) RemoveRoleFromInstanceProfile(req *RemoveRoleFromInstanceProfileRe
 
 // RemoveUserFromGroup removes the specified user from the specified group.
 func (c *IAM) RemoveUserFromGroup(req *RemoveUserFromGroupRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RemoveUserFromGroup", "POST", "/", req, nil)
 	return
@@ -811,6 +1076,10 @@ func (c *IAM) RemoveUserFromGroup(req *RemoveUserFromGroupRequest) (err error) {
 // For more information about creating and working with virtual MFA
 // devices, go to Using a Virtual MFA Device in the Using guide.
 func (c *IAM) ResyncMFADevice(req *ResyncMFADeviceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ResyncMFADevice", "POST", "/", req, nil)
 	return
@@ -826,6 +1095,10 @@ func (c *IAM) ResyncMFADevice(req *ResyncMFADeviceRequest) (err error) {
 // information about rotating keys, see Managing Keys and Certificates in
 // the Using guide.
 func (c *IAM) UpdateAccessKey(req *UpdateAccessKeyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateAccessKey", "POST", "/", req, nil)
 	return
@@ -838,6 +1111,10 @@ func (c *IAM) UpdateAccessKey(req *UpdateAccessKeyRequest) (err error) {
 // for each parameter's default value. For more information about using a
 // password policy, see Managing an IAM Password Policy in the Using guide.
 func (c *IAM) UpdateAccountPasswordPolicy(req *UpdateAccountPasswordPolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateAccountPasswordPolicy", "POST", "/", req, nil)
 	return
@@ -847,6 +1124,10 @@ func (c *IAM) UpdateAccountPasswordPolicy(req *UpdateAccountPasswordPolicyReques
 // permission to assume a role. For more information about roles, go to
 // Working with Roles .
 func (c *IAM) UpdateAssumeRolePolicy(req *UpdateAssumeRolePolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateAssumeRolePolicy", "POST", "/", req, nil)
 	return
@@ -861,6 +1142,10 @@ func (c *IAM) UpdateAssumeRolePolicy(req *UpdateAssumeRolePolicyRequest) (err er
 // Managers and MGRs, or must have permission on all For more information
 // about permissions, see Permissions and Policies .
 func (c *IAM) UpdateGroup(req *UpdateGroupRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateGroup", "POST", "/", req, nil)
 	return
@@ -871,6 +1156,10 @@ func (c *IAM) UpdateGroup(req *UpdateGroupRequest) (err error) {
 // information about modifying passwords, see Managing Passwords in the
 // Using guide.
 func (c *IAM) UpdateLoginProfile(req *UpdateLoginProfileRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateLoginProfile", "POST", "/", req, nil)
 	return
@@ -889,6 +1178,10 @@ func (c *IAM) UpdateLoginProfile(req *UpdateLoginProfileRequest) (err error) {
 // limit access to the UpdateOpenIDConnectProviderThumbprint action to
 // highly-privileged users.
 func (c *IAM) UpdateOpenIDConnectProviderThumbprint(req *UpdateOpenIDConnectProviderThumbprintRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateOpenIDConnectProviderThumbprint", "POST", "/", req, nil)
 	return
@@ -897,6 +1190,10 @@ func (c *IAM) UpdateOpenIDConnectProviderThumbprint(req *UpdateOpenIDConnectProv
 // UpdateSAMLProvider updates the metadata document for an existing
 // provider. This operation requires Signature Version 4 .
 func (c *IAM) UpdateSAMLProvider(req *UpdateSAMLProviderRequest) (resp *UpdateSAMLProviderResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateSAMLProviderResult{}
 	err = c.client.Do("UpdateSAMLProvider", "POST", "/", req, resp)
 	return
@@ -913,6 +1210,10 @@ func (c *IAM) UpdateSAMLProvider(req *UpdateSAMLProviderRequest) (resp *UpdateSA
 // all For more information about permissions, see Permissions and Policies
 // .
 func (c *IAM) UpdateServerCertificate(req *UpdateServerCertificateRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateServerCertificate", "POST", "/", req, nil)
 	return
@@ -928,6 +1229,10 @@ func (c *IAM) UpdateServerCertificate(req *UpdateServerCertificateRequest) (err 
 // AWS account has no associated users. For information about rotating
 // certificates, see Managing Keys and Certificates in the Using guide.
 func (c *IAM) UpdateSigningCertificate(req *UpdateSigningCertificateRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateSigningCertificate", "POST", "/", req, nil)
 	return
@@ -942,6 +1247,10 @@ func (c *IAM) UpdateSigningCertificate(req *UpdateSigningCertificateRequest) (er
 // Robert, or must have permission on all For more information about
 // permissions, see Permissions and Policies .
 func (c *IAM) UpdateUser(req *UpdateUserRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateUser", "POST", "/", req, nil)
 	return
@@ -959,6 +1268,10 @@ func (c *IAM) UpdateUser(req *UpdateUserRequest) (err error) {
 // Requests in the AWS General Reference . For general information about
 // using the Query API with go to Making Query Requests in the Using guide.
 func (c *IAM) UploadServerCertificate(req *UploadServerCertificateRequest) (resp *UploadServerCertificateResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UploadServerCertificateResult{}
 	err = c.client.Do("UploadServerCertificate", "POST", "/", req, resp)
 	return
@@ -979,6 +1292,10 @@ func (c *IAM) UploadServerCertificate(req *UploadServerCertificateRequest) (resp
 // General Reference . For general information about using the Query API
 // with go to Making Query Requests in the Using guide.
 func (c *IAM) UploadSigningCertificate(req *UploadSigningCertificateRequest) (resp *UploadSigningCertificateResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UploadSigningCertificateResult{}
 	err = c.client.Do("UploadSigningCertificate", "POST", "/", req, resp)
 	return
@@ -993,6 +1310,64 @@ type AccessKey struct {
 	UserName        aws.StringValue `xml:"UserName"`
 }
 
+func (v *AccessKey) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccessKeyID"); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "AccessKeyID", 16); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "AccessKeyID", 32); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AccessKeyID", `[\w]*`); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SecretAccessKey"); err != nil {
+		errors["SecretAccessKey"] = append(errors["SecretAccessKey"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	StatusEnum := []string{
+		StatusTypeActive,
+		StatusTypeInactive,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 64); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AccessKeyMetadata is undocumented.
 type AccessKeyMetadata struct {
 	AccessKeyID aws.StringValue `xml:"AccessKeyId"`
@@ -1001,10 +1376,86 @@ type AccessKeyMetadata struct {
 	UserName    aws.StringValue `xml:"UserName"`
 }
 
+func (v *AccessKeyMetadata) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AccessKeyID", 16); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "AccessKeyID", 32); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AccessKeyID", `[\w]*`); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	StatusEnum := []string{
+		StatusTypeActive,
+		StatusTypeInactive,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 64); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddClientIDToOpenIDConnectProviderRequest is undocumented.
 type AddClientIDToOpenIDConnectProviderRequest struct {
 	ClientID                 aws.StringValue `xml:"ClientID"`
 	OpenIDConnectProviderARN aws.StringValue `xml:"OpenIDConnectProviderArn"`
+}
+
+func (v *AddClientIDToOpenIDConnectProviderRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClientID"); err != nil {
+		errors["ClientID"] = append(errors["ClientID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ClientID", 1); err != nil {
+		errors["ClientID"] = append(errors["ClientID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ClientID", 255); err != nil {
+		errors["ClientID"] = append(errors["ClientID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OpenIDConnectProviderARN"); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "OpenIDConnectProviderARN", 20); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "OpenIDConnectProviderARN", 2048); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AddRoleToInstanceProfileRequest is undocumented.
@@ -1013,10 +1464,94 @@ type AddRoleToInstanceProfileRequest struct {
 	RoleName            aws.StringValue `xml:"RoleName"`
 }
 
+func (v *AddRoleToInstanceProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceProfileName"); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceProfileName", 1); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceProfileName", 128); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceProfileName", `[\w+=,.@-]*`); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddUserToGroupRequest is undocumented.
 type AddUserToGroupRequest struct {
 	GroupName aws.StringValue `xml:"GroupName"`
 	UserName  aws.StringValue `xml:"UserName"`
+}
+
+func (v *AddUserToGroupRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ChangePasswordRequest is undocumented.
@@ -1025,9 +1560,73 @@ type ChangePasswordRequest struct {
 	OldPassword aws.StringValue `xml:"OldPassword"`
 }
 
+func (v *ChangePasswordRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "NewPassword"); err != nil {
+		errors["NewPassword"] = append(errors["NewPassword"], err)
+	}
+
+	if err := model.ValidateMin(v, "NewPassword", 1); err != nil {
+		errors["NewPassword"] = append(errors["NewPassword"], err)
+	}
+
+	if err := model.ValidateMax(v, "NewPassword", 128); err != nil {
+		errors["NewPassword"] = append(errors["NewPassword"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NewPassword", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["NewPassword"] = append(errors["NewPassword"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OldPassword"); err != nil {
+		errors["OldPassword"] = append(errors["OldPassword"], err)
+	}
+
+	if err := model.ValidateMin(v, "OldPassword", 1); err != nil {
+		errors["OldPassword"] = append(errors["OldPassword"], err)
+	}
+
+	if err := model.ValidateMax(v, "OldPassword", 128); err != nil {
+		errors["OldPassword"] = append(errors["OldPassword"], err)
+	}
+
+	if err := model.ValidatePattern(v, "OldPassword", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["OldPassword"] = append(errors["OldPassword"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateAccessKeyRequest is undocumented.
 type CreateAccessKeyRequest struct {
 	UserName aws.StringValue `xml:"UserName"`
+}
+
+func (v *CreateAccessKeyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateAccessKeyResponse is undocumented.
@@ -1035,9 +1634,49 @@ type CreateAccessKeyResponse struct {
 	AccessKey *AccessKey `xml:"CreateAccessKeyResult>AccessKey"`
 }
 
+func (v *CreateAccessKeyResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccessKey"); err != nil {
+		errors["AccessKey"] = append(errors["AccessKey"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateAccountAliasRequest is undocumented.
 type CreateAccountAliasRequest struct {
 	AccountAlias aws.StringValue `xml:"AccountAlias"`
+}
+
+func (v *CreateAccountAliasRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccountAlias"); err != nil {
+		errors["AccountAlias"] = append(errors["AccountAlias"], err)
+	}
+
+	if err := model.ValidateMin(v, "AccountAlias", 3); err != nil {
+		errors["AccountAlias"] = append(errors["AccountAlias"], err)
+	}
+
+	if err := model.ValidateMax(v, "AccountAlias", 63); err != nil {
+		errors["AccountAlias"] = append(errors["AccountAlias"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AccountAlias", `^[a-z0-9](([a-z0-9]|-(?!-))*[a-z0-9])?$`); err != nil {
+		errors["AccountAlias"] = append(errors["AccountAlias"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateGroupRequest is undocumented.
@@ -1046,9 +1685,61 @@ type CreateGroupRequest struct {
 	Path      aws.StringValue `xml:"Path"`
 }
 
+func (v *CreateGroupRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateGroupResponse is undocumented.
 type CreateGroupResponse struct {
 	Group *Group `xml:"CreateGroupResult>Group"`
+}
+
+func (v *CreateGroupResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Group"); err != nil {
+		errors["Group"] = append(errors["Group"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateInstanceProfileRequest is undocumented.
@@ -1057,9 +1748,61 @@ type CreateInstanceProfileRequest struct {
 	Path                aws.StringValue `xml:"Path"`
 }
 
+func (v *CreateInstanceProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceProfileName"); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceProfileName", 1); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceProfileName", 128); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceProfileName", `[\w+=,.@-]*`); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateInstanceProfileResponse is undocumented.
 type CreateInstanceProfileResponse struct {
 	InstanceProfile *InstanceProfile `xml:"CreateInstanceProfileResult>InstanceProfile"`
+}
+
+func (v *CreateInstanceProfileResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceProfile"); err != nil {
+		errors["InstanceProfile"] = append(errors["InstanceProfile"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateLoginProfileRequest is undocumented.
@@ -1069,9 +1812,65 @@ type CreateLoginProfileRequest struct {
 	UserName              aws.StringValue  `xml:"UserName"`
 }
 
+func (v *CreateLoginProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Password"); err != nil {
+		errors["Password"] = append(errors["Password"], err)
+	}
+
+	if err := model.ValidateMin(v, "Password", 1); err != nil {
+		errors["Password"] = append(errors["Password"], err)
+	}
+
+	if err := model.ValidateMax(v, "Password", 128); err != nil {
+		errors["Password"] = append(errors["Password"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Password", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["Password"] = append(errors["Password"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 64); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateLoginProfileResponse is undocumented.
 type CreateLoginProfileResponse struct {
 	LoginProfile *LoginProfile `xml:"CreateLoginProfileResult>LoginProfile"`
+}
+
+func (v *CreateLoginProfileResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoginProfile"); err != nil {
+		errors["LoginProfile"] = append(errors["LoginProfile"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateOpenIDConnectProviderRequest is undocumented.
@@ -1081,9 +1880,53 @@ type CreateOpenIDConnectProviderRequest struct {
 	URL            aws.StringValue `xml:"Url"`
 }
 
+func (v *CreateOpenIDConnectProviderRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ThumbprintList"); err != nil {
+		errors["ThumbprintList"] = append(errors["ThumbprintList"], err)
+	}
+
+	if err := model.ValidateRequired(v, "URL"); err != nil {
+		errors["URL"] = append(errors["URL"], err)
+	}
+
+	if err := model.ValidateMin(v, "URL", 1); err != nil {
+		errors["URL"] = append(errors["URL"], err)
+	}
+
+	if err := model.ValidateMax(v, "URL", 255); err != nil {
+		errors["URL"] = append(errors["URL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateOpenIDConnectProviderResponse is undocumented.
 type CreateOpenIDConnectProviderResponse struct {
 	OpenIDConnectProviderARN aws.StringValue `xml:"CreateOpenIDConnectProviderResult>OpenIDConnectProviderArn"`
+}
+
+func (v *CreateOpenIDConnectProviderResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "OpenIDConnectProviderARN", 20); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "OpenIDConnectProviderARN", 2048); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateRoleRequest is undocumented.
@@ -1093,9 +1936,77 @@ type CreateRoleRequest struct {
 	RoleName                 aws.StringValue `xml:"RoleName"`
 }
 
+func (v *CreateRoleRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AssumeRolePolicyDocument"); err != nil {
+		errors["AssumeRolePolicyDocument"] = append(errors["AssumeRolePolicyDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "AssumeRolePolicyDocument", 1); err != nil {
+		errors["AssumeRolePolicyDocument"] = append(errors["AssumeRolePolicyDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "AssumeRolePolicyDocument", 131072); err != nil {
+		errors["AssumeRolePolicyDocument"] = append(errors["AssumeRolePolicyDocument"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AssumeRolePolicyDocument", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["AssumeRolePolicyDocument"] = append(errors["AssumeRolePolicyDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateRoleResponse is undocumented.
 type CreateRoleResponse struct {
 	Role *Role `xml:"CreateRoleResult>Role"`
+}
+
+func (v *CreateRoleResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Role"); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateSAMLProviderRequest is undocumented.
@@ -1104,9 +2015,65 @@ type CreateSAMLProviderRequest struct {
 	SAMLMetadataDocument aws.StringValue `xml:"SAMLMetadataDocument"`
 }
 
+func (v *CreateSAMLProviderRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 128); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\w._-]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SAMLMetadataDocument"); err != nil {
+		errors["SAMLMetadataDocument"] = append(errors["SAMLMetadataDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "SAMLMetadataDocument", 1000); err != nil {
+		errors["SAMLMetadataDocument"] = append(errors["SAMLMetadataDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "SAMLMetadataDocument", 10000000); err != nil {
+		errors["SAMLMetadataDocument"] = append(errors["SAMLMetadataDocument"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateSAMLProviderResponse is undocumented.
 type CreateSAMLProviderResponse struct {
 	SAMLProviderARN aws.StringValue `xml:"CreateSAMLProviderResult>SAMLProviderArn"`
+}
+
+func (v *CreateSAMLProviderResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "SAMLProviderARN", 20); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "SAMLProviderARN", 2048); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateUserRequest is undocumented.
@@ -1115,9 +2082,57 @@ type CreateUserRequest struct {
 	UserName aws.StringValue `xml:"UserName"`
 }
 
+func (v *CreateUserRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 64); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateUserResponse is undocumented.
 type CreateUserResponse struct {
 	User *User `xml:"CreateUserResult>User"`
+}
+
+func (v *CreateUserResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateVirtualMFADeviceRequest is undocumented.
@@ -1126,9 +2141,57 @@ type CreateVirtualMFADeviceRequest struct {
 	VirtualMFADeviceName aws.StringValue `xml:"VirtualMFADeviceName"`
 }
 
+func (v *CreateVirtualMFADeviceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VirtualMFADeviceName"); err != nil {
+		errors["VirtualMFADeviceName"] = append(errors["VirtualMFADeviceName"], err)
+	}
+
+	if err := model.ValidateMin(v, "VirtualMFADeviceName", 1); err != nil {
+		errors["VirtualMFADeviceName"] = append(errors["VirtualMFADeviceName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "VirtualMFADeviceName", `[\w+=,.@-]*`); err != nil {
+		errors["VirtualMFADeviceName"] = append(errors["VirtualMFADeviceName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateVirtualMFADeviceResponse is undocumented.
 type CreateVirtualMFADeviceResponse struct {
 	VirtualMFADevice *VirtualMFADevice `xml:"CreateVirtualMFADeviceResult>VirtualMFADevice"`
+}
+
+func (v *CreateVirtualMFADeviceResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VirtualMFADevice"); err != nil {
+		errors["VirtualMFADevice"] = append(errors["VirtualMFADevice"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeactivateMFADeviceRequest is undocumented.
@@ -1137,15 +2200,121 @@ type DeactivateMFADeviceRequest struct {
 	UserName     aws.StringValue `xml:"UserName"`
 }
 
+func (v *DeactivateMFADeviceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SerialNumber"); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMin(v, "SerialNumber", 9); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMax(v, "SerialNumber", 256); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SerialNumber", `[\w+=/:,.@-]*`); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteAccessKeyRequest is undocumented.
 type DeleteAccessKeyRequest struct {
 	AccessKeyID aws.StringValue `xml:"AccessKeyId"`
 	UserName    aws.StringValue `xml:"UserName"`
 }
 
+func (v *DeleteAccessKeyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccessKeyID"); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "AccessKeyID", 16); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "AccessKeyID", 32); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AccessKeyID", `[\w]*`); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteAccountAliasRequest is undocumented.
 type DeleteAccountAliasRequest struct {
 	AccountAlias aws.StringValue `xml:"AccountAlias"`
+}
+
+func (v *DeleteAccountAliasRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccountAlias"); err != nil {
+		errors["AccountAlias"] = append(errors["AccountAlias"], err)
+	}
+
+	if err := model.ValidateMin(v, "AccountAlias", 3); err != nil {
+		errors["AccountAlias"] = append(errors["AccountAlias"], err)
+	}
+
+	if err := model.ValidateMax(v, "AccountAlias", 63); err != nil {
+		errors["AccountAlias"] = append(errors["AccountAlias"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AccountAlias", `^[a-z0-9](([a-z0-9]|-(?!-))*[a-z0-9])?$`); err != nil {
+		errors["AccountAlias"] = append(errors["AccountAlias"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteGroupPolicyRequest is undocumented.
@@ -1154,9 +2323,77 @@ type DeleteGroupPolicyRequest struct {
 	PolicyName aws.StringValue `xml:"PolicyName"`
 }
 
+func (v *DeleteGroupPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteGroupRequest is undocumented.
 type DeleteGroupRequest struct {
 	GroupName aws.StringValue `xml:"GroupName"`
+}
+
+func (v *DeleteGroupRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteInstanceProfileRequest is undocumented.
@@ -1164,14 +2401,88 @@ type DeleteInstanceProfileRequest struct {
 	InstanceProfileName aws.StringValue `xml:"InstanceProfileName"`
 }
 
+func (v *DeleteInstanceProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceProfileName"); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceProfileName", 1); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceProfileName", 128); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceProfileName", `[\w+=,.@-]*`); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteLoginProfileRequest is undocumented.
 type DeleteLoginProfileRequest struct {
 	UserName aws.StringValue `xml:"UserName"`
 }
 
+func (v *DeleteLoginProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 64); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteOpenIDConnectProviderRequest is undocumented.
 type DeleteOpenIDConnectProviderRequest struct {
 	OpenIDConnectProviderARN aws.StringValue `xml:"OpenIDConnectProviderArn"`
+}
+
+func (v *DeleteOpenIDConnectProviderRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OpenIDConnectProviderARN"); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "OpenIDConnectProviderARN", 20); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "OpenIDConnectProviderARN", 2048); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteRolePolicyRequest is undocumented.
@@ -1180,9 +2491,77 @@ type DeleteRolePolicyRequest struct {
 	RoleName   aws.StringValue `xml:"RoleName"`
 }
 
+func (v *DeleteRolePolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteRoleRequest is undocumented.
 type DeleteRoleRequest struct {
 	RoleName aws.StringValue `xml:"RoleName"`
+}
+
+func (v *DeleteRoleRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteSAMLProviderRequest is undocumented.
@@ -1190,9 +2569,57 @@ type DeleteSAMLProviderRequest struct {
 	SAMLProviderARN aws.StringValue `xml:"SAMLProviderArn"`
 }
 
+func (v *DeleteSAMLProviderRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SAMLProviderARN"); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "SAMLProviderARN", 20); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "SAMLProviderARN", 2048); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteServerCertificateRequest is undocumented.
 type DeleteServerCertificateRequest struct {
 	ServerCertificateName aws.StringValue `xml:"ServerCertificateName"`
+}
+
+func (v *DeleteServerCertificateRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ServerCertificateName"); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ServerCertificateName", 1); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ServerCertificateName", 128); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ServerCertificateName", `[\w+=,.@-]*`); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteSigningCertificateRequest is undocumented.
@@ -1201,10 +2628,90 @@ type DeleteSigningCertificateRequest struct {
 	UserName      aws.StringValue `xml:"UserName"`
 }
 
+func (v *DeleteSigningCertificateRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CertificateID"); err != nil {
+		errors["CertificateID"] = append(errors["CertificateID"], err)
+	}
+
+	if err := model.ValidateMin(v, "CertificateID", 24); err != nil {
+		errors["CertificateID"] = append(errors["CertificateID"], err)
+	}
+
+	if err := model.ValidateMax(v, "CertificateID", 128); err != nil {
+		errors["CertificateID"] = append(errors["CertificateID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "CertificateID", `[\w]*`); err != nil {
+		errors["CertificateID"] = append(errors["CertificateID"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteUserPolicyRequest is undocumented.
 type DeleteUserPolicyRequest struct {
 	PolicyName aws.StringValue `xml:"PolicyName"`
 	UserName   aws.StringValue `xml:"UserName"`
+}
+
+func (v *DeleteUserPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteUserRequest is undocumented.
@@ -1212,9 +2719,61 @@ type DeleteUserRequest struct {
 	UserName aws.StringValue `xml:"UserName"`
 }
 
+func (v *DeleteUserRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteVirtualMFADeviceRequest is undocumented.
 type DeleteVirtualMFADeviceRequest struct {
 	SerialNumber aws.StringValue `xml:"SerialNumber"`
+}
+
+func (v *DeleteVirtualMFADeviceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SerialNumber"); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMin(v, "SerialNumber", 9); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMax(v, "SerialNumber", 256); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SerialNumber", `[\w+=/:,.@-]*`); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EnableMFADeviceRequest is undocumented.
@@ -1223,6 +2782,80 @@ type EnableMFADeviceRequest struct {
 	AuthenticationCode2 aws.StringValue `xml:"AuthenticationCode2"`
 	SerialNumber        aws.StringValue `xml:"SerialNumber"`
 	UserName            aws.StringValue `xml:"UserName"`
+}
+
+func (v *EnableMFADeviceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AuthenticationCode1"); err != nil {
+		errors["AuthenticationCode1"] = append(errors["AuthenticationCode1"], err)
+	}
+
+	if err := model.ValidateMin(v, "AuthenticationCode1", 6); err != nil {
+		errors["AuthenticationCode1"] = append(errors["AuthenticationCode1"], err)
+	}
+
+	if err := model.ValidateMax(v, "AuthenticationCode1", 6); err != nil {
+		errors["AuthenticationCode1"] = append(errors["AuthenticationCode1"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AuthenticationCode1", `[\d]*`); err != nil {
+		errors["AuthenticationCode1"] = append(errors["AuthenticationCode1"], err)
+	}
+
+	if err := model.ValidateRequired(v, "AuthenticationCode2"); err != nil {
+		errors["AuthenticationCode2"] = append(errors["AuthenticationCode2"], err)
+	}
+
+	if err := model.ValidateMin(v, "AuthenticationCode2", 6); err != nil {
+		errors["AuthenticationCode2"] = append(errors["AuthenticationCode2"], err)
+	}
+
+	if err := model.ValidateMax(v, "AuthenticationCode2", 6); err != nil {
+		errors["AuthenticationCode2"] = append(errors["AuthenticationCode2"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AuthenticationCode2", `[\d]*`); err != nil {
+		errors["AuthenticationCode2"] = append(errors["AuthenticationCode2"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SerialNumber"); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMin(v, "SerialNumber", 9); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMax(v, "SerialNumber", 256); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SerialNumber", `[\w+=/:,.@-]*`); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for IAM.
@@ -1238,11 +2871,60 @@ type GenerateCredentialReportResponse struct {
 	State       aws.StringValue `xml:"GenerateCredentialReportResult>State"`
 }
 
+func (v *GenerateCredentialReportResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		ReportStateTypeComplete,
+		ReportStateTypeInprogress,
+		ReportStateTypeStarted,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetAccountAuthorizationDetailsRequest is undocumented.
 type GetAccountAuthorizationDetailsRequest struct {
 	Filter   []string         `xml:"Filter>member"`
 	Marker   aws.StringValue  `xml:"Marker"`
 	MaxItems aws.IntegerValue `xml:"MaxItems"`
+}
+
+func (v *GetAccountAuthorizationDetailsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetAccountAuthorizationDetailsResponse is undocumented.
@@ -1254,14 +2936,60 @@ type GetAccountAuthorizationDetailsResponse struct {
 	UserDetailList  []UserDetail     `xml:"GetAccountAuthorizationDetailsResult>UserDetailList>member"`
 }
 
+func (v *GetAccountAuthorizationDetailsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetAccountPasswordPolicyResponse is undocumented.
 type GetAccountPasswordPolicyResponse struct {
 	PasswordPolicy *PasswordPolicy `xml:"GetAccountPasswordPolicyResult>PasswordPolicy"`
 }
 
+func (v *GetAccountPasswordPolicyResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PasswordPolicy"); err != nil {
+		errors["PasswordPolicy"] = append(errors["PasswordPolicy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetAccountSummaryResponse is undocumented.
 type GetAccountSummaryResponse struct {
 	SummaryMap map[string]int `xml:"GetAccountSummaryResult>SummaryMap"`
+}
+
+func (v *GetAccountSummaryResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetCredentialReportResponse is undocumented.
@@ -1271,10 +2999,69 @@ type GetCredentialReportResponse struct {
 	ReportFormat  aws.StringValue `xml:"GetCredentialReportResult>ReportFormat"`
 }
 
+func (v *GetCredentialReportResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ReportFormatEnum := []string{
+		ReportFormatTypeTextCSV,
+	}
+	if err := model.ValidateEnum(v, "ReportFormat", ReportFormatEnum); err != nil {
+		errors["ReportFormat"] = append(errors["ReportFormat"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetGroupPolicyRequest is undocumented.
 type GetGroupPolicyRequest struct {
 	GroupName  aws.StringValue `xml:"GroupName"`
 	PolicyName aws.StringValue `xml:"PolicyName"`
+}
+
+func (v *GetGroupPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetGroupPolicyResponse is undocumented.
@@ -1284,11 +3071,115 @@ type GetGroupPolicyResponse struct {
 	PolicyName     aws.StringValue `xml:"GetGroupPolicyResult>PolicyName"`
 }
 
+func (v *GetGroupPolicyResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyDocument"); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyDocument", 1); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyDocument", 131072); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyDocument", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetGroupRequest is undocumented.
 type GetGroupRequest struct {
 	GroupName aws.StringValue  `xml:"GroupName"`
 	Marker    aws.StringValue  `xml:"Marker"`
 	MaxItems  aws.IntegerValue `xml:"MaxItems"`
+}
+
+func (v *GetGroupRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetGroupResponse is undocumented.
@@ -1299,9 +3190,65 @@ type GetGroupResponse struct {
 	Users       []User           `xml:"GetGroupResult>Users>member"`
 }
 
+func (v *GetGroupResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Group"); err != nil {
+		errors["Group"] = append(errors["Group"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Users"); err != nil {
+		errors["Users"] = append(errors["Users"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetInstanceProfileRequest is undocumented.
 type GetInstanceProfileRequest struct {
 	InstanceProfileName aws.StringValue `xml:"InstanceProfileName"`
+}
+
+func (v *GetInstanceProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceProfileName"); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceProfileName", 1); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceProfileName", 128); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceProfileName", `[\w+=,.@-]*`); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetInstanceProfileResponse is undocumented.
@@ -1309,9 +3256,49 @@ type GetInstanceProfileResponse struct {
 	InstanceProfile *InstanceProfile `xml:"GetInstanceProfileResult>InstanceProfile"`
 }
 
+func (v *GetInstanceProfileResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceProfile"); err != nil {
+		errors["InstanceProfile"] = append(errors["InstanceProfile"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetLoginProfileRequest is undocumented.
 type GetLoginProfileRequest struct {
 	UserName aws.StringValue `xml:"UserName"`
+}
+
+func (v *GetLoginProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 64); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetLoginProfileResponse is undocumented.
@@ -1319,9 +3306,45 @@ type GetLoginProfileResponse struct {
 	LoginProfile *LoginProfile `xml:"GetLoginProfileResult>LoginProfile"`
 }
 
+func (v *GetLoginProfileResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoginProfile"); err != nil {
+		errors["LoginProfile"] = append(errors["LoginProfile"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetOpenIDConnectProviderRequest is undocumented.
 type GetOpenIDConnectProviderRequest struct {
 	OpenIDConnectProviderARN aws.StringValue `xml:"OpenIDConnectProviderArn"`
+}
+
+func (v *GetOpenIDConnectProviderRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OpenIDConnectProviderARN"); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "OpenIDConnectProviderARN", 20); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "OpenIDConnectProviderARN", 2048); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetOpenIDConnectProviderResponse is undocumented.
@@ -1332,10 +3355,70 @@ type GetOpenIDConnectProviderResponse struct {
 	URL            aws.StringValue `xml:"GetOpenIDConnectProviderResult>Url"`
 }
 
+func (v *GetOpenIDConnectProviderResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "URL", 1); err != nil {
+		errors["URL"] = append(errors["URL"], err)
+	}
+
+	if err := model.ValidateMax(v, "URL", 255); err != nil {
+		errors["URL"] = append(errors["URL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetRolePolicyRequest is undocumented.
 type GetRolePolicyRequest struct {
 	PolicyName aws.StringValue `xml:"PolicyName"`
 	RoleName   aws.StringValue `xml:"RoleName"`
+}
+
+func (v *GetRolePolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetRolePolicyResponse is undocumented.
@@ -1345,9 +3428,93 @@ type GetRolePolicyResponse struct {
 	RoleName       aws.StringValue `xml:"GetRolePolicyResult>RoleName"`
 }
 
+func (v *GetRolePolicyResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PolicyDocument"); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyDocument", 1); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyDocument", 131072); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyDocument", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetRoleRequest is undocumented.
 type GetRoleRequest struct {
 	RoleName aws.StringValue `xml:"RoleName"`
+}
+
+func (v *GetRoleRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetRoleResponse is undocumented.
@@ -1355,9 +3522,45 @@ type GetRoleResponse struct {
 	Role *Role `xml:"GetRoleResult>Role"`
 }
 
+func (v *GetRoleResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Role"); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetSAMLProviderRequest is undocumented.
 type GetSAMLProviderRequest struct {
 	SAMLProviderARN aws.StringValue `xml:"SAMLProviderArn"`
+}
+
+func (v *GetSAMLProviderRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SAMLProviderARN"); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "SAMLProviderARN", 20); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "SAMLProviderARN", 2048); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetSAMLProviderResponse is undocumented.
@@ -1367,9 +3570,53 @@ type GetSAMLProviderResponse struct {
 	ValidUntil           time.Time       `xml:"GetSAMLProviderResult>ValidUntil"`
 }
 
+func (v *GetSAMLProviderResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "SAMLMetadataDocument", 1000); err != nil {
+		errors["SAMLMetadataDocument"] = append(errors["SAMLMetadataDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "SAMLMetadataDocument", 10000000); err != nil {
+		errors["SAMLMetadataDocument"] = append(errors["SAMLMetadataDocument"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetServerCertificateRequest is undocumented.
 type GetServerCertificateRequest struct {
 	ServerCertificateName aws.StringValue `xml:"ServerCertificateName"`
+}
+
+func (v *GetServerCertificateRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ServerCertificateName"); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ServerCertificateName", 1); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ServerCertificateName", 128); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ServerCertificateName", `[\w+=,.@-]*`); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetServerCertificateResponse is undocumented.
@@ -1377,10 +3624,66 @@ type GetServerCertificateResponse struct {
 	ServerCertificate *ServerCertificate `xml:"GetServerCertificateResult>ServerCertificate"`
 }
 
+func (v *GetServerCertificateResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ServerCertificate"); err != nil {
+		errors["ServerCertificate"] = append(errors["ServerCertificate"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetUserPolicyRequest is undocumented.
 type GetUserPolicyRequest struct {
 	PolicyName aws.StringValue `xml:"PolicyName"`
 	UserName   aws.StringValue `xml:"UserName"`
+}
+
+func (v *GetUserPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetUserPolicyResponse is undocumented.
@@ -1390,14 +3693,108 @@ type GetUserPolicyResponse struct {
 	UserName       aws.StringValue `xml:"GetUserPolicyResult>UserName"`
 }
 
+func (v *GetUserPolicyResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PolicyDocument"); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyDocument", 1); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyDocument", 131072); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyDocument", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetUserRequest is undocumented.
 type GetUserRequest struct {
 	UserName aws.StringValue `xml:"UserName"`
 }
 
+func (v *GetUserRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetUserResponse is undocumented.
 type GetUserResponse struct {
 	User *User `xml:"GetUserResult>User"`
+}
+
+func (v *GetUserResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "User"); err != nil {
+		errors["User"] = append(errors["User"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Group is undocumented.
@@ -1407,6 +3804,80 @@ type Group struct {
 	GroupID    aws.StringValue `xml:"GroupId"`
 	GroupName  aws.StringValue `xml:"GroupName"`
 	Path       aws.StringValue `xml:"Path"`
+}
+
+func (v *Group) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ARN"); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CreateDate"); err != nil {
+		errors["CreateDate"] = append(errors["CreateDate"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GroupID"); err != nil {
+		errors["GroupID"] = append(errors["GroupID"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupID", 16); err != nil {
+		errors["GroupID"] = append(errors["GroupID"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupID", 32); err != nil {
+		errors["GroupID"] = append(errors["GroupID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupID", `[\w]*`); err != nil {
+		errors["GroupID"] = append(errors["GroupID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Path"); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GroupDetail is undocumented.
@@ -1419,6 +3890,60 @@ type GroupDetail struct {
 	Path            aws.StringValue `xml:"Path"`
 }
 
+func (v *GroupDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupID", 16); err != nil {
+		errors["GroupID"] = append(errors["GroupID"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupID", 32); err != nil {
+		errors["GroupID"] = append(errors["GroupID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupID", `[\w]*`); err != nil {
+		errors["GroupID"] = append(errors["GroupID"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceProfile is undocumented.
 type InstanceProfile struct {
 	ARN                 aws.StringValue `xml:"Arn"`
@@ -1429,11 +3954,131 @@ type InstanceProfile struct {
 	Roles               []Role          `xml:"Roles>member"`
 }
 
+func (v *InstanceProfile) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ARN"); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CreateDate"); err != nil {
+		errors["CreateDate"] = append(errors["CreateDate"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceProfileID"); err != nil {
+		errors["InstanceProfileID"] = append(errors["InstanceProfileID"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceProfileID", 16); err != nil {
+		errors["InstanceProfileID"] = append(errors["InstanceProfileID"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceProfileID", 32); err != nil {
+		errors["InstanceProfileID"] = append(errors["InstanceProfileID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceProfileID", `[\w]*`); err != nil {
+		errors["InstanceProfileID"] = append(errors["InstanceProfileID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceProfileName"); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceProfileName", 1); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceProfileName", 128); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceProfileName", `[\w+=,.@-]*`); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Path"); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Roles"); err != nil {
+		errors["Roles"] = append(errors["Roles"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListAccessKeysRequest is undocumented.
 type ListAccessKeysRequest struct {
 	Marker   aws.StringValue  `xml:"Marker"`
 	MaxItems aws.IntegerValue `xml:"MaxItems"`
 	UserName aws.StringValue  `xml:"UserName"`
+}
+
+func (v *ListAccessKeysRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListAccessKeysResponse is undocumented.
@@ -1443,10 +4088,66 @@ type ListAccessKeysResponse struct {
 	Marker            aws.StringValue     `xml:"ListAccessKeysResult>Marker"`
 }
 
+func (v *ListAccessKeysResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccessKeyMetadata"); err != nil {
+		errors["AccessKeyMetadata"] = append(errors["AccessKeyMetadata"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListAccountAliasesRequest is undocumented.
 type ListAccountAliasesRequest struct {
 	Marker   aws.StringValue  `xml:"Marker"`
 	MaxItems aws.IntegerValue `xml:"MaxItems"`
+}
+
+func (v *ListAccountAliasesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListAccountAliasesResponse is undocumented.
@@ -1456,11 +4157,83 @@ type ListAccountAliasesResponse struct {
 	Marker         aws.StringValue  `xml:"ListAccountAliasesResult>Marker"`
 }
 
+func (v *ListAccountAliasesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccountAliases"); err != nil {
+		errors["AccountAliases"] = append(errors["AccountAliases"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListGroupPoliciesRequest is undocumented.
 type ListGroupPoliciesRequest struct {
 	GroupName aws.StringValue  `xml:"GroupName"`
 	Marker    aws.StringValue  `xml:"Marker"`
 	MaxItems  aws.IntegerValue `xml:"MaxItems"`
+}
+
+func (v *ListGroupPoliciesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListGroupPoliciesResponse is undocumented.
@@ -1470,11 +4243,83 @@ type ListGroupPoliciesResponse struct {
 	PolicyNames []string         `xml:"ListGroupPoliciesResult>PolicyNames>member"`
 }
 
+func (v *ListGroupPoliciesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyNames"); err != nil {
+		errors["PolicyNames"] = append(errors["PolicyNames"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListGroupsForUserRequest is undocumented.
 type ListGroupsForUserRequest struct {
 	Marker   aws.StringValue  `xml:"Marker"`
 	MaxItems aws.IntegerValue `xml:"MaxItems"`
 	UserName aws.StringValue  `xml:"UserName"`
+}
+
+func (v *ListGroupsForUserRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListGroupsForUserResponse is undocumented.
@@ -1484,11 +4329,79 @@ type ListGroupsForUserResponse struct {
 	Marker      aws.StringValue  `xml:"ListGroupsForUserResult>Marker"`
 }
 
+func (v *ListGroupsForUserResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Groups"); err != nil {
+		errors["Groups"] = append(errors["Groups"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListGroupsRequest is undocumented.
 type ListGroupsRequest struct {
 	Marker     aws.StringValue  `xml:"Marker"`
 	MaxItems   aws.IntegerValue `xml:"MaxItems"`
 	PathPrefix aws.StringValue  `xml:"PathPrefix"`
+}
+
+func (v *ListGroupsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMin(v, "PathPrefix", 1); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "PathPrefix", 512); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PathPrefix", `\u002F[\u0021-\u007F]*`); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListGroupsResponse is undocumented.
@@ -1498,11 +4411,83 @@ type ListGroupsResponse struct {
 	Marker      aws.StringValue  `xml:"ListGroupsResult>Marker"`
 }
 
+func (v *ListGroupsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Groups"); err != nil {
+		errors["Groups"] = append(errors["Groups"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListInstanceProfilesForRoleRequest is undocumented.
 type ListInstanceProfilesForRoleRequest struct {
 	Marker   aws.StringValue  `xml:"Marker"`
 	MaxItems aws.IntegerValue `xml:"MaxItems"`
 	RoleName aws.StringValue  `xml:"RoleName"`
+}
+
+func (v *ListInstanceProfilesForRoleRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListInstanceProfilesForRoleResponse is undocumented.
@@ -1512,11 +4497,79 @@ type ListInstanceProfilesForRoleResponse struct {
 	Marker           aws.StringValue   `xml:"ListInstanceProfilesForRoleResult>Marker"`
 }
 
+func (v *ListInstanceProfilesForRoleResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceProfiles"); err != nil {
+		errors["InstanceProfiles"] = append(errors["InstanceProfiles"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListInstanceProfilesRequest is undocumented.
 type ListInstanceProfilesRequest struct {
 	Marker     aws.StringValue  `xml:"Marker"`
 	MaxItems   aws.IntegerValue `xml:"MaxItems"`
 	PathPrefix aws.StringValue  `xml:"PathPrefix"`
+}
+
+func (v *ListInstanceProfilesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMin(v, "PathPrefix", 1); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "PathPrefix", 512); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PathPrefix", `\u002F[\u0021-\u007F]*`); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListInstanceProfilesResponse is undocumented.
@@ -1526,11 +4579,79 @@ type ListInstanceProfilesResponse struct {
 	Marker           aws.StringValue   `xml:"ListInstanceProfilesResult>Marker"`
 }
 
+func (v *ListInstanceProfilesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceProfiles"); err != nil {
+		errors["InstanceProfiles"] = append(errors["InstanceProfiles"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListMFADevicesRequest is undocumented.
 type ListMFADevicesRequest struct {
 	Marker   aws.StringValue  `xml:"Marker"`
 	MaxItems aws.IntegerValue `xml:"MaxItems"`
 	UserName aws.StringValue  `xml:"UserName"`
+}
+
+func (v *ListMFADevicesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListMFADevicesResponse is undocumented.
@@ -1540,13 +4661,59 @@ type ListMFADevicesResponse struct {
 	Marker      aws.StringValue  `xml:"ListMFADevicesResult>Marker"`
 }
 
+func (v *ListMFADevicesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "MFADevices"); err != nil {
+		errors["MFADevices"] = append(errors["MFADevices"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListOpenIDConnectProvidersRequest is undocumented.
 type ListOpenIDConnectProvidersRequest struct {
+}
+
+func (v *ListOpenIDConnectProvidersRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListOpenIDConnectProvidersResponse is undocumented.
 type ListOpenIDConnectProvidersResponse struct {
 	OpenIDConnectProviderList []OpenIDConnectProviderListEntry `xml:"ListOpenIDConnectProvidersResult>OpenIDConnectProviderList>member"`
+}
+
+func (v *ListOpenIDConnectProvidersResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListRolePoliciesRequest is undocumented.
@@ -1556,11 +4723,83 @@ type ListRolePoliciesRequest struct {
 	RoleName aws.StringValue  `xml:"RoleName"`
 }
 
+func (v *ListRolePoliciesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListRolePoliciesResponse is undocumented.
 type ListRolePoliciesResponse struct {
 	IsTruncated aws.BooleanValue `xml:"ListRolePoliciesResult>IsTruncated"`
 	Marker      aws.StringValue  `xml:"ListRolePoliciesResult>Marker"`
 	PolicyNames []string         `xml:"ListRolePoliciesResult>PolicyNames>member"`
+}
+
+func (v *ListRolePoliciesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyNames"); err != nil {
+		errors["PolicyNames"] = append(errors["PolicyNames"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListRolesRequest is undocumented.
@@ -1570,6 +4809,48 @@ type ListRolesRequest struct {
 	PathPrefix aws.StringValue  `xml:"PathPrefix"`
 }
 
+func (v *ListRolesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMin(v, "PathPrefix", 1); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "PathPrefix", 512); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PathPrefix", `\u002F[\u0021-\u007F]*`); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListRolesResponse is undocumented.
 type ListRolesResponse struct {
 	IsTruncated aws.BooleanValue `xml:"ListRolesResult>IsTruncated"`
@@ -1577,13 +4858,59 @@ type ListRolesResponse struct {
 	Roles       []Role           `xml:"ListRolesResult>Roles>member"`
 }
 
+func (v *ListRolesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Roles"); err != nil {
+		errors["Roles"] = append(errors["Roles"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListSAMLProvidersRequest is undocumented.
 type ListSAMLProvidersRequest struct {
+}
+
+func (v *ListSAMLProvidersRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListSAMLProvidersResponse is undocumented.
 type ListSAMLProvidersResponse struct {
 	SAMLProviderList []SAMLProviderListEntry `xml:"ListSAMLProvidersResult>SAMLProviderList>member"`
+}
+
+func (v *ListSAMLProvidersResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListServerCertificatesRequest is undocumented.
@@ -1593,11 +4920,79 @@ type ListServerCertificatesRequest struct {
 	PathPrefix aws.StringValue  `xml:"PathPrefix"`
 }
 
+func (v *ListServerCertificatesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMin(v, "PathPrefix", 1); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "PathPrefix", 512); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PathPrefix", `\u002F[\u0021-\u007F]*`); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListServerCertificatesResponse is undocumented.
 type ListServerCertificatesResponse struct {
 	IsTruncated                   aws.BooleanValue            `xml:"ListServerCertificatesResult>IsTruncated"`
 	Marker                        aws.StringValue             `xml:"ListServerCertificatesResult>Marker"`
 	ServerCertificateMetadataList []ServerCertificateMetadata `xml:"ListServerCertificatesResult>ServerCertificateMetadataList>member"`
+}
+
+func (v *ListServerCertificatesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ServerCertificateMetadataList"); err != nil {
+		errors["ServerCertificateMetadataList"] = append(errors["ServerCertificateMetadataList"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListSigningCertificatesRequest is undocumented.
@@ -1607,11 +5002,79 @@ type ListSigningCertificatesRequest struct {
 	UserName aws.StringValue  `xml:"UserName"`
 }
 
+func (v *ListSigningCertificatesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListSigningCertificatesResponse is undocumented.
 type ListSigningCertificatesResponse struct {
 	Certificates []SigningCertificate `xml:"ListSigningCertificatesResult>Certificates>member"`
 	IsTruncated  aws.BooleanValue     `xml:"ListSigningCertificatesResult>IsTruncated"`
 	Marker       aws.StringValue      `xml:"ListSigningCertificatesResult>Marker"`
+}
+
+func (v *ListSigningCertificatesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Certificates"); err != nil {
+		errors["Certificates"] = append(errors["Certificates"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListUserPoliciesRequest is undocumented.
@@ -1621,11 +5084,83 @@ type ListUserPoliciesRequest struct {
 	UserName aws.StringValue  `xml:"UserName"`
 }
 
+func (v *ListUserPoliciesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListUserPoliciesResponse is undocumented.
 type ListUserPoliciesResponse struct {
 	IsTruncated aws.BooleanValue `xml:"ListUserPoliciesResult>IsTruncated"`
 	Marker      aws.StringValue  `xml:"ListUserPoliciesResult>Marker"`
 	PolicyNames []string         `xml:"ListUserPoliciesResult>PolicyNames>member"`
+}
+
+func (v *ListUserPoliciesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyNames"); err != nil {
+		errors["PolicyNames"] = append(errors["PolicyNames"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListUsersRequest is undocumented.
@@ -1635,11 +5170,79 @@ type ListUsersRequest struct {
 	PathPrefix aws.StringValue  `xml:"PathPrefix"`
 }
 
+func (v *ListUsersRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMin(v, "PathPrefix", 1); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "PathPrefix", 512); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PathPrefix", `\u002F[\u0021-\u007F]*`); err != nil {
+		errors["PathPrefix"] = append(errors["PathPrefix"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListUsersResponse is undocumented.
 type ListUsersResponse struct {
 	IsTruncated aws.BooleanValue `xml:"ListUsersResult>IsTruncated"`
 	Marker      aws.StringValue  `xml:"ListUsersResult>Marker"`
 	Users       []User           `xml:"ListUsersResult>Users>member"`
+}
+
+func (v *ListUsersResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Users"); err != nil {
+		errors["Users"] = append(errors["Users"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListVirtualMFADevicesRequest is undocumented.
@@ -1649,11 +5252,76 @@ type ListVirtualMFADevicesRequest struct {
 	MaxItems         aws.IntegerValue `xml:"MaxItems"`
 }
 
+func (v *ListVirtualMFADevicesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	AssignmentStatusEnum := []string{
+		AssignmentStatusTypeAny,
+		AssignmentStatusTypeAssigned,
+		AssignmentStatusTypeUnassigned,
+	}
+	if err := model.ValidateEnum(v, "AssignmentStatus", AssignmentStatusEnum); err != nil {
+		errors["AssignmentStatus"] = append(errors["AssignmentStatus"], err)
+	}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 1000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListVirtualMFADevicesResponse is undocumented.
 type ListVirtualMFADevicesResponse struct {
 	IsTruncated       aws.BooleanValue   `xml:"ListVirtualMFADevicesResult>IsTruncated"`
 	Marker            aws.StringValue    `xml:"ListVirtualMFADevicesResult>Marker"`
 	VirtualMFADevices []VirtualMFADevice `xml:"ListVirtualMFADevicesResult>VirtualMFADevices>member"`
+}
+
+func (v *ListVirtualMFADevicesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Marker", 1); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 320); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\u00FF]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VirtualMFADevices"); err != nil {
+		errors["VirtualMFADevices"] = append(errors["VirtualMFADevices"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LoginProfile is undocumented.
@@ -1663,6 +5331,36 @@ type LoginProfile struct {
 	UserName              aws.StringValue  `xml:"UserName"`
 }
 
+func (v *LoginProfile) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CreateDate"); err != nil {
+		errors["CreateDate"] = append(errors["CreateDate"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 64); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // MFADevice is undocumented.
 type MFADevice struct {
 	EnableDate   time.Time       `xml:"EnableDate"`
@@ -1670,9 +5368,73 @@ type MFADevice struct {
 	UserName     aws.StringValue `xml:"UserName"`
 }
 
+func (v *MFADevice) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EnableDate"); err != nil {
+		errors["EnableDate"] = append(errors["EnableDate"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SerialNumber"); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMin(v, "SerialNumber", 9); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMax(v, "SerialNumber", 256); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SerialNumber", `[\w+=/:,.@-]*`); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 64); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // OpenIDConnectProviderListEntry is undocumented.
 type OpenIDConnectProviderListEntry struct {
 	ARN aws.StringValue `xml:"Arn"`
+}
+
+func (v *OpenIDConnectProviderListEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PasswordPolicy is undocumented.
@@ -1689,10 +5451,78 @@ type PasswordPolicy struct {
 	RequireUppercaseCharacters aws.BooleanValue `xml:"RequireUppercaseCharacters"`
 }
 
+func (v *PasswordPolicy) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "MaxPasswordAge", 1); err != nil {
+		errors["MaxPasswordAge"] = append(errors["MaxPasswordAge"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxPasswordAge", 1095); err != nil {
+		errors["MaxPasswordAge"] = append(errors["MaxPasswordAge"], err)
+	}
+
+	if err := model.ValidateMin(v, "MinimumPasswordLength", 6); err != nil {
+		errors["MinimumPasswordLength"] = append(errors["MinimumPasswordLength"], err)
+	}
+
+	if err := model.ValidateMax(v, "MinimumPasswordLength", 128); err != nil {
+		errors["MinimumPasswordLength"] = append(errors["MinimumPasswordLength"], err)
+	}
+
+	if err := model.ValidateMin(v, "PasswordReusePrevention", 1); err != nil {
+		errors["PasswordReusePrevention"] = append(errors["PasswordReusePrevention"], err)
+	}
+
+	if err := model.ValidateMax(v, "PasswordReusePrevention", 24); err != nil {
+		errors["PasswordReusePrevention"] = append(errors["PasswordReusePrevention"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PolicyDetail is undocumented.
 type PolicyDetail struct {
 	PolicyDocument aws.StringValue `xml:"PolicyDocument"`
 	PolicyName     aws.StringValue `xml:"PolicyName"`
+}
+
+func (v *PolicyDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "PolicyDocument", 1); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyDocument", 131072); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyDocument", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutGroupPolicyRequest is undocumented.
@@ -1702,11 +5532,127 @@ type PutGroupPolicyRequest struct {
 	PolicyName     aws.StringValue `xml:"PolicyName"`
 }
 
+func (v *PutGroupPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyDocument"); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyDocument", 1); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyDocument", 131072); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyDocument", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutRolePolicyRequest is undocumented.
 type PutRolePolicyRequest struct {
 	PolicyDocument aws.StringValue `xml:"PolicyDocument"`
 	PolicyName     aws.StringValue `xml:"PolicyName"`
 	RoleName       aws.StringValue `xml:"RoleName"`
+}
+
+func (v *PutRolePolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PolicyDocument"); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyDocument", 1); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyDocument", 131072); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyDocument", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutUserPolicyRequest is undocumented.
@@ -1716,10 +5662,102 @@ type PutUserPolicyRequest struct {
 	UserName       aws.StringValue `xml:"UserName"`
 }
 
+func (v *PutUserPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PolicyDocument"); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyDocument", 1); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyDocument", 131072); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyDocument", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyName", 1); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyName", 128); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyName", `[\w+=,.@-]*`); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RemoveClientIDFromOpenIDConnectProviderRequest is undocumented.
 type RemoveClientIDFromOpenIDConnectProviderRequest struct {
 	ClientID                 aws.StringValue `xml:"ClientID"`
 	OpenIDConnectProviderARN aws.StringValue `xml:"OpenIDConnectProviderArn"`
+}
+
+func (v *RemoveClientIDFromOpenIDConnectProviderRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClientID"); err != nil {
+		errors["ClientID"] = append(errors["ClientID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ClientID", 1); err != nil {
+		errors["ClientID"] = append(errors["ClientID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ClientID", 255); err != nil {
+		errors["ClientID"] = append(errors["ClientID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OpenIDConnectProviderARN"); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "OpenIDConnectProviderARN", 20); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "OpenIDConnectProviderARN", 2048); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RemoveRoleFromInstanceProfileRequest is undocumented.
@@ -1728,10 +5766,94 @@ type RemoveRoleFromInstanceProfileRequest struct {
 	RoleName            aws.StringValue `xml:"RoleName"`
 }
 
+func (v *RemoveRoleFromInstanceProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceProfileName"); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstanceProfileName", 1); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstanceProfileName", 128); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "InstanceProfileName", `[\w+=,.@-]*`); err != nil {
+		errors["InstanceProfileName"] = append(errors["InstanceProfileName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RemoveUserFromGroupRequest is undocumented.
 type RemoveUserFromGroupRequest struct {
 	GroupName aws.StringValue `xml:"GroupName"`
 	UserName  aws.StringValue `xml:"UserName"`
+}
+
+func (v *RemoveUserFromGroupRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for IAM.
@@ -1754,6 +5876,80 @@ type ResyncMFADeviceRequest struct {
 	UserName            aws.StringValue `xml:"UserName"`
 }
 
+func (v *ResyncMFADeviceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AuthenticationCode1"); err != nil {
+		errors["AuthenticationCode1"] = append(errors["AuthenticationCode1"], err)
+	}
+
+	if err := model.ValidateMin(v, "AuthenticationCode1", 6); err != nil {
+		errors["AuthenticationCode1"] = append(errors["AuthenticationCode1"], err)
+	}
+
+	if err := model.ValidateMax(v, "AuthenticationCode1", 6); err != nil {
+		errors["AuthenticationCode1"] = append(errors["AuthenticationCode1"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AuthenticationCode1", `[\d]*`); err != nil {
+		errors["AuthenticationCode1"] = append(errors["AuthenticationCode1"], err)
+	}
+
+	if err := model.ValidateRequired(v, "AuthenticationCode2"); err != nil {
+		errors["AuthenticationCode2"] = append(errors["AuthenticationCode2"], err)
+	}
+
+	if err := model.ValidateMin(v, "AuthenticationCode2", 6); err != nil {
+		errors["AuthenticationCode2"] = append(errors["AuthenticationCode2"], err)
+	}
+
+	if err := model.ValidateMax(v, "AuthenticationCode2", 6); err != nil {
+		errors["AuthenticationCode2"] = append(errors["AuthenticationCode2"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AuthenticationCode2", `[\d]*`); err != nil {
+		errors["AuthenticationCode2"] = append(errors["AuthenticationCode2"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SerialNumber"); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMin(v, "SerialNumber", 9); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMax(v, "SerialNumber", 256); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SerialNumber", `[\w+=/:,.@-]*`); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Role is undocumented.
 type Role struct {
 	ARN                      aws.StringValue `xml:"Arn"`
@@ -1762,6 +5958,92 @@ type Role struct {
 	Path                     aws.StringValue `xml:"Path"`
 	RoleID                   aws.StringValue `xml:"RoleId"`
 	RoleName                 aws.StringValue `xml:"RoleName"`
+}
+
+func (v *Role) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ARN"); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "AssumeRolePolicyDocument", 1); err != nil {
+		errors["AssumeRolePolicyDocument"] = append(errors["AssumeRolePolicyDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "AssumeRolePolicyDocument", 131072); err != nil {
+		errors["AssumeRolePolicyDocument"] = append(errors["AssumeRolePolicyDocument"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AssumeRolePolicyDocument", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["AssumeRolePolicyDocument"] = append(errors["AssumeRolePolicyDocument"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CreateDate"); err != nil {
+		errors["CreateDate"] = append(errors["CreateDate"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Path"); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleID"); err != nil {
+		errors["RoleID"] = append(errors["RoleID"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleID", 16); err != nil {
+		errors["RoleID"] = append(errors["RoleID"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleID", 32); err != nil {
+		errors["RoleID"] = append(errors["RoleID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleID", `[\w]*`); err != nil {
+		errors["RoleID"] = append(errors["RoleID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RoleDetail is undocumented.
@@ -1776,6 +6058,72 @@ type RoleDetail struct {
 	RolePolicyList           []PolicyDetail    `xml:"RolePolicyList>member"`
 }
 
+func (v *RoleDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "AssumeRolePolicyDocument", 1); err != nil {
+		errors["AssumeRolePolicyDocument"] = append(errors["AssumeRolePolicyDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "AssumeRolePolicyDocument", 131072); err != nil {
+		errors["AssumeRolePolicyDocument"] = append(errors["AssumeRolePolicyDocument"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AssumeRolePolicyDocument", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["AssumeRolePolicyDocument"] = append(errors["AssumeRolePolicyDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleID", 16); err != nil {
+		errors["RoleID"] = append(errors["RoleID"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleID", 32); err != nil {
+		errors["RoleID"] = append(errors["RoleID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleID", `[\w]*`); err != nil {
+		errors["RoleID"] = append(errors["RoleID"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SAMLProviderListEntry is undocumented.
 type SAMLProviderListEntry struct {
 	ARN        aws.StringValue `xml:"Arn"`
@@ -1783,11 +6131,71 @@ type SAMLProviderListEntry struct {
 	ValidUntil time.Time       `xml:"ValidUntil"`
 }
 
+func (v *SAMLProviderListEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ServerCertificate is undocumented.
 type ServerCertificate struct {
 	CertificateBody           aws.StringValue            `xml:"CertificateBody"`
 	CertificateChain          aws.StringValue            `xml:"CertificateChain"`
 	ServerCertificateMetadata *ServerCertificateMetadata `xml:"ServerCertificateMetadata"`
+}
+
+func (v *ServerCertificate) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CertificateBody"); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "CertificateBody", 1); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidateMax(v, "CertificateBody", 16384); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidatePattern(v, "CertificateBody", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "CertificateChain", 1); err != nil {
+		errors["CertificateChain"] = append(errors["CertificateChain"], err)
+	}
+
+	if err := model.ValidateMax(v, "CertificateChain", 2097152); err != nil {
+		errors["CertificateChain"] = append(errors["CertificateChain"], err)
+	}
+
+	if err := model.ValidatePattern(v, "CertificateChain", `[\u0009\u000A\u000D\u0020-\u00FF]*`); err != nil {
+		errors["CertificateChain"] = append(errors["CertificateChain"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ServerCertificateMetadata"); err != nil {
+		errors["ServerCertificateMetadata"] = append(errors["ServerCertificateMetadata"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ServerCertificateMetadata is undocumented.
@@ -1800,6 +6208,76 @@ type ServerCertificateMetadata struct {
 	UploadDate            time.Time       `xml:"UploadDate"`
 }
 
+func (v *ServerCertificateMetadata) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ARN"); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Path"); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ServerCertificateID"); err != nil {
+		errors["ServerCertificateID"] = append(errors["ServerCertificateID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ServerCertificateID", 16); err != nil {
+		errors["ServerCertificateID"] = append(errors["ServerCertificateID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ServerCertificateID", 32); err != nil {
+		errors["ServerCertificateID"] = append(errors["ServerCertificateID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ServerCertificateID", `[\w]*`); err != nil {
+		errors["ServerCertificateID"] = append(errors["ServerCertificateID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ServerCertificateName"); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ServerCertificateName", 1); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ServerCertificateName", 128); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ServerCertificateName", `[\w+=,.@-]*`); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SigningCertificate is undocumented.
 type SigningCertificate struct {
 	CertificateBody aws.StringValue `xml:"CertificateBody"`
@@ -1809,11 +6287,131 @@ type SigningCertificate struct {
 	UserName        aws.StringValue `xml:"UserName"`
 }
 
+func (v *SigningCertificate) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CertificateBody"); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "CertificateBody", 1); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidateMax(v, "CertificateBody", 16384); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidatePattern(v, "CertificateBody", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CertificateID"); err != nil {
+		errors["CertificateID"] = append(errors["CertificateID"], err)
+	}
+
+	if err := model.ValidateMin(v, "CertificateID", 24); err != nil {
+		errors["CertificateID"] = append(errors["CertificateID"], err)
+	}
+
+	if err := model.ValidateMax(v, "CertificateID", 128); err != nil {
+		errors["CertificateID"] = append(errors["CertificateID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "CertificateID", `[\w]*`); err != nil {
+		errors["CertificateID"] = append(errors["CertificateID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	StatusEnum := []string{
+		StatusTypeActive,
+		StatusTypeInactive,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 64); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateAccessKeyRequest is undocumented.
 type UpdateAccessKeyRequest struct {
 	AccessKeyID aws.StringValue `xml:"AccessKeyId"`
 	Status      aws.StringValue `xml:"Status"`
 	UserName    aws.StringValue `xml:"UserName"`
+}
+
+func (v *UpdateAccessKeyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccessKeyID"); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "AccessKeyID", 16); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "AccessKeyID", 32); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AccessKeyID", `[\w]*`); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	StatusEnum := []string{
+		StatusTypeActive,
+		StatusTypeInactive,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateAccountPasswordPolicyRequest is undocumented.
@@ -1829,10 +6427,86 @@ type UpdateAccountPasswordPolicyRequest struct {
 	RequireUppercaseCharacters aws.BooleanValue `xml:"RequireUppercaseCharacters"`
 }
 
+func (v *UpdateAccountPasswordPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "MaxPasswordAge", 1); err != nil {
+		errors["MaxPasswordAge"] = append(errors["MaxPasswordAge"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxPasswordAge", 1095); err != nil {
+		errors["MaxPasswordAge"] = append(errors["MaxPasswordAge"], err)
+	}
+
+	if err := model.ValidateMin(v, "MinimumPasswordLength", 6); err != nil {
+		errors["MinimumPasswordLength"] = append(errors["MinimumPasswordLength"], err)
+	}
+
+	if err := model.ValidateMax(v, "MinimumPasswordLength", 128); err != nil {
+		errors["MinimumPasswordLength"] = append(errors["MinimumPasswordLength"], err)
+	}
+
+	if err := model.ValidateMin(v, "PasswordReusePrevention", 1); err != nil {
+		errors["PasswordReusePrevention"] = append(errors["PasswordReusePrevention"], err)
+	}
+
+	if err := model.ValidateMax(v, "PasswordReusePrevention", 24); err != nil {
+		errors["PasswordReusePrevention"] = append(errors["PasswordReusePrevention"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateAssumeRolePolicyRequest is undocumented.
 type UpdateAssumeRolePolicyRequest struct {
 	PolicyDocument aws.StringValue `xml:"PolicyDocument"`
 	RoleName       aws.StringValue `xml:"RoleName"`
+}
+
+func (v *UpdateAssumeRolePolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PolicyDocument"); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "PolicyDocument", 1); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "PolicyDocument", 131072); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PolicyDocument", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["PolicyDocument"] = append(errors["PolicyDocument"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleName"); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleName", 1); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleName", 64); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleName"] = append(errors["RoleName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateGroupRequest is undocumented.
@@ -1842,11 +6516,99 @@ type UpdateGroupRequest struct {
 	NewPath      aws.StringValue `xml:"NewPath"`
 }
 
+func (v *UpdateGroupRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "GroupName", 1); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "GroupName", 128); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "GroupName", `[\w+=,.@-]*`); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "NewGroupName", 1); err != nil {
+		errors["NewGroupName"] = append(errors["NewGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "NewGroupName", 128); err != nil {
+		errors["NewGroupName"] = append(errors["NewGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NewGroupName", `[\w+=,.@-]*`); err != nil {
+		errors["NewGroupName"] = append(errors["NewGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "NewPath", 1); err != nil {
+		errors["NewPath"] = append(errors["NewPath"], err)
+	}
+
+	if err := model.ValidateMax(v, "NewPath", 512); err != nil {
+		errors["NewPath"] = append(errors["NewPath"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NewPath", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["NewPath"] = append(errors["NewPath"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateLoginProfileRequest is undocumented.
 type UpdateLoginProfileRequest struct {
 	Password              aws.StringValue  `xml:"Password"`
 	PasswordResetRequired aws.BooleanValue `xml:"PasswordResetRequired"`
 	UserName              aws.StringValue  `xml:"UserName"`
+}
+
+func (v *UpdateLoginProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Password", 1); err != nil {
+		errors["Password"] = append(errors["Password"], err)
+	}
+
+	if err := model.ValidateMax(v, "Password", 128); err != nil {
+		errors["Password"] = append(errors["Password"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Password", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["Password"] = append(errors["Password"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 64); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateOpenIDConnectProviderThumbprintRequest is undocumented.
@@ -1855,15 +6617,93 @@ type UpdateOpenIDConnectProviderThumbprintRequest struct {
 	ThumbprintList           []string        `xml:"ThumbprintList>member"`
 }
 
+func (v *UpdateOpenIDConnectProviderThumbprintRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OpenIDConnectProviderARN"); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "OpenIDConnectProviderARN", 20); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "OpenIDConnectProviderARN", 2048); err != nil {
+		errors["OpenIDConnectProviderARN"] = append(errors["OpenIDConnectProviderARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ThumbprintList"); err != nil {
+		errors["ThumbprintList"] = append(errors["ThumbprintList"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateSAMLProviderRequest is undocumented.
 type UpdateSAMLProviderRequest struct {
 	SAMLMetadataDocument aws.StringValue `xml:"SAMLMetadataDocument"`
 	SAMLProviderARN      aws.StringValue `xml:"SAMLProviderArn"`
 }
 
+func (v *UpdateSAMLProviderRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SAMLMetadataDocument"); err != nil {
+		errors["SAMLMetadataDocument"] = append(errors["SAMLMetadataDocument"], err)
+	}
+
+	if err := model.ValidateMin(v, "SAMLMetadataDocument", 1000); err != nil {
+		errors["SAMLMetadataDocument"] = append(errors["SAMLMetadataDocument"], err)
+	}
+
+	if err := model.ValidateMax(v, "SAMLMetadataDocument", 10000000); err != nil {
+		errors["SAMLMetadataDocument"] = append(errors["SAMLMetadataDocument"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SAMLProviderARN"); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "SAMLProviderARN", 20); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "SAMLProviderARN", 2048); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateSAMLProviderResponse is undocumented.
 type UpdateSAMLProviderResponse struct {
 	SAMLProviderARN aws.StringValue `xml:"UpdateSAMLProviderResult>SAMLProviderArn"`
+}
+
+func (v *UpdateSAMLProviderResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "SAMLProviderARN", 20); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "SAMLProviderARN", 2048); err != nil {
+		errors["SAMLProviderARN"] = append(errors["SAMLProviderARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateServerCertificateRequest is undocumented.
@@ -1873,6 +6713,56 @@ type UpdateServerCertificateRequest struct {
 	ServerCertificateName    aws.StringValue `xml:"ServerCertificateName"`
 }
 
+func (v *UpdateServerCertificateRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NewPath", 1); err != nil {
+		errors["NewPath"] = append(errors["NewPath"], err)
+	}
+
+	if err := model.ValidateMax(v, "NewPath", 512); err != nil {
+		errors["NewPath"] = append(errors["NewPath"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NewPath", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["NewPath"] = append(errors["NewPath"], err)
+	}
+
+	if err := model.ValidateMin(v, "NewServerCertificateName", 1); err != nil {
+		errors["NewServerCertificateName"] = append(errors["NewServerCertificateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "NewServerCertificateName", 128); err != nil {
+		errors["NewServerCertificateName"] = append(errors["NewServerCertificateName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NewServerCertificateName", `[\w+=,.@-]*`); err != nil {
+		errors["NewServerCertificateName"] = append(errors["NewServerCertificateName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ServerCertificateName"); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ServerCertificateName", 1); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ServerCertificateName", 128); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ServerCertificateName", `[\w+=,.@-]*`); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateSigningCertificateRequest is undocumented.
 type UpdateSigningCertificateRequest struct {
 	CertificateID aws.StringValue `xml:"CertificateId"`
@@ -1880,11 +6770,111 @@ type UpdateSigningCertificateRequest struct {
 	UserName      aws.StringValue `xml:"UserName"`
 }
 
+func (v *UpdateSigningCertificateRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CertificateID"); err != nil {
+		errors["CertificateID"] = append(errors["CertificateID"], err)
+	}
+
+	if err := model.ValidateMin(v, "CertificateID", 24); err != nil {
+		errors["CertificateID"] = append(errors["CertificateID"], err)
+	}
+
+	if err := model.ValidateMax(v, "CertificateID", 128); err != nil {
+		errors["CertificateID"] = append(errors["CertificateID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "CertificateID", `[\w]*`); err != nil {
+		errors["CertificateID"] = append(errors["CertificateID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	StatusEnum := []string{
+		StatusTypeActive,
+		StatusTypeInactive,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateUserRequest is undocumented.
 type UpdateUserRequest struct {
 	NewPath     aws.StringValue `xml:"NewPath"`
 	NewUserName aws.StringValue `xml:"NewUserName"`
 	UserName    aws.StringValue `xml:"UserName"`
+}
+
+func (v *UpdateUserRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NewPath", 1); err != nil {
+		errors["NewPath"] = append(errors["NewPath"], err)
+	}
+
+	if err := model.ValidateMax(v, "NewPath", 512); err != nil {
+		errors["NewPath"] = append(errors["NewPath"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NewPath", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["NewPath"] = append(errors["NewPath"], err)
+	}
+
+	if err := model.ValidateMin(v, "NewUserName", 1); err != nil {
+		errors["NewUserName"] = append(errors["NewUserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "NewUserName", 64); err != nil {
+		errors["NewUserName"] = append(errors["NewUserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NewUserName", `[\w+=,.@-]*`); err != nil {
+		errors["NewUserName"] = append(errors["NewUserName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UploadServerCertificateRequest is undocumented.
@@ -1896,9 +6886,101 @@ type UploadServerCertificateRequest struct {
 	ServerCertificateName aws.StringValue `xml:"ServerCertificateName"`
 }
 
+func (v *UploadServerCertificateRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CertificateBody"); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "CertificateBody", 1); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidateMax(v, "CertificateBody", 16384); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidatePattern(v, "CertificateBody", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "CertificateChain", 1); err != nil {
+		errors["CertificateChain"] = append(errors["CertificateChain"], err)
+	}
+
+	if err := model.ValidateMax(v, "CertificateChain", 2097152); err != nil {
+		errors["CertificateChain"] = append(errors["CertificateChain"], err)
+	}
+
+	if err := model.ValidatePattern(v, "CertificateChain", `[\u0009\u000A\u000D\u0020-\u00FF]*`); err != nil {
+		errors["CertificateChain"] = append(errors["CertificateChain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PrivateKey"); err != nil {
+		errors["PrivateKey"] = append(errors["PrivateKey"], err)
+	}
+
+	if err := model.ValidateMin(v, "PrivateKey", 1); err != nil {
+		errors["PrivateKey"] = append(errors["PrivateKey"], err)
+	}
+
+	if err := model.ValidateMax(v, "PrivateKey", 16384); err != nil {
+		errors["PrivateKey"] = append(errors["PrivateKey"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PrivateKey", `[\u0009\u000A\u000D\u0020-\u00FF]*`); err != nil {
+		errors["PrivateKey"] = append(errors["PrivateKey"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ServerCertificateName"); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ServerCertificateName", 1); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ServerCertificateName", 128); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ServerCertificateName", `[\w+=,.@-]*`); err != nil {
+		errors["ServerCertificateName"] = append(errors["ServerCertificateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UploadServerCertificateResponse is undocumented.
 type UploadServerCertificateResponse struct {
 	ServerCertificateMetadata *ServerCertificateMetadata `xml:"UploadServerCertificateResult>ServerCertificateMetadata"`
+}
+
+func (v *UploadServerCertificateResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UploadSigningCertificateRequest is undocumented.
@@ -1907,9 +6989,61 @@ type UploadSigningCertificateRequest struct {
 	UserName        aws.StringValue `xml:"UserName"`
 }
 
+func (v *UploadSigningCertificateRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CertificateBody"); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "CertificateBody", 1); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidateMax(v, "CertificateBody", 16384); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidatePattern(v, "CertificateBody", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["CertificateBody"] = append(errors["CertificateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 128); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UploadSigningCertificateResponse is undocumented.
 type UploadSigningCertificateResponse struct {
 	Certificate *SigningCertificate `xml:"UploadSigningCertificateResult>Certificate"`
+}
+
+func (v *UploadSigningCertificateResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Certificate"); err != nil {
+		errors["Certificate"] = append(errors["Certificate"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // User is undocumented.
@@ -1920,6 +7054,80 @@ type User struct {
 	Path             aws.StringValue `xml:"Path"`
 	UserID           aws.StringValue `xml:"UserId"`
 	UserName         aws.StringValue `xml:"UserName"`
+}
+
+func (v *User) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ARN"); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CreateDate"); err != nil {
+		errors["CreateDate"] = append(errors["CreateDate"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Path"); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserID"); err != nil {
+		errors["UserID"] = append(errors["UserID"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserID", 16); err != nil {
+		errors["UserID"] = append(errors["UserID"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserID", 32); err != nil {
+		errors["UserID"] = append(errors["UserID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserID", `[\w]*`); err != nil {
+		errors["UserID"] = append(errors["UserID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UserName"); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 64); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UserDetail is undocumented.
@@ -1933,6 +7141,60 @@ type UserDetail struct {
 	UserPolicyList []PolicyDetail  `xml:"UserPolicyList>member"`
 }
 
+func (v *UserDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "Path", 1); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMax(v, "Path", 512); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Path", `(\u002F)|(\u002F[\u0021-\u007F]+\u002F)`); err != nil {
+		errors["Path"] = append(errors["Path"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserID", 16); err != nil {
+		errors["UserID"] = append(errors["UserID"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserID", 32); err != nil {
+		errors["UserID"] = append(errors["UserID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserID", `[\w]*`); err != nil {
+		errors["UserID"] = append(errors["UserID"], err)
+	}
+
+	if err := model.ValidateMin(v, "UserName", 1); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidateMax(v, "UserName", 64); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UserName", `[\w+=,.@-]*`); err != nil {
+		errors["UserName"] = append(errors["UserName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VirtualMFADevice is undocumented.
 type VirtualMFADevice struct {
 	Base32StringSeed []byte          `xml:"Base32StringSeed"`
@@ -1940,6 +7202,32 @@ type VirtualMFADevice struct {
 	QRCodePNG        []byte          `xml:"QRCodePNG"`
 	SerialNumber     aws.StringValue `xml:"SerialNumber"`
 	User             *User           `xml:"User"`
+}
+
+func (v *VirtualMFADevice) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SerialNumber"); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMin(v, "SerialNumber", 9); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMax(v, "SerialNumber", 256); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SerialNumber", `[\w+=/:,.@-]*`); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for IAM.

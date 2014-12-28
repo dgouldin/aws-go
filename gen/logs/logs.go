@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // Logs is a client for Amazon CloudWatch Logs.
@@ -46,6 +47,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Log
 // 512 characters long. Allowed characters are a-z, 0-9, '_' (underscore),
 // '-' (hyphen), '/' (forward slash), and '.' (period).
 func (c *Logs) CreateLogGroup(req *CreateLogGroupRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateLogGroup", "POST", "/", req, nil)
 	return
@@ -58,6 +63,10 @@ func (c *Logs) CreateLogGroup(req *CreateLogGroupRequest) (err error) {
 // names can be between 1 and 512 characters long. The ':' colon character
 // is not allowed.
 func (c *Logs) CreateLogStream(req *CreateLogStreamRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateLogStream", "POST", "/", req, nil)
 	return
@@ -66,6 +75,10 @@ func (c *Logs) CreateLogStream(req *CreateLogStreamRequest) (err error) {
 // DeleteLogGroup deletes the log group with the specified name and
 // permanently deletes all the archived log events associated with it.
 func (c *Logs) DeleteLogGroup(req *DeleteLogGroupRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteLogGroup", "POST", "/", req, nil)
 	return
@@ -74,6 +87,10 @@ func (c *Logs) DeleteLogGroup(req *DeleteLogGroupRequest) (err error) {
 // DeleteLogStream deletes a log stream and permanently deletes all the
 // archived log events associated with it.
 func (c *Logs) DeleteLogStream(req *DeleteLogStreamRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteLogStream", "POST", "/", req, nil)
 	return
@@ -82,6 +99,10 @@ func (c *Logs) DeleteLogStream(req *DeleteLogStreamRequest) (err error) {
 // DeleteMetricFilter deletes a metric filter associated with the specified
 // log group.
 func (c *Logs) DeleteMetricFilter(req *DeleteMetricFilterRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteMetricFilter", "POST", "/", req, nil)
 	return
@@ -91,6 +112,10 @@ func (c *Logs) DeleteMetricFilter(req *DeleteMetricFilterRequest) (err error) {
 // group. Log events would not expire if they belong to log groups without
 // a retention policy.
 func (c *Logs) DeleteRetentionPolicy(req *DeleteRetentionPolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteRetentionPolicy", "POST", "/", req, nil)
 	return
@@ -104,6 +129,10 @@ func (c *Logs) DeleteRetentionPolicy(req *DeleteRetentionPolicyRequest) (err err
 // number of log groups returned in the response by specifying the limit
 // parameter in the request.
 func (c *Logs) DescribeLogGroups(req *DescribeLogGroupsRequest) (resp *DescribeLogGroupsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeLogGroupsResponse{}
 	err = c.client.Do("DescribeLogGroups", "POST", "/", req, resp)
 	return
@@ -117,6 +146,10 @@ func (c *Logs) DescribeLogGroups(req *DescribeLogGroupsRequest) (resp *DescribeL
 // the number of log streams returned in the response by specifying the
 // limit parameter in the request.
 func (c *Logs) DescribeLogStreams(req *DescribeLogStreamsRequest) (resp *DescribeLogStreamsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeLogStreamsResponse{}
 	err = c.client.Do("DescribeLogStreams", "POST", "/", req, resp)
 	return
@@ -130,6 +163,10 @@ func (c *Logs) DescribeLogStreams(req *DescribeLogStreamsRequest) (resp *Describ
 // the number of metric filters returned in the response by specifying the
 // limit parameter in the request.
 func (c *Logs) DescribeMetricFilters(req *DescribeMetricFiltersRequest) (resp *DescribeMetricFiltersResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeMetricFiltersResponse{}
 	err = c.client.Do("DescribeMetricFilters", "POST", "/", req, resp)
 	return
@@ -145,6 +182,10 @@ func (c *Logs) DescribeMetricFilters(req *DescribeMetricFiltersRequest) (resp *D
 // backward direction. You can also limit the number of log events returned
 // in the response by specifying the limit parameter in the request.
 func (c *Logs) GetLogEvents(req *GetLogEventsRequest) (resp *GetLogEventsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetLogEventsResponse{}
 	err = c.client.Do("GetLogEvents", "POST", "/", req, resp)
 	return
@@ -162,6 +203,10 @@ func (c *Logs) GetLogEvents(req *GetLogEventsRequest) (resp *GetLogEventsRespons
 // group. The log events in the batch must be in chronological ordered by
 // their timestamp The maximum number of log events in a batch is 1,000.
 func (c *Logs) PutLogEvents(req *PutLogEventsRequest) (resp *PutLogEventsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PutLogEventsResponse{}
 	err = c.client.Do("PutLogEvents", "POST", "/", req, resp)
 	return
@@ -172,6 +217,10 @@ func (c *Logs) PutLogEvents(req *PutLogEventsRequest) (resp *PutLogEventsRespons
 // rules to extract metric data from log events ingested through
 // PutLogEvents requests.
 func (c *Logs) PutMetricFilter(req *PutMetricFilterRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutMetricFilter", "POST", "/", req, nil)
 	return
@@ -181,6 +230,10 @@ func (c *Logs) PutMetricFilter(req *PutMetricFilterRequest) (err error) {
 // retention policy allows you to configure the number of days you want to
 // retain log events in the specified log group.
 func (c *Logs) PutRetentionPolicy(req *PutRetentionPolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutRetentionPolicy", "POST", "/", req, nil)
 	return
@@ -190,6 +243,10 @@ func (c *Logs) PutRetentionPolicy(req *PutRetentionPolicyRequest) (err error) {
 // sample of log event messages. You can use this operation to validate the
 // correctness of a metric filter pattern.
 func (c *Logs) TestMetricFilter(req *TestMetricFilterRequest) (resp *TestMetricFilterResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &TestMetricFilterResponse{}
 	err = c.client.Do("TestMetricFilter", "POST", "/", req, resp)
 	return
@@ -200,15 +257,109 @@ type CreateLogGroupRequest struct {
 	LogGroupName aws.StringValue `json:"logGroupName"`
 }
 
+func (v *CreateLogGroupRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LogGroupName"); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateLogStreamRequest is undocumented.
 type CreateLogStreamRequest struct {
 	LogGroupName  aws.StringValue `json:"logGroupName"`
 	LogStreamName aws.StringValue `json:"logStreamName"`
 }
 
+func (v *CreateLogStreamRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LogGroupName"); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogStreamName"); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogStreamName", 1); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogStreamName", 512); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogStreamName", `[^:*]*`); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteLogGroupRequest is undocumented.
 type DeleteLogGroupRequest struct {
 	LogGroupName aws.StringValue `json:"logGroupName"`
+}
+
+func (v *DeleteLogGroupRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LogGroupName"); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteLogStreamRequest is undocumented.
@@ -217,15 +368,125 @@ type DeleteLogStreamRequest struct {
 	LogStreamName aws.StringValue `json:"logStreamName"`
 }
 
+func (v *DeleteLogStreamRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LogGroupName"); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogStreamName"); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogStreamName", 1); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogStreamName", 512); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogStreamName", `[^:*]*`); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteMetricFilterRequest is undocumented.
 type DeleteMetricFilterRequest struct {
 	FilterName   aws.StringValue `json:"filterName"`
 	LogGroupName aws.StringValue `json:"logGroupName"`
 }
 
+func (v *DeleteMetricFilterRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "FilterName"); err != nil {
+		errors["FilterName"] = append(errors["FilterName"], err)
+	}
+
+	if err := model.ValidateMin(v, "FilterName", 1); err != nil {
+		errors["FilterName"] = append(errors["FilterName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FilterName", 512); err != nil {
+		errors["FilterName"] = append(errors["FilterName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FilterName", `[^:*]*`); err != nil {
+		errors["FilterName"] = append(errors["FilterName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogGroupName"); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteRetentionPolicyRequest is undocumented.
 type DeleteRetentionPolicyRequest struct {
 	LogGroupName aws.StringValue `json:"logGroupName"`
+}
+
+func (v *DeleteRetentionPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LogGroupName"); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeLogGroupsRequest is undocumented.
@@ -235,10 +496,50 @@ type DescribeLogGroupsRequest struct {
 	NextToken          aws.StringValue  `json:"nextToken,omitempty"`
 }
 
+func (v *DescribeLogGroupsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 50); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupNamePrefix", 1); err != nil {
+		errors["LogGroupNamePrefix"] = append(errors["LogGroupNamePrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupNamePrefix", 512); err != nil {
+		errors["LogGroupNamePrefix"] = append(errors["LogGroupNamePrefix"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupNamePrefix", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupNamePrefix"] = append(errors["LogGroupNamePrefix"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeLogGroupsResponse is undocumented.
 type DescribeLogGroupsResponse struct {
 	LogGroups []LogGroup      `json:"logGroups,omitempty"`
 	NextToken aws.StringValue `json:"nextToken,omitempty"`
+}
+
+func (v *DescribeLogGroupsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeLogStreamsRequest is undocumented.
@@ -249,10 +550,66 @@ type DescribeLogStreamsRequest struct {
 	NextToken           aws.StringValue  `json:"nextToken,omitempty"`
 }
 
+func (v *DescribeLogStreamsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 50); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogGroupName"); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogStreamNamePrefix", 1); err != nil {
+		errors["LogStreamNamePrefix"] = append(errors["LogStreamNamePrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogStreamNamePrefix", 512); err != nil {
+		errors["LogStreamNamePrefix"] = append(errors["LogStreamNamePrefix"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogStreamNamePrefix", `[^:*]*`); err != nil {
+		errors["LogStreamNamePrefix"] = append(errors["LogStreamNamePrefix"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeLogStreamsResponse is undocumented.
 type DescribeLogStreamsResponse struct {
 	LogStreams []LogStream     `json:"logStreams,omitempty"`
 	NextToken  aws.StringValue `json:"nextToken,omitempty"`
+}
+
+func (v *DescribeLogStreamsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeMetricFiltersRequest is undocumented.
@@ -263,10 +620,66 @@ type DescribeMetricFiltersRequest struct {
 	NextToken        aws.StringValue  `json:"nextToken,omitempty"`
 }
 
+func (v *DescribeMetricFiltersRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "FilterNamePrefix", 1); err != nil {
+		errors["FilterNamePrefix"] = append(errors["FilterNamePrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "FilterNamePrefix", 512); err != nil {
+		errors["FilterNamePrefix"] = append(errors["FilterNamePrefix"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FilterNamePrefix", `[^:*]*`); err != nil {
+		errors["FilterNamePrefix"] = append(errors["FilterNamePrefix"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 50); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogGroupName"); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeMetricFiltersResponse is undocumented.
 type DescribeMetricFiltersResponse struct {
 	MetricFilters []MetricFilter  `json:"metricFilters,omitempty"`
 	NextToken     aws.StringValue `json:"nextToken,omitempty"`
+}
+
+func (v *DescribeMetricFiltersResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetLogEventsRequest is undocumented.
@@ -280,6 +693,56 @@ type GetLogEventsRequest struct {
 	StartTime     aws.LongValue    `json:"startTime,omitempty"`
 }
 
+func (v *GetLogEventsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 10000); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogGroupName"); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogStreamName"); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogStreamName", 1); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogStreamName", 512); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogStreamName", `[^:*]*`); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetLogEventsResponse is undocumented.
 type GetLogEventsResponse struct {
 	Events            []OutputLogEvent `json:"events,omitempty"`
@@ -287,10 +750,46 @@ type GetLogEventsResponse struct {
 	NextForwardToken  aws.StringValue  `json:"nextForwardToken,omitempty"`
 }
 
+func (v *GetLogEventsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InputLogEvent is undocumented.
 type InputLogEvent struct {
 	Message   aws.StringValue `json:"message"`
 	Timestamp aws.LongValue   `json:"timestamp"`
+}
+
+func (v *InputLogEvent) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Message"); err != nil {
+		errors["Message"] = append(errors["Message"], err)
+	}
+
+	if err := model.ValidateMin(v, "Message", 1); err != nil {
+		errors["Message"] = append(errors["Message"], err)
+	}
+
+	if err := model.ValidateMax(v, "Message", 32768); err != nil {
+		errors["Message"] = append(errors["Message"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Timestamp"); err != nil {
+		errors["Timestamp"] = append(errors["Timestamp"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LogGroup is undocumented.
@@ -301,6 +800,28 @@ type LogGroup struct {
 	MetricFilterCount aws.IntegerValue `json:"metricFilterCount,omitempty"`
 	RetentionInDays   aws.IntegerValue `json:"retentionInDays,omitempty"`
 	StoredBytes       aws.LongValue    `json:"storedBytes,omitempty"`
+}
+
+func (v *LogGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LogStream is undocumented.
@@ -315,12 +836,72 @@ type LogStream struct {
 	UploadSequenceToken aws.StringValue `json:"uploadSequenceToken,omitempty"`
 }
 
+func (v *LogStream) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "LogStreamName", 1); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogStreamName", 512); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogStreamName", `[^:*]*`); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "UploadSequenceToken", 1); err != nil {
+		errors["UploadSequenceToken"] = append(errors["UploadSequenceToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // MetricFilter is undocumented.
 type MetricFilter struct {
 	CreationTime          aws.LongValue          `json:"creationTime,omitempty"`
 	FilterName            aws.StringValue        `json:"filterName,omitempty"`
 	FilterPattern         aws.StringValue        `json:"filterPattern,omitempty"`
 	MetricTransformations []MetricTransformation `json:"metricTransformations,omitempty"`
+}
+
+func (v *MetricFilter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "FilterName", 1); err != nil {
+		errors["FilterName"] = append(errors["FilterName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FilterName", 512); err != nil {
+		errors["FilterName"] = append(errors["FilterName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FilterName", `[^:*]*`); err != nil {
+		errors["FilterName"] = append(errors["FilterName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FilterPattern", 512); err != nil {
+		errors["FilterPattern"] = append(errors["FilterPattern"], err)
+	}
+
+	if err := model.ValidateMin(v, "MetricTransformations", 1); err != nil {
+		errors["MetricTransformations"] = append(errors["MetricTransformations"], err)
+	}
+
+	if err := model.ValidateMax(v, "MetricTransformations", 1); err != nil {
+		errors["MetricTransformations"] = append(errors["MetricTransformations"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // MetricFilterMatchRecord is undocumented.
@@ -330,6 +911,24 @@ type MetricFilterMatchRecord struct {
 	ExtractedValues map[string]string `json:"extractedValues,omitempty"`
 }
 
+func (v *MetricFilterMatchRecord) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "EventMessage", 1); err != nil {
+		errors["EventMessage"] = append(errors["EventMessage"], err)
+	}
+
+	if err := model.ValidateMax(v, "EventMessage", 32768); err != nil {
+		errors["EventMessage"] = append(errors["EventMessage"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // MetricTransformation is undocumented.
 type MetricTransformation struct {
 	MetricName      aws.StringValue `json:"metricName"`
@@ -337,11 +936,71 @@ type MetricTransformation struct {
 	MetricValue     aws.StringValue `json:"metricValue"`
 }
 
+func (v *MetricTransformation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "MetricName"); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMax(v, "MetricName", 255); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MetricName", `[^:*$]*`); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MetricNamespace"); err != nil {
+		errors["MetricNamespace"] = append(errors["MetricNamespace"], err)
+	}
+
+	if err := model.ValidateMax(v, "MetricNamespace", 255); err != nil {
+		errors["MetricNamespace"] = append(errors["MetricNamespace"], err)
+	}
+
+	if err := model.ValidatePattern(v, "MetricNamespace", `[^:*$]*`); err != nil {
+		errors["MetricNamespace"] = append(errors["MetricNamespace"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MetricValue"); err != nil {
+		errors["MetricValue"] = append(errors["MetricValue"], err)
+	}
+
+	if err := model.ValidateMax(v, "MetricValue", 100); err != nil {
+		errors["MetricValue"] = append(errors["MetricValue"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // OutputLogEvent is undocumented.
 type OutputLogEvent struct {
 	IngestionTime aws.LongValue   `json:"ingestionTime,omitempty"`
 	Message       aws.StringValue `json:"message,omitempty"`
 	Timestamp     aws.LongValue   `json:"timestamp,omitempty"`
+}
+
+func (v *OutputLogEvent) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Message", 1); err != nil {
+		errors["Message"] = append(errors["Message"], err)
+	}
+
+	if err := model.ValidateMax(v, "Message", 32768); err != nil {
+		errors["Message"] = append(errors["Message"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutLogEventsRequest is undocumented.
@@ -352,9 +1011,81 @@ type PutLogEventsRequest struct {
 	SequenceToken aws.StringValue `json:"sequenceToken,omitempty"`
 }
 
+func (v *PutLogEventsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LogEvents"); err != nil {
+		errors["LogEvents"] = append(errors["LogEvents"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogEvents", 1); err != nil {
+		errors["LogEvents"] = append(errors["LogEvents"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogEvents", 1000); err != nil {
+		errors["LogEvents"] = append(errors["LogEvents"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogGroupName"); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogStreamName"); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogStreamName", 1); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogStreamName", 512); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogStreamName", `[^:*]*`); err != nil {
+		errors["LogStreamName"] = append(errors["LogStreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "SequenceToken", 1); err != nil {
+		errors["SequenceToken"] = append(errors["SequenceToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutLogEventsResponse is undocumented.
 type PutLogEventsResponse struct {
 	NextSequenceToken aws.StringValue `json:"nextSequenceToken,omitempty"`
+}
+
+func (v *PutLogEventsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextSequenceToken", 1); err != nil {
+		errors["NextSequenceToken"] = append(errors["NextSequenceToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutMetricFilterRequest is undocumented.
@@ -365,10 +1096,102 @@ type PutMetricFilterRequest struct {
 	MetricTransformations []MetricTransformation `json:"metricTransformations"`
 }
 
+func (v *PutMetricFilterRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "FilterName"); err != nil {
+		errors["FilterName"] = append(errors["FilterName"], err)
+	}
+
+	if err := model.ValidateMin(v, "FilterName", 1); err != nil {
+		errors["FilterName"] = append(errors["FilterName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FilterName", 512); err != nil {
+		errors["FilterName"] = append(errors["FilterName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FilterName", `[^:*]*`); err != nil {
+		errors["FilterName"] = append(errors["FilterName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "FilterPattern"); err != nil {
+		errors["FilterPattern"] = append(errors["FilterPattern"], err)
+	}
+
+	if err := model.ValidateMax(v, "FilterPattern", 512); err != nil {
+		errors["FilterPattern"] = append(errors["FilterPattern"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogGroupName"); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MetricTransformations"); err != nil {
+		errors["MetricTransformations"] = append(errors["MetricTransformations"], err)
+	}
+
+	if err := model.ValidateMin(v, "MetricTransformations", 1); err != nil {
+		errors["MetricTransformations"] = append(errors["MetricTransformations"], err)
+	}
+
+	if err := model.ValidateMax(v, "MetricTransformations", 1); err != nil {
+		errors["MetricTransformations"] = append(errors["MetricTransformations"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutRetentionPolicyRequest is undocumented.
 type PutRetentionPolicyRequest struct {
 	LogGroupName    aws.StringValue  `json:"logGroupName"`
 	RetentionInDays aws.IntegerValue `json:"retentionInDays"`
+}
+
+func (v *PutRetentionPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LogGroupName"); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogGroupName", 1); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogGroupName", 512); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "LogGroupName", `[\.\-_/#A-Za-z0-9]+`); err != nil {
+		errors["LogGroupName"] = append(errors["LogGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RetentionInDays"); err != nil {
+		errors["RetentionInDays"] = append(errors["RetentionInDays"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TestMetricFilterRequest is undocumented.
@@ -377,9 +1200,49 @@ type TestMetricFilterRequest struct {
 	LogEventMessages []string        `json:"logEventMessages"`
 }
 
+func (v *TestMetricFilterRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "FilterPattern"); err != nil {
+		errors["FilterPattern"] = append(errors["FilterPattern"], err)
+	}
+
+	if err := model.ValidateMax(v, "FilterPattern", 512); err != nil {
+		errors["FilterPattern"] = append(errors["FilterPattern"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogEventMessages"); err != nil {
+		errors["LogEventMessages"] = append(errors["LogEventMessages"], err)
+	}
+
+	if err := model.ValidateMin(v, "LogEventMessages", 1); err != nil {
+		errors["LogEventMessages"] = append(errors["LogEventMessages"], err)
+	}
+
+	if err := model.ValidateMax(v, "LogEventMessages", 50); err != nil {
+		errors["LogEventMessages"] = append(errors["LogEventMessages"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TestMetricFilterResponse is undocumented.
 type TestMetricFilterResponse struct {
 	Matches []MetricFilterMatchRecord `json:"matches,omitempty"`
+}
+
+func (v *TestMetricFilterResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

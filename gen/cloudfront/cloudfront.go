@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 import (
@@ -52,6 +53,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Clo
 
 // CreateCloudFrontOriginAccessIdentity is undocumented.
 func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(req *CreateCloudFrontOriginAccessIdentityRequest) (resp *CreateCloudFrontOriginAccessIdentityResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateCloudFrontOriginAccessIdentityResult{}
 
 	var body io.Reader
@@ -109,6 +114,10 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(req *CreateCloudFrontO
 
 // CreateDistribution is undocumented.
 func (c *CloudFront) CreateDistribution(req *CreateDistributionRequest) (resp *CreateDistributionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDistributionResult{}
 
 	var body io.Reader
@@ -166,6 +175,10 @@ func (c *CloudFront) CreateDistribution(req *CreateDistributionRequest) (resp *C
 
 // CreateInvalidation is undocumented.
 func (c *CloudFront) CreateInvalidation(req *CreateInvalidationRequest) (resp *CreateInvalidationResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateInvalidationResult{}
 
 	var body io.Reader
@@ -222,6 +235,10 @@ func (c *CloudFront) CreateInvalidation(req *CreateInvalidationRequest) (resp *C
 
 // CreateStreamingDistribution is undocumented.
 func (c *CloudFront) CreateStreamingDistribution(req *CreateStreamingDistributionRequest) (resp *CreateStreamingDistributionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateStreamingDistributionResult{}
 
 	var body io.Reader
@@ -279,6 +296,10 @@ func (c *CloudFront) CreateStreamingDistribution(req *CreateStreamingDistributio
 
 // DeleteCloudFrontOriginAccessIdentity is undocumented.
 func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(req *DeleteCloudFrontOriginAccessIdentityRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -322,6 +343,10 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(req *DeleteCloudFrontO
 
 // DeleteDistribution is undocumented.
 func (c *CloudFront) DeleteDistribution(req *DeleteDistributionRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -365,6 +390,10 @@ func (c *CloudFront) DeleteDistribution(req *DeleteDistributionRequest) (err err
 
 // DeleteStreamingDistribution is undocumented.
 func (c *CloudFront) DeleteStreamingDistribution(req *DeleteStreamingDistributionRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -409,6 +438,10 @@ func (c *CloudFront) DeleteStreamingDistribution(req *DeleteStreamingDistributio
 // GetCloudFrontOriginAccessIdentity get the information about an origin
 // access identity.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentity(req *GetCloudFrontOriginAccessIdentityRequest) (resp *GetCloudFrontOriginAccessIdentityResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetCloudFrontOriginAccessIdentityResult{}
 
 	var body io.Reader
@@ -459,6 +492,10 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentity(req *GetCloudFrontOriginA
 // GetCloudFrontOriginAccessIdentityConfig get the configuration
 // information about an origin access identity.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(req *GetCloudFrontOriginAccessIdentityConfigRequest) (resp *GetCloudFrontOriginAccessIdentityConfigResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetCloudFrontOriginAccessIdentityConfigResult{}
 
 	var body io.Reader
@@ -508,6 +545,10 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(req *GetCloudFrontO
 
 // GetDistribution is undocumented.
 func (c *CloudFront) GetDistribution(req *GetDistributionRequest) (resp *GetDistributionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetDistributionResult{}
 
 	var body io.Reader
@@ -558,6 +599,10 @@ func (c *CloudFront) GetDistribution(req *GetDistributionRequest) (resp *GetDist
 // GetDistributionConfig get the configuration information about a
 // distribution.
 func (c *CloudFront) GetDistributionConfig(req *GetDistributionConfigRequest) (resp *GetDistributionConfigResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetDistributionConfigResult{}
 
 	var body io.Reader
@@ -607,6 +652,10 @@ func (c *CloudFront) GetDistributionConfig(req *GetDistributionConfigRequest) (r
 
 // GetInvalidation is undocumented.
 func (c *CloudFront) GetInvalidation(req *GetInvalidationRequest) (resp *GetInvalidationResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetInvalidationResult{}
 
 	var body io.Reader
@@ -656,6 +705,10 @@ func (c *CloudFront) GetInvalidation(req *GetInvalidationRequest) (resp *GetInva
 // GetStreamingDistribution get the information about a streaming
 // distribution.
 func (c *CloudFront) GetStreamingDistribution(req *GetStreamingDistributionRequest) (resp *GetStreamingDistributionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetStreamingDistributionResult{}
 
 	var body io.Reader
@@ -706,6 +759,10 @@ func (c *CloudFront) GetStreamingDistribution(req *GetStreamingDistributionReque
 // GetStreamingDistributionConfig get the configuration information about a
 // streaming distribution.
 func (c *CloudFront) GetStreamingDistributionConfig(req *GetStreamingDistributionConfigRequest) (resp *GetStreamingDistributionConfigResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetStreamingDistributionConfigResult{}
 
 	var body io.Reader
@@ -755,6 +812,10 @@ func (c *CloudFront) GetStreamingDistributionConfig(req *GetStreamingDistributio
 
 // ListCloudFrontOriginAccessIdentities is undocumented.
 func (c *CloudFront) ListCloudFrontOriginAccessIdentities(req *ListCloudFrontOriginAccessIdentitiesRequest) (resp *ListCloudFrontOriginAccessIdentitiesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListCloudFrontOriginAccessIdentitiesResult{}
 
 	var body io.Reader
@@ -801,6 +862,10 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentities(req *ListCloudFrontOri
 
 // ListDistributions is undocumented.
 func (c *CloudFront) ListDistributions(req *ListDistributionsRequest) (resp *ListDistributionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListDistributionsResult{}
 
 	var body io.Reader
@@ -847,6 +912,10 @@ func (c *CloudFront) ListDistributions(req *ListDistributionsRequest) (resp *Lis
 
 // ListInvalidations is undocumented.
 func (c *CloudFront) ListInvalidations(req *ListInvalidationsRequest) (resp *ListInvalidationsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListInvalidationsResult{}
 
 	var body io.Reader
@@ -898,6 +967,10 @@ func (c *CloudFront) ListInvalidations(req *ListInvalidationsRequest) (resp *Lis
 
 // ListStreamingDistributions is undocumented.
 func (c *CloudFront) ListStreamingDistributions(req *ListStreamingDistributionsRequest) (resp *ListStreamingDistributionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListStreamingDistributionsResult{}
 
 	var body io.Reader
@@ -944,6 +1017,10 @@ func (c *CloudFront) ListStreamingDistributions(req *ListStreamingDistributionsR
 
 // UpdateCloudFrontOriginAccessIdentity is undocumented.
 func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(req *UpdateCloudFrontOriginAccessIdentityRequest) (resp *UpdateCloudFrontOriginAccessIdentityResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateCloudFrontOriginAccessIdentityResult{}
 
 	var body io.Reader
@@ -1004,6 +1081,10 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(req *UpdateCloudFrontO
 
 // UpdateDistribution is undocumented.
 func (c *CloudFront) UpdateDistribution(req *UpdateDistributionRequest) (resp *UpdateDistributionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateDistributionResult{}
 
 	var body io.Reader
@@ -1064,6 +1145,10 @@ func (c *CloudFront) UpdateDistribution(req *UpdateDistributionRequest) (resp *U
 
 // UpdateStreamingDistribution is undocumented.
 func (c *CloudFront) UpdateStreamingDistribution(req *UpdateStreamingDistributionRequest) (resp *UpdateStreamingDistributionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateStreamingDistributionResult{}
 
 	var body io.Reader
@@ -1135,6 +1220,24 @@ func (v *ActiveTrustedSigners) MarshalXML(e *xml.Encoder, start xml.StartElement
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ActiveTrustedSigners) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Enabled"); err != nil {
+		errors["Enabled"] = append(errors["Enabled"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Aliases is undocumented.
 type Aliases struct {
 	XMLName xml.Name `xml:"Aliases"`
@@ -1145,6 +1248,20 @@ type Aliases struct {
 
 func (v *Aliases) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Aliases) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AllowedMethods is undocumented.
@@ -1158,6 +1275,24 @@ type AllowedMethods struct {
 
 func (v *AllowedMethods) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *AllowedMethods) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Items"); err != nil {
+		errors["Items"] = append(errors["Items"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CacheBehavior is undocumented.
@@ -1178,6 +1313,49 @@ func (v *CacheBehavior) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CacheBehavior) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ForwardedValues"); err != nil {
+		errors["ForwardedValues"] = append(errors["ForwardedValues"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MinTTL"); err != nil {
+		errors["MinTTL"] = append(errors["MinTTL"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PathPattern"); err != nil {
+		errors["PathPattern"] = append(errors["PathPattern"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetOriginID"); err != nil {
+		errors["TargetOriginID"] = append(errors["TargetOriginID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TrustedSigners"); err != nil {
+		errors["TrustedSigners"] = append(errors["TrustedSigners"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ViewerProtocolPolicy"); err != nil {
+		errors["ViewerProtocolPolicy"] = append(errors["ViewerProtocolPolicy"], err)
+	}
+
+	ViewerProtocolPolicyEnum := []string{
+		ViewerProtocolPolicyAllowAll,
+		ViewerProtocolPolicyHTTPSOnly,
+		ViewerProtocolPolicyRedirectToHTTPS,
+	}
+	if err := model.ValidateEnum(v, "ViewerProtocolPolicy", ViewerProtocolPolicyEnum); err != nil {
+		errors["ViewerProtocolPolicy"] = append(errors["ViewerProtocolPolicy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CacheBehaviors is undocumented.
 type CacheBehaviors struct {
 	XMLName xml.Name `xml:"CacheBehaviors"`
@@ -1190,6 +1368,20 @@ func (v *CacheBehaviors) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CacheBehaviors) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CachedMethods is undocumented.
 type CachedMethods struct {
 	XMLName xml.Name `xml:"CachedMethods"`
@@ -1200,6 +1392,24 @@ type CachedMethods struct {
 
 func (v *CachedMethods) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CachedMethods) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Items"); err != nil {
+		errors["Items"] = append(errors["Items"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CloudFrontOriginAccessIdentity is undocumented.
@@ -1215,6 +1425,24 @@ func (v *CloudFrontOriginAccessIdentity) MarshalXML(e *xml.Encoder, start xml.St
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CloudFrontOriginAccessIdentity) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "S3CanonicalUserID"); err != nil {
+		errors["S3CanonicalUserID"] = append(errors["S3CanonicalUserID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CloudFrontOriginAccessIdentityConfig is undocumented.
 type CloudFrontOriginAccessIdentityConfig struct {
 	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentityConfig"`
@@ -1225,6 +1453,24 @@ type CloudFrontOriginAccessIdentityConfig struct {
 
 func (v *CloudFrontOriginAccessIdentityConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CloudFrontOriginAccessIdentityConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CallerReference"); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Comment"); err != nil {
+		errors["Comment"] = append(errors["Comment"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CloudFrontOriginAccessIdentityList is undocumented.
@@ -1243,6 +1489,32 @@ func (v *CloudFrontOriginAccessIdentityList) MarshalXML(e *xml.Encoder, start xm
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CloudFrontOriginAccessIdentityList) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IsTruncated"); err != nil {
+		errors["IsTruncated"] = append(errors["IsTruncated"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Marker"); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaxItems"); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CloudFrontOriginAccessIdentitySummary is undocumented.
 type CloudFrontOriginAccessIdentitySummary struct {
 	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentitySummary"`
@@ -1254,6 +1526,28 @@ type CloudFrontOriginAccessIdentitySummary struct {
 
 func (v *CloudFrontOriginAccessIdentitySummary) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CloudFrontOriginAccessIdentitySummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Comment"); err != nil {
+		errors["Comment"] = append(errors["Comment"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "S3CanonicalUserID"); err != nil {
+		errors["S3CanonicalUserID"] = append(errors["S3CanonicalUserID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CookieNames is undocumented.
@@ -1268,6 +1562,20 @@ func (v *CookieNames) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CookieNames) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CookiePreference is undocumented.
 type CookiePreference struct {
 	XMLName xml.Name `xml:"CookiePreference"`
@@ -1280,6 +1588,29 @@ func (v *CookiePreference) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CookiePreference) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Forward"); err != nil {
+		errors["Forward"] = append(errors["Forward"], err)
+	}
+
+	ForwardEnum := []string{
+		ItemSelectionAll,
+		ItemSelectionNone,
+		ItemSelectionWhitelist,
+	}
+	if err := model.ValidateEnum(v, "Forward", ForwardEnum); err != nil {
+		errors["Forward"] = append(errors["Forward"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateCloudFrontOriginAccessIdentityRequest is undocumented.
 type CreateCloudFrontOriginAccessIdentityRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1289,6 +1620,20 @@ type CreateCloudFrontOriginAccessIdentityRequest struct {
 
 func (v *CreateCloudFrontOriginAccessIdentityRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CreateCloudFrontOriginAccessIdentityRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CloudFrontOriginAccessIdentityConfig"); err != nil {
+		errors["CloudFrontOriginAccessIdentityConfig"] = append(errors["CloudFrontOriginAccessIdentityConfig"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateCloudFrontOriginAccessIdentityResult is undocumented.
@@ -1304,6 +1649,16 @@ func (v *CreateCloudFrontOriginAccessIdentityResult) MarshalXML(e *xml.Encoder, 
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CreateCloudFrontOriginAccessIdentityResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDistributionRequest is undocumented.
 type CreateDistributionRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1313,6 +1668,20 @@ type CreateDistributionRequest struct {
 
 func (v *CreateDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CreateDistributionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DistributionConfig"); err != nil {
+		errors["DistributionConfig"] = append(errors["DistributionConfig"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateDistributionResult is undocumented.
@@ -1328,6 +1697,16 @@ func (v *CreateDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartEle
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CreateDistributionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateInvalidationRequest is undocumented.
 type CreateInvalidationRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1338,6 +1717,24 @@ type CreateInvalidationRequest struct {
 
 func (v *CreateInvalidationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CreateInvalidationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DistributionID"); err != nil {
+		errors["DistributionID"] = append(errors["DistributionID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InvalidationBatch"); err != nil {
+		errors["InvalidationBatch"] = append(errors["InvalidationBatch"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateInvalidationResult is undocumented.
@@ -1352,6 +1749,16 @@ func (v *CreateInvalidationResult) MarshalXML(e *xml.Encoder, start xml.StartEle
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CreateInvalidationResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateStreamingDistributionRequest is undocumented.
 type CreateStreamingDistributionRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1361,6 +1768,20 @@ type CreateStreamingDistributionRequest struct {
 
 func (v *CreateStreamingDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CreateStreamingDistributionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StreamingDistributionConfig"); err != nil {
+		errors["StreamingDistributionConfig"] = append(errors["StreamingDistributionConfig"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateStreamingDistributionResult is undocumented.
@@ -1374,6 +1795,16 @@ type CreateStreamingDistributionResult struct {
 
 func (v *CreateStreamingDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CreateStreamingDistributionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CustomErrorResponse is undocumented.
@@ -1390,6 +1821,20 @@ func (v *CustomErrorResponse) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CustomErrorResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ErrorCode"); err != nil {
+		errors["ErrorCode"] = append(errors["ErrorCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CustomErrorResponses is undocumented.
 type CustomErrorResponses struct {
 	XMLName xml.Name `xml:"CustomErrorResponses"`
@@ -1400,6 +1845,20 @@ type CustomErrorResponses struct {
 
 func (v *CustomErrorResponses) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CustomErrorResponses) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CustomOriginConfig is undocumented.
@@ -1413,6 +1872,36 @@ type CustomOriginConfig struct {
 
 func (v *CustomOriginConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CustomOriginConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HTTPPort"); err != nil {
+		errors["HTTPPort"] = append(errors["HTTPPort"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HTTPSPort"); err != nil {
+		errors["HTTPSPort"] = append(errors["HTTPSPort"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OriginProtocolPolicy"); err != nil {
+		errors["OriginProtocolPolicy"] = append(errors["OriginProtocolPolicy"], err)
+	}
+
+	OriginProtocolPolicyEnum := []string{
+		OriginProtocolPolicyHTTPOnly,
+		OriginProtocolPolicyMatchViewer,
+	}
+	if err := model.ValidateEnum(v, "OriginProtocolPolicy", OriginProtocolPolicyEnum); err != nil {
+		errors["OriginProtocolPolicy"] = append(errors["OriginProtocolPolicy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DefaultCacheBehavior is undocumented.
@@ -1432,6 +1921,45 @@ func (v *DefaultCacheBehavior) MarshalXML(e *xml.Encoder, start xml.StartElement
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DefaultCacheBehavior) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ForwardedValues"); err != nil {
+		errors["ForwardedValues"] = append(errors["ForwardedValues"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MinTTL"); err != nil {
+		errors["MinTTL"] = append(errors["MinTTL"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetOriginID"); err != nil {
+		errors["TargetOriginID"] = append(errors["TargetOriginID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TrustedSigners"); err != nil {
+		errors["TrustedSigners"] = append(errors["TrustedSigners"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ViewerProtocolPolicy"); err != nil {
+		errors["ViewerProtocolPolicy"] = append(errors["ViewerProtocolPolicy"], err)
+	}
+
+	ViewerProtocolPolicyEnum := []string{
+		ViewerProtocolPolicyAllowAll,
+		ViewerProtocolPolicyHTTPSOnly,
+		ViewerProtocolPolicyRedirectToHTTPS,
+	}
+	if err := model.ValidateEnum(v, "ViewerProtocolPolicy", ViewerProtocolPolicyEnum); err != nil {
+		errors["ViewerProtocolPolicy"] = append(errors["ViewerProtocolPolicy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteCloudFrontOriginAccessIdentityRequest is undocumented.
 type DeleteCloudFrontOriginAccessIdentityRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1442,6 +1970,20 @@ type DeleteCloudFrontOriginAccessIdentityRequest struct {
 
 func (v *DeleteCloudFrontOriginAccessIdentityRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DeleteCloudFrontOriginAccessIdentityRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteDistributionRequest is undocumented.
@@ -1456,6 +1998,20 @@ func (v *DeleteDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartEl
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DeleteDistributionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteStreamingDistributionRequest is undocumented.
 type DeleteStreamingDistributionRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1466,6 +2022,20 @@ type DeleteStreamingDistributionRequest struct {
 
 func (v *DeleteStreamingDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DeleteStreamingDistributionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Distribution is undocumented.
@@ -1483,6 +2053,44 @@ type Distribution struct {
 
 func (v *Distribution) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Distribution) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActiveTrustedSigners"); err != nil {
+		errors["ActiveTrustedSigners"] = append(errors["ActiveTrustedSigners"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DistributionConfig"); err != nil {
+		errors["DistributionConfig"] = append(errors["DistributionConfig"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InProgressInvalidationBatches"); err != nil {
+		errors["InProgressInvalidationBatches"] = append(errors["InProgressInvalidationBatches"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LastModifiedTime"); err != nil {
+		errors["LastModifiedTime"] = append(errors["LastModifiedTime"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DistributionConfig is undocumented.
@@ -1508,6 +2116,65 @@ func (v *DistributionConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DistributionConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Aliases"); err != nil {
+		errors["Aliases"] = append(errors["Aliases"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CacheBehaviors"); err != nil {
+		errors["CacheBehaviors"] = append(errors["CacheBehaviors"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CallerReference"); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Comment"); err != nil {
+		errors["Comment"] = append(errors["Comment"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DefaultCacheBehavior"); err != nil {
+		errors["DefaultCacheBehavior"] = append(errors["DefaultCacheBehavior"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DefaultRootObject"); err != nil {
+		errors["DefaultRootObject"] = append(errors["DefaultRootObject"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Enabled"); err != nil {
+		errors["Enabled"] = append(errors["Enabled"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Logging"); err != nil {
+		errors["Logging"] = append(errors["Logging"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Origins"); err != nil {
+		errors["Origins"] = append(errors["Origins"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PriceClass"); err != nil {
+		errors["PriceClass"] = append(errors["PriceClass"], err)
+	}
+
+	PriceClassEnum := []string{
+		PriceClassPriceClass100,
+		PriceClassPriceClass200,
+		PriceClassPriceClassAll,
+	}
+	if err := model.ValidateEnum(v, "PriceClass", PriceClassEnum); err != nil {
+		errors["PriceClass"] = append(errors["PriceClass"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DistributionList is undocumented.
 type DistributionList struct {
 	XMLName xml.Name `xml:"DistributionList"`
@@ -1522,6 +2189,32 @@ type DistributionList struct {
 
 func (v *DistributionList) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DistributionList) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IsTruncated"); err != nil {
+		errors["IsTruncated"] = append(errors["IsTruncated"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Marker"); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaxItems"); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DistributionSummary is undocumented.
@@ -1548,6 +2241,81 @@ func (v *DistributionSummary) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DistributionSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Aliases"); err != nil {
+		errors["Aliases"] = append(errors["Aliases"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CacheBehaviors"); err != nil {
+		errors["CacheBehaviors"] = append(errors["CacheBehaviors"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Comment"); err != nil {
+		errors["Comment"] = append(errors["Comment"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CustomErrorResponses"); err != nil {
+		errors["CustomErrorResponses"] = append(errors["CustomErrorResponses"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DefaultCacheBehavior"); err != nil {
+		errors["DefaultCacheBehavior"] = append(errors["DefaultCacheBehavior"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Enabled"); err != nil {
+		errors["Enabled"] = append(errors["Enabled"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LastModifiedTime"); err != nil {
+		errors["LastModifiedTime"] = append(errors["LastModifiedTime"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Origins"); err != nil {
+		errors["Origins"] = append(errors["Origins"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PriceClass"); err != nil {
+		errors["PriceClass"] = append(errors["PriceClass"], err)
+	}
+
+	PriceClassEnum := []string{
+		PriceClassPriceClass100,
+		PriceClassPriceClass200,
+		PriceClassPriceClassAll,
+	}
+	if err := model.ValidateEnum(v, "PriceClass", PriceClassEnum); err != nil {
+		errors["PriceClass"] = append(errors["PriceClass"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Restrictions"); err != nil {
+		errors["Restrictions"] = append(errors["Restrictions"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ViewerCertificate"); err != nil {
+		errors["ViewerCertificate"] = append(errors["ViewerCertificate"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ForwardedValues is undocumented.
 type ForwardedValues struct {
 	XMLName xml.Name `xml:"ForwardedValues"`
@@ -1561,6 +2329,24 @@ func (v *ForwardedValues) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ForwardedValues) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Cookies"); err != nil {
+		errors["Cookies"] = append(errors["Cookies"], err)
+	}
+
+	if err := model.ValidateRequired(v, "QueryString"); err != nil {
+		errors["QueryString"] = append(errors["QueryString"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GeoRestriction is undocumented.
 type GeoRestriction struct {
 	XMLName xml.Name `xml:"GeoRestriction"`
@@ -1572,6 +2358,33 @@ type GeoRestriction struct {
 
 func (v *GeoRestriction) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GeoRestriction) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RestrictionType"); err != nil {
+		errors["RestrictionType"] = append(errors["RestrictionType"], err)
+	}
+
+	RestrictionTypeEnum := []string{
+		GeoRestrictionTypeBlacklist,
+		GeoRestrictionTypeNone,
+		GeoRestrictionTypeWhitelist,
+	}
+	if err := model.ValidateEnum(v, "RestrictionType", RestrictionTypeEnum); err != nil {
+		errors["RestrictionType"] = append(errors["RestrictionType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudFront.
@@ -1592,6 +2405,20 @@ func (v *GetCloudFrontOriginAccessIdentityConfigRequest) MarshalXML(e *xml.Encod
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetCloudFrontOriginAccessIdentityConfigRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetCloudFrontOriginAccessIdentityConfigResult is undocumented.
 type GetCloudFrontOriginAccessIdentityConfigResult struct {
 	XMLName xml.Name `xml:"GetCloudFrontOriginAccessIdentityConfigResult"`
@@ -1604,6 +2431,16 @@ func (v *GetCloudFrontOriginAccessIdentityConfigResult) MarshalXML(e *xml.Encode
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetCloudFrontOriginAccessIdentityConfigResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetCloudFrontOriginAccessIdentityRequest is undocumented.
 type GetCloudFrontOriginAccessIdentityRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1613,6 +2450,20 @@ type GetCloudFrontOriginAccessIdentityRequest struct {
 
 func (v *GetCloudFrontOriginAccessIdentityRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetCloudFrontOriginAccessIdentityRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetCloudFrontOriginAccessIdentityResult is undocumented.
@@ -1627,6 +2478,16 @@ func (v *GetCloudFrontOriginAccessIdentityResult) MarshalXML(e *xml.Encoder, sta
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetCloudFrontOriginAccessIdentityResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetDistributionConfigRequest is undocumented.
 type GetDistributionConfigRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1636,6 +2497,20 @@ type GetDistributionConfigRequest struct {
 
 func (v *GetDistributionConfigRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetDistributionConfigRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetDistributionConfigResult is undocumented.
@@ -1650,6 +2525,16 @@ func (v *GetDistributionConfigResult) MarshalXML(e *xml.Encoder, start xml.Start
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetDistributionConfigResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetDistributionRequest is undocumented.
 type GetDistributionRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1659,6 +2544,20 @@ type GetDistributionRequest struct {
 
 func (v *GetDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetDistributionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetDistributionResult is undocumented.
@@ -1673,6 +2572,16 @@ func (v *GetDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetDistributionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetInvalidationRequest is undocumented.
 type GetInvalidationRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1683,6 +2592,24 @@ type GetInvalidationRequest struct {
 
 func (v *GetInvalidationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetInvalidationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DistributionID"); err != nil {
+		errors["DistributionID"] = append(errors["DistributionID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetInvalidationResult is undocumented.
@@ -1696,6 +2623,16 @@ func (v *GetInvalidationResult) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetInvalidationResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetStreamingDistributionConfigRequest is undocumented.
 type GetStreamingDistributionConfigRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1705,6 +2642,20 @@ type GetStreamingDistributionConfigRequest struct {
 
 func (v *GetStreamingDistributionConfigRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetStreamingDistributionConfigRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetStreamingDistributionConfigResult is undocumented.
@@ -1719,6 +2670,16 @@ func (v *GetStreamingDistributionConfigResult) MarshalXML(e *xml.Encoder, start 
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetStreamingDistributionConfigResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetStreamingDistributionRequest is undocumented.
 type GetStreamingDistributionRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1728,6 +2689,20 @@ type GetStreamingDistributionRequest struct {
 
 func (v *GetStreamingDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetStreamingDistributionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetStreamingDistributionResult is undocumented.
@@ -1742,6 +2717,16 @@ func (v *GetStreamingDistributionResult) MarshalXML(e *xml.Encoder, start xml.St
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetStreamingDistributionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Headers is undocumented.
 type Headers struct {
 	XMLName xml.Name `xml:"Headers"`
@@ -1752,6 +2737,20 @@ type Headers struct {
 
 func (v *Headers) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Headers) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Invalidation is undocumented.
@@ -1768,6 +2767,32 @@ func (v *Invalidation) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *Invalidation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CreateTime"); err != nil {
+		errors["CreateTime"] = append(errors["CreateTime"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InvalidationBatch"); err != nil {
+		errors["InvalidationBatch"] = append(errors["InvalidationBatch"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InvalidationBatch is undocumented.
 type InvalidationBatch struct {
 	XMLName xml.Name `xml:"InvalidationBatch"`
@@ -1778,6 +2803,24 @@ type InvalidationBatch struct {
 
 func (v *InvalidationBatch) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *InvalidationBatch) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CallerReference"); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Paths"); err != nil {
+		errors["Paths"] = append(errors["Paths"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // InvalidationList is undocumented.
@@ -1796,6 +2839,32 @@ func (v *InvalidationList) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *InvalidationList) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IsTruncated"); err != nil {
+		errors["IsTruncated"] = append(errors["IsTruncated"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Marker"); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaxItems"); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InvalidationSummary is undocumented.
 type InvalidationSummary struct {
 	XMLName xml.Name `xml:"InvalidationSummary"`
@@ -1807,6 +2876,28 @@ type InvalidationSummary struct {
 
 func (v *InvalidationSummary) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *InvalidationSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CreateTime"); err != nil {
+		errors["CreateTime"] = append(errors["CreateTime"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudFront.
@@ -1828,6 +2919,20 @@ func (v *KeyPairIDs) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *KeyPairIDs) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListCloudFrontOriginAccessIdentitiesRequest is undocumented.
 type ListCloudFrontOriginAccessIdentitiesRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1840,6 +2945,16 @@ func (v *ListCloudFrontOriginAccessIdentitiesRequest) MarshalXML(e *xml.Encoder,
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListCloudFrontOriginAccessIdentitiesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListCloudFrontOriginAccessIdentitiesResult is undocumented.
 type ListCloudFrontOriginAccessIdentitiesResult struct {
 	XMLName xml.Name `xml:"ListCloudFrontOriginAccessIdentitiesResult"`
@@ -1849,6 +2964,16 @@ type ListCloudFrontOriginAccessIdentitiesResult struct {
 
 func (v *ListCloudFrontOriginAccessIdentitiesResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListCloudFrontOriginAccessIdentitiesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListDistributionsRequest is undocumented.
@@ -1863,6 +2988,16 @@ func (v *ListDistributionsRequest) MarshalXML(e *xml.Encoder, start xml.StartEle
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListDistributionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDistributionsResult is undocumented.
 type ListDistributionsResult struct {
 	XMLName xml.Name `xml:"ListDistributionsResult"`
@@ -1872,6 +3007,16 @@ type ListDistributionsResult struct {
 
 func (v *ListDistributionsResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListDistributionsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListInvalidationsRequest is undocumented.
@@ -1887,6 +3032,20 @@ func (v *ListInvalidationsRequest) MarshalXML(e *xml.Encoder, start xml.StartEle
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListInvalidationsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DistributionID"); err != nil {
+		errors["DistributionID"] = append(errors["DistributionID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListInvalidationsResult is undocumented.
 type ListInvalidationsResult struct {
 	XMLName xml.Name `xml:"ListInvalidationsResult"`
@@ -1896,6 +3055,16 @@ type ListInvalidationsResult struct {
 
 func (v *ListInvalidationsResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListInvalidationsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListStreamingDistributionsRequest is undocumented.
@@ -1910,6 +3079,16 @@ func (v *ListStreamingDistributionsRequest) MarshalXML(e *xml.Encoder, start xml
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListStreamingDistributionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListStreamingDistributionsResult is undocumented.
 type ListStreamingDistributionsResult struct {
 	XMLName xml.Name `xml:"ListStreamingDistributionsResult"`
@@ -1919,6 +3098,16 @@ type ListStreamingDistributionsResult struct {
 
 func (v *ListStreamingDistributionsResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListStreamingDistributionsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LoggingConfig is undocumented.
@@ -1933,6 +3122,32 @@ type LoggingConfig struct {
 
 func (v *LoggingConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *LoggingConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Enabled"); err != nil {
+		errors["Enabled"] = append(errors["Enabled"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IncludeCookies"); err != nil {
+		errors["IncludeCookies"] = append(errors["IncludeCookies"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Prefix"); err != nil {
+		errors["Prefix"] = append(errors["Prefix"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudFront.
@@ -1966,6 +3181,24 @@ func (v *Origin) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *Origin) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for CloudFront.
 const (
 	OriginProtocolPolicyHTTPOnly    = "http-only"
@@ -1984,6 +3217,24 @@ func (v *Origins) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *Origins) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Items", 1); err != nil {
+		errors["Items"] = append(errors["Items"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Paths is undocumented.
 type Paths struct {
 	XMLName xml.Name `xml:"Paths"`
@@ -1994,6 +3245,20 @@ type Paths struct {
 
 func (v *Paths) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Paths) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudFront.
@@ -2014,6 +3279,20 @@ func (v *Restrictions) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *Restrictions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GeoRestriction"); err != nil {
+		errors["GeoRestriction"] = append(errors["GeoRestriction"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // S3Origin is undocumented.
 type S3Origin struct {
 	XMLName xml.Name `xml:"S3Origin"`
@@ -2026,6 +3305,24 @@ func (v *S3Origin) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *S3Origin) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OriginAccessIdentity"); err != nil {
+		errors["OriginAccessIdentity"] = append(errors["OriginAccessIdentity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // S3OriginConfig is undocumented.
 type S3OriginConfig struct {
 	XMLName xml.Name `xml:"S3OriginConfig"`
@@ -2035,6 +3332,20 @@ type S3OriginConfig struct {
 
 func (v *S3OriginConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *S3OriginConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OriginAccessIdentity"); err != nil {
+		errors["OriginAccessIdentity"] = append(errors["OriginAccessIdentity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudFront.
@@ -2055,6 +3366,16 @@ func (v *Signer) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *Signer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StreamingDistribution is undocumented.
 type StreamingDistribution struct {
 	XMLName xml.Name `xml:"StreamingDistribution"`
@@ -2069,6 +3390,36 @@ type StreamingDistribution struct {
 
 func (v *StreamingDistribution) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *StreamingDistribution) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActiveTrustedSigners"); err != nil {
+		errors["ActiveTrustedSigners"] = append(errors["ActiveTrustedSigners"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamingDistributionConfig"); err != nil {
+		errors["StreamingDistributionConfig"] = append(errors["StreamingDistributionConfig"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // StreamingDistributionConfig is undocumented.
@@ -2089,6 +3440,57 @@ func (v *StreamingDistributionConfig) MarshalXML(e *xml.Encoder, start xml.Start
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *StreamingDistributionConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Aliases"); err != nil {
+		errors["Aliases"] = append(errors["Aliases"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CallerReference"); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Comment"); err != nil {
+		errors["Comment"] = append(errors["Comment"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Enabled"); err != nil {
+		errors["Enabled"] = append(errors["Enabled"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Logging"); err != nil {
+		errors["Logging"] = append(errors["Logging"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PriceClass"); err != nil {
+		errors["PriceClass"] = append(errors["PriceClass"], err)
+	}
+
+	PriceClassEnum := []string{
+		PriceClassPriceClass100,
+		PriceClassPriceClass200,
+		PriceClassPriceClassAll,
+	}
+	if err := model.ValidateEnum(v, "PriceClass", PriceClassEnum); err != nil {
+		errors["PriceClass"] = append(errors["PriceClass"], err)
+	}
+
+	if err := model.ValidateRequired(v, "S3Origin"); err != nil {
+		errors["S3Origin"] = append(errors["S3Origin"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TrustedSigners"); err != nil {
+		errors["TrustedSigners"] = append(errors["TrustedSigners"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StreamingDistributionList is undocumented.
 type StreamingDistributionList struct {
 	XMLName xml.Name `xml:"StreamingDistributionList"`
@@ -2103,6 +3505,32 @@ type StreamingDistributionList struct {
 
 func (v *StreamingDistributionList) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *StreamingDistributionList) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IsTruncated"); err != nil {
+		errors["IsTruncated"] = append(errors["IsTruncated"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Marker"); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaxItems"); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // StreamingDistributionSummary is undocumented.
@@ -2125,6 +3553,65 @@ func (v *StreamingDistributionSummary) MarshalXML(e *xml.Encoder, start xml.Star
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *StreamingDistributionSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Aliases"); err != nil {
+		errors["Aliases"] = append(errors["Aliases"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Comment"); err != nil {
+		errors["Comment"] = append(errors["Comment"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Enabled"); err != nil {
+		errors["Enabled"] = append(errors["Enabled"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LastModifiedTime"); err != nil {
+		errors["LastModifiedTime"] = append(errors["LastModifiedTime"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PriceClass"); err != nil {
+		errors["PriceClass"] = append(errors["PriceClass"], err)
+	}
+
+	PriceClassEnum := []string{
+		PriceClassPriceClass100,
+		PriceClassPriceClass200,
+		PriceClassPriceClassAll,
+	}
+	if err := model.ValidateEnum(v, "PriceClass", PriceClassEnum); err != nil {
+		errors["PriceClass"] = append(errors["PriceClass"], err)
+	}
+
+	if err := model.ValidateRequired(v, "S3Origin"); err != nil {
+		errors["S3Origin"] = append(errors["S3Origin"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TrustedSigners"); err != nil {
+		errors["TrustedSigners"] = append(errors["TrustedSigners"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StreamingLoggingConfig is undocumented.
 type StreamingLoggingConfig struct {
 	XMLName xml.Name `xml:"StreamingLoggingConfig"`
@@ -2136,6 +3623,28 @@ type StreamingLoggingConfig struct {
 
 func (v *StreamingLoggingConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *StreamingLoggingConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Enabled"); err != nil {
+		errors["Enabled"] = append(errors["Enabled"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Prefix"); err != nil {
+		errors["Prefix"] = append(errors["Prefix"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TrustedSigners is undocumented.
@@ -2151,6 +3660,24 @@ func (v *TrustedSigners) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *TrustedSigners) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Enabled"); err != nil {
+		errors["Enabled"] = append(errors["Enabled"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Quantity"); err != nil {
+		errors["Quantity"] = append(errors["Quantity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateCloudFrontOriginAccessIdentityRequest is undocumented.
 type UpdateCloudFrontOriginAccessIdentityRequest struct {
 	XMLName xml.Name `xml:""`
@@ -2164,6 +3691,24 @@ func (v *UpdateCloudFrontOriginAccessIdentityRequest) MarshalXML(e *xml.Encoder,
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *UpdateCloudFrontOriginAccessIdentityRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CloudFrontOriginAccessIdentityConfig"); err != nil {
+		errors["CloudFrontOriginAccessIdentityConfig"] = append(errors["CloudFrontOriginAccessIdentityConfig"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateCloudFrontOriginAccessIdentityResult is undocumented.
 type UpdateCloudFrontOriginAccessIdentityResult struct {
 	XMLName xml.Name `xml:"UpdateCloudFrontOriginAccessIdentityResult"`
@@ -2174,6 +3719,16 @@ type UpdateCloudFrontOriginAccessIdentityResult struct {
 
 func (v *UpdateCloudFrontOriginAccessIdentityResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *UpdateCloudFrontOriginAccessIdentityResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateDistributionRequest is undocumented.
@@ -2189,6 +3744,24 @@ func (v *UpdateDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartEl
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *UpdateDistributionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DistributionConfig"); err != nil {
+		errors["DistributionConfig"] = append(errors["DistributionConfig"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateDistributionResult is undocumented.
 type UpdateDistributionResult struct {
 	XMLName xml.Name `xml:"UpdateDistributionResult"`
@@ -2199,6 +3772,16 @@ type UpdateDistributionResult struct {
 
 func (v *UpdateDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *UpdateDistributionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateStreamingDistributionRequest is undocumented.
@@ -2214,6 +3797,24 @@ func (v *UpdateStreamingDistributionRequest) MarshalXML(e *xml.Encoder, start xm
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *UpdateStreamingDistributionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamingDistributionConfig"); err != nil {
+		errors["StreamingDistributionConfig"] = append(errors["StreamingDistributionConfig"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateStreamingDistributionResult is undocumented.
 type UpdateStreamingDistributionResult struct {
 	XMLName xml.Name `xml:"UpdateStreamingDistributionResult"`
@@ -2224,6 +3825,16 @@ type UpdateStreamingDistributionResult struct {
 
 func (v *UpdateStreamingDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *UpdateStreamingDistributionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ViewerCertificate is undocumented.
@@ -2238,6 +3849,32 @@ type ViewerCertificate struct {
 
 func (v *ViewerCertificate) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ViewerCertificate) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	MinimumProtocolVersionEnum := []string{
+		MinimumProtocolVersionSSLv3,
+		MinimumProtocolVersionTLSv1,
+	}
+	if err := model.ValidateEnum(v, "MinimumProtocolVersion", MinimumProtocolVersionEnum); err != nil {
+		errors["MinimumProtocolVersion"] = append(errors["MinimumProtocolVersion"], err)
+	}
+
+	SSLSupportMethodEnum := []string{
+		SSLSupportMethodSNIOnly,
+		SSLSupportMethodVIP,
+	}
+	if err := model.ValidateEnum(v, "SSLSupportMethod", SSLSupportMethodEnum); err != nil {
+		errors["SSLSupportMethod"] = append(errors["SSLSupportMethod"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudFront.

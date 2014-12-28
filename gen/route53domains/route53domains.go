@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // Route53Domains is a client for Amazon Route 53 Domains.
@@ -44,6 +45,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Rou
 // if the availability status of a domain is pending, you must submit
 // another request to determine the availability of the domain name.
 func (c *Route53Domains) CheckDomainAvailability(req *CheckDomainAvailabilityRequest) (resp *CheckDomainAvailabilityResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CheckDomainAvailabilityResponse{}
 	err = c.client.Do("CheckDomainAvailability", "POST", "/", req, resp)
 	return
@@ -52,6 +57,10 @@ func (c *Route53Domains) CheckDomainAvailability(req *CheckDomainAvailabilityReq
 // DisableDomainAutoRenew this operation disables automatic renewal of
 // domain registration for the specified domain.
 func (c *Route53Domains) DisableDomainAutoRenew(req *DisableDomainAutoRenewRequest) (resp *DisableDomainAutoRenewResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DisableDomainAutoRenewResponse{}
 	err = c.client.Do("DisableDomainAutoRenew", "POST", "/", req, resp)
 	return
@@ -65,6 +74,10 @@ func (c *Route53Domains) DisableDomainAutoRenew(req *DisableDomainAutoRenewReque
 // the progress and completion of the action. If the request is not
 // completed successfully, the domain registrant will be notified by email.
 func (c *Route53Domains) DisableDomainTransferLock(req *DisableDomainTransferLockRequest) (resp *DisableDomainTransferLockResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DisableDomainTransferLockResponse{}
 	err = c.client.Do("DisableDomainTransferLock", "POST", "/", req, resp)
 	return
@@ -81,6 +94,10 @@ func (c *Route53Domains) DisableDomainTransferLock(req *DisableDomainTransferLoc
 // you renew before the end of the renewal period that is listed on the
 // Gandi website so we can complete processing before the deadline.
 func (c *Route53Domains) EnableDomainAutoRenew(req *EnableDomainAutoRenewRequest) (resp *EnableDomainAutoRenewResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &EnableDomainAutoRenewResponse{}
 	err = c.client.Do("EnableDomainAutoRenew", "POST", "/", req, resp)
 	return
@@ -93,6 +110,10 @@ func (c *Route53Domains) EnableDomainAutoRenew(req *EnableDomainAutoRenewRequest
 // request is not completed successfully, the domain registrant will be
 // notified by email.
 func (c *Route53Domains) EnableDomainTransferLock(req *EnableDomainTransferLockRequest) (resp *EnableDomainTransferLockResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &EnableDomainTransferLockResponse{}
 	err = c.client.Do("EnableDomainTransferLock", "POST", "/", req, resp)
 	return
@@ -102,6 +123,10 @@ func (c *Route53Domains) EnableDomainTransferLock(req *EnableDomainTransferLockR
 // domain. The domain's contact information is also returned as part of the
 // output.
 func (c *Route53Domains) GetDomainDetail(req *GetDomainDetailRequest) (resp *GetDomainDetailResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetDomainDetailResponse{}
 	err = c.client.Do("GetDomainDetail", "POST", "/", req, resp)
 	return
@@ -110,6 +135,10 @@ func (c *Route53Domains) GetDomainDetail(req *GetDomainDetailRequest) (resp *Get
 // GetOperationDetail this operation returns the current status of an
 // operation that is not completed.
 func (c *Route53Domains) GetOperationDetail(req *GetOperationDetailRequest) (resp *GetOperationDetailResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetOperationDetailResponse{}
 	err = c.client.Do("GetOperationDetail", "POST", "/", req, resp)
 	return
@@ -118,6 +147,10 @@ func (c *Route53Domains) GetOperationDetail(req *GetOperationDetailRequest) (res
 // ListDomains this operation returns all the domain names registered with
 // Amazon Route 53 for the current AWS account.
 func (c *Route53Domains) ListDomains(req *ListDomainsRequest) (resp *ListDomainsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListDomainsResponse{}
 	err = c.client.Do("ListDomains", "POST", "/", req, resp)
 	return
@@ -126,6 +159,10 @@ func (c *Route53Domains) ListDomains(req *ListDomainsRequest) (resp *ListDomains
 // ListOperations this operation returns the operation IDs of operations
 // that are not yet complete.
 func (c *Route53Domains) ListOperations(req *ListOperationsRequest) (resp *ListOperationsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListOperationsResponse{}
 	err = c.client.Do("ListOperations", "POST", "/", req, resp)
 	return
@@ -149,6 +186,10 @@ func (c *Route53Domains) ListOperations(req *ListOperationsRequest) (resp *ListO
 // by email. Charges your AWS account an amount based on the top-level
 // domain. For more information, see Amazon Route 53 Pricing
 func (c *Route53Domains) RegisterDomain(req *RegisterDomainRequest) (resp *RegisterDomainResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RegisterDomainResponse{}
 	err = c.client.Do("RegisterDomain", "POST", "/", req, resp)
 	return
@@ -158,6 +199,10 @@ func (c *Route53Domains) RegisterDomain(req *RegisterDomainRequest) (resp *Regis
 // domain. To transfer a domain to another registrar, you provide this
 // value to the new registrar.
 func (c *Route53Domains) RetrieveDomainAuthCode(req *RetrieveDomainAuthCodeRequest) (resp *RetrieveDomainAuthCodeResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RetrieveDomainAuthCodeResponse{}
 	err = c.client.Do("RetrieveDomainAuthCode", "POST", "/", req, resp)
 	return
@@ -181,6 +226,10 @@ func (c *Route53Domains) RetrieveDomainAuthCode(req *RetrieveDomainAuthCodeReque
 // AWS account an amount based on the top-level domain. For more
 // information, see Amazon Route 53 Pricing .
 func (c *Route53Domains) TransferDomain(req *TransferDomainRequest) (resp *TransferDomainResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &TransferDomainResponse{}
 	err = c.client.Do("TransferDomain", "POST", "/", req, resp)
 	return
@@ -193,6 +242,10 @@ func (c *Route53Domains) TransferDomain(req *TransferDomainRequest) (resp *Trans
 // track the progress and completion of the action. If the request is not
 // completed successfully, the domain registrant will be notified by email.
 func (c *Route53Domains) UpdateDomainContact(req *UpdateDomainContactRequest) (resp *UpdateDomainContactResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateDomainContactResponse{}
 	err = c.client.Do("UpdateDomainContact", "POST", "/", req, resp)
 	return
@@ -209,6 +262,10 @@ func (c *Route53Domains) UpdateDomainContact(req *UpdateDomainContactRequest) (r
 // progress and completion of the action. If the request is not completed
 // successfully, the domain registrant will be notified by email.
 func (c *Route53Domains) UpdateDomainContactPrivacy(req *UpdateDomainContactPrivacyRequest) (resp *UpdateDomainContactPrivacyResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateDomainContactPrivacyResponse{}
 	err = c.client.Do("UpdateDomainContactPrivacy", "POST", "/", req, resp)
 	return
@@ -222,6 +279,10 @@ func (c *Route53Domains) UpdateDomainContactPrivacy(req *UpdateDomainContactPriv
 // progress and completion of the action. If the request is not completed
 // successfully, the domain registrant will be notified by email.
 func (c *Route53Domains) UpdateDomainNameservers(req *UpdateDomainNameserversRequest) (resp *UpdateDomainNameserversResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateDomainNameserversResponse{}
 	err = c.client.Do("UpdateDomainNameservers", "POST", "/", req, resp)
 	return
@@ -233,9 +294,62 @@ type CheckDomainAvailabilityRequest struct {
 	IDNLangCode aws.StringValue `json:"IdnLangCode,omitempty"`
 }
 
+func (v *CheckDomainAvailabilityRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "IDNLangCode", 3); err != nil {
+		errors["IDNLangCode"] = append(errors["IDNLangCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CheckDomainAvailabilityResponse is undocumented.
 type CheckDomainAvailabilityResponse struct {
 	Availability aws.StringValue `json:"Availability"`
+}
+
+func (v *CheckDomainAvailabilityResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Availability"); err != nil {
+		errors["Availability"] = append(errors["Availability"], err)
+	}
+
+	AvailabilityEnum := []string{
+		DomainAvailabilityAvailable,
+		DomainAvailabilityAvailablePreorder,
+		DomainAvailabilityAvailableReserved,
+		DomainAvailabilityReserved,
+		DomainAvailabilityUnavailable,
+		DomainAvailabilityUnavailablePremium,
+		DomainAvailabilityUnavailableRestricted,
+	}
+	if err := model.ValidateEnum(v, "Availability", AvailabilityEnum); err != nil {
+		errors["Availability"] = append(errors["Availability"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ContactDetail is undocumented.
@@ -254,6 +368,306 @@ type ContactDetail struct {
 	PhoneNumber      aws.StringValue `json:"PhoneNumber,omitempty"`
 	State            aws.StringValue `json:"State,omitempty"`
 	ZipCode          aws.StringValue `json:"ZipCode,omitempty"`
+}
+
+func (v *ContactDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "AddressLine1", 255); err != nil {
+		errors["AddressLine1"] = append(errors["AddressLine1"], err)
+	}
+
+	if err := model.ValidateMax(v, "AddressLine2", 255); err != nil {
+		errors["AddressLine2"] = append(errors["AddressLine2"], err)
+	}
+
+	if err := model.ValidateMax(v, "City", 255); err != nil {
+		errors["City"] = append(errors["City"], err)
+	}
+
+	ContactTypeEnum := []string{
+		ContactTypeAssociation,
+		ContactTypeCompany,
+		ContactTypePerson,
+		ContactTypePublicBody,
+		ContactTypeReseller,
+	}
+	if err := model.ValidateEnum(v, "ContactType", ContactTypeEnum); err != nil {
+		errors["ContactType"] = append(errors["ContactType"], err)
+	}
+
+	CountryCodeEnum := []string{
+		CountryCodeAd,
+		CountryCodeAe,
+		CountryCodeAf,
+		CountryCodeAg,
+		CountryCodeAi,
+		CountryCodeAl,
+		CountryCodeAm,
+		CountryCodeAn,
+		CountryCodeAo,
+		CountryCodeAq,
+		CountryCodeAr,
+		CountryCodeAs,
+		CountryCodeAt,
+		CountryCodeAu,
+		CountryCodeAw,
+		CountryCodeAz,
+		CountryCodeBa,
+		CountryCodeBb,
+		CountryCodeBd,
+		CountryCodeBe,
+		CountryCodeBf,
+		CountryCodeBg,
+		CountryCodeBh,
+		CountryCodeBi,
+		CountryCodeBj,
+		CountryCodeBl,
+		CountryCodeBm,
+		CountryCodeBn,
+		CountryCodeBo,
+		CountryCodeBr,
+		CountryCodeBs,
+		CountryCodeBt,
+		CountryCodeBw,
+		CountryCodeBy,
+		CountryCodeBz,
+		CountryCodeCa,
+		CountryCodeCc,
+		CountryCodeCd,
+		CountryCodeCf,
+		CountryCodeCg,
+		CountryCodeCh,
+		CountryCodeCi,
+		CountryCodeCk,
+		CountryCodeCl,
+		CountryCodeCm,
+		CountryCodeCn,
+		CountryCodeCo,
+		CountryCodeCr,
+		CountryCodeCu,
+		CountryCodeCv,
+		CountryCodeCx,
+		CountryCodeCy,
+		CountryCodeCz,
+		CountryCodeDe,
+		CountryCodeDj,
+		CountryCodeDk,
+		CountryCodeDm,
+		CountryCodeDo,
+		CountryCodeDz,
+		CountryCodeEc,
+		CountryCodeEe,
+		CountryCodeEg,
+		CountryCodeEr,
+		CountryCodeEs,
+		CountryCodeEt,
+		CountryCodeFi,
+		CountryCodeFj,
+		CountryCodeFk,
+		CountryCodeFm,
+		CountryCodeFo,
+		CountryCodeFr,
+		CountryCodeGa,
+		CountryCodeGb,
+		CountryCodeGd,
+		CountryCodeGe,
+		CountryCodeGh,
+		CountryCodeGi,
+		CountryCodeGl,
+		CountryCodeGm,
+		CountryCodeGn,
+		CountryCodeGq,
+		CountryCodeGr,
+		CountryCodeGt,
+		CountryCodeGu,
+		CountryCodeGw,
+		CountryCodeGy,
+		CountryCodeHk,
+		CountryCodeHn,
+		CountryCodeHr,
+		CountryCodeHt,
+		CountryCodeHu,
+		CountryCodeID,
+		CountryCodeIe,
+		CountryCodeIl,
+		CountryCodeIm,
+		CountryCodeIn,
+		CountryCodeIq,
+		CountryCodeIr,
+		CountryCodeIs,
+		CountryCodeIt,
+		CountryCodeJm,
+		CountryCodeJo,
+		CountryCodeJp,
+		CountryCodeKe,
+		CountryCodeKg,
+		CountryCodeKh,
+		CountryCodeKi,
+		CountryCodeKm,
+		CountryCodeKn,
+		CountryCodeKp,
+		CountryCodeKr,
+		CountryCodeKw,
+		CountryCodeKy,
+		CountryCodeKz,
+		CountryCodeLa,
+		CountryCodeLb,
+		CountryCodeLc,
+		CountryCodeLi,
+		CountryCodeLk,
+		CountryCodeLr,
+		CountryCodeLs,
+		CountryCodeLt,
+		CountryCodeLu,
+		CountryCodeLv,
+		CountryCodeLy,
+		CountryCodeMa,
+		CountryCodeMc,
+		CountryCodeMd,
+		CountryCodeMe,
+		CountryCodeMf,
+		CountryCodeMg,
+		CountryCodeMh,
+		CountryCodeMk,
+		CountryCodeMl,
+		CountryCodeMm,
+		CountryCodeMn,
+		CountryCodeMo,
+		CountryCodeMp,
+		CountryCodeMr,
+		CountryCodeMs,
+		CountryCodeMt,
+		CountryCodeMu,
+		CountryCodeMv,
+		CountryCodeMw,
+		CountryCodeMx,
+		CountryCodeMy,
+		CountryCodeMz,
+		CountryCodeNa,
+		CountryCodeNc,
+		CountryCodeNe,
+		CountryCodeNg,
+		CountryCodeNi,
+		CountryCodeNl,
+		CountryCodeNo,
+		CountryCodeNp,
+		CountryCodeNr,
+		CountryCodeNu,
+		CountryCodeNz,
+		CountryCodeOm,
+		CountryCodePa,
+		CountryCodePe,
+		CountryCodePf,
+		CountryCodePg,
+		CountryCodePh,
+		CountryCodePk,
+		CountryCodePl,
+		CountryCodePm,
+		CountryCodePn,
+		CountryCodePr,
+		CountryCodePt,
+		CountryCodePw,
+		CountryCodePy,
+		CountryCodeQa,
+		CountryCodeRo,
+		CountryCodeRs,
+		CountryCodeRu,
+		CountryCodeRw,
+		CountryCodeSa,
+		CountryCodeSb,
+		CountryCodeSc,
+		CountryCodeSd,
+		CountryCodeSe,
+		CountryCodeSg,
+		CountryCodeSh,
+		CountryCodeSi,
+		CountryCodeSk,
+		CountryCodeSl,
+		CountryCodeSm,
+		CountryCodeSn,
+		CountryCodeSo,
+		CountryCodeSr,
+		CountryCodeSt,
+		CountryCodeSv,
+		CountryCodeSy,
+		CountryCodeSz,
+		CountryCodeTc,
+		CountryCodeTd,
+		CountryCodeTg,
+		CountryCodeTh,
+		CountryCodeTj,
+		CountryCodeTk,
+		CountryCodeTl,
+		CountryCodeTm,
+		CountryCodeTn,
+		CountryCodeTo,
+		CountryCodeTr,
+		CountryCodeTt,
+		CountryCodeTv,
+		CountryCodeTw,
+		CountryCodeTz,
+		CountryCodeUa,
+		CountryCodeUg,
+		CountryCodeUs,
+		CountryCodeUy,
+		CountryCodeUz,
+		CountryCodeVa,
+		CountryCodeVc,
+		CountryCodeVe,
+		CountryCodeVg,
+		CountryCodeVi,
+		CountryCodeVn,
+		CountryCodeVu,
+		CountryCodeWf,
+		CountryCodeWs,
+		CountryCodeYe,
+		CountryCodeYt,
+		CountryCodeZa,
+		CountryCodeZm,
+		CountryCodeZw,
+	}
+	if err := model.ValidateEnum(v, "CountryCode", CountryCodeEnum); err != nil {
+		errors["CountryCode"] = append(errors["CountryCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "Email", 254); err != nil {
+		errors["Email"] = append(errors["Email"], err)
+	}
+
+	if err := model.ValidateMax(v, "Fax", 30); err != nil {
+		errors["Fax"] = append(errors["Fax"], err)
+	}
+
+	if err := model.ValidateMax(v, "FirstName", 255); err != nil {
+		errors["FirstName"] = append(errors["FirstName"], err)
+	}
+
+	if err := model.ValidateMax(v, "LastName", 255); err != nil {
+		errors["LastName"] = append(errors["LastName"], err)
+	}
+
+	if err := model.ValidateMax(v, "OrganizationName", 255); err != nil {
+		errors["OrganizationName"] = append(errors["OrganizationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "PhoneNumber", 30); err != nil {
+		errors["PhoneNumber"] = append(errors["PhoneNumber"], err)
+	}
+
+	if err := model.ValidateMax(v, "State", 255); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if err := model.ValidateMax(v, "ZipCode", 255); err != nil {
+		errors["ZipCode"] = append(errors["ZipCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Route53Domains.
@@ -503,8 +917,40 @@ type DisableDomainAutoRenewRequest struct {
 	DomainName aws.StringValue `json:"DomainName"`
 }
 
+func (v *DisableDomainAutoRenewRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DisableDomainAutoRenewResponse is undocumented.
 type DisableDomainAutoRenewResponse struct {
+}
+
+func (v *DisableDomainAutoRenewResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DisableDomainTransferLockRequest is undocumented.
@@ -512,9 +958,49 @@ type DisableDomainTransferLockRequest struct {
 	DomainName aws.StringValue `json:"DomainName"`
 }
 
+func (v *DisableDomainTransferLockRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DisableDomainTransferLockResponse is undocumented.
 type DisableDomainTransferLockResponse struct {
 	OperationID aws.StringValue `json:"OperationId"`
+}
+
+func (v *DisableDomainTransferLockResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OperationID"); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if err := model.ValidateMax(v, "OperationID", 255); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Route53Domains.
@@ -536,13 +1022,67 @@ type DomainSummary struct {
 	TransferLock aws.BooleanValue `json:"TransferLock,omitempty"`
 }
 
+func (v *DomainSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnableDomainAutoRenewRequest is undocumented.
 type EnableDomainAutoRenewRequest struct {
 	DomainName aws.StringValue `json:"DomainName"`
 }
 
+func (v *EnableDomainAutoRenewRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnableDomainAutoRenewResponse is undocumented.
 type EnableDomainAutoRenewResponse struct {
+}
+
+func (v *EnableDomainAutoRenewResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EnableDomainTransferLockRequest is undocumented.
@@ -550,15 +1090,100 @@ type EnableDomainTransferLockRequest struct {
 	DomainName aws.StringValue `json:"DomainName"`
 }
 
+func (v *EnableDomainTransferLockRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnableDomainTransferLockResponse is undocumented.
 type EnableDomainTransferLockResponse struct {
 	OperationID aws.StringValue `json:"OperationId"`
+}
+
+func (v *EnableDomainTransferLockResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OperationID"); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if err := model.ValidateMax(v, "OperationID", 255); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ExtraParam is undocumented.
 type ExtraParam struct {
 	Name  aws.StringValue `json:"Name"`
 	Value aws.StringValue `json:"Value"`
+}
+
+func (v *ExtraParam) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	NameEnum := []string{
+		ExtraParamNameAuIDNumber,
+		ExtraParamNameAuIDType,
+		ExtraParamNameBirthCity,
+		ExtraParamNameBirthCountry,
+		ExtraParamNameBirthDateInYyyyMmDd,
+		ExtraParamNameBirthDepartment,
+		ExtraParamNameBrandNumber,
+		ExtraParamNameCaLegalType,
+		ExtraParamNameDocumentNumber,
+		ExtraParamNameDunsNumber,
+		ExtraParamNameFiBusinessNumber,
+		ExtraParamNameFiIDNumber,
+		ExtraParamNameItPin,
+		ExtraParamNameRuPassportData,
+		ExtraParamNameSeIDNumber,
+		ExtraParamNameSgIDNumber,
+		ExtraParamNameVatNumber,
+	}
+	if err := model.ValidateEnum(v, "Name", NameEnum); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Value"); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 2048); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Route53Domains.
@@ -587,6 +1212,28 @@ type GetDomainDetailRequest struct {
 	DomainName aws.StringValue `json:"DomainName"`
 }
 
+func (v *GetDomainDetailRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetDomainDetailResponse is undocumented.
 type GetDomainDetailResponse struct {
 	AbuseContactEmail aws.StringValue  `json:"AbuseContactEmail,omitempty"`
@@ -612,9 +1259,73 @@ type GetDomainDetailResponse struct {
 	WhoIsServer       aws.StringValue  `json:"WhoIsServer,omitempty"`
 }
 
+func (v *GetDomainDetailResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "AbuseContactEmail", 254); err != nil {
+		errors["AbuseContactEmail"] = append(errors["AbuseContactEmail"], err)
+	}
+
+	if err := model.ValidateMax(v, "AbuseContactPhone", 30); err != nil {
+		errors["AbuseContactPhone"] = append(errors["AbuseContactPhone"], err)
+	}
+
+	if err := model.ValidateRequired(v, "AdminContact"); err != nil {
+		errors["AdminContact"] = append(errors["AdminContact"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Nameservers"); err != nil {
+		errors["Nameservers"] = append(errors["Nameservers"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RegistrantContact"); err != nil {
+		errors["RegistrantContact"] = append(errors["RegistrantContact"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TechContact"); err != nil {
+		errors["TechContact"] = append(errors["TechContact"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetOperationDetailRequest is undocumented.
 type GetOperationDetailRequest struct {
 	OperationID aws.StringValue `json:"OperationId"`
+}
+
+func (v *GetOperationDetailRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OperationID"); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if err := model.ValidateMax(v, "OperationID", 255); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetOperationDetailResponse is undocumented.
@@ -627,10 +1338,74 @@ type GetOperationDetailResponse struct {
 	Type          aws.StringValue `json:"Type,omitempty"`
 }
 
+func (v *GetOperationDetailResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "OperationID", 255); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	StatusEnum := []string{
+		OperationStatusError,
+		OperationStatusFailed,
+		OperationStatusInProgress,
+		OperationStatusSubmitted,
+		OperationStatusSuccessful,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	TypeEnum := []string{
+		OperationTypeChangePrivacyProtection,
+		OperationTypeDeleteDomain,
+		OperationTypeDomainLock,
+		OperationTypeRegisterDomain,
+		OperationTypeTransferInDomain,
+		OperationTypeUpdateDomainContact,
+		OperationTypeUpdateNameserver,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDomainsRequest is undocumented.
 type ListDomainsRequest struct {
 	Marker   aws.StringValue  `json:"Marker,omitempty"`
 	MaxItems aws.IntegerValue `json:"MaxItems,omitempty"`
+}
+
+func (v *ListDomainsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Marker", 4096); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 100); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListDomainsResponse is undocumented.
@@ -639,10 +1414,46 @@ type ListDomainsResponse struct {
 	NextPageMarker aws.StringValue `json:"NextPageMarker,omitempty"`
 }
 
+func (v *ListDomainsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domains"); err != nil {
+		errors["Domains"] = append(errors["Domains"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextPageMarker", 4096); err != nil {
+		errors["NextPageMarker"] = append(errors["NextPageMarker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListOperationsRequest is undocumented.
 type ListOperationsRequest struct {
 	Marker   aws.StringValue  `json:"Marker,omitempty"`
 	MaxItems aws.IntegerValue `json:"MaxItems,omitempty"`
+}
+
+func (v *ListOperationsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Marker", 4096); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 100); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListOperationsResponse is undocumented.
@@ -651,10 +1462,50 @@ type ListOperationsResponse struct {
 	Operations     []OperationSummary `json:"Operations"`
 }
 
+func (v *ListOperationsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "NextPageMarker", 4096); err != nil {
+		errors["NextPageMarker"] = append(errors["NextPageMarker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Operations"); err != nil {
+		errors["Operations"] = append(errors["Operations"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Nameserver is undocumented.
 type Nameserver struct {
 	GlueIPs []string        `json:"GlueIps,omitempty"`
 	Name    aws.StringValue `json:"Name"`
+}
+
+func (v *Nameserver) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 255); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Route53Domains.
@@ -672,6 +1523,60 @@ type OperationSummary struct {
 	Status        aws.StringValue `json:"Status"`
 	SubmittedDate time.Time       `json:"SubmittedDate"`
 	Type          aws.StringValue `json:"Type"`
+}
+
+func (v *OperationSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OperationID"); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if err := model.ValidateMax(v, "OperationID", 255); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	StatusEnum := []string{
+		OperationStatusError,
+		OperationStatusFailed,
+		OperationStatusInProgress,
+		OperationStatusSubmitted,
+		OperationStatusSuccessful,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubmittedDate"); err != nil {
+		errors["SubmittedDate"] = append(errors["SubmittedDate"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Type"); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	TypeEnum := []string{
+		OperationTypeChangePrivacyProtection,
+		OperationTypeDeleteDomain,
+		OperationTypeDomainLock,
+		OperationTypeRegisterDomain,
+		OperationTypeTransferInDomain,
+		OperationTypeUpdateDomainContact,
+		OperationTypeUpdateNameserver,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Route53Domains.
@@ -699,9 +1604,77 @@ type RegisterDomainRequest struct {
 	TechContact                     *ContactDetail   `json:"TechContact"`
 }
 
+func (v *RegisterDomainRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AdminContact"); err != nil {
+		errors["AdminContact"] = append(errors["AdminContact"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DurationInYears"); err != nil {
+		errors["DurationInYears"] = append(errors["DurationInYears"], err)
+	}
+
+	if err := model.ValidateMin(v, "DurationInYears", 1); err != nil {
+		errors["DurationInYears"] = append(errors["DurationInYears"], err)
+	}
+
+	if err := model.ValidateMax(v, "DurationInYears", 10); err != nil {
+		errors["DurationInYears"] = append(errors["DurationInYears"], err)
+	}
+
+	if err := model.ValidateMax(v, "IDNLangCode", 3); err != nil {
+		errors["IDNLangCode"] = append(errors["IDNLangCode"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RegistrantContact"); err != nil {
+		errors["RegistrantContact"] = append(errors["RegistrantContact"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TechContact"); err != nil {
+		errors["TechContact"] = append(errors["TechContact"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RegisterDomainResponse is undocumented.
 type RegisterDomainResponse struct {
 	OperationID aws.StringValue `json:"OperationId"`
+}
+
+func (v *RegisterDomainResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OperationID"); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if err := model.ValidateMax(v, "OperationID", 255); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RetrieveDomainAuthCodeRequest is undocumented.
@@ -709,9 +1682,49 @@ type RetrieveDomainAuthCodeRequest struct {
 	DomainName aws.StringValue `json:"DomainName"`
 }
 
+func (v *RetrieveDomainAuthCodeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RetrieveDomainAuthCodeResponse is undocumented.
 type RetrieveDomainAuthCodeResponse struct {
 	AuthCode aws.StringValue `json:"AuthCode"`
+}
+
+func (v *RetrieveDomainAuthCodeResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AuthCode"); err != nil {
+		errors["AuthCode"] = append(errors["AuthCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "AuthCode", 1024); err != nil {
+		errors["AuthCode"] = append(errors["AuthCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TransferDomainRequest is undocumented.
@@ -730,9 +1743,85 @@ type TransferDomainRequest struct {
 	TechContact                     *ContactDetail   `json:"TechContact"`
 }
 
+func (v *TransferDomainRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AdminContact"); err != nil {
+		errors["AdminContact"] = append(errors["AdminContact"], err)
+	}
+
+	if err := model.ValidateMax(v, "AuthCode", 1024); err != nil {
+		errors["AuthCode"] = append(errors["AuthCode"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DurationInYears"); err != nil {
+		errors["DurationInYears"] = append(errors["DurationInYears"], err)
+	}
+
+	if err := model.ValidateMin(v, "DurationInYears", 1); err != nil {
+		errors["DurationInYears"] = append(errors["DurationInYears"], err)
+	}
+
+	if err := model.ValidateMax(v, "DurationInYears", 10); err != nil {
+		errors["DurationInYears"] = append(errors["DurationInYears"], err)
+	}
+
+	if err := model.ValidateMax(v, "IDNLangCode", 3); err != nil {
+		errors["IDNLangCode"] = append(errors["IDNLangCode"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Nameservers"); err != nil {
+		errors["Nameservers"] = append(errors["Nameservers"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RegistrantContact"); err != nil {
+		errors["RegistrantContact"] = append(errors["RegistrantContact"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TechContact"); err != nil {
+		errors["TechContact"] = append(errors["TechContact"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TransferDomainResponse is undocumented.
 type TransferDomainResponse struct {
 	OperationID aws.StringValue `json:"OperationId"`
+}
+
+func (v *TransferDomainResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OperationID"); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if err := model.ValidateMax(v, "OperationID", 255); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateDomainContactPrivacyRequest is undocumented.
@@ -743,9 +1832,49 @@ type UpdateDomainContactPrivacyRequest struct {
 	TechPrivacy       aws.BooleanValue `json:"TechPrivacy,omitempty"`
 }
 
+func (v *UpdateDomainContactPrivacyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateDomainContactPrivacyResponse is undocumented.
 type UpdateDomainContactPrivacyResponse struct {
 	OperationID aws.StringValue `json:"OperationId"`
+}
+
+func (v *UpdateDomainContactPrivacyResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OperationID"); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if err := model.ValidateMax(v, "OperationID", 255); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateDomainContactRequest is undocumented.
@@ -756,9 +1885,49 @@ type UpdateDomainContactRequest struct {
 	TechContact       *ContactDetail  `json:"TechContact,omitempty"`
 }
 
+func (v *UpdateDomainContactRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateDomainContactResponse is undocumented.
 type UpdateDomainContactResponse struct {
 	OperationID aws.StringValue `json:"OperationId"`
+}
+
+func (v *UpdateDomainContactResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OperationID"); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if err := model.ValidateMax(v, "OperationID", 255); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateDomainNameserversRequest is undocumented.
@@ -767,9 +1936,53 @@ type UpdateDomainNameserversRequest struct {
 	Nameservers []Nameserver    `json:"Nameservers"`
 }
 
+func (v *UpdateDomainNameserversRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 255); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-zA-Z0-9_\-.]*`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Nameservers"); err != nil {
+		errors["Nameservers"] = append(errors["Nameservers"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateDomainNameserversResponse is undocumented.
 type UpdateDomainNameserversResponse struct {
 	OperationID aws.StringValue `json:"OperationId"`
+}
+
+func (v *UpdateDomainNameserversResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OperationID"); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if err := model.ValidateMax(v, "OperationID", 255); err != nil {
+		errors["OperationID"] = append(errors["OperationID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

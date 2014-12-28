@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // CloudFormation is a client for AWS CloudFormation.
@@ -44,6 +45,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Clo
 // to the previous stack configuration. Only stacks that are in the state
 // can be canceled.
 func (c *CloudFormation) CancelUpdateStack(req *CancelUpdateStackInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CancelUpdateStack", "POST", "/", req, nil)
 	return
@@ -53,6 +58,10 @@ func (c *CloudFormation) CancelUpdateStack(req *CancelUpdateStackInput) (err err
 // completes successfully, the stack creation starts. You can check the
 // status of the stack via the DescribeStacks
 func (c *CloudFormation) CreateStack(req *CreateStackInput) (resp *CreateStackResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateStackResult{}
 	err = c.client.Do("CreateStack", "POST", "/", req, resp)
 	return
@@ -62,6 +71,10 @@ func (c *CloudFormation) CreateStack(req *CreateStackInput) (resp *CreateStackRe
 // successfully, stack deletion starts. Deleted stacks do not show up in
 // the DescribeStacks API if the deletion has been completed successfully.
 func (c *CloudFormation) DeleteStack(req *DeleteStackInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteStack", "POST", "/", req, nil)
 	return
@@ -73,6 +86,10 @@ func (c *CloudFormation) DeleteStack(req *DeleteStackInput) (err error) {
 // that have failed to create or have been deleted by specifying the unique
 // stack identifier (stack
 func (c *CloudFormation) DescribeStackEvents(req *DescribeStackEventsInput) (resp *DescribeStackEventsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeStackEventsResult{}
 	err = c.client.Do("DescribeStackEvents", "POST", "/", req, resp)
 	return
@@ -82,6 +99,10 @@ func (c *CloudFormation) DescribeStackEvents(req *DescribeStackEventsInput) (res
 // the specified stack. For deleted stacks, DescribeStackResource returns
 // resource information for up to 90 days after the stack has been deleted.
 func (c *CloudFormation) DescribeStackResource(req *DescribeStackResourceInput) (resp *DescribeStackResourceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeStackResourceResult{}
 	err = c.client.Do("DescribeStackResource", "POST", "/", req, resp)
 	return
@@ -102,6 +123,10 @@ func (c *CloudFormation) DescribeStackResource(req *DescribeStackResourceInput) 
 // User Guide A ValidationError is returned if you specify both StackName
 // and PhysicalResourceId in the same request.
 func (c *CloudFormation) DescribeStackResources(req *DescribeStackResourcesInput) (resp *DescribeStackResourcesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeStackResourcesResult{}
 	err = c.client.Do("DescribeStackResources", "POST", "/", req, resp)
 	return
@@ -111,6 +136,10 @@ func (c *CloudFormation) DescribeStackResources(req *DescribeStackResourcesInput
 // stack name was specified, then it returns the description for all the
 // stacks created.
 func (c *CloudFormation) DescribeStacks(req *DescribeStacksInput) (resp *DescribeStacksResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeStacksResult{}
 	err = c.client.Do("DescribeStacks", "POST", "/", req, resp)
 	return
@@ -120,6 +149,10 @@ func (c *CloudFormation) DescribeStacks(req *DescribeStacksInput) (resp *Describ
 // The return value is an AWS Simple Monthly Calculator URL with a query
 // string that describes the resources required to run the template.
 func (c *CloudFormation) EstimateTemplateCost(req *EstimateTemplateCostInput) (resp *EstimateTemplateCostResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &EstimateTemplateCostResult{}
 	err = c.client.Do("EstimateTemplateCost", "POST", "/", req, resp)
 	return
@@ -128,6 +161,10 @@ func (c *CloudFormation) EstimateTemplateCost(req *EstimateTemplateCostInput) (r
 // GetStackPolicy returns the stack policy for a specified stack. If a
 // stack doesn't have a policy, a null value is returned.
 func (c *CloudFormation) GetStackPolicy(req *GetStackPolicyInput) (resp *GetStackPolicyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetStackPolicyResult{}
 	err = c.client.Do("GetStackPolicy", "POST", "/", req, resp)
 	return
@@ -139,6 +176,10 @@ func (c *CloudFormation) GetStackPolicy(req *GetStackPolicyInput) (resp *GetStac
 // been deleted. If the template does not exist, a ValidationError is
 // returned.
 func (c *CloudFormation) GetTemplate(req *GetTemplateInput) (resp *GetTemplateResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetTemplateResult{}
 	err = c.client.Do("GetTemplate", "POST", "/", req, resp)
 	return
@@ -154,6 +195,10 @@ func (c *CloudFormation) GetTemplate(req *GetTemplateInput) (resp *GetTemplateRe
 // been deleted. If the template does not exist, a ValidationError is
 // returned.
 func (c *CloudFormation) GetTemplateSummary(req *GetTemplateSummaryInput) (resp *GetTemplateSummaryResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetTemplateSummaryResult{}
 	err = c.client.Do("GetTemplateSummary", "POST", "/", req, resp)
 	return
@@ -163,6 +208,10 @@ func (c *CloudFormation) GetTemplateSummary(req *GetTemplateSummaryInput) (resp 
 // specified stack. For deleted stacks, ListStackResources returns resource
 // information for up to 90 days after the stack has been deleted.
 func (c *CloudFormation) ListStackResources(req *ListStackResourcesInput) (resp *ListStackResourcesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListStackResourcesResult{}
 	err = c.client.Do("ListStackResources", "POST", "/", req, resp)
 	return
@@ -175,6 +224,10 @@ func (c *CloudFormation) ListStackResources(req *ListStackResourcesInput) (resp 
 // is returned (including existing stacks and stacks that have been
 // deleted).
 func (c *CloudFormation) ListStacks(req *ListStacksInput) (resp *ListStacksResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListStacksResult{}
 	err = c.client.Do("ListStacks", "POST", "/", req, resp)
 	return
@@ -182,6 +235,10 @@ func (c *CloudFormation) ListStacks(req *ListStacksInput) (resp *ListStacksResul
 
 // SetStackPolicy is undocumented.
 func (c *CloudFormation) SetStackPolicy(req *SetStackPolicyInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetStackPolicy", "POST", "/", req, nil)
 	return
@@ -195,6 +252,10 @@ func (c *CloudFormation) SetStackPolicy(req *SetStackPolicyInput) (err error) {
 // SignalResource API is useful in cases where you want to send signals
 // from anywhere other than an Amazon EC2 instance.
 func (c *CloudFormation) SignalResource(req *SignalResourceInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SignalResource", "POST", "/", req, nil)
 	return
@@ -209,6 +270,10 @@ func (c *CloudFormation) SignalResource(req *SignalResourceInput) (err error) {
 // information about creating an update template, updating a stack, and
 // monitoring the progress of the update, see Updating a Stack
 func (c *CloudFormation) UpdateStack(req *UpdateStackInput) (resp *UpdateStackResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateStackResult{}
 	err = c.client.Do("UpdateStack", "POST", "/", req, resp)
 	return
@@ -216,6 +281,10 @@ func (c *CloudFormation) UpdateStack(req *UpdateStackInput) (resp *UpdateStackRe
 
 // ValidateTemplate is undocumented.
 func (c *CloudFormation) ValidateTemplate(req *ValidateTemplateInput) (resp *ValidateTemplateResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ValidateTemplateResult{}
 	err = c.client.Do("ValidateTemplate", "POST", "/", req, resp)
 	return
@@ -224,6 +293,20 @@ func (c *CloudFormation) ValidateTemplate(req *ValidateTemplateInput) (resp *Val
 // CancelUpdateStackInput is undocumented.
 type CancelUpdateStackInput struct {
 	StackName aws.StringValue `xml:"StackName"`
+}
+
+func (v *CancelUpdateStackInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudFormation.
@@ -247,14 +330,97 @@ type CreateStackInput struct {
 	TimeoutInMinutes aws.IntegerValue `xml:"TimeoutInMinutes"`
 }
 
+func (v *CreateStackInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "NotificationARNs", 5); err != nil {
+		errors["NotificationARNs"] = append(errors["NotificationARNs"], err)
+	}
+
+	OnFailureEnum := []string{
+		OnFailureDelete,
+		OnFailureDoNothing,
+		OnFailureRollback,
+	}
+	if err := model.ValidateEnum(v, "OnFailure", OnFailureEnum); err != nil {
+		errors["OnFailure"] = append(errors["OnFailure"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StackPolicyBody", 1); err != nil {
+		errors["StackPolicyBody"] = append(errors["StackPolicyBody"], err)
+	}
+
+	if err := model.ValidateMax(v, "StackPolicyBody", 16384); err != nil {
+		errors["StackPolicyBody"] = append(errors["StackPolicyBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "StackPolicyURL", 1); err != nil {
+		errors["StackPolicyURL"] = append(errors["StackPolicyURL"], err)
+	}
+
+	if err := model.ValidateMax(v, "StackPolicyURL", 1350); err != nil {
+		errors["StackPolicyURL"] = append(errors["StackPolicyURL"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateBody", 1); err != nil {
+		errors["TemplateBody"] = append(errors["TemplateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateURL", 1); err != nil {
+		errors["TemplateURL"] = append(errors["TemplateURL"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateURL", 1024); err != nil {
+		errors["TemplateURL"] = append(errors["TemplateURL"], err)
+	}
+
+	if err := model.ValidateMin(v, "TimeoutInMinutes", 1); err != nil {
+		errors["TimeoutInMinutes"] = append(errors["TimeoutInMinutes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateStackOutput is undocumented.
 type CreateStackOutput struct {
 	StackID aws.StringValue `xml:"CreateStackResult>StackId"`
 }
 
+func (v *CreateStackOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteStackInput is undocumented.
 type DeleteStackInput struct {
 	StackName aws.StringValue `xml:"StackName"`
+}
+
+func (v *DeleteStackInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeStackEventsInput is undocumented.
@@ -263,10 +429,46 @@ type DescribeStackEventsInput struct {
 	StackName aws.StringValue `xml:"StackName"`
 }
 
+func (v *DescribeStackEventsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextToken", 1); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextToken", 1024); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeStackEventsOutput is undocumented.
 type DescribeStackEventsOutput struct {
 	NextToken   aws.StringValue `xml:"DescribeStackEventsResult>NextToken"`
 	StackEvents []StackEvent    `xml:"DescribeStackEventsResult>StackEvents>member"`
+}
+
+func (v *DescribeStackEventsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextToken", 1); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextToken", 1024); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeStackResourceInput is undocumented.
@@ -275,9 +477,37 @@ type DescribeStackResourceInput struct {
 	StackName         aws.StringValue `xml:"StackName"`
 }
 
+func (v *DescribeStackResourceInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LogicalResourceID"); err != nil {
+		errors["LogicalResourceID"] = append(errors["LogicalResourceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeStackResourceOutput is undocumented.
 type DescribeStackResourceOutput struct {
 	StackResourceDetail *StackResourceDetail `xml:"DescribeStackResourceResult>StackResourceDetail"`
+}
+
+func (v *DescribeStackResourceOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeStackResourcesInput is undocumented.
@@ -287,9 +517,29 @@ type DescribeStackResourcesInput struct {
 	StackName          aws.StringValue `xml:"StackName"`
 }
 
+func (v *DescribeStackResourcesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeStackResourcesOutput is undocumented.
 type DescribeStackResourcesOutput struct {
 	StackResources []StackResource `xml:"DescribeStackResourcesResult>StackResources>member"`
+}
+
+func (v *DescribeStackResourcesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeStacksInput is undocumented.
@@ -298,10 +548,46 @@ type DescribeStacksInput struct {
 	StackName aws.StringValue `xml:"StackName"`
 }
 
+func (v *DescribeStacksInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextToken", 1); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextToken", 1024); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeStacksOutput is undocumented.
 type DescribeStacksOutput struct {
 	NextToken aws.StringValue `xml:"DescribeStacksResult>NextToken"`
 	Stacks    []Stack         `xml:"DescribeStacksResult>Stacks>member"`
+}
+
+func (v *DescribeStacksOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextToken", 1); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextToken", 1024); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EstimateTemplateCostInput is undocumented.
@@ -311,9 +597,41 @@ type EstimateTemplateCostInput struct {
 	TemplateURL  aws.StringValue `xml:"TemplateURL"`
 }
 
+func (v *EstimateTemplateCostInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TemplateBody", 1); err != nil {
+		errors["TemplateBody"] = append(errors["TemplateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateURL", 1); err != nil {
+		errors["TemplateURL"] = append(errors["TemplateURL"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateURL", 1024); err != nil {
+		errors["TemplateURL"] = append(errors["TemplateURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EstimateTemplateCostOutput is undocumented.
 type EstimateTemplateCostOutput struct {
 	URL aws.StringValue `xml:"EstimateTemplateCostResult>Url"`
+}
+
+func (v *EstimateTemplateCostOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetStackPolicyInput is undocumented.
@@ -321,9 +639,41 @@ type GetStackPolicyInput struct {
 	StackName aws.StringValue `xml:"StackName"`
 }
 
+func (v *GetStackPolicyInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetStackPolicyOutput is undocumented.
 type GetStackPolicyOutput struct {
 	StackPolicyBody aws.StringValue `xml:"GetStackPolicyResult>StackPolicyBody"`
+}
+
+func (v *GetStackPolicyOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "StackPolicyBody", 1); err != nil {
+		errors["StackPolicyBody"] = append(errors["StackPolicyBody"], err)
+	}
+
+	if err := model.ValidateMax(v, "StackPolicyBody", 16384); err != nil {
+		errors["StackPolicyBody"] = append(errors["StackPolicyBody"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetTemplateInput is undocumented.
@@ -331,9 +681,37 @@ type GetTemplateInput struct {
 	StackName aws.StringValue `xml:"StackName"`
 }
 
+func (v *GetTemplateInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetTemplateOutput is undocumented.
 type GetTemplateOutput struct {
 	TemplateBody aws.StringValue `xml:"GetTemplateResult>TemplateBody"`
+}
+
+func (v *GetTemplateOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TemplateBody", 1); err != nil {
+		errors["TemplateBody"] = append(errors["TemplateBody"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetTemplateSummaryInput is undocumented.
@@ -341,6 +719,36 @@ type GetTemplateSummaryInput struct {
 	StackName    aws.StringValue `xml:"StackName"`
 	TemplateBody aws.StringValue `xml:"TemplateBody"`
 	TemplateURL  aws.StringValue `xml:"TemplateURL"`
+}
+
+func (v *GetTemplateSummaryInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "StackName", 1); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StackName", `([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)`); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateBody", 1); err != nil {
+		errors["TemplateBody"] = append(errors["TemplateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateURL", 1); err != nil {
+		errors["TemplateURL"] = append(errors["TemplateURL"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateURL", 1024); err != nil {
+		errors["TemplateURL"] = append(errors["TemplateURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetTemplateSummaryOutput is undocumented.
@@ -352,10 +760,42 @@ type GetTemplateSummaryOutput struct {
 	Version            aws.StringValue        `xml:"GetTemplateSummaryResult>Version"`
 }
 
+func (v *GetTemplateSummaryOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListStackResourcesInput is undocumented.
 type ListStackResourcesInput struct {
 	NextToken aws.StringValue `xml:"NextToken"`
 	StackName aws.StringValue `xml:"StackName"`
+}
+
+func (v *ListStackResourcesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextToken", 1); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextToken", 1024); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListStackResourcesOutput is undocumented.
@@ -364,16 +804,70 @@ type ListStackResourcesOutput struct {
 	StackResourceSummaries []StackResourceSummary `xml:"ListStackResourcesResult>StackResourceSummaries>member"`
 }
 
+func (v *ListStackResourcesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextToken", 1); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextToken", 1024); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListStacksInput is undocumented.
 type ListStacksInput struct {
 	NextToken         aws.StringValue `xml:"NextToken"`
 	StackStatusFilter []string        `xml:"StackStatusFilter>member"`
 }
 
+func (v *ListStacksInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextToken", 1); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextToken", 1024); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListStacksOutput is undocumented.
 type ListStacksOutput struct {
 	NextToken      aws.StringValue `xml:"ListStacksResult>NextToken"`
 	StackSummaries []StackSummary  `xml:"ListStacksResult>StackSummaries>member"`
+}
+
+func (v *ListStacksOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextToken", 1); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextToken", 1024); err != nil {
+		errors["NextToken"] = append(errors["NextToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudFormation.
@@ -390,11 +884,31 @@ type Output struct {
 	OutputValue aws.StringValue `xml:"OutputValue"`
 }
 
+func (v *Output) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Parameter is undocumented.
 type Parameter struct {
 	ParameterKey     aws.StringValue  `xml:"ParameterKey"`
 	ParameterValue   aws.StringValue  `xml:"ParameterValue"`
 	UsePreviousValue aws.BooleanValue `xml:"UsePreviousValue"`
+}
+
+func (v *Parameter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ParameterDeclaration is undocumented.
@@ -404,6 +918,16 @@ type ParameterDeclaration struct {
 	NoEcho        aws.BooleanValue `xml:"NoEcho"`
 	ParameterKey  aws.StringValue  `xml:"ParameterKey"`
 	ParameterType aws.StringValue  `xml:"ParameterType"`
+}
+
+func (v *ParameterDeclaration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudFormation.
@@ -433,12 +957,92 @@ type SetStackPolicyInput struct {
 	StackPolicyURL  aws.StringValue `xml:"StackPolicyURL"`
 }
 
+func (v *SetStackPolicyInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StackPolicyBody", 1); err != nil {
+		errors["StackPolicyBody"] = append(errors["StackPolicyBody"], err)
+	}
+
+	if err := model.ValidateMax(v, "StackPolicyBody", 16384); err != nil {
+		errors["StackPolicyBody"] = append(errors["StackPolicyBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "StackPolicyURL", 1); err != nil {
+		errors["StackPolicyURL"] = append(errors["StackPolicyURL"], err)
+	}
+
+	if err := model.ValidateMax(v, "StackPolicyURL", 1350); err != nil {
+		errors["StackPolicyURL"] = append(errors["StackPolicyURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SignalResourceInput is undocumented.
 type SignalResourceInput struct {
 	LogicalResourceID aws.StringValue `xml:"LogicalResourceId"`
 	StackName         aws.StringValue `xml:"StackName"`
 	Status            aws.StringValue `xml:"Status"`
 	UniqueID          aws.StringValue `xml:"UniqueId"`
+}
+
+func (v *SignalResourceInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LogicalResourceID"); err != nil {
+		errors["LogicalResourceID"] = append(errors["LogicalResourceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StackName", 1); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StackName", `([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)`); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	StatusEnum := []string{
+		ResourceSignalStatusFailure,
+		ResourceSignalStatusSuccess,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UniqueID"); err != nil {
+		errors["UniqueID"] = append(errors["UniqueID"], err)
+	}
+
+	if err := model.ValidateMin(v, "UniqueID", 1); err != nil {
+		errors["UniqueID"] = append(errors["UniqueID"], err)
+	}
+
+	if err := model.ValidateMax(v, "UniqueID", 64); err != nil {
+		errors["UniqueID"] = append(errors["UniqueID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Stack is undocumented.
@@ -459,6 +1063,58 @@ type Stack struct {
 	TimeoutInMinutes  aws.IntegerValue `xml:"TimeoutInMinutes"`
 }
 
+func (v *Stack) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CreationTime"); err != nil {
+		errors["CreationTime"] = append(errors["CreationTime"], err)
+	}
+
+	if err := model.ValidateMax(v, "NotificationARNs", 5); err != nil {
+		errors["NotificationARNs"] = append(errors["NotificationARNs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackStatus"); err != nil {
+		errors["StackStatus"] = append(errors["StackStatus"], err)
+	}
+
+	StackStatusEnum := []string{
+		StackStatusCreateComplete,
+		StackStatusCreateFailed,
+		StackStatusCreateInProgress,
+		StackStatusDeleteComplete,
+		StackStatusDeleteFailed,
+		StackStatusDeleteInProgress,
+		StackStatusRollbackComplete,
+		StackStatusRollbackFailed,
+		StackStatusRollbackInProgress,
+		StackStatusUpdateComplete,
+		StackStatusUpdateCompleteCleanupInProgress,
+		StackStatusUpdateInProgress,
+		StackStatusUpdateRollbackComplete,
+		StackStatusUpdateRollbackCompleteCleanupInProgress,
+		StackStatusUpdateRollbackFailed,
+		StackStatusUpdateRollbackInProgress,
+	}
+	if err := model.ValidateEnum(v, "StackStatus", StackStatusEnum); err != nil {
+		errors["StackStatus"] = append(errors["StackStatus"], err)
+	}
+
+	if err := model.ValidateMin(v, "TimeoutInMinutes", 1); err != nil {
+		errors["TimeoutInMinutes"] = append(errors["TimeoutInMinutes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StackEvent is undocumented.
 type StackEvent struct {
 	EventID              aws.StringValue `xml:"EventId"`
@@ -473,6 +1129,48 @@ type StackEvent struct {
 	Timestamp            time.Time       `xml:"Timestamp"`
 }
 
+func (v *StackEvent) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EventID"); err != nil {
+		errors["EventID"] = append(errors["EventID"], err)
+	}
+
+	ResourceStatusEnum := []string{
+		ResourceStatusCreateComplete,
+		ResourceStatusCreateFailed,
+		ResourceStatusCreateInProgress,
+		ResourceStatusDeleteComplete,
+		ResourceStatusDeleteFailed,
+		ResourceStatusDeleteInProgress,
+		ResourceStatusDeleteSkipped,
+		ResourceStatusUpdateComplete,
+		ResourceStatusUpdateFailed,
+		ResourceStatusUpdateInProgress,
+	}
+	if err := model.ValidateEnum(v, "ResourceStatus", ResourceStatusEnum); err != nil {
+		errors["ResourceStatus"] = append(errors["ResourceStatus"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Timestamp"); err != nil {
+		errors["Timestamp"] = append(errors["Timestamp"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StackResource is undocumented.
 type StackResource struct {
 	Description          aws.StringValue `xml:"Description"`
@@ -484,6 +1182,48 @@ type StackResource struct {
 	StackID              aws.StringValue `xml:"StackId"`
 	StackName            aws.StringValue `xml:"StackName"`
 	Timestamp            time.Time       `xml:"Timestamp"`
+}
+
+func (v *StackResource) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LogicalResourceID"); err != nil {
+		errors["LogicalResourceID"] = append(errors["LogicalResourceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceStatus"); err != nil {
+		errors["ResourceStatus"] = append(errors["ResourceStatus"], err)
+	}
+
+	ResourceStatusEnum := []string{
+		ResourceStatusCreateComplete,
+		ResourceStatusCreateFailed,
+		ResourceStatusCreateInProgress,
+		ResourceStatusDeleteComplete,
+		ResourceStatusDeleteFailed,
+		ResourceStatusDeleteInProgress,
+		ResourceStatusDeleteSkipped,
+		ResourceStatusUpdateComplete,
+		ResourceStatusUpdateFailed,
+		ResourceStatusUpdateInProgress,
+	}
+	if err := model.ValidateEnum(v, "ResourceStatus", ResourceStatusEnum); err != nil {
+		errors["ResourceStatus"] = append(errors["ResourceStatus"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceType"); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Timestamp"); err != nil {
+		errors["Timestamp"] = append(errors["Timestamp"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // StackResourceDetail is undocumented.
@@ -500,6 +1240,48 @@ type StackResourceDetail struct {
 	StackName            aws.StringValue `xml:"StackName"`
 }
 
+func (v *StackResourceDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LastUpdatedTimestamp"); err != nil {
+		errors["LastUpdatedTimestamp"] = append(errors["LastUpdatedTimestamp"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogicalResourceID"); err != nil {
+		errors["LogicalResourceID"] = append(errors["LogicalResourceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceStatus"); err != nil {
+		errors["ResourceStatus"] = append(errors["ResourceStatus"], err)
+	}
+
+	ResourceStatusEnum := []string{
+		ResourceStatusCreateComplete,
+		ResourceStatusCreateFailed,
+		ResourceStatusCreateInProgress,
+		ResourceStatusDeleteComplete,
+		ResourceStatusDeleteFailed,
+		ResourceStatusDeleteInProgress,
+		ResourceStatusDeleteSkipped,
+		ResourceStatusUpdateComplete,
+		ResourceStatusUpdateFailed,
+		ResourceStatusUpdateInProgress,
+	}
+	if err := model.ValidateEnum(v, "ResourceStatus", ResourceStatusEnum); err != nil {
+		errors["ResourceStatus"] = append(errors["ResourceStatus"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceType"); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StackResourceSummary is undocumented.
 type StackResourceSummary struct {
 	LastUpdatedTimestamp time.Time       `xml:"LastUpdatedTimestamp"`
@@ -508,6 +1290,48 @@ type StackResourceSummary struct {
 	ResourceStatus       aws.StringValue `xml:"ResourceStatus"`
 	ResourceStatusReason aws.StringValue `xml:"ResourceStatusReason"`
 	ResourceType         aws.StringValue `xml:"ResourceType"`
+}
+
+func (v *StackResourceSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LastUpdatedTimestamp"); err != nil {
+		errors["LastUpdatedTimestamp"] = append(errors["LastUpdatedTimestamp"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogicalResourceID"); err != nil {
+		errors["LogicalResourceID"] = append(errors["LogicalResourceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceStatus"); err != nil {
+		errors["ResourceStatus"] = append(errors["ResourceStatus"], err)
+	}
+
+	ResourceStatusEnum := []string{
+		ResourceStatusCreateComplete,
+		ResourceStatusCreateFailed,
+		ResourceStatusCreateInProgress,
+		ResourceStatusDeleteComplete,
+		ResourceStatusDeleteFailed,
+		ResourceStatusDeleteInProgress,
+		ResourceStatusDeleteSkipped,
+		ResourceStatusUpdateComplete,
+		ResourceStatusUpdateFailed,
+		ResourceStatusUpdateInProgress,
+	}
+	if err := model.ValidateEnum(v, "ResourceStatus", ResourceStatusEnum); err != nil {
+		errors["ResourceStatus"] = append(errors["ResourceStatus"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceType"); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudFormation.
@@ -542,10 +1366,64 @@ type StackSummary struct {
 	TemplateDescription aws.StringValue `xml:"TemplateDescription"`
 }
 
+func (v *StackSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CreationTime"); err != nil {
+		errors["CreationTime"] = append(errors["CreationTime"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackStatus"); err != nil {
+		errors["StackStatus"] = append(errors["StackStatus"], err)
+	}
+
+	StackStatusEnum := []string{
+		StackStatusCreateComplete,
+		StackStatusCreateFailed,
+		StackStatusCreateInProgress,
+		StackStatusDeleteComplete,
+		StackStatusDeleteFailed,
+		StackStatusDeleteInProgress,
+		StackStatusRollbackComplete,
+		StackStatusRollbackFailed,
+		StackStatusRollbackInProgress,
+		StackStatusUpdateComplete,
+		StackStatusUpdateCompleteCleanupInProgress,
+		StackStatusUpdateInProgress,
+		StackStatusUpdateRollbackComplete,
+		StackStatusUpdateRollbackCompleteCleanupInProgress,
+		StackStatusUpdateRollbackFailed,
+		StackStatusUpdateRollbackInProgress,
+	}
+	if err := model.ValidateEnum(v, "StackStatus", StackStatusEnum); err != nil {
+		errors["StackStatus"] = append(errors["StackStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Tag is undocumented.
 type Tag struct {
 	Key   aws.StringValue `xml:"Key"`
 	Value aws.StringValue `xml:"Value"`
+}
+
+func (v *Tag) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TemplateParameter is undocumented.
@@ -554,6 +1432,16 @@ type TemplateParameter struct {
 	Description  aws.StringValue  `xml:"Description"`
 	NoEcho       aws.BooleanValue `xml:"NoEcho"`
 	ParameterKey aws.StringValue  `xml:"ParameterKey"`
+}
+
+func (v *TemplateParameter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateStackInput is undocumented.
@@ -571,9 +1459,81 @@ type UpdateStackInput struct {
 	UsePreviousTemplate         aws.BooleanValue `xml:"UsePreviousTemplate"`
 }
 
+func (v *UpdateStackInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "NotificationARNs", 5); err != nil {
+		errors["NotificationARNs"] = append(errors["NotificationARNs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackName"); err != nil {
+		errors["StackName"] = append(errors["StackName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StackPolicyBody", 1); err != nil {
+		errors["StackPolicyBody"] = append(errors["StackPolicyBody"], err)
+	}
+
+	if err := model.ValidateMax(v, "StackPolicyBody", 16384); err != nil {
+		errors["StackPolicyBody"] = append(errors["StackPolicyBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "StackPolicyDuringUpdateBody", 1); err != nil {
+		errors["StackPolicyDuringUpdateBody"] = append(errors["StackPolicyDuringUpdateBody"], err)
+	}
+
+	if err := model.ValidateMax(v, "StackPolicyDuringUpdateBody", 16384); err != nil {
+		errors["StackPolicyDuringUpdateBody"] = append(errors["StackPolicyDuringUpdateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "StackPolicyDuringUpdateURL", 1); err != nil {
+		errors["StackPolicyDuringUpdateURL"] = append(errors["StackPolicyDuringUpdateURL"], err)
+	}
+
+	if err := model.ValidateMax(v, "StackPolicyDuringUpdateURL", 1350); err != nil {
+		errors["StackPolicyDuringUpdateURL"] = append(errors["StackPolicyDuringUpdateURL"], err)
+	}
+
+	if err := model.ValidateMin(v, "StackPolicyURL", 1); err != nil {
+		errors["StackPolicyURL"] = append(errors["StackPolicyURL"], err)
+	}
+
+	if err := model.ValidateMax(v, "StackPolicyURL", 1350); err != nil {
+		errors["StackPolicyURL"] = append(errors["StackPolicyURL"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateBody", 1); err != nil {
+		errors["TemplateBody"] = append(errors["TemplateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateURL", 1); err != nil {
+		errors["TemplateURL"] = append(errors["TemplateURL"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateURL", 1024); err != nil {
+		errors["TemplateURL"] = append(errors["TemplateURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateStackOutput is undocumented.
 type UpdateStackOutput struct {
 	StackID aws.StringValue `xml:"UpdateStackResult>StackId"`
+}
+
+func (v *UpdateStackOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ValidateTemplateInput is undocumented.
@@ -582,12 +1542,44 @@ type ValidateTemplateInput struct {
 	TemplateURL  aws.StringValue `xml:"TemplateURL"`
 }
 
+func (v *ValidateTemplateInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "TemplateBody", 1); err != nil {
+		errors["TemplateBody"] = append(errors["TemplateBody"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateURL", 1); err != nil {
+		errors["TemplateURL"] = append(errors["TemplateURL"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateURL", 1024); err != nil {
+		errors["TemplateURL"] = append(errors["TemplateURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ValidateTemplateOutput is undocumented.
 type ValidateTemplateOutput struct {
 	Capabilities       []string            `xml:"ValidateTemplateResult>Capabilities>member"`
 	CapabilitiesReason aws.StringValue     `xml:"ValidateTemplateResult>CapabilitiesReason"`
 	Description        aws.StringValue     `xml:"ValidateTemplateResult>Description"`
 	Parameters         []TemplateParameter `xml:"ValidateTemplateResult>Parameters>member"`
+}
+
+func (v *ValidateTemplateOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateStackResult is a wrapper for CreateStackOutput.

@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // ELB is a client for Elastic Load Balancing.
@@ -46,6 +47,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *ELB
 // action will update the value of the key. For more information, see
 // Tagging in the Elastic Load Balancing Developer Guide
 func (c *ELB) AddTags(req *AddTagsInput) (resp *AddTagsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AddTagsResult{}
 	err = c.client.Do("AddTags", "POST", "/", req, resp)
 	return
@@ -57,6 +62,10 @@ func (c *ELB) AddTags(req *AddTagsInput) (resp *AddTagsResult, err error) {
 // groups. For more information, see Manage Security Groups in Amazon in
 // the Elastic Load Balancing Developer Guide
 func (c *ELB) ApplySecurityGroupsToLoadBalancer(req *ApplySecurityGroupsToLoadBalancerInput) (resp *ApplySecurityGroupsToLoadBalancerResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ApplySecurityGroupsToLoadBalancerResult{}
 	err = c.client.Do("ApplySecurityGroupsToLoadBalancer", "POST", "/", req, resp)
 	return
@@ -68,6 +77,10 @@ func (c *ELB) ApplySecurityGroupsToLoadBalancer(req *ApplySecurityGroupsToLoadBa
 // of the registered subnets. For more information, see Deploy Elastic Load
 // Balancing in Amazon in the Elastic Load Balancing Developer Guide .
 func (c *ELB) AttachLoadBalancerToSubnets(req *AttachLoadBalancerToSubnetsInput) (resp *AttachLoadBalancerToSubnetsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AttachLoadBalancerToSubnetsResult{}
 	err = c.client.Do("AttachLoadBalancerToSubnets", "POST", "/", req, resp)
 	return
@@ -78,6 +91,10 @@ func (c *ELB) AttachLoadBalancerToSubnets(req *AttachLoadBalancerToSubnetsInput)
 // information, see Health Check in the Elastic Load Balancing Developer
 // Guide
 func (c *ELB) ConfigureHealthCheck(req *ConfigureHealthCheckInput) (resp *ConfigureHealthCheckResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ConfigureHealthCheckResult{}
 	err = c.client.Do("ConfigureHealthCheck", "POST", "/", req, resp)
 	return
@@ -99,6 +116,10 @@ func (c *ELB) ConfigureHealthCheck(req *ConfigureHealthCheckInput) (resp *Config
 // browsers. For more information, see Enabling Application-Controlled
 // Session Stickiness in the Elastic Load Balancing Developer Guide
 func (c *ELB) CreateAppCookieStickinessPolicy(req *CreateAppCookieStickinessPolicyInput) (resp *CreateAppCookieStickinessPolicyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateAppCookieStickinessPolicyResult{}
 	err = c.client.Do("CreateAppCookieStickinessPolicy", "POST", "/", req, resp)
 	return
@@ -120,6 +141,10 @@ func (c *ELB) CreateAppCookieStickinessPolicy(req *CreateAppCookieStickinessPoli
 // more information, see Enabling Duration-Based Session Stickiness in the
 // Elastic Load Balancing Developer Guide
 func (c *ELB) CreateLBCookieStickinessPolicy(req *CreateLBCookieStickinessPolicyInput) (resp *CreateLBCookieStickinessPolicyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateLBCookieStickinessPolicyResult{}
 	err = c.client.Do("CreateLBCookieStickinessPolicy", "POST", "/", req, resp)
 	return
@@ -141,6 +166,10 @@ func (c *ELB) CreateLBCookieStickinessPolicy(req *CreateLBCookieStickinessPolicy
 // Amazon EC2-Classic For information on creating and managing your load
 // balancers in EC2-VPC, see Deploy Elastic Load Balancing in Amazon
 func (c *ELB) CreateLoadBalancer(req *CreateAccessPointInput) (resp *CreateLoadBalancerResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateLoadBalancerResult{}
 	err = c.client.Do("CreateLoadBalancer", "POST", "/", req, resp)
 	return
@@ -153,6 +182,10 @@ func (c *ELB) CreateLoadBalancer(req *CreateAccessPointInput) (resp *CreateLoadB
 // more information, see Add a Listener to Your Load Balancer in the
 // Elastic Load Balancing Developer Guide
 func (c *ELB) CreateLoadBalancerListeners(req *CreateLoadBalancerListenerInput) (resp *CreateLoadBalancerListenersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateLoadBalancerListenersResult{}
 	err = c.client.Do("CreateLoadBalancerListeners", "POST", "/", req, resp)
 	return
@@ -164,6 +197,10 @@ func (c *ELB) CreateLoadBalancerListeners(req *CreateLoadBalancerListenerInput) 
 // front-end listener, or the back-end application server, depending on
 // your policy type.
 func (c *ELB) CreateLoadBalancerPolicy(req *CreateLoadBalancerPolicyInput) (resp *CreateLoadBalancerPolicyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateLoadBalancerPolicyResult{}
 	err = c.client.Do("CreateLoadBalancerPolicy", "POST", "/", req, resp)
 	return
@@ -180,6 +217,10 @@ func (c *ELB) CreateLoadBalancerPolicy(req *CreateLoadBalancerPolicyInput) (resp
 // or has already been deleted, a call to DeleteLoadBalancer action still
 // succeeds.
 func (c *ELB) DeleteLoadBalancer(req *DeleteAccessPointInput) (resp *DeleteLoadBalancerResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteLoadBalancerResult{}
 	err = c.client.Do("DeleteLoadBalancer", "POST", "/", req, resp)
 	return
@@ -188,6 +229,10 @@ func (c *ELB) DeleteLoadBalancer(req *DeleteAccessPointInput) (resp *DeleteLoadB
 // DeleteLoadBalancerListeners deletes listeners from the load balancer for
 // the specified port.
 func (c *ELB) DeleteLoadBalancerListeners(req *DeleteLoadBalancerListenerInput) (resp *DeleteLoadBalancerListenersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteLoadBalancerListenersResult{}
 	err = c.client.Do("DeleteLoadBalancerListeners", "POST", "/", req, resp)
 	return
@@ -196,6 +241,10 @@ func (c *ELB) DeleteLoadBalancerListeners(req *DeleteLoadBalancerListenerInput) 
 // DeleteLoadBalancerPolicy deletes a policy from the load balancer. The
 // specified policy must not be enabled for any listeners.
 func (c *ELB) DeleteLoadBalancerPolicy(req *DeleteLoadBalancerPolicyInput) (resp *DeleteLoadBalancerPolicyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteLoadBalancerPolicyResult{}
 	err = c.client.Do("DeleteLoadBalancerPolicy", "POST", "/", req, resp)
 	return
@@ -210,6 +259,10 @@ func (c *ELB) DeleteLoadBalancerPolicy(req *DeleteLoadBalancerPolicyInput) (resp
 // DescribeLoadBalancers to verify if the instance is deregistered from the
 // load balancer.
 func (c *ELB) DeregisterInstancesFromLoadBalancer(req *DeregisterEndPointsInput) (resp *DeregisterInstancesFromLoadBalancerResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeregisterInstancesFromLoadBalancerResult{}
 	err = c.client.Do("DeregisterInstancesFromLoadBalancer", "POST", "/", req, resp)
 	return
@@ -221,6 +274,10 @@ func (c *ELB) DeregisterInstancesFromLoadBalancer(req *DeregisterEndPointsInput)
 // balancer is returned. You must provide the same account credentials as
 // those that were used to create the load balancer.
 func (c *ELB) DescribeInstanceHealth(req *DescribeEndPointStateInput) (resp *DescribeInstanceHealthResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeInstanceHealthResult{}
 	err = c.client.Do("DescribeInstanceHealth", "POST", "/", req, resp)
 	return
@@ -229,6 +286,10 @@ func (c *ELB) DescribeInstanceHealth(req *DescribeEndPointStateInput) (resp *Des
 // DescribeLoadBalancerAttributes returns detailed information about all of
 // the attributes associated with the specified load balancer.
 func (c *ELB) DescribeLoadBalancerAttributes(req *DescribeLoadBalancerAttributesInput) (resp *DescribeLoadBalancerAttributesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeLoadBalancerAttributesResult{}
 	err = c.client.Do("DescribeLoadBalancerAttributes", "POST", "/", req, resp)
 	return
@@ -243,6 +304,10 @@ func (c *ELB) DescribeLoadBalancerAttributes(req *DescribeLoadBalancerAttributes
 // policies, or descriptions of all the sample policies. The names of the
 // sample policies have the ELBSample- prefix.
 func (c *ELB) DescribeLoadBalancerPolicies(req *DescribeLoadBalancerPoliciesInput) (resp *DescribeLoadBalancerPoliciesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeLoadBalancerPoliciesResult{}
 	err = c.client.Do("DescribeLoadBalancerPolicies", "POST", "/", req, resp)
 	return
@@ -254,6 +319,10 @@ func (c *ELB) DescribeLoadBalancerPolicies(req *DescribeLoadBalancerPoliciesInpu
 // in a CreateLoadBalancerPolicy action to instantiate specific policy
 // configurations that will be applied to a load balancer.
 func (c *ELB) DescribeLoadBalancerPolicyTypes(req *DescribeLoadBalancerPolicyTypesInput) (resp *DescribeLoadBalancerPolicyTypesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeLoadBalancerPolicyTypesResult{}
 	err = c.client.Do("DescribeLoadBalancerPolicyTypes", "POST", "/", req, resp)
 	return
@@ -265,6 +334,10 @@ func (c *ELB) DescribeLoadBalancerPolicyTypes(req *DescribeLoadBalancerPolicyTyp
 // load balancers. In order to retrieve this information, you must provide
 // the same account credentials that was used to create the load balancer.
 func (c *ELB) DescribeLoadBalancers(req *DescribeAccessPointsInput) (resp *DescribeLoadBalancersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeLoadBalancersResult{}
 	err = c.client.Do("DescribeLoadBalancers", "POST", "/", req, resp)
 	return
@@ -273,6 +346,10 @@ func (c *ELB) DescribeLoadBalancers(req *DescribeAccessPointsInput) (resp *Descr
 // DescribeTags describes the tags associated with one or more load
 // balancers.
 func (c *ELB) DescribeTags(req *DescribeTagsInput) (resp *DescribeTagsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTagsResult{}
 	err = c.client.Do("DescribeTags", "POST", "/", req, resp)
 	return
@@ -286,6 +363,10 @@ func (c *ELB) DescribeTags(req *DescribeTagsInput) (resp *DescribeTagsResult, er
 // balance the traffic among the remaining routable subnets for the load
 // balancer.
 func (c *ELB) DetachLoadBalancerFromSubnets(req *DetachLoadBalancerFromSubnetsInput) (resp *DetachLoadBalancerFromSubnetsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DetachLoadBalancerFromSubnetsResult{}
 	err = c.client.Do("DetachLoadBalancerFromSubnets", "POST", "/", req, resp)
 	return
@@ -304,6 +385,10 @@ func (c *ELB) DetachLoadBalancerFromSubnets(req *DetachLoadBalancerFromSubnetsIn
 // Zone from a Load-Balanced Application in the Elastic Load Balancing
 // Developer Guide
 func (c *ELB) DisableAvailabilityZonesForLoadBalancer(req *RemoveAvailabilityZonesInput) (resp *DisableAvailabilityZonesForLoadBalancerResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DisableAvailabilityZonesForLoadBalancerResult{}
 	err = c.client.Do("DisableAvailabilityZonesForLoadBalancer", "POST", "/", req, resp)
 	return
@@ -318,6 +403,10 @@ func (c *ELB) DisableAvailabilityZonesForLoadBalancer(req *RemoveAvailabilityZon
 // Application to an Additional Availability Zone in the Elastic Load
 // Balancing Developer Guide
 func (c *ELB) EnableAvailabilityZonesForLoadBalancer(req *AddAvailabilityZonesInput) (resp *EnableAvailabilityZonesForLoadBalancerResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &EnableAvailabilityZonesForLoadBalancerResult{}
 	err = c.client.Do("EnableAvailabilityZonesForLoadBalancer", "POST", "/", req, resp)
 	return
@@ -330,6 +419,10 @@ func (c *ELB) EnableAvailabilityZonesForLoadBalancer(req *AddAvailabilityZonesIn
 // attribute ConnectionSettings by specifying an idle connection timeout
 // value for your load balancer. For more information, see the following:
 func (c *ELB) ModifyLoadBalancerAttributes(req *ModifyLoadBalancerAttributesInput) (resp *ModifyLoadBalancerAttributesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyLoadBalancerAttributesResult{}
 	err = c.client.Do("ModifyLoadBalancerAttributes", "POST", "/", req, resp)
 	return
@@ -358,6 +451,10 @@ func (c *ELB) ModifyLoadBalancerAttributes(req *ModifyLoadBalancerAttributesInpu
 // DescribeLoadBalancers or DescribeInstanceHealth action to check the
 // state of the newly registered instances.
 func (c *ELB) RegisterInstancesWithLoadBalancer(req *RegisterEndPointsInput) (resp *RegisterInstancesWithLoadBalancerResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RegisterInstancesWithLoadBalancerResult{}
 	err = c.client.Do("RegisterInstancesWithLoadBalancer", "POST", "/", req, resp)
 	return
@@ -365,6 +462,10 @@ func (c *ELB) RegisterInstancesWithLoadBalancer(req *RegisterEndPointsInput) (re
 
 // RemoveTags removes one or more tags from the specified load balancer.
 func (c *ELB) RemoveTags(req *RemoveTagsInput) (resp *RemoveTagsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RemoveTagsResult{}
 	err = c.client.Do("RemoveTags", "POST", "/", req, resp)
 	return
@@ -377,6 +478,10 @@ func (c *ELB) RemoveTags(req *RemoveTagsInput) (resp *RemoveTagsResult, err erro
 // certificate, see Updating an SSL Certificate for a Load Balancer in the
 // Elastic Load Balancing Developer Guide
 func (c *ELB) SetLoadBalancerListenerSSLCertificate(req *SetLoadBalancerListenerSSLCertificateInput) (resp *SetLoadBalancerListenerSSLCertificateResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SetLoadBalancerListenerSSLCertificateResult{}
 	err = c.client.Do("SetLoadBalancerListenerSSLCertificate", "POST", "/", req, resp)
 	return
@@ -396,6 +501,10 @@ func (c *ELB) SetLoadBalancerListenerSSLCertificate(req *SetLoadBalancerListener
 // DescribeLoadBalancers or DescribeLoadBalancerPolicies action to verify
 // that the policy has been associated with the back-end server.
 func (c *ELB) SetLoadBalancerPoliciesForBackendServer(req *SetLoadBalancerPoliciesForBackendServerInput) (resp *SetLoadBalancerPoliciesForBackendServerResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SetLoadBalancerPoliciesForBackendServerResult{}
 	err = c.client.Do("SetLoadBalancerPoliciesForBackendServer", "POST", "/", req, resp)
 	return
@@ -405,6 +514,10 @@ func (c *ELB) SetLoadBalancerPoliciesForBackendServer(req *SetLoadBalancerPolici
 // policy with a listener on the load balancer. You can associate multiple
 // policies with a listener.
 func (c *ELB) SetLoadBalancerPoliciesOfListener(req *SetLoadBalancerPoliciesOfListenerInput) (resp *SetLoadBalancerPoliciesOfListenerResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SetLoadBalancerPoliciesOfListenerResult{}
 	err = c.client.Do("SetLoadBalancerPoliciesOfListener", "POST", "/", req, resp)
 	return
@@ -418,15 +531,57 @@ type AccessLog struct {
 	S3BucketPrefix aws.StringValue  `xml:"S3BucketPrefix"`
 }
 
+func (v *AccessLog) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Enabled"); err != nil {
+		errors["Enabled"] = append(errors["Enabled"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddAvailabilityZonesInput is undocumented.
 type AddAvailabilityZonesInput struct {
 	AvailabilityZones []string        `xml:"AvailabilityZones>member"`
 	LoadBalancerName  aws.StringValue `xml:"LoadBalancerName"`
 }
 
+func (v *AddAvailabilityZonesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AvailabilityZones"); err != nil {
+		errors["AvailabilityZones"] = append(errors["AvailabilityZones"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddAvailabilityZonesOutput is undocumented.
 type AddAvailabilityZonesOutput struct {
 	AvailabilityZones []string `xml:"EnableAvailabilityZonesForLoadBalancerResult>AvailabilityZones>member"`
+}
+
+func (v *AddAvailabilityZonesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AddTagsInput is undocumented.
@@ -435,8 +590,40 @@ type AddTagsInput struct {
 	Tags              []Tag    `xml:"Tags>member"`
 }
 
+func (v *AddTagsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerNames"); err != nil {
+		errors["LoadBalancerNames"] = append(errors["LoadBalancerNames"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Tags"); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if err := model.ValidateMin(v, "Tags", 1); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddTagsOutput is undocumented.
 type AddTagsOutput struct {
+}
+
+func (v *AddTagsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AdditionalAttribute is undocumented.
@@ -445,10 +632,30 @@ type AdditionalAttribute struct {
 	Value aws.StringValue `xml:"Value"`
 }
 
+func (v *AdditionalAttribute) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AppCookieStickinessPolicy is undocumented.
 type AppCookieStickinessPolicy struct {
 	CookieName aws.StringValue `xml:"CookieName"`
 	PolicyName aws.StringValue `xml:"PolicyName"`
+}
+
+func (v *AppCookieStickinessPolicy) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ApplySecurityGroupsToLoadBalancerInput is undocumented.
@@ -457,9 +664,37 @@ type ApplySecurityGroupsToLoadBalancerInput struct {
 	SecurityGroups   []string        `xml:"SecurityGroups>member"`
 }
 
+func (v *ApplySecurityGroupsToLoadBalancerInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SecurityGroups"); err != nil {
+		errors["SecurityGroups"] = append(errors["SecurityGroups"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ApplySecurityGroupsToLoadBalancerOutput is undocumented.
 type ApplySecurityGroupsToLoadBalancerOutput struct {
 	SecurityGroups []string `xml:"ApplySecurityGroupsToLoadBalancerResult>SecurityGroups>member"`
+}
+
+func (v *ApplySecurityGroupsToLoadBalancerOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AttachLoadBalancerToSubnetsInput is undocumented.
@@ -468,9 +703,37 @@ type AttachLoadBalancerToSubnetsInput struct {
 	Subnets          []string        `xml:"Subnets>member"`
 }
 
+func (v *AttachLoadBalancerToSubnetsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Subnets"); err != nil {
+		errors["Subnets"] = append(errors["Subnets"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AttachLoadBalancerToSubnetsOutput is undocumented.
 type AttachLoadBalancerToSubnetsOutput struct {
 	Subnets []string `xml:"AttachLoadBalancerToSubnetsResult>Subnets>member"`
+}
+
+func (v *AttachLoadBalancerToSubnetsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // BackendServerDescription is undocumented.
@@ -479,15 +742,61 @@ type BackendServerDescription struct {
 	PolicyNames  []string         `xml:"PolicyNames>member"`
 }
 
+func (v *BackendServerDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "InstancePort", 1); err != nil {
+		errors["InstancePort"] = append(errors["InstancePort"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstancePort", 65535); err != nil {
+		errors["InstancePort"] = append(errors["InstancePort"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfigureHealthCheckInput is undocumented.
 type ConfigureHealthCheckInput struct {
 	HealthCheck      *HealthCheck    `xml:"HealthCheck"`
 	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
 }
 
+func (v *ConfigureHealthCheckInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthCheck"); err != nil {
+		errors["HealthCheck"] = append(errors["HealthCheck"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfigureHealthCheckOutput is undocumented.
 type ConfigureHealthCheckOutput struct {
 	HealthCheck *HealthCheck `xml:"ConfigureHealthCheckResult>HealthCheck"`
+}
+
+func (v *ConfigureHealthCheckOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ConnectionDraining is undocumented.
@@ -496,9 +805,45 @@ type ConnectionDraining struct {
 	Timeout aws.IntegerValue `xml:"Timeout"`
 }
 
+func (v *ConnectionDraining) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Enabled"); err != nil {
+		errors["Enabled"] = append(errors["Enabled"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConnectionSettings is undocumented.
 type ConnectionSettings struct {
 	IdleTimeout aws.IntegerValue `xml:"IdleTimeout"`
+}
+
+func (v *ConnectionSettings) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IdleTimeout"); err != nil {
+		errors["IdleTimeout"] = append(errors["IdleTimeout"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdleTimeout", 1); err != nil {
+		errors["IdleTimeout"] = append(errors["IdleTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdleTimeout", 3600); err != nil {
+		errors["IdleTimeout"] = append(errors["IdleTimeout"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateAccessPointInput is undocumented.
@@ -512,9 +857,41 @@ type CreateAccessPointInput struct {
 	Tags              []Tag           `xml:"Tags>member"`
 }
 
+func (v *CreateAccessPointInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Listeners"); err != nil {
+		errors["Listeners"] = append(errors["Listeners"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Tags", 1); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateAccessPointOutput is undocumented.
 type CreateAccessPointOutput struct {
 	DNSName aws.StringValue `xml:"CreateLoadBalancerResult>DNSName"`
+}
+
+func (v *CreateAccessPointOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateAppCookieStickinessPolicyInput is undocumented.
@@ -524,8 +901,40 @@ type CreateAppCookieStickinessPolicyInput struct {
 	PolicyName       aws.StringValue `xml:"PolicyName"`
 }
 
+func (v *CreateAppCookieStickinessPolicyInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CookieName"); err != nil {
+		errors["CookieName"] = append(errors["CookieName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateAppCookieStickinessPolicyOutput is undocumented.
 type CreateAppCookieStickinessPolicyOutput struct {
+}
+
+func (v *CreateAppCookieStickinessPolicyOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateLBCookieStickinessPolicyInput is undocumented.
@@ -535,8 +944,36 @@ type CreateLBCookieStickinessPolicyInput struct {
 	PolicyName             aws.StringValue `xml:"PolicyName"`
 }
 
+func (v *CreateLBCookieStickinessPolicyInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateLBCookieStickinessPolicyOutput is undocumented.
 type CreateLBCookieStickinessPolicyOutput struct {
+}
+
+func (v *CreateLBCookieStickinessPolicyOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateLoadBalancerListenerInput is undocumented.
@@ -545,8 +982,36 @@ type CreateLoadBalancerListenerInput struct {
 	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
 }
 
+func (v *CreateLoadBalancerListenerInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Listeners"); err != nil {
+		errors["Listeners"] = append(errors["Listeners"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateLoadBalancerListenerOutput is undocumented.
 type CreateLoadBalancerListenerOutput struct {
+}
+
+func (v *CreateLoadBalancerListenerOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateLoadBalancerPolicyInput is undocumented.
@@ -557,8 +1022,40 @@ type CreateLoadBalancerPolicyInput struct {
 	PolicyTypeName   aws.StringValue   `xml:"PolicyTypeName"`
 }
 
+func (v *CreateLoadBalancerPolicyInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyTypeName"); err != nil {
+		errors["PolicyTypeName"] = append(errors["PolicyTypeName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateLoadBalancerPolicyOutput is undocumented.
 type CreateLoadBalancerPolicyOutput struct {
+}
+
+func (v *CreateLoadBalancerPolicyOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CrossZoneLoadBalancing is undocumented.
@@ -566,13 +1063,51 @@ type CrossZoneLoadBalancing struct {
 	Enabled aws.BooleanValue `xml:"Enabled"`
 }
 
+func (v *CrossZoneLoadBalancing) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Enabled"); err != nil {
+		errors["Enabled"] = append(errors["Enabled"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteAccessPointInput is undocumented.
 type DeleteAccessPointInput struct {
 	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
 }
 
+func (v *DeleteAccessPointInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteAccessPointOutput is undocumented.
 type DeleteAccessPointOutput struct {
+}
+
+func (v *DeleteAccessPointOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteLoadBalancerListenerInput is undocumented.
@@ -581,8 +1116,36 @@ type DeleteLoadBalancerListenerInput struct {
 	LoadBalancerPorts []int           `xml:"LoadBalancerPorts>member"`
 }
 
+func (v *DeleteLoadBalancerListenerInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerPorts"); err != nil {
+		errors["LoadBalancerPorts"] = append(errors["LoadBalancerPorts"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteLoadBalancerListenerOutput is undocumented.
 type DeleteLoadBalancerListenerOutput struct {
+}
+
+func (v *DeleteLoadBalancerListenerOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteLoadBalancerPolicyInput is undocumented.
@@ -591,8 +1154,36 @@ type DeleteLoadBalancerPolicyInput struct {
 	PolicyName       aws.StringValue `xml:"PolicyName"`
 }
 
+func (v *DeleteLoadBalancerPolicyInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyName"); err != nil {
+		errors["PolicyName"] = append(errors["PolicyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteLoadBalancerPolicyOutput is undocumented.
 type DeleteLoadBalancerPolicyOutput struct {
+}
+
+func (v *DeleteLoadBalancerPolicyOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeregisterEndPointsInput is undocumented.
@@ -601,9 +1192,37 @@ type DeregisterEndPointsInput struct {
 	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
 }
 
+func (v *DeregisterEndPointsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Instances"); err != nil {
+		errors["Instances"] = append(errors["Instances"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeregisterEndPointsOutput is undocumented.
 type DeregisterEndPointsOutput struct {
 	Instances []Instance `xml:"DeregisterInstancesFromLoadBalancerResult>Instances>member"`
+}
+
+func (v *DeregisterEndPointsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAccessPointsInput is undocumented.
@@ -613,10 +1232,38 @@ type DescribeAccessPointsInput struct {
 	PageSize          aws.IntegerValue `xml:"PageSize"`
 }
 
+func (v *DescribeAccessPointsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "PageSize", 1); err != nil {
+		errors["PageSize"] = append(errors["PageSize"], err)
+	}
+
+	if err := model.ValidateMax(v, "PageSize", 400); err != nil {
+		errors["PageSize"] = append(errors["PageSize"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAccessPointsOutput is undocumented.
 type DescribeAccessPointsOutput struct {
 	LoadBalancerDescriptions []LoadBalancerDescription `xml:"DescribeLoadBalancersResult>LoadBalancerDescriptions>member"`
 	NextMarker               aws.StringValue           `xml:"DescribeLoadBalancersResult>NextMarker"`
+}
+
+func (v *DescribeAccessPointsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeEndPointStateInput is undocumented.
@@ -625,9 +1272,33 @@ type DescribeEndPointStateInput struct {
 	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
 }
 
+func (v *DescribeEndPointStateInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeEndPointStateOutput is undocumented.
 type DescribeEndPointStateOutput struct {
 	InstanceStates []InstanceState `xml:"DescribeInstanceHealthResult>InstanceStates>member"`
+}
+
+func (v *DescribeEndPointStateOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeLoadBalancerAttributesInput is undocumented.
@@ -635,9 +1306,33 @@ type DescribeLoadBalancerAttributesInput struct {
 	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
 }
 
+func (v *DescribeLoadBalancerAttributesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeLoadBalancerAttributesOutput is undocumented.
 type DescribeLoadBalancerAttributesOutput struct {
 	LoadBalancerAttributes *LoadBalancerAttributes `xml:"DescribeLoadBalancerAttributesResult>LoadBalancerAttributes"`
+}
+
+func (v *DescribeLoadBalancerAttributesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeLoadBalancerPoliciesInput is undocumented.
@@ -646,9 +1341,29 @@ type DescribeLoadBalancerPoliciesInput struct {
 	PolicyNames      []string        `xml:"PolicyNames>member"`
 }
 
+func (v *DescribeLoadBalancerPoliciesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeLoadBalancerPoliciesOutput is undocumented.
 type DescribeLoadBalancerPoliciesOutput struct {
 	PolicyDescriptions []PolicyDescription `xml:"DescribeLoadBalancerPoliciesResult>PolicyDescriptions>member"`
+}
+
+func (v *DescribeLoadBalancerPoliciesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeLoadBalancerPolicyTypesInput is undocumented.
@@ -656,9 +1371,29 @@ type DescribeLoadBalancerPolicyTypesInput struct {
 	PolicyTypeNames []string `xml:"PolicyTypeNames>member"`
 }
 
+func (v *DescribeLoadBalancerPolicyTypesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeLoadBalancerPolicyTypesOutput is undocumented.
 type DescribeLoadBalancerPolicyTypesOutput struct {
 	PolicyTypeDescriptions []PolicyTypeDescription `xml:"DescribeLoadBalancerPolicyTypesResult>PolicyTypeDescriptions>member"`
+}
+
+func (v *DescribeLoadBalancerPolicyTypesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTagsInput is undocumented.
@@ -666,9 +1401,41 @@ type DescribeTagsInput struct {
 	LoadBalancerNames []string `xml:"LoadBalancerNames>member"`
 }
 
+func (v *DescribeTagsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerNames"); err != nil {
+		errors["LoadBalancerNames"] = append(errors["LoadBalancerNames"], err)
+	}
+
+	if err := model.ValidateMin(v, "LoadBalancerNames", 1); err != nil {
+		errors["LoadBalancerNames"] = append(errors["LoadBalancerNames"], err)
+	}
+
+	if err := model.ValidateMax(v, "LoadBalancerNames", 20); err != nil {
+		errors["LoadBalancerNames"] = append(errors["LoadBalancerNames"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTagsOutput is undocumented.
 type DescribeTagsOutput struct {
 	TagDescriptions []TagDescription `xml:"DescribeTagsResult>TagDescriptions>member"`
+}
+
+func (v *DescribeTagsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DetachLoadBalancerFromSubnetsInput is undocumented.
@@ -677,9 +1444,37 @@ type DetachLoadBalancerFromSubnetsInput struct {
 	Subnets          []string        `xml:"Subnets>member"`
 }
 
+func (v *DetachLoadBalancerFromSubnetsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Subnets"); err != nil {
+		errors["Subnets"] = append(errors["Subnets"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DetachLoadBalancerFromSubnetsOutput is undocumented.
 type DetachLoadBalancerFromSubnetsOutput struct {
 	Subnets []string `xml:"DetachLoadBalancerFromSubnetsResult>Subnets>member"`
+}
+
+func (v *DetachLoadBalancerFromSubnetsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // HealthCheck is undocumented.
@@ -691,9 +1486,81 @@ type HealthCheck struct {
 	UnhealthyThreshold aws.IntegerValue `xml:"UnhealthyThreshold"`
 }
 
+func (v *HealthCheck) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthyThreshold"); err != nil {
+		errors["HealthyThreshold"] = append(errors["HealthyThreshold"], err)
+	}
+
+	if err := model.ValidateMin(v, "HealthyThreshold", 2); err != nil {
+		errors["HealthyThreshold"] = append(errors["HealthyThreshold"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthyThreshold", 10); err != nil {
+		errors["HealthyThreshold"] = append(errors["HealthyThreshold"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Interval"); err != nil {
+		errors["Interval"] = append(errors["Interval"], err)
+	}
+
+	if err := model.ValidateMin(v, "Interval", 1); err != nil {
+		errors["Interval"] = append(errors["Interval"], err)
+	}
+
+	if err := model.ValidateMax(v, "Interval", 300); err != nil {
+		errors["Interval"] = append(errors["Interval"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Target"); err != nil {
+		errors["Target"] = append(errors["Target"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Timeout"); err != nil {
+		errors["Timeout"] = append(errors["Timeout"], err)
+	}
+
+	if err := model.ValidateMin(v, "Timeout", 1); err != nil {
+		errors["Timeout"] = append(errors["Timeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Timeout", 300); err != nil {
+		errors["Timeout"] = append(errors["Timeout"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UnhealthyThreshold"); err != nil {
+		errors["UnhealthyThreshold"] = append(errors["UnhealthyThreshold"], err)
+	}
+
+	if err := model.ValidateMin(v, "UnhealthyThreshold", 2); err != nil {
+		errors["UnhealthyThreshold"] = append(errors["UnhealthyThreshold"], err)
+	}
+
+	if err := model.ValidateMax(v, "UnhealthyThreshold", 10); err != nil {
+		errors["UnhealthyThreshold"] = append(errors["UnhealthyThreshold"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Instance is undocumented.
 type Instance struct {
 	InstanceID aws.StringValue `xml:"InstanceId"`
+}
+
+func (v *Instance) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // InstanceState is undocumented.
@@ -704,10 +1571,30 @@ type InstanceState struct {
 	State       aws.StringValue `xml:"State"`
 }
 
+func (v *InstanceState) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // LBCookieStickinessPolicy is undocumented.
 type LBCookieStickinessPolicy struct {
 	CookieExpirationPeriod aws.LongValue   `xml:"CookieExpirationPeriod"`
 	PolicyName             aws.StringValue `xml:"PolicyName"`
+}
+
+func (v *LBCookieStickinessPolicy) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Listener is undocumented.
@@ -719,10 +1606,50 @@ type Listener struct {
 	SSLCertificateID aws.StringValue  `xml:"SSLCertificateId"`
 }
 
+func (v *Listener) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstancePort"); err != nil {
+		errors["InstancePort"] = append(errors["InstancePort"], err)
+	}
+
+	if err := model.ValidateMin(v, "InstancePort", 1); err != nil {
+		errors["InstancePort"] = append(errors["InstancePort"], err)
+	}
+
+	if err := model.ValidateMax(v, "InstancePort", 65535); err != nil {
+		errors["InstancePort"] = append(errors["InstancePort"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerPort"); err != nil {
+		errors["LoadBalancerPort"] = append(errors["LoadBalancerPort"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Protocol"); err != nil {
+		errors["Protocol"] = append(errors["Protocol"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListenerDescription is undocumented.
 type ListenerDescription struct {
 	Listener    *Listener `xml:"Listener"`
 	PolicyNames []string  `xml:"PolicyNames>member"`
+}
+
+func (v *ListenerDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LoadBalancerAttributes is undocumented.
@@ -732,6 +1659,16 @@ type LoadBalancerAttributes struct {
 	ConnectionDraining     *ConnectionDraining     `xml:"ConnectionDraining"`
 	ConnectionSettings     *ConnectionSettings     `xml:"ConnectionSettings"`
 	CrossZoneLoadBalancing *CrossZoneLoadBalancing `xml:"CrossZoneLoadBalancing"`
+}
+
+func (v *LoadBalancerAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LoadBalancerDescription is undocumented.
@@ -754,16 +1691,54 @@ type LoadBalancerDescription struct {
 	VPCID                     aws.StringValue            `xml:"VPCId"`
 }
 
+func (v *LoadBalancerDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyLoadBalancerAttributesInput is undocumented.
 type ModifyLoadBalancerAttributesInput struct {
 	LoadBalancerAttributes *LoadBalancerAttributes `xml:"LoadBalancerAttributes"`
 	LoadBalancerName       aws.StringValue         `xml:"LoadBalancerName"`
 }
 
+func (v *ModifyLoadBalancerAttributesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerAttributes"); err != nil {
+		errors["LoadBalancerAttributes"] = append(errors["LoadBalancerAttributes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyLoadBalancerAttributesOutput is undocumented.
 type ModifyLoadBalancerAttributesOutput struct {
 	LoadBalancerAttributes *LoadBalancerAttributes `xml:"ModifyLoadBalancerAttributesResult>LoadBalancerAttributes"`
 	LoadBalancerName       aws.StringValue         `xml:"ModifyLoadBalancerAttributesResult>LoadBalancerName"`
+}
+
+func (v *ModifyLoadBalancerAttributesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Policies is undocumented.
@@ -773,16 +1748,46 @@ type Policies struct {
 	OtherPolicies               []string                    `xml:"OtherPolicies>member"`
 }
 
+func (v *Policies) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PolicyAttribute is undocumented.
 type PolicyAttribute struct {
 	AttributeName  aws.StringValue `xml:"AttributeName"`
 	AttributeValue aws.StringValue `xml:"AttributeValue"`
 }
 
+func (v *PolicyAttribute) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PolicyAttributeDescription is undocumented.
 type PolicyAttributeDescription struct {
 	AttributeName  aws.StringValue `xml:"AttributeName"`
 	AttributeValue aws.StringValue `xml:"AttributeValue"`
+}
+
+func (v *PolicyAttributeDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PolicyAttributeTypeDescription is undocumented.
@@ -794,11 +1799,31 @@ type PolicyAttributeTypeDescription struct {
 	Description   aws.StringValue `xml:"Description"`
 }
 
+func (v *PolicyAttributeTypeDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PolicyDescription is undocumented.
 type PolicyDescription struct {
 	PolicyAttributeDescriptions []PolicyAttributeDescription `xml:"PolicyAttributeDescriptions>member"`
 	PolicyName                  aws.StringValue              `xml:"PolicyName"`
 	PolicyTypeName              aws.StringValue              `xml:"PolicyTypeName"`
+}
+
+func (v *PolicyDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PolicyTypeDescription is undocumented.
@@ -808,15 +1833,53 @@ type PolicyTypeDescription struct {
 	PolicyTypeName                  aws.StringValue                  `xml:"PolicyTypeName"`
 }
 
+func (v *PolicyTypeDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RegisterEndPointsInput is undocumented.
 type RegisterEndPointsInput struct {
 	Instances        []Instance      `xml:"Instances>member"`
 	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
 }
 
+func (v *RegisterEndPointsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Instances"); err != nil {
+		errors["Instances"] = append(errors["Instances"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RegisterEndPointsOutput is undocumented.
 type RegisterEndPointsOutput struct {
 	Instances []Instance `xml:"RegisterInstancesWithLoadBalancerResult>Instances>member"`
+}
+
+func (v *RegisterEndPointsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RemoveAvailabilityZonesInput is undocumented.
@@ -825,9 +1888,37 @@ type RemoveAvailabilityZonesInput struct {
 	LoadBalancerName  aws.StringValue `xml:"LoadBalancerName"`
 }
 
+func (v *RemoveAvailabilityZonesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AvailabilityZones"); err != nil {
+		errors["AvailabilityZones"] = append(errors["AvailabilityZones"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RemoveAvailabilityZonesOutput is undocumented.
 type RemoveAvailabilityZonesOutput struct {
 	AvailabilityZones []string `xml:"DisableAvailabilityZonesForLoadBalancerResult>AvailabilityZones>member"`
+}
+
+func (v *RemoveAvailabilityZonesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RemoveTagsInput is undocumented.
@@ -836,8 +1927,40 @@ type RemoveTagsInput struct {
 	Tags              []TagKeyOnly `xml:"Tags>member"`
 }
 
+func (v *RemoveTagsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerNames"); err != nil {
+		errors["LoadBalancerNames"] = append(errors["LoadBalancerNames"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Tags"); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if err := model.ValidateMin(v, "Tags", 1); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RemoveTagsOutput is undocumented.
 type RemoveTagsOutput struct {
+}
+
+func (v *RemoveTagsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SetLoadBalancerListenerSSLCertificateInput is undocumented.
@@ -847,8 +1970,40 @@ type SetLoadBalancerListenerSSLCertificateInput struct {
 	SSLCertificateID aws.StringValue  `xml:"SSLCertificateId"`
 }
 
+func (v *SetLoadBalancerListenerSSLCertificateInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerPort"); err != nil {
+		errors["LoadBalancerPort"] = append(errors["LoadBalancerPort"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SSLCertificateID"); err != nil {
+		errors["SSLCertificateID"] = append(errors["SSLCertificateID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetLoadBalancerListenerSSLCertificateOutput is undocumented.
 type SetLoadBalancerListenerSSLCertificateOutput struct {
+}
+
+func (v *SetLoadBalancerListenerSSLCertificateOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SetLoadBalancerPoliciesForBackendServerInput is undocumented.
@@ -858,8 +2013,40 @@ type SetLoadBalancerPoliciesForBackendServerInput struct {
 	PolicyNames      []string         `xml:"PolicyNames>member"`
 }
 
+func (v *SetLoadBalancerPoliciesForBackendServerInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstancePort"); err != nil {
+		errors["InstancePort"] = append(errors["InstancePort"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyNames"); err != nil {
+		errors["PolicyNames"] = append(errors["PolicyNames"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetLoadBalancerPoliciesForBackendServerOutput is undocumented.
 type SetLoadBalancerPoliciesForBackendServerOutput struct {
+}
+
+func (v *SetLoadBalancerPoliciesForBackendServerOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SetLoadBalancerPoliciesOfListenerInput is undocumented.
@@ -869,8 +2056,40 @@ type SetLoadBalancerPoliciesOfListenerInput struct {
 	PolicyNames      []string         `xml:"PolicyNames>member"`
 }
 
+func (v *SetLoadBalancerPoliciesOfListenerInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LoadBalancerName"); err != nil {
+		errors["LoadBalancerName"] = append(errors["LoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LoadBalancerPort"); err != nil {
+		errors["LoadBalancerPort"] = append(errors["LoadBalancerPort"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PolicyNames"); err != nil {
+		errors["PolicyNames"] = append(errors["PolicyNames"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetLoadBalancerPoliciesOfListenerOutput is undocumented.
 type SetLoadBalancerPoliciesOfListenerOutput struct {
+}
+
+func (v *SetLoadBalancerPoliciesOfListenerOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SourceSecurityGroup is undocumented.
@@ -879,10 +2098,54 @@ type SourceSecurityGroup struct {
 	OwnerAlias aws.StringValue `xml:"OwnerAlias"`
 }
 
+func (v *SourceSecurityGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Tag is undocumented.
 type Tag struct {
 	Key   aws.StringValue `xml:"Key"`
 	Value aws.StringValue `xml:"Value"`
+}
+
+func (v *Tag) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 128); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Key", `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$`); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 256); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Value", `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$`); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TagDescription is undocumented.
@@ -891,9 +2154,45 @@ type TagDescription struct {
 	Tags             []Tag           `xml:"Tags>member"`
 }
 
+func (v *TagDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Tags", 1); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TagKeyOnly is undocumented.
 type TagKeyOnly struct {
 	Key aws.StringValue `xml:"Key"`
+}
+
+func (v *TagKeyOnly) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 128); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Key", `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$`); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AddTagsResult is a wrapper for AddTagsOutput.

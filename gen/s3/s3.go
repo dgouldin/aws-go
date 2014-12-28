@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 import (
@@ -54,6 +55,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *S3 
 // have been removed, so you don't get charged for the part storage, you
 // should call the List Parts operation and ensure the parts list is empty.
 func (c *S3) AbortMultipartUpload(req *AbortMultipartUploadRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -103,6 +108,10 @@ func (c *S3) AbortMultipartUpload(req *AbortMultipartUploadRequest) (err error) 
 // CompleteMultipartUpload completes a multipart upload by assembling
 // previously uploaded parts.
 func (c *S3) CompleteMultipartUpload(req *CompleteMultipartUploadRequest) (resp *CompleteMultipartUploadOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CompleteMultipartUploadOutput{}
 
 	var body io.Reader
@@ -187,6 +196,10 @@ func (c *S3) CompleteMultipartUpload(req *CompleteMultipartUploadRequest) (resp 
 // CopyObject creates a copy of an object that is already stored in Amazon
 // S3.
 func (c *S3) CopyObject(req *CopyObjectRequest) (resp *CopyObjectOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CopyObjectOutput{}
 
 	var body io.Reader
@@ -379,6 +392,10 @@ func (c *S3) CopyObject(req *CopyObjectRequest) (resp *CopyObjectOutput, err err
 
 // CreateBucket is undocumented.
 func (c *S3) CreateBucket(req *CreateBucketRequest) (resp *CreateBucketOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateBucketOutput{}
 
 	var body io.Reader
@@ -464,6 +481,10 @@ func (c *S3) CreateBucket(req *CreateBucketRequest) (resp *CreateBucketOutput, e
 // complete or abort multipart upload, Amazon S3 frees up the parts storage
 // and stops charging you for the parts storage.
 func (c *S3) CreateMultipartUpload(req *CreateMultipartUploadRequest) (resp *CreateMultipartUploadOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateMultipartUploadOutput{}
 
 	var body io.Reader
@@ -610,6 +631,10 @@ func (c *S3) CreateMultipartUpload(req *CreateMultipartUploadRequest) (resp *Cre
 // versions and Delete Markers) in the bucket must be deleted before the
 // bucket itself can be deleted.
 func (c *S3) DeleteBucket(req *DeleteBucketRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -650,6 +675,10 @@ func (c *S3) DeleteBucket(req *DeleteBucketRequest) (err error) {
 // DeleteBucketCORS deletes the cors configuration information set for the
 // bucket.
 func (c *S3) DeleteBucketCORS(req *DeleteBucketCORSRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -690,6 +719,10 @@ func (c *S3) DeleteBucketCORS(req *DeleteBucketCORSRequest) (err error) {
 // DeleteBucketLifecycle deletes the lifecycle configuration from the
 // bucket.
 func (c *S3) DeleteBucketLifecycle(req *DeleteBucketLifecycleRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -729,6 +762,10 @@ func (c *S3) DeleteBucketLifecycle(req *DeleteBucketLifecycleRequest) (err error
 
 // DeleteBucketPolicy is undocumented.
 func (c *S3) DeleteBucketPolicy(req *DeleteBucketPolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -768,6 +805,10 @@ func (c *S3) DeleteBucketPolicy(req *DeleteBucketPolicyRequest) (err error) {
 
 // DeleteBucketTagging is undocumented.
 func (c *S3) DeleteBucketTagging(req *DeleteBucketTaggingRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -808,6 +849,10 @@ func (c *S3) DeleteBucketTagging(req *DeleteBucketTaggingRequest) (err error) {
 // DeleteBucketWebsite this operation removes the website configuration
 // from the bucket.
 func (c *S3) DeleteBucketWebsite(req *DeleteBucketWebsiteRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -849,6 +894,10 @@ func (c *S3) DeleteBucketWebsite(req *DeleteBucketWebsiteRequest) (err error) {
 // inserts a delete marker, which becomes the latest version of the object.
 // If there isn't a null version, Amazon S3 does not remove any objects.
 func (c *S3) DeleteObject(req *DeleteObjectRequest) (resp *DeleteObjectOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteObjectOutput{}
 
 	var body io.Reader
@@ -923,6 +972,10 @@ func (c *S3) DeleteObject(req *DeleteObjectRequest) (resp *DeleteObjectOutput, e
 // DeleteObjects this operation enables you to delete multiple objects from
 // a bucket using a single request. You may specify up to 1000 keys.
 func (c *S3) DeleteObjects(req *DeleteObjectsRequest) (resp *DeleteObjectsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteObjectsOutput{}
 
 	var body io.Reader
@@ -977,6 +1030,10 @@ func (c *S3) DeleteObjects(req *DeleteObjectsRequest) (resp *DeleteObjectsOutput
 
 // GetBucketACL is undocumented.
 func (c *S3) GetBucketACL(req *GetBucketACLRequest) (resp *GetBucketACLOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetBucketACLOutput{}
 
 	var body io.Reader
@@ -1020,6 +1077,10 @@ func (c *S3) GetBucketACL(req *GetBucketACLRequest) (resp *GetBucketACLOutput, e
 
 // GetBucketCORS is undocumented.
 func (c *S3) GetBucketCORS(req *GetBucketCORSRequest) (resp *GetBucketCORSOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetBucketCORSOutput{}
 
 	var body io.Reader
@@ -1064,6 +1125,10 @@ func (c *S3) GetBucketCORS(req *GetBucketCORSRequest) (resp *GetBucketCORSOutput
 // GetBucketLifecycle returns the lifecycle configuration information set
 // on the bucket.
 func (c *S3) GetBucketLifecycle(req *GetBucketLifecycleRequest) (resp *GetBucketLifecycleOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetBucketLifecycleOutput{}
 
 	var body io.Reader
@@ -1107,6 +1172,10 @@ func (c *S3) GetBucketLifecycle(req *GetBucketLifecycleRequest) (resp *GetBucket
 
 // GetBucketLocation is undocumented.
 func (c *S3) GetBucketLocation(req *GetBucketLocationRequest) (resp *GetBucketLocationOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetBucketLocationOutput{}
 
 	var body io.Reader
@@ -1152,6 +1221,10 @@ func (c *S3) GetBucketLocation(req *GetBucketLocationRequest) (resp *GetBucketLo
 // permissions users have to view and modify that status. To use you must
 // be the bucket owner.
 func (c *S3) GetBucketLogging(req *GetBucketLoggingRequest) (resp *GetBucketLoggingOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetBucketLoggingOutput{}
 
 	var body io.Reader
@@ -1195,6 +1268,10 @@ func (c *S3) GetBucketLogging(req *GetBucketLoggingRequest) (resp *GetBucketLogg
 
 // GetBucketNotification is undocumented.
 func (c *S3) GetBucketNotification(req *GetBucketNotificationRequest) (resp *GetBucketNotificationOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetBucketNotificationOutput{}
 
 	var body io.Reader
@@ -1238,6 +1315,10 @@ func (c *S3) GetBucketNotification(req *GetBucketNotificationRequest) (resp *Get
 
 // GetBucketPolicy is undocumented.
 func (c *S3) GetBucketPolicy(req *GetBucketPolicyRequest) (resp *GetBucketPolicyOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetBucketPolicyOutput{}
 
 	var body io.Reader
@@ -1282,6 +1363,10 @@ func (c *S3) GetBucketPolicy(req *GetBucketPolicyRequest) (resp *GetBucketPolicy
 // GetBucketRequestPayment returns the request payment configuration of a
 // bucket.
 func (c *S3) GetBucketRequestPayment(req *GetBucketRequestPaymentRequest) (resp *GetBucketRequestPaymentOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetBucketRequestPaymentOutput{}
 
 	var body io.Reader
@@ -1325,6 +1410,10 @@ func (c *S3) GetBucketRequestPayment(req *GetBucketRequestPaymentRequest) (resp 
 
 // GetBucketTagging is undocumented.
 func (c *S3) GetBucketTagging(req *GetBucketTaggingRequest) (resp *GetBucketTaggingOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetBucketTaggingOutput{}
 
 	var body io.Reader
@@ -1368,6 +1457,10 @@ func (c *S3) GetBucketTagging(req *GetBucketTaggingRequest) (resp *GetBucketTagg
 
 // GetBucketVersioning is undocumented.
 func (c *S3) GetBucketVersioning(req *GetBucketVersioningRequest) (resp *GetBucketVersioningOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetBucketVersioningOutput{}
 
 	var body io.Reader
@@ -1411,6 +1504,10 @@ func (c *S3) GetBucketVersioning(req *GetBucketVersioningRequest) (resp *GetBuck
 
 // GetBucketWebsite is undocumented.
 func (c *S3) GetBucketWebsite(req *GetBucketWebsiteRequest) (resp *GetBucketWebsiteOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetBucketWebsiteOutput{}
 
 	var body io.Reader
@@ -1454,6 +1551,10 @@ func (c *S3) GetBucketWebsite(req *GetBucketWebsiteRequest) (resp *GetBucketWebs
 
 // GetObject is undocumented.
 func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetObjectOutput{}
 
 	var body io.Reader
@@ -1710,6 +1811,10 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 
 // GetObjectACL is undocumented.
 func (c *S3) GetObjectACL(req *GetObjectACLRequest) (resp *GetObjectACLOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetObjectACLOutput{}
 
 	var body io.Reader
@@ -1762,6 +1867,10 @@ func (c *S3) GetObjectACL(req *GetObjectACLRequest) (resp *GetObjectACLOutput, e
 
 // GetObjectTorrent is undocumented.
 func (c *S3) GetObjectTorrent(req *GetObjectTorrentRequest) (resp *GetObjectTorrentOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetObjectTorrentOutput{}
 
 	var body io.Reader
@@ -1807,6 +1916,10 @@ func (c *S3) GetObjectTorrent(req *GetObjectTorrentRequest) (resp *GetObjectTorr
 // HeadBucket this operation is useful to determine if a bucket exists and
 // you have permission to access it.
 func (c *S3) HeadBucket(req *HeadBucketRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -1849,6 +1962,10 @@ func (c *S3) HeadBucket(req *HeadBucketRequest) (err error) {
 // interested in an object's metadata. To use you must have access to the
 // object.
 func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &HeadObjectOutput{}
 
 	var body io.Reader
@@ -2124,6 +2241,10 @@ func (c *S3) ListBuckets() (resp *ListBucketsOutput, err error) {
 
 // ListMultipartUploads this operation lists in-progress multipart uploads.
 func (c *S3) ListMultipartUploads(req *ListMultipartUploadsRequest) (resp *ListMultipartUploadsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListMultipartUploadsOutput{}
 
 	var body io.Reader
@@ -2192,6 +2313,10 @@ func (c *S3) ListMultipartUploads(req *ListMultipartUploadsRequest) (resp *ListM
 // ListObjectVersions returns metadata about all of the versions of objects
 // in a bucket.
 func (c *S3) ListObjectVersions(req *ListObjectVersionsRequest) (resp *ListObjectVersionsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListObjectVersionsOutput{}
 
 	var body io.Reader
@@ -2261,6 +2386,10 @@ func (c *S3) ListObjectVersions(req *ListObjectVersionsRequest) (resp *ListObjec
 // You can use the request parameters as selection criteria to return a
 // subset of the objects in a bucket.
 func (c *S3) ListObjects(req *ListObjectsRequest) (resp *ListObjectsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListObjectsOutput{}
 
 	var body io.Reader
@@ -2325,6 +2454,10 @@ func (c *S3) ListObjects(req *ListObjectsRequest) (resp *ListObjectsOutput, err 
 // ListParts lists the parts that have been uploaded for a specific
 // multipart upload.
 func (c *S3) ListParts(req *ListPartsRequest) (resp *ListPartsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListPartsOutput{}
 
 	var body io.Reader
@@ -2385,6 +2518,10 @@ func (c *S3) ListParts(req *ListPartsRequest) (resp *ListPartsOutput, err error)
 
 // PutBucketACL sets the permissions on a bucket using access control lists
 func (c *S3) PutBucketACL(req *PutBucketACLRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -2459,6 +2596,10 @@ func (c *S3) PutBucketACL(req *PutBucketACLRequest) (err error) {
 
 // PutBucketCORS is undocumented.
 func (c *S3) PutBucketCORS(req *PutBucketCORSRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -2510,6 +2651,10 @@ func (c *S3) PutBucketCORS(req *PutBucketCORSRequest) (err error) {
 // PutBucketLifecycle sets lifecycle configuration for your bucket. If a
 // lifecycle configuration exists, it replaces it.
 func (c *S3) PutBucketLifecycle(req *PutBucketLifecycleRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -2562,6 +2707,10 @@ func (c *S3) PutBucketLifecycle(req *PutBucketLifecycleRequest) (err error) {
 // permissions for who can view and modify the logging parameters. To set
 // the logging status of a bucket, you must be the bucket owner.
 func (c *S3) PutBucketLogging(req *PutBucketLoggingRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -2613,6 +2762,10 @@ func (c *S3) PutBucketLogging(req *PutBucketLoggingRequest) (err error) {
 // PutBucketNotification enables notifications of specified events for a
 // bucket.
 func (c *S3) PutBucketNotification(req *PutBucketNotificationRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -2664,6 +2817,10 @@ func (c *S3) PutBucketNotification(req *PutBucketNotificationRequest) (err error
 // PutBucketPolicy replaces a policy on a bucket. If the bucket already has
 // a policy, the one in this request completely replaces it.
 func (c *S3) PutBucketPolicy(req *PutBucketPolicyRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -2718,6 +2875,10 @@ func (c *S3) PutBucketPolicy(req *PutBucketPolicyRequest) (err error) {
 // that the person requesting the download will be charged for the
 // download.
 func (c *S3) PutBucketRequestPayment(req *PutBucketRequestPaymentRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -2768,6 +2929,10 @@ func (c *S3) PutBucketRequestPayment(req *PutBucketRequestPaymentRequest) (err e
 
 // PutBucketTagging is undocumented.
 func (c *S3) PutBucketTagging(req *PutBucketTaggingRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -2819,6 +2984,10 @@ func (c *S3) PutBucketTagging(req *PutBucketTaggingRequest) (err error) {
 // PutBucketVersioning sets the versioning state of an existing bucket. To
 // set the versioning state, you must be the bucket owner.
 func (c *S3) PutBucketVersioning(req *PutBucketVersioningRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -2873,6 +3042,10 @@ func (c *S3) PutBucketVersioning(req *PutBucketVersioningRequest) (err error) {
 
 // PutBucketWebsite is undocumented.
 func (c *S3) PutBucketWebsite(req *PutBucketWebsiteRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -2923,6 +3096,10 @@ func (c *S3) PutBucketWebsite(req *PutBucketWebsiteRequest) (err error) {
 
 // PutObject is undocumented.
 func (c *S3) PutObject(req *PutObjectRequest) (resp *PutObjectOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PutObjectOutput{}
 
 	var body io.Reader
@@ -3096,6 +3273,10 @@ func (c *S3) PutObject(req *PutObjectRequest) (resp *PutObjectOutput, err error)
 // PutObjectACL uses the acl subresource to set the access control list
 // permissions for an object that already exists in a bucket
 func (c *S3) PutObjectACL(req *PutObjectACLRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -3175,6 +3356,10 @@ func (c *S3) PutObjectACL(req *PutObjectACLRequest) (err error) {
 
 // RestoreObject restores an archived copy of an object back into Amazon S3
 func (c *S3) RestoreObject(req *RestoreObjectRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -3235,6 +3420,10 @@ func (c *S3) RestoreObject(req *RestoreObjectRequest) (err error) {
 // multipart upload, Amazon S3 frees up the parts storage and stops
 // charging you for the parts storage.
 func (c *S3) UploadPart(req *UploadPartRequest) (resp *UploadPartOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UploadPartOutput{}
 
 	var body io.Reader
@@ -3344,6 +3533,10 @@ func (c *S3) UploadPart(req *UploadPartRequest) (resp *UploadPartOutput, err err
 // UploadPartCopy uploads a part by copying data from an existing object as
 // data source.
 func (c *S3) UploadPartCopy(req *UploadPartCopyRequest) (resp *UploadPartCopyOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UploadPartCopyOutput{}
 
 	var body io.Reader
@@ -3489,6 +3682,28 @@ func (v *AbortMultipartUploadRequest) MarshalXML(e *xml.Encoder, start xml.Start
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *AbortMultipartUploadRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UploadID"); err != nil {
+		errors["UploadID"] = append(errors["UploadID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AccessControlPolicy is undocumented.
 type AccessControlPolicy struct {
 	XMLName xml.Name `xml:"AccessControlPolicy"`
@@ -3501,6 +3716,16 @@ func (v *AccessControlPolicy) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *AccessControlPolicy) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Bucket is undocumented.
 type Bucket struct {
 	XMLName xml.Name `xml:"Bucket"`
@@ -3511,6 +3736,16 @@ type Bucket struct {
 
 func (v *Bucket) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Bucket) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for S3.
@@ -3546,6 +3781,16 @@ func (v *BucketLoggingStatus) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *BucketLoggingStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for S3.
 const (
 	BucketLogsPermissionFullControl = "FULL_CONTROL"
@@ -3570,6 +3815,16 @@ func (v *CORSConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CORSConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CORSRule is undocumented.
 type CORSRule struct {
 	XMLName xml.Name `xml:"CORSRule"`
@@ -3583,6 +3838,16 @@ type CORSRule struct {
 
 func (v *CORSRule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CORSRule) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CloudFunctionConfiguration is undocumented.
@@ -3600,6 +3865,27 @@ func (v *CloudFunctionConfiguration) MarshalXML(e *xml.Encoder, start xml.StartE
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CloudFunctionConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	EventEnum := []string{
+		EventS3ObjectCreatedCompleteMultipartUpload,
+		EventS3ObjectCreatedCopy,
+		EventS3ObjectCreatedPost,
+		EventS3ObjectCreatedPut,
+		EventS3ReducedRedundancyLostObject,
+	}
+	if err := model.ValidateEnum(v, "Event", EventEnum); err != nil {
+		errors["Event"] = append(errors["Event"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CommonPrefix is undocumented.
 type CommonPrefix struct {
 	XMLName xml.Name `xml:"CommonPrefix"`
@@ -3609,6 +3895,16 @@ type CommonPrefix struct {
 
 func (v *CommonPrefix) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CommonPrefix) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CompleteMultipartUploadOutput is undocumented.
@@ -3629,6 +3925,23 @@ func (v *CompleteMultipartUploadOutput) MarshalXML(e *xml.Encoder, start xml.Sta
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CompleteMultipartUploadOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ServerSideEncryptionEnum := []string{
+		ServerSideEncryptionAES256,
+	}
+	if err := model.ValidateEnum(v, "ServerSideEncryption", ServerSideEncryptionEnum); err != nil {
+		errors["ServerSideEncryption"] = append(errors["ServerSideEncryption"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CompleteMultipartUploadRequest is undocumented.
 type CompleteMultipartUploadRequest struct {
 	XMLName xml.Name `xml:""`
@@ -3643,6 +3956,28 @@ func (v *CompleteMultipartUploadRequest) MarshalXML(e *xml.Encoder, start xml.St
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CompleteMultipartUploadRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UploadID"); err != nil {
+		errors["UploadID"] = append(errors["UploadID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CompletedMultipartUpload is undocumented.
 type CompletedMultipartUpload struct {
 	XMLName xml.Name `xml:"CompletedMultipartUpload"`
@@ -3652,6 +3987,16 @@ type CompletedMultipartUpload struct {
 
 func (v *CompletedMultipartUpload) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CompletedMultipartUpload) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CompletedPart is undocumented.
@@ -3666,6 +4011,16 @@ func (v *CompletedPart) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CompletedPart) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Condition is undocumented.
 type Condition struct {
 	XMLName xml.Name `xml:"Condition"`
@@ -3676,6 +4031,16 @@ type Condition struct {
 
 func (v *Condition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Condition) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CopyObjectOutput is undocumented.
@@ -3693,6 +4058,23 @@ type CopyObjectOutput struct {
 
 func (v *CopyObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CopyObjectOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ServerSideEncryptionEnum := []string{
+		ServerSideEncryptionAES256,
+	}
+	if err := model.ValidateEnum(v, "ServerSideEncryption", ServerSideEncryptionEnum); err != nil {
+		errors["ServerSideEncryption"] = append(errors["ServerSideEncryption"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CopyObjectRequest is undocumented.
@@ -3735,6 +4117,67 @@ func (v *CopyObjectRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CopyObjectRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ACLEnum := []string{
+		ObjectCannedACLAuthenticatedRead,
+		ObjectCannedACLBucketOwnerFullControl,
+		ObjectCannedACLBucketOwnerRead,
+		ObjectCannedACLPrivate,
+		ObjectCannedACLPublicRead,
+		ObjectCannedACLPublicReadWrite,
+	}
+	if err := model.ValidateEnum(v, "ACL", ACLEnum); err != nil {
+		errors["ACL"] = append(errors["ACL"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CopySource"); err != nil {
+		errors["CopySource"] = append(errors["CopySource"], err)
+	}
+
+	if err := model.ValidatePattern(v, "CopySource", `\/.+\/.+`); err != nil {
+		errors["CopySource"] = append(errors["CopySource"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	MetadataDirectiveEnum := []string{
+		MetadataDirectiveCopy,
+		MetadataDirectiveReplace,
+	}
+	if err := model.ValidateEnum(v, "MetadataDirective", MetadataDirectiveEnum); err != nil {
+		errors["MetadataDirective"] = append(errors["MetadataDirective"], err)
+	}
+
+	ServerSideEncryptionEnum := []string{
+		ServerSideEncryptionAES256,
+	}
+	if err := model.ValidateEnum(v, "ServerSideEncryption", ServerSideEncryptionEnum); err != nil {
+		errors["ServerSideEncryption"] = append(errors["ServerSideEncryption"], err)
+	}
+
+	StorageClassEnum := []string{
+		StorageClassReducedRedundancy,
+		StorageClassStandard,
+	}
+	if err := model.ValidateEnum(v, "StorageClass", StorageClassEnum); err != nil {
+		errors["StorageClass"] = append(errors["StorageClass"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CopyObjectResult is undocumented.
 type CopyObjectResult struct {
 	XMLName xml.Name `xml:"CopyObjectResult"`
@@ -3745,6 +4188,16 @@ type CopyObjectResult struct {
 
 func (v *CopyObjectResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CopyObjectResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CopyPartResult is undocumented.
@@ -3759,6 +4212,16 @@ func (v *CopyPartResult) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CopyPartResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateBucketConfiguration is undocumented.
 type CreateBucketConfiguration struct {
 	XMLName xml.Name `xml:"CreateBucketConfiguration"`
@@ -3770,6 +4233,32 @@ func (v *CreateBucketConfiguration) MarshalXML(e *xml.Encoder, start xml.StartEl
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CreateBucketConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	LocationConstraintEnum := []string{
+		BucketLocationConstraintApNortheast1,
+		BucketLocationConstraintApSoutheast1,
+		BucketLocationConstraintApSoutheast2,
+		BucketLocationConstraintCnNorth1,
+		BucketLocationConstraintEu,
+		BucketLocationConstraintEuCentral1,
+		BucketLocationConstraintEuWest1,
+		BucketLocationConstraintSaEast1,
+		BucketLocationConstraintUsWest1,
+		BucketLocationConstraintUsWest2,
+	}
+	if err := model.ValidateEnum(v, "LocationConstraint", LocationConstraintEnum); err != nil {
+		errors["LocationConstraint"] = append(errors["LocationConstraint"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateBucketOutput is undocumented.
 type CreateBucketOutput struct {
 	XMLName xml.Name `xml:"CreateBucketOutput"`
@@ -3779,6 +4268,16 @@ type CreateBucketOutput struct {
 
 func (v *CreateBucketOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CreateBucketOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateBucketRequest is undocumented.
@@ -3799,6 +4298,30 @@ func (v *CreateBucketRequest) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CreateBucketRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ACLEnum := []string{
+		BucketCannedACLAuthenticatedRead,
+		BucketCannedACLPrivate,
+		BucketCannedACLPublicRead,
+		BucketCannedACLPublicReadWrite,
+	}
+	if err := model.ValidateEnum(v, "ACL", ACLEnum); err != nil {
+		errors["ACL"] = append(errors["ACL"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateMultipartUploadOutput is undocumented.
 type CreateMultipartUploadOutput struct {
 	XMLName xml.Name `xml:"CreateMultipartUploadOutput"`
@@ -3814,6 +4337,23 @@ type CreateMultipartUploadOutput struct {
 
 func (v *CreateMultipartUploadOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CreateMultipartUploadOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ServerSideEncryptionEnum := []string{
+		ServerSideEncryptionAES256,
+	}
+	if err := model.ValidateEnum(v, "ServerSideEncryption", ServerSideEncryptionEnum); err != nil {
+		errors["ServerSideEncryption"] = append(errors["ServerSideEncryption"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateMultipartUploadRequest is undocumented.
@@ -3847,6 +4387,51 @@ func (v *CreateMultipartUploadRequest) MarshalXML(e *xml.Encoder, start xml.Star
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CreateMultipartUploadRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ACLEnum := []string{
+		ObjectCannedACLAuthenticatedRead,
+		ObjectCannedACLBucketOwnerFullControl,
+		ObjectCannedACLBucketOwnerRead,
+		ObjectCannedACLPrivate,
+		ObjectCannedACLPublicRead,
+		ObjectCannedACLPublicReadWrite,
+	}
+	if err := model.ValidateEnum(v, "ACL", ACLEnum); err != nil {
+		errors["ACL"] = append(errors["ACL"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	ServerSideEncryptionEnum := []string{
+		ServerSideEncryptionAES256,
+	}
+	if err := model.ValidateEnum(v, "ServerSideEncryption", ServerSideEncryptionEnum); err != nil {
+		errors["ServerSideEncryption"] = append(errors["ServerSideEncryption"], err)
+	}
+
+	StorageClassEnum := []string{
+		StorageClassReducedRedundancy,
+		StorageClassStandard,
+	}
+	if err := model.ValidateEnum(v, "StorageClass", StorageClassEnum); err != nil {
+		errors["StorageClass"] = append(errors["StorageClass"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Delete is undocumented.
 type Delete struct {
 	XMLName xml.Name `xml:"Delete"`
@@ -3857,6 +4442,20 @@ type Delete struct {
 
 func (v *Delete) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Delete) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Objects"); err != nil {
+		errors["Objects"] = append(errors["Objects"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteBucketCORSRequest is undocumented.
@@ -3870,6 +4469,20 @@ func (v *DeleteBucketCORSRequest) MarshalXML(e *xml.Encoder, start xml.StartElem
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DeleteBucketCORSRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteBucketLifecycleRequest is undocumented.
 type DeleteBucketLifecycleRequest struct {
 	XMLName xml.Name `xml:""`
@@ -3879,6 +4492,20 @@ type DeleteBucketLifecycleRequest struct {
 
 func (v *DeleteBucketLifecycleRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DeleteBucketLifecycleRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteBucketPolicyRequest is undocumented.
@@ -3892,6 +4519,20 @@ func (v *DeleteBucketPolicyRequest) MarshalXML(e *xml.Encoder, start xml.StartEl
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DeleteBucketPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteBucketRequest is undocumented.
 type DeleteBucketRequest struct {
 	XMLName xml.Name `xml:""`
@@ -3901,6 +4542,20 @@ type DeleteBucketRequest struct {
 
 func (v *DeleteBucketRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DeleteBucketRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteBucketTaggingRequest is undocumented.
@@ -3914,6 +4569,20 @@ func (v *DeleteBucketTaggingRequest) MarshalXML(e *xml.Encoder, start xml.StartE
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DeleteBucketTaggingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteBucketWebsiteRequest is undocumented.
 type DeleteBucketWebsiteRequest struct {
 	XMLName xml.Name `xml:""`
@@ -3923,6 +4592,20 @@ type DeleteBucketWebsiteRequest struct {
 
 func (v *DeleteBucketWebsiteRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DeleteBucketWebsiteRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteMarkerEntry is undocumented.
@@ -3940,6 +4623,16 @@ func (v *DeleteMarkerEntry) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DeleteMarkerEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteObjectOutput is undocumented.
 type DeleteObjectOutput struct {
 	XMLName xml.Name `xml:"DeleteObjectOutput"`
@@ -3950,6 +4643,16 @@ type DeleteObjectOutput struct {
 
 func (v *DeleteObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DeleteObjectOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteObjectRequest is undocumented.
@@ -3966,6 +4669,24 @@ func (v *DeleteObjectRequest) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DeleteObjectRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteObjectsOutput is undocumented.
 type DeleteObjectsOutput struct {
 	XMLName xml.Name `xml:"DeleteObjectsOutput"`
@@ -3976,6 +4697,16 @@ type DeleteObjectsOutput struct {
 
 func (v *DeleteObjectsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DeleteObjectsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteObjectsRequest is undocumented.
@@ -3991,6 +4722,24 @@ func (v *DeleteObjectsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DeleteObjectsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Delete"); err != nil {
+		errors["Delete"] = append(errors["Delete"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeletedObject is undocumented.
 type DeletedObject struct {
 	XMLName xml.Name `xml:"DeletedObject"`
@@ -4003,6 +4752,16 @@ type DeletedObject struct {
 
 func (v *DeletedObject) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DeletedObject) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for S3.
@@ -4024,6 +4783,16 @@ func (v *Error) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *Error) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ErrorDocument is undocumented.
 type ErrorDocument struct {
 	XMLName xml.Name `xml:"ErrorDocument"`
@@ -4033,6 +4802,20 @@ type ErrorDocument struct {
 
 func (v *ErrorDocument) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ErrorDocument) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for S3.
@@ -4062,6 +4845,16 @@ func (v *GetBucketACLOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetBucketACLOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetBucketACLRequest is undocumented.
 type GetBucketACLRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4071,6 +4864,20 @@ type GetBucketACLRequest struct {
 
 func (v *GetBucketACLRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetBucketACLRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetBucketCORSOutput is undocumented.
@@ -4084,6 +4891,16 @@ func (v *GetBucketCORSOutput) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetBucketCORSOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetBucketCORSRequest is undocumented.
 type GetBucketCORSRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4093,6 +4910,20 @@ type GetBucketCORSRequest struct {
 
 func (v *GetBucketCORSRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetBucketCORSRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetBucketLifecycleOutput is undocumented.
@@ -4106,6 +4937,16 @@ func (v *GetBucketLifecycleOutput) MarshalXML(e *xml.Encoder, start xml.StartEle
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetBucketLifecycleOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetBucketLifecycleRequest is undocumented.
 type GetBucketLifecycleRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4115,6 +4956,20 @@ type GetBucketLifecycleRequest struct {
 
 func (v *GetBucketLifecycleRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetBucketLifecycleRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetBucketLocationOutput is undocumented.
@@ -4128,6 +4983,32 @@ func (v *GetBucketLocationOutput) MarshalXML(e *xml.Encoder, start xml.StartElem
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetBucketLocationOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	LocationConstraintEnum := []string{
+		BucketLocationConstraintApNortheast1,
+		BucketLocationConstraintApSoutheast1,
+		BucketLocationConstraintApSoutheast2,
+		BucketLocationConstraintCnNorth1,
+		BucketLocationConstraintEu,
+		BucketLocationConstraintEuCentral1,
+		BucketLocationConstraintEuWest1,
+		BucketLocationConstraintSaEast1,
+		BucketLocationConstraintUsWest1,
+		BucketLocationConstraintUsWest2,
+	}
+	if err := model.ValidateEnum(v, "LocationConstraint", LocationConstraintEnum); err != nil {
+		errors["LocationConstraint"] = append(errors["LocationConstraint"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetBucketLocationRequest is undocumented.
 type GetBucketLocationRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4137,6 +5018,20 @@ type GetBucketLocationRequest struct {
 
 func (v *GetBucketLocationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetBucketLocationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetBucketLoggingOutput is undocumented.
@@ -4150,6 +5045,16 @@ func (v *GetBucketLoggingOutput) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetBucketLoggingOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetBucketLoggingRequest is undocumented.
 type GetBucketLoggingRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4159,6 +5064,20 @@ type GetBucketLoggingRequest struct {
 
 func (v *GetBucketLoggingRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetBucketLoggingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetBucketNotificationOutput is undocumented.
@@ -4174,6 +5093,16 @@ func (v *GetBucketNotificationOutput) MarshalXML(e *xml.Encoder, start xml.Start
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetBucketNotificationOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetBucketNotificationRequest is undocumented.
 type GetBucketNotificationRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4183,6 +5112,20 @@ type GetBucketNotificationRequest struct {
 
 func (v *GetBucketNotificationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetBucketNotificationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetBucketPolicyOutput is undocumented.
@@ -4196,6 +5139,16 @@ func (v *GetBucketPolicyOutput) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetBucketPolicyOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetBucketPolicyRequest is undocumented.
 type GetBucketPolicyRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4205,6 +5158,20 @@ type GetBucketPolicyRequest struct {
 
 func (v *GetBucketPolicyRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetBucketPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetBucketRequestPaymentOutput is undocumented.
@@ -4218,6 +5185,24 @@ func (v *GetBucketRequestPaymentOutput) MarshalXML(e *xml.Encoder, start xml.Sta
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetBucketRequestPaymentOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	PayerEnum := []string{
+		PayerBucketOwner,
+		PayerRequester,
+	}
+	if err := model.ValidateEnum(v, "Payer", PayerEnum); err != nil {
+		errors["Payer"] = append(errors["Payer"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetBucketRequestPaymentRequest is undocumented.
 type GetBucketRequestPaymentRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4227,6 +5212,20 @@ type GetBucketRequestPaymentRequest struct {
 
 func (v *GetBucketRequestPaymentRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetBucketRequestPaymentRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetBucketTaggingOutput is undocumented.
@@ -4240,6 +5239,20 @@ func (v *GetBucketTaggingOutput) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetBucketTaggingOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "TagSet"); err != nil {
+		errors["TagSet"] = append(errors["TagSet"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetBucketTaggingRequest is undocumented.
 type GetBucketTaggingRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4249,6 +5262,20 @@ type GetBucketTaggingRequest struct {
 
 func (v *GetBucketTaggingRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetBucketTaggingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetBucketVersioningOutput is undocumented.
@@ -4263,6 +5290,32 @@ func (v *GetBucketVersioningOutput) MarshalXML(e *xml.Encoder, start xml.StartEl
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetBucketVersioningOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	MFADeleteEnum := []string{
+		MFADeleteStatusDisabled,
+		MFADeleteStatusEnabled,
+	}
+	if err := model.ValidateEnum(v, "MFADelete", MFADeleteEnum); err != nil {
+		errors["MFADelete"] = append(errors["MFADelete"], err)
+	}
+
+	StatusEnum := []string{
+		BucketVersioningStatusEnabled,
+		BucketVersioningStatusSuspended,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetBucketVersioningRequest is undocumented.
 type GetBucketVersioningRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4272,6 +5325,20 @@ type GetBucketVersioningRequest struct {
 
 func (v *GetBucketVersioningRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetBucketVersioningRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetBucketWebsiteOutput is undocumented.
@@ -4288,6 +5355,16 @@ func (v *GetBucketWebsiteOutput) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetBucketWebsiteOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetBucketWebsiteRequest is undocumented.
 type GetBucketWebsiteRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4297,6 +5374,20 @@ type GetBucketWebsiteRequest struct {
 
 func (v *GetBucketWebsiteRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetBucketWebsiteRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetObjectACLOutput is undocumented.
@@ -4311,6 +5402,16 @@ func (v *GetObjectACLOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetObjectACLOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetObjectACLRequest is undocumented.
 type GetObjectACLRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4322,6 +5423,24 @@ type GetObjectACLRequest struct {
 
 func (v *GetObjectACLRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetObjectACLRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetObjectOutput is undocumented.
@@ -4356,6 +5475,23 @@ func (v *GetObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetObjectOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ServerSideEncryptionEnum := []string{
+		ServerSideEncryptionAES256,
+	}
+	if err := model.ValidateEnum(v, "ServerSideEncryption", ServerSideEncryptionEnum); err != nil {
+		errors["ServerSideEncryption"] = append(errors["ServerSideEncryption"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetObjectRequest is undocumented.
 type GetObjectRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4383,6 +5519,24 @@ func (v *GetObjectRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetObjectRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetObjectTorrentOutput is undocumented.
 type GetObjectTorrentOutput struct {
 	XMLName xml.Name `xml:"GetObjectTorrentOutput"`
@@ -4392,6 +5546,16 @@ type GetObjectTorrentOutput struct {
 
 func (v *GetObjectTorrentOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetObjectTorrentOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetObjectTorrentRequest is undocumented.
@@ -4406,6 +5570,24 @@ func (v *GetObjectTorrentRequest) MarshalXML(e *xml.Encoder, start xml.StartElem
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetObjectTorrentRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Grant is undocumented.
 type Grant struct {
 	XMLName xml.Name `xml:"Grant"`
@@ -4416,6 +5598,27 @@ type Grant struct {
 
 func (v *Grant) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Grant) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	PermissionEnum := []string{
+		PermissionFullControl,
+		PermissionRead,
+		PermissionReadAcp,
+		PermissionWrite,
+		PermissionWriteAcp,
+	}
+	if err := model.ValidateEnum(v, "Permission", PermissionEnum); err != nil {
+		errors["Permission"] = append(errors["Permission"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Grantee is undocumented.
@@ -4433,6 +5636,29 @@ func (v *Grantee) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *Grantee) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Type"); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	TypeEnum := []string{
+		TypeAmazonCustomerByEmail,
+		TypeCanonicalUser,
+		TypeGroup,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // HeadBucketRequest is undocumented.
 type HeadBucketRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4442,6 +5668,20 @@ type HeadBucketRequest struct {
 
 func (v *HeadBucketRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *HeadBucketRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // HeadObjectOutput is undocumented.
@@ -4475,6 +5715,23 @@ func (v *HeadObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *HeadObjectOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ServerSideEncryptionEnum := []string{
+		ServerSideEncryptionAES256,
+	}
+	if err := model.ValidateEnum(v, "ServerSideEncryption", ServerSideEncryptionEnum); err != nil {
+		errors["ServerSideEncryption"] = append(errors["ServerSideEncryption"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // HeadObjectRequest is undocumented.
 type HeadObjectRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4496,6 +5753,24 @@ func (v *HeadObjectRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *HeadObjectRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // IndexDocument is undocumented.
 type IndexDocument struct {
 	XMLName xml.Name `xml:"IndexDocument"`
@@ -4505,6 +5780,20 @@ type IndexDocument struct {
 
 func (v *IndexDocument) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *IndexDocument) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Suffix"); err != nil {
+		errors["Suffix"] = append(errors["Suffix"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Initiator is undocumented.
@@ -4519,6 +5808,16 @@ func (v *Initiator) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *Initiator) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // LifecycleConfiguration is undocumented.
 type LifecycleConfiguration struct {
 	XMLName xml.Name `xml:"LifecycleConfiguration"`
@@ -4528,6 +5827,20 @@ type LifecycleConfiguration struct {
 
 func (v *LifecycleConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *LifecycleConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Rules"); err != nil {
+		errors["Rules"] = append(errors["Rules"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LifecycleExpiration is undocumented.
@@ -4542,6 +5855,16 @@ func (v *LifecycleExpiration) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *LifecycleExpiration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListBucketsOutput is undocumented.
 type ListBucketsOutput struct {
 	XMLName xml.Name `xml:"ListBucketsOutput"`
@@ -4552,6 +5875,16 @@ type ListBucketsOutput struct {
 
 func (v *ListBucketsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListBucketsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListMultipartUploadsOutput is undocumented.
@@ -4576,6 +5909,23 @@ func (v *ListMultipartUploadsOutput) MarshalXML(e *xml.Encoder, start xml.StartE
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListMultipartUploadsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	EncodingTypeEnum := []string{
+		EncodingTypeURL,
+	}
+	if err := model.ValidateEnum(v, "EncodingType", EncodingTypeEnum); err != nil {
+		errors["EncodingType"] = append(errors["EncodingType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListMultipartUploadsRequest is undocumented.
 type ListMultipartUploadsRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4591,6 +5941,27 @@ type ListMultipartUploadsRequest struct {
 
 func (v *ListMultipartUploadsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListMultipartUploadsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	EncodingTypeEnum := []string{
+		EncodingTypeURL,
+	}
+	if err := model.ValidateEnum(v, "EncodingType", EncodingTypeEnum); err != nil {
+		errors["EncodingType"] = append(errors["EncodingType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListObjectVersionsOutput is undocumented.
@@ -4616,6 +5987,23 @@ func (v *ListObjectVersionsOutput) MarshalXML(e *xml.Encoder, start xml.StartEle
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListObjectVersionsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	EncodingTypeEnum := []string{
+		EncodingTypeURL,
+	}
+	if err := model.ValidateEnum(v, "EncodingType", EncodingTypeEnum); err != nil {
+		errors["EncodingType"] = append(errors["EncodingType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListObjectVersionsRequest is undocumented.
 type ListObjectVersionsRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4631,6 +6019,27 @@ type ListObjectVersionsRequest struct {
 
 func (v *ListObjectVersionsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListObjectVersionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	EncodingTypeEnum := []string{
+		EncodingTypeURL,
+	}
+	if err := model.ValidateEnum(v, "EncodingType", EncodingTypeEnum); err != nil {
+		errors["EncodingType"] = append(errors["EncodingType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListObjectsOutput is undocumented.
@@ -4653,6 +6062,23 @@ func (v *ListObjectsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListObjectsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	EncodingTypeEnum := []string{
+		EncodingTypeURL,
+	}
+	if err := model.ValidateEnum(v, "EncodingType", EncodingTypeEnum); err != nil {
+		errors["EncodingType"] = append(errors["EncodingType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListObjectsRequest is undocumented.
 type ListObjectsRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4667,6 +6093,27 @@ type ListObjectsRequest struct {
 
 func (v *ListObjectsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListObjectsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	EncodingTypeEnum := []string{
+		EncodingTypeURL,
+	}
+	if err := model.ValidateEnum(v, "EncodingType", EncodingTypeEnum); err != nil {
+		errors["EncodingType"] = append(errors["EncodingType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListPartsOutput is undocumented.
@@ -4690,6 +6137,24 @@ func (v *ListPartsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListPartsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StorageClassEnum := []string{
+		StorageClassReducedRedundancy,
+		StorageClassStandard,
+	}
+	if err := model.ValidateEnum(v, "StorageClass", StorageClassEnum); err != nil {
+		errors["StorageClass"] = append(errors["StorageClass"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListPartsRequest is undocumented.
 type ListPartsRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4705,6 +6170,28 @@ func (v *ListPartsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListPartsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UploadID"); err != nil {
+		errors["UploadID"] = append(errors["UploadID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // LoggingEnabled is undocumented.
 type LoggingEnabled struct {
 	XMLName xml.Name `xml:"LoggingEnabled"`
@@ -4716,6 +6203,16 @@ type LoggingEnabled struct {
 
 func (v *LoggingEnabled) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *LoggingEnabled) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for S3.
@@ -4752,6 +6249,24 @@ func (v *MultipartUpload) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *MultipartUpload) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StorageClassEnum := []string{
+		StorageClassReducedRedundancy,
+		StorageClassStandard,
+	}
+	if err := model.ValidateEnum(v, "StorageClass", StorageClassEnum); err != nil {
+		errors["StorageClass"] = append(errors["StorageClass"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // NoncurrentVersionExpiration is undocumented.
 type NoncurrentVersionExpiration struct {
 	XMLName xml.Name `xml:"NoncurrentVersionExpiration"`
@@ -4761,6 +6276,16 @@ type NoncurrentVersionExpiration struct {
 
 func (v *NoncurrentVersionExpiration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *NoncurrentVersionExpiration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // NoncurrentVersionTransition is undocumented.
@@ -4775,6 +6300,23 @@ func (v *NoncurrentVersionTransition) MarshalXML(e *xml.Encoder, start xml.Start
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *NoncurrentVersionTransition) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StorageClassEnum := []string{
+		TransitionStorageClassGlacier,
+	}
+	if err := model.ValidateEnum(v, "StorageClass", StorageClassEnum); err != nil {
+		errors["StorageClass"] = append(errors["StorageClass"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // NotificationConfiguration is undocumented.
 type NotificationConfiguration struct {
 	XMLName xml.Name `xml:"NotificationConfiguration"`
@@ -4786,6 +6328,16 @@ type NotificationConfiguration struct {
 
 func (v *NotificationConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *NotificationConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Object is undocumented.
@@ -4802,6 +6354,25 @@ type Object struct {
 
 func (v *Object) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Object) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StorageClassEnum := []string{
+		ObjectStorageClassGlacier,
+		ObjectStorageClassReducedRedundancy,
+		ObjectStorageClassStandard,
+	}
+	if err := model.ValidateEnum(v, "StorageClass", StorageClassEnum); err != nil {
+		errors["StorageClass"] = append(errors["StorageClass"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for S3.
@@ -4824,6 +6395,20 @@ type ObjectIdentifier struct {
 
 func (v *ObjectIdentifier) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ObjectIdentifier) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for S3.
@@ -4851,6 +6436,23 @@ func (v *ObjectVersion) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ObjectVersion) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StorageClassEnum := []string{
+		ObjectVersionStorageClassStandard,
+	}
+	if err := model.ValidateEnum(v, "StorageClass", StorageClassEnum); err != nil {
+		errors["StorageClass"] = append(errors["StorageClass"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for S3.
 const (
 	ObjectVersionStorageClassStandard = "STANDARD"
@@ -4868,6 +6470,16 @@ func (v *Owner) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *Owner) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Part is undocumented.
 type Part struct {
 	XMLName xml.Name `xml:"Part"`
@@ -4880,6 +6492,16 @@ type Part struct {
 
 func (v *Part) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Part) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for S3.
@@ -4922,6 +6544,30 @@ func (v *PutBucketACLRequest) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *PutBucketACLRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ACLEnum := []string{
+		BucketCannedACLAuthenticatedRead,
+		BucketCannedACLPrivate,
+		BucketCannedACLPublicRead,
+		BucketCannedACLPublicReadWrite,
+	}
+	if err := model.ValidateEnum(v, "ACL", ACLEnum); err != nil {
+		errors["ACL"] = append(errors["ACL"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutBucketCORSRequest is undocumented.
 type PutBucketCORSRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4933,6 +6579,20 @@ type PutBucketCORSRequest struct {
 
 func (v *PutBucketCORSRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *PutBucketCORSRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutBucketLifecycleRequest is undocumented.
@@ -4948,6 +6608,20 @@ func (v *PutBucketLifecycleRequest) MarshalXML(e *xml.Encoder, start xml.StartEl
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *PutBucketLifecycleRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutBucketLoggingRequest is undocumented.
 type PutBucketLoggingRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4959,6 +6633,24 @@ type PutBucketLoggingRequest struct {
 
 func (v *PutBucketLoggingRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *PutBucketLoggingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "BucketLoggingStatus"); err != nil {
+		errors["BucketLoggingStatus"] = append(errors["BucketLoggingStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutBucketNotificationRequest is undocumented.
@@ -4974,6 +6666,24 @@ func (v *PutBucketNotificationRequest) MarshalXML(e *xml.Encoder, start xml.Star
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *PutBucketNotificationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NotificationConfiguration"); err != nil {
+		errors["NotificationConfiguration"] = append(errors["NotificationConfiguration"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutBucketPolicyRequest is undocumented.
 type PutBucketPolicyRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4985,6 +6695,24 @@ type PutBucketPolicyRequest struct {
 
 func (v *PutBucketPolicyRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *PutBucketPolicyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Policy"); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutBucketRequestPaymentRequest is undocumented.
@@ -5000,6 +6728,24 @@ func (v *PutBucketRequestPaymentRequest) MarshalXML(e *xml.Encoder, start xml.St
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *PutBucketRequestPaymentRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RequestPaymentConfiguration"); err != nil {
+		errors["RequestPaymentConfiguration"] = append(errors["RequestPaymentConfiguration"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutBucketTaggingRequest is undocumented.
 type PutBucketTaggingRequest struct {
 	XMLName xml.Name `xml:""`
@@ -5011,6 +6757,24 @@ type PutBucketTaggingRequest struct {
 
 func (v *PutBucketTaggingRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *PutBucketTaggingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Tagging"); err != nil {
+		errors["Tagging"] = append(errors["Tagging"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutBucketVersioningRequest is undocumented.
@@ -5027,6 +6791,24 @@ func (v *PutBucketVersioningRequest) MarshalXML(e *xml.Encoder, start xml.StartE
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *PutBucketVersioningRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VersioningConfiguration"); err != nil {
+		errors["VersioningConfiguration"] = append(errors["VersioningConfiguration"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutBucketWebsiteRequest is undocumented.
 type PutBucketWebsiteRequest struct {
 	XMLName xml.Name `xml:""`
@@ -5038,6 +6820,24 @@ type PutBucketWebsiteRequest struct {
 
 func (v *PutBucketWebsiteRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *PutBucketWebsiteRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WebsiteConfiguration"); err != nil {
+		errors["WebsiteConfiguration"] = append(errors["WebsiteConfiguration"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutObjectACLRequest is undocumented.
@@ -5060,6 +6860,36 @@ func (v *PutObjectACLRequest) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *PutObjectACLRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ACLEnum := []string{
+		ObjectCannedACLAuthenticatedRead,
+		ObjectCannedACLBucketOwnerFullControl,
+		ObjectCannedACLBucketOwnerRead,
+		ObjectCannedACLPrivate,
+		ObjectCannedACLPublicRead,
+		ObjectCannedACLPublicReadWrite,
+	}
+	if err := model.ValidateEnum(v, "ACL", ACLEnum); err != nil {
+		errors["ACL"] = append(errors["ACL"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutObjectOutput is undocumented.
 type PutObjectOutput struct {
 	XMLName xml.Name `xml:"PutObjectOutput"`
@@ -5075,6 +6905,23 @@ type PutObjectOutput struct {
 
 func (v *PutObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *PutObjectOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ServerSideEncryptionEnum := []string{
+		ServerSideEncryptionAES256,
+	}
+	if err := model.ValidateEnum(v, "ServerSideEncryption", ServerSideEncryptionEnum); err != nil {
+		errors["ServerSideEncryption"] = append(errors["ServerSideEncryption"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutObjectRequest is undocumented.
@@ -5111,6 +6958,51 @@ func (v *PutObjectRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *PutObjectRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ACLEnum := []string{
+		ObjectCannedACLAuthenticatedRead,
+		ObjectCannedACLBucketOwnerFullControl,
+		ObjectCannedACLBucketOwnerRead,
+		ObjectCannedACLPrivate,
+		ObjectCannedACLPublicRead,
+		ObjectCannedACLPublicReadWrite,
+	}
+	if err := model.ValidateEnum(v, "ACL", ACLEnum); err != nil {
+		errors["ACL"] = append(errors["ACL"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	ServerSideEncryptionEnum := []string{
+		ServerSideEncryptionAES256,
+	}
+	if err := model.ValidateEnum(v, "ServerSideEncryption", ServerSideEncryptionEnum); err != nil {
+		errors["ServerSideEncryption"] = append(errors["ServerSideEncryption"], err)
+	}
+
+	StorageClassEnum := []string{
+		StorageClassReducedRedundancy,
+		StorageClassStandard,
+	}
+	if err := model.ValidateEnum(v, "StorageClass", StorageClassEnum); err != nil {
+		errors["StorageClass"] = append(errors["StorageClass"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // QueueConfiguration is undocumented.
 type QueueConfiguration struct {
 	XMLName xml.Name `xml:"QueueConfiguration"`
@@ -5123,6 +7015,27 @@ type QueueConfiguration struct {
 
 func (v *QueueConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *QueueConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	EventEnum := []string{
+		EventS3ObjectCreatedCompleteMultipartUpload,
+		EventS3ObjectCreatedCopy,
+		EventS3ObjectCreatedPost,
+		EventS3ObjectCreatedPut,
+		EventS3ReducedRedundancyLostObject,
+	}
+	if err := model.ValidateEnum(v, "Event", EventEnum); err != nil {
+		errors["Event"] = append(errors["Event"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Redirect is undocumented.
@@ -5140,6 +7053,24 @@ func (v *Redirect) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *Redirect) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ProtocolEnum := []string{
+		ProtocolHTTP,
+		ProtocolHTTPS,
+	}
+	if err := model.ValidateEnum(v, "Protocol", ProtocolEnum); err != nil {
+		errors["Protocol"] = append(errors["Protocol"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RedirectAllRequestsTo is undocumented.
 type RedirectAllRequestsTo struct {
 	XMLName xml.Name `xml:"RedirectAllRequestsTo"`
@@ -5152,6 +7083,28 @@ func (v *RedirectAllRequestsTo) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *RedirectAllRequestsTo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HostName"); err != nil {
+		errors["HostName"] = append(errors["HostName"], err)
+	}
+
+	ProtocolEnum := []string{
+		ProtocolHTTP,
+		ProtocolHTTPS,
+	}
+	if err := model.ValidateEnum(v, "Protocol", ProtocolEnum); err != nil {
+		errors["Protocol"] = append(errors["Protocol"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RequestPaymentConfiguration is undocumented.
 type RequestPaymentConfiguration struct {
 	XMLName xml.Name `xml:"RequestPaymentConfiguration"`
@@ -5161,6 +7114,28 @@ type RequestPaymentConfiguration struct {
 
 func (v *RequestPaymentConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *RequestPaymentConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Payer"); err != nil {
+		errors["Payer"] = append(errors["Payer"], err)
+	}
+
+	PayerEnum := []string{
+		PayerBucketOwner,
+		PayerRequester,
+	}
+	if err := model.ValidateEnum(v, "Payer", PayerEnum); err != nil {
+		errors["Payer"] = append(errors["Payer"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RestoreObjectRequest is undocumented.
@@ -5177,6 +7152,24 @@ func (v *RestoreObjectRequest) MarshalXML(e *xml.Encoder, start xml.StartElement
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *RestoreObjectRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RestoreRequest is undocumented.
 type RestoreRequest struct {
 	XMLName xml.Name `xml:"RestoreRequest"`
@@ -5186,6 +7179,20 @@ type RestoreRequest struct {
 
 func (v *RestoreRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *RestoreRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Days"); err != nil {
+		errors["Days"] = append(errors["Days"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RoutingRule is undocumented.
@@ -5198,6 +7205,20 @@ type RoutingRule struct {
 
 func (v *RoutingRule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *RoutingRule) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Redirect"); err != nil {
+		errors["Redirect"] = append(errors["Redirect"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Rule is undocumented.
@@ -5215,6 +7236,32 @@ type Rule struct {
 
 func (v *Rule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Rule) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Prefix"); err != nil {
+		errors["Prefix"] = append(errors["Prefix"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	StatusEnum := []string{
+		ExpirationStatusDisabled,
+		ExpirationStatusEnabled,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for S3.
@@ -5240,6 +7287,24 @@ func (v *Tag) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *Tag) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Value"); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Tagging is undocumented.
 type Tagging struct {
 	XMLName xml.Name `xml:"Tagging"`
@@ -5249,6 +7314,20 @@ type Tagging struct {
 
 func (v *Tagging) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Tagging) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "TagSet"); err != nil {
+		errors["TagSet"] = append(errors["TagSet"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TargetGrant is undocumented.
@@ -5261,6 +7340,25 @@ type TargetGrant struct {
 
 func (v *TargetGrant) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *TargetGrant) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	PermissionEnum := []string{
+		BucketLogsPermissionFullControl,
+		BucketLogsPermissionRead,
+		BucketLogsPermissionWrite,
+	}
+	if err := model.ValidateEnum(v, "Permission", PermissionEnum); err != nil {
+		errors["Permission"] = append(errors["Permission"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TopicConfiguration is undocumented.
@@ -5277,6 +7375,27 @@ func (v *TopicConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *TopicConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	EventEnum := []string{
+		EventS3ObjectCreatedCompleteMultipartUpload,
+		EventS3ObjectCreatedCopy,
+		EventS3ObjectCreatedPost,
+		EventS3ObjectCreatedPut,
+		EventS3ReducedRedundancyLostObject,
+	}
+	if err := model.ValidateEnum(v, "Event", EventEnum); err != nil {
+		errors["Event"] = append(errors["Event"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Transition is undocumented.
 type Transition struct {
 	XMLName xml.Name `xml:"Transition"`
@@ -5288,6 +7407,23 @@ type Transition struct {
 
 func (v *Transition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Transition) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StorageClassEnum := []string{
+		TransitionStorageClassGlacier,
+	}
+	if err := model.ValidateEnum(v, "StorageClass", StorageClassEnum); err != nil {
+		errors["StorageClass"] = append(errors["StorageClass"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for S3.
@@ -5318,6 +7454,23 @@ func (v *UploadPartCopyOutput) MarshalXML(e *xml.Encoder, start xml.StartElement
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *UploadPartCopyOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ServerSideEncryptionEnum := []string{
+		ServerSideEncryptionAES256,
+	}
+	if err := model.ValidateEnum(v, "ServerSideEncryption", ServerSideEncryptionEnum); err != nil {
+		errors["ServerSideEncryption"] = append(errors["ServerSideEncryption"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UploadPartCopyRequest is undocumented.
 type UploadPartCopyRequest struct {
 	XMLName xml.Name `xml:""`
@@ -5344,6 +7497,40 @@ func (v *UploadPartCopyRequest) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *UploadPartCopyRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CopySource"); err != nil {
+		errors["CopySource"] = append(errors["CopySource"], err)
+	}
+
+	if err := model.ValidatePattern(v, "CopySource", `\/.+\/.+`); err != nil {
+		errors["CopySource"] = append(errors["CopySource"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PartNumber"); err != nil {
+		errors["PartNumber"] = append(errors["PartNumber"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UploadID"); err != nil {
+		errors["UploadID"] = append(errors["UploadID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UploadPartOutput is undocumented.
 type UploadPartOutput struct {
 	XMLName xml.Name `xml:"UploadPartOutput"`
@@ -5357,6 +7544,23 @@ type UploadPartOutput struct {
 
 func (v *UploadPartOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *UploadPartOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ServerSideEncryptionEnum := []string{
+		ServerSideEncryptionAES256,
+	}
+	if err := model.ValidateEnum(v, "ServerSideEncryption", ServerSideEncryptionEnum); err != nil {
+		errors["ServerSideEncryption"] = append(errors["ServerSideEncryption"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UploadPartRequest is undocumented.
@@ -5379,6 +7583,32 @@ func (v *UploadPartRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *UploadPartRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PartNumber"); err != nil {
+		errors["PartNumber"] = append(errors["PartNumber"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UploadID"); err != nil {
+		errors["UploadID"] = append(errors["UploadID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VersioningConfiguration is undocumented.
 type VersioningConfiguration struct {
 	XMLName xml.Name `xml:"VersioningConfiguration"`
@@ -5389,6 +7619,32 @@ type VersioningConfiguration struct {
 
 func (v *VersioningConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *VersioningConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	MFADeleteEnum := []string{
+		MFADeleteDisabled,
+		MFADeleteEnabled,
+	}
+	if err := model.ValidateEnum(v, "MFADelete", MFADeleteEnum); err != nil {
+		errors["MFADelete"] = append(errors["MFADelete"], err)
+	}
+
+	StatusEnum := []string{
+		BucketVersioningStatusEnabled,
+		BucketVersioningStatusSuspended,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // WebsiteConfiguration is undocumented.
@@ -5403,6 +7659,16 @@ type WebsiteConfiguration struct {
 
 func (v *WebsiteConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *WebsiteConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // STS is a client for AWS Security Token Service.
@@ -97,6 +98,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *STS
 // virtual MFA device. The TokenCode is the time-based one-time password
 // that the MFA devices produces.
 func (c *STS) AssumeRole(req *AssumeRoleRequest) (resp *AssumeRoleResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AssumeRoleResult{}
 	err = c.client.Do("AssumeRole", "POST", "/", req, resp)
 	return
@@ -138,6 +143,10 @@ func (c *STS) AssumeRole(req *AssumeRoleRequest) (resp *AssumeRoleResult, err er
 // Federation in Using Temporary Security Credentials . Providers in Using
 // .
 func (c *STS) AssumeRoleWithSAML(req *AssumeRoleWithSAMLRequest) (resp *AssumeRoleWithSAMLResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AssumeRoleWithSAMLResult{}
 	err = c.client.Do("AssumeRoleWithSAML", "POST", "/", req, resp)
 	return
@@ -190,6 +199,10 @@ func (c *STS) AssumeRoleWithSAML(req *AssumeRoleWithSAMLRequest) (resp *AssumeRo
 // article discusses web identity federation and shows an example of how to
 // use web identity federation to get access to content in Amazon S3.
 func (c *STS) AssumeRoleWithWebIdentity(req *AssumeRoleWithWebIdentityRequest) (resp *AssumeRoleWithWebIdentityResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AssumeRoleWithWebIdentityResult{}
 	err = c.client.Do("AssumeRoleWithWebIdentity", "POST", "/", req, resp)
 	return
@@ -213,6 +226,10 @@ func (c *STS) AssumeRoleWithWebIdentity(req *AssumeRoleWithWebIdentityRequest) (
 // Using . The principal who made the request. The requested resource. The
 // values of condition keys in the context of the user's request.
 func (c *STS) DecodeAuthorizationMessage(req *DecodeAuthorizationMessageRequest) (resp *DecodeAuthorizationMessageResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DecodeAuthorizationMessageResult{}
 	err = c.client.Do("DecodeAuthorizationMessage", "POST", "/", req, resp)
 	return
@@ -272,6 +289,10 @@ func (c *STS) DecodeAuthorizationMessage(req *DecodeAuthorizationMessageRequest)
 // Enable Access for Federated Users in Using Temporary Security
 // Credentials .
 func (c *STS) GetFederationToken(req *GetFederationTokenRequest) (resp *GetFederationTokenResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetFederationTokenResult{}
 	err = c.client.Do("GetFederationToken", "POST", "/", req, resp)
 	return
@@ -303,6 +324,10 @@ func (c *STS) GetFederationToken(req *GetFederationTokenRequest) (resp *GetFeder
 // Temporary Credentials to Enable Access for IAM Users in Using Temporary
 // Security Credentials .
 func (c *STS) GetSessionToken(req *GetSessionTokenRequest) (resp *GetSessionTokenResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetSessionTokenResult{}
 	err = c.client.Do("GetSessionToken", "POST", "/", req, resp)
 	return
@@ -319,11 +344,115 @@ type AssumeRoleRequest struct {
 	TokenCode       aws.StringValue  `xml:"TokenCode"`
 }
 
+func (v *AssumeRoleRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "DurationSeconds", 900); err != nil {
+		errors["DurationSeconds"] = append(errors["DurationSeconds"], err)
+	}
+
+	if err := model.ValidateMax(v, "DurationSeconds", 3600); err != nil {
+		errors["DurationSeconds"] = append(errors["DurationSeconds"], err)
+	}
+
+	if err := model.ValidateMin(v, "ExternalID", 2); err != nil {
+		errors["ExternalID"] = append(errors["ExternalID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExternalID", 96); err != nil {
+		errors["ExternalID"] = append(errors["ExternalID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ExternalID", `[\w+=,.@:-]*`); err != nil {
+		errors["ExternalID"] = append(errors["ExternalID"], err)
+	}
+
+	if err := model.ValidateMin(v, "Policy", 1); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidateMax(v, "Policy", 2048); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Policy", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleARN"); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleARN", 20); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleARN", 2048); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleSessionName"); err != nil {
+		errors["RoleSessionName"] = append(errors["RoleSessionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleSessionName", 2); err != nil {
+		errors["RoleSessionName"] = append(errors["RoleSessionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleSessionName", 32); err != nil {
+		errors["RoleSessionName"] = append(errors["RoleSessionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleSessionName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleSessionName"] = append(errors["RoleSessionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "SerialNumber", 9); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMax(v, "SerialNumber", 256); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SerialNumber", `[\w+=/:,.@-]*`); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMin(v, "TokenCode", 6); err != nil {
+		errors["TokenCode"] = append(errors["TokenCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "TokenCode", 6); err != nil {
+		errors["TokenCode"] = append(errors["TokenCode"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TokenCode", `[\d]*`); err != nil {
+		errors["TokenCode"] = append(errors["TokenCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AssumeRoleResponse is undocumented.
 type AssumeRoleResponse struct {
 	AssumedRoleUser  *AssumedRoleUser `xml:"AssumeRoleResult>AssumedRoleUser"`
 	Credentials      *Credentials     `xml:"AssumeRoleResult>Credentials"`
 	PackedPolicySize aws.IntegerValue `xml:"AssumeRoleResult>PackedPolicySize"`
+}
+
+func (v *AssumeRoleResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AssumeRoleWithSAMLRequest is undocumented.
@@ -333,6 +462,72 @@ type AssumeRoleWithSAMLRequest struct {
 	PrincipalARN    aws.StringValue  `xml:"PrincipalArn"`
 	RoleARN         aws.StringValue  `xml:"RoleArn"`
 	SAMLAssertion   aws.StringValue  `xml:"SAMLAssertion"`
+}
+
+func (v *AssumeRoleWithSAMLRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "DurationSeconds", 900); err != nil {
+		errors["DurationSeconds"] = append(errors["DurationSeconds"], err)
+	}
+
+	if err := model.ValidateMax(v, "DurationSeconds", 129600); err != nil {
+		errors["DurationSeconds"] = append(errors["DurationSeconds"], err)
+	}
+
+	if err := model.ValidateMin(v, "Policy", 1); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidateMax(v, "Policy", 2048); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Policy", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PrincipalARN"); err != nil {
+		errors["PrincipalARN"] = append(errors["PrincipalARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "PrincipalARN", 20); err != nil {
+		errors["PrincipalARN"] = append(errors["PrincipalARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "PrincipalARN", 2048); err != nil {
+		errors["PrincipalARN"] = append(errors["PrincipalARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleARN"); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleARN", 20); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleARN", 2048); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SAMLAssertion"); err != nil {
+		errors["SAMLAssertion"] = append(errors["SAMLAssertion"], err)
+	}
+
+	if err := model.ValidateMin(v, "SAMLAssertion", 4); err != nil {
+		errors["SAMLAssertion"] = append(errors["SAMLAssertion"], err)
+	}
+
+	if err := model.ValidateMax(v, "SAMLAssertion", 50000); err != nil {
+		errors["SAMLAssertion"] = append(errors["SAMLAssertion"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AssumeRoleWithSAMLResponse is undocumented.
@@ -347,6 +542,16 @@ type AssumeRoleWithSAMLResponse struct {
 	SubjectType      aws.StringValue  `xml:"AssumeRoleWithSAMLResult>SubjectType"`
 }
 
+func (v *AssumeRoleWithSAMLResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AssumeRoleWithWebIdentityRequest is undocumented.
 type AssumeRoleWithWebIdentityRequest struct {
 	DurationSeconds  aws.IntegerValue `xml:"DurationSeconds"`
@@ -355,6 +560,84 @@ type AssumeRoleWithWebIdentityRequest struct {
 	RoleARN          aws.StringValue  `xml:"RoleArn"`
 	RoleSessionName  aws.StringValue  `xml:"RoleSessionName"`
 	WebIdentityToken aws.StringValue  `xml:"WebIdentityToken"`
+}
+
+func (v *AssumeRoleWithWebIdentityRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "DurationSeconds", 900); err != nil {
+		errors["DurationSeconds"] = append(errors["DurationSeconds"], err)
+	}
+
+	if err := model.ValidateMax(v, "DurationSeconds", 129600); err != nil {
+		errors["DurationSeconds"] = append(errors["DurationSeconds"], err)
+	}
+
+	if err := model.ValidateMin(v, "Policy", 1); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidateMax(v, "Policy", 2048); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Policy", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidateMin(v, "ProviderID", 4); err != nil {
+		errors["ProviderID"] = append(errors["ProviderID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ProviderID", 2048); err != nil {
+		errors["ProviderID"] = append(errors["ProviderID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleARN"); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleARN", 20); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleARN", 2048); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RoleSessionName"); err != nil {
+		errors["RoleSessionName"] = append(errors["RoleSessionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "RoleSessionName", 2); err != nil {
+		errors["RoleSessionName"] = append(errors["RoleSessionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleSessionName", 32); err != nil {
+		errors["RoleSessionName"] = append(errors["RoleSessionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleSessionName", `[\w+=,.@-]*`); err != nil {
+		errors["RoleSessionName"] = append(errors["RoleSessionName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WebIdentityToken"); err != nil {
+		errors["WebIdentityToken"] = append(errors["WebIdentityToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "WebIdentityToken", 4); err != nil {
+		errors["WebIdentityToken"] = append(errors["WebIdentityToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "WebIdentityToken", 2048); err != nil {
+		errors["WebIdentityToken"] = append(errors["WebIdentityToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AssumeRoleWithWebIdentityResponse is undocumented.
@@ -367,10 +650,66 @@ type AssumeRoleWithWebIdentityResponse struct {
 	SubjectFromWebIdentityToken aws.StringValue  `xml:"AssumeRoleWithWebIdentityResult>SubjectFromWebIdentityToken"`
 }
 
+func (v *AssumeRoleWithWebIdentityResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "SubjectFromWebIdentityToken", 6); err != nil {
+		errors["SubjectFromWebIdentityToken"] = append(errors["SubjectFromWebIdentityToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "SubjectFromWebIdentityToken", 255); err != nil {
+		errors["SubjectFromWebIdentityToken"] = append(errors["SubjectFromWebIdentityToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AssumedRoleUser is undocumented.
 type AssumedRoleUser struct {
 	ARN           aws.StringValue `xml:"Arn"`
 	AssumedRoleID aws.StringValue `xml:"AssumedRoleId"`
+}
+
+func (v *AssumedRoleUser) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ARN"); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "AssumedRoleID"); err != nil {
+		errors["AssumedRoleID"] = append(errors["AssumedRoleID"], err)
+	}
+
+	if err := model.ValidateMin(v, "AssumedRoleID", 2); err != nil {
+		errors["AssumedRoleID"] = append(errors["AssumedRoleID"], err)
+	}
+
+	if err := model.ValidateMax(v, "AssumedRoleID", 96); err != nil {
+		errors["AssumedRoleID"] = append(errors["AssumedRoleID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AssumedRoleID", `[\w+=,.@:-]*`); err != nil {
+		errors["AssumedRoleID"] = append(errors["AssumedRoleID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Credentials is undocumented.
@@ -381,9 +720,69 @@ type Credentials struct {
 	SessionToken    aws.StringValue `xml:"SessionToken"`
 }
 
+func (v *Credentials) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccessKeyID"); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateMin(v, "AccessKeyID", 16); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateMax(v, "AccessKeyID", 32); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AccessKeyID", `[\w]*`); err != nil {
+		errors["AccessKeyID"] = append(errors["AccessKeyID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Expiration"); err != nil {
+		errors["Expiration"] = append(errors["Expiration"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SecretAccessKey"); err != nil {
+		errors["SecretAccessKey"] = append(errors["SecretAccessKey"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SessionToken"); err != nil {
+		errors["SessionToken"] = append(errors["SessionToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DecodeAuthorizationMessageRequest is undocumented.
 type DecodeAuthorizationMessageRequest struct {
 	EncodedMessage aws.StringValue `xml:"EncodedMessage"`
+}
+
+func (v *DecodeAuthorizationMessageRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EncodedMessage"); err != nil {
+		errors["EncodedMessage"] = append(errors["EncodedMessage"], err)
+	}
+
+	if err := model.ValidateMin(v, "EncodedMessage", 1); err != nil {
+		errors["EncodedMessage"] = append(errors["EncodedMessage"], err)
+	}
+
+	if err := model.ValidateMax(v, "EncodedMessage", 10240); err != nil {
+		errors["EncodedMessage"] = append(errors["EncodedMessage"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DecodeAuthorizationMessageResponse is undocumented.
@@ -391,10 +790,58 @@ type DecodeAuthorizationMessageResponse struct {
 	DecodedMessage aws.StringValue `xml:"DecodeAuthorizationMessageResult>DecodedMessage"`
 }
 
+func (v *DecodeAuthorizationMessageResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // FederatedUser is undocumented.
 type FederatedUser struct {
 	ARN             aws.StringValue `xml:"Arn"`
 	FederatedUserID aws.StringValue `xml:"FederatedUserId"`
+}
+
+func (v *FederatedUser) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ARN"); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "ARN", 20); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "ARN", 2048); err != nil {
+		errors["ARN"] = append(errors["ARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "FederatedUserID"); err != nil {
+		errors["FederatedUserID"] = append(errors["FederatedUserID"], err)
+	}
+
+	if err := model.ValidateMin(v, "FederatedUserID", 2); err != nil {
+		errors["FederatedUserID"] = append(errors["FederatedUserID"], err)
+	}
+
+	if err := model.ValidateMax(v, "FederatedUserID", 96); err != nil {
+		errors["FederatedUserID"] = append(errors["FederatedUserID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FederatedUserID", `[\w+=,.@\:-]*`); err != nil {
+		errors["FederatedUserID"] = append(errors["FederatedUserID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetFederationTokenRequest is undocumented.
@@ -404,11 +851,67 @@ type GetFederationTokenRequest struct {
 	Policy          aws.StringValue  `xml:"Policy"`
 }
 
+func (v *GetFederationTokenRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "DurationSeconds", 900); err != nil {
+		errors["DurationSeconds"] = append(errors["DurationSeconds"], err)
+	}
+
+	if err := model.ValidateMax(v, "DurationSeconds", 129600); err != nil {
+		errors["DurationSeconds"] = append(errors["DurationSeconds"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 2); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 32); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\w+=,.@-]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Policy", 1); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidateMax(v, "Policy", 2048); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Policy", `[\u0009\u000A\u000D\u0020-\u00FF]+`); err != nil {
+		errors["Policy"] = append(errors["Policy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetFederationTokenResponse is undocumented.
 type GetFederationTokenResponse struct {
 	Credentials      *Credentials     `xml:"GetFederationTokenResult>Credentials"`
 	FederatedUser    *FederatedUser   `xml:"GetFederationTokenResult>FederatedUser"`
 	PackedPolicySize aws.IntegerValue `xml:"GetFederationTokenResult>PackedPolicySize"`
+}
+
+func (v *GetFederationTokenResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetSessionTokenRequest is undocumented.
@@ -418,9 +921,61 @@ type GetSessionTokenRequest struct {
 	TokenCode       aws.StringValue  `xml:"TokenCode"`
 }
 
+func (v *GetSessionTokenRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "DurationSeconds", 900); err != nil {
+		errors["DurationSeconds"] = append(errors["DurationSeconds"], err)
+	}
+
+	if err := model.ValidateMax(v, "DurationSeconds", 129600); err != nil {
+		errors["DurationSeconds"] = append(errors["DurationSeconds"], err)
+	}
+
+	if err := model.ValidateMin(v, "SerialNumber", 9); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMax(v, "SerialNumber", 256); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SerialNumber", `[\w+=/:,.@-]*`); err != nil {
+		errors["SerialNumber"] = append(errors["SerialNumber"], err)
+	}
+
+	if err := model.ValidateMin(v, "TokenCode", 6); err != nil {
+		errors["TokenCode"] = append(errors["TokenCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "TokenCode", 6); err != nil {
+		errors["TokenCode"] = append(errors["TokenCode"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TokenCode", `[\d]*`); err != nil {
+		errors["TokenCode"] = append(errors["TokenCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetSessionTokenResponse is undocumented.
 type GetSessionTokenResponse struct {
 	Credentials *Credentials `xml:"GetSessionTokenResult>Credentials"`
+}
+
+func (v *GetSessionTokenResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AssumeRoleResult is a wrapper for AssumeRoleResponse.

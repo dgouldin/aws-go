@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // EC2 is a client for Amazon Elastic Compute Cloud.
@@ -45,6 +46,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *EC2
 // DescribeVpcPeeringConnections request to view your outstanding VPC
 // peering connection requests.
 func (c *EC2) AcceptVPCPeeringConnection(req *AcceptVPCPeeringConnectionRequest) (resp *AcceptVPCPeeringConnectionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AcceptVPCPeeringConnectionResult{}
 	err = c.client.Do("AcceptVpcPeeringConnection", "POST", "/", req, resp)
 	return
@@ -54,6 +59,10 @@ func (c *EC2) AcceptVPCPeeringConnection(req *AcceptVPCPeeringConnectionRequest)
 // for use either in the EC2-Classic platform or in a For more information,
 // see Elastic IP Addresses in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) AllocateAddress(req *AllocateAddressRequest) (resp *AllocateAddressResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AllocateAddressResult{}
 	err = c.client.Do("AllocateAddress", "POST", "/", req, resp)
 	return
@@ -70,6 +79,10 @@ func (c *EC2) AllocateAddress(req *AllocateAddressRequest) (resp *AllocateAddres
 // Addresses in the Amazon Elastic Compute Cloud User Guide
 // AssignPrivateIpAddresses is available only in EC2-VPC.
 func (c *EC2) AssignPrivateIPAddresses(req *AssignPrivateIPAddressesRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AssignPrivateIpAddresses", "POST", "/", req, nil)
 	return
@@ -89,6 +102,10 @@ func (c *EC2) AssignPrivateIPAddresses(req *AssignPrivateIPAddressesRequest) (er
 // idempotent operation. If you perform the operation more than once,
 // Amazon EC2 doesn't return an error.
 func (c *EC2) AssociateAddress(req *AssociateAddressRequest) (resp *AssociateAddressResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AssociateAddressResult{}
 	err = c.client.Do("AssociateAddress", "POST", "/", req, resp)
 	return
@@ -104,6 +121,10 @@ func (c *EC2) AssociateAddress(req *AssociateAddressRequest) (resp *AssociateAdd
 // system on the instance. For more information, see Options Sets in the
 // Amazon Virtual Private Cloud User Guide
 func (c *EC2) AssociateDHCPOptions(req *AssociateDHCPOptionsRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AssociateDhcpOptions", "POST", "/", req, nil)
 	return
@@ -118,6 +139,10 @@ func (c *EC2) AssociateDHCPOptions(req *AssociateDHCPOptionsRequest) (err error)
 // about route tables, see Route Tables in the Amazon Virtual Private Cloud
 // User Guide
 func (c *EC2) AssociateRouteTable(req *AssociateRouteTableRequest) (resp *AssociateRouteTableResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AssociateRouteTableResult{}
 	err = c.client.Do("AssociateRouteTable", "POST", "/", req, resp)
 	return
@@ -128,6 +153,10 @@ func (c *EC2) AssociateRouteTable(req *AssociateRouteTableRequest) (resp *Associ
 // your VPC and Internet gateway, see the Amazon Virtual Private Cloud User
 // Guide
 func (c *EC2) AttachInternetGateway(req *AttachInternetGatewayRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AttachInternetGateway", "POST", "/", req, nil)
 	return
@@ -135,6 +164,10 @@ func (c *EC2) AttachInternetGateway(req *AttachInternetGatewayRequest) (err erro
 
 // AttachNetworkInterface is undocumented.
 func (c *EC2) AttachNetworkInterface(req *AttachNetworkInterfaceRequest) (resp *AttachNetworkInterfaceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AttachNetworkInterfaceResult{}
 	err = c.client.Do("AttachNetworkInterface", "POST", "/", req, resp)
 	return
@@ -162,6 +195,10 @@ func (c *EC2) AttachNetworkInterface(req *AttachNetworkInterfaceRequest) (resp *
 // information about Amazon EBS volumes, see Attaching Amazon EBS Volumes
 // in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) AttachVolume(req *AttachVolumeRequest) (resp *VolumeAttachment, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &VolumeAttachment{}
 	err = c.client.Do("AttachVolume", "POST", "/", req, resp)
 	return
@@ -171,6 +208,10 @@ func (c *EC2) AttachVolume(req *AttachVolumeRequest) (resp *VolumeAttachment, er
 // information, see Adding a Hardware Virtual Private Gateway to Your in
 // the Amazon Virtual Private Cloud User Guide
 func (c *EC2) AttachVPNGateway(req *AttachVPNGatewayRequest) (resp *AttachVPNGatewayResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AttachVPNGatewayResult{}
 	err = c.client.Do("AttachVpnGateway", "POST", "/", req, resp)
 	return
@@ -192,6 +233,10 @@ func (c *EC2) AttachVPNGateway(req *AttachVPNGatewayRequest) (resp *AttachVPNGat
 // changes are propagated to affected instances as quickly as possible.
 // However, a small delay might occur.
 func (c *EC2) AuthorizeSecurityGroupEgress(req *AuthorizeSecurityGroupEgressRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AuthorizeSecurityGroupEgress", "POST", "/", req, nil)
 	return
@@ -212,6 +257,10 @@ func (c *EC2) AuthorizeSecurityGroupEgress(req *AuthorizeSecurityGroupEgressRequ
 // access a security group for your The security groups must all be for the
 // same
 func (c *EC2) AuthorizeSecurityGroupIngress(req *AuthorizeSecurityGroupIngressRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AuthorizeSecurityGroupIngress", "POST", "/", req, nil)
 	return
@@ -224,6 +273,10 @@ func (c *EC2) AuthorizeSecurityGroupIngress(req *AuthorizeSecurityGroupIngressRe
 // by Amazon For more information, see Creating an Instance Store-Backed
 // Windows
 func (c *EC2) BundleInstance(req *BundleInstanceRequest) (resp *BundleInstanceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &BundleInstanceResult{}
 	err = c.client.Do("BundleInstance", "POST", "/", req, resp)
 	return
@@ -232,6 +285,10 @@ func (c *EC2) BundleInstance(req *BundleInstanceRequest) (resp *BundleInstanceRe
 // CancelBundleTask cancels a bundling operation for an instance
 // store-backed Windows instance.
 func (c *EC2) CancelBundleTask(req *CancelBundleTaskRequest) (resp *CancelBundleTaskResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CancelBundleTaskResult{}
 	err = c.client.Do("CancelBundleTask", "POST", "/", req, resp)
 	return
@@ -245,6 +302,10 @@ func (c *EC2) CancelBundleTask(req *CancelBundleTaskRequest) (resp *CancelBundle
 // information, see Using the Command Line Tools to Import Your Virtual
 // Machine to Amazon EC2 in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) CancelConversionTask(req *CancelConversionRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CancelConversionTask", "POST", "/", req, nil)
 	return
@@ -256,6 +317,10 @@ func (c *EC2) CancelConversionTask(req *CancelConversionRequest) (err error) {
 // transferring the final disk image, the command fails and returns an
 // error.
 func (c *EC2) CancelExportTask(req *CancelExportTaskRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CancelExportTask", "POST", "/", req, nil)
 	return
@@ -266,6 +331,10 @@ func (c *EC2) CancelExportTask(req *CancelExportTaskRequest) (err error) {
 // Reserved Instance Marketplace in the Amazon Elastic Compute Cloud User
 // Guide
 func (c *EC2) CancelReservedInstancesListing(req *CancelReservedInstancesListingRequest) (resp *CancelReservedInstancesListingResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CancelReservedInstancesListingResult{}
 	err = c.client.Do("CancelReservedInstancesListing", "POST", "/", req, resp)
 	return
@@ -280,6 +349,10 @@ func (c *EC2) CancelReservedInstancesListing(req *CancelReservedInstancesListing
 // Elastic Compute Cloud User Guide Canceling a Spot Instance request does
 // not terminate running Spot Instances associated with the request.
 func (c *EC2) CancelSpotInstanceRequests(req *CancelSpotInstanceRequestsRequest) (resp *CancelSpotInstanceRequestsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CancelSpotInstanceRequestsResult{}
 	err = c.client.Do("CancelSpotInstanceRequests", "POST", "/", req, resp)
 	return
@@ -290,6 +363,10 @@ func (c *EC2) CancelSpotInstanceRequests(req *CancelSpotInstanceRequestsRequest)
 // product code. It is useful when a product code owner needs to verify
 // whether another user's instance is eligible for support.
 func (c *EC2) ConfirmProductInstance(req *ConfirmProductInstanceRequest) (resp *ConfirmProductInstanceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ConfirmProductInstanceResult{}
 	err = c.client.Do("ConfirmProductInstance", "POST", "/", req, resp)
 	return
@@ -302,6 +379,10 @@ func (c *EC2) ConfirmProductInstance(req *ConfirmProductInstanceRequest) (resp *
 // more information, see Copying AMIs in the Amazon Elastic Compute Cloud
 // User Guide
 func (c *EC2) CopyImage(req *CopyImageRequest) (resp *CopyImageResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CopyImageResult{}
 	err = c.client.Do("CopyImage", "POST", "/", req, resp)
 	return
@@ -316,6 +397,10 @@ func (c *EC2) CopyImage(req *CopyImageRequest) (resp *CopyImageResult, err error
 // remain unencrypted. For more information, see Copying an Amazon EBS
 // Snapshot in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) CopySnapshot(req *CopySnapshotRequest) (resp *CopySnapshotResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CopySnapshotResult{}
 	err = c.client.Do("CopySnapshot", "POST", "/", req, resp)
 	return
@@ -338,6 +423,10 @@ func (c *EC2) CopySnapshot(req *CopySnapshotRequest) (resp *CopySnapshotResult, 
 // Virtual Private Gateway to Your in the Amazon Virtual Private Cloud User
 // Guide
 func (c *EC2) CreateCustomerGateway(req *CreateCustomerGatewayRequest) (resp *CreateCustomerGatewayResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateCustomerGatewayResult{}
 	err = c.client.Do("CreateCustomerGateway", "POST", "/", req, resp)
 	return
@@ -369,6 +458,10 @@ func (c *EC2) CreateCustomerGateway(req *CreateCustomerGatewayRequest) (resp *Cr
 // For more information about options, see Options Sets in the Amazon
 // Virtual Private Cloud User Guide
 func (c *EC2) CreateDHCPOptions(req *CreateDHCPOptionsRequest) (resp *CreateDHCPOptionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDHCPOptionsResult{}
 	err = c.client.Do("CreateDhcpOptions", "POST", "/", req, resp)
 	return
@@ -383,6 +476,10 @@ func (c *EC2) CreateDHCPOptions(req *CreateDHCPOptionsRequest) (resp *CreateDHCP
 // more information, see Creating Amazon EBS-Backed Linux AMIs in the
 // Amazon Elastic Compute Cloud User Guide
 func (c *EC2) CreateImage(req *CreateImageRequest) (resp *CreateImageResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateImageResult{}
 	err = c.client.Do("CreateImage", "POST", "/", req, resp)
 	return
@@ -394,6 +491,10 @@ func (c *EC2) CreateImage(req *CreateImageRequest) (resp *CreateImageResult, err
 // export, see Exporting EC2 Instances in the Amazon Elastic Compute Cloud
 // User Guide
 func (c *EC2) CreateInstanceExportTask(req *CreateInstanceExportTaskRequest) (resp *CreateInstanceExportTaskResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateInstanceExportTaskResult{}
 	err = c.client.Do("CreateInstanceExportTask", "POST", "/", req, resp)
 	return
@@ -404,6 +505,10 @@ func (c *EC2) CreateInstanceExportTask(req *CreateInstanceExportTaskRequest) (re
 // AttachInternetGateway For more information about your VPC and Internet
 // gateway, see the Amazon Virtual Private Cloud User Guide
 func (c *EC2) CreateInternetGateway(req *CreateInternetGatewayRequest) (resp *CreateInternetGatewayResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateInternetGatewayResult{}
 	err = c.client.Do("CreateInternetGateway", "POST", "/", req, resp)
 	return
@@ -419,6 +524,10 @@ func (c *EC2) CreateInternetGateway(req *CreateInternetGatewayRequest) (resp *Cr
 // available in all regions, use ImportKeyPair For more information about
 // key pairs, see Key Pairs in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) CreateKeyPair(req *CreateKeyPairRequest) (resp *KeyPair, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &KeyPair{}
 	err = c.client.Do("CreateKeyPair", "POST", "/", req, resp)
 	return
@@ -429,6 +538,10 @@ func (c *EC2) CreateKeyPair(req *CreateKeyPairRequest) (resp *KeyPair, err error
 // instances in your For more information about network ACLs, see Network
 // ACLs in the Amazon Virtual Private Cloud User Guide
 func (c *EC2) CreateNetworkACL(req *CreateNetworkACLRequest) (resp *CreateNetworkACLResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateNetworkACLResult{}
 	err = c.client.Do("CreateNetworkAcl", "POST", "/", req, resp)
 	return
@@ -449,6 +562,10 @@ func (c *EC2) CreateNetworkACL(req *CreateNetworkACLRequest) (resp *CreateNetwor
 // more information about network ACLs, see Network ACLs in the Amazon
 // Virtual Private Cloud User Guide
 func (c *EC2) CreateNetworkACLEntry(req *CreateNetworkACLEntryRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateNetworkAclEntry", "POST", "/", req, nil)
 	return
@@ -458,6 +575,10 @@ func (c *EC2) CreateNetworkACLEntry(req *CreateNetworkACLEntryRequest) (err erro
 // subnet. For more information about network interfaces, see Elastic
 // Network Interfaces in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) CreateNetworkInterface(req *CreateNetworkInterfaceRequest) (resp *CreateNetworkInterfaceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateNetworkInterfaceResult{}
 	err = c.client.Do("CreateNetworkInterface", "POST", "/", req, resp)
 	return
@@ -469,6 +590,10 @@ func (c *EC2) CreateNetworkInterface(req *CreateNetworkInterfaceRequest) (resp *
 // cluster instances, see Cluster Instances in the Amazon Elastic Compute
 // Cloud User Guide
 func (c *EC2) CreatePlacementGroup(req *CreatePlacementGroupRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreatePlacementGroup", "POST", "/", req, nil)
 	return
@@ -492,6 +617,10 @@ func (c *EC2) CreatePlacementGroup(req *CreatePlacementGroupRequest) (err error)
 // operation. For more information, see Reserved Instance Marketplace in
 // the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) CreateReservedInstancesListing(req *CreateReservedInstancesListingRequest) (resp *CreateReservedInstancesListingResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateReservedInstancesListingResult{}
 	err = c.client.Do("CreateReservedInstancesListing", "POST", "/", req, resp)
 	return
@@ -510,6 +639,10 @@ func (c *EC2) CreateReservedInstancesListing(req *CreateReservedInstancesListing
 // target the traffic. For more information about route tables, see Route
 // Tables in the Amazon Virtual Private Cloud User Guide
 func (c *EC2) CreateRoute(req *CreateRouteRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateRoute", "POST", "/", req, nil)
 	return
@@ -520,6 +653,10 @@ func (c *EC2) CreateRoute(req *CreateRouteRequest) (err error) {
 // subnet. For more information about route tables, see Route Tables in the
 // Amazon Virtual Private Cloud User Guide
 func (c *EC2) CreateRouteTable(req *CreateRouteTableRequest) (resp *CreateRouteTableResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateRouteTableResult{}
 	err = c.client.Do("CreateRouteTable", "POST", "/", req, resp)
 	return
@@ -545,6 +682,10 @@ func (c *EC2) CreateRouteTable(req *CreateRouteTableRequest) (resp *CreateRouteT
 // AuthorizeSecurityGroupIngress , AuthorizeSecurityGroupEgress ,
 // RevokeSecurityGroupIngress , and RevokeSecurityGroupEgress
 func (c *EC2) CreateSecurityGroup(req *CreateSecurityGroupRequest) (resp *CreateSecurityGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateSecurityGroupResult{}
 	err = c.client.Do("CreateSecurityGroup", "POST", "/", req, resp)
 	return
@@ -573,6 +714,10 @@ func (c *EC2) CreateSecurityGroup(req *CreateSecurityGroupRequest) (resp *Create
 // For more information, see Amazon Elastic Block Store and Amazon EBS
 // Encryption in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) CreateSnapshot(req *CreateSnapshotRequest) (resp *Snapshot, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &Snapshot{}
 	err = c.client.Do("CreateSnapshot", "POST", "/", req, resp)
 	return
@@ -583,6 +728,10 @@ func (c *EC2) CreateSnapshot(req *CreateSnapshotRequest) (resp *Snapshot, err er
 // feed per AWS account. For more information, see Spot Instances in the
 // Amazon Elastic Compute Cloud User Guide
 func (c *EC2) CreateSpotDatafeedSubscription(req *CreateSpotDatafeedSubscriptionRequest) (resp *CreateSpotDatafeedSubscriptionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateSpotDatafeedSubscriptionResult{}
 	err = c.client.Do("CreateSpotDatafeedSubscription", "POST", "/", req, resp)
 	return
@@ -607,6 +756,10 @@ func (c *EC2) CreateSpotDatafeedSubscription(req *CreateSpotDatafeedSubscription
 // information about subnets, see Your VPC and Subnets in the Amazon
 // Virtual Private Cloud User Guide
 func (c *EC2) CreateSubnet(req *CreateSubnetRequest) (resp *CreateSubnetResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateSubnetResult{}
 	err = c.client.Do("CreateSubnet", "POST", "/", req, resp)
 	return
@@ -618,6 +771,10 @@ func (c *EC2) CreateSubnet(req *CreateSubnetRequest) (resp *CreateSubnetResult, 
 // resource. For more information about tags, see Tagging Your Resources in
 // the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) CreateTags(req *CreateTagsRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateTags", "POST", "/", req, nil)
 	return
@@ -635,6 +792,10 @@ func (c *EC2) CreateTags(req *CreateTagsRequest) (err error) {
 // Cloud User Guide For more information, see Creating or Restoring an
 // Amazon EBS Volume in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) CreateVolume(req *CreateVolumeRequest) (resp *Volume, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &Volume{}
 	err = c.client.Do("CreateVolume", "POST", "/", req, resp)
 	return
@@ -649,6 +810,10 @@ func (c *EC2) CreateVolume(req *CreateVolumeRequest) (resp *Volume, err error) {
 // (AmazonProvidedDNS). For more information about options, see Options
 // Sets in the Amazon Virtual Private Cloud User Guide
 func (c *EC2) CreateVPC(req *CreateVPCRequest) (resp *CreateVPCResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateVPCResult{}
 	err = c.client.Do("CreateVpc", "POST", "/", req, resp)
 	return
@@ -664,6 +829,10 @@ func (c *EC2) CreateVPC(req *CreateVPCRequest) (resp *CreateVPCResult, err error
 // CreateVpcPeeringConnection request between VPCs with overlapping blocks
 // results in the VPC peering connection having a status of failed
 func (c *EC2) CreateVPCPeeringConnection(req *CreateVPCPeeringConnectionRequest) (resp *CreateVPCPeeringConnectionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateVPCPeeringConnectionResult{}
 	err = c.client.Do("CreateVpcPeeringConnection", "POST", "/", req, resp)
 	return
@@ -682,6 +851,10 @@ func (c *EC2) CreateVPCPeeringConnection(req *CreateVPCPeeringConnectionRequest)
 // Hardware Virtual Private Gateway to Your in the Amazon Virtual Private
 // Cloud User Guide
 func (c *EC2) CreateVPNConnection(req *CreateVPNConnectionRequest) (resp *CreateVPNConnectionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateVPNConnectionResult{}
 	err = c.client.Do("CreateVpnConnection", "POST", "/", req, resp)
 	return
@@ -694,6 +867,10 @@ func (c *EC2) CreateVPNConnection(req *CreateVPNConnectionRequest) (resp *Create
 // information about VPN connections, see Adding a Hardware Virtual Private
 // Gateway to Your in the Amazon Virtual Private Cloud User Guide
 func (c *EC2) CreateVPNConnectionRoute(req *CreateVPNConnectionRouteRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateVpnConnectionRoute", "POST", "/", req, nil)
 	return
@@ -706,6 +883,10 @@ func (c *EC2) CreateVPNConnectionRoute(req *CreateVPNConnectionRouteRequest) (er
 // Virtual Private Gateway to Your in the Amazon Virtual Private Cloud User
 // Guide
 func (c *EC2) CreateVPNGateway(req *CreateVPNGatewayRequest) (resp *CreateVPNGatewayResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateVPNGatewayResult{}
 	err = c.client.Do("CreateVpnGateway", "POST", "/", req, resp)
 	return
@@ -714,6 +895,10 @@ func (c *EC2) CreateVPNGateway(req *CreateVPNGatewayRequest) (resp *CreateVPNGat
 // DeleteCustomerGateway deletes the specified customer gateway. You must
 // delete the VPN connection before you can delete the customer gateway.
 func (c *EC2) DeleteCustomerGateway(req *DeleteCustomerGatewayRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteCustomerGateway", "POST", "/", req, nil)
 	return
@@ -724,6 +909,10 @@ func (c *EC2) DeleteCustomerGateway(req *DeleteCustomerGatewayRequest) (err erro
 // disassociate the set of options by associating either a new set of
 // options or the default set of options with the
 func (c *EC2) DeleteDHCPOptions(req *DeleteDHCPOptionsRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteDhcpOptions", "POST", "/", req, nil)
 	return
@@ -732,6 +921,10 @@ func (c *EC2) DeleteDHCPOptions(req *DeleteDHCPOptionsRequest) (err error) {
 // DeleteInternetGateway deletes the specified Internet gateway. You must
 // detach the Internet gateway from the VPC before you can delete it.
 func (c *EC2) DeleteInternetGateway(req *DeleteInternetGatewayRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteInternetGateway", "POST", "/", req, nil)
 	return
@@ -740,6 +933,10 @@ func (c *EC2) DeleteInternetGateway(req *DeleteInternetGatewayRequest) (err erro
 // DeleteKeyPair deletes the specified key pair, by removing the public key
 // from Amazon EC2.
 func (c *EC2) DeleteKeyPair(req *DeleteKeyPairRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteKeyPair", "POST", "/", req, nil)
 	return
@@ -749,6 +946,10 @@ func (c *EC2) DeleteKeyPair(req *DeleteKeyPairRequest) (err error) {
 // if it's associated with any subnets. You can't delete the default
 // network
 func (c *EC2) DeleteNetworkACL(req *DeleteNetworkACLRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteNetworkAcl", "POST", "/", req, nil)
 	return
@@ -757,6 +958,10 @@ func (c *EC2) DeleteNetworkACL(req *DeleteNetworkACLRequest) (err error) {
 // DeleteNetworkACLEntry deletes the specified ingress or egress entry
 // (rule) from the specified network
 func (c *EC2) DeleteNetworkACLEntry(req *DeleteNetworkACLEntryRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteNetworkAclEntry", "POST", "/", req, nil)
 	return
@@ -765,6 +970,10 @@ func (c *EC2) DeleteNetworkACLEntry(req *DeleteNetworkACLEntryRequest) (err erro
 // DeleteNetworkInterface deletes the specified network interface. You must
 // detach the network interface before you can delete it.
 func (c *EC2) DeleteNetworkInterface(req *DeleteNetworkInterfaceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteNetworkInterface", "POST", "/", req, nil)
 	return
@@ -776,6 +985,10 @@ func (c *EC2) DeleteNetworkInterface(req *DeleteNetworkInterfaceRequest) (err er
 // instances, see Cluster Instances in the Amazon Elastic Compute Cloud
 // User Guide
 func (c *EC2) DeletePlacementGroup(req *DeletePlacementGroupRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeletePlacementGroup", "POST", "/", req, nil)
 	return
@@ -783,6 +996,10 @@ func (c *EC2) DeletePlacementGroup(req *DeletePlacementGroupRequest) (err error)
 
 // DeleteRoute deletes the specified route from the specified route table.
 func (c *EC2) DeleteRoute(req *DeleteRouteRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteRoute", "POST", "/", req, nil)
 	return
@@ -792,6 +1009,10 @@ func (c *EC2) DeleteRoute(req *DeleteRouteRequest) (err error) {
 // disassociate the route table from any subnets before you can delete it.
 // You can't delete the main route table.
 func (c *EC2) DeleteRouteTable(req *DeleteRouteTableRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteRouteTable", "POST", "/", req, nil)
 	return
@@ -802,6 +1023,10 @@ func (c *EC2) DeleteRouteTable(req *DeleteRouteTableRequest) (err error) {
 // another security group, the operation fails with InvalidGroup.InUse in
 // EC2-Classic or DependencyViolation in EC2-VPC.
 func (c *EC2) DeleteSecurityGroup(req *DeleteSecurityGroupRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteSecurityGroup", "POST", "/", req, nil)
 	return
@@ -819,6 +1044,10 @@ func (c *EC2) DeleteSecurityGroup(req *DeleteSecurityGroupRequest) (err error) {
 // For more information, see Deleting an Amazon EBS Snapshot in the Amazon
 // Elastic Compute Cloud User Guide
 func (c *EC2) DeleteSnapshot(req *DeleteSnapshotRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteSnapshot", "POST", "/", req, nil)
 	return
@@ -828,6 +1057,10 @@ func (c *EC2) DeleteSnapshot(req *DeleteSnapshotRequest) (err error) {
 // For more information, see Spot Instances in the Amazon Elastic Compute
 // Cloud User Guide
 func (c *EC2) DeleteSpotDatafeedSubscription(req *DeleteSpotDatafeedSubscriptionRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteSpotDatafeedSubscription", "POST", "/", req, nil)
 	return
@@ -836,6 +1069,10 @@ func (c *EC2) DeleteSpotDatafeedSubscription(req *DeleteSpotDatafeedSubscription
 // DeleteSubnet deletes the specified subnet. You must terminate all
 // running instances in the subnet before you can delete the subnet.
 func (c *EC2) DeleteSubnet(req *DeleteSubnetRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteSubnet", "POST", "/", req, nil)
 	return
@@ -846,6 +1083,10 @@ func (c *EC2) DeleteSubnet(req *DeleteSubnetRequest) (err error) {
 // more information about tags, see Tagging Your Resources in the Amazon
 // Elastic Compute Cloud User Guide
 func (c *EC2) DeleteTags(req *DeleteTagsRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteTags", "POST", "/", req, nil)
 	return
@@ -857,6 +1098,10 @@ func (c *EC2) DeleteTags(req *DeleteTagsRequest) (err error) {
 // see Deleting an Amazon EBS Volume in the Amazon Elastic Compute Cloud
 // User Guide
 func (c *EC2) DeleteVolume(req *DeleteVolumeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteVolume", "POST", "/", req, nil)
 	return
@@ -869,6 +1114,10 @@ func (c *EC2) DeleteVolume(req *DeleteVolumeRequest) (err error) {
 // all route tables associated with the VPC (except the default one), and
 // so on.
 func (c *EC2) DeleteVPC(req *DeleteVPCRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteVpc", "POST", "/", req, nil)
 	return
@@ -880,6 +1129,10 @@ func (c *EC2) DeleteVPC(req *DeleteVPCRequest) (err error) {
 // requester VPC can delete a VPC peering connection in the
 // pending-acceptance state.
 func (c *EC2) DeleteVPCPeeringConnection(req *DeleteVPCPeeringConnectionRequest) (resp *DeleteVPCPeeringConnectionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteVPCPeeringConnectionResult{}
 	err = c.client.Do("DeleteVpcPeeringConnection", "POST", "/", req, resp)
 	return
@@ -896,6 +1149,10 @@ func (c *EC2) DeleteVPCPeeringConnection(req *DeleteVPCPeeringConnectionRequest)
 // using the new configuration information returned with the new VPN
 // connection
 func (c *EC2) DeleteVPNConnection(req *DeleteVPNConnectionRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteVpnConnection", "POST", "/", req, nil)
 	return
@@ -906,6 +1163,10 @@ func (c *EC2) DeleteVPNConnection(req *DeleteVPNConnectionRequest) (err error) {
 // VPN customer gateway. The static route allows traffic to be routed from
 // the virtual private gateway to the VPN customer gateway.
 func (c *EC2) DeleteVPNConnectionRoute(req *DeleteVPNConnectionRouteRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteVpnConnectionRoute", "POST", "/", req, nil)
 	return
@@ -917,6 +1178,10 @@ func (c *EC2) DeleteVPNConnectionRoute(req *DeleteVPNConnectionRouteRequest) (er
 // to delete the virtual private gateway if you plan to delete and recreate
 // the VPN connection between your VPC and your network.
 func (c *EC2) DeleteVPNGateway(req *DeleteVPNGatewayRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteVpnGateway", "POST", "/", req, nil)
 	return
@@ -925,6 +1190,10 @@ func (c *EC2) DeleteVPNGateway(req *DeleteVPNGatewayRequest) (err error) {
 // DeregisterImage deregisters the specified After you deregister an it
 // can't be used to launch new instances. This command does not delete the
 func (c *EC2) DeregisterImage(req *DeregisterImageRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeregisterImage", "POST", "/", req, nil)
 	return
@@ -933,6 +1202,10 @@ func (c *EC2) DeregisterImage(req *DeregisterImageRequest) (err error) {
 // DescribeAccountAttributes describes the specified attribute of your AWS
 // account.
 func (c *EC2) DescribeAccountAttributes(req *DescribeAccountAttributesRequest) (resp *DescribeAccountAttributesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeAccountAttributesResult{}
 	err = c.client.Do("DescribeAccountAttributes", "POST", "/", req, resp)
 	return
@@ -943,6 +1216,10 @@ func (c *EC2) DescribeAccountAttributes(req *DescribeAccountAttributesRequest) (
 // For more information, see Elastic IP Addresses in the Amazon Elastic
 // Compute Cloud User Guide
 func (c *EC2) DescribeAddresses(req *DescribeAddressesRequest) (resp *DescribeAddressesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeAddressesResult{}
 	err = c.client.Do("DescribeAddresses", "POST", "/", req, resp)
 	return
@@ -956,6 +1233,10 @@ func (c *EC2) DescribeAddresses(req *DescribeAddressesRequest) (resp *DescribeAd
 // Regions and Availability Zones in the Amazon Elastic Compute Cloud User
 // Guide
 func (c *EC2) DescribeAvailabilityZones(req *DescribeAvailabilityZonesRequest) (resp *DescribeAvailabilityZonesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeAvailabilityZonesResult{}
 	err = c.client.Do("DescribeAvailabilityZones", "POST", "/", req, resp)
 	return
@@ -967,6 +1248,10 @@ func (c *EC2) DescribeAvailabilityZones(req *DescribeAvailabilityZonesRequest) (
 // it. Just use RegisterImage with the Amazon S3 bucket name and image
 // manifest name you provided to the bundle task.
 func (c *EC2) DescribeBundleTasks(req *DescribeBundleTasksRequest) (resp *DescribeBundleTasksResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeBundleTasksResult{}
 	err = c.client.Do("DescribeBundleTasks", "POST", "/", req, resp)
 	return
@@ -977,6 +1262,10 @@ func (c *EC2) DescribeBundleTasks(req *DescribeBundleTasksRequest) (resp *Descri
 // Virtual Machine to Amazon EC2 in the Amazon Elastic Compute Cloud User
 // Guide
 func (c *EC2) DescribeConversionTasks(req *DescribeConversionTasksRequest) (resp *DescribeConversionTasksResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeConversionTasksResult{}
 	err = c.client.Do("DescribeConversionTasks", "POST", "/", req, resp)
 	return
@@ -987,6 +1276,10 @@ func (c *EC2) DescribeConversionTasks(req *DescribeConversionTasksRequest) (resp
 // Hardware Virtual Private Gateway to Your in the Amazon Virtual Private
 // Cloud User Guide
 func (c *EC2) DescribeCustomerGateways(req *DescribeCustomerGatewaysRequest) (resp *DescribeCustomerGatewaysResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeCustomerGatewaysResult{}
 	err = c.client.Do("DescribeCustomerGateways", "POST", "/", req, resp)
 	return
@@ -996,6 +1289,10 @@ func (c *EC2) DescribeCustomerGateways(req *DescribeCustomerGatewaysRequest) (re
 // information about options sets, see Options Sets in the Amazon Virtual
 // Private Cloud User Guide
 func (c *EC2) DescribeDHCPOptions(req *DescribeDHCPOptionsRequest) (resp *DescribeDHCPOptionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDHCPOptionsResult{}
 	err = c.client.Do("DescribeDhcpOptions", "POST", "/", req, resp)
 	return
@@ -1003,6 +1300,10 @@ func (c *EC2) DescribeDHCPOptions(req *DescribeDHCPOptionsRequest) (resp *Descri
 
 // DescribeExportTasks is undocumented.
 func (c *EC2) DescribeExportTasks(req *DescribeExportTasksRequest) (resp *DescribeExportTasksResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeExportTasksResult{}
 	err = c.client.Do("DescribeExportTasks", "POST", "/", req, resp)
 	return
@@ -1011,6 +1312,10 @@ func (c *EC2) DescribeExportTasks(req *DescribeExportTasksRequest) (resp *Descri
 // DescribeImageAttribute describes the specified attribute of the
 // specified You can specify only one attribute at a time.
 func (c *EC2) DescribeImageAttribute(req *DescribeImageAttributeRequest) (resp *ImageAttribute, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ImageAttribute{}
 	err = c.client.Do("DescribeImageAttribute", "POST", "/", req, resp)
 	return
@@ -1023,6 +1328,10 @@ func (c *EC2) DescribeImageAttribute(req *DescribeImageAttributeRequest) (resp *
 // Deregistered images are included in the returned results for an
 // unspecified interval after deregistration.
 func (c *EC2) DescribeImages(req *DescribeImagesRequest) (resp *DescribeImagesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeImagesResult{}
 	err = c.client.Do("DescribeImages", "POST", "/", req, resp)
 	return
@@ -1035,6 +1344,10 @@ func (c *EC2) DescribeImages(req *DescribeImagesRequest) (resp *DescribeImagesRe
 // rootDeviceName | blockDeviceMapping | productCodes | sourceDestCheck |
 // groupSet | ebsOptimized | sriovNetSupport
 func (c *EC2) DescribeInstanceAttribute(req *DescribeInstanceAttributeRequest) (resp *InstanceAttribute, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &InstanceAttribute{}
 	err = c.client.Do("DescribeInstanceAttribute", "POST", "/", req, resp)
 	return
@@ -1089,6 +1402,10 @@ func (c *EC2) DescribeInstanceAttribute(req *DescribeInstanceAttributeRequest) (
 // working with scheduled events, see Working with an Instance That Has a
 // Scheduled Event in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) DescribeInstanceStatus(req *DescribeInstanceStatusRequest) (resp *DescribeInstanceStatusResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeInstanceStatusResult{}
 	err = c.client.Do("DescribeInstanceStatus", "POST", "/", req, resp)
 	return
@@ -1103,6 +1420,10 @@ func (c *EC2) DescribeInstanceStatus(req *DescribeInstanceStatusRequest) (resp *
 // terminated instances might appear in the returned results. This interval
 // is usually less than one hour.
 func (c *EC2) DescribeInstances(req *DescribeInstancesRequest) (resp *DescribeInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeInstancesResult{}
 	err = c.client.Do("DescribeInstances", "POST", "/", req, resp)
 	return
@@ -1110,6 +1431,10 @@ func (c *EC2) DescribeInstances(req *DescribeInstancesRequest) (resp *DescribeIn
 
 // DescribeInternetGateways is undocumented.
 func (c *EC2) DescribeInternetGateways(req *DescribeInternetGatewaysRequest) (resp *DescribeInternetGatewaysResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeInternetGatewaysResult{}
 	err = c.client.Do("DescribeInternetGateways", "POST", "/", req, resp)
 	return
@@ -1119,6 +1444,10 @@ func (c *EC2) DescribeInternetGateways(req *DescribeInternetGatewaysRequest) (re
 // information about key pairs, see Key Pairs in the Amazon Elastic Compute
 // Cloud User Guide
 func (c *EC2) DescribeKeyPairs(req *DescribeKeyPairsRequest) (resp *DescribeKeyPairsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeKeyPairsResult{}
 	err = c.client.Do("DescribeKeyPairs", "POST", "/", req, resp)
 	return
@@ -1128,6 +1457,10 @@ func (c *EC2) DescribeKeyPairs(req *DescribeKeyPairsRequest) (resp *DescribeKeyP
 // information about network ACLs, see Network ACLs in the Amazon Virtual
 // Private Cloud User Guide
 func (c *EC2) DescribeNetworkACLs(req *DescribeNetworkACLsRequest) (resp *DescribeNetworkACLsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeNetworkACLsResult{}
 	err = c.client.Do("DescribeNetworkAcls", "POST", "/", req, resp)
 	return
@@ -1136,6 +1469,10 @@ func (c *EC2) DescribeNetworkACLs(req *DescribeNetworkACLsRequest) (resp *Descri
 // DescribeNetworkInterfaceAttribute describes a network interface
 // attribute. You can specify only one attribute at a time.
 func (c *EC2) DescribeNetworkInterfaceAttribute(req *DescribeNetworkInterfaceAttributeRequest) (resp *DescribeNetworkInterfaceAttributeResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeNetworkInterfaceAttributeResult{}
 	err = c.client.Do("DescribeNetworkInterfaceAttribute", "POST", "/", req, resp)
 	return
@@ -1143,6 +1480,10 @@ func (c *EC2) DescribeNetworkInterfaceAttribute(req *DescribeNetworkInterfaceAtt
 
 // DescribeNetworkInterfaces is undocumented.
 func (c *EC2) DescribeNetworkInterfaces(req *DescribeNetworkInterfacesRequest) (resp *DescribeNetworkInterfacesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeNetworkInterfacesResult{}
 	err = c.client.Do("DescribeNetworkInterfaces", "POST", "/", req, resp)
 	return
@@ -1152,6 +1493,10 @@ func (c *EC2) DescribeNetworkInterfaces(req *DescribeNetworkInterfacesRequest) (
 // For more information about placement groups and cluster instances, see
 // Cluster Instances in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) DescribePlacementGroups(req *DescribePlacementGroupsRequest) (resp *DescribePlacementGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribePlacementGroupsResult{}
 	err = c.client.Do("DescribePlacementGroups", "POST", "/", req, resp)
 	return
@@ -1161,6 +1506,10 @@ func (c *EC2) DescribePlacementGroups(req *DescribePlacementGroupsRequest) (resp
 // available to you. For a list of the regions supported by Amazon EC2, see
 // Regions and Endpoints
 func (c *EC2) DescribeRegions(req *DescribeRegionsRequest) (resp *DescribeRegionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeRegionsResult{}
 	err = c.client.Do("DescribeRegions", "POST", "/", req, resp)
 	return
@@ -1171,6 +1520,10 @@ func (c *EC2) DescribeRegions(req *DescribeRegionsRequest) (resp *DescribeRegion
 // Instances, see Reserved Instances in the Amazon Elastic Compute Cloud
 // User Guide
 func (c *EC2) DescribeReservedInstances(req *DescribeReservedInstancesRequest) (resp *DescribeReservedInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeReservedInstancesResult{}
 	err = c.client.Do("DescribeReservedInstances", "POST", "/", req, resp)
 	return
@@ -1194,6 +1547,10 @@ func (c *EC2) DescribeReservedInstances(req *DescribeReservedInstancesRequest) (
 // that you purchase. For more information, see Reserved Instance
 // Marketplace in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) DescribeReservedInstancesListings(req *DescribeReservedInstancesListingsRequest) (resp *DescribeReservedInstancesListingsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeReservedInstancesListingsResult{}
 	err = c.client.Do("DescribeReservedInstancesListings", "POST", "/", req, resp)
 	return
@@ -1206,6 +1563,10 @@ func (c *EC2) DescribeReservedInstancesListings(req *DescribeReservedInstancesLi
 // modification is returned. For more information, see Modifying Reserved
 // Instances in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeReservedInstancesModifications(req *DescribeReservedInstancesModificationsRequest) (resp *DescribeReservedInstancesModificationsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeReservedInstancesModificationsResult{}
 	err = c.client.Do("DescribeReservedInstancesModifications", "POST", "/", req, resp)
 	return
@@ -1219,6 +1580,10 @@ func (c *EC2) DescribeReservedInstancesModifications(req *DescribeReservedInstan
 // actual time used. For more information, see Reserved Instance
 // Marketplace in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) DescribeReservedInstancesOfferings(req *DescribeReservedInstancesOfferingsRequest) (resp *DescribeReservedInstancesOfferingsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeReservedInstancesOfferingsResult{}
 	err = c.client.Do("DescribeReservedInstancesOfferings", "POST", "/", req, resp)
 	return
@@ -1228,6 +1593,10 @@ func (c *EC2) DescribeReservedInstancesOfferings(req *DescribeReservedInstancesO
 // information about route tables, see Route Tables in the Amazon Virtual
 // Private Cloud User Guide
 func (c *EC2) DescribeRouteTables(req *DescribeRouteTablesRequest) (resp *DescribeRouteTablesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeRouteTablesResult{}
 	err = c.client.Do("DescribeRouteTables", "POST", "/", req, resp)
 	return
@@ -1239,6 +1608,10 @@ func (c *EC2) DescribeRouteTables(req *DescribeRouteTablesRequest) (resp *Descri
 // Groups in the Amazon Elastic Compute Cloud User Guide and Security
 // Groups for Your in the Amazon Virtual Private Cloud User Guide
 func (c *EC2) DescribeSecurityGroups(req *DescribeSecurityGroupsRequest) (resp *DescribeSecurityGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeSecurityGroupsResult{}
 	err = c.client.Do("DescribeSecurityGroups", "POST", "/", req, resp)
 	return
@@ -1249,6 +1622,10 @@ func (c *EC2) DescribeSecurityGroups(req *DescribeSecurityGroupsRequest) (resp *
 // more information about Amazon EBS snapshots, see Amazon EBS Snapshots in
 // the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) DescribeSnapshotAttribute(req *DescribeSnapshotAttributeRequest) (resp *DescribeSnapshotAttributeResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeSnapshotAttributeResult{}
 	err = c.client.Do("DescribeSnapshotAttribute", "POST", "/", req, resp)
 	return
@@ -1283,6 +1660,10 @@ func (c *EC2) DescribeSnapshotAttribute(req *DescribeSnapshotAttributeRequest) (
 // information about Amazon EBS snapshots, see Amazon EBS Snapshots in the
 // Amazon Elastic Compute Cloud User Guide
 func (c *EC2) DescribeSnapshots(req *DescribeSnapshotsRequest) (resp *DescribeSnapshotsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeSnapshotsResult{}
 	err = c.client.Do("DescribeSnapshots", "POST", "/", req, resp)
 	return
@@ -1292,6 +1673,10 @@ func (c *EC2) DescribeSnapshots(req *DescribeSnapshotsRequest) (resp *DescribeSn
 // Instances. For more information, see Spot Instances in the Amazon
 // Elastic Compute Cloud User Guide
 func (c *EC2) DescribeSpotDatafeedSubscription(req *DescribeSpotDatafeedSubscriptionRequest) (resp *DescribeSpotDatafeedSubscriptionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeSpotDatafeedSubscriptionResult{}
 	err = c.client.Do("DescribeSpotDatafeedSubscription", "POST", "/", req, resp)
 	return
@@ -1310,6 +1695,10 @@ func (c *EC2) DescribeSpotDatafeedSubscription(req *DescribeSpotDatafeedSubscrip
 // the instance. Alternatively, you can use DescribeInstances with a filter
 // to look for instances where the instance lifecycle is spot
 func (c *EC2) DescribeSpotInstanceRequests(req *DescribeSpotInstanceRequestsRequest) (resp *DescribeSpotInstanceRequestsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeSpotInstanceRequestsResult{}
 	err = c.client.Do("DescribeSpotInstanceRequests", "POST", "/", req, resp)
 	return
@@ -1335,6 +1724,10 @@ func (c *EC2) DescribeSpotInstanceRequests(req *DescribeSpotInstanceRequestsRequ
 // valid within the time period that you specified; the response merely
 // indicates the last time that the price changed.
 func (c *EC2) DescribeSpotPriceHistory(req *DescribeSpotPriceHistoryRequest) (resp *DescribeSpotPriceHistoryResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeSpotPriceHistoryResult{}
 	err = c.client.Do("DescribeSpotPriceHistory", "POST", "/", req, resp)
 	return
@@ -1344,6 +1737,10 @@ func (c *EC2) DescribeSpotPriceHistory(req *DescribeSpotPriceHistoryRequest) (re
 // information about subnets, see Your VPC and Subnets in the Amazon
 // Virtual Private Cloud User Guide
 func (c *EC2) DescribeSubnets(req *DescribeSubnetsRequest) (resp *DescribeSubnetsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeSubnetsResult{}
 	err = c.client.Do("DescribeSubnets", "POST", "/", req, resp)
 	return
@@ -1353,6 +1750,10 @@ func (c *EC2) DescribeSubnets(req *DescribeSubnetsRequest) (resp *DescribeSubnet
 // For more information about tags, see Tagging Your Resources in the
 // Amazon Elastic Compute Cloud User Guide
 func (c *EC2) DescribeTags(req *DescribeTagsRequest) (resp *DescribeTagsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTagsResult{}
 	err = c.client.Do("DescribeTags", "POST", "/", req, resp)
 	return
@@ -1363,6 +1764,10 @@ func (c *EC2) DescribeTags(req *DescribeTagsRequest) (resp *DescribeTagsResult, 
 // information about Amazon EBS volumes, see Amazon EBS Volumes in the
 // Amazon Elastic Compute Cloud User Guide
 func (c *EC2) DescribeVolumeAttribute(req *DescribeVolumeAttributeRequest) (resp *DescribeVolumeAttributeResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeVolumeAttributeResult{}
 	err = c.client.Do("DescribeVolumeAttribute", "POST", "/", req, resp)
 	return
@@ -1400,6 +1805,10 @@ func (c *EC2) DescribeVolumeAttribute(req *DescribeVolumeAttributeRequest) (resp
 // state. Therefore, volume status does not indicate volumes in the error
 // state (for example, when a volume is incapable of accepting
 func (c *EC2) DescribeVolumeStatus(req *DescribeVolumeStatusRequest) (resp *DescribeVolumeStatusResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeVolumeStatusResult{}
 	err = c.client.Do("DescribeVolumeStatus", "POST", "/", req, resp)
 	return
@@ -1415,6 +1824,10 @@ func (c *EC2) DescribeVolumeStatus(req *DescribeVolumeStatusRequest) (resp *Desc
 // information about Amazon EBS volumes, see Amazon EBS Volumes in the
 // Amazon Elastic Compute Cloud User Guide
 func (c *EC2) DescribeVolumes(req *DescribeVolumesRequest) (resp *DescribeVolumesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeVolumesResult{}
 	err = c.client.Do("DescribeVolumes", "POST", "/", req, resp)
 	return
@@ -1423,6 +1836,10 @@ func (c *EC2) DescribeVolumes(req *DescribeVolumesRequest) (resp *DescribeVolume
 // DescribeVPCAttribute describes the specified attribute of the specified
 // You can specify only one attribute at a time.
 func (c *EC2) DescribeVPCAttribute(req *DescribeVPCAttributeRequest) (resp *DescribeVPCAttributeResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeVPCAttributeResult{}
 	err = c.client.Do("DescribeVpcAttribute", "POST", "/", req, resp)
 	return
@@ -1431,6 +1848,10 @@ func (c *EC2) DescribeVPCAttribute(req *DescribeVPCAttributeRequest) (resp *Desc
 // DescribeVPCPeeringConnections describes one or more of your VPC peering
 // connections.
 func (c *EC2) DescribeVPCPeeringConnections(req *DescribeVPCPeeringConnectionsRequest) (resp *DescribeVPCPeeringConnectionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeVPCPeeringConnectionsResult{}
 	err = c.client.Do("DescribeVpcPeeringConnections", "POST", "/", req, resp)
 	return
@@ -1438,6 +1859,10 @@ func (c *EC2) DescribeVPCPeeringConnections(req *DescribeVPCPeeringConnectionsRe
 
 // DescribeVPCs is undocumented.
 func (c *EC2) DescribeVPCs(req *DescribeVPCsRequest) (resp *DescribeVPCsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeVPCsResult{}
 	err = c.client.Do("DescribeVpcs", "POST", "/", req, resp)
 	return
@@ -1448,6 +1873,10 @@ func (c *EC2) DescribeVPCs(req *DescribeVPCsRequest) (resp *DescribeVPCsResult, 
 // Virtual Private Gateway to Your in the Amazon Virtual Private Cloud User
 // Guide
 func (c *EC2) DescribeVPNConnections(req *DescribeVPNConnectionsRequest) (resp *DescribeVPNConnectionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeVPNConnectionsResult{}
 	err = c.client.Do("DescribeVpnConnections", "POST", "/", req, resp)
 	return
@@ -1458,6 +1887,10 @@ func (c *EC2) DescribeVPNConnections(req *DescribeVPNConnectionsRequest) (resp *
 // Adding an IPsec Hardware VPN to Your in the Amazon Virtual Private Cloud
 // User Guide
 func (c *EC2) DescribeVPNGateways(req *DescribeVPNGatewaysRequest) (resp *DescribeVPNGatewaysResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeVPNGatewaysResult{}
 	err = c.client.Do("DescribeVpnGateways", "POST", "/", req, resp)
 	return
@@ -1467,6 +1900,10 @@ func (c *EC2) DescribeVPNGateways(req *DescribeVPNGatewaysRequest) (resp *Descri
 // connectivity between the Internet and the The VPC must not contain any
 // running instances with Elastic IP addresses.
 func (c *EC2) DetachInternetGateway(req *DetachInternetGatewayRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DetachInternetGateway", "POST", "/", req, nil)
 	return
@@ -1474,6 +1911,10 @@ func (c *EC2) DetachInternetGateway(req *DetachInternetGatewayRequest) (err erro
 
 // DetachNetworkInterface is undocumented.
 func (c *EC2) DetachNetworkInterface(req *DetachNetworkInterfaceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DetachNetworkInterface", "POST", "/", req, nil)
 	return
@@ -1490,6 +1931,10 @@ func (c *EC2) DetachNetworkInterface(req *DetachNetworkInterfaceRequest) (err er
 // longer associated with the instance. For more information, see Detaching
 // an Amazon EBS Volume in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) DetachVolume(req *DetachVolumeRequest) (resp *VolumeAttachment, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &VolumeAttachment{}
 	err = c.client.Do("DetachVolume", "POST", "/", req, resp)
 	return
@@ -1503,6 +1948,10 @@ func (c *EC2) DetachVolume(req *DetachVolumeRequest) (resp *VolumeAttachment, er
 // attachment's state to switch to detached before you can delete the VPC
 // or attach a different VPC to the virtual private gateway.
 func (c *EC2) DetachVPNGateway(req *DetachVPNGatewayRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DetachVpnGateway", "POST", "/", req, nil)
 	return
@@ -1511,6 +1960,10 @@ func (c *EC2) DetachVPNGateway(req *DetachVPNGatewayRequest) (err error) {
 // DisableVGWRoutePropagation disables a virtual private gateway from
 // propagating routes to a specified route table of a
 func (c *EC2) DisableVGWRoutePropagation(req *DisableVGWRoutePropagationRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DisableVgwRoutePropagation", "POST", "/", req, nil)
 	return
@@ -1523,6 +1976,10 @@ func (c *EC2) DisableVGWRoutePropagation(req *DisableVGWRoutePropagationRequest)
 // Cloud User Guide This is an idempotent operation. If you perform the
 // operation more than once, Amazon EC2 doesn't return an error.
 func (c *EC2) DisassociateAddress(req *DisassociateAddressRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DisassociateAddress", "POST", "/", req, nil)
 	return
@@ -1534,6 +1991,10 @@ func (c *EC2) DisassociateAddress(req *DisassociateAddressRequest) (err error) {
 // For more information about route tables, see Route Tables in the Amazon
 // Virtual Private Cloud User Guide
 func (c *EC2) DisassociateRouteTable(req *DisassociateRouteTableRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DisassociateRouteTable", "POST", "/", req, nil)
 	return
@@ -1542,6 +2003,10 @@ func (c *EC2) DisassociateRouteTable(req *DisassociateRouteTableRequest) (err er
 // EnableVGWRoutePropagation enables a virtual private gateway to propagate
 // routes to the specified route table of a
 func (c *EC2) EnableVGWRoutePropagation(req *EnableVGWRoutePropagationRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("EnableVgwRoutePropagation", "POST", "/", req, nil)
 	return
@@ -1551,6 +2016,10 @@ func (c *EC2) EnableVGWRoutePropagation(req *EnableVGWRoutePropagationRequest) (
 // operations disabled because the data on the volume was potentially
 // inconsistent.
 func (c *EC2) EnableVolumeIO(req *EnableVolumeIORequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("EnableVolumeIO", "POST", "/", req, nil)
 	return
@@ -1571,6 +2040,10 @@ func (c *EC2) EnableVolumeIO(req *EnableVolumeIORequest) (err error) {
 // owner can retrieve it. For Windows instances, the instance console
 // output displays the last three system event log errors.
 func (c *EC2) GetConsoleOutput(req *GetConsoleOutputRequest) (resp *GetConsoleOutputResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetConsoleOutputResult{}
 	err = c.client.Do("GetConsoleOutput", "POST", "/", req, resp)
 	return
@@ -1588,6 +2061,10 @@ func (c *EC2) GetConsoleOutput(req *GetConsoleOutputRequest) (resp *GetConsoleOu
 // wait up to 15 minutes after launching an instance before trying to
 // retrieve the generated password.
 func (c *EC2) GetPasswordData(req *GetPasswordDataRequest) (resp *GetPasswordDataResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetPasswordDataResult{}
 	err = c.client.Do("GetPasswordData", "POST", "/", req, resp)
 	return
@@ -1599,6 +2076,10 @@ func (c *EC2) GetPasswordData(req *GetPasswordDataRequest) (resp *GetPasswordDat
 // see Using the Command Line Tools to Import Your Virtual Machine to
 // Amazon EC2
 func (c *EC2) ImportInstance(req *ImportInstanceRequest) (resp *ImportInstanceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ImportInstanceResult{}
 	err = c.client.Do("ImportInstance", "POST", "/", req, resp)
 	return
@@ -1612,6 +2093,10 @@ func (c *EC2) ImportInstance(req *ImportInstanceRequest) (resp *ImportInstanceRe
 // you and For more information about key pairs, see Key Pairs in the
 // Amazon Elastic Compute Cloud User Guide
 func (c *EC2) ImportKeyPair(req *ImportKeyPairRequest) (resp *ImportKeyPairResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ImportKeyPairResult{}
 	err = c.client.Do("ImportKeyPair", "POST", "/", req, resp)
 	return
@@ -1624,6 +2109,10 @@ func (c *EC2) ImportKeyPair(req *ImportKeyPairRequest) (resp *ImportKeyPairResul
 // Virtual Machine to Amazon EC2 in the Amazon Elastic Compute Cloud User
 // Guide
 func (c *EC2) ImportVolume(req *ImportVolumeRequest) (resp *ImportVolumeResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ImportVolumeResult{}
 	err = c.client.Do("ImportVolume", "POST", "/", req, resp)
 	return
@@ -1634,6 +2123,10 @@ func (c *EC2) ImportVolume(req *ImportVolumeRequest) (resp *ImportVolumeResult, 
 // codes cannot be modified. Images with an AWS Marketplace product code
 // cannot be made public.
 func (c *EC2) ModifyImageAttribute(req *ModifyImageAttributeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ModifyImageAttribute", "POST", "/", req, nil)
 	return
@@ -1645,6 +2138,10 @@ func (c *EC2) ModifyImageAttribute(req *ModifyImageAttributeRequest) (err error)
 // information, see Modifying Attributes of a Stopped Instance in the
 // Amazon Elastic Compute Cloud User Guide
 func (c *EC2) ModifyInstanceAttribute(req *ModifyInstanceAttributeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ModifyInstanceAttribute", "POST", "/", req, nil)
 	return
@@ -1653,6 +2150,10 @@ func (c *EC2) ModifyInstanceAttribute(req *ModifyInstanceAttributeRequest) (err 
 // ModifyNetworkInterfaceAttribute modifies the specified network interface
 // attribute. You can specify only one attribute at a time.
 func (c *EC2) ModifyNetworkInterfaceAttribute(req *ModifyNetworkInterfaceAttributeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ModifyNetworkInterfaceAttribute", "POST", "/", req, nil)
 	return
@@ -1665,6 +2166,10 @@ func (c *EC2) ModifyNetworkInterfaceAttribute(req *ModifyNetworkInterfaceAttribu
 // type. For more information, see Modifying Reserved Instances in the
 // Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) ModifyReservedInstances(req *ModifyReservedInstancesRequest) (resp *ModifyReservedInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyReservedInstancesResult{}
 	err = c.client.Do("ModifyReservedInstances", "POST", "/", req, resp)
 	return
@@ -1679,6 +2184,10 @@ func (c *EC2) ModifyReservedInstances(req *ModifyReservedInstancesRequest) (resp
 // Elastic Compute Cloud User Guide Snapshots with AWS Marketplace product
 // codes cannot be made public.
 func (c *EC2) ModifySnapshotAttribute(req *ModifySnapshotAttributeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ModifySnapshotAttribute", "POST", "/", req, nil)
 	return
@@ -1686,6 +2195,10 @@ func (c *EC2) ModifySnapshotAttribute(req *ModifySnapshotAttributeRequest) (err 
 
 // ModifySubnetAttribute is undocumented.
 func (c *EC2) ModifySubnetAttribute(req *ModifySubnetAttributeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ModifySubnetAttribute", "POST", "/", req, nil)
 	return
@@ -1700,6 +2213,10 @@ func (c *EC2) ModifySubnetAttribute(req *ModifySubnetAttributeRequest) (err erro
 // recommend that you change this only for boot volumes or for volumes that
 // are stateless or disposable.
 func (c *EC2) ModifyVolumeAttribute(req *ModifyVolumeAttributeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ModifyVolumeAttribute", "POST", "/", req, nil)
 	return
@@ -1707,6 +2224,10 @@ func (c *EC2) ModifyVolumeAttribute(req *ModifyVolumeAttributeRequest) (err erro
 
 // ModifyVPCAttribute is undocumented.
 func (c *EC2) ModifyVPCAttribute(req *ModifyVPCAttributeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ModifyVpcAttribute", "POST", "/", req, nil)
 	return
@@ -1716,6 +2237,10 @@ func (c *EC2) ModifyVPCAttribute(req *ModifyVPCAttributeRequest) (err error) {
 // information about monitoring instances, see Monitoring Your Instances
 // and Volumes in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) MonitorInstances(req *MonitorInstancesRequest) (resp *MonitorInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &MonitorInstancesResult{}
 	err = c.client.Do("MonitorInstances", "POST", "/", req, resp)
 	return
@@ -1733,6 +2258,10 @@ func (c *EC2) MonitorInstances(req *MonitorInstancesRequest) (resp *MonitorInsta
 // Reserved Instances and Reserved Instance Marketplace in the Amazon
 // Elastic Compute Cloud User Guide
 func (c *EC2) PurchaseReservedInstancesOffering(req *PurchaseReservedInstancesOfferingRequest) (resp *PurchaseReservedInstancesOfferingResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PurchaseReservedInstancesOfferingResult{}
 	err = c.client.Do("PurchaseReservedInstancesOffering", "POST", "/", req, resp)
 	return
@@ -1747,6 +2276,10 @@ func (c *EC2) PurchaseReservedInstancesOffering(req *PurchaseReservedInstancesOf
 // troubleshooting, see Getting Console Output and Rebooting Instances in
 // the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) RebootInstances(req *RebootInstancesRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RebootInstances", "POST", "/", req, nil)
 	return
@@ -1767,6 +2300,10 @@ func (c *EC2) RebootInstances(req *RebootInstancesRequest) (err error) {
 // new image. You can't register an image where a secondary (non-root)
 // snapshot has AWS Marketplace product codes.
 func (c *EC2) RegisterImage(req *RegisterImageRequest) (resp *RegisterImageResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RegisterImageResult{}
 	err = c.client.Do("RegisterImage", "POST", "/", req, resp)
 	return
@@ -1779,6 +2316,10 @@ func (c *EC2) RegisterImage(req *RegisterImageRequest) (resp *RegisterImageResul
 // or to delete a VPC peering connection request that you initiated, use
 // DeleteVpcPeeringConnection
 func (c *EC2) RejectVPCPeeringConnection(req *RejectVPCPeeringConnectionRequest) (resp *RejectVPCPeeringConnectionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RejectVPCPeeringConnectionResult{}
 	err = c.client.Do("RejectVpcPeeringConnection", "POST", "/", req, resp)
 	return
@@ -1797,6 +2338,10 @@ func (c *EC2) RejectVPCPeeringConnection(req *RejectVPCPeeringConnectionRequest)
 // disassociate the Elastic IP address before you try to release it.
 // Otherwise, Amazon EC2 returns an error InvalidIPAddress.InUse
 func (c *EC2) ReleaseAddress(req *ReleaseAddressRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ReleaseAddress", "POST", "/", req, nil)
 	return
@@ -1807,6 +2352,10 @@ func (c *EC2) ReleaseAddress(req *ReleaseAddressRequest) (err error) {
 // associated with the default network For more information about network
 // ACLs, see Network ACLs in the Amazon Virtual Private Cloud User Guide
 func (c *EC2) ReplaceNetworkACLAssociation(req *ReplaceNetworkACLAssociationRequest) (resp *ReplaceNetworkACLAssociationResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ReplaceNetworkACLAssociationResult{}
 	err = c.client.Do("ReplaceNetworkAclAssociation", "POST", "/", req, resp)
 	return
@@ -1816,6 +2365,10 @@ func (c *EC2) ReplaceNetworkACLAssociation(req *ReplaceNetworkACLAssociationRequ
 // information about network ACLs, see Network ACLs in the Amazon Virtual
 // Private Cloud User Guide
 func (c *EC2) ReplaceNetworkACLEntry(req *ReplaceNetworkACLEntryRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ReplaceNetworkAclEntry", "POST", "/", req, nil)
 	return
@@ -1827,6 +2380,10 @@ func (c *EC2) ReplaceNetworkACLEntry(req *ReplaceNetworkACLEntryRequest) (err er
 // interface. For more information about route tables, see Route Tables in
 // the Amazon Virtual Private Cloud User Guide
 func (c *EC2) ReplaceRoute(req *ReplaceRouteRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ReplaceRoute", "POST", "/", req, nil)
 	return
@@ -1841,6 +2398,10 @@ func (c *EC2) ReplaceRoute(req *ReplaceRouteRequest) (err error) {
 // table's association ID and the route table to be the new main route
 // table.
 func (c *EC2) ReplaceRouteTableAssociation(req *ReplaceRouteTableAssociationRequest) (resp *ReplaceRouteTableAssociationResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ReplaceRouteTableAssociationResult{}
 	err = c.client.Do("ReplaceRouteTableAssociation", "POST", "/", req, resp)
 	return
@@ -1854,6 +2415,10 @@ func (c *EC2) ReplaceRouteTableAssociation(req *ReplaceRouteTableAssociationRequ
 // improve the accuracy of status checks. Use of this action does not
 // change the value returned by DescribeInstanceStatus
 func (c *EC2) ReportInstanceStatus(req *ReportInstanceStatusRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ReportInstanceStatus", "POST", "/", req, nil)
 	return
@@ -1868,6 +2433,10 @@ func (c *EC2) ReportInstanceStatus(req *ReportInstanceStatusRequest) (err error)
 // Guide Users must be subscribed to the required product to run an
 // instance with AWS Marketplace product codes.
 func (c *EC2) RequestSpotInstances(req *RequestSpotInstancesRequest) (resp *RequestSpotInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RequestSpotInstancesResult{}
 	err = c.client.Do("RequestSpotInstances", "POST", "/", req, resp)
 	return
@@ -1875,6 +2444,10 @@ func (c *EC2) RequestSpotInstances(req *RequestSpotInstancesRequest) (resp *Requ
 
 // ResetImageAttribute resets an attribute of an AMI to its default value.
 func (c *EC2) ResetImageAttribute(req *ResetImageAttributeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ResetImageAttribute", "POST", "/", req, nil)
 	return
@@ -1889,6 +2462,10 @@ func (c *EC2) ResetImageAttribute(req *ResetImageAttributeRequest) (err error) {
 // instance to perform For more information, see NAT Instances in the
 // Amazon Virtual Private Cloud User Guide
 func (c *EC2) ResetInstanceAttribute(req *ResetInstanceAttributeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ResetInstanceAttribute", "POST", "/", req, nil)
 	return
@@ -1897,6 +2474,10 @@ func (c *EC2) ResetInstanceAttribute(req *ResetInstanceAttributeRequest) (err er
 // ResetNetworkInterfaceAttribute resets a network interface attribute. You
 // can specify only one attribute at a time.
 func (c *EC2) ResetNetworkInterfaceAttribute(req *ResetNetworkInterfaceAttributeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ResetNetworkInterfaceAttribute", "POST", "/", req, nil)
 	return
@@ -1906,6 +2487,10 @@ func (c *EC2) ResetNetworkInterfaceAttribute(req *ResetNetworkInterfaceAttribute
 // snapshot. For more information on modifying snapshot permissions, see
 // Sharing Snapshots in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) ResetSnapshotAttribute(req *ResetSnapshotAttributeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ResetSnapshotAttribute", "POST", "/", req, nil)
 	return
@@ -1921,6 +2506,10 @@ func (c *EC2) ResetSnapshotAttribute(req *ResetSnapshotAttributeRequest) (err er
 // instances within the security group as quickly as possible. However, a
 // small delay might occur.
 func (c *EC2) RevokeSecurityGroupEgress(req *RevokeSecurityGroupEgressRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RevokeSecurityGroupEgress", "POST", "/", req, nil)
 	return
@@ -1936,6 +2525,10 @@ func (c *EC2) RevokeSecurityGroupEgress(req *RevokeSecurityGroupEgressRequest) (
 // within the security group as quickly as possible. However, a small delay
 // might occur.
 func (c *EC2) RevokeSecurityGroupIngress(req *RevokeSecurityGroupIngressRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RevokeSecurityGroupIngress", "POST", "/", req, nil)
 	return
@@ -1963,6 +2556,10 @@ func (c *EC2) RevokeSecurityGroupIngress(req *RevokeSecurityGroupIngressRequest)
 // Troubleshooting Connecting to Your Instance in the Amazon Elastic
 // Compute Cloud User Guide
 func (c *EC2) RunInstances(req *RunInstancesRequest) (resp *Reservation, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &Reservation{}
 	err = c.client.Do("RunInstances", "POST", "/", req, resp)
 	return
@@ -1983,6 +2580,10 @@ func (c *EC2) RunInstances(req *RunInstancesRequest) (resp *Reservation, err err
 // its root device returns an error. For more information, see Stopping
 // Instances in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) StartInstances(req *StartInstancesRequest) (resp *StartInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &StartInstancesResult{}
 	err = c.client.Do("StartInstances", "POST", "/", req, resp)
 	return
@@ -2013,6 +2614,10 @@ func (c *EC2) StartInstances(req *StartInstancesRequest) (resp *StartInstancesRe
 // Troubleshooting Stopping Your Instance in the Amazon Elastic Compute
 // Cloud User Guide
 func (c *EC2) StopInstances(req *StopInstancesRequest) (resp *StopInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &StopInstancesResult{}
 	err = c.client.Do("StopInstances", "POST", "/", req, resp)
 	return
@@ -2036,6 +2641,10 @@ func (c *EC2) StopInstances(req *StopInstancesRequest) (resp *StopInstancesResul
 // Troubleshooting Terminating Your Instance in the Amazon Elastic Compute
 // Cloud User Guide
 func (c *EC2) TerminateInstances(req *TerminateInstancesRequest) (resp *TerminateInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &TerminateInstancesResult{}
 	err = c.client.Do("TerminateInstances", "POST", "/", req, resp)
 	return
@@ -2044,6 +2653,10 @@ func (c *EC2) TerminateInstances(req *TerminateInstancesRequest) (resp *Terminat
 // UnassignPrivateIPAddresses unassigns one or more secondary private IP
 // addresses from a network interface.
 func (c *EC2) UnassignPrivateIPAddresses(req *UnassignPrivateIPAddressesRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UnassignPrivateIpAddresses", "POST", "/", req, nil)
 	return
@@ -2053,6 +2666,10 @@ func (c *EC2) UnassignPrivateIPAddresses(req *UnassignPrivateIPAddressesRequest)
 // information about monitoring instances, see Monitoring Your Instances
 // and Volumes in the Amazon Elastic Compute Cloud User Guide
 func (c *EC2) UnmonitorInstances(req *UnmonitorInstancesRequest) (resp *UnmonitorInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UnmonitorInstancesResult{}
 	err = c.client.Do("UnmonitorInstances", "POST", "/", req, resp)
 	return
@@ -2064,15 +2681,45 @@ type AcceptVPCPeeringConnectionRequest struct {
 	VPCPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
+func (v *AcceptVPCPeeringConnectionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AcceptVPCPeeringConnectionResult is undocumented.
 type AcceptVPCPeeringConnectionResult struct {
 	VPCPeeringConnection *VPCPeeringConnection `ec2:"VpcPeeringConnection" xml:"vpcPeeringConnection"`
+}
+
+func (v *AcceptVPCPeeringConnectionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AccountAttribute is undocumented.
 type AccountAttribute struct {
 	AttributeName   aws.StringValue         `ec2:"AttributeName" xml:"attributeName"`
 	AttributeValues []AccountAttributeValue `ec2:"AttributeValues" xml:"attributeValueSet>item"`
+}
+
+func (v *AccountAttribute) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -2084,6 +2731,16 @@ const (
 // AccountAttributeValue is undocumented.
 type AccountAttributeValue struct {
 	AttributeValue aws.StringValue `ec2:"AttributeValue" xml:"attributeValue"`
+}
+
+func (v *AccountAttributeValue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Address is undocumented.
@@ -2098,10 +2755,46 @@ type Address struct {
 	PublicIP                aws.StringValue `ec2:"PublicIp" xml:"publicIp"`
 }
 
+func (v *Address) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	DomainEnum := []string{
+		DomainTypeStandard,
+		DomainTypeVPC,
+	}
+	if err := model.ValidateEnum(v, "Domain", DomainEnum); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AllocateAddressRequest is undocumented.
 type AllocateAddressRequest struct {
 	Domain aws.StringValue  `ec2:"Domain" xml:"Domain"`
 	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+}
+
+func (v *AllocateAddressRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	DomainEnum := []string{
+		DomainTypeStandard,
+		DomainTypeVPC,
+	}
+	if err := model.ValidateEnum(v, "Domain", DomainEnum); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AllocateAddressResult is undocumented.
@@ -2109,6 +2802,24 @@ type AllocateAddressResult struct {
 	AllocationID aws.StringValue `ec2:"AllocationId" xml:"allocationId"`
 	Domain       aws.StringValue `ec2:"Domain" xml:"domain"`
 	PublicIP     aws.StringValue `ec2:"PublicIp" xml:"publicIp"`
+}
+
+func (v *AllocateAddressResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	DomainEnum := []string{
+		DomainTypeStandard,
+		DomainTypeVPC,
+	}
+	if err := model.ValidateEnum(v, "Domain", DomainEnum); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -2125,6 +2836,20 @@ type AssignPrivateIPAddressesRequest struct {
 	SecondaryPrivateIPAddressCount aws.IntegerValue `ec2:"SecondaryPrivateIpAddressCount" xml:"secondaryPrivateIpAddressCount"`
 }
 
+func (v *AssignPrivateIPAddressesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "NetworkInterfaceID"); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AssociateAddressRequest is undocumented.
 type AssociateAddressRequest struct {
 	AllocationID       aws.StringValue  `ec2:"AllocationId" xml:"AllocationId"`
@@ -2136,9 +2861,29 @@ type AssociateAddressRequest struct {
 	PublicIP           aws.StringValue  `ec2:"PublicIp" xml:"PublicIp"`
 }
 
+func (v *AssociateAddressRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AssociateAddressResult is undocumented.
 type AssociateAddressResult struct {
 	AssociationID aws.StringValue `ec2:"AssociationId" xml:"associationId"`
+}
+
+func (v *AssociateAddressResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AssociateDHCPOptionsRequest is undocumented.
@@ -2148,6 +2893,24 @@ type AssociateDHCPOptionsRequest struct {
 	VPCID         aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
+func (v *AssociateDHCPOptionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DHCPOptionsID"); err != nil {
+		errors["DHCPOptionsID"] = append(errors["DHCPOptionsID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VPCID"); err != nil {
+		errors["VPCID"] = append(errors["VPCID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AssociateRouteTableRequest is undocumented.
 type AssociateRouteTableRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
@@ -2155,9 +2918,37 @@ type AssociateRouteTableRequest struct {
 	SubnetID     aws.StringValue  `ec2:"SubnetId" xml:"subnetId"`
 }
 
+func (v *AssociateRouteTableRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "RouteTableID"); err != nil {
+		errors["RouteTableID"] = append(errors["RouteTableID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubnetID"); err != nil {
+		errors["SubnetID"] = append(errors["SubnetID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AssociateRouteTableResult is undocumented.
 type AssociateRouteTableResult struct {
 	AssociationID aws.StringValue `ec2:"AssociationId" xml:"associationId"`
+}
+
+func (v *AssociateRouteTableResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AttachInternetGatewayRequest is undocumented.
@@ -2165,6 +2956,24 @@ type AttachInternetGatewayRequest struct {
 	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InternetGatewayID aws.StringValue  `ec2:"InternetGatewayId" xml:"internetGatewayId"`
 	VPCID             aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+}
+
+func (v *AttachInternetGatewayRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InternetGatewayID"); err != nil {
+		errors["InternetGatewayID"] = append(errors["InternetGatewayID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VPCID"); err != nil {
+		errors["VPCID"] = append(errors["VPCID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AttachNetworkInterfaceRequest is undocumented.
@@ -2175,9 +2984,41 @@ type AttachNetworkInterfaceRequest struct {
 	NetworkInterfaceID aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
 }
 
+func (v *AttachNetworkInterfaceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DeviceIndex"); err != nil {
+		errors["DeviceIndex"] = append(errors["DeviceIndex"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NetworkInterfaceID"); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AttachNetworkInterfaceResult is undocumented.
 type AttachNetworkInterfaceResult struct {
 	AttachmentID aws.StringValue `ec2:"AttachmentId" xml:"attachmentId"`
+}
+
+func (v *AttachNetworkInterfaceResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AttachVolumeRequest is undocumented.
@@ -2188,6 +3029,28 @@ type AttachVolumeRequest struct {
 	VolumeID   aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
 }
 
+func (v *AttachVolumeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Device"); err != nil {
+		errors["Device"] = append(errors["Device"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VolumeID"); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AttachVPNGatewayRequest is undocumented.
 type AttachVPNGatewayRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
@@ -2195,9 +3058,37 @@ type AttachVPNGatewayRequest struct {
 	VPNGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
+func (v *AttachVPNGatewayRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VPCID"); err != nil {
+		errors["VPCID"] = append(errors["VPCID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VPNGatewayID"); err != nil {
+		errors["VPNGatewayID"] = append(errors["VPNGatewayID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AttachVPNGatewayResult is undocumented.
 type AttachVPNGatewayResult struct {
 	VPCAttachment *VPCAttachment `ec2:"VpcAttachment" xml:"attachment"`
+}
+
+func (v *AttachVPNGatewayResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -2213,9 +3104,29 @@ type AttributeBooleanValue struct {
 	Value aws.BooleanValue `ec2:"Value" xml:"value"`
 }
 
+func (v *AttributeBooleanValue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AttributeValue is undocumented.
 type AttributeValue struct {
 	Value aws.StringValue `ec2:"Value" xml:"value"`
+}
+
+func (v *AttributeValue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AuthorizeSecurityGroupEgressRequest is undocumented.
@@ -2229,6 +3140,20 @@ type AuthorizeSecurityGroupEgressRequest struct {
 	SourceSecurityGroupName    aws.StringValue  `ec2:"SourceSecurityGroupName" xml:"sourceSecurityGroupName"`
 	SourceSecurityGroupOwnerID aws.StringValue  `ec2:"SourceSecurityGroupOwnerId" xml:"sourceSecurityGroupOwnerId"`
 	ToPort                     aws.IntegerValue `ec2:"ToPort" xml:"toPort"`
+}
+
+func (v *AuthorizeSecurityGroupEgressRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupID"); err != nil {
+		errors["GroupID"] = append(errors["GroupID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AuthorizeSecurityGroupIngressRequest is undocumented.
@@ -2245,6 +3170,16 @@ type AuthorizeSecurityGroupIngressRequest struct {
 	ToPort                     aws.IntegerValue `ec2:"ToPort" xml:"ToPort"`
 }
 
+func (v *AuthorizeSecurityGroupIngressRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AvailabilityZone is undocumented.
 type AvailabilityZone struct {
 	Messages   []AvailabilityZoneMessage `ec2:"Messages" xml:"messageSet>item"`
@@ -2253,9 +3188,36 @@ type AvailabilityZone struct {
 	ZoneName   aws.StringValue           `ec2:"ZoneName" xml:"zoneName"`
 }
 
+func (v *AvailabilityZone) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		AvailabilityZoneStateAvailable,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AvailabilityZoneMessage is undocumented.
 type AvailabilityZoneMessage struct {
 	Message aws.StringValue `ec2:"Message" xml:"message"`
+}
+
+func (v *AvailabilityZoneMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -2268,12 +3230,32 @@ type BlobAttributeValue struct {
 	Value []byte `ec2:"Value" xml:"value"`
 }
 
+func (v *BlobAttributeValue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BlockDeviceMapping is undocumented.
 type BlockDeviceMapping struct {
 	DeviceName  aws.StringValue `ec2:"DeviceName" xml:"deviceName"`
 	EBS         *EBSBlockDevice `ec2:"Ebs" xml:"ebs"`
 	NoDevice    aws.StringValue `ec2:"NoDevice" xml:"noDevice"`
 	VirtualName aws.StringValue `ec2:"VirtualName" xml:"virtualName"`
+}
+
+func (v *BlockDeviceMapping) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // BundleInstanceRequest is undocumented.
@@ -2283,9 +3265,37 @@ type BundleInstanceRequest struct {
 	Storage    *Storage         `ec2:"Storage" xml:"Storage"`
 }
 
+func (v *BundleInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Storage"); err != nil {
+		errors["Storage"] = append(errors["Storage"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BundleInstanceResult is undocumented.
 type BundleInstanceResult struct {
 	BundleTask *BundleTask `ec2:"BundleTask" xml:"bundleInstanceTask"`
+}
+
+func (v *BundleInstanceResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // BundleTask is undocumented.
@@ -2300,10 +3310,43 @@ type BundleTask struct {
 	UpdateTime      time.Time        `ec2:"UpdateTime" xml:"updateTime"`
 }
 
+func (v *BundleTask) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		BundleTaskStateBundling,
+		BundleTaskStateCancelling,
+		BundleTaskStateComplete,
+		BundleTaskStateFailed,
+		BundleTaskStatePending,
+		BundleTaskStateStoring,
+		BundleTaskStateWaitingForShutdown,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BundleTaskError is undocumented.
 type BundleTaskError struct {
 	Code    aws.StringValue `ec2:"Code" xml:"code"`
 	Message aws.StringValue `ec2:"Message" xml:"message"`
+}
+
+func (v *BundleTaskError) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -2323,9 +3366,33 @@ type CancelBundleTaskRequest struct {
 	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
+func (v *CancelBundleTaskRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "BundleID"); err != nil {
+		errors["BundleID"] = append(errors["BundleID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CancelBundleTaskResult is undocumented.
 type CancelBundleTaskResult struct {
 	BundleTask *BundleTask `ec2:"BundleTask" xml:"bundleInstanceTask"`
+}
+
+func (v *CancelBundleTaskResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CancelConversionRequest is undocumented.
@@ -2335,9 +3402,37 @@ type CancelConversionRequest struct {
 	ReasonMessage    aws.StringValue  `ec2:"ReasonMessage" xml:"reasonMessage"`
 }
 
+func (v *CancelConversionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ConversionTaskID"); err != nil {
+		errors["ConversionTaskID"] = append(errors["ConversionTaskID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CancelExportTaskRequest is undocumented.
 type CancelExportTaskRequest struct {
 	ExportTaskID aws.StringValue `ec2:"ExportTaskId" xml:"exportTaskId"`
+}
+
+func (v *CancelExportTaskRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ExportTaskID"); err != nil {
+		errors["ExportTaskID"] = append(errors["ExportTaskID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CancelReservedInstancesListingRequest is undocumented.
@@ -2345,9 +3440,33 @@ type CancelReservedInstancesListingRequest struct {
 	ReservedInstancesListingID aws.StringValue `ec2:"ReservedInstancesListingId" xml:"reservedInstancesListingId"`
 }
 
+func (v *CancelReservedInstancesListingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ReservedInstancesListingID"); err != nil {
+		errors["ReservedInstancesListingID"] = append(errors["ReservedInstancesListingID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CancelReservedInstancesListingResult is undocumented.
 type CancelReservedInstancesListingResult struct {
 	ReservedInstancesListings []ReservedInstancesListing `ec2:"ReservedInstancesListings" xml:"reservedInstancesListingsSet>item"`
+}
+
+func (v *CancelReservedInstancesListingResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -2365,15 +3484,60 @@ type CancelSpotInstanceRequestsRequest struct {
 	SpotInstanceRequestIDs []string         `ec2:"SpotInstanceRequestId" xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
 }
 
+func (v *CancelSpotInstanceRequestsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SpotInstanceRequestIDs"); err != nil {
+		errors["SpotInstanceRequestIDs"] = append(errors["SpotInstanceRequestIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CancelSpotInstanceRequestsResult is undocumented.
 type CancelSpotInstanceRequestsResult struct {
 	CancelledSpotInstanceRequests []CancelledSpotInstanceRequest `ec2:"CancelledSpotInstanceRequests" xml:"spotInstanceRequestSet>item"`
+}
+
+func (v *CancelSpotInstanceRequestsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CancelledSpotInstanceRequest is undocumented.
 type CancelledSpotInstanceRequest struct {
 	SpotInstanceRequestID aws.StringValue `ec2:"SpotInstanceRequestId" xml:"spotInstanceRequestId"`
 	State                 aws.StringValue `ec2:"State" xml:"state"`
+}
+
+func (v *CancelledSpotInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		CancelSpotInstanceRequestStateActive,
+		CancelSpotInstanceRequestStateCancelled,
+		CancelSpotInstanceRequestStateClosed,
+		CancelSpotInstanceRequestStateCompleted,
+		CancelSpotInstanceRequestStateOpen,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ConfirmProductInstanceRequest is undocumented.
@@ -2383,9 +3547,37 @@ type ConfirmProductInstanceRequest struct {
 	ProductCode aws.StringValue  `ec2:"ProductCode" xml:"ProductCode"`
 }
 
+func (v *ConfirmProductInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ProductCode"); err != nil {
+		errors["ProductCode"] = append(errors["ProductCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfirmProductInstanceResult is undocumented.
 type ConfirmProductInstanceResult struct {
 	OwnerID aws.StringValue `ec2:"OwnerId" xml:"ownerId"`
+}
+
+func (v *ConfirmProductInstanceResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -2402,6 +3594,34 @@ type ConversionTask struct {
 	State            aws.StringValue            `ec2:"State" xml:"state"`
 	StatusMessage    aws.StringValue            `ec2:"StatusMessage" xml:"statusMessage"`
 	Tags             []Tag                      `ec2:"Tags" xml:"tagSet>item"`
+}
+
+func (v *ConversionTask) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ConversionTaskID"); err != nil {
+		errors["ConversionTaskID"] = append(errors["ConversionTaskID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "State"); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	StateEnum := []string{
+		ConversionTaskStateActive,
+		ConversionTaskStateCancelled,
+		ConversionTaskStateCancelling,
+		ConversionTaskStateCompleted,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -2422,9 +3642,41 @@ type CopyImageRequest struct {
 	SourceRegion  aws.StringValue  `ec2:"SourceRegion" xml:"SourceRegion"`
 }
 
+func (v *CopyImageRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SourceImageID"); err != nil {
+		errors["SourceImageID"] = append(errors["SourceImageID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SourceRegion"); err != nil {
+		errors["SourceRegion"] = append(errors["SourceRegion"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CopyImageResult is undocumented.
 type CopyImageResult struct {
 	ImageID aws.StringValue `ec2:"ImageId" xml:"imageId"`
+}
+
+func (v *CopyImageResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CopySnapshotRequest is undocumented.
@@ -2437,9 +3689,37 @@ type CopySnapshotRequest struct {
 	SourceSnapshotID  aws.StringValue  `ec2:"SourceSnapshotId" xml:"SourceSnapshotId"`
 }
 
+func (v *CopySnapshotRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SourceRegion"); err != nil {
+		errors["SourceRegion"] = append(errors["SourceRegion"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SourceSnapshotID"); err != nil {
+		errors["SourceSnapshotID"] = append(errors["SourceSnapshotID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CopySnapshotResult is undocumented.
 type CopySnapshotResult struct {
 	SnapshotID aws.StringValue `ec2:"SnapshotId" xml:"snapshotId"`
+}
+
+func (v *CopySnapshotResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateCustomerGatewayRequest is undocumented.
@@ -2450,9 +3730,48 @@ type CreateCustomerGatewayRequest struct {
 	Type     aws.StringValue  `ec2:"Type" xml:"Type"`
 }
 
+func (v *CreateCustomerGatewayRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "BGPASN"); err != nil {
+		errors["BGPASN"] = append(errors["BGPASN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PublicIP"); err != nil {
+		errors["PublicIP"] = append(errors["PublicIP"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Type"); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	TypeEnum := []string{
+		GatewayTypeIPsec1,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateCustomerGatewayResult is undocumented.
 type CreateCustomerGatewayResult struct {
 	CustomerGateway *CustomerGateway `ec2:"CustomerGateway" xml:"customerGateway"`
+}
+
+func (v *CreateCustomerGatewayResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateDHCPOptionsRequest is undocumented.
@@ -2461,9 +3780,33 @@ type CreateDHCPOptionsRequest struct {
 	DryRun             aws.BooleanValue       `ec2:"DryRun" xml:"dryRun"`
 }
 
+func (v *CreateDHCPOptionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DHCPConfigurations"); err != nil {
+		errors["DHCPConfigurations"] = append(errors["DHCPConfigurations"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDHCPOptionsResult is undocumented.
 type CreateDHCPOptionsResult struct {
 	DHCPOptions *DHCPOptions `ec2:"DhcpOptions" xml:"dhcpOptions"`
+}
+
+func (v *CreateDHCPOptionsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateImageRequest is undocumented.
@@ -2476,9 +3819,37 @@ type CreateImageRequest struct {
 	NoReboot            aws.BooleanValue     `ec2:"NoReboot" xml:"noReboot"`
 }
 
+func (v *CreateImageRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateImageResult is undocumented.
 type CreateImageResult struct {
 	ImageID aws.StringValue `ec2:"ImageId" xml:"imageId"`
+}
+
+func (v *CreateImageResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateInstanceExportTaskRequest is undocumented.
@@ -2489,9 +3860,42 @@ type CreateInstanceExportTaskRequest struct {
 	TargetEnvironment aws.StringValue              `ec2:"TargetEnvironment" xml:"targetEnvironment"`
 }
 
+func (v *CreateInstanceExportTaskRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	TargetEnvironmentEnum := []string{
+		ExportEnvironmentCitrix,
+		ExportEnvironmentMicrosoft,
+		ExportEnvironmentVMware,
+	}
+	if err := model.ValidateEnum(v, "TargetEnvironment", TargetEnvironmentEnum); err != nil {
+		errors["TargetEnvironment"] = append(errors["TargetEnvironment"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateInstanceExportTaskResult is undocumented.
 type CreateInstanceExportTaskResult struct {
 	ExportTask *ExportTask `ec2:"ExportTask" xml:"exportTask"`
+}
+
+func (v *CreateInstanceExportTaskResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateInternetGatewayRequest is undocumented.
@@ -2499,15 +3903,49 @@ type CreateInternetGatewayRequest struct {
 	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
+func (v *CreateInternetGatewayRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateInternetGatewayResult is undocumented.
 type CreateInternetGatewayResult struct {
 	InternetGateway *InternetGateway `ec2:"InternetGateway" xml:"internetGateway"`
+}
+
+func (v *CreateInternetGatewayResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateKeyPairRequest is undocumented.
 type CreateKeyPairRequest struct {
 	DryRun  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	KeyName aws.StringValue  `ec2:"KeyName" xml:"KeyName"`
+}
+
+func (v *CreateKeyPairRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyName"); err != nil {
+		errors["KeyName"] = append(errors["KeyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateNetworkACLEntryRequest is undocumented.
@@ -2523,15 +3961,81 @@ type CreateNetworkACLEntryRequest struct {
 	RuleNumber   aws.IntegerValue `ec2:"RuleNumber" xml:"ruleNumber"`
 }
 
+func (v *CreateNetworkACLEntryRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CIDRBlock"); err != nil {
+		errors["CIDRBlock"] = append(errors["CIDRBlock"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Egress"); err != nil {
+		errors["Egress"] = append(errors["Egress"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NetworkACLID"); err != nil {
+		errors["NetworkACLID"] = append(errors["NetworkACLID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Protocol"); err != nil {
+		errors["Protocol"] = append(errors["Protocol"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RuleAction"); err != nil {
+		errors["RuleAction"] = append(errors["RuleAction"], err)
+	}
+
+	RuleActionEnum := []string{
+		RuleActionAllow,
+		RuleActionDeny,
+	}
+	if err := model.ValidateEnum(v, "RuleAction", RuleActionEnum); err != nil {
+		errors["RuleAction"] = append(errors["RuleAction"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RuleNumber"); err != nil {
+		errors["RuleNumber"] = append(errors["RuleNumber"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateNetworkACLRequest is undocumented.
 type CreateNetworkACLRequest struct {
 	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VPCID  aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
+func (v *CreateNetworkACLRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VPCID"); err != nil {
+		errors["VPCID"] = append(errors["VPCID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateNetworkACLResult is undocumented.
 type CreateNetworkACLResult struct {
 	NetworkACL *NetworkACL `ec2:"NetworkAcl" xml:"networkAcl"`
+}
+
+func (v *CreateNetworkACLResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateNetworkInterfaceRequest is undocumented.
@@ -2545,9 +4049,33 @@ type CreateNetworkInterfaceRequest struct {
 	SubnetID                       aws.StringValue                 `ec2:"SubnetId" xml:"subnetId"`
 }
 
+func (v *CreateNetworkInterfaceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SubnetID"); err != nil {
+		errors["SubnetID"] = append(errors["SubnetID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateNetworkInterfaceResult is undocumented.
 type CreateNetworkInterfaceResult struct {
 	NetworkInterface *NetworkInterface `ec2:"NetworkInterface" xml:"networkInterface"`
+}
+
+func (v *CreateNetworkInterfaceResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreatePlacementGroupRequest is undocumented.
@@ -2555,6 +4083,31 @@ type CreatePlacementGroupRequest struct {
 	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	GroupName aws.StringValue  `ec2:"GroupName" xml:"groupName"`
 	Strategy  aws.StringValue  `ec2:"Strategy" xml:"strategy"`
+}
+
+func (v *CreatePlacementGroupRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Strategy"); err != nil {
+		errors["Strategy"] = append(errors["Strategy"], err)
+	}
+
+	StrategyEnum := []string{
+		PlacementStrategyCluster,
+	}
+	if err := model.ValidateEnum(v, "Strategy", StrategyEnum); err != nil {
+		errors["Strategy"] = append(errors["Strategy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateReservedInstancesListingRequest is undocumented.
@@ -2565,9 +4118,45 @@ type CreateReservedInstancesListingRequest struct {
 	ReservedInstancesID aws.StringValue              `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
 }
 
+func (v *CreateReservedInstancesListingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClientToken"); err != nil {
+		errors["ClientToken"] = append(errors["ClientToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceCount"); err != nil {
+		errors["InstanceCount"] = append(errors["InstanceCount"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PriceSchedules"); err != nil {
+		errors["PriceSchedules"] = append(errors["PriceSchedules"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ReservedInstancesID"); err != nil {
+		errors["ReservedInstancesID"] = append(errors["ReservedInstancesID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateReservedInstancesListingResult is undocumented.
 type CreateReservedInstancesListingResult struct {
 	ReservedInstancesListings []ReservedInstancesListing `ec2:"ReservedInstancesListings" xml:"reservedInstancesListingsSet>item"`
+}
+
+func (v *CreateReservedInstancesListingResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateRouteRequest is undocumented.
@@ -2581,15 +4170,57 @@ type CreateRouteRequest struct {
 	VPCPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
+func (v *CreateRouteRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DestinationCIDRBlock"); err != nil {
+		errors["DestinationCIDRBlock"] = append(errors["DestinationCIDRBlock"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RouteTableID"); err != nil {
+		errors["RouteTableID"] = append(errors["RouteTableID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateRouteTableRequest is undocumented.
 type CreateRouteTableRequest struct {
 	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VPCID  aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
+func (v *CreateRouteTableRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VPCID"); err != nil {
+		errors["VPCID"] = append(errors["VPCID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateRouteTableResult is undocumented.
 type CreateRouteTableResult struct {
 	RouteTable *RouteTable `ec2:"RouteTable" xml:"routeTable"`
+}
+
+func (v *CreateRouteTableResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateSecurityGroupRequest is undocumented.
@@ -2600,9 +4231,37 @@ type CreateSecurityGroupRequest struct {
 	VPCID       aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
+func (v *CreateSecurityGroupRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Description"); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateSecurityGroupResult is undocumented.
 type CreateSecurityGroupResult struct {
 	GroupID aws.StringValue `ec2:"GroupId" xml:"groupId"`
+}
+
+func (v *CreateSecurityGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateSnapshotRequest is undocumented.
@@ -2612,6 +4271,20 @@ type CreateSnapshotRequest struct {
 	VolumeID    aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
 }
 
+func (v *CreateSnapshotRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeID"); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateSpotDatafeedSubscriptionRequest is undocumented.
 type CreateSpotDatafeedSubscriptionRequest struct {
 	Bucket aws.StringValue  `ec2:"Bucket" xml:"bucket"`
@@ -2619,9 +4292,33 @@ type CreateSpotDatafeedSubscriptionRequest struct {
 	Prefix aws.StringValue  `ec2:"Prefix" xml:"prefix"`
 }
 
+func (v *CreateSpotDatafeedSubscriptionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bucket"); err != nil {
+		errors["Bucket"] = append(errors["Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateSpotDatafeedSubscriptionResult is undocumented.
 type CreateSpotDatafeedSubscriptionResult struct {
 	SpotDatafeedSubscription *SpotDatafeedSubscription `ec2:"SpotDatafeedSubscription" xml:"spotDatafeedSubscription"`
+}
+
+func (v *CreateSpotDatafeedSubscriptionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateSubnetRequest is undocumented.
@@ -2632,9 +4329,37 @@ type CreateSubnetRequest struct {
 	VPCID            aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
+func (v *CreateSubnetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CIDRBlock"); err != nil {
+		errors["CIDRBlock"] = append(errors["CIDRBlock"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VPCID"); err != nil {
+		errors["VPCID"] = append(errors["VPCID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateSubnetResult is undocumented.
 type CreateSubnetResult struct {
 	Subnet *Subnet `ec2:"Subnet" xml:"subnet"`
+}
+
+func (v *CreateSubnetResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateTagsRequest is undocumented.
@@ -2644,16 +4369,61 @@ type CreateTagsRequest struct {
 	Tags      []Tag            `ec2:"Tag" xml:"Tag>item"`
 }
 
+func (v *CreateTagsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Resources"); err != nil {
+		errors["Resources"] = append(errors["Resources"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Tags"); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateVolumePermission is undocumented.
 type CreateVolumePermission struct {
 	Group  aws.StringValue `ec2:"Group" xml:"group"`
 	UserID aws.StringValue `ec2:"UserId" xml:"userId"`
 }
 
+func (v *CreateVolumePermission) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	GroupEnum := []string{
+		PermissionGroupAll,
+	}
+	if err := model.ValidateEnum(v, "Group", GroupEnum); err != nil {
+		errors["Group"] = append(errors["Group"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateVolumePermissionModifications is undocumented.
 type CreateVolumePermissionModifications struct {
 	Add    []CreateVolumePermission `ec2:"Add" xml:"Add>item"`
 	Remove []CreateVolumePermission `ec2:"Remove" xml:"Remove>item"`
+}
+
+func (v *CreateVolumePermissionModifications) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateVolumeRequest is undocumented.
@@ -2668,6 +4438,29 @@ type CreateVolumeRequest struct {
 	VolumeType       aws.StringValue  `ec2:"VolumeType" xml:"VolumeType"`
 }
 
+func (v *CreateVolumeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AvailabilityZone"); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	VolumeTypeEnum := []string{
+		VolumeTypeGp2,
+		VolumeTypeIo1,
+		VolumeTypeStandard,
+	}
+	if err := model.ValidateEnum(v, "VolumeType", VolumeTypeEnum); err != nil {
+		errors["VolumeType"] = append(errors["VolumeType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateVPCPeeringConnectionRequest is undocumented.
 type CreateVPCPeeringConnectionRequest struct {
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
@@ -2676,9 +4469,29 @@ type CreateVPCPeeringConnectionRequest struct {
 	VPCID       aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
+func (v *CreateVPCPeeringConnectionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateVPCPeeringConnectionResult is undocumented.
 type CreateVPCPeeringConnectionResult struct {
 	VPCPeeringConnection *VPCPeeringConnection `ec2:"VpcPeeringConnection" xml:"vpcPeeringConnection"`
+}
+
+func (v *CreateVPCPeeringConnectionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateVPCRequest is undocumented.
@@ -2688,9 +4501,41 @@ type CreateVPCRequest struct {
 	InstanceTenancy aws.StringValue  `ec2:"InstanceTenancy" xml:"instanceTenancy"`
 }
 
+func (v *CreateVPCRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CIDRBlock"); err != nil {
+		errors["CIDRBlock"] = append(errors["CIDRBlock"], err)
+	}
+
+	InstanceTenancyEnum := []string{
+		TenancyDedicated,
+		TenancyDefault,
+	}
+	if err := model.ValidateEnum(v, "InstanceTenancy", InstanceTenancyEnum); err != nil {
+		errors["InstanceTenancy"] = append(errors["InstanceTenancy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateVPCResult is undocumented.
 type CreateVPCResult struct {
 	VPC *VPC `ec2:"Vpc" xml:"vpc"`
+}
+
+func (v *CreateVPCResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateVPNConnectionRequest is undocumented.
@@ -2702,15 +4547,65 @@ type CreateVPNConnectionRequest struct {
 	VPNGatewayID      aws.StringValue                    `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
+func (v *CreateVPNConnectionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CustomerGatewayID"); err != nil {
+		errors["CustomerGatewayID"] = append(errors["CustomerGatewayID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Type"); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VPNGatewayID"); err != nil {
+		errors["VPNGatewayID"] = append(errors["VPNGatewayID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateVPNConnectionResult is undocumented.
 type CreateVPNConnectionResult struct {
 	VPNConnection *VPNConnection `ec2:"VpnConnection" xml:"vpnConnection"`
+}
+
+func (v *CreateVPNConnectionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateVPNConnectionRouteRequest is undocumented.
 type CreateVPNConnectionRouteRequest struct {
 	DestinationCIDRBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"DestinationCidrBlock"`
 	VPNConnectionID      aws.StringValue `ec2:"VpnConnectionId" xml:"VpnConnectionId"`
+}
+
+func (v *CreateVPNConnectionRouteRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DestinationCIDRBlock"); err != nil {
+		errors["DestinationCIDRBlock"] = append(errors["DestinationCIDRBlock"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VPNConnectionID"); err != nil {
+		errors["VPNConnectionID"] = append(errors["VPNConnectionID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateVPNGatewayRequest is undocumented.
@@ -2720,9 +4615,40 @@ type CreateVPNGatewayRequest struct {
 	Type             aws.StringValue  `ec2:"Type" xml:"Type"`
 }
 
+func (v *CreateVPNGatewayRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Type"); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	TypeEnum := []string{
+		GatewayTypeIPsec1,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateVPNGatewayResult is undocumented.
 type CreateVPNGatewayResult struct {
 	VPNGateway *VPNGateway `ec2:"VpnGateway" xml:"vpnGateway"`
+}
+
+func (v *CreateVPNGatewayResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -2740,6 +4666,16 @@ type CustomerGateway struct {
 	Type              aws.StringValue `ec2:"Type" xml:"type"`
 }
 
+func (v *CustomerGateway) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EC2.
 const (
 	DatafeedSubscriptionStateActive   = "Active"
@@ -2752,10 +4688,38 @@ type DeleteCustomerGatewayRequest struct {
 	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
+func (v *DeleteCustomerGatewayRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CustomerGatewayID"); err != nil {
+		errors["CustomerGatewayID"] = append(errors["CustomerGatewayID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteDHCPOptionsRequest is undocumented.
 type DeleteDHCPOptionsRequest struct {
 	DHCPOptionsID aws.StringValue  `ec2:"DhcpOptionsId" xml:"DhcpOptionsId"`
 	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+}
+
+func (v *DeleteDHCPOptionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DHCPOptionsID"); err != nil {
+		errors["DHCPOptionsID"] = append(errors["DHCPOptionsID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteInternetGatewayRequest is undocumented.
@@ -2764,10 +4728,38 @@ type DeleteInternetGatewayRequest struct {
 	InternetGatewayID aws.StringValue  `ec2:"InternetGatewayId" xml:"internetGatewayId"`
 }
 
+func (v *DeleteInternetGatewayRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InternetGatewayID"); err != nil {
+		errors["InternetGatewayID"] = append(errors["InternetGatewayID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteKeyPairRequest is undocumented.
 type DeleteKeyPairRequest struct {
 	DryRun  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	KeyName aws.StringValue  `ec2:"KeyName" xml:"KeyName"`
+}
+
+func (v *DeleteKeyPairRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyName"); err != nil {
+		errors["KeyName"] = append(errors["KeyName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteNetworkACLEntryRequest is undocumented.
@@ -2778,10 +4770,46 @@ type DeleteNetworkACLEntryRequest struct {
 	RuleNumber   aws.IntegerValue `ec2:"RuleNumber" xml:"ruleNumber"`
 }
 
+func (v *DeleteNetworkACLEntryRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Egress"); err != nil {
+		errors["Egress"] = append(errors["Egress"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NetworkACLID"); err != nil {
+		errors["NetworkACLID"] = append(errors["NetworkACLID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RuleNumber"); err != nil {
+		errors["RuleNumber"] = append(errors["RuleNumber"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteNetworkACLRequest is undocumented.
 type DeleteNetworkACLRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	NetworkACLID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
+}
+
+func (v *DeleteNetworkACLRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "NetworkACLID"); err != nil {
+		errors["NetworkACLID"] = append(errors["NetworkACLID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteNetworkInterfaceRequest is undocumented.
@@ -2790,10 +4818,38 @@ type DeleteNetworkInterfaceRequest struct {
 	NetworkInterfaceID aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
 }
 
+func (v *DeleteNetworkInterfaceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "NetworkInterfaceID"); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeletePlacementGroupRequest is undocumented.
 type DeletePlacementGroupRequest struct {
 	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	GroupName aws.StringValue  `ec2:"GroupName" xml:"groupName"`
+}
+
+func (v *DeletePlacementGroupRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupName"); err != nil {
+		errors["GroupName"] = append(errors["GroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteRouteRequest is undocumented.
@@ -2803,10 +4859,42 @@ type DeleteRouteRequest struct {
 	RouteTableID         aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
 }
 
+func (v *DeleteRouteRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DestinationCIDRBlock"); err != nil {
+		errors["DestinationCIDRBlock"] = append(errors["DestinationCIDRBlock"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RouteTableID"); err != nil {
+		errors["RouteTableID"] = append(errors["RouteTableID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteRouteTableRequest is undocumented.
 type DeleteRouteTableRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	RouteTableID aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
+}
+
+func (v *DeleteRouteTableRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "RouteTableID"); err != nil {
+		errors["RouteTableID"] = append(errors["RouteTableID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteSecurityGroupRequest is undocumented.
@@ -2816,10 +4904,34 @@ type DeleteSecurityGroupRequest struct {
 	GroupName aws.StringValue  `ec2:"GroupName" xml:"GroupName"`
 }
 
+func (v *DeleteSecurityGroupRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteSnapshotRequest is undocumented.
 type DeleteSnapshotRequest struct {
 	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	SnapshotID aws.StringValue  `ec2:"SnapshotId" xml:"SnapshotId"`
+}
+
+func (v *DeleteSnapshotRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SnapshotID"); err != nil {
+		errors["SnapshotID"] = append(errors["SnapshotID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteSpotDatafeedSubscriptionRequest is undocumented.
@@ -2827,10 +4939,34 @@ type DeleteSpotDatafeedSubscriptionRequest struct {
 	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
+func (v *DeleteSpotDatafeedSubscriptionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteSubnetRequest is undocumented.
 type DeleteSubnetRequest struct {
 	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	SubnetID aws.StringValue  `ec2:"SubnetId" xml:"SubnetId"`
+}
+
+func (v *DeleteSubnetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SubnetID"); err != nil {
+		errors["SubnetID"] = append(errors["SubnetID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteTagsRequest is undocumented.
@@ -2840,10 +4976,38 @@ type DeleteTagsRequest struct {
 	Tags      []Tag            `ec2:"Tags" xml:"tag>item"`
 }
 
+func (v *DeleteTagsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Resources"); err != nil {
+		errors["Resources"] = append(errors["Resources"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteVolumeRequest is undocumented.
 type DeleteVolumeRequest struct {
 	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VolumeID aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
+}
+
+func (v *DeleteVolumeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeID"); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteVPCPeeringConnectionRequest is undocumented.
@@ -2852,9 +5016,33 @@ type DeleteVPCPeeringConnectionRequest struct {
 	VPCPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
+func (v *DeleteVPCPeeringConnectionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VPCPeeringConnectionID"); err != nil {
+		errors["VPCPeeringConnectionID"] = append(errors["VPCPeeringConnectionID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteVPCPeeringConnectionResult is undocumented.
 type DeleteVPCPeeringConnectionResult struct {
 	Return aws.BooleanValue `ec2:"Return" xml:"return"`
+}
+
+func (v *DeleteVPCPeeringConnectionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteVPCRequest is undocumented.
@@ -2863,10 +5051,38 @@ type DeleteVPCRequest struct {
 	VPCID  aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
+func (v *DeleteVPCRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VPCID"); err != nil {
+		errors["VPCID"] = append(errors["VPCID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteVPNConnectionRequest is undocumented.
 type DeleteVPNConnectionRequest struct {
 	DryRun          aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VPNConnectionID aws.StringValue  `ec2:"VpnConnectionId" xml:"VpnConnectionId"`
+}
+
+func (v *DeleteVPNConnectionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VPNConnectionID"); err != nil {
+		errors["VPNConnectionID"] = append(errors["VPNConnectionID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteVPNConnectionRouteRequest is undocumented.
@@ -2875,10 +5091,42 @@ type DeleteVPNConnectionRouteRequest struct {
 	VPNConnectionID      aws.StringValue `ec2:"VpnConnectionId" xml:"VpnConnectionId"`
 }
 
+func (v *DeleteVPNConnectionRouteRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DestinationCIDRBlock"); err != nil {
+		errors["DestinationCIDRBlock"] = append(errors["DestinationCIDRBlock"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VPNConnectionID"); err != nil {
+		errors["VPNConnectionID"] = append(errors["VPNConnectionID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteVPNGatewayRequest is undocumented.
 type DeleteVPNGatewayRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VPNGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
+}
+
+func (v *DeleteVPNGatewayRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VPNGatewayID"); err != nil {
+		errors["VPNGatewayID"] = append(errors["VPNGatewayID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeregisterImageRequest is undocumented.
@@ -2887,15 +5135,49 @@ type DeregisterImageRequest struct {
 	ImageID aws.StringValue  `ec2:"ImageId" xml:"ImageId"`
 }
 
+func (v *DeregisterImageRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ImageID"); err != nil {
+		errors["ImageID"] = append(errors["ImageID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAccountAttributesRequest is undocumented.
 type DescribeAccountAttributesRequest struct {
 	AttributeNames []string         `ec2:"AttributeNames" xml:"attributeName>attributeName"`
 	DryRun         aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
+func (v *DescribeAccountAttributesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAccountAttributesResult is undocumented.
 type DescribeAccountAttributesResult struct {
 	AccountAttributes []AccountAttribute `ec2:"AccountAttributes" xml:"accountAttributeSet>item"`
+}
+
+func (v *DescribeAccountAttributesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAddressesRequest is undocumented.
@@ -2906,9 +5188,29 @@ type DescribeAddressesRequest struct {
 	PublicIPs     []string         `ec2:"PublicIp" xml:"PublicIp>PublicIp"`
 }
 
+func (v *DescribeAddressesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAddressesResult is undocumented.
 type DescribeAddressesResult struct {
 	Addresses []Address `ec2:"Addresses" xml:"addressesSet>item"`
+}
+
+func (v *DescribeAddressesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAvailabilityZonesRequest is undocumented.
@@ -2918,9 +5220,29 @@ type DescribeAvailabilityZonesRequest struct {
 	ZoneNames []string         `ec2:"ZoneName" xml:"ZoneName>ZoneName"`
 }
 
+func (v *DescribeAvailabilityZonesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAvailabilityZonesResult is undocumented.
 type DescribeAvailabilityZonesResult struct {
 	AvailabilityZones []AvailabilityZone `ec2:"AvailabilityZones" xml:"availabilityZoneInfo>item"`
+}
+
+func (v *DescribeAvailabilityZonesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeBundleTasksRequest is undocumented.
@@ -2930,9 +5252,29 @@ type DescribeBundleTasksRequest struct {
 	Filters   []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 }
 
+func (v *DescribeBundleTasksRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeBundleTasksResult is undocumented.
 type DescribeBundleTasksResult struct {
 	BundleTasks []BundleTask `ec2:"BundleTasks" xml:"bundleInstanceTasksSet>item"`
+}
+
+func (v *DescribeBundleTasksResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeConversionTasksRequest is undocumented.
@@ -2942,9 +5284,29 @@ type DescribeConversionTasksRequest struct {
 	Filters           []Filter         `ec2:"Filters" xml:"filter>Filter"`
 }
 
+func (v *DescribeConversionTasksRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeConversionTasksResult is undocumented.
 type DescribeConversionTasksResult struct {
 	ConversionTasks []ConversionTask `ec2:"ConversionTasks" xml:"conversionTasks>item"`
+}
+
+func (v *DescribeConversionTasksResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeCustomerGatewaysRequest is undocumented.
@@ -2954,9 +5316,29 @@ type DescribeCustomerGatewaysRequest struct {
 	Filters            []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 }
 
+func (v *DescribeCustomerGatewaysRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeCustomerGatewaysResult is undocumented.
 type DescribeCustomerGatewaysResult struct {
 	CustomerGateways []CustomerGateway `ec2:"CustomerGateways" xml:"customerGatewaySet>item"`
+}
+
+func (v *DescribeCustomerGatewaysResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeDHCPOptionsRequest is undocumented.
@@ -2966,9 +5348,29 @@ type DescribeDHCPOptionsRequest struct {
 	Filters        []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 }
 
+func (v *DescribeDHCPOptionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDHCPOptionsResult is undocumented.
 type DescribeDHCPOptionsResult struct {
 	DHCPOptions []DHCPOptions `ec2:"DhcpOptions" xml:"dhcpOptionsSet>item"`
+}
+
+func (v *DescribeDHCPOptionsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeExportTasksRequest is undocumented.
@@ -2976,9 +5378,29 @@ type DescribeExportTasksRequest struct {
 	ExportTaskIDs []string `ec2:"ExportTaskIds" xml:"exportTaskId>ExportTaskId"`
 }
 
+func (v *DescribeExportTasksRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeExportTasksResult is undocumented.
 type DescribeExportTasksResult struct {
 	ExportTasks []ExportTask `ec2:"ExportTasks" xml:"exportTaskSet>item"`
+}
+
+func (v *DescribeExportTasksResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeImageAttributeRequest is undocumented.
@@ -2986,6 +5408,36 @@ type DescribeImageAttributeRequest struct {
 	Attribute aws.StringValue  `ec2:"Attribute" xml:"Attribute"`
 	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	ImageID   aws.StringValue  `ec2:"ImageId" xml:"ImageId"`
+}
+
+func (v *DescribeImageAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attribute"); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	AttributeEnum := []string{
+		ImageAttributeNameBlockDeviceMapping,
+		ImageAttributeNameDescription,
+		ImageAttributeNameKernel,
+		ImageAttributeNameLaunchPermission,
+		ImageAttributeNameProductCodes,
+		ImageAttributeNameRAMDisk,
+	}
+	if err := model.ValidateEnum(v, "Attribute", AttributeEnum); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ImageID"); err != nil {
+		errors["ImageID"] = append(errors["ImageID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeImagesRequest is undocumented.
@@ -2997,9 +5449,29 @@ type DescribeImagesRequest struct {
 	Owners          []string         `ec2:"Owner" xml:"Owner>Owner"`
 }
 
+func (v *DescribeImagesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeImagesResult is undocumented.
 type DescribeImagesResult struct {
 	Images []Image `ec2:"Images" xml:"imagesSet>item"`
+}
+
+func (v *DescribeImagesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeInstanceAttributeRequest is undocumented.
@@ -3007,6 +5479,43 @@ type DescribeInstanceAttributeRequest struct {
 	Attribute  aws.StringValue  `ec2:"Attribute" xml:"attribute"`
 	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
+}
+
+func (v *DescribeInstanceAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attribute"); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	AttributeEnum := []string{
+		InstanceAttributeNameBlockDeviceMapping,
+		InstanceAttributeNameDisableAPITermination,
+		InstanceAttributeNameEBSOptimized,
+		InstanceAttributeNameGroupSet,
+		InstanceAttributeNameInstanceInitiatedShutdownBehavior,
+		InstanceAttributeNameInstanceType,
+		InstanceAttributeNameKernel,
+		InstanceAttributeNameProductCodes,
+		InstanceAttributeNameRAMDisk,
+		InstanceAttributeNameRootDeviceName,
+		InstanceAttributeNameSRIOVNetSupport,
+		InstanceAttributeNameSourceDestCheck,
+		InstanceAttributeNameUserData,
+	}
+	if err := model.ValidateEnum(v, "Attribute", AttributeEnum); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeInstanceStatusRequest is undocumented.
@@ -3019,10 +5528,30 @@ type DescribeInstanceStatusRequest struct {
 	NextToken           aws.StringValue  `ec2:"NextToken" xml:"NextToken"`
 }
 
+func (v *DescribeInstanceStatusRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeInstanceStatusResult is undocumented.
 type DescribeInstanceStatusResult struct {
 	InstanceStatuses []InstanceStatus `ec2:"InstanceStatuses" xml:"instanceStatusSet>item"`
 	NextToken        aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
+}
+
+func (v *DescribeInstanceStatusResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeInstancesRequest is undocumented.
@@ -3034,10 +5563,30 @@ type DescribeInstancesRequest struct {
 	NextToken   aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
 }
 
+func (v *DescribeInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeInstancesResult is undocumented.
 type DescribeInstancesResult struct {
 	NextToken    aws.StringValue `ec2:"NextToken" xml:"nextToken"`
 	Reservations []Reservation   `ec2:"Reservations" xml:"reservationSet>item"`
+}
+
+func (v *DescribeInstancesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeInternetGatewaysRequest is undocumented.
@@ -3047,9 +5596,29 @@ type DescribeInternetGatewaysRequest struct {
 	InternetGatewayIDs []string         `ec2:"InternetGatewayIds" xml:"internetGatewayId>item"`
 }
 
+func (v *DescribeInternetGatewaysRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeInternetGatewaysResult is undocumented.
 type DescribeInternetGatewaysResult struct {
 	InternetGateways []InternetGateway `ec2:"InternetGateways" xml:"internetGatewaySet>item"`
+}
+
+func (v *DescribeInternetGatewaysResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeKeyPairsRequest is undocumented.
@@ -3059,9 +5628,29 @@ type DescribeKeyPairsRequest struct {
 	KeyNames []string         `ec2:"KeyName" xml:"KeyName>KeyName"`
 }
 
+func (v *DescribeKeyPairsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeKeyPairsResult is undocumented.
 type DescribeKeyPairsResult struct {
 	KeyPairs []KeyPairInfo `ec2:"KeyPairs" xml:"keySet>item"`
+}
+
+func (v *DescribeKeyPairsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeNetworkACLsRequest is undocumented.
@@ -3071,9 +5660,29 @@ type DescribeNetworkACLsRequest struct {
 	NetworkACLIDs []string         `ec2:"NetworkAclId" xml:"NetworkAclId>item"`
 }
 
+func (v *DescribeNetworkACLsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeNetworkACLsResult is undocumented.
 type DescribeNetworkACLsResult struct {
 	NetworkACLs []NetworkACL `ec2:"NetworkAcls" xml:"networkAclSet>item"`
+}
+
+func (v *DescribeNetworkACLsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeNetworkInterfaceAttributeRequest is undocumented.
@@ -3081,6 +5690,30 @@ type DescribeNetworkInterfaceAttributeRequest struct {
 	Attribute          aws.StringValue  `ec2:"Attribute" xml:"attribute"`
 	DryRun             aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	NetworkInterfaceID aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+}
+
+func (v *DescribeNetworkInterfaceAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	AttributeEnum := []string{
+		NetworkInterfaceAttributeAttachment,
+		NetworkInterfaceAttributeDescription,
+		NetworkInterfaceAttributeGroupSet,
+		NetworkInterfaceAttributeSourceDestCheck,
+	}
+	if err := model.ValidateEnum(v, "Attribute", AttributeEnum); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NetworkInterfaceID"); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeNetworkInterfaceAttributeResult is undocumented.
@@ -3092,6 +5725,16 @@ type DescribeNetworkInterfaceAttributeResult struct {
 	SourceDestCheck    *AttributeBooleanValue      `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
 }
 
+func (v *DescribeNetworkInterfaceAttributeResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeNetworkInterfacesRequest is undocumented.
 type DescribeNetworkInterfacesRequest struct {
 	DryRun              aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
@@ -3099,9 +5742,29 @@ type DescribeNetworkInterfacesRequest struct {
 	NetworkInterfaceIDs []string         `ec2:"NetworkInterfaceId" xml:"NetworkInterfaceId>item"`
 }
 
+func (v *DescribeNetworkInterfacesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeNetworkInterfacesResult is undocumented.
 type DescribeNetworkInterfacesResult struct {
 	NetworkInterfaces []NetworkInterface `ec2:"NetworkInterfaces" xml:"networkInterfaceSet>item"`
+}
+
+func (v *DescribeNetworkInterfacesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribePlacementGroupsRequest is undocumented.
@@ -3111,9 +5774,29 @@ type DescribePlacementGroupsRequest struct {
 	GroupNames []string         `ec2:"GroupNames" xml:"groupName>member"`
 }
 
+func (v *DescribePlacementGroupsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribePlacementGroupsResult is undocumented.
 type DescribePlacementGroupsResult struct {
 	PlacementGroups []PlacementGroup `ec2:"PlacementGroups" xml:"placementGroupSet>item"`
+}
+
+func (v *DescribePlacementGroupsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeRegionsRequest is undocumented.
@@ -3123,9 +5806,29 @@ type DescribeRegionsRequest struct {
 	RegionNames []string         `ec2:"RegionName" xml:"RegionName>RegionName"`
 }
 
+func (v *DescribeRegionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeRegionsResult is undocumented.
 type DescribeRegionsResult struct {
 	Regions []Region `ec2:"Regions" xml:"regionInfo>item"`
+}
+
+func (v *DescribeRegionsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeReservedInstancesListingsRequest is undocumented.
@@ -3135,9 +5838,29 @@ type DescribeReservedInstancesListingsRequest struct {
 	ReservedInstancesListingID aws.StringValue `ec2:"ReservedInstancesListingId" xml:"reservedInstancesListingId"`
 }
 
+func (v *DescribeReservedInstancesListingsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeReservedInstancesListingsResult is undocumented.
 type DescribeReservedInstancesListingsResult struct {
 	ReservedInstancesListings []ReservedInstancesListing `ec2:"ReservedInstancesListings" xml:"reservedInstancesListingsSet>item"`
+}
+
+func (v *DescribeReservedInstancesListingsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeReservedInstancesModificationsRequest is undocumented.
@@ -3147,10 +5870,30 @@ type DescribeReservedInstancesModificationsRequest struct {
 	ReservedInstancesModificationIDs []string        `ec2:"ReservedInstancesModificationId" xml:"ReservedInstancesModificationId>ReservedInstancesModificationId"`
 }
 
+func (v *DescribeReservedInstancesModificationsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeReservedInstancesModificationsResult is undocumented.
 type DescribeReservedInstancesModificationsResult struct {
 	NextToken                      aws.StringValue                 `ec2:"NextToken" xml:"nextToken"`
 	ReservedInstancesModifications []ReservedInstancesModification `ec2:"ReservedInstancesModifications" xml:"reservedInstancesModificationsSet>item"`
+}
+
+func (v *DescribeReservedInstancesModificationsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeReservedInstancesOfferingsRequest is undocumented.
@@ -3171,10 +5914,101 @@ type DescribeReservedInstancesOfferingsRequest struct {
 	ReservedInstancesOfferingIDs []string         `ec2:"ReservedInstancesOfferingId" xml:"ReservedInstancesOfferingId>member"`
 }
 
+func (v *DescribeReservedInstancesOfferingsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	InstanceTenancyEnum := []string{
+		TenancyDedicated,
+		TenancyDefault,
+	}
+	if err := model.ValidateEnum(v, "InstanceTenancy", InstanceTenancyEnum); err != nil {
+		errors["InstanceTenancy"] = append(errors["InstanceTenancy"], err)
+	}
+
+	InstanceTypeEnum := []string{
+		InstanceTypeC1Medium,
+		InstanceTypeC1Xlarge,
+		InstanceTypeC32xlarge,
+		InstanceTypeC34xlarge,
+		InstanceTypeC38xlarge,
+		InstanceTypeC3Large,
+		InstanceTypeC3Xlarge,
+		InstanceTypeCc14xlarge,
+		InstanceTypeCc28xlarge,
+		InstanceTypeCg14xlarge,
+		InstanceTypeCr18xlarge,
+		InstanceTypeG22xlarge,
+		InstanceTypeHi14xlarge,
+		InstanceTypeHs18xlarge,
+		InstanceTypeI22xlarge,
+		InstanceTypeI24xlarge,
+		InstanceTypeI28xlarge,
+		InstanceTypeI2Xlarge,
+		InstanceTypeM1Large,
+		InstanceTypeM1Medium,
+		InstanceTypeM1Small,
+		InstanceTypeM1Xlarge,
+		InstanceTypeM22xlarge,
+		InstanceTypeM24xlarge,
+		InstanceTypeM2Xlarge,
+		InstanceTypeM32xlarge,
+		InstanceTypeM3Large,
+		InstanceTypeM3Medium,
+		InstanceTypeM3Xlarge,
+		InstanceTypeR32xlarge,
+		InstanceTypeR34xlarge,
+		InstanceTypeR38xlarge,
+		InstanceTypeR3Large,
+		InstanceTypeR3Xlarge,
+		InstanceTypeT1Micro,
+		InstanceTypeT2Medium,
+		InstanceTypeT2Micro,
+		InstanceTypeT2Small,
+	}
+	if err := model.ValidateEnum(v, "InstanceType", InstanceTypeEnum); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	OfferingTypeEnum := []string{
+		OfferingTypeValuesHeavyUtilization,
+		OfferingTypeValuesLightUtilization,
+		OfferingTypeValuesMediumUtilization,
+	}
+	if err := model.ValidateEnum(v, "OfferingType", OfferingTypeEnum); err != nil {
+		errors["OfferingType"] = append(errors["OfferingType"], err)
+	}
+
+	ProductDescriptionEnum := []string{
+		RIProductDescriptionLinuxUnix,
+		RIProductDescriptionLinuxUnixamazonVPC,
+		RIProductDescriptionWindows,
+		RIProductDescriptionWindowsAmazonVPC,
+	}
+	if err := model.ValidateEnum(v, "ProductDescription", ProductDescriptionEnum); err != nil {
+		errors["ProductDescription"] = append(errors["ProductDescription"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeReservedInstancesOfferingsResult is undocumented.
 type DescribeReservedInstancesOfferingsResult struct {
 	NextToken                  aws.StringValue             `ec2:"NextToken" xml:"nextToken"`
 	ReservedInstancesOfferings []ReservedInstancesOffering `ec2:"ReservedInstancesOfferings" xml:"reservedInstancesOfferingsSet>item"`
+}
+
+func (v *DescribeReservedInstancesOfferingsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeReservedInstancesRequest is undocumented.
@@ -3185,9 +6019,38 @@ type DescribeReservedInstancesRequest struct {
 	ReservedInstancesIDs []string         `ec2:"ReservedInstancesId" xml:"ReservedInstancesId>ReservedInstancesId"`
 }
 
+func (v *DescribeReservedInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	OfferingTypeEnum := []string{
+		OfferingTypeValuesHeavyUtilization,
+		OfferingTypeValuesLightUtilization,
+		OfferingTypeValuesMediumUtilization,
+	}
+	if err := model.ValidateEnum(v, "OfferingType", OfferingTypeEnum); err != nil {
+		errors["OfferingType"] = append(errors["OfferingType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeReservedInstancesResult is undocumented.
 type DescribeReservedInstancesResult struct {
 	ReservedInstances []ReservedInstances `ec2:"ReservedInstances" xml:"reservedInstancesSet>item"`
+}
+
+func (v *DescribeReservedInstancesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeRouteTablesRequest is undocumented.
@@ -3197,9 +6060,29 @@ type DescribeRouteTablesRequest struct {
 	RouteTableIDs []string         `ec2:"RouteTableId" xml:"RouteTableId>item"`
 }
 
+func (v *DescribeRouteTablesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeRouteTablesResult is undocumented.
 type DescribeRouteTablesResult struct {
 	RouteTables []RouteTable `ec2:"RouteTables" xml:"routeTableSet>item"`
+}
+
+func (v *DescribeRouteTablesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeSecurityGroupsRequest is undocumented.
@@ -3210,9 +6093,29 @@ type DescribeSecurityGroupsRequest struct {
 	GroupNames []string         `ec2:"GroupName" xml:"GroupName>GroupName"`
 }
 
+func (v *DescribeSecurityGroupsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeSecurityGroupsResult is undocumented.
 type DescribeSecurityGroupsResult struct {
 	SecurityGroups []SecurityGroup `ec2:"SecurityGroups" xml:"securityGroupInfo>item"`
+}
+
+func (v *DescribeSecurityGroupsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeSnapshotAttributeRequest is undocumented.
@@ -3222,11 +6125,47 @@ type DescribeSnapshotAttributeRequest struct {
 	SnapshotID aws.StringValue  `ec2:"SnapshotId" xml:"SnapshotId"`
 }
 
+func (v *DescribeSnapshotAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attribute"); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	AttributeEnum := []string{
+		SnapshotAttributeNameCreateVolumePermission,
+		SnapshotAttributeNameProductCodes,
+	}
+	if err := model.ValidateEnum(v, "Attribute", AttributeEnum); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SnapshotID"); err != nil {
+		errors["SnapshotID"] = append(errors["SnapshotID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeSnapshotAttributeResult is undocumented.
 type DescribeSnapshotAttributeResult struct {
 	CreateVolumePermissions []CreateVolumePermission `ec2:"CreateVolumePermissions" xml:"createVolumePermission>item"`
 	ProductCodes            []ProductCode            `ec2:"ProductCodes" xml:"productCodes>item"`
 	SnapshotID              aws.StringValue          `ec2:"SnapshotId" xml:"snapshotId"`
+}
+
+func (v *DescribeSnapshotAttributeResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeSnapshotsRequest is undocumented.
@@ -3238,9 +6177,29 @@ type DescribeSnapshotsRequest struct {
 	SnapshotIDs         []string         `ec2:"SnapshotId" xml:"SnapshotId>SnapshotId"`
 }
 
+func (v *DescribeSnapshotsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeSnapshotsResult is undocumented.
 type DescribeSnapshotsResult struct {
 	Snapshots []Snapshot `ec2:"Snapshots" xml:"snapshotSet>item"`
+}
+
+func (v *DescribeSnapshotsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeSpotDatafeedSubscriptionRequest is undocumented.
@@ -3248,9 +6207,29 @@ type DescribeSpotDatafeedSubscriptionRequest struct {
 	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
+func (v *DescribeSpotDatafeedSubscriptionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeSpotDatafeedSubscriptionResult is undocumented.
 type DescribeSpotDatafeedSubscriptionResult struct {
 	SpotDatafeedSubscription *SpotDatafeedSubscription `ec2:"SpotDatafeedSubscription" xml:"spotDatafeedSubscription"`
+}
+
+func (v *DescribeSpotDatafeedSubscriptionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeSpotInstanceRequestsRequest is undocumented.
@@ -3260,9 +6239,29 @@ type DescribeSpotInstanceRequestsRequest struct {
 	SpotInstanceRequestIDs []string         `ec2:"SpotInstanceRequestId" xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
 }
 
+func (v *DescribeSpotInstanceRequestsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeSpotInstanceRequestsResult is undocumented.
 type DescribeSpotInstanceRequestsResult struct {
 	SpotInstanceRequests []SpotInstanceRequest `ec2:"SpotInstanceRequests" xml:"spotInstanceRequestSet>item"`
+}
+
+func (v *DescribeSpotInstanceRequestsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeSpotPriceHistoryRequest is undocumented.
@@ -3278,10 +6277,30 @@ type DescribeSpotPriceHistoryRequest struct {
 	StartTime           time.Time        `ec2:"StartTime" xml:"startTime"`
 }
 
+func (v *DescribeSpotPriceHistoryRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeSpotPriceHistoryResult is undocumented.
 type DescribeSpotPriceHistoryResult struct {
 	NextToken        aws.StringValue `ec2:"NextToken" xml:"nextToken"`
 	SpotPriceHistory []SpotPrice     `ec2:"SpotPriceHistory" xml:"spotPriceHistorySet>item"`
+}
+
+func (v *DescribeSpotPriceHistoryResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeSubnetsRequest is undocumented.
@@ -3291,9 +6310,29 @@ type DescribeSubnetsRequest struct {
 	SubnetIDs []string         `ec2:"SubnetId" xml:"SubnetId>SubnetId"`
 }
 
+func (v *DescribeSubnetsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeSubnetsResult is undocumented.
 type DescribeSubnetsResult struct {
 	Subnets []Subnet `ec2:"Subnets" xml:"subnetSet>item"`
+}
+
+func (v *DescribeSubnetsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTagsRequest is undocumented.
@@ -3304,10 +6343,30 @@ type DescribeTagsRequest struct {
 	NextToken  aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
 }
 
+func (v *DescribeTagsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTagsResult is undocumented.
 type DescribeTagsResult struct {
 	NextToken aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
 	Tags      []TagDescription `ec2:"Tags" xml:"tagSet>item"`
+}
+
+func (v *DescribeTagsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeVolumeAttributeRequest is undocumented.
@@ -3317,11 +6376,43 @@ type DescribeVolumeAttributeRequest struct {
 	VolumeID  aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
 }
 
+func (v *DescribeVolumeAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	AttributeEnum := []string{
+		VolumeAttributeNameAutoEnableIo,
+		VolumeAttributeNameProductCodes,
+	}
+	if err := model.ValidateEnum(v, "Attribute", AttributeEnum); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VolumeID"); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeVolumeAttributeResult is undocumented.
 type DescribeVolumeAttributeResult struct {
 	AutoEnableIO *AttributeBooleanValue `ec2:"AutoEnableIO" xml:"autoEnableIO"`
 	ProductCodes []ProductCode          `ec2:"ProductCodes" xml:"productCodes>item"`
 	VolumeID     aws.StringValue        `ec2:"VolumeId" xml:"volumeId"`
+}
+
+func (v *DescribeVolumeAttributeResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeVolumeStatusRequest is undocumented.
@@ -3333,10 +6424,30 @@ type DescribeVolumeStatusRequest struct {
 	VolumeIDs  []string         `ec2:"VolumeId" xml:"VolumeId>VolumeId"`
 }
 
+func (v *DescribeVolumeStatusRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeVolumeStatusResult is undocumented.
 type DescribeVolumeStatusResult struct {
 	NextToken      aws.StringValue    `ec2:"NextToken" xml:"nextToken"`
 	VolumeStatuses []VolumeStatusItem `ec2:"VolumeStatuses" xml:"volumeStatusSet>item"`
+}
+
+func (v *DescribeVolumeStatusResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeVolumesRequest is undocumented.
@@ -3348,10 +6459,30 @@ type DescribeVolumesRequest struct {
 	VolumeIDs  []string         `ec2:"VolumeId" xml:"VolumeId>VolumeId"`
 }
 
+func (v *DescribeVolumesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeVolumesResult is undocumented.
 type DescribeVolumesResult struct {
 	NextToken aws.StringValue `ec2:"NextToken" xml:"nextToken"`
 	Volumes   []Volume        `ec2:"Volumes" xml:"volumeSet>item"`
+}
+
+func (v *DescribeVolumesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeVPCAttributeRequest is undocumented.
@@ -3361,11 +6492,43 @@ type DescribeVPCAttributeRequest struct {
 	VPCID     aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
+func (v *DescribeVPCAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	AttributeEnum := []string{
+		VPCAttributeNameEnableDNSHostnames,
+		VPCAttributeNameEnableDNSSupport,
+	}
+	if err := model.ValidateEnum(v, "Attribute", AttributeEnum); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VPCID"); err != nil {
+		errors["VPCID"] = append(errors["VPCID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeVPCAttributeResult is undocumented.
 type DescribeVPCAttributeResult struct {
 	EnableDNSHostnames *AttributeBooleanValue `ec2:"EnableDnsHostnames" xml:"enableDnsHostnames"`
 	EnableDNSSupport   *AttributeBooleanValue `ec2:"EnableDnsSupport" xml:"enableDnsSupport"`
 	VPCID              aws.StringValue        `ec2:"VpcId" xml:"vpcId"`
+}
+
+func (v *DescribeVPCAttributeResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeVPCPeeringConnectionsRequest is undocumented.
@@ -3375,9 +6538,29 @@ type DescribeVPCPeeringConnectionsRequest struct {
 	VPCPeeringConnectionIDs []string         `ec2:"VpcPeeringConnectionId" xml:"VpcPeeringConnectionId>item"`
 }
 
+func (v *DescribeVPCPeeringConnectionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeVPCPeeringConnectionsResult is undocumented.
 type DescribeVPCPeeringConnectionsResult struct {
 	VPCPeeringConnections []VPCPeeringConnection `ec2:"VpcPeeringConnections" xml:"vpcPeeringConnectionSet>item"`
+}
+
+func (v *DescribeVPCPeeringConnectionsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeVPCsRequest is undocumented.
@@ -3387,9 +6570,29 @@ type DescribeVPCsRequest struct {
 	VPCIDs  []string         `ec2:"VpcId" xml:"VpcId>VpcId"`
 }
 
+func (v *DescribeVPCsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeVPCsResult is undocumented.
 type DescribeVPCsResult struct {
 	VPCs []VPC `ec2:"Vpcs" xml:"vpcSet>item"`
+}
+
+func (v *DescribeVPCsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeVPNConnectionsRequest is undocumented.
@@ -3399,9 +6602,29 @@ type DescribeVPNConnectionsRequest struct {
 	VPNConnectionIDs []string         `ec2:"VpnConnectionId" xml:"VpnConnectionId>VpnConnectionId"`
 }
 
+func (v *DescribeVPNConnectionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeVPNConnectionsResult is undocumented.
 type DescribeVPNConnectionsResult struct {
 	VPNConnections []VPNConnection `ec2:"VpnConnections" xml:"vpnConnectionSet>item"`
+}
+
+func (v *DescribeVPNConnectionsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeVPNGatewaysRequest is undocumented.
@@ -3411,9 +6634,29 @@ type DescribeVPNGatewaysRequest struct {
 	VPNGatewayIDs []string         `ec2:"VpnGatewayId" xml:"VpnGatewayId>VpnGatewayId"`
 }
 
+func (v *DescribeVPNGatewaysRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeVPNGatewaysResult is undocumented.
 type DescribeVPNGatewaysResult struct {
 	VPNGateways []VPNGateway `ec2:"VpnGateways" xml:"vpnGatewaySet>item"`
+}
+
+func (v *DescribeVPNGatewaysResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DetachInternetGatewayRequest is undocumented.
@@ -3423,11 +6666,43 @@ type DetachInternetGatewayRequest struct {
 	VPCID             aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
+func (v *DetachInternetGatewayRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InternetGatewayID"); err != nil {
+		errors["InternetGatewayID"] = append(errors["InternetGatewayID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VPCID"); err != nil {
+		errors["VPCID"] = append(errors["VPCID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DetachNetworkInterfaceRequest is undocumented.
 type DetachNetworkInterfaceRequest struct {
 	AttachmentID aws.StringValue  `ec2:"AttachmentId" xml:"attachmentId"`
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Force        aws.BooleanValue `ec2:"Force" xml:"force"`
+}
+
+func (v *DetachNetworkInterfaceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AttachmentID"); err != nil {
+		errors["AttachmentID"] = append(errors["AttachmentID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DetachVolumeRequest is undocumented.
@@ -3439,11 +6714,43 @@ type DetachVolumeRequest struct {
 	VolumeID   aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
 }
 
+func (v *DetachVolumeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeID"); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DetachVPNGatewayRequest is undocumented.
 type DetachVPNGatewayRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VPCID        aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 	VPNGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
+}
+
+func (v *DetachVPNGatewayRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VPCID"); err != nil {
+		errors["VPCID"] = append(errors["VPCID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VPNGatewayID"); err != nil {
+		errors["VPNGatewayID"] = append(errors["VPNGatewayID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -3458,6 +6765,16 @@ type DHCPConfiguration struct {
 	Values []AttributeValue `ec2:"Values" xml:"valueSet>item"`
 }
 
+func (v *DHCPConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DHCPOptions is undocumented.
 type DHCPOptions struct {
 	DHCPConfigurations []DHCPConfiguration `ec2:"DhcpConfigurations" xml:"dhcpConfigurationSet>item"`
@@ -3465,10 +6782,38 @@ type DHCPOptions struct {
 	Tags               []Tag               `ec2:"Tags" xml:"tagSet>item"`
 }
 
+func (v *DHCPOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DisableVGWRoutePropagationRequest is undocumented.
 type DisableVGWRoutePropagationRequest struct {
 	GatewayID    aws.StringValue `ec2:"GatewayId" xml:"GatewayId"`
 	RouteTableID aws.StringValue `ec2:"RouteTableId" xml:"RouteTableId"`
+}
+
+func (v *DisableVGWRoutePropagationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayID"); err != nil {
+		errors["GatewayID"] = append(errors["GatewayID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RouteTableID"); err != nil {
+		errors["RouteTableID"] = append(errors["RouteTableID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DisassociateAddressRequest is undocumented.
@@ -3478,10 +6823,34 @@ type DisassociateAddressRequest struct {
 	PublicIP      aws.StringValue  `ec2:"PublicIp" xml:"PublicIp"`
 }
 
+func (v *DisassociateAddressRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DisassociateRouteTableRequest is undocumented.
 type DisassociateRouteTableRequest struct {
 	AssociationID aws.StringValue  `ec2:"AssociationId" xml:"associationId"`
 	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+}
+
+func (v *DisassociateRouteTableRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AssociationID"); err != nil {
+		errors["AssociationID"] = append(errors["AssociationID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DiskImage is undocumented.
@@ -3489,6 +6858,16 @@ type DiskImage struct {
 	Description aws.StringValue  `ec2:"Description" xml:"Description"`
 	Image       *DiskImageDetail `ec2:"Image" xml:"Image"`
 	Volume      *VolumeDetail    `ec2:"Volume" xml:"Volume"`
+}
+
+func (v *DiskImage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DiskImageDescription is undocumented.
@@ -3499,11 +6878,73 @@ type DiskImageDescription struct {
 	Size              aws.LongValue   `ec2:"Size" xml:"size"`
 }
 
+func (v *DiskImageDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Format"); err != nil {
+		errors["Format"] = append(errors["Format"], err)
+	}
+
+	FormatEnum := []string{
+		DiskImageFormatRaw,
+		DiskImageFormatVHD,
+		DiskImageFormatVMDK,
+	}
+	if err := model.ValidateEnum(v, "Format", FormatEnum); err != nil {
+		errors["Format"] = append(errors["Format"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ImportManifestURL"); err != nil {
+		errors["ImportManifestURL"] = append(errors["ImportManifestURL"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Size"); err != nil {
+		errors["Size"] = append(errors["Size"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DiskImageDetail is undocumented.
 type DiskImageDetail struct {
 	Bytes             aws.LongValue   `ec2:"Bytes" xml:"bytes"`
 	Format            aws.StringValue `ec2:"Format" xml:"format"`
 	ImportManifestURL aws.StringValue `ec2:"ImportManifestUrl" xml:"importManifestUrl"`
+}
+
+func (v *DiskImageDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bytes"); err != nil {
+		errors["Bytes"] = append(errors["Bytes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Format"); err != nil {
+		errors["Format"] = append(errors["Format"], err)
+	}
+
+	FormatEnum := []string{
+		DiskImageFormatRaw,
+		DiskImageFormatVHD,
+		DiskImageFormatVMDK,
+	}
+	if err := model.ValidateEnum(v, "Format", FormatEnum); err != nil {
+		errors["Format"] = append(errors["Format"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ImportManifestURL"); err != nil {
+		errors["ImportManifestURL"] = append(errors["ImportManifestURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -3517,6 +6958,20 @@ const (
 type DiskImageVolumeDescription struct {
 	ID   aws.StringValue `ec2:"Id" xml:"id"`
 	Size aws.LongValue   `ec2:"Size" xml:"size"`
+}
+
+func (v *DiskImageVolumeDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -3535,6 +6990,25 @@ type EBSBlockDevice struct {
 	VolumeType          aws.StringValue  `ec2:"VolumeType" xml:"volumeType"`
 }
 
+func (v *EBSBlockDevice) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	VolumeTypeEnum := []string{
+		VolumeTypeGp2,
+		VolumeTypeIo1,
+		VolumeTypeStandard,
+	}
+	if err := model.ValidateEnum(v, "VolumeType", VolumeTypeEnum); err != nil {
+		errors["VolumeType"] = append(errors["VolumeType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EBSInstanceBlockDevice is undocumented.
 type EBSInstanceBlockDevice struct {
 	AttachTime          time.Time        `ec2:"AttachTime" xml:"attachTime"`
@@ -3543,10 +7017,40 @@ type EBSInstanceBlockDevice struct {
 	VolumeID            aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 }
 
+func (v *EBSInstanceBlockDevice) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StatusEnum := []string{
+		AttachmentStatusAttached,
+		AttachmentStatusAttaching,
+		AttachmentStatusDetached,
+		AttachmentStatusDetaching,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EBSInstanceBlockDeviceSpecification is undocumented.
 type EBSInstanceBlockDeviceSpecification struct {
 	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
 	VolumeID            aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
+}
+
+func (v *EBSInstanceBlockDeviceSpecification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EnableVGWRoutePropagationRequest is undocumented.
@@ -3555,10 +7059,42 @@ type EnableVGWRoutePropagationRequest struct {
 	RouteTableID aws.StringValue `ec2:"RouteTableId" xml:"RouteTableId"`
 }
 
+func (v *EnableVGWRoutePropagationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GatewayID"); err != nil {
+		errors["GatewayID"] = append(errors["GatewayID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RouteTableID"); err != nil {
+		errors["RouteTableID"] = append(errors["RouteTableID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnableVolumeIORequest is undocumented.
 type EnableVolumeIORequest struct {
 	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VolumeID aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
+}
+
+func (v *EnableVolumeIORequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeID"); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -3587,6 +7123,26 @@ type ExportTask struct {
 	StatusMessage         aws.StringValue        `ec2:"StatusMessage" xml:"statusMessage"`
 }
 
+func (v *ExportTask) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		ExportTaskStateActive,
+		ExportTaskStateCancelled,
+		ExportTaskStateCancelling,
+		ExportTaskStateCompleted,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EC2.
 const (
 	ExportTaskStateActive     = "active"
@@ -3603,6 +7159,32 @@ type ExportToS3Task struct {
 	S3Key           aws.StringValue `ec2:"S3Key" xml:"s3Key"`
 }
 
+func (v *ExportToS3Task) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ContainerFormatEnum := []string{
+		ContainerFormatOva,
+	}
+	if err := model.ValidateEnum(v, "ContainerFormat", ContainerFormatEnum); err != nil {
+		errors["ContainerFormat"] = append(errors["ContainerFormat"], err)
+	}
+
+	DiskImageFormatEnum := []string{
+		DiskImageFormatRaw,
+		DiskImageFormatVHD,
+		DiskImageFormatVMDK,
+	}
+	if err := model.ValidateEnum(v, "DiskImageFormat", DiskImageFormatEnum); err != nil {
+		errors["DiskImageFormat"] = append(errors["DiskImageFormat"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ExportToS3TaskSpecification is undocumented.
 type ExportToS3TaskSpecification struct {
 	ContainerFormat aws.StringValue `ec2:"ContainerFormat" xml:"containerFormat"`
@@ -3611,10 +7193,46 @@ type ExportToS3TaskSpecification struct {
 	S3Prefix        aws.StringValue `ec2:"S3Prefix" xml:"s3Prefix"`
 }
 
+func (v *ExportToS3TaskSpecification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ContainerFormatEnum := []string{
+		ContainerFormatOva,
+	}
+	if err := model.ValidateEnum(v, "ContainerFormat", ContainerFormatEnum); err != nil {
+		errors["ContainerFormat"] = append(errors["ContainerFormat"], err)
+	}
+
+	DiskImageFormatEnum := []string{
+		DiskImageFormatRaw,
+		DiskImageFormatVHD,
+		DiskImageFormatVMDK,
+	}
+	if err := model.ValidateEnum(v, "DiskImageFormat", DiskImageFormatEnum); err != nil {
+		errors["DiskImageFormat"] = append(errors["DiskImageFormat"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Filter is undocumented.
 type Filter struct {
 	Name   aws.StringValue `ec2:"Name" xml:"Name"`
 	Values []string        `ec2:"Value" xml:"Value>item"`
+}
+
+func (v *Filter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -3628,6 +7246,20 @@ type GetConsoleOutputRequest struct {
 	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"InstanceId"`
 }
 
+func (v *GetConsoleOutputRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetConsoleOutputResult is undocumented.
 type GetConsoleOutputResult struct {
 	InstanceID aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
@@ -3635,10 +7267,34 @@ type GetConsoleOutputResult struct {
 	Timestamp  time.Time       `ec2:"Timestamp" xml:"timestamp"`
 }
 
+func (v *GetConsoleOutputResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetPasswordDataRequest is undocumented.
 type GetPasswordDataRequest struct {
 	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"InstanceId"`
+}
+
+func (v *GetPasswordDataRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetPasswordDataResult is undocumented.
@@ -3648,10 +7304,30 @@ type GetPasswordDataResult struct {
 	Timestamp    time.Time       `ec2:"Timestamp" xml:"timestamp"`
 }
 
+func (v *GetPasswordDataResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GroupIdentifier is undocumented.
 type GroupIdentifier struct {
 	GroupID   aws.StringValue `ec2:"GroupId" xml:"groupId"`
 	GroupName aws.StringValue `ec2:"GroupName" xml:"groupName"`
+}
+
+func (v *GroupIdentifier) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -3666,16 +7342,46 @@ type IAMInstanceProfile struct {
 	ID  aws.StringValue `ec2:"Id" xml:"id"`
 }
 
+func (v *IAMInstanceProfile) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // IAMInstanceProfileSpecification is undocumented.
 type IAMInstanceProfileSpecification struct {
 	ARN  aws.StringValue `ec2:"Arn" xml:"arn"`
 	Name aws.StringValue `ec2:"Name" xml:"name"`
 }
 
+func (v *IAMInstanceProfileSpecification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ICMPTypeCode is undocumented.
 type ICMPTypeCode struct {
 	Code aws.IntegerValue `ec2:"Code" xml:"code"`
 	Type aws.IntegerValue `ec2:"Type" xml:"type"`
+}
+
+func (v *ICMPTypeCode) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Image is undocumented.
@@ -3704,6 +7410,72 @@ type Image struct {
 	VirtualizationType  aws.StringValue      `ec2:"VirtualizationType" xml:"virtualizationType"`
 }
 
+func (v *Image) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ArchitectureEnum := []string{
+		ArchitectureValuesI386,
+		ArchitectureValuesX8664,
+	}
+	if err := model.ValidateEnum(v, "Architecture", ArchitectureEnum); err != nil {
+		errors["Architecture"] = append(errors["Architecture"], err)
+	}
+
+	HypervisorEnum := []string{
+		HypervisorTypeOvm,
+		HypervisorTypeXen,
+	}
+	if err := model.ValidateEnum(v, "Hypervisor", HypervisorEnum); err != nil {
+		errors["Hypervisor"] = append(errors["Hypervisor"], err)
+	}
+
+	ImageTypeEnum := []string{
+		ImageTypeValuesKernel,
+		ImageTypeValuesMachine,
+		ImageTypeValuesRAMDisk,
+	}
+	if err := model.ValidateEnum(v, "ImageType", ImageTypeEnum); err != nil {
+		errors["ImageType"] = append(errors["ImageType"], err)
+	}
+
+	PlatformEnum := []string{
+		PlatformValuesWindows,
+	}
+	if err := model.ValidateEnum(v, "Platform", PlatformEnum); err != nil {
+		errors["Platform"] = append(errors["Platform"], err)
+	}
+
+	RootDeviceTypeEnum := []string{
+		DeviceTypeEBS,
+		DeviceTypeInstanceStore,
+	}
+	if err := model.ValidateEnum(v, "RootDeviceType", RootDeviceTypeEnum); err != nil {
+		errors["RootDeviceType"] = append(errors["RootDeviceType"], err)
+	}
+
+	StateEnum := []string{
+		ImageStateAvailable,
+		ImageStateDeregistered,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	VirtualizationTypeEnum := []string{
+		VirtualizationTypeHVM,
+		VirtualizationTypeParavirtual,
+	}
+	if err := model.ValidateEnum(v, "VirtualizationType", VirtualizationTypeEnum); err != nil {
+		errors["VirtualizationType"] = append(errors["VirtualizationType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ImageAttribute is undocumented.
 type ImageAttribute struct {
 	BlockDeviceMappings []BlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
@@ -3714,6 +7486,16 @@ type ImageAttribute struct {
 	ProductCodes        []ProductCode        `ec2:"ProductCodes" xml:"productCodes>item"`
 	RAMDiskID           *AttributeValue      `ec2:"RamdiskId" xml:"ramdisk"`
 	SRIOVNetSupport     *AttributeValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
+}
+
+func (v *ImageAttribute) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -3754,6 +7536,76 @@ type ImportInstanceLaunchSpecification struct {
 	UserData                          aws.StringValue  `ec2:"UserData" xml:"userData"`
 }
 
+func (v *ImportInstanceLaunchSpecification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ArchitectureEnum := []string{
+		ArchitectureValuesI386,
+		ArchitectureValuesX8664,
+	}
+	if err := model.ValidateEnum(v, "Architecture", ArchitectureEnum); err != nil {
+		errors["Architecture"] = append(errors["Architecture"], err)
+	}
+
+	InstanceInitiatedShutdownBehaviorEnum := []string{
+		ShutdownBehaviorStop,
+		ShutdownBehaviorTerminate,
+	}
+	if err := model.ValidateEnum(v, "InstanceInitiatedShutdownBehavior", InstanceInitiatedShutdownBehaviorEnum); err != nil {
+		errors["InstanceInitiatedShutdownBehavior"] = append(errors["InstanceInitiatedShutdownBehavior"], err)
+	}
+
+	InstanceTypeEnum := []string{
+		InstanceTypeC1Medium,
+		InstanceTypeC1Xlarge,
+		InstanceTypeC32xlarge,
+		InstanceTypeC34xlarge,
+		InstanceTypeC38xlarge,
+		InstanceTypeC3Large,
+		InstanceTypeC3Xlarge,
+		InstanceTypeCc14xlarge,
+		InstanceTypeCc28xlarge,
+		InstanceTypeCg14xlarge,
+		InstanceTypeCr18xlarge,
+		InstanceTypeG22xlarge,
+		InstanceTypeHi14xlarge,
+		InstanceTypeHs18xlarge,
+		InstanceTypeI22xlarge,
+		InstanceTypeI24xlarge,
+		InstanceTypeI28xlarge,
+		InstanceTypeI2Xlarge,
+		InstanceTypeM1Large,
+		InstanceTypeM1Medium,
+		InstanceTypeM1Small,
+		InstanceTypeM1Xlarge,
+		InstanceTypeM22xlarge,
+		InstanceTypeM24xlarge,
+		InstanceTypeM2Xlarge,
+		InstanceTypeM32xlarge,
+		InstanceTypeM3Large,
+		InstanceTypeM3Medium,
+		InstanceTypeM3Xlarge,
+		InstanceTypeR32xlarge,
+		InstanceTypeR34xlarge,
+		InstanceTypeR38xlarge,
+		InstanceTypeR3Large,
+		InstanceTypeR3Xlarge,
+		InstanceTypeT1Micro,
+		InstanceTypeT2Medium,
+		InstanceTypeT2Micro,
+		InstanceTypeT2Small,
+	}
+	if err := model.ValidateEnum(v, "InstanceType", InstanceTypeEnum); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ImportInstanceRequest is undocumented.
 type ImportInstanceRequest struct {
 	Description         aws.StringValue                    `ec2:"Description" xml:"description"`
@@ -3763,9 +7615,40 @@ type ImportInstanceRequest struct {
 	Platform            aws.StringValue                    `ec2:"Platform" xml:"platform"`
 }
 
+func (v *ImportInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Platform"); err != nil {
+		errors["Platform"] = append(errors["Platform"], err)
+	}
+
+	PlatformEnum := []string{
+		PlatformValuesWindows,
+	}
+	if err := model.ValidateEnum(v, "Platform", PlatformEnum); err != nil {
+		errors["Platform"] = append(errors["Platform"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ImportInstanceResult is undocumented.
 type ImportInstanceResult struct {
 	ConversionTask *ConversionTask `ec2:"ConversionTask" xml:"conversionTask"`
+}
+
+func (v *ImportInstanceResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ImportInstanceTaskDetails is undocumented.
@@ -3774,6 +7657,27 @@ type ImportInstanceTaskDetails struct {
 	InstanceID  aws.StringValue                  `ec2:"InstanceId" xml:"instanceId"`
 	Platform    aws.StringValue                  `ec2:"Platform" xml:"platform"`
 	Volumes     []ImportInstanceVolumeDetailItem `ec2:"Volumes" xml:"volumes>item"`
+}
+
+func (v *ImportInstanceTaskDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	PlatformEnum := []string{
+		PlatformValuesWindows,
+	}
+	if err := model.ValidateEnum(v, "Platform", PlatformEnum); err != nil {
+		errors["Platform"] = append(errors["Platform"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Volumes"); err != nil {
+		errors["Volumes"] = append(errors["Volumes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ImportInstanceVolumeDetailItem is undocumented.
@@ -3787,6 +7691,36 @@ type ImportInstanceVolumeDetailItem struct {
 	Volume           *DiskImageVolumeDescription `ec2:"Volume" xml:"volume"`
 }
 
+func (v *ImportInstanceVolumeDetailItem) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AvailabilityZone"); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidateRequired(v, "BytesConverted"); err != nil {
+		errors["BytesConverted"] = append(errors["BytesConverted"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Image"); err != nil {
+		errors["Image"] = append(errors["Image"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Volume"); err != nil {
+		errors["Volume"] = append(errors["Volume"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ImportKeyPairRequest is undocumented.
 type ImportKeyPairRequest struct {
 	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
@@ -3794,10 +7728,38 @@ type ImportKeyPairRequest struct {
 	PublicKeyMaterial []byte           `ec2:"PublicKeyMaterial" xml:"publicKeyMaterial"`
 }
 
+func (v *ImportKeyPairRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "KeyName"); err != nil {
+		errors["KeyName"] = append(errors["KeyName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PublicKeyMaterial"); err != nil {
+		errors["PublicKeyMaterial"] = append(errors["PublicKeyMaterial"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ImportKeyPairResult is undocumented.
 type ImportKeyPairResult struct {
 	KeyFingerprint aws.StringValue `ec2:"KeyFingerprint" xml:"keyFingerprint"`
 	KeyName        aws.StringValue `ec2:"KeyName" xml:"keyName"`
+}
+
+func (v *ImportKeyPairResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ImportVolumeRequest is undocumented.
@@ -3809,9 +7771,41 @@ type ImportVolumeRequest struct {
 	Volume           *VolumeDetail    `ec2:"Volume" xml:"volume"`
 }
 
+func (v *ImportVolumeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AvailabilityZone"); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Image"); err != nil {
+		errors["Image"] = append(errors["Image"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Volume"); err != nil {
+		errors["Volume"] = append(errors["Volume"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ImportVolumeResult is undocumented.
 type ImportVolumeResult struct {
 	ConversionTask *ConversionTask `ec2:"ConversionTask" xml:"conversionTask"`
+}
+
+func (v *ImportVolumeResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ImportVolumeTaskDetails is undocumented.
@@ -3821,6 +7815,32 @@ type ImportVolumeTaskDetails struct {
 	Description      aws.StringValue             `ec2:"Description" xml:"description"`
 	Image            *DiskImageDescription       `ec2:"Image" xml:"image"`
 	Volume           *DiskImageVolumeDescription `ec2:"Volume" xml:"volume"`
+}
+
+func (v *ImportVolumeTaskDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AvailabilityZone"); err != nil {
+		errors["AvailabilityZone"] = append(errors["AvailabilityZone"], err)
+	}
+
+	if err := model.ValidateRequired(v, "BytesConverted"); err != nil {
+		errors["BytesConverted"] = append(errors["BytesConverted"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Image"); err != nil {
+		errors["Image"] = append(errors["Image"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Volume"); err != nil {
+		errors["Volume"] = append(errors["Volume"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Instance is undocumented.
@@ -3864,6 +7884,106 @@ type Instance struct {
 	VPCID                 aws.StringValue              `ec2:"VpcId" xml:"vpcId"`
 }
 
+func (v *Instance) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ArchitectureEnum := []string{
+		ArchitectureValuesI386,
+		ArchitectureValuesX8664,
+	}
+	if err := model.ValidateEnum(v, "Architecture", ArchitectureEnum); err != nil {
+		errors["Architecture"] = append(errors["Architecture"], err)
+	}
+
+	HypervisorEnum := []string{
+		HypervisorTypeOvm,
+		HypervisorTypeXen,
+	}
+	if err := model.ValidateEnum(v, "Hypervisor", HypervisorEnum); err != nil {
+		errors["Hypervisor"] = append(errors["Hypervisor"], err)
+	}
+
+	InstanceLifecycleEnum := []string{
+		InstanceLifecycleTypeSpot,
+	}
+	if err := model.ValidateEnum(v, "InstanceLifecycle", InstanceLifecycleEnum); err != nil {
+		errors["InstanceLifecycle"] = append(errors["InstanceLifecycle"], err)
+	}
+
+	InstanceTypeEnum := []string{
+		InstanceTypeC1Medium,
+		InstanceTypeC1Xlarge,
+		InstanceTypeC32xlarge,
+		InstanceTypeC34xlarge,
+		InstanceTypeC38xlarge,
+		InstanceTypeC3Large,
+		InstanceTypeC3Xlarge,
+		InstanceTypeCc14xlarge,
+		InstanceTypeCc28xlarge,
+		InstanceTypeCg14xlarge,
+		InstanceTypeCr18xlarge,
+		InstanceTypeG22xlarge,
+		InstanceTypeHi14xlarge,
+		InstanceTypeHs18xlarge,
+		InstanceTypeI22xlarge,
+		InstanceTypeI24xlarge,
+		InstanceTypeI28xlarge,
+		InstanceTypeI2Xlarge,
+		InstanceTypeM1Large,
+		InstanceTypeM1Medium,
+		InstanceTypeM1Small,
+		InstanceTypeM1Xlarge,
+		InstanceTypeM22xlarge,
+		InstanceTypeM24xlarge,
+		InstanceTypeM2Xlarge,
+		InstanceTypeM32xlarge,
+		InstanceTypeM3Large,
+		InstanceTypeM3Medium,
+		InstanceTypeM3Xlarge,
+		InstanceTypeR32xlarge,
+		InstanceTypeR34xlarge,
+		InstanceTypeR38xlarge,
+		InstanceTypeR3Large,
+		InstanceTypeR3Xlarge,
+		InstanceTypeT1Micro,
+		InstanceTypeT2Medium,
+		InstanceTypeT2Micro,
+		InstanceTypeT2Small,
+	}
+	if err := model.ValidateEnum(v, "InstanceType", InstanceTypeEnum); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	PlatformEnum := []string{
+		PlatformValuesWindows,
+	}
+	if err := model.ValidateEnum(v, "Platform", PlatformEnum); err != nil {
+		errors["Platform"] = append(errors["Platform"], err)
+	}
+
+	RootDeviceTypeEnum := []string{
+		DeviceTypeEBS,
+		DeviceTypeInstanceStore,
+	}
+	if err := model.ValidateEnum(v, "RootDeviceType", RootDeviceTypeEnum); err != nil {
+		errors["RootDeviceType"] = append(errors["RootDeviceType"], err)
+	}
+
+	VirtualizationTypeEnum := []string{
+		VirtualizationTypeHVM,
+		VirtualizationTypeParavirtual,
+	}
+	if err := model.ValidateEnum(v, "VirtualizationType", VirtualizationTypeEnum); err != nil {
+		errors["VirtualizationType"] = append(errors["VirtualizationType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceAttribute is undocumented.
 type InstanceAttribute struct {
 	BlockDeviceMappings               []InstanceBlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
@@ -3880,6 +8000,16 @@ type InstanceAttribute struct {
 	SourceDestCheck                   *AttributeBooleanValue       `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
 	SRIOVNetSupport                   *AttributeValue              `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 	UserData                          *AttributeValue              `ec2:"UserData" xml:"userData"`
+}
+
+func (v *InstanceAttribute) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -3905,6 +8035,16 @@ type InstanceBlockDeviceMapping struct {
 	EBS        *EBSInstanceBlockDevice `ec2:"Ebs" xml:"ebs"`
 }
 
+func (v *InstanceBlockDeviceMapping) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceBlockDeviceMappingSpecification is undocumented.
 type InstanceBlockDeviceMappingSpecification struct {
 	DeviceName  aws.StringValue                      `ec2:"DeviceName" xml:"deviceName"`
@@ -3913,16 +8053,65 @@ type InstanceBlockDeviceMappingSpecification struct {
 	VirtualName aws.StringValue                      `ec2:"VirtualName" xml:"virtualName"`
 }
 
+func (v *InstanceBlockDeviceMappingSpecification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceCount is undocumented.
 type InstanceCount struct {
 	InstanceCount aws.IntegerValue `ec2:"InstanceCount" xml:"instanceCount"`
 	State         aws.StringValue  `ec2:"State" xml:"state"`
 }
 
+func (v *InstanceCount) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		ListingStateAvailable,
+		ListingStateCancelled,
+		ListingStatePending,
+		ListingStateSold,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceExportDetails is undocumented.
 type InstanceExportDetails struct {
 	InstanceID        aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
 	TargetEnvironment aws.StringValue `ec2:"TargetEnvironment" xml:"targetEnvironment"`
+}
+
+func (v *InstanceExportDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	TargetEnvironmentEnum := []string{
+		ExportEnvironmentCitrix,
+		ExportEnvironmentMicrosoft,
+		ExportEnvironmentVMware,
+	}
+	if err := model.ValidateEnum(v, "TargetEnvironment", TargetEnvironmentEnum); err != nil {
+		errors["TargetEnvironment"] = append(errors["TargetEnvironment"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -3934,6 +8123,16 @@ const (
 type InstanceMonitoring struct {
 	InstanceID aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
 	Monitoring *Monitoring     `ec2:"Monitoring" xml:"monitoring"`
+}
+
+func (v *InstanceMonitoring) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // InstanceNetworkInterface is undocumented.
@@ -3954,11 +8153,41 @@ type InstanceNetworkInterface struct {
 	VPCID              aws.StringValue                      `ec2:"VpcId" xml:"vpcId"`
 }
 
+func (v *InstanceNetworkInterface) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StatusEnum := []string{
+		NetworkInterfaceStatusAttaching,
+		NetworkInterfaceStatusAvailable,
+		NetworkInterfaceStatusDetaching,
+		NetworkInterfaceStatusInUse,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceNetworkInterfaceAssociation is undocumented.
 type InstanceNetworkInterfaceAssociation struct {
 	IPOwnerID     aws.StringValue `ec2:"IpOwnerId" xml:"ipOwnerId"`
 	PublicDNSName aws.StringValue `ec2:"PublicDnsName" xml:"publicDnsName"`
 	PublicIP      aws.StringValue `ec2:"PublicIp" xml:"publicIp"`
+}
+
+func (v *InstanceNetworkInterfaceAssociation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // InstanceNetworkInterfaceAttachment is undocumented.
@@ -3968,6 +8197,26 @@ type InstanceNetworkInterfaceAttachment struct {
 	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
 	DeviceIndex         aws.IntegerValue `ec2:"DeviceIndex" xml:"deviceIndex"`
 	Status              aws.StringValue  `ec2:"Status" xml:"status"`
+}
+
+func (v *InstanceNetworkInterfaceAttachment) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StatusEnum := []string{
+		AttachmentStatusAttached,
+		AttachmentStatusAttaching,
+		AttachmentStatusDetached,
+		AttachmentStatusDetaching,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // InstanceNetworkInterfaceSpecification is undocumented.
@@ -3984,6 +8233,16 @@ type InstanceNetworkInterfaceSpecification struct {
 	SubnetID                       aws.StringValue                 `ec2:"SubnetId" xml:"subnetId"`
 }
 
+func (v *InstanceNetworkInterfaceSpecification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstancePrivateIPAddress is undocumented.
 type InstancePrivateIPAddress struct {
 	Association      *InstanceNetworkInterfaceAssociation `ec2:"Association" xml:"association"`
@@ -3992,10 +8251,42 @@ type InstancePrivateIPAddress struct {
 	PrivateIPAddress aws.StringValue                      `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 }
 
+func (v *InstancePrivateIPAddress) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceState is undocumented.
 type InstanceState struct {
 	Code aws.IntegerValue `ec2:"Code" xml:"code"`
 	Name aws.StringValue  `ec2:"Name" xml:"name"`
+}
+
+func (v *InstanceState) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	NameEnum := []string{
+		InstanceStateNamePending,
+		InstanceStateNameRunning,
+		InstanceStateNameShuttingDown,
+		InstanceStateNameStopped,
+		InstanceStateNameStopping,
+		InstanceStateNameTerminated,
+	}
+	if err := model.ValidateEnum(v, "Name", NameEnum); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // InstanceStateChange is undocumented.
@@ -4003,6 +8294,16 @@ type InstanceStateChange struct {
 	CurrentState  *InstanceState  `ec2:"CurrentState" xml:"currentState"`
 	InstanceID    aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
 	PreviousState *InstanceState  `ec2:"PreviousState" xml:"previousState"`
+}
+
+func (v *InstanceStateChange) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4025,11 +8326,47 @@ type InstanceStatus struct {
 	SystemStatus     *InstanceStatusSummary `ec2:"SystemStatus" xml:"systemStatus"`
 }
 
+func (v *InstanceStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceStatusDetails is undocumented.
 type InstanceStatusDetails struct {
 	ImpairedSince time.Time       `ec2:"ImpairedSince" xml:"impairedSince"`
 	Name          aws.StringValue `ec2:"Name" xml:"name"`
 	Status        aws.StringValue `ec2:"Status" xml:"status"`
+}
+
+func (v *InstanceStatusDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	NameEnum := []string{
+		StatusNameReachability,
+	}
+	if err := model.ValidateEnum(v, "Name", NameEnum); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	StatusEnum := []string{
+		StatusTypeFailed,
+		StatusTypeInsufficientData,
+		StatusTypePassed,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // InstanceStatusEvent is undocumented.
@@ -4040,10 +8377,51 @@ type InstanceStatusEvent struct {
 	NotBefore   time.Time       `ec2:"NotBefore" xml:"notBefore"`
 }
 
+func (v *InstanceStatusEvent) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	CodeEnum := []string{
+		EventCodeInstanceReboot,
+		EventCodeInstanceRetirement,
+		EventCodeInstanceStop,
+		EventCodeSystemMaintenance,
+		EventCodeSystemReboot,
+	}
+	if err := model.ValidateEnum(v, "Code", CodeEnum); err != nil {
+		errors["Code"] = append(errors["Code"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceStatusSummary is undocumented.
 type InstanceStatusSummary struct {
 	Details []InstanceStatusDetails `ec2:"Details" xml:"details>item"`
 	Status  aws.StringValue         `ec2:"Status" xml:"status"`
+}
+
+func (v *InstanceStatusSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StatusEnum := []string{
+		SummaryStatusImpaired,
+		SummaryStatusInsufficientData,
+		SummaryStatusNotApplicable,
+		SummaryStatusOK,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4095,10 +8473,40 @@ type InternetGateway struct {
 	Tags              []Tag                       `ec2:"Tags" xml:"tagSet>item"`
 }
 
+func (v *InternetGateway) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InternetGatewayAttachment is undocumented.
 type InternetGatewayAttachment struct {
 	State aws.StringValue `ec2:"State" xml:"state"`
 	VPCID aws.StringValue `ec2:"VpcId" xml:"vpcId"`
+}
+
+func (v *InternetGatewayAttachment) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		AttachmentStatusAttached,
+		AttachmentStatusAttaching,
+		AttachmentStatusDetached,
+		AttachmentStatusDetaching,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // IPPermission is undocumented.
@@ -4110,9 +8518,29 @@ type IPPermission struct {
 	UserIDGroupPairs []UserIDGroupPair `ec2:"UserIdGroupPairs" xml:"groups>item"`
 }
 
+func (v *IPPermission) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // IPRange is undocumented.
 type IPRange struct {
 	CIDRIP aws.StringValue `ec2:"CidrIp" xml:"cidrIp"`
+}
+
+func (v *IPRange) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // KeyPair is undocumented.
@@ -4122,10 +8550,30 @@ type KeyPair struct {
 	KeyName        aws.StringValue `ec2:"KeyName" xml:"keyName"`
 }
 
+func (v *KeyPair) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // KeyPairInfo is undocumented.
 type KeyPairInfo struct {
 	KeyFingerprint aws.StringValue `ec2:"KeyFingerprint" xml:"keyFingerprint"`
 	KeyName        aws.StringValue `ec2:"KeyName" xml:"keyName"`
+}
+
+func (v *KeyPairInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LaunchPermission is undocumented.
@@ -4134,10 +8582,37 @@ type LaunchPermission struct {
 	UserID aws.StringValue `ec2:"UserId" xml:"userId"`
 }
 
+func (v *LaunchPermission) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	GroupEnum := []string{
+		PermissionGroupAll,
+	}
+	if err := model.ValidateEnum(v, "Group", GroupEnum); err != nil {
+		errors["Group"] = append(errors["Group"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // LaunchPermissionModifications is undocumented.
 type LaunchPermissionModifications struct {
 	Add    []LaunchPermission `ec2:"Add" xml:"Add>item"`
 	Remove []LaunchPermission `ec2:"Remove" xml:"Remove>item"`
+}
+
+func (v *LaunchPermissionModifications) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LaunchSpecification is undocumented.
@@ -4157,6 +8632,60 @@ type LaunchSpecification struct {
 	SecurityGroups      []GroupIdentifier                       `ec2:"SecurityGroups" xml:"groupSet>item"`
 	SubnetID            aws.StringValue                         `ec2:"SubnetId" xml:"subnetId"`
 	UserData            aws.StringValue                         `ec2:"UserData" xml:"userData"`
+}
+
+func (v *LaunchSpecification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	InstanceTypeEnum := []string{
+		InstanceTypeC1Medium,
+		InstanceTypeC1Xlarge,
+		InstanceTypeC32xlarge,
+		InstanceTypeC34xlarge,
+		InstanceTypeC38xlarge,
+		InstanceTypeC3Large,
+		InstanceTypeC3Xlarge,
+		InstanceTypeCc14xlarge,
+		InstanceTypeCc28xlarge,
+		InstanceTypeCg14xlarge,
+		InstanceTypeCr18xlarge,
+		InstanceTypeG22xlarge,
+		InstanceTypeHi14xlarge,
+		InstanceTypeHs18xlarge,
+		InstanceTypeI22xlarge,
+		InstanceTypeI24xlarge,
+		InstanceTypeI28xlarge,
+		InstanceTypeI2Xlarge,
+		InstanceTypeM1Large,
+		InstanceTypeM1Medium,
+		InstanceTypeM1Small,
+		InstanceTypeM1Xlarge,
+		InstanceTypeM22xlarge,
+		InstanceTypeM24xlarge,
+		InstanceTypeM2Xlarge,
+		InstanceTypeM32xlarge,
+		InstanceTypeM3Large,
+		InstanceTypeM3Medium,
+		InstanceTypeM3Xlarge,
+		InstanceTypeR32xlarge,
+		InstanceTypeR34xlarge,
+		InstanceTypeR38xlarge,
+		InstanceTypeR3Large,
+		InstanceTypeR3Xlarge,
+		InstanceTypeT1Micro,
+		InstanceTypeT2Medium,
+		InstanceTypeT2Micro,
+		InstanceTypeT2Small,
+	}
+	if err := model.ValidateEnum(v, "InstanceType", InstanceTypeEnum); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4189,6 +8718,20 @@ type ModifyImageAttributeRequest struct {
 	Value            aws.StringValue                `ec2:"Value" xml:"Value"`
 }
 
+func (v *ModifyImageAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ImageID"); err != nil {
+		errors["ImageID"] = append(errors["ImageID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyInstanceAttributeRequest is undocumented.
 type ModifyInstanceAttributeRequest struct {
 	Attribute                         aws.StringValue                           `ec2:"Attribute" xml:"attribute"`
@@ -4208,6 +8751,39 @@ type ModifyInstanceAttributeRequest struct {
 	Value                             aws.StringValue                           `ec2:"Value" xml:"value"`
 }
 
+func (v *ModifyInstanceAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	AttributeEnum := []string{
+		InstanceAttributeNameBlockDeviceMapping,
+		InstanceAttributeNameDisableAPITermination,
+		InstanceAttributeNameEBSOptimized,
+		InstanceAttributeNameGroupSet,
+		InstanceAttributeNameInstanceInitiatedShutdownBehavior,
+		InstanceAttributeNameInstanceType,
+		InstanceAttributeNameKernel,
+		InstanceAttributeNameProductCodes,
+		InstanceAttributeNameRAMDisk,
+		InstanceAttributeNameRootDeviceName,
+		InstanceAttributeNameSRIOVNetSupport,
+		InstanceAttributeNameSourceDestCheck,
+		InstanceAttributeNameUserData,
+	}
+	if err := model.ValidateEnum(v, "Attribute", AttributeEnum); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyNetworkInterfaceAttributeRequest is undocumented.
 type ModifyNetworkInterfaceAttributeRequest struct {
 	Attachment         *NetworkInterfaceAttachmentChanges `ec2:"Attachment" xml:"attachment"`
@@ -4218,6 +8794,20 @@ type ModifyNetworkInterfaceAttributeRequest struct {
 	SourceDestCheck    *AttributeBooleanValue             `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
 }
 
+func (v *ModifyNetworkInterfaceAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "NetworkInterfaceID"); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyReservedInstancesRequest is undocumented.
 type ModifyReservedInstancesRequest struct {
 	ClientToken          aws.StringValue                  `ec2:"ClientToken" xml:"clientToken"`
@@ -4225,9 +8815,37 @@ type ModifyReservedInstancesRequest struct {
 	TargetConfigurations []ReservedInstancesConfiguration `ec2:"ReservedInstancesConfigurationSetItemType" xml:"ReservedInstancesConfigurationSetItemType>item"`
 }
 
+func (v *ModifyReservedInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ReservedInstancesIDs"); err != nil {
+		errors["ReservedInstancesIDs"] = append(errors["ReservedInstancesIDs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetConfigurations"); err != nil {
+		errors["TargetConfigurations"] = append(errors["TargetConfigurations"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyReservedInstancesResult is undocumented.
 type ModifyReservedInstancesResult struct {
 	ReservedInstancesModificationID aws.StringValue `ec2:"ReservedInstancesModificationId" xml:"reservedInstancesModificationId"`
+}
+
+func (v *ModifyReservedInstancesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifySnapshotAttributeRequest is undocumented.
@@ -4241,10 +8859,46 @@ type ModifySnapshotAttributeRequest struct {
 	UserIDs                []string                             `ec2:"UserId" xml:"UserId>UserId"`
 }
 
+func (v *ModifySnapshotAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	AttributeEnum := []string{
+		SnapshotAttributeNameCreateVolumePermission,
+		SnapshotAttributeNameProductCodes,
+	}
+	if err := model.ValidateEnum(v, "Attribute", AttributeEnum); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SnapshotID"); err != nil {
+		errors["SnapshotID"] = append(errors["SnapshotID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifySubnetAttributeRequest is undocumented.
 type ModifySubnetAttributeRequest struct {
 	MapPublicIPOnLaunch *AttributeBooleanValue `ec2:"MapPublicIpOnLaunch" xml:"MapPublicIpOnLaunch"`
 	SubnetID            aws.StringValue        `ec2:"SubnetId" xml:"subnetId"`
+}
+
+func (v *ModifySubnetAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SubnetID"); err != nil {
+		errors["SubnetID"] = append(errors["SubnetID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyVolumeAttributeRequest is undocumented.
@@ -4254,11 +8908,39 @@ type ModifyVolumeAttributeRequest struct {
 	VolumeID     aws.StringValue        `ec2:"VolumeId" xml:"VolumeId"`
 }
 
+func (v *ModifyVolumeAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeID"); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyVPCAttributeRequest is undocumented.
 type ModifyVPCAttributeRequest struct {
 	EnableDNSHostnames *AttributeBooleanValue `ec2:"EnableDnsHostnames" xml:"EnableDnsHostnames"`
 	EnableDNSSupport   *AttributeBooleanValue `ec2:"EnableDnsSupport" xml:"EnableDnsSupport"`
 	VPCID              aws.StringValue        `ec2:"VpcId" xml:"vpcId"`
+}
+
+func (v *ModifyVPCAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VPCID"); err != nil {
+		errors["VPCID"] = append(errors["VPCID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // MonitorInstancesRequest is undocumented.
@@ -4267,14 +8949,57 @@ type MonitorInstancesRequest struct {
 	InstanceIDs []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
+func (v *MonitorInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceIDs"); err != nil {
+		errors["InstanceIDs"] = append(errors["InstanceIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // MonitorInstancesResult is undocumented.
 type MonitorInstancesResult struct {
 	InstanceMonitorings []InstanceMonitoring `ec2:"InstanceMonitorings" xml:"instancesSet>item"`
 }
 
+func (v *MonitorInstancesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Monitoring is undocumented.
 type Monitoring struct {
 	State aws.StringValue `ec2:"State" xml:"state"`
+}
+
+func (v *Monitoring) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		MonitoringStateDisabled,
+		MonitoringStateEnabled,
+		MonitoringStatePending,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4294,11 +9019,31 @@ type NetworkACL struct {
 	VPCID        aws.StringValue         `ec2:"VpcId" xml:"vpcId"`
 }
 
+func (v *NetworkACL) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // NetworkACLAssociation is undocumented.
 type NetworkACLAssociation struct {
 	NetworkACLAssociationID aws.StringValue `ec2:"NetworkAclAssociationId" xml:"networkAclAssociationId"`
 	NetworkACLID            aws.StringValue `ec2:"NetworkAclId" xml:"networkAclId"`
 	SubnetID                aws.StringValue `ec2:"SubnetId" xml:"subnetId"`
+}
+
+func (v *NetworkACLAssociation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // NetworkACLEntry is undocumented.
@@ -4310,6 +9055,24 @@ type NetworkACLEntry struct {
 	Protocol     aws.StringValue  `ec2:"Protocol" xml:"protocol"`
 	RuleAction   aws.StringValue  `ec2:"RuleAction" xml:"ruleAction"`
 	RuleNumber   aws.IntegerValue `ec2:"RuleNumber" xml:"ruleNumber"`
+}
+
+func (v *NetworkACLEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	RuleActionEnum := []string{
+		RuleActionAllow,
+		RuleActionDeny,
+	}
+	if err := model.ValidateEnum(v, "RuleAction", RuleActionEnum); err != nil {
+		errors["RuleAction"] = append(errors["RuleAction"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // NetworkInterface is undocumented.
@@ -4334,6 +9097,26 @@ type NetworkInterface struct {
 	VPCID              aws.StringValue                    `ec2:"VpcId" xml:"vpcId"`
 }
 
+func (v *NetworkInterface) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StatusEnum := []string{
+		NetworkInterfaceStatusAttaching,
+		NetworkInterfaceStatusAvailable,
+		NetworkInterfaceStatusDetaching,
+		NetworkInterfaceStatusInUse,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // NetworkInterfaceAssociation is undocumented.
 type NetworkInterfaceAssociation struct {
 	AllocationID  aws.StringValue `ec2:"AllocationId" xml:"allocationId"`
@@ -4341,6 +9124,16 @@ type NetworkInterfaceAssociation struct {
 	IPOwnerID     aws.StringValue `ec2:"IpOwnerId" xml:"ipOwnerId"`
 	PublicDNSName aws.StringValue `ec2:"PublicDnsName" xml:"publicDnsName"`
 	PublicIP      aws.StringValue `ec2:"PublicIp" xml:"publicIp"`
+}
+
+func (v *NetworkInterfaceAssociation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // NetworkInterfaceAttachment is undocumented.
@@ -4354,10 +9147,40 @@ type NetworkInterfaceAttachment struct {
 	Status              aws.StringValue  `ec2:"Status" xml:"status"`
 }
 
+func (v *NetworkInterfaceAttachment) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StatusEnum := []string{
+		AttachmentStatusAttached,
+		AttachmentStatusAttaching,
+		AttachmentStatusDetached,
+		AttachmentStatusDetaching,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // NetworkInterfaceAttachmentChanges is undocumented.
 type NetworkInterfaceAttachmentChanges struct {
 	AttachmentID        aws.StringValue  `ec2:"AttachmentId" xml:"attachmentId"`
 	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
+}
+
+func (v *NetworkInterfaceAttachmentChanges) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4376,6 +9199,16 @@ type NetworkInterfacePrivateIPAddress struct {
 	PrivateIPAddress aws.StringValue              `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 }
 
+func (v *NetworkInterfacePrivateIPAddress) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EC2.
 const (
 	NetworkInterfaceStatusAttaching = "attaching"
@@ -4388,6 +9221,16 @@ const (
 type NewDHCPConfiguration struct {
 	Key    aws.StringValue `ec2:"Key" xml:"key"`
 	Values []string        `ec2:"Value" xml:"Value>item"`
+}
+
+func (v *NewDHCPConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4409,11 +9252,56 @@ type Placement struct {
 	Tenancy          aws.StringValue `ec2:"Tenancy" xml:"tenancy"`
 }
 
+func (v *Placement) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	TenancyEnum := []string{
+		TenancyDedicated,
+		TenancyDefault,
+	}
+	if err := model.ValidateEnum(v, "Tenancy", TenancyEnum); err != nil {
+		errors["Tenancy"] = append(errors["Tenancy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PlacementGroup is undocumented.
 type PlacementGroup struct {
 	GroupName aws.StringValue `ec2:"GroupName" xml:"groupName"`
 	State     aws.StringValue `ec2:"State" xml:"state"`
 	Strategy  aws.StringValue `ec2:"Strategy" xml:"strategy"`
+}
+
+func (v *PlacementGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		PlacementGroupStateAvailable,
+		PlacementGroupStateDeleted,
+		PlacementGroupStateDeleting,
+		PlacementGroupStatePending,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	StrategyEnum := []string{
+		PlacementStrategyCluster,
+	}
+	if err := model.ValidateEnum(v, "Strategy", StrategyEnum); err != nil {
+		errors["Strategy"] = append(errors["Strategy"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4440,12 +9328,39 @@ type PortRange struct {
 	To   aws.IntegerValue `ec2:"To" xml:"to"`
 }
 
+func (v *PortRange) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PriceSchedule is undocumented.
 type PriceSchedule struct {
 	Active       aws.BooleanValue `ec2:"Active" xml:"active"`
 	CurrencyCode aws.StringValue  `ec2:"CurrencyCode" xml:"currencyCode"`
 	Price        aws.DoubleValue  `ec2:"Price" xml:"price"`
 	Term         aws.LongValue    `ec2:"Term" xml:"term"`
+}
+
+func (v *PriceSchedule) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	CurrencyCodeEnum := []string{
+		CurrencyCodeValuesUsd,
+	}
+	if err := model.ValidateEnum(v, "CurrencyCode", CurrencyCodeEnum); err != nil {
+		errors["CurrencyCode"] = append(errors["CurrencyCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PriceScheduleSpecification is undocumented.
@@ -4455,10 +9370,37 @@ type PriceScheduleSpecification struct {
 	Term         aws.LongValue   `ec2:"Term" xml:"term"`
 }
 
+func (v *PriceScheduleSpecification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	CurrencyCodeEnum := []string{
+		CurrencyCodeValuesUsd,
+	}
+	if err := model.ValidateEnum(v, "CurrencyCode", CurrencyCodeEnum); err != nil {
+		errors["CurrencyCode"] = append(errors["CurrencyCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PricingDetail is undocumented.
 type PricingDetail struct {
 	Count aws.IntegerValue `ec2:"Count" xml:"count"`
 	Price aws.DoubleValue  `ec2:"Price" xml:"price"`
+}
+
+func (v *PricingDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PrivateIPAddressSpecification is undocumented.
@@ -4467,10 +9409,42 @@ type PrivateIPAddressSpecification struct {
 	PrivateIPAddress aws.StringValue  `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 }
 
+func (v *PrivateIPAddressSpecification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PrivateIPAddress"); err != nil {
+		errors["PrivateIPAddress"] = append(errors["PrivateIPAddress"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ProductCode is undocumented.
 type ProductCode struct {
 	ProductCodeID   aws.StringValue `ec2:"ProductCodeId" xml:"productCode"`
 	ProductCodeType aws.StringValue `ec2:"ProductCodeType" xml:"type"`
+}
+
+func (v *ProductCode) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ProductCodeTypeEnum := []string{
+		ProductCodeValuesDevpay,
+		ProductCodeValuesMarketplace,
+	}
+	if err := model.ValidateEnum(v, "ProductCodeType", ProductCodeTypeEnum); err != nil {
+		errors["ProductCodeType"] = append(errors["ProductCodeType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4484,6 +9458,16 @@ type PropagatingVGW struct {
 	GatewayID aws.StringValue `ec2:"GatewayId" xml:"gatewayId"`
 }
 
+func (v *PropagatingVGW) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PurchaseReservedInstancesOfferingRequest is undocumented.
 type PurchaseReservedInstancesOfferingRequest struct {
 	DryRun                      aws.BooleanValue            `ec2:"DryRun" xml:"dryRun"`
@@ -4492,9 +9476,37 @@ type PurchaseReservedInstancesOfferingRequest struct {
 	ReservedInstancesOfferingID aws.StringValue             `ec2:"ReservedInstancesOfferingId" xml:"ReservedInstancesOfferingId"`
 }
 
+func (v *PurchaseReservedInstancesOfferingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceCount"); err != nil {
+		errors["InstanceCount"] = append(errors["InstanceCount"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ReservedInstancesOfferingID"); err != nil {
+		errors["ReservedInstancesOfferingID"] = append(errors["ReservedInstancesOfferingID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PurchaseReservedInstancesOfferingResult is undocumented.
 type PurchaseReservedInstancesOfferingResult struct {
 	ReservedInstancesID aws.StringValue `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
+}
+
+func (v *PurchaseReservedInstancesOfferingResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4511,10 +9523,41 @@ type RebootInstancesRequest struct {
 	InstanceIDs []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
+func (v *RebootInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceIDs"); err != nil {
+		errors["InstanceIDs"] = append(errors["InstanceIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RecurringCharge is undocumented.
 type RecurringCharge struct {
 	Amount    aws.DoubleValue `ec2:"Amount" xml:"amount"`
 	Frequency aws.StringValue `ec2:"Frequency" xml:"frequency"`
+}
+
+func (v *RecurringCharge) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	FrequencyEnum := []string{
+		RecurringChargeFrequencyHourly,
+	}
+	if err := model.ValidateEnum(v, "Frequency", FrequencyEnum); err != nil {
+		errors["Frequency"] = append(errors["Frequency"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4526,6 +9569,16 @@ const (
 type Region struct {
 	Endpoint   aws.StringValue `ec2:"Endpoint" xml:"regionEndpoint"`
 	RegionName aws.StringValue `ec2:"RegionName" xml:"regionName"`
+}
+
+func (v *Region) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RegisterImageRequest is undocumented.
@@ -4543,9 +9596,41 @@ type RegisterImageRequest struct {
 	VirtualizationType  aws.StringValue      `ec2:"VirtualizationType" xml:"virtualizationType"`
 }
 
+func (v *RegisterImageRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ArchitectureEnum := []string{
+		ArchitectureValuesI386,
+		ArchitectureValuesX8664,
+	}
+	if err := model.ValidateEnum(v, "Architecture", ArchitectureEnum); err != nil {
+		errors["Architecture"] = append(errors["Architecture"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RegisterImageResult is undocumented.
 type RegisterImageResult struct {
 	ImageID aws.StringValue `ec2:"ImageId" xml:"imageId"`
+}
+
+func (v *RegisterImageResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RejectVPCPeeringConnectionRequest is undocumented.
@@ -4554,9 +9639,33 @@ type RejectVPCPeeringConnectionRequest struct {
 	VPCPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
+func (v *RejectVPCPeeringConnectionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VPCPeeringConnectionID"); err != nil {
+		errors["VPCPeeringConnectionID"] = append(errors["VPCPeeringConnectionID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RejectVPCPeeringConnectionResult is undocumented.
 type RejectVPCPeeringConnectionResult struct {
 	Return aws.BooleanValue `ec2:"Return" xml:"return"`
+}
+
+func (v *RejectVPCPeeringConnectionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReleaseAddressRequest is undocumented.
@@ -4566,6 +9675,16 @@ type ReleaseAddressRequest struct {
 	PublicIP     aws.StringValue  `ec2:"PublicIp" xml:"PublicIp"`
 }
 
+func (v *ReleaseAddressRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReplaceNetworkACLAssociationRequest is undocumented.
 type ReplaceNetworkACLAssociationRequest struct {
 	AssociationID aws.StringValue  `ec2:"AssociationId" xml:"associationId"`
@@ -4573,9 +9692,37 @@ type ReplaceNetworkACLAssociationRequest struct {
 	NetworkACLID  aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
 }
 
+func (v *ReplaceNetworkACLAssociationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AssociationID"); err != nil {
+		errors["AssociationID"] = append(errors["AssociationID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NetworkACLID"); err != nil {
+		errors["NetworkACLID"] = append(errors["NetworkACLID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReplaceNetworkACLAssociationResult is undocumented.
 type ReplaceNetworkACLAssociationResult struct {
 	NewAssociationID aws.StringValue `ec2:"NewAssociationId" xml:"newAssociationId"`
+}
+
+func (v *ReplaceNetworkACLAssociationResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReplaceNetworkACLEntryRequest is undocumented.
@@ -4591,6 +9738,48 @@ type ReplaceNetworkACLEntryRequest struct {
 	RuleNumber   aws.IntegerValue `ec2:"RuleNumber" xml:"ruleNumber"`
 }
 
+func (v *ReplaceNetworkACLEntryRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CIDRBlock"); err != nil {
+		errors["CIDRBlock"] = append(errors["CIDRBlock"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Egress"); err != nil {
+		errors["Egress"] = append(errors["Egress"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NetworkACLID"); err != nil {
+		errors["NetworkACLID"] = append(errors["NetworkACLID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Protocol"); err != nil {
+		errors["Protocol"] = append(errors["Protocol"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RuleAction"); err != nil {
+		errors["RuleAction"] = append(errors["RuleAction"], err)
+	}
+
+	RuleActionEnum := []string{
+		RuleActionAllow,
+		RuleActionDeny,
+	}
+	if err := model.ValidateEnum(v, "RuleAction", RuleActionEnum); err != nil {
+		errors["RuleAction"] = append(errors["RuleAction"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RuleNumber"); err != nil {
+		errors["RuleNumber"] = append(errors["RuleNumber"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReplaceRouteRequest is undocumented.
 type ReplaceRouteRequest struct {
 	DestinationCIDRBlock   aws.StringValue  `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
@@ -4602,6 +9791,24 @@ type ReplaceRouteRequest struct {
 	VPCPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
+func (v *ReplaceRouteRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DestinationCIDRBlock"); err != nil {
+		errors["DestinationCIDRBlock"] = append(errors["DestinationCIDRBlock"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RouteTableID"); err != nil {
+		errors["RouteTableID"] = append(errors["RouteTableID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReplaceRouteTableAssociationRequest is undocumented.
 type ReplaceRouteTableAssociationRequest struct {
 	AssociationID aws.StringValue  `ec2:"AssociationId" xml:"associationId"`
@@ -4609,9 +9816,37 @@ type ReplaceRouteTableAssociationRequest struct {
 	RouteTableID  aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
 }
 
+func (v *ReplaceRouteTableAssociationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AssociationID"); err != nil {
+		errors["AssociationID"] = append(errors["AssociationID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RouteTableID"); err != nil {
+		errors["RouteTableID"] = append(errors["RouteTableID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReplaceRouteTableAssociationResult is undocumented.
 type ReplaceRouteTableAssociationResult struct {
 	NewAssociationID aws.StringValue `ec2:"NewAssociationId" xml:"newAssociationId"`
+}
+
+func (v *ReplaceRouteTableAssociationResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4638,6 +9873,36 @@ type ReportInstanceStatusRequest struct {
 	Status      aws.StringValue  `ec2:"Status" xml:"status"`
 }
 
+func (v *ReportInstanceStatusRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Instances"); err != nil {
+		errors["Instances"] = append(errors["Instances"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ReasonCodes"); err != nil {
+		errors["ReasonCodes"] = append(errors["ReasonCodes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	StatusEnum := []string{
+		ReportStatusTypeImpaired,
+		ReportStatusTypeOK,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EC2.
 const (
 	ReportStatusTypeImpaired = "impaired"
@@ -4657,9 +9922,41 @@ type RequestSpotInstancesRequest struct {
 	ValidUntil            time.Time                       `ec2:"ValidUntil" xml:"validUntil"`
 }
 
+func (v *RequestSpotInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SpotPrice"); err != nil {
+		errors["SpotPrice"] = append(errors["SpotPrice"], err)
+	}
+
+	TypeEnum := []string{
+		SpotInstanceTypeOneTime,
+		SpotInstanceTypePersistent,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RequestSpotInstancesResult is undocumented.
 type RequestSpotInstancesResult struct {
 	SpotInstanceRequests []SpotInstanceRequest `ec2:"SpotInstanceRequests" xml:"spotInstanceRequestSet>item"`
+}
+
+func (v *RequestSpotInstancesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RequestSpotLaunchSpecification is undocumented.
@@ -4682,6 +9979,60 @@ type RequestSpotLaunchSpecification struct {
 	UserData            aws.StringValue                         `ec2:"UserData" xml:"userData"`
 }
 
+func (v *RequestSpotLaunchSpecification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	InstanceTypeEnum := []string{
+		InstanceTypeC1Medium,
+		InstanceTypeC1Xlarge,
+		InstanceTypeC32xlarge,
+		InstanceTypeC34xlarge,
+		InstanceTypeC38xlarge,
+		InstanceTypeC3Large,
+		InstanceTypeC3Xlarge,
+		InstanceTypeCc14xlarge,
+		InstanceTypeCc28xlarge,
+		InstanceTypeCg14xlarge,
+		InstanceTypeCr18xlarge,
+		InstanceTypeG22xlarge,
+		InstanceTypeHi14xlarge,
+		InstanceTypeHs18xlarge,
+		InstanceTypeI22xlarge,
+		InstanceTypeI24xlarge,
+		InstanceTypeI28xlarge,
+		InstanceTypeI2Xlarge,
+		InstanceTypeM1Large,
+		InstanceTypeM1Medium,
+		InstanceTypeM1Small,
+		InstanceTypeM1Xlarge,
+		InstanceTypeM22xlarge,
+		InstanceTypeM24xlarge,
+		InstanceTypeM2Xlarge,
+		InstanceTypeM32xlarge,
+		InstanceTypeM3Large,
+		InstanceTypeM3Medium,
+		InstanceTypeM3Xlarge,
+		InstanceTypeR32xlarge,
+		InstanceTypeR34xlarge,
+		InstanceTypeR38xlarge,
+		InstanceTypeR3Large,
+		InstanceTypeR3Xlarge,
+		InstanceTypeT1Micro,
+		InstanceTypeT2Medium,
+		InstanceTypeT2Micro,
+		InstanceTypeT2Small,
+	}
+	if err := model.ValidateEnum(v, "InstanceType", InstanceTypeEnum); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Reservation is undocumented.
 type Reservation struct {
 	Groups        []GroupIdentifier `ec2:"Groups" xml:"groupSet>item"`
@@ -4691,10 +10042,37 @@ type Reservation struct {
 	ReservationID aws.StringValue   `ec2:"ReservationId" xml:"reservationId"`
 }
 
+func (v *Reservation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReservedInstanceLimitPrice is undocumented.
 type ReservedInstanceLimitPrice struct {
 	Amount       aws.DoubleValue `ec2:"Amount" xml:"amount"`
 	CurrencyCode aws.StringValue `ec2:"CurrencyCode" xml:"currencyCode"`
+}
+
+func (v *ReservedInstanceLimitPrice) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	CurrencyCodeEnum := []string{
+		CurrencyCodeValuesUsd,
+	}
+	if err := model.ValidateEnum(v, "CurrencyCode", CurrencyCodeEnum); err != nil {
+		errors["CurrencyCode"] = append(errors["CurrencyCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4725,6 +10103,104 @@ type ReservedInstances struct {
 	UsagePrice          aws.FloatValue    `ec2:"UsagePrice" xml:"usagePrice"`
 }
 
+func (v *ReservedInstances) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	CurrencyCodeEnum := []string{
+		CurrencyCodeValuesUsd,
+	}
+	if err := model.ValidateEnum(v, "CurrencyCode", CurrencyCodeEnum); err != nil {
+		errors["CurrencyCode"] = append(errors["CurrencyCode"], err)
+	}
+
+	InstanceTenancyEnum := []string{
+		TenancyDedicated,
+		TenancyDefault,
+	}
+	if err := model.ValidateEnum(v, "InstanceTenancy", InstanceTenancyEnum); err != nil {
+		errors["InstanceTenancy"] = append(errors["InstanceTenancy"], err)
+	}
+
+	InstanceTypeEnum := []string{
+		InstanceTypeC1Medium,
+		InstanceTypeC1Xlarge,
+		InstanceTypeC32xlarge,
+		InstanceTypeC34xlarge,
+		InstanceTypeC38xlarge,
+		InstanceTypeC3Large,
+		InstanceTypeC3Xlarge,
+		InstanceTypeCc14xlarge,
+		InstanceTypeCc28xlarge,
+		InstanceTypeCg14xlarge,
+		InstanceTypeCr18xlarge,
+		InstanceTypeG22xlarge,
+		InstanceTypeHi14xlarge,
+		InstanceTypeHs18xlarge,
+		InstanceTypeI22xlarge,
+		InstanceTypeI24xlarge,
+		InstanceTypeI28xlarge,
+		InstanceTypeI2Xlarge,
+		InstanceTypeM1Large,
+		InstanceTypeM1Medium,
+		InstanceTypeM1Small,
+		InstanceTypeM1Xlarge,
+		InstanceTypeM22xlarge,
+		InstanceTypeM24xlarge,
+		InstanceTypeM2Xlarge,
+		InstanceTypeM32xlarge,
+		InstanceTypeM3Large,
+		InstanceTypeM3Medium,
+		InstanceTypeM3Xlarge,
+		InstanceTypeR32xlarge,
+		InstanceTypeR34xlarge,
+		InstanceTypeR38xlarge,
+		InstanceTypeR3Large,
+		InstanceTypeR3Xlarge,
+		InstanceTypeT1Micro,
+		InstanceTypeT2Medium,
+		InstanceTypeT2Micro,
+		InstanceTypeT2Small,
+	}
+	if err := model.ValidateEnum(v, "InstanceType", InstanceTypeEnum); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	OfferingTypeEnum := []string{
+		OfferingTypeValuesHeavyUtilization,
+		OfferingTypeValuesLightUtilization,
+		OfferingTypeValuesMediumUtilization,
+	}
+	if err := model.ValidateEnum(v, "OfferingType", OfferingTypeEnum); err != nil {
+		errors["OfferingType"] = append(errors["OfferingType"], err)
+	}
+
+	ProductDescriptionEnum := []string{
+		RIProductDescriptionLinuxUnix,
+		RIProductDescriptionLinuxUnixamazonVPC,
+		RIProductDescriptionWindows,
+		RIProductDescriptionWindowsAmazonVPC,
+	}
+	if err := model.ValidateEnum(v, "ProductDescription", ProductDescriptionEnum); err != nil {
+		errors["ProductDescription"] = append(errors["ProductDescription"], err)
+	}
+
+	StateEnum := []string{
+		ReservedInstanceStateActive,
+		ReservedInstanceStatePaymentFailed,
+		ReservedInstanceStatePaymentPending,
+		ReservedInstanceStateRetired,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReservedInstancesConfiguration is undocumented.
 type ReservedInstancesConfiguration struct {
 	AvailabilityZone aws.StringValue  `ec2:"AvailabilityZone" xml:"availabilityZone"`
@@ -4733,9 +10209,73 @@ type ReservedInstancesConfiguration struct {
 	Platform         aws.StringValue  `ec2:"Platform" xml:"platform"`
 }
 
+func (v *ReservedInstancesConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	InstanceTypeEnum := []string{
+		InstanceTypeC1Medium,
+		InstanceTypeC1Xlarge,
+		InstanceTypeC32xlarge,
+		InstanceTypeC34xlarge,
+		InstanceTypeC38xlarge,
+		InstanceTypeC3Large,
+		InstanceTypeC3Xlarge,
+		InstanceTypeCc14xlarge,
+		InstanceTypeCc28xlarge,
+		InstanceTypeCg14xlarge,
+		InstanceTypeCr18xlarge,
+		InstanceTypeG22xlarge,
+		InstanceTypeHi14xlarge,
+		InstanceTypeHs18xlarge,
+		InstanceTypeI22xlarge,
+		InstanceTypeI24xlarge,
+		InstanceTypeI28xlarge,
+		InstanceTypeI2Xlarge,
+		InstanceTypeM1Large,
+		InstanceTypeM1Medium,
+		InstanceTypeM1Small,
+		InstanceTypeM1Xlarge,
+		InstanceTypeM22xlarge,
+		InstanceTypeM24xlarge,
+		InstanceTypeM2Xlarge,
+		InstanceTypeM32xlarge,
+		InstanceTypeM3Large,
+		InstanceTypeM3Medium,
+		InstanceTypeM3Xlarge,
+		InstanceTypeR32xlarge,
+		InstanceTypeR34xlarge,
+		InstanceTypeR38xlarge,
+		InstanceTypeR3Large,
+		InstanceTypeR3Xlarge,
+		InstanceTypeT1Micro,
+		InstanceTypeT2Medium,
+		InstanceTypeT2Micro,
+		InstanceTypeT2Small,
+	}
+	if err := model.ValidateEnum(v, "InstanceType", InstanceTypeEnum); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReservedInstancesID is undocumented.
 type ReservedInstancesID struct {
 	ReservedInstancesID aws.StringValue `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
+}
+
+func (v *ReservedInstancesID) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReservedInstancesListing is undocumented.
@@ -4752,6 +10292,26 @@ type ReservedInstancesListing struct {
 	UpdateDate                 time.Time       `ec2:"UpdateDate" xml:"updateDate"`
 }
 
+func (v *ReservedInstancesListing) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StatusEnum := []string{
+		ListingStatusActive,
+		ListingStatusCancelled,
+		ListingStatusClosed,
+		ListingStatusPending,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReservedInstancesModification is undocumented.
 type ReservedInstancesModification struct {
 	ClientToken                     aws.StringValue                       `ec2:"ClientToken" xml:"clientToken"`
@@ -4765,10 +10325,30 @@ type ReservedInstancesModification struct {
 	UpdateDate                      time.Time                             `ec2:"UpdateDate" xml:"updateDate"`
 }
 
+func (v *ReservedInstancesModification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReservedInstancesModificationResult is undocumented.
 type ReservedInstancesModificationResult struct {
 	ReservedInstancesID aws.StringValue                 `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
 	TargetConfiguration *ReservedInstancesConfiguration `ec2:"TargetConfiguration" xml:"targetConfiguration"`
+}
+
+func (v *ReservedInstancesModificationResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReservedInstancesOffering is undocumented.
@@ -4788,6 +10368,94 @@ type ReservedInstancesOffering struct {
 	UsagePrice                  aws.FloatValue    `ec2:"UsagePrice" xml:"usagePrice"`
 }
 
+func (v *ReservedInstancesOffering) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	CurrencyCodeEnum := []string{
+		CurrencyCodeValuesUsd,
+	}
+	if err := model.ValidateEnum(v, "CurrencyCode", CurrencyCodeEnum); err != nil {
+		errors["CurrencyCode"] = append(errors["CurrencyCode"], err)
+	}
+
+	InstanceTenancyEnum := []string{
+		TenancyDedicated,
+		TenancyDefault,
+	}
+	if err := model.ValidateEnum(v, "InstanceTenancy", InstanceTenancyEnum); err != nil {
+		errors["InstanceTenancy"] = append(errors["InstanceTenancy"], err)
+	}
+
+	InstanceTypeEnum := []string{
+		InstanceTypeC1Medium,
+		InstanceTypeC1Xlarge,
+		InstanceTypeC32xlarge,
+		InstanceTypeC34xlarge,
+		InstanceTypeC38xlarge,
+		InstanceTypeC3Large,
+		InstanceTypeC3Xlarge,
+		InstanceTypeCc14xlarge,
+		InstanceTypeCc28xlarge,
+		InstanceTypeCg14xlarge,
+		InstanceTypeCr18xlarge,
+		InstanceTypeG22xlarge,
+		InstanceTypeHi14xlarge,
+		InstanceTypeHs18xlarge,
+		InstanceTypeI22xlarge,
+		InstanceTypeI24xlarge,
+		InstanceTypeI28xlarge,
+		InstanceTypeI2Xlarge,
+		InstanceTypeM1Large,
+		InstanceTypeM1Medium,
+		InstanceTypeM1Small,
+		InstanceTypeM1Xlarge,
+		InstanceTypeM22xlarge,
+		InstanceTypeM24xlarge,
+		InstanceTypeM2Xlarge,
+		InstanceTypeM32xlarge,
+		InstanceTypeM3Large,
+		InstanceTypeM3Medium,
+		InstanceTypeM3Xlarge,
+		InstanceTypeR32xlarge,
+		InstanceTypeR34xlarge,
+		InstanceTypeR38xlarge,
+		InstanceTypeR3Large,
+		InstanceTypeR3Xlarge,
+		InstanceTypeT1Micro,
+		InstanceTypeT2Medium,
+		InstanceTypeT2Micro,
+		InstanceTypeT2Small,
+	}
+	if err := model.ValidateEnum(v, "InstanceType", InstanceTypeEnum); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	OfferingTypeEnum := []string{
+		OfferingTypeValuesHeavyUtilization,
+		OfferingTypeValuesLightUtilization,
+		OfferingTypeValuesMediumUtilization,
+	}
+	if err := model.ValidateEnum(v, "OfferingType", OfferingTypeEnum); err != nil {
+		errors["OfferingType"] = append(errors["OfferingType"], err)
+	}
+
+	ProductDescriptionEnum := []string{
+		RIProductDescriptionLinuxUnix,
+		RIProductDescriptionLinuxUnixamazonVPC,
+		RIProductDescriptionWindows,
+		RIProductDescriptionWindowsAmazonVPC,
+	}
+	if err := model.ValidateEnum(v, "ProductDescription", ProductDescriptionEnum); err != nil {
+		errors["ProductDescription"] = append(errors["ProductDescription"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EC2.
 const (
 	ResetImageAttributeNameLaunchPermission = "launchPermission"
@@ -4800,11 +10468,73 @@ type ResetImageAttributeRequest struct {
 	ImageID   aws.StringValue  `ec2:"ImageId" xml:"ImageId"`
 }
 
+func (v *ResetImageAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attribute"); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	AttributeEnum := []string{
+		ResetImageAttributeNameLaunchPermission,
+	}
+	if err := model.ValidateEnum(v, "Attribute", AttributeEnum); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ImageID"); err != nil {
+		errors["ImageID"] = append(errors["ImageID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ResetInstanceAttributeRequest is undocumented.
 type ResetInstanceAttributeRequest struct {
 	Attribute  aws.StringValue  `ec2:"Attribute" xml:"attribute"`
 	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
+}
+
+func (v *ResetInstanceAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attribute"); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	AttributeEnum := []string{
+		InstanceAttributeNameBlockDeviceMapping,
+		InstanceAttributeNameDisableAPITermination,
+		InstanceAttributeNameEBSOptimized,
+		InstanceAttributeNameGroupSet,
+		InstanceAttributeNameInstanceInitiatedShutdownBehavior,
+		InstanceAttributeNameInstanceType,
+		InstanceAttributeNameKernel,
+		InstanceAttributeNameProductCodes,
+		InstanceAttributeNameRAMDisk,
+		InstanceAttributeNameRootDeviceName,
+		InstanceAttributeNameSRIOVNetSupport,
+		InstanceAttributeNameSourceDestCheck,
+		InstanceAttributeNameUserData,
+	}
+	if err := model.ValidateEnum(v, "Attribute", AttributeEnum); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ResetNetworkInterfaceAttributeRequest is undocumented.
@@ -4814,11 +10544,51 @@ type ResetNetworkInterfaceAttributeRequest struct {
 	SourceDestCheck    aws.StringValue  `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
 }
 
+func (v *ResetNetworkInterfaceAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "NetworkInterfaceID"); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ResetSnapshotAttributeRequest is undocumented.
 type ResetSnapshotAttributeRequest struct {
 	Attribute  aws.StringValue  `ec2:"Attribute" xml:"Attribute"`
 	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	SnapshotID aws.StringValue  `ec2:"SnapshotId" xml:"SnapshotId"`
+}
+
+func (v *ResetSnapshotAttributeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attribute"); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	AttributeEnum := []string{
+		SnapshotAttributeNameCreateVolumePermission,
+		SnapshotAttributeNameProductCodes,
+	}
+	if err := model.ValidateEnum(v, "Attribute", AttributeEnum); err != nil {
+		errors["Attribute"] = append(errors["Attribute"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SnapshotID"); err != nil {
+		errors["SnapshotID"] = append(errors["SnapshotID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4855,6 +10625,20 @@ type RevokeSecurityGroupEgressRequest struct {
 	ToPort                     aws.IntegerValue `ec2:"ToPort" xml:"toPort"`
 }
 
+func (v *RevokeSecurityGroupEgressRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GroupID"); err != nil {
+		errors["GroupID"] = append(errors["GroupID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RevokeSecurityGroupIngressRequest is undocumented.
 type RevokeSecurityGroupIngressRequest struct {
 	CIDRIP                     aws.StringValue  `ec2:"CidrIp" xml:"CidrIp"`
@@ -4869,6 +10653,16 @@ type RevokeSecurityGroupIngressRequest struct {
 	ToPort                     aws.IntegerValue `ec2:"ToPort" xml:"ToPort"`
 }
 
+func (v *RevokeSecurityGroupIngressRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Route is undocumented.
 type Route struct {
 	DestinationCIDRBlock   aws.StringValue `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
@@ -4879,6 +10673,33 @@ type Route struct {
 	Origin                 aws.StringValue `ec2:"Origin" xml:"origin"`
 	State                  aws.StringValue `ec2:"State" xml:"state"`
 	VPCPeeringConnectionID aws.StringValue `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+}
+
+func (v *Route) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	OriginEnum := []string{
+		RouteOriginCreateRoute,
+		RouteOriginCreateRouteTable,
+		RouteOriginEnableVGWRoutePropagation,
+	}
+	if err := model.ValidateEnum(v, "Origin", OriginEnum); err != nil {
+		errors["Origin"] = append(errors["Origin"], err)
+	}
+
+	StateEnum := []string{
+		RouteStateActive,
+		RouteStateBlackhole,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4904,12 +10725,32 @@ type RouteTable struct {
 	VPCID           aws.StringValue         `ec2:"VpcId" xml:"vpcId"`
 }
 
+func (v *RouteTable) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RouteTableAssociation is undocumented.
 type RouteTableAssociation struct {
 	Main                    aws.BooleanValue `ec2:"Main" xml:"main"`
 	RouteTableAssociationID aws.StringValue  `ec2:"RouteTableAssociationId" xml:"routeTableAssociationId"`
 	RouteTableID            aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
 	SubnetID                aws.StringValue  `ec2:"SubnetId" xml:"subnetId"`
+}
+
+func (v *RouteTableAssociation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4921,6 +10762,20 @@ const (
 // RunInstancesMonitoringEnabled is undocumented.
 type RunInstancesMonitoringEnabled struct {
 	Enabled aws.BooleanValue `ec2:"Enabled" xml:"enabled"`
+}
+
+func (v *RunInstancesMonitoringEnabled) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Enabled"); err != nil {
+		errors["Enabled"] = append(errors["Enabled"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RunInstancesRequest is undocumented.
@@ -4950,6 +10805,80 @@ type RunInstancesRequest struct {
 	UserData                          aws.StringValue                         `ec2:"UserData" xml:"UserData"`
 }
 
+func (v *RunInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ImageID"); err != nil {
+		errors["ImageID"] = append(errors["ImageID"], err)
+	}
+
+	InstanceInitiatedShutdownBehaviorEnum := []string{
+		ShutdownBehaviorStop,
+		ShutdownBehaviorTerminate,
+	}
+	if err := model.ValidateEnum(v, "InstanceInitiatedShutdownBehavior", InstanceInitiatedShutdownBehaviorEnum); err != nil {
+		errors["InstanceInitiatedShutdownBehavior"] = append(errors["InstanceInitiatedShutdownBehavior"], err)
+	}
+
+	InstanceTypeEnum := []string{
+		InstanceTypeC1Medium,
+		InstanceTypeC1Xlarge,
+		InstanceTypeC32xlarge,
+		InstanceTypeC34xlarge,
+		InstanceTypeC38xlarge,
+		InstanceTypeC3Large,
+		InstanceTypeC3Xlarge,
+		InstanceTypeCc14xlarge,
+		InstanceTypeCc28xlarge,
+		InstanceTypeCg14xlarge,
+		InstanceTypeCr18xlarge,
+		InstanceTypeG22xlarge,
+		InstanceTypeHi14xlarge,
+		InstanceTypeHs18xlarge,
+		InstanceTypeI22xlarge,
+		InstanceTypeI24xlarge,
+		InstanceTypeI28xlarge,
+		InstanceTypeI2Xlarge,
+		InstanceTypeM1Large,
+		InstanceTypeM1Medium,
+		InstanceTypeM1Small,
+		InstanceTypeM1Xlarge,
+		InstanceTypeM22xlarge,
+		InstanceTypeM24xlarge,
+		InstanceTypeM2Xlarge,
+		InstanceTypeM32xlarge,
+		InstanceTypeM3Large,
+		InstanceTypeM3Medium,
+		InstanceTypeM3Xlarge,
+		InstanceTypeR32xlarge,
+		InstanceTypeR34xlarge,
+		InstanceTypeR38xlarge,
+		InstanceTypeR3Large,
+		InstanceTypeR3Xlarge,
+		InstanceTypeT1Micro,
+		InstanceTypeT2Medium,
+		InstanceTypeT2Micro,
+		InstanceTypeT2Small,
+	}
+	if err := model.ValidateEnum(v, "InstanceType", InstanceTypeEnum); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaxCount"); err != nil {
+		errors["MaxCount"] = append(errors["MaxCount"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MinCount"); err != nil {
+		errors["MinCount"] = append(errors["MinCount"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // S3Storage is undocumented.
 type S3Storage struct {
 	AWSAccessKeyID        aws.StringValue `ec2:"AWSAccessKeyId" xml:"AWSAccessKeyId"`
@@ -4957,6 +10886,16 @@ type S3Storage struct {
 	Prefix                aws.StringValue `ec2:"Prefix" xml:"prefix"`
 	UploadPolicy          []byte          `ec2:"UploadPolicy" xml:"uploadPolicy"`
 	UploadPolicySignature aws.StringValue `ec2:"UploadPolicySignature" xml:"uploadPolicySignature"`
+}
+
+func (v *S3Storage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SecurityGroup is undocumented.
@@ -4969,6 +10908,16 @@ type SecurityGroup struct {
 	OwnerID             aws.StringValue `ec2:"OwnerId" xml:"ownerId"`
 	Tags                []Tag           `ec2:"Tags" xml:"tagSet>item"`
 	VPCID               aws.StringValue `ec2:"VpcId" xml:"vpcId"`
+}
+
+func (v *SecurityGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -4993,6 +10942,25 @@ type Snapshot struct {
 	VolumeSize  aws.IntegerValue `ec2:"VolumeSize" xml:"volumeSize"`
 }
 
+func (v *Snapshot) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		SnapshotStateCompleted,
+		SnapshotStateError,
+		SnapshotStatePending,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EC2.
 const (
 	SnapshotAttributeNameCreateVolumePermission = "createVolumePermission"
@@ -5015,6 +10983,24 @@ type SpotDatafeedSubscription struct {
 	State   aws.StringValue         `ec2:"State" xml:"state"`
 }
 
+func (v *SpotDatafeedSubscription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		DatafeedSubscriptionStateActive,
+		DatafeedSubscriptionStateInactive,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SpotInstanceRequest is undocumented.
 type SpotInstanceRequest struct {
 	AvailabilityZoneGroup    aws.StringValue         `ec2:"AvailabilityZoneGroup" xml:"availabilityZoneGroup"`
@@ -5035,6 +11021,45 @@ type SpotInstanceRequest struct {
 	ValidUntil               time.Time               `ec2:"ValidUntil" xml:"validUntil"`
 }
 
+func (v *SpotInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ProductDescriptionEnum := []string{
+		RIProductDescriptionLinuxUnix,
+		RIProductDescriptionLinuxUnixamazonVPC,
+		RIProductDescriptionWindows,
+		RIProductDescriptionWindowsAmazonVPC,
+	}
+	if err := model.ValidateEnum(v, "ProductDescription", ProductDescriptionEnum); err != nil {
+		errors["ProductDescription"] = append(errors["ProductDescription"], err)
+	}
+
+	StateEnum := []string{
+		SpotInstanceStateActive,
+		SpotInstanceStateCancelled,
+		SpotInstanceStateClosed,
+		SpotInstanceStateFailed,
+		SpotInstanceStateOpen,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	TypeEnum := []string{
+		SpotInstanceTypeOneTime,
+		SpotInstanceTypePersistent,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EC2.
 const (
 	SpotInstanceStateActive    = "active"
@@ -5050,11 +11075,31 @@ type SpotInstanceStateFault struct {
 	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
+func (v *SpotInstanceStateFault) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SpotInstanceStatus is undocumented.
 type SpotInstanceStatus struct {
 	Code       aws.StringValue `ec2:"Code" xml:"code"`
 	Message    aws.StringValue `ec2:"Message" xml:"message"`
 	UpdateTime time.Time       `ec2:"UpdateTime" xml:"updateTime"`
+}
+
+func (v *SpotInstanceStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -5069,6 +11114,16 @@ type SpotPlacement struct {
 	GroupName        aws.StringValue `ec2:"GroupName" xml:"groupName"`
 }
 
+func (v *SpotPlacement) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SpotPrice is undocumented.
 type SpotPrice struct {
 	AvailabilityZone   aws.StringValue `ec2:"AvailabilityZone" xml:"availabilityZone"`
@@ -5078,6 +11133,70 @@ type SpotPrice struct {
 	Timestamp          time.Time       `ec2:"Timestamp" xml:"timestamp"`
 }
 
+func (v *SpotPrice) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	InstanceTypeEnum := []string{
+		InstanceTypeC1Medium,
+		InstanceTypeC1Xlarge,
+		InstanceTypeC32xlarge,
+		InstanceTypeC34xlarge,
+		InstanceTypeC38xlarge,
+		InstanceTypeC3Large,
+		InstanceTypeC3Xlarge,
+		InstanceTypeCc14xlarge,
+		InstanceTypeCc28xlarge,
+		InstanceTypeCg14xlarge,
+		InstanceTypeCr18xlarge,
+		InstanceTypeG22xlarge,
+		InstanceTypeHi14xlarge,
+		InstanceTypeHs18xlarge,
+		InstanceTypeI22xlarge,
+		InstanceTypeI24xlarge,
+		InstanceTypeI28xlarge,
+		InstanceTypeI2Xlarge,
+		InstanceTypeM1Large,
+		InstanceTypeM1Medium,
+		InstanceTypeM1Small,
+		InstanceTypeM1Xlarge,
+		InstanceTypeM22xlarge,
+		InstanceTypeM24xlarge,
+		InstanceTypeM2Xlarge,
+		InstanceTypeM32xlarge,
+		InstanceTypeM3Large,
+		InstanceTypeM3Medium,
+		InstanceTypeM3Xlarge,
+		InstanceTypeR32xlarge,
+		InstanceTypeR34xlarge,
+		InstanceTypeR38xlarge,
+		InstanceTypeR3Large,
+		InstanceTypeR3Xlarge,
+		InstanceTypeT1Micro,
+		InstanceTypeT2Medium,
+		InstanceTypeT2Micro,
+		InstanceTypeT2Small,
+	}
+	if err := model.ValidateEnum(v, "InstanceType", InstanceTypeEnum); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	ProductDescriptionEnum := []string{
+		RIProductDescriptionLinuxUnix,
+		RIProductDescriptionLinuxUnixamazonVPC,
+		RIProductDescriptionWindows,
+		RIProductDescriptionWindowsAmazonVPC,
+	}
+	if err := model.ValidateEnum(v, "ProductDescription", ProductDescriptionEnum); err != nil {
+		errors["ProductDescription"] = append(errors["ProductDescription"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StartInstancesRequest is undocumented.
 type StartInstancesRequest struct {
 	AdditionalInfo aws.StringValue  `ec2:"AdditionalInfo" xml:"additionalInfo"`
@@ -5085,15 +11204,49 @@ type StartInstancesRequest struct {
 	InstanceIDs    []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
+func (v *StartInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceIDs"); err != nil {
+		errors["InstanceIDs"] = append(errors["InstanceIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StartInstancesResult is undocumented.
 type StartInstancesResult struct {
 	StartingInstances []InstanceStateChange `ec2:"StartingInstances" xml:"instancesSet>item"`
+}
+
+func (v *StartInstancesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // StateReason is undocumented.
 type StateReason struct {
 	Code    aws.StringValue `ec2:"Code" xml:"code"`
 	Message aws.StringValue `ec2:"Message" xml:"message"`
+}
+
+func (v *StateReason) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -5115,14 +11268,48 @@ type StopInstancesRequest struct {
 	InstanceIDs []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
+func (v *StopInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceIDs"); err != nil {
+		errors["InstanceIDs"] = append(errors["InstanceIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StopInstancesResult is undocumented.
 type StopInstancesResult struct {
 	StoppingInstances []InstanceStateChange `ec2:"StoppingInstances" xml:"instancesSet>item"`
 }
 
+func (v *StopInstancesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Storage is undocumented.
 type Storage struct {
 	S3 *S3Storage `ec2:"S3" xml:"S3"`
+}
+
+func (v *Storage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Subnet is undocumented.
@@ -5136,6 +11323,24 @@ type Subnet struct {
 	SubnetID                aws.StringValue  `ec2:"SubnetId" xml:"subnetId"`
 	Tags                    []Tag            `ec2:"Tags" xml:"tagSet>item"`
 	VPCID                   aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+}
+
+func (v *Subnet) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		SubnetStateAvailable,
+		SubnetStatePending,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -5158,12 +11363,55 @@ type Tag struct {
 	Value aws.StringValue `ec2:"Value" xml:"value"`
 }
 
+func (v *Tag) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TagDescription is undocumented.
 type TagDescription struct {
 	Key          aws.StringValue `ec2:"Key" xml:"key"`
 	ResourceID   aws.StringValue `ec2:"ResourceId" xml:"resourceId"`
 	ResourceType aws.StringValue `ec2:"ResourceType" xml:"resourceType"`
 	Value        aws.StringValue `ec2:"Value" xml:"value"`
+}
+
+func (v *TagDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ResourceTypeEnum := []string{
+		ResourceTypeCustomerGateway,
+		ResourceTypeDHCPOptions,
+		ResourceTypeImage,
+		ResourceTypeInstance,
+		ResourceTypeInternetGateway,
+		ResourceTypeNetworkACL,
+		ResourceTypeNetworkInterface,
+		ResourceTypeReservedInstances,
+		ResourceTypeRouteTable,
+		ResourceTypeSecurityGroup,
+		ResourceTypeSnapshot,
+		ResourceTypeSpotInstancesRequest,
+		ResourceTypeSubnet,
+		ResourceTypeVPC,
+		ResourceTypeVPNConnection,
+		ResourceTypeVPNGateway,
+		ResourceTypeVolume,
+	}
+	if err := model.ValidateEnum(v, "ResourceType", ResourceTypeEnum); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -5184,9 +11432,33 @@ type TerminateInstancesRequest struct {
 	InstanceIDs []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
+func (v *TerminateInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceIDs"); err != nil {
+		errors["InstanceIDs"] = append(errors["InstanceIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TerminateInstancesResult is undocumented.
 type TerminateInstancesResult struct {
 	TerminatingInstances []InstanceStateChange `ec2:"TerminatingInstances" xml:"instancesSet>item"`
+}
+
+func (v *TerminateInstancesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UnassignPrivateIPAddressesRequest is undocumented.
@@ -5195,15 +11467,57 @@ type UnassignPrivateIPAddressesRequest struct {
 	PrivateIPAddresses []string        `ec2:"PrivateIpAddresses" xml:"privateIpAddress>PrivateIpAddress"`
 }
 
+func (v *UnassignPrivateIPAddressesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "NetworkInterfaceID"); err != nil {
+		errors["NetworkInterfaceID"] = append(errors["NetworkInterfaceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PrivateIPAddresses"); err != nil {
+		errors["PrivateIPAddresses"] = append(errors["PrivateIPAddresses"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UnmonitorInstancesRequest is undocumented.
 type UnmonitorInstancesRequest struct {
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InstanceIDs []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
+func (v *UnmonitorInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceIDs"); err != nil {
+		errors["InstanceIDs"] = append(errors["InstanceIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UnmonitorInstancesResult is undocumented.
 type UnmonitorInstancesResult struct {
 	InstanceMonitorings []InstanceMonitoring `ec2:"InstanceMonitorings" xml:"instancesSet>item"`
+}
+
+func (v *UnmonitorInstancesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UserIDGroupPair is undocumented.
@@ -5213,6 +11527,16 @@ type UserIDGroupPair struct {
 	UserID    aws.StringValue `ec2:"UserId" xml:"userId"`
 }
 
+func (v *UserIDGroupPair) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VGWTelemetry is undocumented.
 type VGWTelemetry struct {
 	AcceptedRouteCount aws.IntegerValue `ec2:"AcceptedRouteCount" xml:"acceptedRouteCount"`
@@ -5220,6 +11544,24 @@ type VGWTelemetry struct {
 	OutsideIPAddress   aws.StringValue  `ec2:"OutsideIpAddress" xml:"outsideIpAddress"`
 	Status             aws.StringValue  `ec2:"Status" xml:"status"`
 	StatusMessage      aws.StringValue  `ec2:"StatusMessage" xml:"statusMessage"`
+}
+
+func (v *VGWTelemetry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StatusEnum := []string{
+		TelemetryStatusDown,
+		TelemetryStatusUp,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -5244,6 +11586,37 @@ type Volume struct {
 	VolumeType       aws.StringValue    `ec2:"VolumeType" xml:"volumeType"`
 }
 
+func (v *Volume) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		VolumeStateAvailable,
+		VolumeStateCreating,
+		VolumeStateDeleted,
+		VolumeStateDeleting,
+		VolumeStateError,
+		VolumeStateInUse,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	VolumeTypeEnum := []string{
+		VolumeTypeGp2,
+		VolumeTypeIo1,
+		VolumeTypeStandard,
+	}
+	if err := model.ValidateEnum(v, "VolumeType", VolumeTypeEnum); err != nil {
+		errors["VolumeType"] = append(errors["VolumeType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VolumeAttachment is undocumented.
 type VolumeAttachment struct {
 	AttachTime          time.Time        `ec2:"AttachTime" xml:"attachTime"`
@@ -5252,6 +11625,26 @@ type VolumeAttachment struct {
 	InstanceID          aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
 	State               aws.StringValue  `ec2:"State" xml:"status"`
 	VolumeID            aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
+}
+
+func (v *VolumeAttachment) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		VolumeAttachmentStateAttached,
+		VolumeAttachmentStateAttaching,
+		VolumeAttachmentStateDetached,
+		VolumeAttachmentStateDetaching,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -5273,6 +11666,20 @@ type VolumeDetail struct {
 	Size aws.LongValue `ec2:"Size" xml:"size"`
 }
 
+func (v *VolumeDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Size"); err != nil {
+		errors["Size"] = append(errors["Size"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for EC2.
 const (
 	VolumeStateAvailable = "available"
@@ -5291,10 +11698,38 @@ type VolumeStatusAction struct {
 	EventType   aws.StringValue `ec2:"EventType" xml:"eventType"`
 }
 
+func (v *VolumeStatusAction) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VolumeStatusDetails is undocumented.
 type VolumeStatusDetails struct {
 	Name   aws.StringValue `ec2:"Name" xml:"name"`
 	Status aws.StringValue `ec2:"Status" xml:"status"`
+}
+
+func (v *VolumeStatusDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	NameEnum := []string{
+		VolumeStatusNameIoEnabled,
+		VolumeStatusNameIoPerformance,
+	}
+	if err := model.ValidateEnum(v, "Name", NameEnum); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // VolumeStatusEvent is undocumented.
@@ -5306,10 +11741,39 @@ type VolumeStatusEvent struct {
 	NotBefore   time.Time       `ec2:"NotBefore" xml:"notBefore"`
 }
 
+func (v *VolumeStatusEvent) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VolumeStatusInfo is undocumented.
 type VolumeStatusInfo struct {
 	Details []VolumeStatusDetails `ec2:"Details" xml:"details>item"`
 	Status  aws.StringValue       `ec2:"Status" xml:"status"`
+}
+
+func (v *VolumeStatusInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StatusEnum := []string{
+		VolumeStatusInfoStatusImpaired,
+		VolumeStatusInfoStatusInsufficientData,
+		VolumeStatusInfoStatusOK,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -5326,6 +11790,16 @@ type VolumeStatusItem struct {
 	Events           []VolumeStatusEvent  `ec2:"Events" xml:"eventsSet>item"`
 	VolumeID         aws.StringValue      `ec2:"VolumeId" xml:"volumeId"`
 	VolumeStatus     *VolumeStatusInfo    `ec2:"VolumeStatus" xml:"volumeStatus"`
+}
+
+func (v *VolumeStatusItem) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -5352,10 +11826,56 @@ type VPC struct {
 	VPCID           aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
+func (v *VPC) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	InstanceTenancyEnum := []string{
+		TenancyDedicated,
+		TenancyDefault,
+	}
+	if err := model.ValidateEnum(v, "InstanceTenancy", InstanceTenancyEnum); err != nil {
+		errors["InstanceTenancy"] = append(errors["InstanceTenancy"], err)
+	}
+
+	StateEnum := []string{
+		VPCStateAvailable,
+		VPCStatePending,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VPCAttachment is undocumented.
 type VPCAttachment struct {
 	State aws.StringValue `ec2:"State" xml:"state"`
 	VPCID aws.StringValue `ec2:"VpcId" xml:"vpcId"`
+}
+
+func (v *VPCAttachment) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		AttachmentStatusAttached,
+		AttachmentStatusAttaching,
+		AttachmentStatusDetached,
+		AttachmentStatusDetaching,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -5374,10 +11894,30 @@ type VPCPeeringConnection struct {
 	VPCPeeringConnectionID aws.StringValue                  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
+func (v *VPCPeeringConnection) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VPCPeeringConnectionStateReason is undocumented.
 type VPCPeeringConnectionStateReason struct {
 	Code    aws.StringValue `ec2:"Code" xml:"code"`
 	Message aws.StringValue `ec2:"Message" xml:"message"`
+}
+
+func (v *VPCPeeringConnectionStateReason) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // VPCPeeringConnectionVPCInfo is undocumented.
@@ -5385,6 +11925,16 @@ type VPCPeeringConnectionVPCInfo struct {
 	CIDRBlock aws.StringValue `ec2:"CidrBlock" xml:"cidrBlock"`
 	OwnerID   aws.StringValue `ec2:"OwnerId" xml:"ownerId"`
 	VPCID     aws.StringValue `ec2:"VpcId" xml:"vpcId"`
+}
+
+func (v *VPCPeeringConnectionVPCInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -5407,14 +11957,61 @@ type VPNConnection struct {
 	VPNGatewayID                 aws.StringValue       `ec2:"VpnGatewayId" xml:"vpnGatewayId"`
 }
 
+func (v *VPNConnection) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		VPNStateAvailable,
+		VPNStateDeleted,
+		VPNStateDeleting,
+		VPNStatePending,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	TypeEnum := []string{
+		GatewayTypeIPsec1,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VPNConnectionOptions is undocumented.
 type VPNConnectionOptions struct {
 	StaticRoutesOnly aws.BooleanValue `ec2:"StaticRoutesOnly" xml:"staticRoutesOnly"`
 }
 
+func (v *VPNConnectionOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VPNConnectionOptionsSpecification is undocumented.
 type VPNConnectionOptionsSpecification struct {
 	StaticRoutesOnly aws.BooleanValue `ec2:"StaticRoutesOnly" xml:"staticRoutesOnly"`
+}
+
+func (v *VPNConnectionOptionsSpecification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // VPNGateway is undocumented.
@@ -5425,6 +12022,33 @@ type VPNGateway struct {
 	Type             aws.StringValue `ec2:"Type" xml:"type"`
 	VPCAttachments   []VPCAttachment `ec2:"VpcAttachments" xml:"attachments>item"`
 	VPNGatewayID     aws.StringValue `ec2:"VpnGatewayId" xml:"vpnGatewayId"`
+}
+
+func (v *VPNGateway) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	StateEnum := []string{
+		VPNStateAvailable,
+		VPNStateDeleted,
+		VPNStateDeleting,
+		VPNStatePending,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	TypeEnum := []string{
+		GatewayTypeIPsec1,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.
@@ -5440,6 +12064,33 @@ type VPNStaticRoute struct {
 	DestinationCIDRBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
 	Source               aws.StringValue `ec2:"Source" xml:"source"`
 	State                aws.StringValue `ec2:"State" xml:"state"`
+}
+
+func (v *VPNStaticRoute) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	SourceEnum := []string{
+		VPNStaticRouteSourceStatic,
+	}
+	if err := model.ValidateEnum(v, "Source", SourceEnum); err != nil {
+		errors["Source"] = append(errors["Source"], err)
+	}
+
+	StateEnum := []string{
+		VPNStateAvailable,
+		VPNStateDeleted,
+		VPNStateDeleting,
+		VPNStatePending,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for EC2.

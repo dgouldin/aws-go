@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // DirectConnect is a client for AWS Direct Connect.
@@ -43,6 +44,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Dir
 // interconnect. Allocates a number and a specified amount of bandwidth for
 // use by a hosted connection on the given interconnect.
 func (c *DirectConnect) AllocateConnectionOnInterconnect(req *AllocateConnectionOnInterconnectRequest) (resp *Connection, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &Connection{}
 	err = c.client.Do("AllocateConnectionOnInterconnect", "POST", "/", req, resp)
 	return
@@ -57,6 +62,10 @@ func (c *DirectConnect) AllocateConnectionOnInterconnect(req *AllocateConnection
 // virtual interface will be in 'Confirming' state, and will not be
 // available for handling traffic.
 func (c *DirectConnect) AllocatePrivateVirtualInterface(req *AllocatePrivateVirtualInterfaceRequest) (resp *VirtualInterface, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &VirtualInterface{}
 	err = c.client.Do("AllocatePrivateVirtualInterface", "POST", "/", req, resp)
 	return
@@ -71,6 +80,10 @@ func (c *DirectConnect) AllocatePrivateVirtualInterface(req *AllocatePrivateVirt
 // virtual interface will be in 'Confirming' state, and will not be
 // available for handling traffic.
 func (c *DirectConnect) AllocatePublicVirtualInterface(req *AllocatePublicVirtualInterfaceRequest) (resp *VirtualInterface, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &VirtualInterface{}
 	err = c.client.Do("AllocatePublicVirtualInterface", "POST", "/", req, resp)
 	return
@@ -81,6 +94,10 @@ func (c *DirectConnect) AllocatePublicVirtualInterface(req *AllocatePublicVirtua
 // 'Ordering' state, and will remain in this state until the owner calls
 // ConfirmConnection to confirm creation of the hosted connection.
 func (c *DirectConnect) ConfirmConnection(req *ConfirmConnectionRequest) (resp *ConfirmConnectionResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ConfirmConnectionResponse{}
 	err = c.client.Do("ConfirmConnection", "POST", "/", req, resp)
 	return
@@ -92,6 +109,10 @@ func (c *DirectConnect) ConfirmConnection(req *ConfirmConnectionRequest) (resp *
 // to the given virtual private gateway, and will be available for handling
 // traffic.
 func (c *DirectConnect) ConfirmPrivateVirtualInterface(req *ConfirmPrivateVirtualInterfaceRequest) (resp *ConfirmPrivateVirtualInterfaceResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ConfirmPrivateVirtualInterfaceResponse{}
 	err = c.client.Do("ConfirmPrivateVirtualInterface", "POST", "/", req, resp)
 	return
@@ -102,6 +123,10 @@ func (c *DirectConnect) ConfirmPrivateVirtualInterface(req *ConfirmPrivateVirtua
 // calls this function, the specified virtual interface will be created and
 // made available for handling traffic.
 func (c *DirectConnect) ConfirmPublicVirtualInterface(req *ConfirmPublicVirtualInterfaceRequest) (resp *ConfirmPublicVirtualInterfaceResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ConfirmPublicVirtualInterfaceResponse{}
 	err = c.client.Do("ConfirmPublicVirtualInterface", "POST", "/", req, resp)
 	return
@@ -117,6 +142,10 @@ func (c *DirectConnect) ConfirmPublicVirtualInterface(req *ConfirmPublicVirtualI
 // Direct Connect locations in multiple regions, but a connection in one
 // region does not provide connectivity to other regions.
 func (c *DirectConnect) CreateConnection(req *CreateConnectionRequest) (resp *Connection, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &Connection{}
 	err = c.client.Do("CreateConnection", "POST", "/", req, resp)
 	return
@@ -138,6 +167,10 @@ func (c *DirectConnect) CreateConnection(req *CreateConnectionRequest) (resp *Co
 // connection, using the assigned to them by the AWS Direct Connect
 // partner.
 func (c *DirectConnect) CreateInterconnect(req *CreateInterconnectRequest) (resp *Interconnect, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &Interconnect{}
 	err = c.client.Do("CreateInterconnect", "POST", "/", req, resp)
 	return
@@ -148,6 +181,10 @@ func (c *DirectConnect) CreateInterconnect(req *CreateInterconnectRequest) (resp
 // private virtual interface supports sending traffic to a single virtual
 // private cloud
 func (c *DirectConnect) CreatePrivateVirtualInterface(req *CreatePrivateVirtualInterfaceRequest) (resp *VirtualInterface, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &VirtualInterface{}
 	err = c.client.Do("CreatePrivateVirtualInterface", "POST", "/", req, resp)
 	return
@@ -158,6 +195,10 @@ func (c *DirectConnect) CreatePrivateVirtualInterface(req *CreatePrivateVirtualI
 // public virtual interface supports sending traffic to public services of
 // AWS such as Amazon Simple Storage Service (Amazon S3).
 func (c *DirectConnect) CreatePublicVirtualInterface(req *CreatePublicVirtualInterfaceRequest) (resp *VirtualInterface, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &VirtualInterface{}
 	err = c.client.Do("CreatePublicVirtualInterface", "POST", "/", req, resp)
 	return
@@ -169,6 +210,10 @@ func (c *DirectConnect) CreatePublicVirtualInterface(req *CreatePublicVirtualInt
 // cross-connects or network circuits that connect you to the AWS Direct
 // Connect location.
 func (c *DirectConnect) DeleteConnection(req *DeleteConnectionRequest) (resp *Connection, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &Connection{}
 	err = c.client.Do("DeleteConnection", "POST", "/", req, resp)
 	return
@@ -176,6 +221,10 @@ func (c *DirectConnect) DeleteConnection(req *DeleteConnectionRequest) (resp *Co
 
 // DeleteInterconnect is undocumented.
 func (c *DirectConnect) DeleteInterconnect(req *DeleteInterconnectRequest) (resp *DeleteInterconnectResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteInterconnectResponse{}
 	err = c.client.Do("DeleteInterconnect", "POST", "/", req, resp)
 	return
@@ -183,6 +232,10 @@ func (c *DirectConnect) DeleteInterconnect(req *DeleteInterconnectRequest) (resp
 
 // DeleteVirtualInterface is undocumented.
 func (c *DirectConnect) DeleteVirtualInterface(req *DeleteVirtualInterfaceRequest) (resp *DeleteVirtualInterfaceResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteVirtualInterfaceResponse{}
 	err = c.client.Do("DeleteVirtualInterface", "POST", "/", req, resp)
 	return
@@ -192,6 +245,10 @@ func (c *DirectConnect) DeleteVirtualInterface(req *DeleteVirtualInterfaceReques
 // connection ID is provided, the call returns only that particular
 // connection.
 func (c *DirectConnect) DescribeConnections(req *DescribeConnectionsRequest) (resp *Connections, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &Connections{}
 	err = c.client.Do("DescribeConnections", "POST", "/", req, resp)
 	return
@@ -200,6 +257,10 @@ func (c *DirectConnect) DescribeConnections(req *DescribeConnectionsRequest) (re
 // DescribeConnectionsOnInterconnect return a list of connections that have
 // been provisioned on the given interconnect.
 func (c *DirectConnect) DescribeConnectionsOnInterconnect(req *DescribeConnectionsOnInterconnectRequest) (resp *Connections, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &Connections{}
 	err = c.client.Do("DescribeConnectionsOnInterconnect", "POST", "/", req, resp)
 	return
@@ -209,6 +270,10 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnect(req *DescribeConnectio
 // account. If an interconnect ID is provided, it will only return this
 // particular interconnect.
 func (c *DirectConnect) DescribeInterconnects(req *DescribeInterconnectsRequest) (resp *Interconnects, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &Interconnects{}
 	err = c.client.Do("DescribeInterconnects", "POST", "/", req, resp)
 	return
@@ -246,6 +311,10 @@ func (c *DirectConnect) DescribeVirtualGateways() (resp *VirtualGateways, err er
 // interface ID is provided, only this particular virtual interface will be
 // returned.
 func (c *DirectConnect) DescribeVirtualInterfaces(req *DescribeVirtualInterfacesRequest) (resp *VirtualInterfaces, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &VirtualInterfaces{}
 	err = c.client.Do("DescribeVirtualInterfaces", "POST", "/", req, resp)
 	return
@@ -260,11 +329,63 @@ type AllocateConnectionOnInterconnectRequest struct {
 	VLAN           aws.IntegerValue `json:"vlan"`
 }
 
+func (v *AllocateConnectionOnInterconnectRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bandwidth"); err != nil {
+		errors["Bandwidth"] = append(errors["Bandwidth"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ConnectionName"); err != nil {
+		errors["ConnectionName"] = append(errors["ConnectionName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InterconnectID"); err != nil {
+		errors["InterconnectID"] = append(errors["InterconnectID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OwnerAccount"); err != nil {
+		errors["OwnerAccount"] = append(errors["OwnerAccount"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VLAN"); err != nil {
+		errors["VLAN"] = append(errors["VLAN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AllocatePrivateVirtualInterfaceRequest is undocumented.
 type AllocatePrivateVirtualInterfaceRequest struct {
 	ConnectionID                         aws.StringValue                       `json:"connectionId"`
 	NewPrivateVirtualInterfaceAllocation *NewPrivateVirtualInterfaceAllocation `json:"newPrivateVirtualInterfaceAllocation"`
 	OwnerAccount                         aws.StringValue                       `json:"ownerAccount"`
+}
+
+func (v *AllocatePrivateVirtualInterfaceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ConnectionID"); err != nil {
+		errors["ConnectionID"] = append(errors["ConnectionID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NewPrivateVirtualInterfaceAllocation"); err != nil {
+		errors["NewPrivateVirtualInterfaceAllocation"] = append(errors["NewPrivateVirtualInterfaceAllocation"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OwnerAccount"); err != nil {
+		errors["OwnerAccount"] = append(errors["OwnerAccount"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AllocatePublicVirtualInterfaceRequest is undocumented.
@@ -274,14 +395,74 @@ type AllocatePublicVirtualInterfaceRequest struct {
 	OwnerAccount                        aws.StringValue                      `json:"ownerAccount"`
 }
 
+func (v *AllocatePublicVirtualInterfaceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ConnectionID"); err != nil {
+		errors["ConnectionID"] = append(errors["ConnectionID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NewPublicVirtualInterfaceAllocation"); err != nil {
+		errors["NewPublicVirtualInterfaceAllocation"] = append(errors["NewPublicVirtualInterfaceAllocation"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OwnerAccount"); err != nil {
+		errors["OwnerAccount"] = append(errors["OwnerAccount"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfirmConnectionRequest is undocumented.
 type ConfirmConnectionRequest struct {
 	ConnectionID aws.StringValue `json:"connectionId"`
 }
 
+func (v *ConfirmConnectionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ConnectionID"); err != nil {
+		errors["ConnectionID"] = append(errors["ConnectionID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfirmConnectionResponse is undocumented.
 type ConfirmConnectionResponse struct {
 	ConnectionState aws.StringValue `json:"connectionState,omitempty"`
+}
+
+func (v *ConfirmConnectionResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	connectionStateEnum := []string{
+		ConnectionStateAvailable,
+		ConnectionStateDeleted,
+		ConnectionStateDeleting,
+		ConnectionStateDown,
+		ConnectionStateOrdering,
+		ConnectionStatePending,
+		ConnectionStateRejected,
+		ConnectionStateRequested,
+	}
+	if err := model.ValidateEnum(v, "ConnectionState", connectionStateEnum); err != nil {
+		errors["ConnectionState"] = append(errors["ConnectionState"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ConfirmPrivateVirtualInterfaceRequest is undocumented.
@@ -290,9 +471,50 @@ type ConfirmPrivateVirtualInterfaceRequest struct {
 	VirtualInterfaceID aws.StringValue `json:"virtualInterfaceId"`
 }
 
+func (v *ConfirmPrivateVirtualInterfaceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VirtualGatewayID"); err != nil {
+		errors["VirtualGatewayID"] = append(errors["VirtualGatewayID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VirtualInterfaceID"); err != nil {
+		errors["VirtualInterfaceID"] = append(errors["VirtualInterfaceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfirmPrivateVirtualInterfaceResponse is undocumented.
 type ConfirmPrivateVirtualInterfaceResponse struct {
 	VirtualInterfaceState aws.StringValue `json:"virtualInterfaceState,omitempty"`
+}
+
+func (v *ConfirmPrivateVirtualInterfaceResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	virtualInterfaceStateEnum := []string{
+		VirtualInterfaceStateAvailable,
+		VirtualInterfaceStateConfirming,
+		VirtualInterfaceStateDeleted,
+		VirtualInterfaceStateDeleting,
+		VirtualInterfaceStatePending,
+		VirtualInterfaceStateRejected,
+		VirtualInterfaceStateVerifying,
+	}
+	if err := model.ValidateEnum(v, "VirtualInterfaceState", virtualInterfaceStateEnum); err != nil {
+		errors["VirtualInterfaceState"] = append(errors["VirtualInterfaceState"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ConfirmPublicVirtualInterfaceRequest is undocumented.
@@ -300,9 +522,46 @@ type ConfirmPublicVirtualInterfaceRequest struct {
 	VirtualInterfaceID aws.StringValue `json:"virtualInterfaceId"`
 }
 
+func (v *ConfirmPublicVirtualInterfaceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VirtualInterfaceID"); err != nil {
+		errors["VirtualInterfaceID"] = append(errors["VirtualInterfaceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfirmPublicVirtualInterfaceResponse is undocumented.
 type ConfirmPublicVirtualInterfaceResponse struct {
 	VirtualInterfaceState aws.StringValue `json:"virtualInterfaceState,omitempty"`
+}
+
+func (v *ConfirmPublicVirtualInterfaceResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	virtualInterfaceStateEnum := []string{
+		VirtualInterfaceStateAvailable,
+		VirtualInterfaceStateConfirming,
+		VirtualInterfaceStateDeleted,
+		VirtualInterfaceStateDeleting,
+		VirtualInterfaceStatePending,
+		VirtualInterfaceStateRejected,
+		VirtualInterfaceStateVerifying,
+	}
+	if err := model.ValidateEnum(v, "VirtualInterfaceState", virtualInterfaceStateEnum); err != nil {
+		errors["VirtualInterfaceState"] = append(errors["VirtualInterfaceState"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Connection is undocumented.
@@ -316,6 +575,30 @@ type Connection struct {
 	PartnerName     aws.StringValue  `json:"partnerName,omitempty"`
 	Region          aws.StringValue  `json:"region,omitempty"`
 	VLAN            aws.IntegerValue `json:"vlan,omitempty"`
+}
+
+func (v *Connection) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	connectionStateEnum := []string{
+		ConnectionStateAvailable,
+		ConnectionStateDeleted,
+		ConnectionStateDeleting,
+		ConnectionStateDown,
+		ConnectionStateOrdering,
+		ConnectionStatePending,
+		ConnectionStateRejected,
+		ConnectionStateRequested,
+	}
+	if err := model.ValidateEnum(v, "ConnectionState", connectionStateEnum); err != nil {
+		errors["ConnectionState"] = append(errors["ConnectionState"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for DirectConnect.
@@ -335,11 +618,43 @@ type Connections struct {
 	Connections []Connection `json:"connections,omitempty"`
 }
 
+func (v *Connections) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateConnectionRequest is undocumented.
 type CreateConnectionRequest struct {
 	Bandwidth      aws.StringValue `json:"bandwidth"`
 	ConnectionName aws.StringValue `json:"connectionName"`
 	Location       aws.StringValue `json:"location"`
+}
+
+func (v *CreateConnectionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bandwidth"); err != nil {
+		errors["Bandwidth"] = append(errors["Bandwidth"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ConnectionName"); err != nil {
+		errors["ConnectionName"] = append(errors["ConnectionName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Location"); err != nil {
+		errors["Location"] = append(errors["Location"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateInterconnectRequest is undocumented.
@@ -349,10 +664,50 @@ type CreateInterconnectRequest struct {
 	Location         aws.StringValue `json:"location"`
 }
 
+func (v *CreateInterconnectRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Bandwidth"); err != nil {
+		errors["Bandwidth"] = append(errors["Bandwidth"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InterconnectName"); err != nil {
+		errors["InterconnectName"] = append(errors["InterconnectName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Location"); err != nil {
+		errors["Location"] = append(errors["Location"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreatePrivateVirtualInterfaceRequest is undocumented.
 type CreatePrivateVirtualInterfaceRequest struct {
 	ConnectionID               aws.StringValue             `json:"connectionId"`
 	NewPrivateVirtualInterface *NewPrivateVirtualInterface `json:"newPrivateVirtualInterface"`
+}
+
+func (v *CreatePrivateVirtualInterfaceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ConnectionID"); err != nil {
+		errors["ConnectionID"] = append(errors["ConnectionID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NewPrivateVirtualInterface"); err != nil {
+		errors["NewPrivateVirtualInterface"] = append(errors["NewPrivateVirtualInterface"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreatePublicVirtualInterfaceRequest is undocumented.
@@ -361,9 +716,41 @@ type CreatePublicVirtualInterfaceRequest struct {
 	NewPublicVirtualInterface *NewPublicVirtualInterface `json:"newPublicVirtualInterface"`
 }
 
+func (v *CreatePublicVirtualInterfaceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ConnectionID"); err != nil {
+		errors["ConnectionID"] = append(errors["ConnectionID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NewPublicVirtualInterface"); err != nil {
+		errors["NewPublicVirtualInterface"] = append(errors["NewPublicVirtualInterface"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteConnectionRequest is undocumented.
 type DeleteConnectionRequest struct {
 	ConnectionID aws.StringValue `json:"connectionId"`
+}
+
+func (v *DeleteConnectionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ConnectionID"); err != nil {
+		errors["ConnectionID"] = append(errors["ConnectionID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteInterconnectRequest is undocumented.
@@ -371,9 +758,45 @@ type DeleteInterconnectRequest struct {
 	InterconnectID aws.StringValue `json:"interconnectId"`
 }
 
+func (v *DeleteInterconnectRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InterconnectID"); err != nil {
+		errors["InterconnectID"] = append(errors["InterconnectID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteInterconnectResponse is undocumented.
 type DeleteInterconnectResponse struct {
 	InterconnectState aws.StringValue `json:"interconnectState,omitempty"`
+}
+
+func (v *DeleteInterconnectResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	interconnectStateEnum := []string{
+		InterconnectStateAvailable,
+		InterconnectStateDeleted,
+		InterconnectStateDeleting,
+		InterconnectStateDown,
+		InterconnectStatePending,
+		InterconnectStateRequested,
+	}
+	if err := model.ValidateEnum(v, "InterconnectState", interconnectStateEnum); err != nil {
+		errors["InterconnectState"] = append(errors["InterconnectState"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteVirtualInterfaceRequest is undocumented.
@@ -381,9 +804,46 @@ type DeleteVirtualInterfaceRequest struct {
 	VirtualInterfaceID aws.StringValue `json:"virtualInterfaceId"`
 }
 
+func (v *DeleteVirtualInterfaceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VirtualInterfaceID"); err != nil {
+		errors["VirtualInterfaceID"] = append(errors["VirtualInterfaceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteVirtualInterfaceResponse is undocumented.
 type DeleteVirtualInterfaceResponse struct {
 	VirtualInterfaceState aws.StringValue `json:"virtualInterfaceState,omitempty"`
+}
+
+func (v *DeleteVirtualInterfaceResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	virtualInterfaceStateEnum := []string{
+		VirtualInterfaceStateAvailable,
+		VirtualInterfaceStateConfirming,
+		VirtualInterfaceStateDeleted,
+		VirtualInterfaceStateDeleting,
+		VirtualInterfaceStatePending,
+		VirtualInterfaceStateRejected,
+		VirtualInterfaceStateVerifying,
+	}
+	if err := model.ValidateEnum(v, "VirtualInterfaceState", virtualInterfaceStateEnum); err != nil {
+		errors["VirtualInterfaceState"] = append(errors["VirtualInterfaceState"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeConnectionsOnInterconnectRequest is undocumented.
@@ -391,9 +851,33 @@ type DescribeConnectionsOnInterconnectRequest struct {
 	InterconnectID aws.StringValue `json:"interconnectId"`
 }
 
+func (v *DescribeConnectionsOnInterconnectRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InterconnectID"); err != nil {
+		errors["InterconnectID"] = append(errors["InterconnectID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeConnectionsRequest is undocumented.
 type DescribeConnectionsRequest struct {
 	ConnectionID aws.StringValue `json:"connectionId,omitempty"`
+}
+
+func (v *DescribeConnectionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeInterconnectsRequest is undocumented.
@@ -401,10 +885,30 @@ type DescribeInterconnectsRequest struct {
 	InterconnectID aws.StringValue `json:"interconnectId,omitempty"`
 }
 
+func (v *DescribeInterconnectsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeVirtualInterfacesRequest is undocumented.
 type DescribeVirtualInterfacesRequest struct {
 	ConnectionID       aws.StringValue `json:"connectionId,omitempty"`
 	VirtualInterfaceID aws.StringValue `json:"virtualInterfaceId,omitempty"`
+}
+
+func (v *DescribeVirtualInterfacesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Interconnect is undocumented.
@@ -415,6 +919,28 @@ type Interconnect struct {
 	InterconnectState aws.StringValue `json:"interconnectState,omitempty"`
 	Location          aws.StringValue `json:"location,omitempty"`
 	Region            aws.StringValue `json:"region,omitempty"`
+}
+
+func (v *Interconnect) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	interconnectStateEnum := []string{
+		InterconnectStateAvailable,
+		InterconnectStateDeleted,
+		InterconnectStateDeleting,
+		InterconnectStateDown,
+		InterconnectStatePending,
+		InterconnectStateRequested,
+	}
+	if err := model.ValidateEnum(v, "InterconnectState", interconnectStateEnum); err != nil {
+		errors["InterconnectState"] = append(errors["InterconnectState"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for DirectConnect.
@@ -432,15 +958,45 @@ type Interconnects struct {
 	Interconnects []Interconnect `json:"interconnects,omitempty"`
 }
 
+func (v *Interconnects) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Location is undocumented.
 type Location struct {
 	LocationCode aws.StringValue `json:"locationCode,omitempty"`
 	LocationName aws.StringValue `json:"locationName,omitempty"`
 }
 
+func (v *Location) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Locations is undocumented.
 type Locations struct {
 	Locations []Location `json:"locations,omitempty"`
+}
+
+func (v *Locations) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // NewPrivateVirtualInterface is undocumented.
@@ -454,6 +1010,32 @@ type NewPrivateVirtualInterface struct {
 	VLAN                 aws.IntegerValue `json:"vlan"`
 }
 
+func (v *NewPrivateVirtualInterface) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ASN"); err != nil {
+		errors["ASN"] = append(errors["ASN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VirtualGatewayID"); err != nil {
+		errors["VirtualGatewayID"] = append(errors["VirtualGatewayID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VirtualInterfaceName"); err != nil {
+		errors["VirtualInterfaceName"] = append(errors["VirtualInterfaceName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VLAN"); err != nil {
+		errors["VLAN"] = append(errors["VLAN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // NewPrivateVirtualInterfaceAllocation is undocumented.
 type NewPrivateVirtualInterfaceAllocation struct {
 	AmazonAddress        aws.StringValue  `json:"amazonAddress,omitempty"`
@@ -462,6 +1044,28 @@ type NewPrivateVirtualInterfaceAllocation struct {
 	CustomerAddress      aws.StringValue  `json:"customerAddress,omitempty"`
 	VirtualInterfaceName aws.StringValue  `json:"virtualInterfaceName"`
 	VLAN                 aws.IntegerValue `json:"vlan"`
+}
+
+func (v *NewPrivateVirtualInterfaceAllocation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ASN"); err != nil {
+		errors["ASN"] = append(errors["ASN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VirtualInterfaceName"); err != nil {
+		errors["VirtualInterfaceName"] = append(errors["VirtualInterfaceName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VLAN"); err != nil {
+		errors["VLAN"] = append(errors["VLAN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // NewPublicVirtualInterface is undocumented.
@@ -475,6 +1079,40 @@ type NewPublicVirtualInterface struct {
 	VLAN                 aws.IntegerValue    `json:"vlan"`
 }
 
+func (v *NewPublicVirtualInterface) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AmazonAddress"); err != nil {
+		errors["AmazonAddress"] = append(errors["AmazonAddress"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ASN"); err != nil {
+		errors["ASN"] = append(errors["ASN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CustomerAddress"); err != nil {
+		errors["CustomerAddress"] = append(errors["CustomerAddress"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RouteFilterPrefixes"); err != nil {
+		errors["RouteFilterPrefixes"] = append(errors["RouteFilterPrefixes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VirtualInterfaceName"); err != nil {
+		errors["VirtualInterfaceName"] = append(errors["VirtualInterfaceName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VLAN"); err != nil {
+		errors["VLAN"] = append(errors["VLAN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // NewPublicVirtualInterfaceAllocation is undocumented.
 type NewPublicVirtualInterfaceAllocation struct {
 	AmazonAddress        aws.StringValue     `json:"amazonAddress"`
@@ -486,9 +1124,53 @@ type NewPublicVirtualInterfaceAllocation struct {
 	VLAN                 aws.IntegerValue    `json:"vlan"`
 }
 
+func (v *NewPublicVirtualInterfaceAllocation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AmazonAddress"); err != nil {
+		errors["AmazonAddress"] = append(errors["AmazonAddress"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ASN"); err != nil {
+		errors["ASN"] = append(errors["ASN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CustomerAddress"); err != nil {
+		errors["CustomerAddress"] = append(errors["CustomerAddress"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RouteFilterPrefixes"); err != nil {
+		errors["RouteFilterPrefixes"] = append(errors["RouteFilterPrefixes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VirtualInterfaceName"); err != nil {
+		errors["VirtualInterfaceName"] = append(errors["VirtualInterfaceName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VLAN"); err != nil {
+		errors["VLAN"] = append(errors["VLAN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RouteFilterPrefix is undocumented.
 type RouteFilterPrefix struct {
 	CIDR aws.StringValue `json:"cidr,omitempty"`
+}
+
+func (v *RouteFilterPrefix) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // VirtualGateway is undocumented.
@@ -497,9 +1179,29 @@ type VirtualGateway struct {
 	VirtualGatewayState aws.StringValue `json:"virtualGatewayState,omitempty"`
 }
 
+func (v *VirtualGateway) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VirtualGateways is undocumented.
 type VirtualGateways struct {
 	VirtualGateways []VirtualGateway `json:"virtualGateways,omitempty"`
+}
+
+func (v *VirtualGateways) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // VirtualInterface is undocumented.
@@ -521,6 +1223,29 @@ type VirtualInterface struct {
 	VLAN                  aws.IntegerValue    `json:"vlan,omitempty"`
 }
 
+func (v *VirtualInterface) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	virtualInterfaceStateEnum := []string{
+		VirtualInterfaceStateAvailable,
+		VirtualInterfaceStateConfirming,
+		VirtualInterfaceStateDeleted,
+		VirtualInterfaceStateDeleting,
+		VirtualInterfaceStatePending,
+		VirtualInterfaceStateRejected,
+		VirtualInterfaceStateVerifying,
+	}
+	if err := model.ValidateEnum(v, "VirtualInterfaceState", virtualInterfaceStateEnum); err != nil {
+		errors["VirtualInterfaceState"] = append(errors["VirtualInterfaceState"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for DirectConnect.
 const (
 	VirtualInterfaceStateAvailable  = "available"
@@ -535,6 +1260,16 @@ const (
 // VirtualInterfaces is undocumented.
 type VirtualInterfaces struct {
 	VirtualInterfaces []VirtualInterface `json:"virtualInterfaces,omitempty"`
+}
+
+func (v *VirtualInterfaces) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

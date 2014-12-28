@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // SQS is a client for Amazon Simple Queue Service.
@@ -52,6 +53,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *SQS
 // param.n notation. Values of n are integers starting from 1. For example,
 // a parameter list with two elements looks like this:
 func (c *SQS) AddPermission(req *AddPermissionRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AddPermission", "POST", "/", req, nil)
 	return
@@ -86,6 +91,10 @@ func (c *SQS) AddPermission(req *AddPermissionRequest) (err error) {
 // timeout value, not the value you set with the ChangeMessageVisibility
 // action.
 func (c *SQS) ChangeMessageVisibility(req *ChangeMessageVisibilityRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("ChangeMessageVisibility", "POST", "/", req, nil)
 	return
@@ -102,6 +111,10 @@ func (c *SQS) ChangeMessageVisibility(req *ChangeMessageVisibilityRequest) (err 
 // specified using the param.n notation. Values of n are integers starting
 // from 1. For example, a parameter list with two elements looks like this:
 func (c *SQS) ChangeMessageVisibilityBatch(req *ChangeMessageVisibilityBatchRequest) (resp *ChangeMessageVisibilityBatchResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ChangeMessageVisibilityBatchResult{}
 	err = c.client.Do("ChangeMessageVisibilityBatch", "POST", "/", req, resp)
 	return
@@ -125,6 +138,10 @@ func (c *SQS) ChangeMessageVisibilityBatch(req *ChangeMessageVisibilityBatchRequ
 // notation. Values of n are integers starting from 1. For example, a
 // parameter list with two elements looks like this:
 func (c *SQS) CreateQueue(req *CreateQueueRequest) (resp *CreateQueueResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateQueueResult{}
 	err = c.client.Do("CreateQueue", "POST", "/", req, resp)
 	return
@@ -150,6 +167,10 @@ func (c *SQS) CreateQueue(req *CreateQueueRequest) (resp *CreateQueueResult, err
 // idempotent so that receiving a particular message more than once is not
 // a problem.
 func (c *SQS) DeleteMessage(req *DeleteMessageRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteMessage", "POST", "/", req, nil)
 	return
@@ -165,6 +186,10 @@ func (c *SQS) DeleteMessage(req *DeleteMessageRequest) (err error) {
 // of n are integers starting from 1. For example, a parameter list with
 // two elements looks like this:
 func (c *SQS) DeleteMessageBatch(req *DeleteMessageBatchRequest) (resp *DeleteMessageBatchResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteMessageBatchResult{}
 	err = c.client.Do("DeleteMessageBatch", "POST", "/", req, resp)
 	return
@@ -184,6 +209,10 @@ func (c *SQS) DeleteMessageBatch(req *DeleteMessageBatchRequest) (resp *DeleteMe
 // information, see How Amazon SQS Queues Work in the Amazon SQS Developer
 // Guide .
 func (c *SQS) DeleteQueue(req *DeleteQueueRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteQueue", "POST", "/", req, nil)
 	return
@@ -221,6 +250,10 @@ func (c *SQS) DeleteQueue(req *DeleteQueueRequest) (err error) {
 // notation. Values of n are integers starting from 1. For example, a
 // parameter list with two elements looks like this:
 func (c *SQS) GetQueueAttributes(req *GetQueueAttributesRequest) (resp *GetQueueAttributesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetQueueAttributesResult{}
 	err = c.client.Do("GetQueueAttributes", "POST", "/", req, resp)
 	return
@@ -234,6 +267,10 @@ func (c *SQS) GetQueueAttributes(req *GetQueueAttributesRequest) (resp *GetQueue
 // information about shared queue access, see AddPermission or go to Shared
 // Queues in the Amazon SQS Developer Guide .
 func (c *SQS) GetQueueURL(req *GetQueueURLRequest) (resp *GetQueueURLResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetQueueURLResult{}
 	err = c.client.Do("GetQueueUrl", "POST", "/", req, resp)
 	return
@@ -244,6 +281,10 @@ func (c *SQS) GetQueueURL(req *GetQueueURLRequest) (resp *GetQueueURLResult, err
 // more information about using dead letter queues, see Using Amazon SQS
 // Dead Letter Queues
 func (c *SQS) ListDeadLetterSourceQueues(req *ListDeadLetterSourceQueuesRequest) (resp *ListDeadLetterSourceQueuesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListDeadLetterSourceQueuesResult{}
 	err = c.client.Do("ListDeadLetterSourceQueues", "POST", "/", req, resp)
 	return
@@ -254,6 +295,10 @@ func (c *SQS) ListDeadLetterSourceQueues(req *ListDeadLetterSourceQueuesRequest)
 // QueueNamePrefix parameter, only queues with a name beginning with the
 // specified value are returned.
 func (c *SQS) ListQueues(req *ListQueuesRequest) (resp *ListQueuesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListQueuesResult{}
 	err = c.client.Do("ListQueues", "POST", "/", req, resp)
 	return
@@ -268,6 +313,10 @@ func (c *SQS) ListQueues(req *ListQueuesRequest) (resp *ListQueuesResult, err er
 // before PurgeQueue was called may be received, but will be deleted within
 // the next minute.
 func (c *SQS) PurgeQueue(req *PurgeQueueRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PurgeQueue", "POST", "/", req, nil)
 	return
@@ -300,6 +349,10 @@ func (c *SQS) PurgeQueue(req *PurgeQueueRequest) (err error) {
 // action, we recommend that you structure your code so that it can handle
 // new attributes gracefully.
 func (c *SQS) ReceiveMessage(req *ReceiveMessageRequest) (resp *ReceiveMessageResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ReceiveMessageResult{}
 	err = c.client.Do("ReceiveMessage", "POST", "/", req, resp)
 	return
@@ -309,6 +362,10 @@ func (c *SQS) ReceiveMessage(req *ReceiveMessageRequest) (resp *ReceiveMessageRe
 // matches the specified Label parameter. Only the owner of the queue can
 // remove permissions.
 func (c *SQS) RemovePermission(req *RemovePermissionRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RemovePermission", "POST", "/", req, nil)
 	return
@@ -325,6 +382,10 @@ func (c *SQS) RemovePermission(req *RemovePermissionRequest) (err error) {
 // included in the list, your request will be rejected. #x9 | #xA | #xD |
 // [#x20 to #xD7FF] | [#xE000 to #xFFFD] | [#x10000 to #x10FFFF]
 func (c *SQS) SendMessage(req *SendMessageRequest) (resp *SendMessageResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SendMessageResult{}
 	err = c.client.Do("SendMessage", "POST", "/", req, resp)
 	return
@@ -349,6 +410,10 @@ func (c *SQS) SendMessage(req *SendMessageRequest) (resp *SendMessageResult, err
 // param.n notation. Values of n are integers starting from 1. For example,
 // a parameter list with two elements looks like this:
 func (c *SQS) SendMessageBatch(req *SendMessageBatchRequest) (resp *SendMessageBatchResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SendMessageBatchResult{}
 	err = c.client.Do("SendMessageBatch", "POST", "/", req, resp)
 	return
@@ -362,6 +427,10 @@ func (c *SQS) SendMessageBatch(req *SendMessageBatchRequest) (resp *SendMessageB
 // writing code that calls this action, we recommend that you structure
 // your code so that it can handle new attributes gracefully.
 func (c *SQS) SetQueueAttributes(req *SetQueueAttributesRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetQueueAttributes", "POST", "/", req, nil)
 	return
@@ -375,6 +444,32 @@ type AddPermissionRequest struct {
 	QueueURL      aws.StringValue `xml:"QueueUrl"`
 }
 
+func (v *AddPermissionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AWSAccountIDs"); err != nil {
+		errors["AWSAccountIDs"] = append(errors["AWSAccountIDs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Actions"); err != nil {
+		errors["Actions"] = append(errors["Actions"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Label"); err != nil {
+		errors["Label"] = append(errors["Label"], err)
+	}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BatchResultErrorEntry is undocumented.
 type BatchResultErrorEntry struct {
 	Code        aws.StringValue  `xml:"Code"`
@@ -383,10 +478,50 @@ type BatchResultErrorEntry struct {
 	SenderFault aws.BooleanValue `xml:"SenderFault"`
 }
 
+func (v *BatchResultErrorEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Code"); err != nil {
+		errors["Code"] = append(errors["Code"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SenderFault"); err != nil {
+		errors["SenderFault"] = append(errors["SenderFault"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ChangeMessageVisibilityBatchRequest is undocumented.
 type ChangeMessageVisibilityBatchRequest struct {
 	Entries  []ChangeMessageVisibilityBatchRequestEntry `xml:"ChangeMessageVisibilityBatchRequestEntry"`
 	QueueURL aws.StringValue                            `xml:"QueueUrl"`
+}
+
+func (v *ChangeMessageVisibilityBatchRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Entries"); err != nil {
+		errors["Entries"] = append(errors["Entries"], err)
+	}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ChangeMessageVisibilityBatchRequestEntry is undocumented.
@@ -396,15 +531,65 @@ type ChangeMessageVisibilityBatchRequestEntry struct {
 	VisibilityTimeout aws.IntegerValue `xml:"VisibilityTimeout"`
 }
 
+func (v *ChangeMessageVisibilityBatchRequestEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ReceiptHandle"); err != nil {
+		errors["ReceiptHandle"] = append(errors["ReceiptHandle"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ChangeMessageVisibilityBatchResult is undocumented.
 type ChangeMessageVisibilityBatchResult struct {
 	Failed     []BatchResultErrorEntry                   `xml:"ChangeMessageVisibilityBatchResult>BatchResultErrorEntry"`
 	Successful []ChangeMessageVisibilityBatchResultEntry `xml:"ChangeMessageVisibilityBatchResult>ChangeMessageVisibilityBatchResultEntry"`
 }
 
+func (v *ChangeMessageVisibilityBatchResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Failed"); err != nil {
+		errors["Failed"] = append(errors["Failed"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Successful"); err != nil {
+		errors["Successful"] = append(errors["Successful"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ChangeMessageVisibilityBatchResultEntry is undocumented.
 type ChangeMessageVisibilityBatchResultEntry struct {
 	ID aws.StringValue `xml:"Id"`
+}
+
+func (v *ChangeMessageVisibilityBatchResultEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ChangeMessageVisibilityRequest is undocumented.
@@ -414,15 +599,61 @@ type ChangeMessageVisibilityRequest struct {
 	VisibilityTimeout aws.IntegerValue `xml:"VisibilityTimeout"`
 }
 
+func (v *ChangeMessageVisibilityRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ReceiptHandle"); err != nil {
+		errors["ReceiptHandle"] = append(errors["ReceiptHandle"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VisibilityTimeout"); err != nil {
+		errors["VisibilityTimeout"] = append(errors["VisibilityTimeout"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateQueueRequest is undocumented.
 type CreateQueueRequest struct {
 	Attributes map[string]string `xml:""`
 	QueueName  aws.StringValue   `xml:"QueueName"`
 }
 
+func (v *CreateQueueRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "QueueName"); err != nil {
+		errors["QueueName"] = append(errors["QueueName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateQueueResult is undocumented.
 type CreateQueueResult struct {
 	QueueURL aws.StringValue `xml:"CreateQueueResult>QueueUrl"`
+}
+
+func (v *CreateQueueResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteMessageBatchRequest is undocumented.
@@ -431,10 +662,46 @@ type DeleteMessageBatchRequest struct {
 	QueueURL aws.StringValue                  `xml:"QueueUrl"`
 }
 
+func (v *DeleteMessageBatchRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Entries"); err != nil {
+		errors["Entries"] = append(errors["Entries"], err)
+	}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteMessageBatchRequestEntry is undocumented.
 type DeleteMessageBatchRequestEntry struct {
 	ID            aws.StringValue `xml:"Id"`
 	ReceiptHandle aws.StringValue `xml:"ReceiptHandle"`
+}
+
+func (v *DeleteMessageBatchRequestEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ReceiptHandle"); err != nil {
+		errors["ReceiptHandle"] = append(errors["ReceiptHandle"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteMessageBatchResult is undocumented.
@@ -443,9 +710,41 @@ type DeleteMessageBatchResult struct {
 	Successful []DeleteMessageBatchResultEntry `xml:"DeleteMessageBatchResult>DeleteMessageBatchResultEntry"`
 }
 
+func (v *DeleteMessageBatchResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Failed"); err != nil {
+		errors["Failed"] = append(errors["Failed"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Successful"); err != nil {
+		errors["Successful"] = append(errors["Successful"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteMessageBatchResultEntry is undocumented.
 type DeleteMessageBatchResultEntry struct {
 	ID aws.StringValue `xml:"Id"`
+}
+
+func (v *DeleteMessageBatchResultEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteMessageRequest is undocumented.
@@ -454,9 +753,41 @@ type DeleteMessageRequest struct {
 	ReceiptHandle aws.StringValue `xml:"ReceiptHandle"`
 }
 
+func (v *DeleteMessageRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ReceiptHandle"); err != nil {
+		errors["ReceiptHandle"] = append(errors["ReceiptHandle"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteQueueRequest is undocumented.
 type DeleteQueueRequest struct {
 	QueueURL aws.StringValue `xml:"QueueUrl"`
+}
+
+func (v *DeleteQueueRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetQueueAttributesRequest is undocumented.
@@ -465,9 +796,33 @@ type GetQueueAttributesRequest struct {
 	QueueURL       aws.StringValue `xml:"QueueUrl"`
 }
 
+func (v *GetQueueAttributesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetQueueAttributesResult is undocumented.
 type GetQueueAttributesResult struct {
 	Attributes map[string]string `xml:"GetQueueAttributesResult"`
+}
+
+func (v *GetQueueAttributesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetQueueURLRequest is undocumented.
@@ -476,9 +831,33 @@ type GetQueueURLRequest struct {
 	QueueOwnerAWSAccountID aws.StringValue `xml:"QueueOwnerAWSAccountId"`
 }
 
+func (v *GetQueueURLRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "QueueName"); err != nil {
+		errors["QueueName"] = append(errors["QueueName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetQueueURLResult is undocumented.
 type GetQueueURLResult struct {
 	QueueURL aws.StringValue `xml:"GetQueueUrlResult>QueueUrl"`
+}
+
+func (v *GetQueueURLResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListDeadLetterSourceQueuesRequest is undocumented.
@@ -486,9 +865,37 @@ type ListDeadLetterSourceQueuesRequest struct {
 	QueueURL aws.StringValue `xml:"QueueUrl"`
 }
 
+func (v *ListDeadLetterSourceQueuesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDeadLetterSourceQueuesResult is undocumented.
 type ListDeadLetterSourceQueuesResult struct {
 	QueueURLs []string `xml:"ListDeadLetterSourceQueuesResult>QueueUrl"`
+}
+
+func (v *ListDeadLetterSourceQueuesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "QueueURLs"); err != nil {
+		errors["QueueURLs"] = append(errors["QueueURLs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListQueuesRequest is undocumented.
@@ -496,9 +903,29 @@ type ListQueuesRequest struct {
 	QueueNamePrefix aws.StringValue `xml:"QueueNamePrefix"`
 }
 
+func (v *ListQueuesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListQueuesResult is undocumented.
 type ListQueuesResult struct {
 	QueueURLs []string `xml:"ListQueuesResult>QueueUrl"`
+}
+
+func (v *ListQueuesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Message is undocumented.
@@ -512,6 +939,16 @@ type Message struct {
 	ReceiptHandle          aws.StringValue                  `xml:"ReceiptHandle"`
 }
 
+func (v *Message) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // MessageAttributeValue is undocumented.
 type MessageAttributeValue struct {
 	BinaryListValues [][]byte        `xml:"BinaryListValue>BinaryListValue"`
@@ -521,9 +958,37 @@ type MessageAttributeValue struct {
 	StringValue      aws.StringValue `xml:"StringValue"`
 }
 
+func (v *MessageAttributeValue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DataType"); err != nil {
+		errors["DataType"] = append(errors["DataType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PurgeQueueRequest is undocumented.
 type PurgeQueueRequest struct {
 	QueueURL aws.StringValue `xml:"QueueUrl"`
+}
+
+func (v *PurgeQueueRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SQS.
@@ -553,9 +1018,33 @@ type ReceiveMessageRequest struct {
 	WaitTimeSeconds       aws.IntegerValue `xml:"WaitTimeSeconds"`
 }
 
+func (v *ReceiveMessageRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReceiveMessageResult is undocumented.
 type ReceiveMessageResult struct {
 	Messages []Message `xml:"ReceiveMessageResult>Message"`
+}
+
+func (v *ReceiveMessageResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RemovePermissionRequest is undocumented.
@@ -564,10 +1053,46 @@ type RemovePermissionRequest struct {
 	QueueURL aws.StringValue `xml:"QueueUrl"`
 }
 
+func (v *RemovePermissionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Label"); err != nil {
+		errors["Label"] = append(errors["Label"], err)
+	}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SendMessageBatchRequest is undocumented.
 type SendMessageBatchRequest struct {
 	Entries  []SendMessageBatchRequestEntry `xml:"SendMessageBatchRequestEntry"`
 	QueueURL aws.StringValue                `xml:"QueueUrl"`
+}
+
+func (v *SendMessageBatchRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Entries"); err != nil {
+		errors["Entries"] = append(errors["Entries"], err)
+	}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SendMessageBatchRequestEntry is undocumented.
@@ -578,10 +1103,46 @@ type SendMessageBatchRequestEntry struct {
 	MessageBody       aws.StringValue                  `xml:"MessageBody"`
 }
 
+func (v *SendMessageBatchRequestEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MessageBody"); err != nil {
+		errors["MessageBody"] = append(errors["MessageBody"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SendMessageBatchResult is undocumented.
 type SendMessageBatchResult struct {
 	Failed     []BatchResultErrorEntry       `xml:"SendMessageBatchResult>BatchResultErrorEntry"`
 	Successful []SendMessageBatchResultEntry `xml:"SendMessageBatchResult>SendMessageBatchResultEntry"`
+}
+
+func (v *SendMessageBatchResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Failed"); err != nil {
+		errors["Failed"] = append(errors["Failed"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Successful"); err != nil {
+		errors["Successful"] = append(errors["Successful"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SendMessageBatchResultEntry is undocumented.
@@ -592,12 +1153,52 @@ type SendMessageBatchResultEntry struct {
 	MessageID              aws.StringValue `xml:"MessageId"`
 }
 
+func (v *SendMessageBatchResultEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MD5OfMessageBody"); err != nil {
+		errors["MD5OfMessageBody"] = append(errors["MD5OfMessageBody"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MessageID"); err != nil {
+		errors["MessageID"] = append(errors["MessageID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SendMessageRequest is undocumented.
 type SendMessageRequest struct {
 	DelaySeconds      aws.IntegerValue                 `xml:"DelaySeconds"`
 	MessageAttributes map[string]MessageAttributeValue `xml:""`
 	MessageBody       aws.StringValue                  `xml:"MessageBody"`
 	QueueURL          aws.StringValue                  `xml:"QueueUrl"`
+}
+
+func (v *SendMessageRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "MessageBody"); err != nil {
+		errors["MessageBody"] = append(errors["MessageBody"], err)
+	}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SendMessageResult is undocumented.
@@ -607,10 +1208,38 @@ type SendMessageResult struct {
 	MessageID              aws.StringValue `xml:"SendMessageResult>MessageId"`
 }
 
+func (v *SendMessageResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetQueueAttributesRequest is undocumented.
 type SetQueueAttributesRequest struct {
 	Attributes map[string]string `xml:""`
 	QueueURL   aws.StringValue   `xml:"QueueUrl"`
+}
+
+func (v *SetQueueAttributesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attributes"); err != nil {
+		errors["Attributes"] = append(errors["Attributes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "QueueURL"); err != nil {
+		errors["QueueURL"] = append(errors["QueueURL"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

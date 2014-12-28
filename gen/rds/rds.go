@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // RDS is a client for Amazon Relational Database Service.
@@ -42,6 +43,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *RDS
 // AddSourceIdentifierToSubscription adds a source identifier to an
 // existing RDS event notification subscription.
 func (c *RDS) AddSourceIdentifierToSubscription(req *AddSourceIdentifierToSubscriptionMessage) (resp *AddSourceIdentifierToSubscriptionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AddSourceIdentifierToSubscriptionResult{}
 	err = c.client.Do("AddSourceIdentifierToSubscription", "POST", "/", req, resp)
 	return
@@ -53,6 +58,10 @@ func (c *RDS) AddSourceIdentifierToSubscription(req *AddSourceIdentifierToSubscr
 // IAM policy for Amazon For an overview on tagging Amazon RDS resources,
 // see Tagging Amazon RDS Resources
 func (c *RDS) AddTagsToResource(req *AddTagsToResourceMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AddTagsToResource", "POST", "/", req, nil)
 	return
@@ -68,6 +77,10 @@ func (c *RDS) AddTagsToResource(req *AddTagsToResourceMessage) (err error) {
 // EC2SecurityGroupName or EC2SecurityGroupId for non-VPC). For an overview
 // of ranges, go to the Wikipedia Tutorial .
 func (c *RDS) AuthorizeDBSecurityGroupIngress(req *AuthorizeDBSecurityGroupIngressMessage) (resp *AuthorizeDBSecurityGroupIngressResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AuthorizeDBSecurityGroupIngressResult{}
 	err = c.client.Do("AuthorizeDBSecurityGroupIngress", "POST", "/", req, resp)
 	return
@@ -75,6 +88,10 @@ func (c *RDS) AuthorizeDBSecurityGroupIngress(req *AuthorizeDBSecurityGroupIngre
 
 // CopyDBParameterGroup is undocumented.
 func (c *RDS) CopyDBParameterGroup(req *CopyDBParameterGroupMessage) (resp *CopyDBParameterGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CopyDBParameterGroupResult{}
 	err = c.client.Do("CopyDBParameterGroup", "POST", "/", req, resp)
 	return
@@ -83,6 +100,10 @@ func (c *RDS) CopyDBParameterGroup(req *CopyDBParameterGroupMessage) (resp *Copy
 // CopyDBSnapshot copies the specified DBSnapshot. The source DBSnapshot
 // must be in the "available" state.
 func (c *RDS) CopyDBSnapshot(req *CopyDBSnapshotMessage) (resp *CopyDBSnapshotResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CopyDBSnapshotResult{}
 	err = c.client.Do("CopyDBSnapshot", "POST", "/", req, resp)
 	return
@@ -90,6 +111,10 @@ func (c *RDS) CopyDBSnapshot(req *CopyDBSnapshotMessage) (resp *CopyDBSnapshotRe
 
 // CopyOptionGroup is undocumented.
 func (c *RDS) CopyOptionGroup(req *CopyOptionGroupMessage) (resp *CopyOptionGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CopyOptionGroupResult{}
 	err = c.client.Do("CopyOptionGroup", "POST", "/", req, resp)
 	return
@@ -97,6 +122,10 @@ func (c *RDS) CopyOptionGroup(req *CopyOptionGroupMessage) (resp *CopyOptionGrou
 
 // CreateDBInstance is undocumented.
 func (c *RDS) CreateDBInstance(req *CreateDBInstanceMessage) (resp *CreateDBInstanceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDBInstanceResult{}
 	err = c.client.Do("CreateDBInstance", "POST", "/", req, resp)
 	return
@@ -109,6 +138,10 @@ func (c *RDS) CreateDBInstance(req *CreateDBInstanceMessage) (resp *CreateDBInst
 // groups) are inherited from the source DB instance, except as specified
 // below. The source DB instance must have backup retention enabled.
 func (c *RDS) CreateDBInstanceReadReplica(req *CreateDBInstanceReadReplicaMessage) (resp *CreateDBInstanceReadReplicaResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDBInstanceReadReplicaResult{}
 	err = c.client.Do("CreateDBInstanceReadReplica", "POST", "/", req, resp)
 	return
@@ -134,6 +167,10 @@ func (c *RDS) CreateDBInstanceReadReplica(req *CreateDBInstanceReadReplicaMessag
 // option of the Amazon RDS console or the DescribeDBParameters command to
 // verify that your DB parameter group has been created or modified.
 func (c *RDS) CreateDBParameterGroup(req *CreateDBParameterGroupMessage) (resp *CreateDBParameterGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDBParameterGroupResult{}
 	err = c.client.Do("CreateDBParameterGroup", "POST", "/", req, resp)
 	return
@@ -142,6 +179,10 @@ func (c *RDS) CreateDBParameterGroup(req *CreateDBParameterGroupMessage) (resp *
 // CreateDBSecurityGroup creates a new DB security group. DB security
 // groups control access to a DB instance.
 func (c *RDS) CreateDBSecurityGroup(req *CreateDBSecurityGroupMessage) (resp *CreateDBSecurityGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDBSecurityGroupResult{}
 	err = c.client.Do("CreateDBSecurityGroup", "POST", "/", req, resp)
 	return
@@ -150,6 +191,10 @@ func (c *RDS) CreateDBSecurityGroup(req *CreateDBSecurityGroupMessage) (resp *Cr
 // CreateDBSnapshot creates a DBSnapshot. The source DBInstance must be in
 // "available" state.
 func (c *RDS) CreateDBSnapshot(req *CreateDBSnapshotMessage) (resp *CreateDBSnapshotResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDBSnapshotResult{}
 	err = c.client.Do("CreateDBSnapshot", "POST", "/", req, resp)
 	return
@@ -158,6 +203,10 @@ func (c *RDS) CreateDBSnapshot(req *CreateDBSnapshotMessage) (resp *CreateDBSnap
 // CreateDBSubnetGroup creates a new DB subnet group. DB subnet groups must
 // contain at least one subnet in at least two AZs in the region.
 func (c *RDS) CreateDBSubnetGroup(req *CreateDBSubnetGroupMessage) (resp *CreateDBSubnetGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDBSubnetGroupResult{}
 	err = c.client.Do("CreateDBSubnetGroup", "POST", "/", req, resp)
 	return
@@ -182,6 +231,10 @@ func (c *RDS) CreateDBSubnetGroup(req *CreateDBSubnetGroupMessage) (resp *Create
 // will be notified of events generated from all RDS sources belonging to
 // your customer account.
 func (c *RDS) CreateEventSubscription(req *CreateEventSubscriptionMessage) (resp *CreateEventSubscriptionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateEventSubscriptionResult{}
 	err = c.client.Do("CreateEventSubscription", "POST", "/", req, resp)
 	return
@@ -190,6 +243,10 @@ func (c *RDS) CreateEventSubscription(req *CreateEventSubscriptionMessage) (resp
 // CreateOptionGroup creates a new option group. You can create up to 20
 // option groups.
 func (c *RDS) CreateOptionGroup(req *CreateOptionGroupMessage) (resp *CreateOptionGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateOptionGroupResult{}
 	err = c.client.Do("CreateOptionGroup", "POST", "/", req, resp)
 	return
@@ -205,6 +262,10 @@ func (c *RDS) CreateOptionGroup(req *CreateOptionGroupMessage) (resp *CreateOpti
 // action DescribeDBInstance is used to monitor the status of this
 // operation. The action cannot be canceled or reverted once submitted.
 func (c *RDS) DeleteDBInstance(req *DeleteDBInstanceMessage) (resp *DeleteDBInstanceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteDBInstanceResult{}
 	err = c.client.Do("DeleteDBInstance", "POST", "/", req, resp)
 	return
@@ -214,6 +275,10 @@ func (c *RDS) DeleteDBInstance(req *DeleteDBInstanceMessage) (resp *DeleteDBInst
 // DBParameterGroup to be deleted cannot be associated with any DB
 // instances.
 func (c *RDS) DeleteDBParameterGroup(req *DeleteDBParameterGroupMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteDBParameterGroup", "POST", "/", req, nil)
 	return
@@ -221,6 +286,10 @@ func (c *RDS) DeleteDBParameterGroup(req *DeleteDBParameterGroupMessage) (err er
 
 // DeleteDBSecurityGroup is undocumented.
 func (c *RDS) DeleteDBSecurityGroup(req *DeleteDBSecurityGroupMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteDBSecurityGroup", "POST", "/", req, nil)
 	return
@@ -229,6 +298,10 @@ func (c *RDS) DeleteDBSecurityGroup(req *DeleteDBSecurityGroupMessage) (err erro
 // DeleteDBSnapshot deletes a DBSnapshot. If the snapshot is being copied,
 // the copy operation is terminated.
 func (c *RDS) DeleteDBSnapshot(req *DeleteDBSnapshotMessage) (resp *DeleteDBSnapshotResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteDBSnapshotResult{}
 	err = c.client.Do("DeleteDBSnapshot", "POST", "/", req, resp)
 	return
@@ -236,6 +309,10 @@ func (c *RDS) DeleteDBSnapshot(req *DeleteDBSnapshotMessage) (resp *DeleteDBSnap
 
 // DeleteDBSubnetGroup is undocumented.
 func (c *RDS) DeleteDBSubnetGroup(req *DeleteDBSubnetGroupMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteDBSubnetGroup", "POST", "/", req, nil)
 	return
@@ -243,6 +320,10 @@ func (c *RDS) DeleteDBSubnetGroup(req *DeleteDBSubnetGroupMessage) (err error) {
 
 // DeleteEventSubscription is undocumented.
 func (c *RDS) DeleteEventSubscription(req *DeleteEventSubscriptionMessage) (resp *DeleteEventSubscriptionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteEventSubscriptionResult{}
 	err = c.client.Do("DeleteEventSubscription", "POST", "/", req, resp)
 	return
@@ -250,6 +331,10 @@ func (c *RDS) DeleteEventSubscription(req *DeleteEventSubscriptionMessage) (resp
 
 // DeleteOptionGroup is undocumented.
 func (c *RDS) DeleteOptionGroup(req *DeleteOptionGroupMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteOptionGroup", "POST", "/", req, nil)
 	return
@@ -257,6 +342,10 @@ func (c *RDS) DeleteOptionGroup(req *DeleteOptionGroupMessage) (err error) {
 
 // DescribeDBEngineVersions is undocumented.
 func (c *RDS) DescribeDBEngineVersions(req *DescribeDBEngineVersionsMessage) (resp *DescribeDBEngineVersionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDBEngineVersionsResult{}
 	err = c.client.Do("DescribeDBEngineVersions", "POST", "/", req, resp)
 	return
@@ -265,6 +354,10 @@ func (c *RDS) DescribeDBEngineVersions(req *DescribeDBEngineVersionsMessage) (re
 // DescribeDBInstances returns information about provisioned RDS instances.
 // This API supports pagination.
 func (c *RDS) DescribeDBInstances(req *DescribeDBInstancesMessage) (resp *DescribeDBInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDBInstancesResult{}
 	err = c.client.Do("DescribeDBInstances", "POST", "/", req, resp)
 	return
@@ -272,6 +365,10 @@ func (c *RDS) DescribeDBInstances(req *DescribeDBInstancesMessage) (resp *Descri
 
 // DescribeDBLogFiles returns a list of DB log files for the DB instance.
 func (c *RDS) DescribeDBLogFiles(req *DescribeDBLogFilesMessage) (resp *DescribeDBLogFilesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDBLogFilesResult{}
 	err = c.client.Do("DescribeDBLogFiles", "POST", "/", req, resp)
 	return
@@ -281,6 +378,10 @@ func (c *RDS) DescribeDBLogFiles(req *DescribeDBLogFilesMessage) (resp *Describe
 // descriptions. If a DBParameterGroupName is specified, the list will
 // contain only the description of the specified DB parameter group.
 func (c *RDS) DescribeDBParameterGroups(req *DescribeDBParameterGroupsMessage) (resp *DescribeDBParameterGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDBParameterGroupsResult{}
 	err = c.client.Do("DescribeDBParameterGroups", "POST", "/", req, resp)
 	return
@@ -289,6 +390,10 @@ func (c *RDS) DescribeDBParameterGroups(req *DescribeDBParameterGroupsMessage) (
 // DescribeDBParameters returns the detailed parameter list for a
 // particular DB parameter group.
 func (c *RDS) DescribeDBParameters(req *DescribeDBParametersMessage) (resp *DescribeDBParametersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDBParametersResult{}
 	err = c.client.Do("DescribeDBParameters", "POST", "/", req, resp)
 	return
@@ -298,6 +403,10 @@ func (c *RDS) DescribeDBParameters(req *DescribeDBParametersMessage) (resp *Desc
 // If a DBSecurityGroupName is specified, the list will contain only the
 // descriptions of the specified DB security group.
 func (c *RDS) DescribeDBSecurityGroups(req *DescribeDBSecurityGroupsMessage) (resp *DescribeDBSecurityGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDBSecurityGroupsResult{}
 	err = c.client.Do("DescribeDBSecurityGroups", "POST", "/", req, resp)
 	return
@@ -306,6 +415,10 @@ func (c *RDS) DescribeDBSecurityGroups(req *DescribeDBSecurityGroupsMessage) (re
 // DescribeDBSnapshots returns information about DB snapshots. This API
 // supports pagination.
 func (c *RDS) DescribeDBSnapshots(req *DescribeDBSnapshotsMessage) (resp *DescribeDBSnapshotsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDBSnapshotsResult{}
 	err = c.client.Do("DescribeDBSnapshots", "POST", "/", req, resp)
 	return
@@ -316,6 +429,10 @@ func (c *RDS) DescribeDBSnapshots(req *DescribeDBSnapshotsMessage) (resp *Descri
 // descriptions of the specified DBSubnetGroup. For an overview of ranges,
 // go to the Wikipedia Tutorial .
 func (c *RDS) DescribeDBSubnetGroups(req *DescribeDBSubnetGroupsMessage) (resp *DescribeDBSubnetGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDBSubnetGroupsResult{}
 	err = c.client.Do("DescribeDBSubnetGroups", "POST", "/", req, resp)
 	return
@@ -324,6 +441,10 @@ func (c *RDS) DescribeDBSubnetGroups(req *DescribeDBSubnetGroupsMessage) (resp *
 // DescribeEngineDefaultParameters returns the default engine and system
 // parameter information for the specified database engine.
 func (c *RDS) DescribeEngineDefaultParameters(req *DescribeEngineDefaultParametersMessage) (resp *DescribeEngineDefaultParametersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeEngineDefaultParametersResult{}
 	err = c.client.Do("DescribeEngineDefaultParameters", "POST", "/", req, resp)
 	return
@@ -334,6 +455,10 @@ func (c *RDS) DescribeEngineDefaultParameters(req *DescribeEngineDefaultParamete
 // a list of the event categories and source types in the Events topic in
 // the Amazon RDS User Guide.
 func (c *RDS) DescribeEventCategories(req *DescribeEventCategoriesMessage) (resp *DescribeEventCategoriesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeEventCategoriesResult{}
 	err = c.client.Do("DescribeEventCategories", "POST", "/", req, resp)
 	return
@@ -345,6 +470,10 @@ func (c *RDS) DescribeEventCategories(req *DescribeEventCategoriesMessage) (resp
 // CreationTime, and Status. If you specify a SubscriptionName, lists the
 // description for that subscription.
 func (c *RDS) DescribeEventSubscriptions(req *DescribeEventSubscriptionsMessage) (resp *DescribeEventSubscriptionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeEventSubscriptionsResult{}
 	err = c.client.Do("DescribeEventSubscriptions", "POST", "/", req, resp)
 	return
@@ -356,6 +485,10 @@ func (c *RDS) DescribeEventSubscriptions(req *DescribeEventSubscriptionsMessage)
 // snapshot, or DB parameter group can be obtained by providing the name as
 // a parameter. By default, the past hour of events are returned.
 func (c *RDS) DescribeEvents(req *DescribeEventsMessage) (resp *DescribeEventsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeEventsResult{}
 	err = c.client.Do("DescribeEvents", "POST", "/", req, resp)
 	return
@@ -363,6 +496,10 @@ func (c *RDS) DescribeEvents(req *DescribeEventsMessage) (resp *DescribeEventsRe
 
 // DescribeOptionGroupOptions is undocumented.
 func (c *RDS) DescribeOptionGroupOptions(req *DescribeOptionGroupOptionsMessage) (resp *DescribeOptionGroupOptionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeOptionGroupOptionsResult{}
 	err = c.client.Do("DescribeOptionGroupOptions", "POST", "/", req, resp)
 	return
@@ -370,6 +507,10 @@ func (c *RDS) DescribeOptionGroupOptions(req *DescribeOptionGroupOptionsMessage)
 
 // DescribeOptionGroups is undocumented.
 func (c *RDS) DescribeOptionGroups(req *DescribeOptionGroupsMessage) (resp *DescribeOptionGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeOptionGroupsResult{}
 	err = c.client.Do("DescribeOptionGroups", "POST", "/", req, resp)
 	return
@@ -378,6 +519,10 @@ func (c *RDS) DescribeOptionGroups(req *DescribeOptionGroupsMessage) (resp *Desc
 // DescribeOrderableDBInstanceOptions returns a list of orderable DB
 // instance options for the specified engine.
 func (c *RDS) DescribeOrderableDBInstanceOptions(req *DescribeOrderableDBInstanceOptionsMessage) (resp *DescribeOrderableDBInstanceOptionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeOrderableDBInstanceOptionsResult{}
 	err = c.client.Do("DescribeOrderableDBInstanceOptions", "POST", "/", req, resp)
 	return
@@ -386,6 +531,10 @@ func (c *RDS) DescribeOrderableDBInstanceOptions(req *DescribeOrderableDBInstanc
 // DescribeReservedDBInstances returns information about reserved DB
 // instances for this account, or about a specified reserved DB instance.
 func (c *RDS) DescribeReservedDBInstances(req *DescribeReservedDBInstancesMessage) (resp *DescribeReservedDBInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeReservedDBInstancesResult{}
 	err = c.client.Do("DescribeReservedDBInstances", "POST", "/", req, resp)
 	return
@@ -393,6 +542,10 @@ func (c *RDS) DescribeReservedDBInstances(req *DescribeReservedDBInstancesMessag
 
 // DescribeReservedDBInstancesOfferings is undocumented.
 func (c *RDS) DescribeReservedDBInstancesOfferings(req *DescribeReservedDBInstancesOfferingsMessage) (resp *DescribeReservedDBInstancesOfferingsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeReservedDBInstancesOfferingsResult{}
 	err = c.client.Do("DescribeReservedDBInstancesOfferings", "POST", "/", req, resp)
 	return
@@ -401,6 +554,10 @@ func (c *RDS) DescribeReservedDBInstancesOfferings(req *DescribeReservedDBInstan
 // DownloadDBLogFilePortion downloads all or a portion of the specified log
 // file.
 func (c *RDS) DownloadDBLogFilePortion(req *DownloadDBLogFilePortionMessage) (resp *DownloadDBLogFilePortionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DownloadDBLogFilePortionResult{}
 	err = c.client.Do("DownloadDBLogFilePortion", "POST", "/", req, resp)
 	return
@@ -410,6 +567,10 @@ func (c *RDS) DownloadDBLogFilePortion(req *DownloadDBLogFilePortionMessage) (re
 // overview on tagging an Amazon RDS resource, see Tagging Amazon RDS
 // Resources
 func (c *RDS) ListTagsForResource(req *ListTagsForResourceMessage) (resp *ListTagsForResourceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListTagsForResourceResult{}
 	err = c.client.Do("ListTagsForResource", "POST", "/", req, resp)
 	return
@@ -419,6 +580,10 @@ func (c *RDS) ListTagsForResource(req *ListTagsForResourceMessage) (resp *ListTa
 // or more database configuration parameters by specifying these parameters
 // and the new values in the request.
 func (c *RDS) ModifyDBInstance(req *ModifyDBInstanceMessage) (resp *ModifyDBInstanceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyDBInstanceResult{}
 	err = c.client.Do("ModifyDBInstance", "POST", "/", req, resp)
 	return
@@ -439,6 +604,10 @@ func (c *RDS) ModifyDBInstance(req *ModifyDBInstanceMessage) (resp *ModifyDBInst
 // option of the Amazon RDS console or the DescribeDBParameters command to
 // verify that your DB parameter group has been created or modified.
 func (c *RDS) ModifyDBParameterGroup(req *ModifyDBParameterGroupMessage) (resp *ModifyDBParameterGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyDBParameterGroupResult{}
 	err = c.client.Do("ModifyDBParameterGroup", "POST", "/", req, resp)
 	return
@@ -448,6 +617,10 @@ func (c *RDS) ModifyDBParameterGroup(req *ModifyDBParameterGroupMessage) (resp *
 // groups must contain at least one subnet in at least two AZs in the
 // region.
 func (c *RDS) ModifyDBSubnetGroup(req *ModifyDBSubnetGroupMessage) (resp *ModifyDBSubnetGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyDBSubnetGroupResult{}
 	err = c.client.Do("ModifyDBSubnetGroup", "POST", "/", req, resp)
 	return
@@ -461,6 +634,10 @@ func (c *RDS) ModifyDBSubnetGroup(req *ModifyDBSubnetGroupMessage) (resp *Modify
 // event categories for a given SourceType in the Events topic in the
 // Amazon RDS User Guide or by using the DescribeEventCategories action.
 func (c *RDS) ModifyEventSubscription(req *ModifyEventSubscriptionMessage) (resp *ModifyEventSubscriptionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyEventSubscriptionResult{}
 	err = c.client.Do("ModifyEventSubscription", "POST", "/", req, resp)
 	return
@@ -468,6 +645,10 @@ func (c *RDS) ModifyEventSubscription(req *ModifyEventSubscriptionMessage) (resp
 
 // ModifyOptionGroup is undocumented.
 func (c *RDS) ModifyOptionGroup(req *ModifyOptionGroupMessage) (resp *ModifyOptionGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyOptionGroupResult{}
 	err = c.client.Do("ModifyOptionGroup", "POST", "/", req, resp)
 	return
@@ -476,6 +657,10 @@ func (c *RDS) ModifyOptionGroup(req *ModifyOptionGroupMessage) (resp *ModifyOpti
 // PromoteReadReplica promotes a read replica DB instance to a standalone
 // DB instance.
 func (c *RDS) PromoteReadReplica(req *PromoteReadReplicaMessage) (resp *PromoteReadReplicaResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PromoteReadReplicaResult{}
 	err = c.client.Do("PromoteReadReplica", "POST", "/", req, resp)
 	return
@@ -483,6 +668,10 @@ func (c *RDS) PromoteReadReplica(req *PromoteReadReplicaMessage) (resp *PromoteR
 
 // PurchaseReservedDBInstancesOffering is undocumented.
 func (c *RDS) PurchaseReservedDBInstancesOffering(req *PurchaseReservedDBInstancesOfferingMessage) (resp *PurchaseReservedDBInstancesOfferingResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PurchaseReservedDBInstancesOfferingResult{}
 	err = c.client.Do("PurchaseReservedDBInstancesOffering", "POST", "/", req, resp)
 	return
@@ -505,6 +694,10 @@ func (c *RDS) PurchaseReservedDBInstancesOffering(req *PurchaseReservedDBInstanc
 // possible during the reboot process to reduce rollback activity for
 // in-transit transactions.
 func (c *RDS) RebootDBInstance(req *RebootDBInstanceMessage) (resp *RebootDBInstanceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RebootDBInstanceResult{}
 	err = c.client.Do("RebootDBInstance", "POST", "/", req, resp)
 	return
@@ -513,6 +706,10 @@ func (c *RDS) RebootDBInstance(req *RebootDBInstanceMessage) (resp *RebootDBInst
 // RemoveSourceIdentifierFromSubscription removes a source identifier from
 // an existing RDS event notification subscription.
 func (c *RDS) RemoveSourceIdentifierFromSubscription(req *RemoveSourceIdentifierFromSubscriptionMessage) (resp *RemoveSourceIdentifierFromSubscriptionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RemoveSourceIdentifierFromSubscriptionResult{}
 	err = c.client.Do("RemoveSourceIdentifierFromSubscription", "POST", "/", req, resp)
 	return
@@ -522,6 +719,10 @@ func (c *RDS) RemoveSourceIdentifierFromSubscription(req *RemoveSourceIdentifier
 // resource. For an overview on tagging an Amazon RDS resource, see Tagging
 // Amazon RDS Resources
 func (c *RDS) RemoveTagsFromResource(req *RemoveTagsFromResourceMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RemoveTagsFromResource", "POST", "/", req, nil)
 	return
@@ -536,6 +737,10 @@ func (c *RDS) RemoveTagsFromResource(req *RemoveTagsFromResourceMessage) (err er
 // pending-reboot to take effect on the next DB instance restart or
 // RebootDBInstance request.
 func (c *RDS) ResetDBParameterGroup(req *ResetDBParameterGroupMessage) (resp *ResetDBParameterGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ResetDBParameterGroupResult{}
 	err = c.client.Do("ResetDBParameterGroup", "POST", "/", req, resp)
 	return
@@ -547,6 +752,10 @@ func (c *RDS) ResetDBParameterGroup(req *ResetDBParameterGroupMessage) (resp *Re
 // database, except that the new RDS instance is created with the default
 // security group.
 func (c *RDS) RestoreDBInstanceFromDBSnapshot(req *RestoreDBInstanceFromDBSnapshotMessage) (resp *RestoreDBInstanceFromDBSnapshotResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RestoreDBInstanceFromDBSnapshotResult{}
 	err = c.client.Do("RestoreDBInstanceFromDBSnapshot", "POST", "/", req, resp)
 	return
@@ -559,6 +768,10 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshot(req *RestoreDBInstanceFromDBSnapsh
 // as the original database except that the DB instance is created with the
 // default DB security group.
 func (c *RDS) RestoreDBInstanceToPointInTime(req *RestoreDBInstanceToPointInTimeMessage) (resp *RestoreDBInstanceToPointInTimeResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RestoreDBInstanceToPointInTimeResult{}
 	err = c.client.Do("RestoreDBInstanceToPointInTime", "POST", "/", req, resp)
 	return
@@ -570,6 +783,10 @@ func (c *RDS) RestoreDBInstanceToPointInTime(req *RestoreDBInstanceToPointInTime
 // (EC2SecurityGroupOwnerId and either EC2SecurityGroupName or
 // EC2SecurityGroupId).
 func (c *RDS) RevokeDBSecurityGroupIngress(req *RevokeDBSecurityGroupIngressMessage) (resp *RevokeDBSecurityGroupIngressResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RevokeDBSecurityGroupIngressResult{}
 	err = c.client.Do("RevokeDBSecurityGroupIngress", "POST", "/", req, resp)
 	return
@@ -581,15 +798,61 @@ type AddSourceIdentifierToSubscriptionMessage struct {
 	SubscriptionName aws.StringValue `xml:"SubscriptionName"`
 }
 
+func (v *AddSourceIdentifierToSubscriptionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SourceIdentifier"); err != nil {
+		errors["SourceIdentifier"] = append(errors["SourceIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubscriptionName"); err != nil {
+		errors["SubscriptionName"] = append(errors["SubscriptionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AddSourceIdentifierToSubscriptionResult is undocumented.
 type AddSourceIdentifierToSubscriptionResult struct {
 	EventSubscription *EventSubscription `xml:"AddSourceIdentifierToSubscriptionResult>EventSubscription"`
+}
+
+func (v *AddSourceIdentifierToSubscriptionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AddTagsToResourceMessage is undocumented.
 type AddTagsToResourceMessage struct {
 	ResourceName aws.StringValue `xml:"ResourceName"`
 	Tags         []Tag           `xml:"Tags>Tag"`
+}
+
+func (v *AddTagsToResourceMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ResourceName"); err != nil {
+		errors["ResourceName"] = append(errors["ResourceName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Tags"); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for RDS.
@@ -607,9 +870,33 @@ type AuthorizeDBSecurityGroupIngressMessage struct {
 	EC2SecurityGroupOwnerID aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
 }
 
+func (v *AuthorizeDBSecurityGroupIngressMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBSecurityGroupName"); err != nil {
+		errors["DBSecurityGroupName"] = append(errors["DBSecurityGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AuthorizeDBSecurityGroupIngressResult is undocumented.
 type AuthorizeDBSecurityGroupIngressResult struct {
 	DBSecurityGroup *DBSecurityGroup `xml:"AuthorizeDBSecurityGroupIngressResult>DBSecurityGroup"`
+}
+
+func (v *AuthorizeDBSecurityGroupIngressResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AvailabilityZone is undocumented.
@@ -617,10 +904,30 @@ type AvailabilityZone struct {
 	Name aws.StringValue `xml:"Name"`
 }
 
+func (v *AvailabilityZone) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CharacterSet is undocumented.
 type CharacterSet struct {
 	CharacterSetDescription aws.StringValue `xml:"CharacterSetDescription"`
 	CharacterSetName        aws.StringValue `xml:"CharacterSetName"`
+}
+
+func (v *CharacterSet) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CopyDBParameterGroupMessage is undocumented.
@@ -631,9 +938,41 @@ type CopyDBParameterGroupMessage struct {
 	TargetDBParameterGroupIdentifier  aws.StringValue `xml:"TargetDBParameterGroupIdentifier"`
 }
 
+func (v *CopyDBParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SourceDBParameterGroupIdentifier"); err != nil {
+		errors["SourceDBParameterGroupIdentifier"] = append(errors["SourceDBParameterGroupIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetDBParameterGroupDescription"); err != nil {
+		errors["TargetDBParameterGroupDescription"] = append(errors["TargetDBParameterGroupDescription"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetDBParameterGroupIdentifier"); err != nil {
+		errors["TargetDBParameterGroupIdentifier"] = append(errors["TargetDBParameterGroupIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CopyDBParameterGroupResult is undocumented.
 type CopyDBParameterGroupResult struct {
 	DBParameterGroup *DBParameterGroup `xml:"CopyDBParameterGroupResult>DBParameterGroup"`
+}
+
+func (v *CopyDBParameterGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CopyDBSnapshotMessage is undocumented.
@@ -643,9 +982,37 @@ type CopyDBSnapshotMessage struct {
 	TargetDBSnapshotIdentifier aws.StringValue `xml:"TargetDBSnapshotIdentifier"`
 }
 
+func (v *CopyDBSnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SourceDBSnapshotIdentifier"); err != nil {
+		errors["SourceDBSnapshotIdentifier"] = append(errors["SourceDBSnapshotIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetDBSnapshotIdentifier"); err != nil {
+		errors["TargetDBSnapshotIdentifier"] = append(errors["TargetDBSnapshotIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CopyDBSnapshotResult is undocumented.
 type CopyDBSnapshotResult struct {
 	DBSnapshot *DBSnapshot `xml:"CopyDBSnapshotResult>DBSnapshot"`
+}
+
+func (v *CopyDBSnapshotResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CopyOptionGroupMessage is undocumented.
@@ -656,9 +1023,41 @@ type CopyOptionGroupMessage struct {
 	TargetOptionGroupIdentifier  aws.StringValue `xml:"TargetOptionGroupIdentifier"`
 }
 
+func (v *CopyOptionGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SourceOptionGroupIdentifier"); err != nil {
+		errors["SourceOptionGroupIdentifier"] = append(errors["SourceOptionGroupIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetOptionGroupDescription"); err != nil {
+		errors["TargetOptionGroupDescription"] = append(errors["TargetOptionGroupDescription"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetOptionGroupIdentifier"); err != nil {
+		errors["TargetOptionGroupIdentifier"] = append(errors["TargetOptionGroupIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CopyOptionGroupResult is undocumented.
 type CopyOptionGroupResult struct {
 	OptionGroup *OptionGroup `xml:"CopyOptionGroupResult>OptionGroup"`
+}
+
+func (v *CopyOptionGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateDBInstanceMessage is undocumented.
@@ -693,6 +1092,40 @@ type CreateDBInstanceMessage struct {
 	VPCSecurityGroupIDs        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
+func (v *CreateDBInstanceMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AllocatedStorage"); err != nil {
+		errors["AllocatedStorage"] = append(errors["AllocatedStorage"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DBInstanceClass"); err != nil {
+		errors["DBInstanceClass"] = append(errors["DBInstanceClass"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DBInstanceIdentifier"); err != nil {
+		errors["DBInstanceIdentifier"] = append(errors["DBInstanceIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Engine"); err != nil {
+		errors["Engine"] = append(errors["Engine"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MasterUserPassword"); err != nil {
+		errors["MasterUserPassword"] = append(errors["MasterUserPassword"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MasterUsername"); err != nil {
+		errors["MasterUsername"] = append(errors["MasterUsername"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDBInstanceReadReplicaMessage is undocumented.
 type CreateDBInstanceReadReplicaMessage struct {
 	AutoMinorVersionUpgrade    aws.BooleanValue `xml:"AutoMinorVersionUpgrade"`
@@ -709,14 +1142,52 @@ type CreateDBInstanceReadReplicaMessage struct {
 	Tags                       []Tag            `xml:"Tags>Tag"`
 }
 
+func (v *CreateDBInstanceReadReplicaMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBInstanceIdentifier"); err != nil {
+		errors["DBInstanceIdentifier"] = append(errors["DBInstanceIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SourceDBInstanceIdentifier"); err != nil {
+		errors["SourceDBInstanceIdentifier"] = append(errors["SourceDBInstanceIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDBInstanceReadReplicaResult is undocumented.
 type CreateDBInstanceReadReplicaResult struct {
 	DBInstance *DBInstance `xml:"CreateDBInstanceReadReplicaResult>DBInstance"`
 }
 
+func (v *CreateDBInstanceReadReplicaResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDBInstanceResult is undocumented.
 type CreateDBInstanceResult struct {
 	DBInstance *DBInstance `xml:"CreateDBInstanceResult>DBInstance"`
+}
+
+func (v *CreateDBInstanceResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateDBParameterGroupMessage is undocumented.
@@ -727,9 +1198,41 @@ type CreateDBParameterGroupMessage struct {
 	Tags                   []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *CreateDBParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBParameterGroupFamily"); err != nil {
+		errors["DBParameterGroupFamily"] = append(errors["DBParameterGroupFamily"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DBParameterGroupName"); err != nil {
+		errors["DBParameterGroupName"] = append(errors["DBParameterGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Description"); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDBParameterGroupResult is undocumented.
 type CreateDBParameterGroupResult struct {
 	DBParameterGroup *DBParameterGroup `xml:"CreateDBParameterGroupResult>DBParameterGroup"`
+}
+
+func (v *CreateDBParameterGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateDBSecurityGroupMessage is undocumented.
@@ -739,9 +1242,37 @@ type CreateDBSecurityGroupMessage struct {
 	Tags                       []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *CreateDBSecurityGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBSecurityGroupDescription"); err != nil {
+		errors["DBSecurityGroupDescription"] = append(errors["DBSecurityGroupDescription"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DBSecurityGroupName"); err != nil {
+		errors["DBSecurityGroupName"] = append(errors["DBSecurityGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDBSecurityGroupResult is undocumented.
 type CreateDBSecurityGroupResult struct {
 	DBSecurityGroup *DBSecurityGroup `xml:"CreateDBSecurityGroupResult>DBSecurityGroup"`
+}
+
+func (v *CreateDBSecurityGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateDBSnapshotMessage is undocumented.
@@ -751,9 +1282,37 @@ type CreateDBSnapshotMessage struct {
 	Tags                 []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *CreateDBSnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBInstanceIdentifier"); err != nil {
+		errors["DBInstanceIdentifier"] = append(errors["DBInstanceIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DBSnapshotIdentifier"); err != nil {
+		errors["DBSnapshotIdentifier"] = append(errors["DBSnapshotIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDBSnapshotResult is undocumented.
 type CreateDBSnapshotResult struct {
 	DBSnapshot *DBSnapshot `xml:"CreateDBSnapshotResult>DBSnapshot"`
+}
+
+func (v *CreateDBSnapshotResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateDBSubnetGroupMessage is undocumented.
@@ -764,9 +1323,41 @@ type CreateDBSubnetGroupMessage struct {
 	Tags                     []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *CreateDBSubnetGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBSubnetGroupDescription"); err != nil {
+		errors["DBSubnetGroupDescription"] = append(errors["DBSubnetGroupDescription"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DBSubnetGroupName"); err != nil {
+		errors["DBSubnetGroupName"] = append(errors["DBSubnetGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubnetIDs"); err != nil {
+		errors["SubnetIDs"] = append(errors["SubnetIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDBSubnetGroupResult is undocumented.
 type CreateDBSubnetGroupResult struct {
 	DBSubnetGroup *DBSubnetGroup `xml:"CreateDBSubnetGroupResult>DBSubnetGroup"`
+}
+
+func (v *CreateDBSubnetGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateEventSubscriptionMessage is undocumented.
@@ -780,9 +1371,37 @@ type CreateEventSubscriptionMessage struct {
 	Tags             []Tag            `xml:"Tags>Tag"`
 }
 
+func (v *CreateEventSubscriptionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SNSTopicARN"); err != nil {
+		errors["SNSTopicARN"] = append(errors["SNSTopicARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubscriptionName"); err != nil {
+		errors["SubscriptionName"] = append(errors["SubscriptionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateEventSubscriptionResult is undocumented.
 type CreateEventSubscriptionResult struct {
 	EventSubscription *EventSubscription `xml:"CreateEventSubscriptionResult>EventSubscription"`
+}
+
+func (v *CreateEventSubscriptionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateOptionGroupMessage is undocumented.
@@ -794,9 +1413,45 @@ type CreateOptionGroupMessage struct {
 	Tags                   []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *CreateOptionGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EngineName"); err != nil {
+		errors["EngineName"] = append(errors["EngineName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MajorEngineVersion"); err != nil {
+		errors["MajorEngineVersion"] = append(errors["MajorEngineVersion"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OptionGroupDescription"); err != nil {
+		errors["OptionGroupDescription"] = append(errors["OptionGroupDescription"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OptionGroupName"); err != nil {
+		errors["OptionGroupName"] = append(errors["OptionGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateOptionGroupResult is undocumented.
 type CreateOptionGroupResult struct {
 	OptionGroup *OptionGroup `xml:"CreateOptionGroupResult>OptionGroup"`
+}
+
+func (v *CreateOptionGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DBEngineVersion is undocumented.
@@ -810,10 +1465,30 @@ type DBEngineVersion struct {
 	SupportedCharacterSets     []CharacterSet  `xml:"SupportedCharacterSets>CharacterSet"`
 }
 
+func (v *DBEngineVersion) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DBEngineVersionMessage is undocumented.
 type DBEngineVersionMessage struct {
 	DBEngineVersions []DBEngineVersion `xml:"DescribeDBEngineVersionsResult>DBEngineVersions>DBEngineVersion"`
 	Marker           aws.StringValue   `xml:"DescribeDBEngineVersionsResult>Marker"`
+}
+
+func (v *DBEngineVersionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DBInstance is undocumented.
@@ -853,10 +1528,30 @@ type DBInstance struct {
 	VPCSecurityGroups                     []VPCSecurityGroupMembership `xml:"VpcSecurityGroups>VpcSecurityGroupMembership"`
 }
 
+func (v *DBInstance) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DBInstanceMessage is undocumented.
 type DBInstanceMessage struct {
 	DBInstances []DBInstance    `xml:"DescribeDBInstancesResult>DBInstances>DBInstance"`
 	Marker      aws.StringValue `xml:"DescribeDBInstancesResult>Marker"`
+}
+
+func (v *DBInstanceMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DBInstanceStatusInfo is undocumented.
@@ -867,11 +1562,31 @@ type DBInstanceStatusInfo struct {
 	StatusType aws.StringValue  `xml:"StatusType"`
 }
 
+func (v *DBInstanceStatusInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DBParameterGroup is undocumented.
 type DBParameterGroup struct {
 	DBParameterGroupFamily aws.StringValue `xml:"DBParameterGroupFamily"`
 	DBParameterGroupName   aws.StringValue `xml:"DBParameterGroupName"`
 	Description            aws.StringValue `xml:"Description"`
+}
+
+func (v *DBParameterGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DBParameterGroupDetails is undocumented.
@@ -880,9 +1595,29 @@ type DBParameterGroupDetails struct {
 	Parameters []Parameter     `xml:"DescribeDBParametersResult>Parameters>Parameter"`
 }
 
+func (v *DBParameterGroupDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DBParameterGroupNameMessage is undocumented.
 type DBParameterGroupNameMessage struct {
 	DBParameterGroupName aws.StringValue `xml:"DBParameterGroupName"`
+}
+
+func (v *DBParameterGroupNameMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DBParameterGroupStatus is undocumented.
@@ -891,10 +1626,30 @@ type DBParameterGroupStatus struct {
 	ParameterApplyStatus aws.StringValue `xml:"ParameterApplyStatus"`
 }
 
+func (v *DBParameterGroupStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DBParameterGroupsMessage is undocumented.
 type DBParameterGroupsMessage struct {
 	DBParameterGroups []DBParameterGroup `xml:"DescribeDBParameterGroupsResult>DBParameterGroups>DBParameterGroup"`
 	Marker            aws.StringValue    `xml:"DescribeDBParameterGroupsResult>Marker"`
+}
+
+func (v *DBParameterGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DBSecurityGroup is undocumented.
@@ -907,16 +1662,46 @@ type DBSecurityGroup struct {
 	VPCID                      aws.StringValue    `xml:"VpcId"`
 }
 
+func (v *DBSecurityGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DBSecurityGroupMembership is undocumented.
 type DBSecurityGroupMembership struct {
 	DBSecurityGroupName aws.StringValue `xml:"DBSecurityGroupName"`
 	Status              aws.StringValue `xml:"Status"`
 }
 
+func (v *DBSecurityGroupMembership) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DBSecurityGroupMessage is undocumented.
 type DBSecurityGroupMessage struct {
 	DBSecurityGroups []DBSecurityGroup `xml:"DescribeDBSecurityGroupsResult>DBSecurityGroups>DBSecurityGroup"`
 	Marker           aws.StringValue   `xml:"DescribeDBSecurityGroupsResult>Marker"`
+}
+
+func (v *DBSecurityGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DBSnapshot is undocumented.
@@ -943,10 +1728,30 @@ type DBSnapshot struct {
 	VPCID                aws.StringValue  `xml:"VpcId"`
 }
 
+func (v *DBSnapshot) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DBSnapshotMessage is undocumented.
 type DBSnapshotMessage struct {
 	DBSnapshots []DBSnapshot    `xml:"DescribeDBSnapshotsResult>DBSnapshots>DBSnapshot"`
 	Marker      aws.StringValue `xml:"DescribeDBSnapshotsResult>Marker"`
+}
+
+func (v *DBSnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DBSubnetGroup is undocumented.
@@ -958,10 +1763,30 @@ type DBSubnetGroup struct {
 	VPCID                    aws.StringValue `xml:"VpcId"`
 }
 
+func (v *DBSubnetGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DBSubnetGroupMessage is undocumented.
 type DBSubnetGroupMessage struct {
 	DBSubnetGroups []DBSubnetGroup `xml:"DescribeDBSubnetGroupsResult>DBSubnetGroups>DBSubnetGroup"`
 	Marker         aws.StringValue `xml:"DescribeDBSubnetGroupsResult>Marker"`
+}
+
+func (v *DBSubnetGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteDBInstanceMessage is undocumented.
@@ -971,9 +1796,33 @@ type DeleteDBInstanceMessage struct {
 	SkipFinalSnapshot         aws.BooleanValue `xml:"SkipFinalSnapshot"`
 }
 
+func (v *DeleteDBInstanceMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBInstanceIdentifier"); err != nil {
+		errors["DBInstanceIdentifier"] = append(errors["DBInstanceIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteDBInstanceResult is undocumented.
 type DeleteDBInstanceResult struct {
 	DBInstance *DBInstance `xml:"DeleteDBInstanceResult>DBInstance"`
+}
+
+func (v *DeleteDBInstanceResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteDBParameterGroupMessage is undocumented.
@@ -981,9 +1830,37 @@ type DeleteDBParameterGroupMessage struct {
 	DBParameterGroupName aws.StringValue `xml:"DBParameterGroupName"`
 }
 
+func (v *DeleteDBParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBParameterGroupName"); err != nil {
+		errors["DBParameterGroupName"] = append(errors["DBParameterGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteDBSecurityGroupMessage is undocumented.
 type DeleteDBSecurityGroupMessage struct {
 	DBSecurityGroupName aws.StringValue `xml:"DBSecurityGroupName"`
+}
+
+func (v *DeleteDBSecurityGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBSecurityGroupName"); err != nil {
+		errors["DBSecurityGroupName"] = append(errors["DBSecurityGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteDBSnapshotMessage is undocumented.
@@ -991,9 +1868,33 @@ type DeleteDBSnapshotMessage struct {
 	DBSnapshotIdentifier aws.StringValue `xml:"DBSnapshotIdentifier"`
 }
 
+func (v *DeleteDBSnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBSnapshotIdentifier"); err != nil {
+		errors["DBSnapshotIdentifier"] = append(errors["DBSnapshotIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteDBSnapshotResult is undocumented.
 type DeleteDBSnapshotResult struct {
 	DBSnapshot *DBSnapshot `xml:"DeleteDBSnapshotResult>DBSnapshot"`
+}
+
+func (v *DeleteDBSnapshotResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteDBSubnetGroupMessage is undocumented.
@@ -1001,9 +1902,37 @@ type DeleteDBSubnetGroupMessage struct {
 	DBSubnetGroupName aws.StringValue `xml:"DBSubnetGroupName"`
 }
 
+func (v *DeleteDBSubnetGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBSubnetGroupName"); err != nil {
+		errors["DBSubnetGroupName"] = append(errors["DBSubnetGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteEventSubscriptionMessage is undocumented.
 type DeleteEventSubscriptionMessage struct {
 	SubscriptionName aws.StringValue `xml:"SubscriptionName"`
+}
+
+func (v *DeleteEventSubscriptionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SubscriptionName"); err != nil {
+		errors["SubscriptionName"] = append(errors["SubscriptionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteEventSubscriptionResult is undocumented.
@@ -1011,9 +1940,33 @@ type DeleteEventSubscriptionResult struct {
 	EventSubscription *EventSubscription `xml:"DeleteEventSubscriptionResult>EventSubscription"`
 }
 
+func (v *DeleteEventSubscriptionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteOptionGroupMessage is undocumented.
 type DeleteOptionGroupMessage struct {
 	OptionGroupName aws.StringValue `xml:"OptionGroupName"`
+}
+
+func (v *DeleteOptionGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OptionGroupName"); err != nil {
+		errors["OptionGroupName"] = append(errors["OptionGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeDBEngineVersionsMessage is undocumented.
@@ -1028,6 +1981,16 @@ type DescribeDBEngineVersionsMessage struct {
 	MaxRecords                 aws.IntegerValue `xml:"MaxRecords"`
 }
 
+func (v *DescribeDBEngineVersionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDBInstancesMessage is undocumented.
 type DescribeDBInstancesMessage struct {
 	DBInstanceIdentifier aws.StringValue  `xml:"DBInstanceIdentifier"`
@@ -1036,11 +1999,31 @@ type DescribeDBInstancesMessage struct {
 	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
 }
 
+func (v *DescribeDBInstancesMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDBLogFilesDetails is undocumented.
 type DescribeDBLogFilesDetails struct {
 	LastWritten aws.LongValue   `xml:"LastWritten"`
 	LogFileName aws.StringValue `xml:"LogFileName"`
 	Size        aws.LongValue   `xml:"Size"`
+}
+
+func (v *DescribeDBLogFilesDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeDBLogFilesMessage is undocumented.
@@ -1054,10 +2037,34 @@ type DescribeDBLogFilesMessage struct {
 	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
 }
 
+func (v *DescribeDBLogFilesMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBInstanceIdentifier"); err != nil {
+		errors["DBInstanceIdentifier"] = append(errors["DBInstanceIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDBLogFilesResponse is undocumented.
 type DescribeDBLogFilesResponse struct {
 	DescribeDBLogFiles []DescribeDBLogFilesDetails `xml:"DescribeDBLogFilesResult>DescribeDBLogFiles>DescribeDBLogFilesDetails"`
 	Marker             aws.StringValue             `xml:"DescribeDBLogFilesResult>Marker"`
+}
+
+func (v *DescribeDBLogFilesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeDBParameterGroupsMessage is undocumented.
@@ -1066,6 +2073,16 @@ type DescribeDBParameterGroupsMessage struct {
 	Filters              []Filter         `xml:"Filters>Filter"`
 	Marker               aws.StringValue  `xml:"Marker"`
 	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
+}
+
+func (v *DescribeDBParameterGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeDBParametersMessage is undocumented.
@@ -1077,12 +2094,36 @@ type DescribeDBParametersMessage struct {
 	Source               aws.StringValue  `xml:"Source"`
 }
 
+func (v *DescribeDBParametersMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBParameterGroupName"); err != nil {
+		errors["DBParameterGroupName"] = append(errors["DBParameterGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDBSecurityGroupsMessage is undocumented.
 type DescribeDBSecurityGroupsMessage struct {
 	DBSecurityGroupName aws.StringValue  `xml:"DBSecurityGroupName"`
 	Filters             []Filter         `xml:"Filters>Filter"`
 	Marker              aws.StringValue  `xml:"Marker"`
 	MaxRecords          aws.IntegerValue `xml:"MaxRecords"`
+}
+
+func (v *DescribeDBSecurityGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeDBSnapshotsMessage is undocumented.
@@ -1095,12 +2136,32 @@ type DescribeDBSnapshotsMessage struct {
 	SnapshotType         aws.StringValue  `xml:"SnapshotType"`
 }
 
+func (v *DescribeDBSnapshotsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDBSubnetGroupsMessage is undocumented.
 type DescribeDBSubnetGroupsMessage struct {
 	DBSubnetGroupName aws.StringValue  `xml:"DBSubnetGroupName"`
 	Filters           []Filter         `xml:"Filters>Filter"`
 	Marker            aws.StringValue  `xml:"Marker"`
 	MaxRecords        aws.IntegerValue `xml:"MaxRecords"`
+}
+
+func (v *DescribeDBSubnetGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeEngineDefaultParametersMessage is undocumented.
@@ -1111,9 +2172,33 @@ type DescribeEngineDefaultParametersMessage struct {
 	MaxRecords             aws.IntegerValue `xml:"MaxRecords"`
 }
 
+func (v *DescribeEngineDefaultParametersMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBParameterGroupFamily"); err != nil {
+		errors["DBParameterGroupFamily"] = append(errors["DBParameterGroupFamily"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeEngineDefaultParametersResult is undocumented.
 type DescribeEngineDefaultParametersResult struct {
 	EngineDefaults *EngineDefaults `xml:"DescribeEngineDefaultParametersResult>EngineDefaults"`
+}
+
+func (v *DescribeEngineDefaultParametersResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeEventCategoriesMessage is undocumented.
@@ -1122,12 +2207,32 @@ type DescribeEventCategoriesMessage struct {
 	SourceType aws.StringValue `xml:"SourceType"`
 }
 
+func (v *DescribeEventCategoriesMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeEventSubscriptionsMessage is undocumented.
 type DescribeEventSubscriptionsMessage struct {
 	Filters          []Filter         `xml:"Filters>Filter"`
 	Marker           aws.StringValue  `xml:"Marker"`
 	MaxRecords       aws.IntegerValue `xml:"MaxRecords"`
 	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
+}
+
+func (v *DescribeEventSubscriptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeEventsMessage is undocumented.
@@ -1143,6 +2248,26 @@ type DescribeEventsMessage struct {
 	StartTime        time.Time        `xml:"StartTime"`
 }
 
+func (v *DescribeEventsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	SourceTypeEnum := []string{
+		SourceTypeDBInstance,
+		SourceTypeDBParameterGroup,
+		SourceTypeDBSecurityGroup,
+		SourceTypeDBSnapshot,
+	}
+	if err := model.ValidateEnum(v, "SourceType", SourceTypeEnum); err != nil {
+		errors["SourceType"] = append(errors["SourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeOptionGroupOptionsMessage is undocumented.
 type DescribeOptionGroupOptionsMessage struct {
 	EngineName         aws.StringValue  `xml:"EngineName"`
@@ -1150,6 +2275,20 @@ type DescribeOptionGroupOptionsMessage struct {
 	MajorEngineVersion aws.StringValue  `xml:"MajorEngineVersion"`
 	Marker             aws.StringValue  `xml:"Marker"`
 	MaxRecords         aws.IntegerValue `xml:"MaxRecords"`
+}
+
+func (v *DescribeOptionGroupOptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EngineName"); err != nil {
+		errors["EngineName"] = append(errors["EngineName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeOptionGroupsMessage is undocumented.
@@ -1162,6 +2301,16 @@ type DescribeOptionGroupsMessage struct {
 	OptionGroupName    aws.StringValue  `xml:"OptionGroupName"`
 }
 
+func (v *DescribeOptionGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeOrderableDBInstanceOptionsMessage is undocumented.
 type DescribeOrderableDBInstanceOptionsMessage struct {
 	DBInstanceClass aws.StringValue  `xml:"DBInstanceClass"`
@@ -1172,6 +2321,20 @@ type DescribeOrderableDBInstanceOptionsMessage struct {
 	Marker          aws.StringValue  `xml:"Marker"`
 	MaxRecords      aws.IntegerValue `xml:"MaxRecords"`
 	VPC             aws.BooleanValue `xml:"Vpc"`
+}
+
+func (v *DescribeOrderableDBInstanceOptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Engine"); err != nil {
+		errors["Engine"] = append(errors["Engine"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeReservedDBInstancesMessage is undocumented.
@@ -1188,6 +2351,16 @@ type DescribeReservedDBInstancesMessage struct {
 	ReservedDBInstancesOfferingID aws.StringValue  `xml:"ReservedDBInstancesOfferingId"`
 }
 
+func (v *DescribeReservedDBInstancesMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeReservedDBInstancesOfferingsMessage is undocumented.
 type DescribeReservedDBInstancesOfferingsMessage struct {
 	DBInstanceClass               aws.StringValue  `xml:"DBInstanceClass"`
@@ -1201,11 +2374,31 @@ type DescribeReservedDBInstancesOfferingsMessage struct {
 	ReservedDBInstancesOfferingID aws.StringValue  `xml:"ReservedDBInstancesOfferingId"`
 }
 
+func (v *DescribeReservedDBInstancesOfferingsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DownloadDBLogFilePortionDetails is undocumented.
 type DownloadDBLogFilePortionDetails struct {
 	AdditionalDataPending aws.BooleanValue `xml:"DownloadDBLogFilePortionResult>AdditionalDataPending"`
 	LogFileData           aws.StringValue  `xml:"DownloadDBLogFilePortionResult>LogFileData"`
 	Marker                aws.StringValue  `xml:"DownloadDBLogFilePortionResult>Marker"`
+}
+
+func (v *DownloadDBLogFilePortionDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DownloadDBLogFilePortionMessage is undocumented.
@@ -1216,6 +2409,24 @@ type DownloadDBLogFilePortionMessage struct {
 	NumberOfLines        aws.IntegerValue `xml:"NumberOfLines"`
 }
 
+func (v *DownloadDBLogFilePortionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBInstanceIdentifier"); err != nil {
+		errors["DBInstanceIdentifier"] = append(errors["DBInstanceIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LogFileName"); err != nil {
+		errors["LogFileName"] = append(errors["LogFileName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EC2SecurityGroup is undocumented.
 type EC2SecurityGroup struct {
 	EC2SecurityGroupID      aws.StringValue `xml:"EC2SecurityGroupId"`
@@ -1224,10 +2435,30 @@ type EC2SecurityGroup struct {
 	Status                  aws.StringValue `xml:"Status"`
 }
 
+func (v *EC2SecurityGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Endpoint is undocumented.
 type Endpoint struct {
 	Address aws.StringValue  `xml:"Address"`
 	Port    aws.IntegerValue `xml:"Port"`
+}
+
+func (v *Endpoint) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EngineDefaults is undocumented.
@@ -1235,6 +2466,16 @@ type EngineDefaults struct {
 	DBParameterGroupFamily aws.StringValue `xml:"DBParameterGroupFamily"`
 	Marker                 aws.StringValue `xml:"Marker"`
 	Parameters             []Parameter     `xml:"Parameters>Parameter"`
+}
+
+func (v *EngineDefaults) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Event is undocumented.
@@ -1246,15 +2487,55 @@ type Event struct {
 	SourceType       aws.StringValue `xml:"SourceType"`
 }
 
+func (v *Event) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	SourceTypeEnum := []string{
+		SourceTypeDBInstance,
+		SourceTypeDBParameterGroup,
+		SourceTypeDBSecurityGroup,
+		SourceTypeDBSnapshot,
+	}
+	if err := model.ValidateEnum(v, "SourceType", SourceTypeEnum); err != nil {
+		errors["SourceType"] = append(errors["SourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EventCategoriesMap is undocumented.
 type EventCategoriesMap struct {
 	EventCategories []string        `xml:"EventCategories>EventCategory"`
 	SourceType      aws.StringValue `xml:"SourceType"`
 }
 
+func (v *EventCategoriesMap) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EventCategoriesMessage is undocumented.
 type EventCategoriesMessage struct {
 	EventCategoriesMapList []EventCategoriesMap `xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
+}
+
+func (v *EventCategoriesMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EventSubscription is undocumented.
@@ -1270,10 +2551,30 @@ type EventSubscription struct {
 	SubscriptionCreationTime aws.StringValue  `xml:"SubscriptionCreationTime"`
 }
 
+func (v *EventSubscription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EventSubscriptionsMessage is undocumented.
 type EventSubscriptionsMessage struct {
 	EventSubscriptionsList []EventSubscription `xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
 	Marker                 aws.StringValue     `xml:"DescribeEventSubscriptionsResult>Marker"`
+}
+
+func (v *EventSubscriptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EventsMessage is undocumented.
@@ -1282,10 +2583,38 @@ type EventsMessage struct {
 	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
 }
 
+func (v *EventsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Filter is undocumented.
 type Filter struct {
 	Name   aws.StringValue `xml:"Name"`
 	Values []string        `xml:"Values>Value"`
+}
+
+func (v *Filter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Values"); err != nil {
+		errors["Values"] = append(errors["Values"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // IPRange is undocumented.
@@ -1294,10 +2623,34 @@ type IPRange struct {
 	Status aws.StringValue `xml:"Status"`
 }
 
+func (v *IPRange) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListTagsForResourceMessage is undocumented.
 type ListTagsForResourceMessage struct {
 	Filters      []Filter        `xml:"Filters>Filter"`
 	ResourceName aws.StringValue `xml:"ResourceName"`
+}
+
+func (v *ListTagsForResourceMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ResourceName"); err != nil {
+		errors["ResourceName"] = append(errors["ResourceName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyDBInstanceMessage is undocumented.
@@ -1325,15 +2678,57 @@ type ModifyDBInstanceMessage struct {
 	VPCSecurityGroupIDs        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
+func (v *ModifyDBInstanceMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBInstanceIdentifier"); err != nil {
+		errors["DBInstanceIdentifier"] = append(errors["DBInstanceIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyDBInstanceResult is undocumented.
 type ModifyDBInstanceResult struct {
 	DBInstance *DBInstance `xml:"ModifyDBInstanceResult>DBInstance"`
+}
+
+func (v *ModifyDBInstanceResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyDBParameterGroupMessage is undocumented.
 type ModifyDBParameterGroupMessage struct {
 	DBParameterGroupName aws.StringValue `xml:"DBParameterGroupName"`
 	Parameters           []Parameter     `xml:"Parameters>Parameter"`
+}
+
+func (v *ModifyDBParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBParameterGroupName"); err != nil {
+		errors["DBParameterGroupName"] = append(errors["DBParameterGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Parameters"); err != nil {
+		errors["Parameters"] = append(errors["Parameters"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyDBSubnetGroupMessage is undocumented.
@@ -1343,9 +2738,37 @@ type ModifyDBSubnetGroupMessage struct {
 	SubnetIDs                []string        `xml:"SubnetIds>SubnetIdentifier"`
 }
 
+func (v *ModifyDBSubnetGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBSubnetGroupName"); err != nil {
+		errors["DBSubnetGroupName"] = append(errors["DBSubnetGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubnetIDs"); err != nil {
+		errors["SubnetIDs"] = append(errors["SubnetIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyDBSubnetGroupResult is undocumented.
 type ModifyDBSubnetGroupResult struct {
 	DBSubnetGroup *DBSubnetGroup `xml:"ModifyDBSubnetGroupResult>DBSubnetGroup"`
+}
+
+func (v *ModifyDBSubnetGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyEventSubscriptionMessage is undocumented.
@@ -1357,9 +2780,33 @@ type ModifyEventSubscriptionMessage struct {
 	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
 }
 
+func (v *ModifyEventSubscriptionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SubscriptionName"); err != nil {
+		errors["SubscriptionName"] = append(errors["SubscriptionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyEventSubscriptionResult is undocumented.
 type ModifyEventSubscriptionResult struct {
 	EventSubscription *EventSubscription `xml:"ModifyEventSubscriptionResult>EventSubscription"`
+}
+
+func (v *ModifyEventSubscriptionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyOptionGroupMessage is undocumented.
@@ -1370,9 +2817,33 @@ type ModifyOptionGroupMessage struct {
 	OptionsToRemove  []string              `xml:"OptionsToRemove>member"`
 }
 
+func (v *ModifyOptionGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OptionGroupName"); err != nil {
+		errors["OptionGroupName"] = append(errors["OptionGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyOptionGroupResult is undocumented.
 type ModifyOptionGroupResult struct {
 	OptionGroup *OptionGroup `xml:"ModifyOptionGroupResult>OptionGroup"`
+}
+
+func (v *ModifyOptionGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Option is undocumented.
@@ -1387,6 +2858,16 @@ type Option struct {
 	VPCSecurityGroupMemberships []VPCSecurityGroupMembership `xml:"VpcSecurityGroupMemberships>VpcSecurityGroupMembership"`
 }
 
+func (v *Option) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // OptionConfiguration is undocumented.
 type OptionConfiguration struct {
 	DBSecurityGroupMemberships  []string         `xml:"DBSecurityGroupMemberships>DBSecurityGroupName"`
@@ -1394,6 +2875,20 @@ type OptionConfiguration struct {
 	OptionSettings              []OptionSetting  `xml:"OptionSettings>OptionSetting"`
 	Port                        aws.IntegerValue `xml:"Port"`
 	VPCSecurityGroupMemberships []string         `xml:"VpcSecurityGroupMemberships>VpcSecurityGroupId"`
+}
+
+func (v *OptionConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OptionName"); err != nil {
+		errors["OptionName"] = append(errors["OptionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // OptionGroup is undocumented.
@@ -1407,10 +2902,30 @@ type OptionGroup struct {
 	VPCID                                 aws.StringValue  `xml:"VpcId"`
 }
 
+func (v *OptionGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // OptionGroupMembership is undocumented.
 type OptionGroupMembership struct {
 	OptionGroupName aws.StringValue `xml:"OptionGroupName"`
 	Status          aws.StringValue `xml:"Status"`
+}
+
+func (v *OptionGroupMembership) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // OptionGroupOption is undocumented.
@@ -1428,6 +2943,16 @@ type OptionGroupOption struct {
 	PortRequired                      aws.BooleanValue           `xml:"PortRequired"`
 }
 
+func (v *OptionGroupOption) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // OptionGroupOptionSetting is undocumented.
 type OptionGroupOptionSetting struct {
 	AllowedValues      aws.StringValue  `xml:"AllowedValues"`
@@ -1438,16 +2963,46 @@ type OptionGroupOptionSetting struct {
 	SettingName        aws.StringValue  `xml:"SettingName"`
 }
 
+func (v *OptionGroupOptionSetting) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // OptionGroupOptionsMessage is undocumented.
 type OptionGroupOptionsMessage struct {
 	Marker             aws.StringValue     `xml:"DescribeOptionGroupOptionsResult>Marker"`
 	OptionGroupOptions []OptionGroupOption `xml:"DescribeOptionGroupOptionsResult>OptionGroupOptions>OptionGroupOption"`
 }
 
+func (v *OptionGroupOptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // OptionGroups is undocumented.
 type OptionGroups struct {
 	Marker           aws.StringValue `xml:"DescribeOptionGroupsResult>Marker"`
 	OptionGroupsList []OptionGroup   `xml:"DescribeOptionGroupsResult>OptionGroupsList>OptionGroup"`
+}
+
+func (v *OptionGroups) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // OptionSetting is undocumented.
@@ -1461,6 +3016,16 @@ type OptionSetting struct {
 	IsModifiable  aws.BooleanValue `xml:"IsModifiable"`
 	Name          aws.StringValue  `xml:"Name"`
 	Value         aws.StringValue  `xml:"Value"`
+}
+
+func (v *OptionSetting) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // OrderableDBInstanceOption is undocumented.
@@ -1477,10 +3042,30 @@ type OrderableDBInstanceOption struct {
 	VPC                aws.BooleanValue   `xml:"Vpc"`
 }
 
+func (v *OrderableDBInstanceOption) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // OrderableDBInstanceOptionsMessage is undocumented.
 type OrderableDBInstanceOptionsMessage struct {
 	Marker                     aws.StringValue             `xml:"DescribeOrderableDBInstanceOptionsResult>Marker"`
 	OrderableDBInstanceOptions []OrderableDBInstanceOption `xml:"DescribeOrderableDBInstanceOptionsResult>OrderableDBInstanceOptions>OrderableDBInstanceOption"`
+}
+
+func (v *OrderableDBInstanceOptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Parameter is undocumented.
@@ -1497,6 +3082,24 @@ type Parameter struct {
 	Source               aws.StringValue  `xml:"Source"`
 }
 
+func (v *Parameter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ApplyMethodEnum := []string{
+		ApplyMethodImmediate,
+		ApplyMethodPendingReboot,
+	}
+	if err := model.ValidateEnum(v, "ApplyMethod", ApplyMethodEnum); err != nil {
+		errors["ApplyMethod"] = append(errors["ApplyMethod"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PendingModifiedValues is undocumented.
 type PendingModifiedValues struct {
 	AllocatedStorage      aws.IntegerValue `xml:"AllocatedStorage"`
@@ -1511,6 +3114,16 @@ type PendingModifiedValues struct {
 	StorageType           aws.StringValue  `xml:"StorageType"`
 }
 
+func (v *PendingModifiedValues) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PromoteReadReplicaMessage is undocumented.
 type PromoteReadReplicaMessage struct {
 	BackupRetentionPeriod aws.IntegerValue `xml:"BackupRetentionPeriod"`
@@ -1518,9 +3131,33 @@ type PromoteReadReplicaMessage struct {
 	PreferredBackupWindow aws.StringValue  `xml:"PreferredBackupWindow"`
 }
 
+func (v *PromoteReadReplicaMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBInstanceIdentifier"); err != nil {
+		errors["DBInstanceIdentifier"] = append(errors["DBInstanceIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PromoteReadReplicaResult is undocumented.
 type PromoteReadReplicaResult struct {
 	DBInstance *DBInstance `xml:"PromoteReadReplicaResult>DBInstance"`
+}
+
+func (v *PromoteReadReplicaResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PurchaseReservedDBInstancesOfferingMessage is undocumented.
@@ -1531,9 +3168,33 @@ type PurchaseReservedDBInstancesOfferingMessage struct {
 	Tags                          []Tag            `xml:"Tags>Tag"`
 }
 
+func (v *PurchaseReservedDBInstancesOfferingMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ReservedDBInstancesOfferingID"); err != nil {
+		errors["ReservedDBInstancesOfferingID"] = append(errors["ReservedDBInstancesOfferingID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PurchaseReservedDBInstancesOfferingResult is undocumented.
 type PurchaseReservedDBInstancesOfferingResult struct {
 	ReservedDBInstance *ReservedDBInstance `xml:"PurchaseReservedDBInstancesOfferingResult>ReservedDBInstance"`
+}
+
+func (v *PurchaseReservedDBInstancesOfferingResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RebootDBInstanceMessage is undocumented.
@@ -1542,9 +3203,33 @@ type RebootDBInstanceMessage struct {
 	ForceFailover        aws.BooleanValue `xml:"ForceFailover"`
 }
 
+func (v *RebootDBInstanceMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBInstanceIdentifier"); err != nil {
+		errors["DBInstanceIdentifier"] = append(errors["DBInstanceIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RebootDBInstanceResult is undocumented.
 type RebootDBInstanceResult struct {
 	DBInstance *DBInstance `xml:"RebootDBInstanceResult>DBInstance"`
+}
+
+func (v *RebootDBInstanceResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RecurringCharge is undocumented.
@@ -1553,10 +3238,38 @@ type RecurringCharge struct {
 	RecurringChargeFrequency aws.StringValue `xml:"RecurringChargeFrequency"`
 }
 
+func (v *RecurringCharge) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RemoveSourceIdentifierFromSubscriptionMessage is undocumented.
 type RemoveSourceIdentifierFromSubscriptionMessage struct {
 	SourceIdentifier aws.StringValue `xml:"SourceIdentifier"`
 	SubscriptionName aws.StringValue `xml:"SubscriptionName"`
+}
+
+func (v *RemoveSourceIdentifierFromSubscriptionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SourceIdentifier"); err != nil {
+		errors["SourceIdentifier"] = append(errors["SourceIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubscriptionName"); err != nil {
+		errors["SubscriptionName"] = append(errors["SubscriptionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RemoveSourceIdentifierFromSubscriptionResult is undocumented.
@@ -1564,10 +3277,38 @@ type RemoveSourceIdentifierFromSubscriptionResult struct {
 	EventSubscription *EventSubscription `xml:"RemoveSourceIdentifierFromSubscriptionResult>EventSubscription"`
 }
 
+func (v *RemoveSourceIdentifierFromSubscriptionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RemoveTagsFromResourceMessage is undocumented.
 type RemoveTagsFromResourceMessage struct {
 	ResourceName aws.StringValue `xml:"ResourceName"`
 	TagKeys      []string        `xml:"TagKeys>member"`
+}
+
+func (v *RemoveTagsFromResourceMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ResourceName"); err != nil {
+		errors["ResourceName"] = append(errors["ResourceName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TagKeys"); err != nil {
+		errors["TagKeys"] = append(errors["TagKeys"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReservedDBInstance is undocumented.
@@ -1588,10 +3329,30 @@ type ReservedDBInstance struct {
 	UsagePrice                    aws.DoubleValue   `xml:"UsagePrice"`
 }
 
+func (v *ReservedDBInstance) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReservedDBInstanceMessage is undocumented.
 type ReservedDBInstanceMessage struct {
 	Marker              aws.StringValue      `xml:"DescribeReservedDBInstancesResult>Marker"`
 	ReservedDBInstances []ReservedDBInstance `xml:"DescribeReservedDBInstancesResult>ReservedDBInstances>ReservedDBInstance"`
+}
+
+func (v *ReservedDBInstanceMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReservedDBInstancesOffering is undocumented.
@@ -1608,10 +3369,30 @@ type ReservedDBInstancesOffering struct {
 	UsagePrice                    aws.DoubleValue   `xml:"UsagePrice"`
 }
 
+func (v *ReservedDBInstancesOffering) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReservedDBInstancesOfferingMessage is undocumented.
 type ReservedDBInstancesOfferingMessage struct {
 	Marker                       aws.StringValue               `xml:"DescribeReservedDBInstancesOfferingsResult>Marker"`
 	ReservedDBInstancesOfferings []ReservedDBInstancesOffering `xml:"DescribeReservedDBInstancesOfferingsResult>ReservedDBInstancesOfferings>ReservedDBInstancesOffering"`
+}
+
+func (v *ReservedDBInstancesOfferingMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ResetDBParameterGroupMessage is undocumented.
@@ -1619,6 +3400,20 @@ type ResetDBParameterGroupMessage struct {
 	DBParameterGroupName aws.StringValue  `xml:"DBParameterGroupName"`
 	Parameters           []Parameter      `xml:"Parameters>Parameter"`
 	ResetAllParameters   aws.BooleanValue `xml:"ResetAllParameters"`
+}
+
+func (v *ResetDBParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBParameterGroupName"); err != nil {
+		errors["DBParameterGroupName"] = append(errors["DBParameterGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RestoreDBInstanceFromDBSnapshotMessage is undocumented.
@@ -1643,9 +3438,37 @@ type RestoreDBInstanceFromDBSnapshotMessage struct {
 	TDECredentialPassword   aws.StringValue  `xml:"TdeCredentialPassword"`
 }
 
+func (v *RestoreDBInstanceFromDBSnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBInstanceIdentifier"); err != nil {
+		errors["DBInstanceIdentifier"] = append(errors["DBInstanceIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DBSnapshotIdentifier"); err != nil {
+		errors["DBSnapshotIdentifier"] = append(errors["DBSnapshotIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RestoreDBInstanceFromDBSnapshotResult is undocumented.
 type RestoreDBInstanceFromDBSnapshotResult struct {
 	DBInstance *DBInstance `xml:"RestoreDBInstanceFromDBSnapshotResult>DBInstance"`
+}
+
+func (v *RestoreDBInstanceFromDBSnapshotResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RestoreDBInstanceToPointInTimeMessage is undocumented.
@@ -1672,9 +3495,37 @@ type RestoreDBInstanceToPointInTimeMessage struct {
 	UseLatestRestorableTime    aws.BooleanValue `xml:"UseLatestRestorableTime"`
 }
 
+func (v *RestoreDBInstanceToPointInTimeMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SourceDBInstanceIdentifier"); err != nil {
+		errors["SourceDBInstanceIdentifier"] = append(errors["SourceDBInstanceIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetDBInstanceIdentifier"); err != nil {
+		errors["TargetDBInstanceIdentifier"] = append(errors["TargetDBInstanceIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RestoreDBInstanceToPointInTimeResult is undocumented.
 type RestoreDBInstanceToPointInTimeResult struct {
 	DBInstance *DBInstance `xml:"RestoreDBInstanceToPointInTimeResult>DBInstance"`
+}
+
+func (v *RestoreDBInstanceToPointInTimeResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RevokeDBSecurityGroupIngressMessage is undocumented.
@@ -1686,9 +3537,33 @@ type RevokeDBSecurityGroupIngressMessage struct {
 	EC2SecurityGroupOwnerID aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
 }
 
+func (v *RevokeDBSecurityGroupIngressMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBSecurityGroupName"); err != nil {
+		errors["DBSecurityGroupName"] = append(errors["DBSecurityGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RevokeDBSecurityGroupIngressResult is undocumented.
 type RevokeDBSecurityGroupIngressResult struct {
 	DBSecurityGroup *DBSecurityGroup `xml:"RevokeDBSecurityGroupIngressResult>DBSecurityGroup"`
+}
+
+func (v *RevokeDBSecurityGroupIngressResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for RDS.
@@ -1706,10 +3581,30 @@ type Subnet struct {
 	SubnetStatus           aws.StringValue   `xml:"SubnetStatus"`
 }
 
+func (v *Subnet) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Tag is undocumented.
 type Tag struct {
 	Key   aws.StringValue `xml:"Key"`
 	Value aws.StringValue `xml:"Value"`
+}
+
+func (v *Tag) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TagListMessage is undocumented.
@@ -1717,10 +3612,30 @@ type TagListMessage struct {
 	TagList []Tag `xml:"ListTagsForResourceResult>TagList>Tag"`
 }
 
+func (v *TagListMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VPCSecurityGroupMembership is undocumented.
 type VPCSecurityGroupMembership struct {
 	Status             aws.StringValue `xml:"Status"`
 	VPCSecurityGroupID aws.StringValue `xml:"VpcSecurityGroupId"`
+}
+
+func (v *VPCSecurityGroupMembership) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeDBEngineVersionsResult is a wrapper for DBEngineVersionMessage.

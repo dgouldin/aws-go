@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // CloudWatch is a client for Amazon CloudWatch.
@@ -42,6 +43,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Clo
 // DeleteAlarms deletes all specified alarms. In the event of an error, no
 // alarms are deleted.
 func (c *CloudWatch) DeleteAlarms(req *DeleteAlarmsInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteAlarms", "POST", "/", req, nil)
 	return
@@ -51,6 +56,10 @@ func (c *CloudWatch) DeleteAlarms(req *DeleteAlarmsInput) (err error) {
 // alarms by date range or item type. If an alarm name is not specified,
 // Amazon CloudWatch returns histories for all of the owner's alarms.
 func (c *CloudWatch) DescribeAlarmHistory(req *DescribeAlarmHistoryInput) (resp *DescribeAlarmHistoryResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeAlarmHistoryResult{}
 	err = c.client.Do("DescribeAlarmHistory", "POST", "/", req, resp)
 	return
@@ -61,6 +70,10 @@ func (c *CloudWatch) DescribeAlarmHistory(req *DescribeAlarmHistoryInput) (resp 
 // by using only a prefix for the alarm name, the alarm state, or a prefix
 // for any action.
 func (c *CloudWatch) DescribeAlarms(req *DescribeAlarmsInput) (resp *DescribeAlarmsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeAlarmsResult{}
 	err = c.client.Do("DescribeAlarms", "POST", "/", req, resp)
 	return
@@ -70,6 +83,10 @@ func (c *CloudWatch) DescribeAlarms(req *DescribeAlarmsInput) (resp *DescribeAla
 // Specify a statistic, period, or unit to filter the set of alarms
 // further.
 func (c *CloudWatch) DescribeAlarmsForMetric(req *DescribeAlarmsForMetricInput) (resp *DescribeAlarmsForMetricResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeAlarmsForMetricResult{}
 	err = c.client.Do("DescribeAlarmsForMetric", "POST", "/", req, resp)
 	return
@@ -79,6 +96,10 @@ func (c *CloudWatch) DescribeAlarmsForMetric(req *DescribeAlarmsForMetricInput) 
 // alarm's actions are disabled the alarm's state may change, but none of
 // the alarm's actions will execute.
 func (c *CloudWatch) DisableAlarmActions(req *DisableAlarmActionsInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DisableAlarmActions", "POST", "/", req, nil)
 	return
@@ -86,6 +107,10 @@ func (c *CloudWatch) DisableAlarmActions(req *DisableAlarmActionsInput) (err err
 
 // EnableAlarmActions is undocumented.
 func (c *CloudWatch) EnableAlarmActions(req *EnableAlarmActionsInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("EnableAlarmActions", "POST", "/", req, nil)
 	return
@@ -114,6 +139,10 @@ func (c *CloudWatch) EnableAlarmActions(req *EnableAlarmActionsInput) (err error
 // Amazon CloudWatch Metrics, Namespaces, and Dimensions Reference in the
 // Amazon CloudWatch Developer Guide .
 func (c *CloudWatch) GetMetricStatistics(req *GetMetricStatisticsInput) (resp *GetMetricStatisticsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetMetricStatisticsResult{}
 	err = c.client.Do("GetMetricStatistics", "POST", "/", req, resp)
 	return
@@ -123,6 +152,10 @@ func (c *CloudWatch) GetMetricStatistics(req *GetMetricStatisticsInput) (resp *G
 // owner. Returned metrics can be used with GetMetricStatistics to obtain
 // statistical data for a given metric.
 func (c *CloudWatch) ListMetrics(req *ListMetricsInput) (resp *ListMetricsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListMetricsResult{}
 	err = c.client.Do("ListMetrics", "POST", "/", req, resp)
 	return
@@ -136,6 +169,10 @@ func (c *CloudWatch) ListMetrics(req *ListMetricsInput) (resp *ListMetricsResult
 // appropriately. Any actions associated with the StateValue is then
 // executed.
 func (c *CloudWatch) PutMetricAlarm(req *PutMetricAlarmInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutMetricAlarm", "POST", "/", req, nil)
 	return
@@ -154,6 +191,10 @@ func (c *CloudWatch) PutMetricAlarm(req *PutMetricAlarmInput) (err error) {
 // in the past may take in excess of 48 hours to become available from
 // submission time using GetMetricStatistics
 func (c *CloudWatch) PutMetricData(req *PutMetricDataInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutMetricData", "POST", "/", req, nil)
 	return
@@ -165,6 +206,10 @@ func (c *CloudWatch) PutMetricData(req *PutMetricDataInput) (err error) {
 // next periodic alarm check (in about a minute) will set the alarm to its
 // actual state.
 func (c *CloudWatch) SetAlarmState(req *SetAlarmStateInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetAlarmState", "POST", "/", req, nil)
 	return
@@ -177,6 +222,49 @@ type AlarmHistoryItem struct {
 	HistoryItemType aws.StringValue `xml:"HistoryItemType"`
 	HistorySummary  aws.StringValue `xml:"HistorySummary"`
 	Timestamp       time.Time       `xml:"Timestamp"`
+}
+
+func (v *AlarmHistoryItem) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AlarmName", 1); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmName", 255); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if err := model.ValidateMin(v, "HistoryData", 1); err != nil {
+		errors["HistoryData"] = append(errors["HistoryData"], err)
+	}
+
+	if err := model.ValidateMax(v, "HistoryData", 4095); err != nil {
+		errors["HistoryData"] = append(errors["HistoryData"], err)
+	}
+
+	HistoryItemTypeEnum := []string{
+		HistoryItemTypeAction,
+		HistoryItemTypeConfigurationUpdate,
+		HistoryItemTypeStateUpdate,
+	}
+	if err := model.ValidateEnum(v, "HistoryItemType", HistoryItemTypeEnum); err != nil {
+		errors["HistoryItemType"] = append(errors["HistoryItemType"], err)
+	}
+
+	if err := model.ValidateMin(v, "HistorySummary", 1); err != nil {
+		errors["HistorySummary"] = append(errors["HistorySummary"], err)
+	}
+
+	if err := model.ValidateMax(v, "HistorySummary", 255); err != nil {
+		errors["HistorySummary"] = append(errors["HistorySummary"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudWatch.
@@ -198,9 +286,70 @@ type Datapoint struct {
 	Unit        aws.StringValue `xml:"Unit"`
 }
 
+func (v *Datapoint) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	UnitEnum := []string{
+		StandardUnitBits,
+		StandardUnitBitsSecond,
+		StandardUnitBytes,
+		StandardUnitBytesSecond,
+		StandardUnitCount,
+		StandardUnitCountSecond,
+		StandardUnitGigabits,
+		StandardUnitGigabitsSecond,
+		StandardUnitGigabytes,
+		StandardUnitGigabytesSecond,
+		StandardUnitKilobits,
+		StandardUnitKilobitsSecond,
+		StandardUnitKilobytes,
+		StandardUnitKilobytesSecond,
+		StandardUnitMegabits,
+		StandardUnitMegabitsSecond,
+		StandardUnitMegabytes,
+		StandardUnitMegabytesSecond,
+		StandardUnitMicroseconds,
+		StandardUnitMilliseconds,
+		StandardUnitNone,
+		StandardUnitPercent,
+		StandardUnitSeconds,
+		StandardUnitTerabits,
+		StandardUnitTerabitsSecond,
+		StandardUnitTerabytes,
+		StandardUnitTerabytesSecond,
+	}
+	if err := model.ValidateEnum(v, "Unit", UnitEnum); err != nil {
+		errors["Unit"] = append(errors["Unit"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteAlarmsInput is undocumented.
 type DeleteAlarmsInput struct {
 	AlarmNames []string `xml:"AlarmNames>member"`
+}
+
+func (v *DeleteAlarmsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AlarmNames"); err != nil {
+		errors["AlarmNames"] = append(errors["AlarmNames"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmNames", 100); err != nil {
+		errors["AlarmNames"] = append(errors["AlarmNames"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAlarmHistoryInput is undocumented.
@@ -213,10 +362,55 @@ type DescribeAlarmHistoryInput struct {
 	StartDate       time.Time        `xml:"StartDate"`
 }
 
+func (v *DescribeAlarmHistoryInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AlarmName", 1); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmName", 255); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	HistoryItemTypeEnum := []string{
+		HistoryItemTypeAction,
+		HistoryItemTypeConfigurationUpdate,
+		HistoryItemTypeStateUpdate,
+	}
+	if err := model.ValidateEnum(v, "HistoryItemType", HistoryItemTypeEnum); err != nil {
+		errors["HistoryItemType"] = append(errors["HistoryItemType"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxRecords", 1); err != nil {
+		errors["MaxRecords"] = append(errors["MaxRecords"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxRecords", 100); err != nil {
+		errors["MaxRecords"] = append(errors["MaxRecords"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAlarmHistoryOutput is undocumented.
 type DescribeAlarmHistoryOutput struct {
 	AlarmHistoryItems []AlarmHistoryItem `xml:"DescribeAlarmHistoryResult>AlarmHistoryItems>member"`
 	NextToken         aws.StringValue    `xml:"DescribeAlarmHistoryResult>NextToken"`
+}
+
+func (v *DescribeAlarmHistoryOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAlarmsForMetricInput is undocumented.
@@ -229,9 +423,109 @@ type DescribeAlarmsForMetricInput struct {
 	Unit       aws.StringValue  `xml:"Unit"`
 }
 
+func (v *DescribeAlarmsForMetricInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Dimensions", 10); err != nil {
+		errors["Dimensions"] = append(errors["Dimensions"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MetricName"); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMin(v, "MetricName", 1); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMax(v, "MetricName", 255); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Namespace"); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMin(v, "Namespace", 1); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMax(v, "Namespace", 255); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Namespace", `[^:].*`); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMin(v, "Period", 60); err != nil {
+		errors["Period"] = append(errors["Period"], err)
+	}
+
+	StatisticEnum := []string{
+		StatisticAverage,
+		StatisticMaximum,
+		StatisticMinimum,
+		StatisticSampleCount,
+		StatisticSum,
+	}
+	if err := model.ValidateEnum(v, "Statistic", StatisticEnum); err != nil {
+		errors["Statistic"] = append(errors["Statistic"], err)
+	}
+
+	UnitEnum := []string{
+		StandardUnitBits,
+		StandardUnitBitsSecond,
+		StandardUnitBytes,
+		StandardUnitBytesSecond,
+		StandardUnitCount,
+		StandardUnitCountSecond,
+		StandardUnitGigabits,
+		StandardUnitGigabitsSecond,
+		StandardUnitGigabytes,
+		StandardUnitGigabytesSecond,
+		StandardUnitKilobits,
+		StandardUnitKilobitsSecond,
+		StandardUnitKilobytes,
+		StandardUnitKilobytesSecond,
+		StandardUnitMegabits,
+		StandardUnitMegabitsSecond,
+		StandardUnitMegabytes,
+		StandardUnitMegabytesSecond,
+		StandardUnitMicroseconds,
+		StandardUnitMilliseconds,
+		StandardUnitNone,
+		StandardUnitPercent,
+		StandardUnitSeconds,
+		StandardUnitTerabits,
+		StandardUnitTerabitsSecond,
+		StandardUnitTerabytes,
+		StandardUnitTerabytesSecond,
+	}
+	if err := model.ValidateEnum(v, "Unit", UnitEnum); err != nil {
+		errors["Unit"] = append(errors["Unit"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAlarmsForMetricOutput is undocumented.
 type DescribeAlarmsForMetricOutput struct {
 	MetricAlarms []MetricAlarm `xml:"DescribeAlarmsForMetricResult>MetricAlarms>member"`
+}
+
+func (v *DescribeAlarmsForMetricOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAlarmsInput is undocumented.
@@ -244,10 +538,67 @@ type DescribeAlarmsInput struct {
 	StateValue      aws.StringValue  `xml:"StateValue"`
 }
 
+func (v *DescribeAlarmsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ActionPrefix", 1); err != nil {
+		errors["ActionPrefix"] = append(errors["ActionPrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "ActionPrefix", 1024); err != nil {
+		errors["ActionPrefix"] = append(errors["ActionPrefix"], err)
+	}
+
+	if err := model.ValidateMin(v, "AlarmNamePrefix", 1); err != nil {
+		errors["AlarmNamePrefix"] = append(errors["AlarmNamePrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmNamePrefix", 255); err != nil {
+		errors["AlarmNamePrefix"] = append(errors["AlarmNamePrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmNames", 100); err != nil {
+		errors["AlarmNames"] = append(errors["AlarmNames"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxRecords", 1); err != nil {
+		errors["MaxRecords"] = append(errors["MaxRecords"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxRecords", 100); err != nil {
+		errors["MaxRecords"] = append(errors["MaxRecords"], err)
+	}
+
+	StateValueEnum := []string{
+		StateValueAlarm,
+		StateValueInsufficientData,
+		StateValueOK,
+	}
+	if err := model.ValidateEnum(v, "StateValue", StateValueEnum); err != nil {
+		errors["StateValue"] = append(errors["StateValue"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAlarmsOutput is undocumented.
 type DescribeAlarmsOutput struct {
 	MetricAlarms []MetricAlarm   `xml:"DescribeAlarmsResult>MetricAlarms>member"`
 	NextToken    aws.StringValue `xml:"DescribeAlarmsResult>NextToken"`
+}
+
+func (v *DescribeAlarmsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Dimension is undocumented.
@@ -256,10 +607,74 @@ type Dimension struct {
 	Value aws.StringValue `xml:"Value"`
 }
 
+func (v *Dimension) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 255); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Value"); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if err := model.ValidateMin(v, "Value", 1); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 255); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DimensionFilter is undocumented.
 type DimensionFilter struct {
 	Name  aws.StringValue `xml:"Name"`
 	Value aws.StringValue `xml:"Value"`
+}
+
+func (v *DimensionFilter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 255); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Value", 1); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 255); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DisableAlarmActionsInput is undocumented.
@@ -267,9 +682,45 @@ type DisableAlarmActionsInput struct {
 	AlarmNames []string `xml:"AlarmNames>member"`
 }
 
+func (v *DisableAlarmActionsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AlarmNames"); err != nil {
+		errors["AlarmNames"] = append(errors["AlarmNames"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmNames", 100); err != nil {
+		errors["AlarmNames"] = append(errors["AlarmNames"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnableAlarmActionsInput is undocumented.
 type EnableAlarmActionsInput struct {
 	AlarmNames []string `xml:"AlarmNames>member"`
+}
+
+func (v *EnableAlarmActionsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AlarmNames"); err != nil {
+		errors["AlarmNames"] = append(errors["AlarmNames"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmNames", 100); err != nil {
+		errors["AlarmNames"] = append(errors["AlarmNames"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetMetricStatisticsInput is undocumented.
@@ -284,10 +735,123 @@ type GetMetricStatisticsInput struct {
 	Unit       aws.StringValue  `xml:"Unit"`
 }
 
+func (v *GetMetricStatisticsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Dimensions", 10); err != nil {
+		errors["Dimensions"] = append(errors["Dimensions"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EndTime"); err != nil {
+		errors["EndTime"] = append(errors["EndTime"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MetricName"); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMin(v, "MetricName", 1); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMax(v, "MetricName", 255); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Namespace"); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMin(v, "Namespace", 1); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMax(v, "Namespace", 255); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Namespace", `[^:].*`); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Period"); err != nil {
+		errors["Period"] = append(errors["Period"], err)
+	}
+
+	if err := model.ValidateMin(v, "Period", 60); err != nil {
+		errors["Period"] = append(errors["Period"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartTime"); err != nil {
+		errors["StartTime"] = append(errors["StartTime"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Statistics"); err != nil {
+		errors["Statistics"] = append(errors["Statistics"], err)
+	}
+
+	if err := model.ValidateMin(v, "Statistics", 1); err != nil {
+		errors["Statistics"] = append(errors["Statistics"], err)
+	}
+
+	if err := model.ValidateMax(v, "Statistics", 5); err != nil {
+		errors["Statistics"] = append(errors["Statistics"], err)
+	}
+
+	UnitEnum := []string{
+		StandardUnitBits,
+		StandardUnitBitsSecond,
+		StandardUnitBytes,
+		StandardUnitBytesSecond,
+		StandardUnitCount,
+		StandardUnitCountSecond,
+		StandardUnitGigabits,
+		StandardUnitGigabitsSecond,
+		StandardUnitGigabytes,
+		StandardUnitGigabytesSecond,
+		StandardUnitKilobits,
+		StandardUnitKilobitsSecond,
+		StandardUnitKilobytes,
+		StandardUnitKilobytesSecond,
+		StandardUnitMegabits,
+		StandardUnitMegabitsSecond,
+		StandardUnitMegabytes,
+		StandardUnitMegabytesSecond,
+		StandardUnitMicroseconds,
+		StandardUnitMilliseconds,
+		StandardUnitNone,
+		StandardUnitPercent,
+		StandardUnitSeconds,
+		StandardUnitTerabits,
+		StandardUnitTerabitsSecond,
+		StandardUnitTerabytes,
+		StandardUnitTerabytesSecond,
+	}
+	if err := model.ValidateEnum(v, "Unit", UnitEnum); err != nil {
+		errors["Unit"] = append(errors["Unit"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetMetricStatisticsOutput is undocumented.
 type GetMetricStatisticsOutput struct {
 	Datapoints []Datapoint     `xml:"GetMetricStatisticsResult>Datapoints>member"`
 	Label      aws.StringValue `xml:"GetMetricStatisticsResult>Label"`
+}
+
+func (v *GetMetricStatisticsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudWatch.
@@ -305,10 +869,54 @@ type ListMetricsInput struct {
 	NextToken  aws.StringValue   `xml:"NextToken"`
 }
 
+func (v *ListMetricsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Dimensions", 10); err != nil {
+		errors["Dimensions"] = append(errors["Dimensions"], err)
+	}
+
+	if err := model.ValidateMin(v, "MetricName", 1); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMax(v, "MetricName", 255); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Namespace", 1); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMax(v, "Namespace", 255); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Namespace", `[^:].*`); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListMetricsOutput is undocumented.
 type ListMetricsOutput struct {
 	Metrics   []Metric        `xml:"ListMetricsResult>Metrics>member"`
 	NextToken aws.StringValue `xml:"ListMetricsResult>NextToken"`
+}
+
+func (v *ListMetricsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Metric is undocumented.
@@ -316,6 +924,40 @@ type Metric struct {
 	Dimensions []Dimension     `xml:"Dimensions>member"`
 	MetricName aws.StringValue `xml:"MetricName"`
 	Namespace  aws.StringValue `xml:"Namespace"`
+}
+
+func (v *Metric) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Dimensions", 10); err != nil {
+		errors["Dimensions"] = append(errors["Dimensions"], err)
+	}
+
+	if err := model.ValidateMin(v, "MetricName", 1); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMax(v, "MetricName", 255); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Namespace", 1); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMax(v, "Namespace", 255); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Namespace", `[^:].*`); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // MetricAlarm is undocumented.
@@ -343,6 +985,151 @@ type MetricAlarm struct {
 	Unit                               aws.StringValue  `xml:"Unit"`
 }
 
+func (v *MetricAlarm) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "AlarmActions", 5); err != nil {
+		errors["AlarmActions"] = append(errors["AlarmActions"], err)
+	}
+
+	if err := model.ValidateMin(v, "AlarmARN", 1); err != nil {
+		errors["AlarmARN"] = append(errors["AlarmARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmARN", 1600); err != nil {
+		errors["AlarmARN"] = append(errors["AlarmARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmDescription", 255); err != nil {
+		errors["AlarmDescription"] = append(errors["AlarmDescription"], err)
+	}
+
+	if err := model.ValidateMin(v, "AlarmName", 1); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmName", 255); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	ComparisonOperatorEnum := []string{
+		ComparisonOperatorGreaterThanOrEqualToThreshold,
+		ComparisonOperatorGreaterThanThreshold,
+		ComparisonOperatorLessThanOrEqualToThreshold,
+		ComparisonOperatorLessThanThreshold,
+	}
+	if err := model.ValidateEnum(v, "ComparisonOperator", ComparisonOperatorEnum); err != nil {
+		errors["ComparisonOperator"] = append(errors["ComparisonOperator"], err)
+	}
+
+	if err := model.ValidateMax(v, "Dimensions", 10); err != nil {
+		errors["Dimensions"] = append(errors["Dimensions"], err)
+	}
+
+	if err := model.ValidateMin(v, "EvaluationPeriods", 1); err != nil {
+		errors["EvaluationPeriods"] = append(errors["EvaluationPeriods"], err)
+	}
+
+	if err := model.ValidateMax(v, "InsufficientDataActions", 5); err != nil {
+		errors["InsufficientDataActions"] = append(errors["InsufficientDataActions"], err)
+	}
+
+	if err := model.ValidateMin(v, "MetricName", 1); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMax(v, "MetricName", 255); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Namespace", 1); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMax(v, "Namespace", 255); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Namespace", `[^:].*`); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMax(v, "OKActions", 5); err != nil {
+		errors["OKActions"] = append(errors["OKActions"], err)
+	}
+
+	if err := model.ValidateMin(v, "Period", 60); err != nil {
+		errors["Period"] = append(errors["Period"], err)
+	}
+
+	if err := model.ValidateMax(v, "StateReason", 1023); err != nil {
+		errors["StateReason"] = append(errors["StateReason"], err)
+	}
+
+	if err := model.ValidateMax(v, "StateReasonData", 4000); err != nil {
+		errors["StateReasonData"] = append(errors["StateReasonData"], err)
+	}
+
+	StateValueEnum := []string{
+		StateValueAlarm,
+		StateValueInsufficientData,
+		StateValueOK,
+	}
+	if err := model.ValidateEnum(v, "StateValue", StateValueEnum); err != nil {
+		errors["StateValue"] = append(errors["StateValue"], err)
+	}
+
+	StatisticEnum := []string{
+		StatisticAverage,
+		StatisticMaximum,
+		StatisticMinimum,
+		StatisticSampleCount,
+		StatisticSum,
+	}
+	if err := model.ValidateEnum(v, "Statistic", StatisticEnum); err != nil {
+		errors["Statistic"] = append(errors["Statistic"], err)
+	}
+
+	UnitEnum := []string{
+		StandardUnitBits,
+		StandardUnitBitsSecond,
+		StandardUnitBytes,
+		StandardUnitBytesSecond,
+		StandardUnitCount,
+		StandardUnitCountSecond,
+		StandardUnitGigabits,
+		StandardUnitGigabitsSecond,
+		StandardUnitGigabytes,
+		StandardUnitGigabytesSecond,
+		StandardUnitKilobits,
+		StandardUnitKilobitsSecond,
+		StandardUnitKilobytes,
+		StandardUnitKilobytesSecond,
+		StandardUnitMegabits,
+		StandardUnitMegabitsSecond,
+		StandardUnitMegabytes,
+		StandardUnitMegabytesSecond,
+		StandardUnitMicroseconds,
+		StandardUnitMilliseconds,
+		StandardUnitNone,
+		StandardUnitPercent,
+		StandardUnitSeconds,
+		StandardUnitTerabits,
+		StandardUnitTerabitsSecond,
+		StandardUnitTerabytes,
+		StandardUnitTerabytesSecond,
+	}
+	if err := model.ValidateEnum(v, "Unit", UnitEnum); err != nil {
+		errors["Unit"] = append(errors["Unit"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // MetricDatum is undocumented.
 type MetricDatum struct {
 	Dimensions      []Dimension     `xml:"Dimensions>member"`
@@ -351,6 +1138,65 @@ type MetricDatum struct {
 	Timestamp       time.Time       `xml:"Timestamp"`
 	Unit            aws.StringValue `xml:"Unit"`
 	Value           aws.DoubleValue `xml:"Value"`
+}
+
+func (v *MetricDatum) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Dimensions", 10); err != nil {
+		errors["Dimensions"] = append(errors["Dimensions"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MetricName"); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMin(v, "MetricName", 1); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMax(v, "MetricName", 255); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	UnitEnum := []string{
+		StandardUnitBits,
+		StandardUnitBitsSecond,
+		StandardUnitBytes,
+		StandardUnitBytesSecond,
+		StandardUnitCount,
+		StandardUnitCountSecond,
+		StandardUnitGigabits,
+		StandardUnitGigabitsSecond,
+		StandardUnitGigabytes,
+		StandardUnitGigabytesSecond,
+		StandardUnitKilobits,
+		StandardUnitKilobitsSecond,
+		StandardUnitKilobytes,
+		StandardUnitKilobytesSecond,
+		StandardUnitMegabits,
+		StandardUnitMegabitsSecond,
+		StandardUnitMegabytes,
+		StandardUnitMegabytesSecond,
+		StandardUnitMicroseconds,
+		StandardUnitMilliseconds,
+		StandardUnitNone,
+		StandardUnitPercent,
+		StandardUnitSeconds,
+		StandardUnitTerabits,
+		StandardUnitTerabitsSecond,
+		StandardUnitTerabytes,
+		StandardUnitTerabytesSecond,
+	}
+	if err := model.ValidateEnum(v, "Unit", UnitEnum); err != nil {
+		errors["Unit"] = append(errors["Unit"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutMetricAlarmInput is undocumented.
@@ -372,10 +1218,192 @@ type PutMetricAlarmInput struct {
 	Unit                    aws.StringValue  `xml:"Unit"`
 }
 
+func (v *PutMetricAlarmInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "AlarmActions", 5); err != nil {
+		errors["AlarmActions"] = append(errors["AlarmActions"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmDescription", 255); err != nil {
+		errors["AlarmDescription"] = append(errors["AlarmDescription"], err)
+	}
+
+	if err := model.ValidateRequired(v, "AlarmName"); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AlarmName", 1); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmName", 255); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ComparisonOperator"); err != nil {
+		errors["ComparisonOperator"] = append(errors["ComparisonOperator"], err)
+	}
+
+	ComparisonOperatorEnum := []string{
+		ComparisonOperatorGreaterThanOrEqualToThreshold,
+		ComparisonOperatorGreaterThanThreshold,
+		ComparisonOperatorLessThanOrEqualToThreshold,
+		ComparisonOperatorLessThanThreshold,
+	}
+	if err := model.ValidateEnum(v, "ComparisonOperator", ComparisonOperatorEnum); err != nil {
+		errors["ComparisonOperator"] = append(errors["ComparisonOperator"], err)
+	}
+
+	if err := model.ValidateMax(v, "Dimensions", 10); err != nil {
+		errors["Dimensions"] = append(errors["Dimensions"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EvaluationPeriods"); err != nil {
+		errors["EvaluationPeriods"] = append(errors["EvaluationPeriods"], err)
+	}
+
+	if err := model.ValidateMin(v, "EvaluationPeriods", 1); err != nil {
+		errors["EvaluationPeriods"] = append(errors["EvaluationPeriods"], err)
+	}
+
+	if err := model.ValidateMax(v, "InsufficientDataActions", 5); err != nil {
+		errors["InsufficientDataActions"] = append(errors["InsufficientDataActions"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MetricName"); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMin(v, "MetricName", 1); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateMax(v, "MetricName", 255); err != nil {
+		errors["MetricName"] = append(errors["MetricName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Namespace"); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMin(v, "Namespace", 1); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMax(v, "Namespace", 255); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Namespace", `[^:].*`); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMax(v, "OKActions", 5); err != nil {
+		errors["OKActions"] = append(errors["OKActions"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Period"); err != nil {
+		errors["Period"] = append(errors["Period"], err)
+	}
+
+	if err := model.ValidateMin(v, "Period", 60); err != nil {
+		errors["Period"] = append(errors["Period"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Statistic"); err != nil {
+		errors["Statistic"] = append(errors["Statistic"], err)
+	}
+
+	StatisticEnum := []string{
+		StatisticAverage,
+		StatisticMaximum,
+		StatisticMinimum,
+		StatisticSampleCount,
+		StatisticSum,
+	}
+	if err := model.ValidateEnum(v, "Statistic", StatisticEnum); err != nil {
+		errors["Statistic"] = append(errors["Statistic"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Threshold"); err != nil {
+		errors["Threshold"] = append(errors["Threshold"], err)
+	}
+
+	UnitEnum := []string{
+		StandardUnitBits,
+		StandardUnitBitsSecond,
+		StandardUnitBytes,
+		StandardUnitBytesSecond,
+		StandardUnitCount,
+		StandardUnitCountSecond,
+		StandardUnitGigabits,
+		StandardUnitGigabitsSecond,
+		StandardUnitGigabytes,
+		StandardUnitGigabytesSecond,
+		StandardUnitKilobits,
+		StandardUnitKilobitsSecond,
+		StandardUnitKilobytes,
+		StandardUnitKilobytesSecond,
+		StandardUnitMegabits,
+		StandardUnitMegabitsSecond,
+		StandardUnitMegabytes,
+		StandardUnitMegabytesSecond,
+		StandardUnitMicroseconds,
+		StandardUnitMilliseconds,
+		StandardUnitNone,
+		StandardUnitPercent,
+		StandardUnitSeconds,
+		StandardUnitTerabits,
+		StandardUnitTerabitsSecond,
+		StandardUnitTerabytes,
+		StandardUnitTerabytesSecond,
+	}
+	if err := model.ValidateEnum(v, "Unit", UnitEnum); err != nil {
+		errors["Unit"] = append(errors["Unit"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutMetricDataInput is undocumented.
 type PutMetricDataInput struct {
 	MetricData []MetricDatum   `xml:"MetricData>member"`
 	Namespace  aws.StringValue `xml:"Namespace"`
+}
+
+func (v *PutMetricDataInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "MetricData"); err != nil {
+		errors["MetricData"] = append(errors["MetricData"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Namespace"); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMin(v, "Namespace", 1); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidateMax(v, "Namespace", 255); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Namespace", `[^:].*`); err != nil {
+		errors["Namespace"] = append(errors["Namespace"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SetAlarmStateInput is undocumented.
@@ -384,6 +1412,53 @@ type SetAlarmStateInput struct {
 	StateReason     aws.StringValue `xml:"StateReason"`
 	StateReasonData aws.StringValue `xml:"StateReasonData"`
 	StateValue      aws.StringValue `xml:"StateValue"`
+}
+
+func (v *SetAlarmStateInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AlarmName"); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AlarmName", 1); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AlarmName", 255); err != nil {
+		errors["AlarmName"] = append(errors["AlarmName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StateReason"); err != nil {
+		errors["StateReason"] = append(errors["StateReason"], err)
+	}
+
+	if err := model.ValidateMax(v, "StateReason", 1023); err != nil {
+		errors["StateReason"] = append(errors["StateReason"], err)
+	}
+
+	if err := model.ValidateMax(v, "StateReasonData", 4000); err != nil {
+		errors["StateReasonData"] = append(errors["StateReasonData"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StateValue"); err != nil {
+		errors["StateValue"] = append(errors["StateValue"], err)
+	}
+
+	StateValueEnum := []string{
+		StateValueAlarm,
+		StateValueInsufficientData,
+		StateValueOK,
+	}
+	if err := model.ValidateEnum(v, "StateValue", StateValueEnum); err != nil {
+		errors["StateValue"] = append(errors["StateValue"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudWatch.
@@ -439,6 +1514,32 @@ type StatisticSet struct {
 	Minimum     aws.DoubleValue `xml:"Minimum"`
 	SampleCount aws.DoubleValue `xml:"SampleCount"`
 	Sum         aws.DoubleValue `xml:"Sum"`
+}
+
+func (v *StatisticSet) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Maximum"); err != nil {
+		errors["Maximum"] = append(errors["Maximum"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Minimum"); err != nil {
+		errors["Minimum"] = append(errors["Minimum"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SampleCount"); err != nil {
+		errors["SampleCount"] = append(errors["SampleCount"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Sum"); err != nil {
+		errors["Sum"] = append(errors["Sum"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAlarmHistoryResult is a wrapper for DescribeAlarmHistoryOutput.

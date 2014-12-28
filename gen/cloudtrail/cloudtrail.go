@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // CloudTrail is a client for AWS CloudTrail.
@@ -43,6 +44,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Clo
 // trail that specifies the settings for delivery of log data to an Amazon
 // S3 bucket.
 func (c *CloudTrail) CreateTrail(req *CreateTrailRequest) (resp *CreateTrailResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateTrailResponse{}
 	err = c.client.Do("CreateTrail", "POST", "/", req, resp)
 	return
@@ -50,6 +55,10 @@ func (c *CloudTrail) CreateTrail(req *CreateTrailRequest) (resp *CreateTrailResp
 
 // DeleteTrail is undocumented.
 func (c *CloudTrail) DeleteTrail(req *DeleteTrailRequest) (resp *DeleteTrailResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteTrailResponse{}
 	err = c.client.Do("DeleteTrail", "POST", "/", req, resp)
 	return
@@ -58,6 +67,10 @@ func (c *CloudTrail) DeleteTrail(req *DeleteTrailRequest) (resp *DeleteTrailResp
 // DescribeTrails retrieves settings for the trail associated with the
 // current region for your account.
 func (c *CloudTrail) DescribeTrails(req *DescribeTrailsRequest) (resp *DescribeTrailsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTrailsResponse{}
 	err = c.client.Do("DescribeTrails", "POST", "/", req, resp)
 	return
@@ -68,6 +81,10 @@ func (c *CloudTrail) DescribeTrails(req *DescribeTrailsRequest) (resp *DescribeT
 // SNS and Amazon S3 errors, and start and stop logging times for each
 // trail.
 func (c *CloudTrail) GetTrailStatus(req *GetTrailStatusRequest) (resp *GetTrailStatusResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetTrailStatusResponse{}
 	err = c.client.Do("GetTrailStatus", "POST", "/", req, resp)
 	return
@@ -76,6 +93,10 @@ func (c *CloudTrail) GetTrailStatus(req *GetTrailStatusRequest) (resp *GetTrailS
 // StartLogging starts the recording of AWS API calls and log file delivery
 // for a trail.
 func (c *CloudTrail) StartLogging(req *StartLoggingRequest) (resp *StartLoggingResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &StartLoggingResponse{}
 	err = c.client.Do("StartLogging", "POST", "/", req, resp)
 	return
@@ -86,6 +107,10 @@ func (c *CloudTrail) StartLogging(req *StartLoggingRequest) (resp *StartLoggingR
 // need to use this action. You can update a trail without stopping it
 // first. This action is the only way to stop recording.
 func (c *CloudTrail) StopLogging(req *StopLoggingRequest) (resp *StopLoggingResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &StopLoggingResponse{}
 	err = c.client.Do("StopLogging", "POST", "/", req, resp)
 	return
@@ -98,6 +123,10 @@ func (c *CloudTrail) StopLogging(req *StopLoggingRequest) (resp *StopLoggingResp
 // been a target for CloudTrail log files, an IAM policy exists for the
 // bucket.
 func (c *CloudTrail) UpdateTrail(req *UpdateTrailRequest) (resp *UpdateTrailResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateTrailResponse{}
 	err = c.client.Do("UpdateTrail", "POST", "/", req, resp)
 	return
@@ -114,6 +143,24 @@ type CreateTrailRequest struct {
 	SNSTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
 }
 
+func (v *CreateTrailRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "S3BucketName"); err != nil {
+		errors["S3BucketName"] = append(errors["S3BucketName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateTrailResponse is undocumented.
 type CreateTrailResponse struct {
 	CloudWatchLogsLogGroupARN  aws.StringValue  `json:"CloudWatchLogsLogGroupArn,omitempty"`
@@ -125,13 +172,47 @@ type CreateTrailResponse struct {
 	SNSTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
 }
 
+func (v *CreateTrailResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteTrailRequest is undocumented.
 type DeleteTrailRequest struct {
 	Name aws.StringValue `json:"Name"`
 }
 
+func (v *DeleteTrailRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteTrailResponse is undocumented.
 type DeleteTrailResponse struct {
+}
+
+func (v *DeleteTrailResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTrailsRequest is undocumented.
@@ -139,14 +220,48 @@ type DescribeTrailsRequest struct {
 	TrailNameList []string `json:"trailNameList,omitempty"`
 }
 
+func (v *DescribeTrailsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTrailsResponse is undocumented.
 type DescribeTrailsResponse struct {
 	TrailList []Trail `json:"trailList,omitempty"`
 }
 
+func (v *DescribeTrailsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetTrailStatusRequest is undocumented.
 type GetTrailStatusRequest struct {
 	Name aws.StringValue `json:"Name"`
+}
+
+func (v *GetTrailStatusRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetTrailStatusResponse is undocumented.
@@ -162,13 +277,47 @@ type GetTrailStatusResponse struct {
 	StopLoggingTime                   time.Time        `json:"StopLoggingTime,omitempty"`
 }
 
+func (v *GetTrailStatusResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StartLoggingRequest is undocumented.
 type StartLoggingRequest struct {
 	Name aws.StringValue `json:"Name"`
 }
 
+func (v *StartLoggingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StartLoggingResponse is undocumented.
 type StartLoggingResponse struct {
+}
+
+func (v *StartLoggingResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // StopLoggingRequest is undocumented.
@@ -176,8 +325,32 @@ type StopLoggingRequest struct {
 	Name aws.StringValue `json:"Name"`
 }
 
+func (v *StopLoggingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StopLoggingResponse is undocumented.
 type StopLoggingResponse struct {
+}
+
+func (v *StopLoggingResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Trail is undocumented.
@@ -191,6 +364,16 @@ type Trail struct {
 	SNSTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
 }
 
+func (v *Trail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateTrailRequest is undocumented.
 type UpdateTrailRequest struct {
 	CloudWatchLogsLogGroupARN  aws.StringValue  `json:"CloudWatchLogsLogGroupArn,omitempty"`
@@ -202,6 +385,20 @@ type UpdateTrailRequest struct {
 	SNSTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
 }
 
+func (v *UpdateTrailRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateTrailResponse is undocumented.
 type UpdateTrailResponse struct {
 	CloudWatchLogsLogGroupARN  aws.StringValue  `json:"CloudWatchLogsLogGroupArn,omitempty"`
@@ -211,6 +408,16 @@ type UpdateTrailResponse struct {
 	S3BucketName               aws.StringValue  `json:"S3BucketName,omitempty"`
 	S3KeyPrefix                aws.StringValue  `json:"S3KeyPrefix,omitempty"`
 	SNSTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
+}
+
+func (v *UpdateTrailResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

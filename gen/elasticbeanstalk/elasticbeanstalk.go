@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // ElasticBeanstalk is a client for AWS Elastic Beanstalk.
@@ -41,6 +42,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Ela
 
 // CheckDNSAvailability is undocumented.
 func (c *ElasticBeanstalk) CheckDNSAvailability(req *CheckDNSAvailabilityMessage) (resp *CheckDNSAvailabilityResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CheckDNSAvailabilityResult{}
 	err = c.client.Do("CheckDNSAvailability", "POST", "/", req, resp)
 	return
@@ -49,6 +54,10 @@ func (c *ElasticBeanstalk) CheckDNSAvailability(req *CheckDNSAvailabilityMessage
 // CreateApplication creates an application that has one configuration
 // template named default and no application versions.
 func (c *ElasticBeanstalk) CreateApplication(req *CreateApplicationMessage) (resp *CreateApplicationResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateApplicationResult{}
 	err = c.client.Do("CreateApplication", "POST", "/", req, resp)
 	return
@@ -57,6 +66,10 @@ func (c *ElasticBeanstalk) CreateApplication(req *CreateApplicationMessage) (res
 // CreateApplicationVersion creates an application version for the
 // specified application.
 func (c *ElasticBeanstalk) CreateApplicationVersion(req *CreateApplicationVersionMessage) (resp *CreateApplicationVersionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateApplicationVersionResult{}
 	err = c.client.Do("CreateApplicationVersion", "POST", "/", req, resp)
 	return
@@ -67,6 +80,10 @@ func (c *ElasticBeanstalk) CreateApplicationVersion(req *CreateApplicationVersio
 // different versions of the application with the same configuration
 // settings.
 func (c *ElasticBeanstalk) CreateConfigurationTemplate(req *CreateConfigurationTemplateMessage) (resp *CreateConfigurationTemplateResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateConfigurationTemplateResult{}
 	err = c.client.Do("CreateConfigurationTemplate", "POST", "/", req, resp)
 	return
@@ -75,6 +92,10 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplate(req *CreateConfigurationT
 // CreateEnvironment launches an environment for the specified application
 // using the specified configuration.
 func (c *ElasticBeanstalk) CreateEnvironment(req *CreateEnvironmentMessage) (resp *CreateEnvironmentResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateEnvironmentResult{}
 	err = c.client.Do("CreateEnvironment", "POST", "/", req, resp)
 	return
@@ -92,6 +113,10 @@ func (c *ElasticBeanstalk) CreateStorageLocation() (resp *CreateStorageLocationR
 // associated versions and configurations. The application versions will
 // not be deleted from your Amazon S3 bucket.
 func (c *ElasticBeanstalk) DeleteApplication(req *DeleteApplicationMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteApplication", "POST", "/", req, nil)
 	return
@@ -100,6 +125,10 @@ func (c *ElasticBeanstalk) DeleteApplication(req *DeleteApplicationMessage) (err
 // DeleteApplicationVersion deletes the specified version from the
 // specified application.
 func (c *ElasticBeanstalk) DeleteApplicationVersion(req *DeleteApplicationVersionMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteApplicationVersion", "POST", "/", req, nil)
 	return
@@ -107,6 +136,10 @@ func (c *ElasticBeanstalk) DeleteApplicationVersion(req *DeleteApplicationVersio
 
 // DeleteConfigurationTemplate is undocumented.
 func (c *ElasticBeanstalk) DeleteConfigurationTemplate(req *DeleteConfigurationTemplateMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteConfigurationTemplate", "POST", "/", req, nil)
 	return
@@ -121,6 +154,10 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplate(req *DeleteConfigurationT
 // deployment is in process or has failed. The draft configuration remains
 // in existence until it is deleted with this action.
 func (c *ElasticBeanstalk) DeleteEnvironmentConfiguration(req *DeleteEnvironmentConfigurationMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteEnvironmentConfiguration", "POST", "/", req, nil)
 	return
@@ -129,6 +166,10 @@ func (c *ElasticBeanstalk) DeleteEnvironmentConfiguration(req *DeleteEnvironment
 // DescribeApplicationVersions returns descriptions for existing
 // application versions.
 func (c *ElasticBeanstalk) DescribeApplicationVersions(req *DescribeApplicationVersionsMessage) (resp *DescribeApplicationVersionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeApplicationVersionsResult{}
 	err = c.client.Do("DescribeApplicationVersions", "POST", "/", req, resp)
 	return
@@ -136,6 +177,10 @@ func (c *ElasticBeanstalk) DescribeApplicationVersions(req *DescribeApplicationV
 
 // DescribeApplications is undocumented.
 func (c *ElasticBeanstalk) DescribeApplications(req *DescribeApplicationsMessage) (resp *DescribeApplicationsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeApplicationsResult{}
 	err = c.client.Do("DescribeApplications", "POST", "/", req, resp)
 	return
@@ -147,6 +192,10 @@ func (c *ElasticBeanstalk) DescribeApplications(req *DescribeApplicationsMessage
 // the options, their default values, and an indication of the required
 // action on a running environment if an option value is changed.
 func (c *ElasticBeanstalk) DescribeConfigurationOptions(req *DescribeConfigurationOptionsMessage) (resp *DescribeConfigurationOptionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeConfigurationOptionsResult{}
 	err = c.client.Do("DescribeConfigurationOptions", "POST", "/", req, resp)
 	return
@@ -161,6 +210,10 @@ func (c *ElasticBeanstalk) DescribeConfigurationOptions(req *DescribeConfigurati
 // draft configuration of an environment that is either in the process of
 // deployment or that failed to deploy.
 func (c *ElasticBeanstalk) DescribeConfigurationSettings(req *DescribeConfigurationSettingsMessage) (resp *DescribeConfigurationSettingsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeConfigurationSettingsResult{}
 	err = c.client.Do("DescribeConfigurationSettings", "POST", "/", req, resp)
 	return
@@ -168,6 +221,10 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettings(req *DescribeConfigurat
 
 // DescribeEnvironmentResources is undocumented.
 func (c *ElasticBeanstalk) DescribeEnvironmentResources(req *DescribeEnvironmentResourcesMessage) (resp *DescribeEnvironmentResourcesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeEnvironmentResourcesResult{}
 	err = c.client.Do("DescribeEnvironmentResources", "POST", "/", req, resp)
 	return
@@ -175,6 +232,10 @@ func (c *ElasticBeanstalk) DescribeEnvironmentResources(req *DescribeEnvironment
 
 // DescribeEnvironments is undocumented.
 func (c *ElasticBeanstalk) DescribeEnvironments(req *DescribeEnvironmentsMessage) (resp *DescribeEnvironmentsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeEnvironmentsResult{}
 	err = c.client.Do("DescribeEnvironments", "POST", "/", req, resp)
 	return
@@ -183,6 +244,10 @@ func (c *ElasticBeanstalk) DescribeEnvironments(req *DescribeEnvironmentsMessage
 // DescribeEvents returns list of event descriptions matching criteria up
 // to the last 6 weeks.
 func (c *ElasticBeanstalk) DescribeEvents(req *DescribeEventsMessage) (resp *DescribeEventsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeEventsResult{}
 	err = c.client.Do("DescribeEvents", "POST", "/", req, resp)
 	return
@@ -200,6 +265,10 @@ func (c *ElasticBeanstalk) ListAvailableSolutionStacks() (resp *ListAvailableSol
 // example: the Auto Scaling group, load balancer, etc.) for a specified
 // environment and forces a restart.
 func (c *ElasticBeanstalk) RebuildEnvironment(req *RebuildEnvironmentMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RebuildEnvironment", "POST", "/", req, nil)
 	return
@@ -211,6 +280,10 @@ func (c *ElasticBeanstalk) RebuildEnvironment(req *RebuildEnvironmentMessage) (e
 // Amazon EC2 instance in your environment. Use RetrieveEnvironmentInfo to
 // access the compiled information.
 func (c *ElasticBeanstalk) RequestEnvironmentInfo(req *RequestEnvironmentInfoMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RequestEnvironmentInfo", "POST", "/", req, nil)
 	return
@@ -219,6 +292,10 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfo(req *RequestEnvironmentInfoMes
 // RestartAppServer causes the environment to restart the application
 // container server running on each Amazon EC2 instance.
 func (c *ElasticBeanstalk) RestartAppServer(req *RestartAppServerMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RestartAppServer", "POST", "/", req, nil)
 	return
@@ -227,6 +304,10 @@ func (c *ElasticBeanstalk) RestartAppServer(req *RestartAppServerMessage) (err e
 // RetrieveEnvironmentInfo retrieves the compiled information from a
 // RequestEnvironmentInfo request.
 func (c *ElasticBeanstalk) RetrieveEnvironmentInfo(req *RetrieveEnvironmentInfoMessage) (resp *RetrieveEnvironmentInfoResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RetrieveEnvironmentInfoResult{}
 	err = c.client.Do("RetrieveEnvironmentInfo", "POST", "/", req, resp)
 	return
@@ -234,6 +315,10 @@ func (c *ElasticBeanstalk) RetrieveEnvironmentInfo(req *RetrieveEnvironmentInfoM
 
 // SwapEnvironmentCNAMEs is undocumented.
 func (c *ElasticBeanstalk) SwapEnvironmentCNAMEs(req *SwapEnvironmentCNAMEsMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SwapEnvironmentCNAMEs", "POST", "/", req, nil)
 	return
@@ -241,6 +326,10 @@ func (c *ElasticBeanstalk) SwapEnvironmentCNAMEs(req *SwapEnvironmentCNAMEsMessa
 
 // TerminateEnvironment is undocumented.
 func (c *ElasticBeanstalk) TerminateEnvironment(req *TerminateEnvironmentMessage) (resp *TerminateEnvironmentResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &TerminateEnvironmentResult{}
 	err = c.client.Do("TerminateEnvironment", "POST", "/", req, resp)
 	return
@@ -249,6 +338,10 @@ func (c *ElasticBeanstalk) TerminateEnvironment(req *TerminateEnvironmentMessage
 // UpdateApplication updates the specified application to have the
 // specified properties.
 func (c *ElasticBeanstalk) UpdateApplication(req *UpdateApplicationMessage) (resp *UpdateApplicationResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateApplicationResult{}
 	err = c.client.Do("UpdateApplication", "POST", "/", req, resp)
 	return
@@ -257,6 +350,10 @@ func (c *ElasticBeanstalk) UpdateApplication(req *UpdateApplicationMessage) (res
 // UpdateApplicationVersion updates the specified application version to
 // have the specified properties.
 func (c *ElasticBeanstalk) UpdateApplicationVersion(req *UpdateApplicationVersionMessage) (resp *UpdateApplicationVersionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateApplicationVersionResult{}
 	err = c.client.Do("UpdateApplicationVersion", "POST", "/", req, resp)
 	return
@@ -265,6 +362,10 @@ func (c *ElasticBeanstalk) UpdateApplicationVersion(req *UpdateApplicationVersio
 // UpdateConfigurationTemplate updates the specified configuration template
 // to have the specified properties or configuration option values.
 func (c *ElasticBeanstalk) UpdateConfigurationTemplate(req *UpdateConfigurationTemplateMessage) (resp *UpdateConfigurationTemplateResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateConfigurationTemplateResult{}
 	err = c.client.Do("UpdateConfigurationTemplate", "POST", "/", req, resp)
 	return
@@ -280,6 +381,10 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplate(req *UpdateConfigurationT
 // is created and DescribeConfigurationSettings for this environment
 // returns two setting descriptions with different DeploymentStatus values.
 func (c *ElasticBeanstalk) UpdateEnvironment(req *UpdateEnvironmentMessage) (resp *UpdateEnvironmentResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateEnvironmentResult{}
 	err = c.client.Do("UpdateEnvironment", "POST", "/", req, resp)
 	return
@@ -291,6 +396,10 @@ func (c *ElasticBeanstalk) UpdateEnvironment(req *UpdateEnvironmentMessage) (res
 // indicating any errors or warnings associated with the selection of
 // option values.
 func (c *ElasticBeanstalk) ValidateConfigurationSettings(req *ValidateConfigurationSettingsMessage) (resp *ValidateConfigurationSettingsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ValidateConfigurationSettingsResult{}
 	err = c.client.Do("ValidateConfigurationSettings", "POST", "/", req, resp)
 	return
@@ -306,14 +415,56 @@ type ApplicationDescription struct {
 	Versions               []string        `xml:"Versions>member"`
 }
 
+func (v *ApplicationDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 200); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ApplicationDescriptionMessage is undocumented.
 type ApplicationDescriptionMessage struct {
 	Application *ApplicationDescription `xml:"Application"`
 }
 
+func (v *ApplicationDescriptionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ApplicationDescriptionsMessage is undocumented.
 type ApplicationDescriptionsMessage struct {
 	Applications []ApplicationDescription `xml:"DescribeApplicationsResult>Applications>member"`
+}
+
+func (v *ApplicationDescriptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ApplicationVersionDescription is undocumented.
@@ -326,9 +477,49 @@ type ApplicationVersionDescription struct {
 	VersionLabel    aws.StringValue `xml:"VersionLabel"`
 }
 
+func (v *ApplicationVersionDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 200); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateMin(v, "VersionLabel", 1); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMax(v, "VersionLabel", 100); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ApplicationVersionDescriptionMessage is undocumented.
 type ApplicationVersionDescriptionMessage struct {
 	ApplicationVersion *ApplicationVersionDescription `xml:"ApplicationVersion"`
+}
+
+func (v *ApplicationVersionDescriptionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ApplicationVersionDescriptionsMessage is undocumented.
@@ -336,9 +527,29 @@ type ApplicationVersionDescriptionsMessage struct {
 	ApplicationVersions []ApplicationVersionDescription `xml:"DescribeApplicationVersionsResult>ApplicationVersions>member"`
 }
 
+func (v *ApplicationVersionDescriptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AutoScalingGroup is undocumented.
 type AutoScalingGroup struct {
 	Name aws.StringValue `xml:"Name"`
+}
+
+func (v *AutoScalingGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CheckDNSAvailabilityMessage is undocumented.
@@ -346,10 +557,50 @@ type CheckDNSAvailabilityMessage struct {
 	CNAMEPrefix aws.StringValue `xml:"CNAMEPrefix"`
 }
 
+func (v *CheckDNSAvailabilityMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CNAMEPrefix"); err != nil {
+		errors["CNAMEPrefix"] = append(errors["CNAMEPrefix"], err)
+	}
+
+	if err := model.ValidateMin(v, "CNAMEPrefix", 4); err != nil {
+		errors["CNAMEPrefix"] = append(errors["CNAMEPrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "CNAMEPrefix", 63); err != nil {
+		errors["CNAMEPrefix"] = append(errors["CNAMEPrefix"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CheckDNSAvailabilityResultMessage is undocumented.
 type CheckDNSAvailabilityResultMessage struct {
 	Available           aws.BooleanValue `xml:"CheckDNSAvailabilityResult>Available"`
 	FullyQualifiedCNAME aws.StringValue  `xml:"CheckDNSAvailabilityResult>FullyQualifiedCNAME"`
+}
+
+func (v *CheckDNSAvailabilityResultMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "FullyQualifiedCNAME", 1); err != nil {
+		errors["FullyQualifiedCNAME"] = append(errors["FullyQualifiedCNAME"], err)
+	}
+
+	if err := model.ValidateMax(v, "FullyQualifiedCNAME", 255); err != nil {
+		errors["FullyQualifiedCNAME"] = append(errors["FullyQualifiedCNAME"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for ElasticBeanstalk.
@@ -374,11 +625,39 @@ type ConfigurationOptionDescription struct {
 	ValueType      aws.StringValue         `xml:"ValueType"`
 }
 
+func (v *ConfigurationOptionDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ValueTypeEnum := []string{
+		ConfigurationOptionValueTypeList,
+		ConfigurationOptionValueTypeScalar,
+	}
+	if err := model.ValidateEnum(v, "ValueType", ValueTypeEnum); err != nil {
+		errors["ValueType"] = append(errors["ValueType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfigurationOptionSetting is undocumented.
 type ConfigurationOptionSetting struct {
 	Namespace  aws.StringValue `xml:"Namespace"`
 	OptionName aws.StringValue `xml:"OptionName"`
 	Value      aws.StringValue `xml:"Value"`
+}
+
+func (v *ConfigurationOptionSetting) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for ElasticBeanstalk.
@@ -391,6 +670,20 @@ const (
 type ConfigurationOptionsDescription struct {
 	Options           []ConfigurationOptionDescription `xml:"DescribeConfigurationOptionsResult>Options>member"`
 	SolutionStackName aws.StringValue                  `xml:"DescribeConfigurationOptionsResult>SolutionStackName"`
+}
+
+func (v *ConfigurationOptionsDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "SolutionStackName", 100); err != nil {
+		errors["SolutionStackName"] = append(errors["SolutionStackName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ConfigurationSettingsDescription is undocumented.
@@ -406,9 +699,70 @@ type ConfigurationSettingsDescription struct {
 	TemplateName      aws.StringValue              `xml:"TemplateName"`
 }
 
+func (v *ConfigurationSettingsDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	DeploymentStatusEnum := []string{
+		ConfigurationDeploymentStatusDeployed,
+		ConfigurationDeploymentStatusFailed,
+		ConfigurationDeploymentStatusPending,
+	}
+	if err := model.ValidateEnum(v, "DeploymentStatus", DeploymentStatusEnum); err != nil {
+		errors["DeploymentStatus"] = append(errors["DeploymentStatus"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 200); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "SolutionStackName", 100); err != nil {
+		errors["SolutionStackName"] = append(errors["SolutionStackName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfigurationSettingsDescriptions is undocumented.
 type ConfigurationSettingsDescriptions struct {
 	ConfigurationSettings []ConfigurationSettingsDescription `xml:"DescribeConfigurationSettingsResult>ConfigurationSettings>member"`
+}
+
+func (v *ConfigurationSettingsDescriptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ConfigurationSettingsValidationMessages is undocumented.
@@ -416,10 +770,46 @@ type ConfigurationSettingsValidationMessages struct {
 	Messages []ValidationMessage `xml:"ValidateConfigurationSettingsResult>Messages>member"`
 }
 
+func (v *ConfigurationSettingsValidationMessages) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateApplicationMessage is undocumented.
 type CreateApplicationMessage struct {
 	ApplicationName aws.StringValue `xml:"ApplicationName"`
 	Description     aws.StringValue `xml:"Description"`
+}
+
+func (v *CreateApplicationMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 200); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateApplicationVersionMessage is undocumented.
@@ -431,6 +821,44 @@ type CreateApplicationVersionMessage struct {
 	VersionLabel          aws.StringValue  `xml:"VersionLabel"`
 }
 
+func (v *CreateApplicationVersionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 200); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VersionLabel"); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMin(v, "VersionLabel", 1); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMax(v, "VersionLabel", 100); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateConfigurationTemplateMessage is undocumented.
 type CreateConfigurationTemplateMessage struct {
 	ApplicationName     aws.StringValue              `xml:"ApplicationName"`
@@ -440,6 +868,48 @@ type CreateConfigurationTemplateMessage struct {
 	SolutionStackName   aws.StringValue              `xml:"SolutionStackName"`
 	SourceConfiguration *SourceConfiguration         `xml:"SourceConfiguration"`
 	TemplateName        aws.StringValue              `xml:"TemplateName"`
+}
+
+func (v *CreateConfigurationTemplateMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 200); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateMax(v, "SolutionStackName", 100); err != nil {
+		errors["SolutionStackName"] = append(errors["SolutionStackName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TemplateName"); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateEnvironmentMessage is undocumented.
@@ -457,15 +927,117 @@ type CreateEnvironmentMessage struct {
 	VersionLabel      aws.StringValue              `xml:"VersionLabel"`
 }
 
+func (v *CreateEnvironmentMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "CNAMEPrefix", 4); err != nil {
+		errors["CNAMEPrefix"] = append(errors["CNAMEPrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "CNAMEPrefix", 63); err != nil {
+		errors["CNAMEPrefix"] = append(errors["CNAMEPrefix"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 200); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EnvironmentName"); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "SolutionStackName", 100); err != nil {
+		errors["SolutionStackName"] = append(errors["SolutionStackName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "VersionLabel", 1); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMax(v, "VersionLabel", 100); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateStorageLocationResultMessage is undocumented.
 type CreateStorageLocationResultMessage struct {
 	S3Bucket aws.StringValue `xml:"CreateStorageLocationResult>S3Bucket"`
+}
+
+func (v *CreateStorageLocationResultMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "S3Bucket", 255); err != nil {
+		errors["S3Bucket"] = append(errors["S3Bucket"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteApplicationMessage is undocumented.
 type DeleteApplicationMessage struct {
 	ApplicationName     aws.StringValue  `xml:"ApplicationName"`
 	TerminateEnvByForce aws.BooleanValue `xml:"TerminateEnvByForce"`
+}
+
+func (v *DeleteApplicationMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteApplicationVersionMessage is undocumented.
@@ -475,10 +1047,78 @@ type DeleteApplicationVersionMessage struct {
 	VersionLabel       aws.StringValue  `xml:"VersionLabel"`
 }
 
+func (v *DeleteApplicationVersionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VersionLabel"); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMin(v, "VersionLabel", 1); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMax(v, "VersionLabel", 100); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteConfigurationTemplateMessage is undocumented.
 type DeleteConfigurationTemplateMessage struct {
 	ApplicationName aws.StringValue `xml:"ApplicationName"`
 	TemplateName    aws.StringValue `xml:"TemplateName"`
+}
+
+func (v *DeleteConfigurationTemplateMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TemplateName"); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteEnvironmentConfigurationMessage is undocumented.
@@ -487,15 +1127,77 @@ type DeleteEnvironmentConfigurationMessage struct {
 	EnvironmentName aws.StringValue `xml:"EnvironmentName"`
 }
 
+func (v *DeleteEnvironmentConfigurationMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EnvironmentName"); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeApplicationVersionsMessage is undocumented.
 type DescribeApplicationVersionsMessage struct {
 	ApplicationName aws.StringValue `xml:"ApplicationName"`
 	VersionLabels   []string        `xml:"VersionLabels>member"`
 }
 
+func (v *DescribeApplicationVersionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeApplicationsMessage is undocumented.
 type DescribeApplicationsMessage struct {
 	ApplicationNames []string `xml:"ApplicationNames>member"`
+}
+
+func (v *DescribeApplicationsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeConfigurationOptionsMessage is undocumented.
@@ -507,6 +1209,44 @@ type DescribeConfigurationOptionsMessage struct {
 	TemplateName      aws.StringValue       `xml:"TemplateName"`
 }
 
+func (v *DescribeConfigurationOptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "SolutionStackName", 100); err != nil {
+		errors["SolutionStackName"] = append(errors["SolutionStackName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeConfigurationSettingsMessage is undocumented.
 type DescribeConfigurationSettingsMessage struct {
 	ApplicationName aws.StringValue `xml:"ApplicationName"`
@@ -514,10 +1254,66 @@ type DescribeConfigurationSettingsMessage struct {
 	TemplateName    aws.StringValue `xml:"TemplateName"`
 }
 
+func (v *DescribeConfigurationSettingsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeEnvironmentResourcesMessage is undocumented.
 type DescribeEnvironmentResourcesMessage struct {
 	EnvironmentID   aws.StringValue `xml:"EnvironmentId"`
 	EnvironmentName aws.StringValue `xml:"EnvironmentName"`
+}
+
+func (v *DescribeEnvironmentResourcesMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeEnvironmentsMessage is undocumented.
@@ -528,6 +1324,32 @@ type DescribeEnvironmentsMessage struct {
 	IncludeDeleted        aws.BooleanValue `xml:"IncludeDeleted"`
 	IncludedDeletedBackTo time.Time        `xml:"IncludedDeletedBackTo"`
 	VersionLabel          aws.StringValue  `xml:"VersionLabel"`
+}
+
+func (v *DescribeEnvironmentsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "VersionLabel", 1); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMax(v, "VersionLabel", 100); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeEventsMessage is undocumented.
@@ -543,6 +1365,68 @@ type DescribeEventsMessage struct {
 	StartTime       time.Time        `xml:"StartTime"`
 	TemplateName    aws.StringValue  `xml:"TemplateName"`
 	VersionLabel    aws.StringValue  `xml:"VersionLabel"`
+}
+
+func (v *DescribeEventsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxRecords", 1); err != nil {
+		errors["MaxRecords"] = append(errors["MaxRecords"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxRecords", 1000); err != nil {
+		errors["MaxRecords"] = append(errors["MaxRecords"], err)
+	}
+
+	SeverityEnum := []string{
+		EventSeverityDebug,
+		EventSeverityError,
+		EventSeverityFatal,
+		EventSeverityInfo,
+		EventSeverityTrace,
+		EventSeverityWarn,
+	}
+	if err := model.ValidateEnum(v, "Severity", SeverityEnum); err != nil {
+		errors["Severity"] = append(errors["Severity"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "VersionLabel", 1); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMax(v, "VersionLabel", 100); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EnvironmentDescription is undocumented.
@@ -564,9 +1448,98 @@ type EnvironmentDescription struct {
 	VersionLabel      aws.StringValue                  `xml:"VersionLabel"`
 }
 
+func (v *EnvironmentDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "CNAME", 1); err != nil {
+		errors["CNAME"] = append(errors["CNAME"], err)
+	}
+
+	if err := model.ValidateMax(v, "CNAME", 255); err != nil {
+		errors["CNAME"] = append(errors["CNAME"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 200); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	HealthEnum := []string{
+		EnvironmentHealthGreen,
+		EnvironmentHealthGrey,
+		EnvironmentHealthRed,
+		EnvironmentHealthYellow,
+	}
+	if err := model.ValidateEnum(v, "Health", HealthEnum); err != nil {
+		errors["Health"] = append(errors["Health"], err)
+	}
+
+	if err := model.ValidateMax(v, "SolutionStackName", 100); err != nil {
+		errors["SolutionStackName"] = append(errors["SolutionStackName"], err)
+	}
+
+	StatusEnum := []string{
+		EnvironmentStatusLaunching,
+		EnvironmentStatusReady,
+		EnvironmentStatusTerminated,
+		EnvironmentStatusTerminating,
+		EnvironmentStatusUpdating,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "VersionLabel", 1); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMax(v, "VersionLabel", 100); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnvironmentDescriptionsMessage is undocumented.
 type EnvironmentDescriptionsMessage struct {
 	Environments []EnvironmentDescription `xml:"DescribeEnvironmentsResult>Environments>member"`
+}
+
+func (v *EnvironmentDescriptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for ElasticBeanstalk.
@@ -585,6 +1558,23 @@ type EnvironmentInfoDescription struct {
 	SampleTimestamp time.Time       `xml:"SampleTimestamp"`
 }
 
+func (v *EnvironmentInfoDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	InfoTypeEnum := []string{
+		EnvironmentInfoTypeTail,
+	}
+	if err := model.ValidateEnum(v, "InfoType", InfoTypeEnum); err != nil {
+		errors["InfoType"] = append(errors["InfoType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for ElasticBeanstalk.
 const (
 	EnvironmentInfoTypeTail = "tail"
@@ -601,14 +1591,52 @@ type EnvironmentResourceDescription struct {
 	Triggers             []Trigger             `xml:"Triggers>member"`
 }
 
+func (v *EnvironmentResourceDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnvironmentResourceDescriptionsMessage is undocumented.
 type EnvironmentResourceDescriptionsMessage struct {
 	EnvironmentResources *EnvironmentResourceDescription `xml:"DescribeEnvironmentResourcesResult>EnvironmentResources"`
 }
 
+func (v *EnvironmentResourceDescriptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnvironmentResourcesDescription is undocumented.
 type EnvironmentResourcesDescription struct {
 	LoadBalancer *LoadBalancerDescription `xml:"LoadBalancer"`
+}
+
+func (v *EnvironmentResourcesDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for ElasticBeanstalk.
@@ -627,6 +1655,16 @@ type EnvironmentTier struct {
 	Version aws.StringValue `xml:"Version"`
 }
 
+func (v *EnvironmentTier) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EventDescription is undocumented.
 type EventDescription struct {
 	ApplicationName aws.StringValue `xml:"ApplicationName"`
@@ -639,10 +1677,74 @@ type EventDescription struct {
 	VersionLabel    aws.StringValue `xml:"VersionLabel"`
 }
 
+func (v *EventDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	SeverityEnum := []string{
+		EventSeverityDebug,
+		EventSeverityError,
+		EventSeverityFatal,
+		EventSeverityInfo,
+		EventSeverityTrace,
+		EventSeverityWarn,
+	}
+	if err := model.ValidateEnum(v, "Severity", SeverityEnum); err != nil {
+		errors["Severity"] = append(errors["Severity"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "VersionLabel", 1); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMax(v, "VersionLabel", 100); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EventDescriptionsMessage is undocumented.
 type EventDescriptionsMessage struct {
 	Events    []EventDescription `xml:"DescribeEventsResult>Events>member"`
 	NextToken aws.StringValue    `xml:"DescribeEventsResult>NextToken"`
+}
+
+func (v *EventDescriptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for ElasticBeanstalk.
@@ -660,9 +1762,29 @@ type Instance struct {
 	ID aws.StringValue `xml:"Id"`
 }
 
+func (v *Instance) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // LaunchConfiguration is undocumented.
 type LaunchConfiguration struct {
 	Name aws.StringValue `xml:"Name"`
+}
+
+func (v *LaunchConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListAvailableSolutionStacksResultMessage is undocumented.
@@ -671,15 +1793,45 @@ type ListAvailableSolutionStacksResultMessage struct {
 	SolutionStacks       []string                   `xml:"ListAvailableSolutionStacksResult>SolutionStacks>member"`
 }
 
+func (v *ListAvailableSolutionStacksResultMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Listener is undocumented.
 type Listener struct {
 	Port     aws.IntegerValue `xml:"Port"`
 	Protocol aws.StringValue  `xml:"Protocol"`
 }
 
+func (v *Listener) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // LoadBalancer is undocumented.
 type LoadBalancer struct {
 	Name aws.StringValue `xml:"Name"`
+}
+
+func (v *LoadBalancer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LoadBalancerDescription is undocumented.
@@ -689,10 +1841,30 @@ type LoadBalancerDescription struct {
 	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
 }
 
+func (v *LoadBalancerDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // OptionRestrictionRegex is undocumented.
 type OptionRestrictionRegex struct {
 	Label   aws.StringValue `xml:"Label"`
 	Pattern aws.StringValue `xml:"Pattern"`
+}
+
+func (v *OptionRestrictionRegex) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // OptionSpecification is undocumented.
@@ -701,16 +1873,54 @@ type OptionSpecification struct {
 	OptionName aws.StringValue `xml:"OptionName"`
 }
 
+func (v *OptionSpecification) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Queue is undocumented.
 type Queue struct {
 	Name aws.StringValue `xml:"Name"`
 	URL  aws.StringValue `xml:"URL"`
 }
 
+func (v *Queue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RebuildEnvironmentMessage is undocumented.
 type RebuildEnvironmentMessage struct {
 	EnvironmentID   aws.StringValue `xml:"EnvironmentId"`
 	EnvironmentName aws.StringValue `xml:"EnvironmentName"`
+}
+
+func (v *RebuildEnvironmentMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RequestEnvironmentInfoMessage is undocumented.
@@ -720,10 +1930,57 @@ type RequestEnvironmentInfoMessage struct {
 	InfoType        aws.StringValue `xml:"InfoType"`
 }
 
+func (v *RequestEnvironmentInfoMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InfoType"); err != nil {
+		errors["InfoType"] = append(errors["InfoType"], err)
+	}
+
+	InfoTypeEnum := []string{
+		EnvironmentInfoTypeTail,
+	}
+	if err := model.ValidateEnum(v, "InfoType", InfoTypeEnum); err != nil {
+		errors["InfoType"] = append(errors["InfoType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RestartAppServerMessage is undocumented.
 type RestartAppServerMessage struct {
 	EnvironmentID   aws.StringValue `xml:"EnvironmentId"`
 	EnvironmentName aws.StringValue `xml:"EnvironmentName"`
+}
+
+func (v *RestartAppServerMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RetrieveEnvironmentInfoMessage is undocumented.
@@ -733,9 +1990,48 @@ type RetrieveEnvironmentInfoMessage struct {
 	InfoType        aws.StringValue `xml:"InfoType"`
 }
 
+func (v *RetrieveEnvironmentInfoMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InfoType"); err != nil {
+		errors["InfoType"] = append(errors["InfoType"], err)
+	}
+
+	InfoTypeEnum := []string{
+		EnvironmentInfoTypeTail,
+	}
+	if err := model.ValidateEnum(v, "InfoType", InfoTypeEnum); err != nil {
+		errors["InfoType"] = append(errors["InfoType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RetrieveEnvironmentInfoResultMessage is undocumented.
 type RetrieveEnvironmentInfoResultMessage struct {
 	EnvironmentInfo []EnvironmentInfoDescription `xml:"RetrieveEnvironmentInfoResult>EnvironmentInfo>member"`
+}
+
+func (v *RetrieveEnvironmentInfoResultMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // S3Location is undocumented.
@@ -744,16 +2040,74 @@ type S3Location struct {
 	S3Key    aws.StringValue `xml:"S3Key"`
 }
 
+func (v *S3Location) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "S3Bucket", 255); err != nil {
+		errors["S3Bucket"] = append(errors["S3Bucket"], err)
+	}
+
+	if err := model.ValidateMax(v, "S3Key", 1024); err != nil {
+		errors["S3Key"] = append(errors["S3Key"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SolutionStackDescription is undocumented.
 type SolutionStackDescription struct {
 	PermittedFileTypes []string        `xml:"PermittedFileTypes>member"`
 	SolutionStackName  aws.StringValue `xml:"SolutionStackName"`
 }
 
+func (v *SolutionStackDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "SolutionStackName", 100); err != nil {
+		errors["SolutionStackName"] = append(errors["SolutionStackName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SourceConfiguration is undocumented.
 type SourceConfiguration struct {
 	ApplicationName aws.StringValue `xml:"ApplicationName"`
 	TemplateName    aws.StringValue `xml:"TemplateName"`
+}
+
+func (v *SourceConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SwapEnvironmentCNAMEsMessage is undocumented.
@@ -764,10 +2118,62 @@ type SwapEnvironmentCNAMEsMessage struct {
 	SourceEnvironmentName      aws.StringValue `xml:"SourceEnvironmentName"`
 }
 
+func (v *SwapEnvironmentCNAMEsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "DestinationEnvironmentName", 4); err != nil {
+		errors["DestinationEnvironmentName"] = append(errors["DestinationEnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DestinationEnvironmentName", 23); err != nil {
+		errors["DestinationEnvironmentName"] = append(errors["DestinationEnvironmentName"], err)
+	}
+
+	if err := model.ValidateMin(v, "SourceEnvironmentName", 4); err != nil {
+		errors["SourceEnvironmentName"] = append(errors["SourceEnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "SourceEnvironmentName", 23); err != nil {
+		errors["SourceEnvironmentName"] = append(errors["SourceEnvironmentName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Tag is undocumented.
 type Tag struct {
 	Key   aws.StringValue `xml:"Key"`
 	Value aws.StringValue `xml:"Value"`
+}
+
+func (v *Tag) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 128); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMin(v, "Value", 1); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 256); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TerminateEnvironmentMessage is undocumented.
@@ -777,15 +2183,69 @@ type TerminateEnvironmentMessage struct {
 	TerminateResources aws.BooleanValue `xml:"TerminateResources"`
 }
 
+func (v *TerminateEnvironmentMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Trigger is undocumented.
 type Trigger struct {
 	Name aws.StringValue `xml:"Name"`
+}
+
+func (v *Trigger) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateApplicationMessage is undocumented.
 type UpdateApplicationMessage struct {
 	ApplicationName aws.StringValue `xml:"ApplicationName"`
 	Description     aws.StringValue `xml:"Description"`
+}
+
+func (v *UpdateApplicationMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 200); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateApplicationVersionMessage is undocumented.
@@ -795,6 +2255,44 @@ type UpdateApplicationVersionMessage struct {
 	VersionLabel    aws.StringValue `xml:"VersionLabel"`
 }
 
+func (v *UpdateApplicationVersionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 200); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VersionLabel"); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMin(v, "VersionLabel", 1); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMax(v, "VersionLabel", 100); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateConfigurationTemplateMessage is undocumented.
 type UpdateConfigurationTemplateMessage struct {
 	ApplicationName aws.StringValue              `xml:"ApplicationName"`
@@ -802,6 +2300,44 @@ type UpdateConfigurationTemplateMessage struct {
 	OptionSettings  []ConfigurationOptionSetting `xml:"OptionSettings>member"`
 	OptionsToRemove []OptionSpecification        `xml:"OptionsToRemove>member"`
 	TemplateName    aws.StringValue              `xml:"TemplateName"`
+}
+
+func (v *UpdateConfigurationTemplateMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 200); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TemplateName"); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateEnvironmentMessage is undocumented.
@@ -816,6 +2352,44 @@ type UpdateEnvironmentMessage struct {
 	VersionLabel    aws.StringValue              `xml:"VersionLabel"`
 }
 
+func (v *UpdateEnvironmentMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Description", 200); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMin(v, "VersionLabel", 1); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if err := model.ValidateMax(v, "VersionLabel", 100); err != nil {
+		errors["VersionLabel"] = append(errors["VersionLabel"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ValidateConfigurationSettingsMessage is undocumented.
 type ValidateConfigurationSettingsMessage struct {
 	ApplicationName aws.StringValue              `xml:"ApplicationName"`
@@ -824,12 +2398,72 @@ type ValidateConfigurationSettingsMessage struct {
 	TemplateName    aws.StringValue              `xml:"TemplateName"`
 }
 
+func (v *ValidateConfigurationSettingsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "EnvironmentName", 4); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "EnvironmentName", 23); err != nil {
+		errors["EnvironmentName"] = append(errors["EnvironmentName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OptionSettings"); err != nil {
+		errors["OptionSettings"] = append(errors["OptionSettings"], err)
+	}
+
+	if err := model.ValidateMin(v, "TemplateName", 1); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if err := model.ValidateMax(v, "TemplateName", 100); err != nil {
+		errors["TemplateName"] = append(errors["TemplateName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ValidationMessage is undocumented.
 type ValidationMessage struct {
 	Message    aws.StringValue `xml:"Message"`
 	Namespace  aws.StringValue `xml:"Namespace"`
 	OptionName aws.StringValue `xml:"OptionName"`
 	Severity   aws.StringValue `xml:"Severity"`
+}
+
+func (v *ValidationMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	SeverityEnum := []string{
+		ValidationSeverityError,
+		ValidationSeverityWarning,
+	}
+	if err := model.ValidateEnum(v, "Severity", SeverityEnum); err != nil {
+		errors["Severity"] = append(errors["Severity"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for ElasticBeanstalk.

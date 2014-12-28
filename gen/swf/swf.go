@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // SWF is a client for Amazon Simple Workflow Service.
@@ -55,6 +56,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *SWF
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) CountClosedWorkflowExecutions(req *CountClosedWorkflowExecutionsInput) (resp *WorkflowExecutionCount, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &WorkflowExecutionCount{}
 	err = c.client.Do("CountClosedWorkflowExecutions", "POST", "/", req, resp)
 	return
@@ -76,6 +81,10 @@ func (c *SWF) CountClosedWorkflowExecutions(req *CountClosedWorkflowExecutionsIn
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) CountOpenWorkflowExecutions(req *CountOpenWorkflowExecutionsInput) (resp *WorkflowExecutionCount, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &WorkflowExecutionCount{}
 	err = c.client.Do("CountOpenWorkflowExecutions", "POST", "/", req, resp)
 	return
@@ -96,6 +105,10 @@ func (c *SWF) CountOpenWorkflowExecutions(req *CountOpenWorkflowExecutionsInput)
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) CountPendingActivityTasks(req *CountPendingActivityTasksInput) (resp *PendingTaskCount, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PendingTaskCount{}
 	err = c.client.Do("CountPendingActivityTasks", "POST", "/", req, resp)
 	return
@@ -116,6 +129,10 @@ func (c *SWF) CountPendingActivityTasks(req *CountPendingActivityTasksInput) (re
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) CountPendingDecisionTasks(req *CountPendingDecisionTasksInput) (resp *PendingTaskCount, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PendingTaskCount{}
 	err = c.client.Do("CountPendingDecisionTasks", "POST", "/", req, resp)
 	return
@@ -137,6 +154,10 @@ func (c *SWF) CountPendingDecisionTasks(req *CountPendingDecisionTasksInput) (re
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) DeprecateActivityType(req *DeprecateActivityTypeInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeprecateActivityType", "POST", "/", req, nil)
 	return
@@ -158,6 +179,10 @@ func (c *SWF) DeprecateActivityType(req *DeprecateActivityTypeInput) (err error)
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) DeprecateDomain(req *DeprecateDomainInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeprecateDomain", "POST", "/", req, nil)
 	return
@@ -180,6 +205,10 @@ func (c *SWF) DeprecateDomain(req *DeprecateDomainInput) (err error) {
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) DeprecateWorkflowType(req *DeprecateWorkflowTypeInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeprecateWorkflowType", "POST", "/", req, nil)
 	return
@@ -200,6 +229,10 @@ func (c *SWF) DeprecateWorkflowType(req *DeprecateWorkflowTypeInput) (err error)
 // fails by throwing OperationNotPermitted . For details and example IAM
 // policies, see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) DescribeActivityType(req *DescribeActivityTypeInput) (resp *ActivityTypeDetail, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ActivityTypeDetail{}
 	err = c.client.Do("DescribeActivityType", "POST", "/", req, resp)
 	return
@@ -217,6 +250,10 @@ func (c *SWF) DescribeActivityType(req *DescribeActivityTypeInput) (resp *Activi
 // details and example IAM policies, see Using IAM to Manage Access to
 // Amazon SWF Workflows
 func (c *SWF) DescribeDomain(req *DescribeDomainInput) (resp *DomainDetail, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DomainDetail{}
 	err = c.client.Do("DescribeDomain", "POST", "/", req, resp)
 	return
@@ -234,6 +271,10 @@ func (c *SWF) DescribeDomain(req *DescribeDomainInput) (resp *DomainDetail, err 
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) DescribeWorkflowExecution(req *DescribeWorkflowExecutionInput) (resp *WorkflowExecutionDetail, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &WorkflowExecutionDetail{}
 	err = c.client.Do("DescribeWorkflowExecution", "POST", "/", req, resp)
 	return
@@ -255,6 +296,10 @@ func (c *SWF) DescribeWorkflowExecution(req *DescribeWorkflowExecutionInput) (re
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) DescribeWorkflowType(req *DescribeWorkflowTypeInput) (resp *WorkflowTypeDetail, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &WorkflowTypeDetail{}
 	err = c.client.Do("DescribeWorkflowType", "POST", "/", req, resp)
 	return
@@ -274,6 +319,10 @@ func (c *SWF) DescribeWorkflowType(req *DescribeWorkflowTypeInput) (resp *Workfl
 // details and example IAM policies, see Using IAM to Manage Access to
 // Amazon SWF Workflows
 func (c *SWF) GetWorkflowExecutionHistory(req *GetWorkflowExecutionHistoryInput) (resp *History, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &History{}
 	err = c.client.Do("GetWorkflowExecutionHistory", "POST", "/", req, resp)
 	return
@@ -295,6 +344,10 @@ func (c *SWF) GetWorkflowExecutionHistory(req *GetWorkflowExecutionHistoryInput)
 // details and example IAM policies, see Using IAM to Manage Access to
 // Amazon SWF Workflows
 func (c *SWF) ListActivityTypes(req *ListActivityTypesInput) (resp *ActivityTypeInfos, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ActivityTypeInfos{}
 	err = c.client.Do("ListActivityTypes", "POST", "/", req, resp)
 	return
@@ -318,6 +371,10 @@ func (c *SWF) ListActivityTypes(req *ListActivityTypesInput) (resp *ActivityType
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) ListClosedWorkflowExecutions(req *ListClosedWorkflowExecutionsInput) (resp *WorkflowExecutionInfos, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &WorkflowExecutionInfos{}
 	err = c.client.Do("ListClosedWorkflowExecutions", "POST", "/", req, resp)
 	return
@@ -338,6 +395,10 @@ func (c *SWF) ListClosedWorkflowExecutions(req *ListClosedWorkflowExecutionsInpu
 // details and example IAM policies, see Using IAM to Manage Access to
 // Amazon SWF Workflows
 func (c *SWF) ListDomains(req *ListDomainsInput) (resp *DomainInfos, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DomainInfos{}
 	err = c.client.Do("ListDomains", "POST", "/", req, resp)
 	return
@@ -360,6 +421,10 @@ func (c *SWF) ListDomains(req *ListDomainsInput) (resp *DomainInfos, err error) 
 // throwing OperationNotPermitted . For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) ListOpenWorkflowExecutions(req *ListOpenWorkflowExecutionsInput) (resp *WorkflowExecutionInfos, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &WorkflowExecutionInfos{}
 	err = c.client.Do("ListOpenWorkflowExecutions", "POST", "/", req, resp)
 	return
@@ -378,6 +443,10 @@ func (c *SWF) ListOpenWorkflowExecutions(req *ListOpenWorkflowExecutionsInput) (
 // details and example IAM policies, see Using IAM to Manage Access to
 // Amazon SWF Workflows
 func (c *SWF) ListWorkflowTypes(req *ListWorkflowTypesInput) (resp *WorkflowTypeInfos, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &WorkflowTypeInfos{}
 	err = c.client.Do("ListWorkflowTypes", "POST", "/", req, resp)
 	return
@@ -405,6 +474,10 @@ func (c *SWF) ListWorkflowTypes(req *ListWorkflowTypesInput) (resp *WorkflowType
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) PollForActivityTask(req *PollForActivityTaskInput) (resp *ActivityTask, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ActivityTask{}
 	err = c.client.Do("PollForActivityTask", "POST", "/", req, resp)
 	return
@@ -440,6 +513,10 @@ func (c *SWF) PollForActivityTask(req *PollForActivityTaskInput) (resp *Activity
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) PollForDecisionTask(req *PollForDecisionTaskInput) (resp *DecisionTask, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DecisionTask{}
 	err = c.client.Do("PollForDecisionTask", "POST", "/", req, resp)
 	return
@@ -472,6 +549,10 @@ func (c *SWF) PollForDecisionTask(req *PollForDecisionTaskInput) (resp *Decision
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) RecordActivityTaskHeartbeat(req *RecordActivityTaskHeartbeatInput) (resp *ActivityTaskStatus, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ActivityTaskStatus{}
 	err = c.client.Do("RecordActivityTaskHeartbeat", "POST", "/", req, resp)
 	return
@@ -495,6 +576,10 @@ func (c *SWF) RecordActivityTaskHeartbeat(req *RecordActivityTaskHeartbeatInput)
 // details and example IAM policies, see Using IAM to Manage Access to
 // Amazon SWF Workflows
 func (c *SWF) RegisterActivityType(req *RegisterActivityTypeInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RegisterActivityType", "POST", "/", req, nil)
 	return
@@ -511,6 +596,10 @@ func (c *SWF) RegisterActivityType(req *RegisterActivityTypeInput) (err error) {
 // throwing OperationNotPermitted . For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) RegisterDomain(req *RegisterDomainInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RegisterDomain", "POST", "/", req, nil)
 	return
@@ -534,6 +623,10 @@ func (c *SWF) RegisterDomain(req *RegisterDomainInput) (err error) {
 // fails by throwing OperationNotPermitted . For details and example IAM
 // policies, see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) RegisterWorkflowType(req *RegisterWorkflowTypeInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RegisterWorkflowType", "POST", "/", req, nil)
 	return
@@ -555,6 +648,10 @@ func (c *SWF) RegisterWorkflowType(req *RegisterWorkflowTypeInput) (err error) {
 // details and example IAM policies, see Using IAM to Manage Access to
 // Amazon SWF Workflows
 func (c *SWF) RequestCancelWorkflowExecution(req *RequestCancelWorkflowExecutionInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RequestCancelWorkflowExecution", "POST", "/", req, nil)
 	return
@@ -582,6 +679,10 @@ func (c *SWF) RequestCancelWorkflowExecution(req *RequestCancelWorkflowExecution
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) RespondActivityTaskCanceled(req *RespondActivityTaskCanceledInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RespondActivityTaskCanceled", "POST", "/", req, nil)
 	return
@@ -609,6 +710,10 @@ func (c *SWF) RespondActivityTaskCanceled(req *RespondActivityTaskCanceledInput)
 // throwing OperationNotPermitted . For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) RespondActivityTaskCompleted(req *RespondActivityTaskCompletedInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RespondActivityTaskCompleted", "POST", "/", req, nil)
 	return
@@ -632,6 +737,10 @@ func (c *SWF) RespondActivityTaskCompleted(req *RespondActivityTaskCompletedInpu
 // throwing OperationNotPermitted . For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) RespondActivityTaskFailed(req *RespondActivityTaskFailedInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RespondActivityTaskFailed", "POST", "/", req, nil)
 	return
@@ -651,6 +760,10 @@ func (c *SWF) RespondActivityTaskFailed(req *RespondActivityTaskFailedInput) (er
 // including applying conditions to some parameters. For more information,
 // see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) RespondDecisionTaskCompleted(req *RespondDecisionTaskCompletedInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RespondDecisionTaskCompleted", "POST", "/", req, nil)
 	return
@@ -670,6 +783,10 @@ func (c *SWF) RespondDecisionTaskCompleted(req *RespondDecisionTaskCompletedInpu
 // throwing OperationNotPermitted . For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) SignalWorkflowExecution(req *SignalWorkflowExecutionInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SignalWorkflowExecution", "POST", "/", req, nil)
 	return
@@ -695,6 +812,10 @@ func (c *SWF) SignalWorkflowExecution(req *SignalWorkflowExecutionInput) (err er
 // OperationNotPermitted . For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) StartWorkflowExecution(req *StartWorkflowExecutionInput) (resp *Run, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &Run{}
 	err = c.client.Do("StartWorkflowExecution", "POST", "/", req, resp)
 	return
@@ -716,6 +837,10 @@ func (c *SWF) StartWorkflowExecution(req *StartWorkflowExecutionInput) (resp *Ru
 // throwing OperationNotPermitted . For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) TerminateWorkflowExecution(req *TerminateWorkflowExecutionInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("TerminateWorkflowExecution", "POST", "/", req, nil)
 	return
@@ -731,10 +856,86 @@ type ActivityTask struct {
 	WorkflowExecution *WorkflowExecution `json:"workflowExecution"`
 }
 
+func (v *ActivityTask) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActivityID"); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ActivityID", 1); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ActivityID", 256); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ActivityType"); err != nil {
+		errors["ActivityType"] = append(errors["ActivityType"], err)
+	}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskToken"); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "TaskToken", 1); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskToken", 1024); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowExecution"); err != nil {
+		errors["WorkflowExecution"] = append(errors["WorkflowExecution"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ActivityTaskCancelRequestedEventAttributes is undocumented.
 type ActivityTaskCancelRequestedEventAttributes struct {
 	ActivityID                   aws.StringValue `json:"activityId"`
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
+}
+
+func (v *ActivityTaskCancelRequestedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActivityID"); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ActivityID", 1); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ActivityID", 256); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ActivityTaskCanceledEventAttributes is undocumented.
@@ -745,11 +946,55 @@ type ActivityTaskCanceledEventAttributes struct {
 	StartedEventID               aws.LongValue   `json:"startedEventId"`
 }
 
+func (v *ActivityTaskCanceledEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ScheduledEventID"); err != nil {
+		errors["ScheduledEventID"] = append(errors["ScheduledEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ActivityTaskCompletedEventAttributes is undocumented.
 type ActivityTaskCompletedEventAttributes struct {
 	Result           aws.StringValue `json:"result,omitempty"`
 	ScheduledEventID aws.LongValue   `json:"scheduledEventId"`
 	StartedEventID   aws.LongValue   `json:"startedEventId"`
+}
+
+func (v *ActivityTaskCompletedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Result", 32768); err != nil {
+		errors["Result"] = append(errors["Result"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ScheduledEventID"); err != nil {
+		errors["ScheduledEventID"] = append(errors["ScheduledEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ActivityTaskFailedEventAttributes is undocumented.
@@ -758,6 +1003,32 @@ type ActivityTaskFailedEventAttributes struct {
 	Reason           aws.StringValue `json:"reason,omitempty"`
 	ScheduledEventID aws.LongValue   `json:"scheduledEventId"`
 	StartedEventID   aws.LongValue   `json:"startedEventId"`
+}
+
+func (v *ActivityTaskFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateMax(v, "Reason", 256); err != nil {
+		errors["Reason"] = append(errors["Reason"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ScheduledEventID"); err != nil {
+		errors["ScheduledEventID"] = append(errors["ScheduledEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ActivityTaskScheduledEventAttributes is undocumented.
@@ -774,15 +1045,105 @@ type ActivityTaskScheduledEventAttributes struct {
 	TaskList                     *TaskList       `json:"taskList"`
 }
 
+func (v *ActivityTaskScheduledEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActivityID"); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ActivityID", 1); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ActivityID", 256); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ActivityType"); err != nil {
+		errors["ActivityType"] = append(errors["ActivityType"], err)
+	}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HeartbeatTimeout", 8); err != nil {
+		errors["HeartbeatTimeout"] = append(errors["HeartbeatTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateMax(v, "ScheduleToCloseTimeout", 8); err != nil {
+		errors["ScheduleToCloseTimeout"] = append(errors["ScheduleToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "ScheduleToStartTimeout", 8); err != nil {
+		errors["ScheduleToStartTimeout"] = append(errors["ScheduleToStartTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "StartToCloseTimeout", 8); err != nil {
+		errors["StartToCloseTimeout"] = append(errors["StartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskList"); err != nil {
+		errors["TaskList"] = append(errors["TaskList"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ActivityTaskStartedEventAttributes is undocumented.
 type ActivityTaskStartedEventAttributes struct {
 	Identity         aws.StringValue `json:"identity,omitempty"`
 	ScheduledEventID aws.LongValue   `json:"scheduledEventId"`
 }
 
+func (v *ActivityTaskStartedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Identity", 256); err != nil {
+		errors["Identity"] = append(errors["Identity"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ScheduledEventID"); err != nil {
+		errors["ScheduledEventID"] = append(errors["ScheduledEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ActivityTaskStatus is undocumented.
 type ActivityTaskStatus struct {
 	CancelRequested aws.BooleanValue `json:"cancelRequested"`
+}
+
+func (v *ActivityTaskStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CancelRequested"); err != nil {
+		errors["CancelRequested"] = append(errors["CancelRequested"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ActivityTaskTimedOutEventAttributes is undocumented.
@@ -791,6 +1152,42 @@ type ActivityTaskTimedOutEventAttributes struct {
 	ScheduledEventID aws.LongValue   `json:"scheduledEventId"`
 	StartedEventID   aws.LongValue   `json:"startedEventId"`
 	TimeoutType      aws.StringValue `json:"timeoutType"`
+}
+
+func (v *ActivityTaskTimedOutEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Details", 2048); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ScheduledEventID"); err != nil {
+		errors["ScheduledEventID"] = append(errors["ScheduledEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TimeoutType"); err != nil {
+		errors["TimeoutType"] = append(errors["TimeoutType"], err)
+	}
+
+	timeoutTypeEnum := []string{
+		ActivityTaskTimeoutTypeHeartbeat,
+		ActivityTaskTimeoutTypeScheduleToClose,
+		ActivityTaskTimeoutTypeScheduleToStart,
+		ActivityTaskTimeoutTypeStartToClose,
+	}
+	if err := model.ValidateEnum(v, "TimeoutType", timeoutTypeEnum); err != nil {
+		errors["TimeoutType"] = append(errors["TimeoutType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -807,6 +1204,40 @@ type ActivityType struct {
 	Version aws.StringValue `json:"version"`
 }
 
+func (v *ActivityType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Version"); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if err := model.ValidateMin(v, "Version", 1); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if err := model.ValidateMax(v, "Version", 64); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ActivityTypeConfiguration is undocumented.
 type ActivityTypeConfiguration struct {
 	DefaultTaskHeartbeatTimeout       aws.StringValue `json:"defaultTaskHeartbeatTimeout,omitempty"`
@@ -816,10 +1247,54 @@ type ActivityTypeConfiguration struct {
 	DefaultTaskStartToCloseTimeout    aws.StringValue `json:"defaultTaskStartToCloseTimeout,omitempty"`
 }
 
+func (v *ActivityTypeConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "DefaultTaskHeartbeatTimeout", 8); err != nil {
+		errors["DefaultTaskHeartbeatTimeout"] = append(errors["DefaultTaskHeartbeatTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "DefaultTaskScheduleToCloseTimeout", 8); err != nil {
+		errors["DefaultTaskScheduleToCloseTimeout"] = append(errors["DefaultTaskScheduleToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "DefaultTaskScheduleToStartTimeout", 8); err != nil {
+		errors["DefaultTaskScheduleToStartTimeout"] = append(errors["DefaultTaskScheduleToStartTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "DefaultTaskStartToCloseTimeout", 8); err != nil {
+		errors["DefaultTaskStartToCloseTimeout"] = append(errors["DefaultTaskStartToCloseTimeout"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ActivityTypeDetail is undocumented.
 type ActivityTypeDetail struct {
 	Configuration *ActivityTypeConfiguration `json:"configuration"`
 	TypeInfo      *ActivityTypeInfo          `json:"typeInfo"`
+}
+
+func (v *ActivityTypeDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Configuration"); err != nil {
+		errors["Configuration"] = append(errors["Configuration"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TypeInfo"); err != nil {
+		errors["TypeInfo"] = append(errors["TypeInfo"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ActivityTypeInfo is undocumented.
@@ -831,15 +1306,89 @@ type ActivityTypeInfo struct {
 	Status          aws.StringValue    `json:"status"`
 }
 
+func (v *ActivityTypeInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActivityType"); err != nil {
+		errors["ActivityType"] = append(errors["ActivityType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CreationDate"); err != nil {
+		errors["CreationDate"] = append(errors["CreationDate"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 1024); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	statusEnum := []string{
+		RegistrationStatusDeprecated,
+		RegistrationStatusRegistered,
+	}
+	if err := model.ValidateEnum(v, "Status", statusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ActivityTypeInfos is undocumented.
 type ActivityTypeInfos struct {
 	NextPageToken aws.StringValue    `json:"nextPageToken,omitempty"`
 	TypeInfos     []ActivityTypeInfo `json:"typeInfos"`
 }
 
+func (v *ActivityTypeInfos) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TypeInfos"); err != nil {
+		errors["TypeInfos"] = append(errors["TypeInfos"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CancelTimerDecisionAttributes is undocumented.
 type CancelTimerDecisionAttributes struct {
 	TimerID aws.StringValue `json:"timerId"`
+}
+
+func (v *CancelTimerDecisionAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "TimerID"); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TimerID", 1); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TimerID", 256); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -855,9 +1404,61 @@ type CancelTimerFailedEventAttributes struct {
 	TimerID                      aws.StringValue `json:"timerId"`
 }
 
+func (v *CancelTimerFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	causeEnum := []string{
+		CancelTimerFailedCauseOperationNotPermitted,
+		CancelTimerFailedCauseTimerIDUnknown,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TimerID"); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TimerID", 1); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TimerID", 256); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CancelWorkflowExecutionDecisionAttributes is undocumented.
 type CancelWorkflowExecutionDecisionAttributes struct {
 	Details aws.StringValue `json:"details,omitempty"`
+}
+
+func (v *CancelWorkflowExecutionDecisionAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -870,6 +1471,32 @@ const (
 type CancelWorkflowExecutionFailedEventAttributes struct {
 	Cause                        aws.StringValue `json:"cause"`
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
+}
+
+func (v *CancelWorkflowExecutionFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	causeEnum := []string{
+		CancelWorkflowExecutionFailedCauseOperationNotPermitted,
+		CancelWorkflowExecutionFailedCauseUnhandledDecision,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -888,6 +1515,36 @@ type ChildWorkflowExecutionCanceledEventAttributes struct {
 	WorkflowType      *WorkflowType      `json:"workflowType"`
 }
 
+func (v *ChildWorkflowExecutionCanceledEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InitiatedEventID"); err != nil {
+		errors["InitiatedEventID"] = append(errors["InitiatedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowExecution"); err != nil {
+		errors["WorkflowExecution"] = append(errors["WorkflowExecution"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ChildWorkflowExecutionCompletedEventAttributes is undocumented.
 type ChildWorkflowExecutionCompletedEventAttributes struct {
 	InitiatedEventID  aws.LongValue      `json:"initiatedEventId"`
@@ -895,6 +1552,36 @@ type ChildWorkflowExecutionCompletedEventAttributes struct {
 	StartedEventID    aws.LongValue      `json:"startedEventId"`
 	WorkflowExecution *WorkflowExecution `json:"workflowExecution"`
 	WorkflowType      *WorkflowType      `json:"workflowType"`
+}
+
+func (v *ChildWorkflowExecutionCompletedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InitiatedEventID"); err != nil {
+		errors["InitiatedEventID"] = append(errors["InitiatedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "Result", 32768); err != nil {
+		errors["Result"] = append(errors["Result"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowExecution"); err != nil {
+		errors["WorkflowExecution"] = append(errors["WorkflowExecution"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ChildWorkflowExecutionFailedEventAttributes is undocumented.
@@ -907,11 +1594,67 @@ type ChildWorkflowExecutionFailedEventAttributes struct {
 	WorkflowType      *WorkflowType      `json:"workflowType"`
 }
 
+func (v *ChildWorkflowExecutionFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InitiatedEventID"); err != nil {
+		errors["InitiatedEventID"] = append(errors["InitiatedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "Reason", 256); err != nil {
+		errors["Reason"] = append(errors["Reason"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowExecution"); err != nil {
+		errors["WorkflowExecution"] = append(errors["WorkflowExecution"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ChildWorkflowExecutionStartedEventAttributes is undocumented.
 type ChildWorkflowExecutionStartedEventAttributes struct {
 	InitiatedEventID  aws.LongValue      `json:"initiatedEventId"`
 	WorkflowExecution *WorkflowExecution `json:"workflowExecution"`
 	WorkflowType      *WorkflowType      `json:"workflowType"`
+}
+
+func (v *ChildWorkflowExecutionStartedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InitiatedEventID"); err != nil {
+		errors["InitiatedEventID"] = append(errors["InitiatedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowExecution"); err != nil {
+		errors["WorkflowExecution"] = append(errors["WorkflowExecution"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ChildWorkflowExecutionTerminatedEventAttributes is undocumented.
@@ -922,6 +1665,32 @@ type ChildWorkflowExecutionTerminatedEventAttributes struct {
 	WorkflowType      *WorkflowType      `json:"workflowType"`
 }
 
+func (v *ChildWorkflowExecutionTerminatedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InitiatedEventID"); err != nil {
+		errors["InitiatedEventID"] = append(errors["InitiatedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowExecution"); err != nil {
+		errors["WorkflowExecution"] = append(errors["WorkflowExecution"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ChildWorkflowExecutionTimedOutEventAttributes is undocumented.
 type ChildWorkflowExecutionTimedOutEventAttributes struct {
 	InitiatedEventID  aws.LongValue      `json:"initiatedEventId"`
@@ -929,6 +1698,43 @@ type ChildWorkflowExecutionTimedOutEventAttributes struct {
 	TimeoutType       aws.StringValue    `json:"timeoutType"`
 	WorkflowExecution *WorkflowExecution `json:"workflowExecution"`
 	WorkflowType      *WorkflowType      `json:"workflowType"`
+}
+
+func (v *ChildWorkflowExecutionTimedOutEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InitiatedEventID"); err != nil {
+		errors["InitiatedEventID"] = append(errors["InitiatedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TimeoutType"); err != nil {
+		errors["TimeoutType"] = append(errors["TimeoutType"], err)
+	}
+
+	timeoutTypeEnum := []string{
+		WorkflowExecutionTimeoutTypeStartToClose,
+	}
+	if err := model.ValidateEnum(v, "TimeoutType", timeoutTypeEnum); err != nil {
+		errors["TimeoutType"] = append(errors["TimeoutType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowExecution"); err != nil {
+		errors["WorkflowExecution"] = append(errors["WorkflowExecution"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -946,9 +1752,49 @@ type CloseStatusFilter struct {
 	Status aws.StringValue `json:"status"`
 }
 
+func (v *CloseStatusFilter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	statusEnum := []string{
+		CloseStatusCanceled,
+		CloseStatusCompleted,
+		CloseStatusContinuedAsNew,
+		CloseStatusFailed,
+		CloseStatusTerminated,
+		CloseStatusTimedOut,
+	}
+	if err := model.ValidateEnum(v, "Status", statusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CompleteWorkflowExecutionDecisionAttributes is undocumented.
 type CompleteWorkflowExecutionDecisionAttributes struct {
 	Result aws.StringValue `json:"result,omitempty"`
+}
+
+func (v *CompleteWorkflowExecutionDecisionAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Result", 32768); err != nil {
+		errors["Result"] = append(errors["Result"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -963,6 +1809,32 @@ type CompleteWorkflowExecutionFailedEventAttributes struct {
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
 }
 
+func (v *CompleteWorkflowExecutionFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	causeEnum := []string{
+		CompleteWorkflowExecutionFailedCauseOperationNotPermitted,
+		CompleteWorkflowExecutionFailedCauseUnhandledDecision,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ContinueAsNewWorkflowExecutionDecisionAttributes is undocumented.
 type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	ChildPolicy                  aws.StringValue `json:"childPolicy,omitempty"`
@@ -972,6 +1844,49 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	TaskList                     *TaskList       `json:"taskList,omitempty"`
 	TaskStartToCloseTimeout      aws.StringValue `json:"taskStartToCloseTimeout,omitempty"`
 	WorkflowTypeVersion          aws.StringValue `json:"workflowTypeVersion,omitempty"`
+}
+
+func (v *ContinueAsNewWorkflowExecutionDecisionAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	childPolicyEnum := []string{
+		ChildPolicyAbandon,
+		ChildPolicyRequestCancel,
+		ChildPolicyTerminate,
+	}
+	if err := model.ValidateEnum(v, "ChildPolicy", childPolicyEnum); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExecutionStartToCloseTimeout", 8); err != nil {
+		errors["ExecutionStartToCloseTimeout"] = append(errors["ExecutionStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateMax(v, "TagList", 5); err != nil {
+		errors["TagList"] = append(errors["TagList"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskStartToCloseTimeout", 8); err != nil {
+		errors["TaskStartToCloseTimeout"] = append(errors["TaskStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowTypeVersion", 1); err != nil {
+		errors["WorkflowTypeVersion"] = append(errors["WorkflowTypeVersion"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowTypeVersion", 64); err != nil {
+		errors["WorkflowTypeVersion"] = append(errors["WorkflowTypeVersion"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -992,6 +1907,38 @@ type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
 }
 
+func (v *ContinueAsNewWorkflowExecutionFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	causeEnum := []string{
+		ContinueAsNewWorkflowExecutionFailedCauseDefaultChildPolicyUndefined,
+		ContinueAsNewWorkflowExecutionFailedCauseDefaultExecutionStartToCloseTimeoutUndefined,
+		ContinueAsNewWorkflowExecutionFailedCauseDefaultTaskListUndefined,
+		ContinueAsNewWorkflowExecutionFailedCauseDefaultTaskStartToCloseTimeoutUndefined,
+		ContinueAsNewWorkflowExecutionFailedCauseOperationNotPermitted,
+		ContinueAsNewWorkflowExecutionFailedCauseUnhandledDecision,
+		ContinueAsNewWorkflowExecutionFailedCauseWorkflowTypeDeprecated,
+		ContinueAsNewWorkflowExecutionFailedCauseWorkflowTypeDoesNotExist,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CountClosedWorkflowExecutionsInput is undocumented.
 type CountClosedWorkflowExecutionsInput struct {
 	CloseStatusFilter *CloseStatusFilter       `json:"closeStatusFilter,omitempty"`
@@ -1003,6 +1950,28 @@ type CountClosedWorkflowExecutionsInput struct {
 	TypeFilter        *WorkflowTypeFilter      `json:"typeFilter,omitempty"`
 }
 
+func (v *CountClosedWorkflowExecutionsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CountOpenWorkflowExecutionsInput is undocumented.
 type CountOpenWorkflowExecutionsInput struct {
 	Domain          aws.StringValue          `json:"domain"`
@@ -1012,16 +1981,94 @@ type CountOpenWorkflowExecutionsInput struct {
 	TypeFilter      *WorkflowTypeFilter      `json:"typeFilter,omitempty"`
 }
 
+func (v *CountOpenWorkflowExecutionsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartTimeFilter"); err != nil {
+		errors["StartTimeFilter"] = append(errors["StartTimeFilter"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CountPendingActivityTasksInput is undocumented.
 type CountPendingActivityTasksInput struct {
 	Domain   aws.StringValue `json:"domain"`
 	TaskList *TaskList       `json:"taskList"`
 }
 
+func (v *CountPendingActivityTasksInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskList"); err != nil {
+		errors["TaskList"] = append(errors["TaskList"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CountPendingDecisionTasksInput is undocumented.
 type CountPendingDecisionTasksInput struct {
 	Domain   aws.StringValue `json:"domain"`
 	TaskList *TaskList       `json:"taskList"`
+}
+
+func (v *CountPendingDecisionTasksInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskList"); err != nil {
+		errors["TaskList"] = append(errors["TaskList"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Decision is undocumented.
@@ -1041,6 +2088,38 @@ type Decision struct {
 	StartTimerDecisionAttributes                             *StartTimerDecisionAttributes                             `json:"startTimerDecisionAttributes,omitempty"`
 }
 
+func (v *Decision) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DecisionType"); err != nil {
+		errors["DecisionType"] = append(errors["DecisionType"], err)
+	}
+
+	decisionTypeEnum := []string{
+		DecisionTypeCancelTimer,
+		DecisionTypeCancelWorkflowExecution,
+		DecisionTypeCompleteWorkflowExecution,
+		DecisionTypeContinueAsNewWorkflowExecution,
+		DecisionTypeFailWorkflowExecution,
+		DecisionTypeRecordMarker,
+		DecisionTypeRequestCancelActivityTask,
+		DecisionTypeRequestCancelExternalWorkflowExecution,
+		DecisionTypeScheduleActivityTask,
+		DecisionTypeSignalExternalWorkflowExecution,
+		DecisionTypeStartChildWorkflowExecution,
+		DecisionTypeStartTimer,
+	}
+	if err := model.ValidateEnum(v, "DecisionType", decisionTypeEnum); err != nil {
+		errors["DecisionType"] = append(errors["DecisionType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DecisionTask is undocumented.
 type DecisionTask struct {
 	Events                 []HistoryEvent     `json:"events"`
@@ -1052,11 +2131,75 @@ type DecisionTask struct {
 	WorkflowType           *WorkflowType      `json:"workflowType"`
 }
 
+func (v *DecisionTask) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Events"); err != nil {
+		errors["Events"] = append(errors["Events"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskToken"); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "TaskToken", 1); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskToken", 1024); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowExecution"); err != nil {
+		errors["WorkflowExecution"] = append(errors["WorkflowExecution"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DecisionTaskCompletedEventAttributes is undocumented.
 type DecisionTaskCompletedEventAttributes struct {
 	ExecutionContext aws.StringValue `json:"executionContext,omitempty"`
 	ScheduledEventID aws.LongValue   `json:"scheduledEventId"`
 	StartedEventID   aws.LongValue   `json:"startedEventId"`
+}
+
+func (v *DecisionTaskCompletedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "ExecutionContext", 32768); err != nil {
+		errors["ExecutionContext"] = append(errors["ExecutionContext"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ScheduledEventID"); err != nil {
+		errors["ScheduledEventID"] = append(errors["ScheduledEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DecisionTaskScheduledEventAttributes is undocumented.
@@ -1065,10 +2208,46 @@ type DecisionTaskScheduledEventAttributes struct {
 	TaskList            *TaskList       `json:"taskList"`
 }
 
+func (v *DecisionTaskScheduledEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "StartToCloseTimeout", 8); err != nil {
+		errors["StartToCloseTimeout"] = append(errors["StartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskList"); err != nil {
+		errors["TaskList"] = append(errors["TaskList"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DecisionTaskStartedEventAttributes is undocumented.
 type DecisionTaskStartedEventAttributes struct {
 	Identity         aws.StringValue `json:"identity,omitempty"`
 	ScheduledEventID aws.LongValue   `json:"scheduledEventId"`
+}
+
+func (v *DecisionTaskStartedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Identity", 256); err != nil {
+		errors["Identity"] = append(errors["Identity"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ScheduledEventID"); err != nil {
+		errors["ScheduledEventID"] = append(errors["ScheduledEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DecisionTaskTimedOutEventAttributes is undocumented.
@@ -1076,6 +2255,35 @@ type DecisionTaskTimedOutEventAttributes struct {
 	ScheduledEventID aws.LongValue   `json:"scheduledEventId"`
 	StartedEventID   aws.LongValue   `json:"startedEventId"`
 	TimeoutType      aws.StringValue `json:"timeoutType"`
+}
+
+func (v *DecisionTaskTimedOutEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ScheduledEventID"); err != nil {
+		errors["ScheduledEventID"] = append(errors["ScheduledEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TimeoutType"); err != nil {
+		errors["TimeoutType"] = append(errors["TimeoutType"], err)
+	}
+
+	timeoutTypeEnum := []string{
+		DecisionTaskTimeoutTypeStartToClose,
+	}
+	if err := model.ValidateEnum(v, "TimeoutType", timeoutTypeEnum); err != nil {
+		errors["TimeoutType"] = append(errors["TimeoutType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1105,9 +2313,57 @@ type DeprecateActivityTypeInput struct {
 	Domain       aws.StringValue `json:"domain"`
 }
 
+func (v *DeprecateActivityTypeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActivityType"); err != nil {
+		errors["ActivityType"] = append(errors["ActivityType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeprecateDomainInput is undocumented.
 type DeprecateDomainInput struct {
 	Name aws.StringValue `json:"name"`
+}
+
+func (v *DeprecateDomainInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeprecateWorkflowTypeInput is undocumented.
@@ -1116,15 +2372,89 @@ type DeprecateWorkflowTypeInput struct {
 	WorkflowType *WorkflowType   `json:"workflowType"`
 }
 
+func (v *DeprecateWorkflowTypeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeActivityTypeInput is undocumented.
 type DescribeActivityTypeInput struct {
 	ActivityType *ActivityType   `json:"activityType"`
 	Domain       aws.StringValue `json:"domain"`
 }
 
+func (v *DescribeActivityTypeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActivityType"); err != nil {
+		errors["ActivityType"] = append(errors["ActivityType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDomainInput is undocumented.
 type DescribeDomainInput struct {
 	Name aws.StringValue `json:"name"`
+}
+
+func (v *DescribeDomainInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeWorkflowExecutionInput is undocumented.
@@ -1133,10 +2463,62 @@ type DescribeWorkflowExecutionInput struct {
 	Execution *WorkflowExecution `json:"execution"`
 }
 
+func (v *DescribeWorkflowExecutionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Execution"); err != nil {
+		errors["Execution"] = append(errors["Execution"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeWorkflowTypeInput is undocumented.
 type DescribeWorkflowTypeInput struct {
 	Domain       aws.StringValue `json:"domain"`
 	WorkflowType *WorkflowType   `json:"workflowType"`
+}
+
+func (v *DescribeWorkflowTypeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DomainConfiguration is undocumented.
@@ -1144,10 +2526,50 @@ type DomainConfiguration struct {
 	WorkflowExecutionRetentionPeriodInDays aws.StringValue `json:"workflowExecutionRetentionPeriodInDays"`
 }
 
+func (v *DomainConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "WorkflowExecutionRetentionPeriodInDays"); err != nil {
+		errors["WorkflowExecutionRetentionPeriodInDays"] = append(errors["WorkflowExecutionRetentionPeriodInDays"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowExecutionRetentionPeriodInDays", 1); err != nil {
+		errors["WorkflowExecutionRetentionPeriodInDays"] = append(errors["WorkflowExecutionRetentionPeriodInDays"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowExecutionRetentionPeriodInDays", 8); err != nil {
+		errors["WorkflowExecutionRetentionPeriodInDays"] = append(errors["WorkflowExecutionRetentionPeriodInDays"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DomainDetail is undocumented.
 type DomainDetail struct {
 	Configuration *DomainConfiguration `json:"configuration"`
 	DomainInfo    *DomainInfo          `json:"domainInfo"`
+}
+
+func (v *DomainDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Configuration"); err != nil {
+		errors["Configuration"] = append(errors["Configuration"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainInfo"); err != nil {
+		errors["DomainInfo"] = append(errors["DomainInfo"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DomainInfo is undocumented.
@@ -1157,10 +2579,66 @@ type DomainInfo struct {
 	Status      aws.StringValue `json:"status"`
 }
 
+func (v *DomainInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Description", 1024); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	statusEnum := []string{
+		RegistrationStatusDeprecated,
+		RegistrationStatusRegistered,
+	}
+	if err := model.ValidateEnum(v, "Status", statusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DomainInfos is undocumented.
 type DomainInfos struct {
 	DomainInfos   []DomainInfo    `json:"domainInfos"`
 	NextPageToken aws.StringValue `json:"nextPageToken,omitempty"`
+}
+
+func (v *DomainInfos) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainInfos"); err != nil {
+		errors["DomainInfos"] = append(errors["DomainInfos"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1226,10 +2704,42 @@ type ExecutionTimeFilter struct {
 	OldestDate *aws.LongTimestamp `json:"oldestDate"`
 }
 
+func (v *ExecutionTimeFilter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OldestDate"); err != nil {
+		errors["OldestDate"] = append(errors["OldestDate"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ExternalWorkflowExecutionCancelRequestedEventAttributes is undocumented.
 type ExternalWorkflowExecutionCancelRequestedEventAttributes struct {
 	InitiatedEventID  aws.LongValue      `json:"initiatedEventId"`
 	WorkflowExecution *WorkflowExecution `json:"workflowExecution"`
+}
+
+func (v *ExternalWorkflowExecutionCancelRequestedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InitiatedEventID"); err != nil {
+		errors["InitiatedEventID"] = append(errors["InitiatedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowExecution"); err != nil {
+		errors["WorkflowExecution"] = append(errors["WorkflowExecution"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ExternalWorkflowExecutionSignaledEventAttributes is undocumented.
@@ -1238,10 +2748,46 @@ type ExternalWorkflowExecutionSignaledEventAttributes struct {
 	WorkflowExecution *WorkflowExecution `json:"workflowExecution"`
 }
 
+func (v *ExternalWorkflowExecutionSignaledEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InitiatedEventID"); err != nil {
+		errors["InitiatedEventID"] = append(errors["InitiatedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowExecution"); err != nil {
+		errors["WorkflowExecution"] = append(errors["WorkflowExecution"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // FailWorkflowExecutionDecisionAttributes is undocumented.
 type FailWorkflowExecutionDecisionAttributes struct {
 	Details aws.StringValue `json:"details,omitempty"`
 	Reason  aws.StringValue `json:"reason,omitempty"`
+}
+
+func (v *FailWorkflowExecutionDecisionAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateMax(v, "Reason", 256); err != nil {
+		errors["Reason"] = append(errors["Reason"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1256,6 +2802,32 @@ type FailWorkflowExecutionFailedEventAttributes struct {
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
 }
 
+func (v *FailWorkflowExecutionFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	causeEnum := []string{
+		FailWorkflowExecutionFailedCauseOperationNotPermitted,
+		FailWorkflowExecutionFailedCauseUnhandledDecision,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetWorkflowExecutionHistoryInput is undocumented.
 type GetWorkflowExecutionHistoryInput struct {
 	Domain          aws.StringValue    `json:"domain"`
@@ -1265,10 +2837,62 @@ type GetWorkflowExecutionHistoryInput struct {
 	ReverseOrder    aws.BooleanValue   `json:"reverseOrder,omitempty"`
 }
 
+func (v *GetWorkflowExecutionHistoryInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Execution"); err != nil {
+		errors["Execution"] = append(errors["Execution"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaximumPageSize", 1000); err != nil {
+		errors["MaximumPageSize"] = append(errors["MaximumPageSize"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // History is undocumented.
 type History struct {
 	Events        []HistoryEvent  `json:"events"`
 	NextPageToken aws.StringValue `json:"nextPageToken,omitempty"`
+}
+
+func (v *History) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Events"); err != nil {
+		errors["Events"] = append(errors["Events"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // HistoryEvent is undocumented.
@@ -1325,6 +2949,81 @@ type HistoryEvent struct {
 	WorkflowExecutionTimedOutEventAttributes                       *WorkflowExecutionTimedOutEventAttributes                       `json:"workflowExecutionTimedOutEventAttributes,omitempty"`
 }
 
+func (v *HistoryEvent) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EventID"); err != nil {
+		errors["EventID"] = append(errors["EventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EventTimestamp"); err != nil {
+		errors["EventTimestamp"] = append(errors["EventTimestamp"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EventType"); err != nil {
+		errors["EventType"] = append(errors["EventType"], err)
+	}
+
+	eventTypeEnum := []string{
+		EventTypeActivityTaskCancelRequested,
+		EventTypeActivityTaskCanceled,
+		EventTypeActivityTaskCompleted,
+		EventTypeActivityTaskFailed,
+		EventTypeActivityTaskScheduled,
+		EventTypeActivityTaskStarted,
+		EventTypeActivityTaskTimedOut,
+		EventTypeCancelTimerFailed,
+		EventTypeCancelWorkflowExecutionFailed,
+		EventTypeChildWorkflowExecutionCanceled,
+		EventTypeChildWorkflowExecutionCompleted,
+		EventTypeChildWorkflowExecutionFailed,
+		EventTypeChildWorkflowExecutionStarted,
+		EventTypeChildWorkflowExecutionTerminated,
+		EventTypeChildWorkflowExecutionTimedOut,
+		EventTypeCompleteWorkflowExecutionFailed,
+		EventTypeContinueAsNewWorkflowExecutionFailed,
+		EventTypeDecisionTaskCompleted,
+		EventTypeDecisionTaskScheduled,
+		EventTypeDecisionTaskStarted,
+		EventTypeDecisionTaskTimedOut,
+		EventTypeExternalWorkflowExecutionCancelRequested,
+		EventTypeExternalWorkflowExecutionSignaled,
+		EventTypeFailWorkflowExecutionFailed,
+		EventTypeMarkerRecorded,
+		EventTypeRecordMarkerFailed,
+		EventTypeRequestCancelActivityTaskFailed,
+		EventTypeRequestCancelExternalWorkflowExecutionFailed,
+		EventTypeRequestCancelExternalWorkflowExecutionInitiated,
+		EventTypeScheduleActivityTaskFailed,
+		EventTypeSignalExternalWorkflowExecutionFailed,
+		EventTypeSignalExternalWorkflowExecutionInitiated,
+		EventTypeStartChildWorkflowExecutionFailed,
+		EventTypeStartChildWorkflowExecutionInitiated,
+		EventTypeStartTimerFailed,
+		EventTypeTimerCanceled,
+		EventTypeTimerFired,
+		EventTypeTimerStarted,
+		EventTypeWorkflowExecutionCancelRequested,
+		EventTypeWorkflowExecutionCanceled,
+		EventTypeWorkflowExecutionCompleted,
+		EventTypeWorkflowExecutionContinuedAsNew,
+		EventTypeWorkflowExecutionFailed,
+		EventTypeWorkflowExecutionSignaled,
+		EventTypeWorkflowExecutionStarted,
+		EventTypeWorkflowExecutionTerminated,
+		EventTypeWorkflowExecutionTimedOut,
+	}
+	if err := model.ValidateEnum(v, "EventType", eventTypeEnum); err != nil {
+		errors["EventType"] = append(errors["EventType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListActivityTypesInput is undocumented.
 type ListActivityTypesInput struct {
 	Domain             aws.StringValue  `json:"domain"`
@@ -1333,6 +3032,56 @@ type ListActivityTypesInput struct {
 	NextPageToken      aws.StringValue  `json:"nextPageToken,omitempty"`
 	RegistrationStatus aws.StringValue  `json:"registrationStatus"`
 	ReverseOrder       aws.BooleanValue `json:"reverseOrder,omitempty"`
+}
+
+func (v *ListActivityTypesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaximumPageSize", 1000); err != nil {
+		errors["MaximumPageSize"] = append(errors["MaximumPageSize"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RegistrationStatus"); err != nil {
+		errors["RegistrationStatus"] = append(errors["RegistrationStatus"], err)
+	}
+
+	registrationStatusEnum := []string{
+		RegistrationStatusDeprecated,
+		RegistrationStatusRegistered,
+	}
+	if err := model.ValidateEnum(v, "RegistrationStatus", registrationStatusEnum); err != nil {
+		errors["RegistrationStatus"] = append(errors["RegistrationStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListClosedWorkflowExecutionsInput is undocumented.
@@ -1349,12 +3098,72 @@ type ListClosedWorkflowExecutionsInput struct {
 	TypeFilter        *WorkflowTypeFilter      `json:"typeFilter,omitempty"`
 }
 
+func (v *ListClosedWorkflowExecutionsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaximumPageSize", 1000); err != nil {
+		errors["MaximumPageSize"] = append(errors["MaximumPageSize"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDomainsInput is undocumented.
 type ListDomainsInput struct {
 	MaximumPageSize    aws.IntegerValue `json:"maximumPageSize,omitempty"`
 	NextPageToken      aws.StringValue  `json:"nextPageToken,omitempty"`
 	RegistrationStatus aws.StringValue  `json:"registrationStatus"`
 	ReverseOrder       aws.BooleanValue `json:"reverseOrder,omitempty"`
+}
+
+func (v *ListDomainsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "MaximumPageSize", 1000); err != nil {
+		errors["MaximumPageSize"] = append(errors["MaximumPageSize"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RegistrationStatus"); err != nil {
+		errors["RegistrationStatus"] = append(errors["RegistrationStatus"], err)
+	}
+
+	registrationStatusEnum := []string{
+		RegistrationStatusDeprecated,
+		RegistrationStatusRegistered,
+	}
+	if err := model.ValidateEnum(v, "RegistrationStatus", registrationStatusEnum); err != nil {
+		errors["RegistrationStatus"] = append(errors["RegistrationStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListOpenWorkflowExecutionsInput is undocumented.
@@ -1369,6 +3178,40 @@ type ListOpenWorkflowExecutionsInput struct {
 	TypeFilter      *WorkflowTypeFilter      `json:"typeFilter,omitempty"`
 }
 
+func (v *ListOpenWorkflowExecutionsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaximumPageSize", 1000); err != nil {
+		errors["MaximumPageSize"] = append(errors["MaximumPageSize"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartTimeFilter"); err != nil {
+		errors["StartTimeFilter"] = append(errors["StartTimeFilter"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListWorkflowTypesInput is undocumented.
 type ListWorkflowTypesInput struct {
 	Domain             aws.StringValue  `json:"domain"`
@@ -1379,11 +3222,91 @@ type ListWorkflowTypesInput struct {
 	ReverseOrder       aws.BooleanValue `json:"reverseOrder,omitempty"`
 }
 
+func (v *ListWorkflowTypesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaximumPageSize", 1000); err != nil {
+		errors["MaximumPageSize"] = append(errors["MaximumPageSize"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RegistrationStatus"); err != nil {
+		errors["RegistrationStatus"] = append(errors["RegistrationStatus"], err)
+	}
+
+	registrationStatusEnum := []string{
+		RegistrationStatusDeprecated,
+		RegistrationStatusRegistered,
+	}
+	if err := model.ValidateEnum(v, "RegistrationStatus", registrationStatusEnum); err != nil {
+		errors["RegistrationStatus"] = append(errors["RegistrationStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // MarkerRecordedEventAttributes is undocumented.
 type MarkerRecordedEventAttributes struct {
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
 	Details                      aws.StringValue `json:"details,omitempty"`
 	MarkerName                   aws.StringValue `json:"markerName"`
+}
+
+func (v *MarkerRecordedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MarkerName"); err != nil {
+		errors["MarkerName"] = append(errors["MarkerName"], err)
+	}
+
+	if err := model.ValidateMin(v, "MarkerName", 1); err != nil {
+		errors["MarkerName"] = append(errors["MarkerName"], err)
+	}
+
+	if err := model.ValidateMax(v, "MarkerName", 256); err != nil {
+		errors["MarkerName"] = append(errors["MarkerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PendingTaskCount is undocumented.
@@ -1392,11 +3315,55 @@ type PendingTaskCount struct {
 	Truncated aws.BooleanValue `json:"truncated,omitempty"`
 }
 
+func (v *PendingTaskCount) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Count"); err != nil {
+		errors["Count"] = append(errors["Count"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PollForActivityTaskInput is undocumented.
 type PollForActivityTaskInput struct {
 	Domain   aws.StringValue `json:"domain"`
 	Identity aws.StringValue `json:"identity,omitempty"`
 	TaskList *TaskList       `json:"taskList"`
+}
+
+func (v *PollForActivityTaskInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Identity", 256); err != nil {
+		errors["Identity"] = append(errors["Identity"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskList"); err != nil {
+		errors["TaskList"] = append(errors["TaskList"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PollForDecisionTaskInput is undocumented.
@@ -1409,16 +3376,106 @@ type PollForDecisionTaskInput struct {
 	TaskList        *TaskList        `json:"taskList"`
 }
 
+func (v *PollForDecisionTaskInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Identity", 256); err != nil {
+		errors["Identity"] = append(errors["Identity"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaximumPageSize", 1000); err != nil {
+		errors["MaximumPageSize"] = append(errors["MaximumPageSize"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskList"); err != nil {
+		errors["TaskList"] = append(errors["TaskList"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RecordActivityTaskHeartbeatInput is undocumented.
 type RecordActivityTaskHeartbeatInput struct {
 	Details   aws.StringValue `json:"details,omitempty"`
 	TaskToken aws.StringValue `json:"taskToken"`
 }
 
+func (v *RecordActivityTaskHeartbeatInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Details", 2048); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskToken"); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "TaskToken", 1); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskToken", 1024); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RecordMarkerDecisionAttributes is undocumented.
 type RecordMarkerDecisionAttributes struct {
 	Details    aws.StringValue `json:"details,omitempty"`
 	MarkerName aws.StringValue `json:"markerName"`
+}
+
+func (v *RecordMarkerDecisionAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MarkerName"); err != nil {
+		errors["MarkerName"] = append(errors["MarkerName"], err)
+	}
+
+	if err := model.ValidateMin(v, "MarkerName", 1); err != nil {
+		errors["MarkerName"] = append(errors["MarkerName"], err)
+	}
+
+	if err := model.ValidateMax(v, "MarkerName", 256); err != nil {
+		errors["MarkerName"] = append(errors["MarkerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1431,6 +3488,43 @@ type RecordMarkerFailedEventAttributes struct {
 	Cause                        aws.StringValue `json:"cause"`
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
 	MarkerName                   aws.StringValue `json:"markerName"`
+}
+
+func (v *RecordMarkerFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	causeEnum := []string{
+		RecordMarkerFailedCauseOperationNotPermitted,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MarkerName"); err != nil {
+		errors["MarkerName"] = append(errors["MarkerName"], err)
+	}
+
+	if err := model.ValidateMin(v, "MarkerName", 1); err != nil {
+		errors["MarkerName"] = append(errors["MarkerName"], err)
+	}
+
+	if err := model.ValidateMax(v, "MarkerName", 256); err != nil {
+		errors["MarkerName"] = append(errors["MarkerName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RegisterActivityTypeInput is undocumented.
@@ -1446,11 +3540,115 @@ type RegisterActivityTypeInput struct {
 	Version                           aws.StringValue `json:"version"`
 }
 
+func (v *RegisterActivityTypeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "DefaultTaskHeartbeatTimeout", 8); err != nil {
+		errors["DefaultTaskHeartbeatTimeout"] = append(errors["DefaultTaskHeartbeatTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "DefaultTaskScheduleToCloseTimeout", 8); err != nil {
+		errors["DefaultTaskScheduleToCloseTimeout"] = append(errors["DefaultTaskScheduleToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "DefaultTaskScheduleToStartTimeout", 8); err != nil {
+		errors["DefaultTaskScheduleToStartTimeout"] = append(errors["DefaultTaskScheduleToStartTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "DefaultTaskStartToCloseTimeout", 8); err != nil {
+		errors["DefaultTaskStartToCloseTimeout"] = append(errors["DefaultTaskStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 1024); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Version"); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if err := model.ValidateMin(v, "Version", 1); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if err := model.ValidateMax(v, "Version", 64); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RegisterDomainInput is undocumented.
 type RegisterDomainInput struct {
 	Description                            aws.StringValue `json:"description,omitempty"`
 	Name                                   aws.StringValue `json:"name"`
 	WorkflowExecutionRetentionPeriodInDays aws.StringValue `json:"workflowExecutionRetentionPeriodInDays"`
+}
+
+func (v *RegisterDomainInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Description", 1024); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowExecutionRetentionPeriodInDays"); err != nil {
+		errors["WorkflowExecutionRetentionPeriodInDays"] = append(errors["WorkflowExecutionRetentionPeriodInDays"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowExecutionRetentionPeriodInDays", 1); err != nil {
+		errors["WorkflowExecutionRetentionPeriodInDays"] = append(errors["WorkflowExecutionRetentionPeriodInDays"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowExecutionRetentionPeriodInDays", 8); err != nil {
+		errors["WorkflowExecutionRetentionPeriodInDays"] = append(errors["WorkflowExecutionRetentionPeriodInDays"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RegisterWorkflowTypeInput is undocumented.
@@ -1465,6 +3663,73 @@ type RegisterWorkflowTypeInput struct {
 	Version                             aws.StringValue `json:"version"`
 }
 
+func (v *RegisterWorkflowTypeInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	defaultChildPolicyEnum := []string{
+		ChildPolicyAbandon,
+		ChildPolicyRequestCancel,
+		ChildPolicyTerminate,
+	}
+	if err := model.ValidateEnum(v, "DefaultChildPolicy", defaultChildPolicyEnum); err != nil {
+		errors["DefaultChildPolicy"] = append(errors["DefaultChildPolicy"], err)
+	}
+
+	if err := model.ValidateMax(v, "DefaultExecutionStartToCloseTimeout", 8); err != nil {
+		errors["DefaultExecutionStartToCloseTimeout"] = append(errors["DefaultExecutionStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "DefaultTaskStartToCloseTimeout", 8); err != nil {
+		errors["DefaultTaskStartToCloseTimeout"] = append(errors["DefaultTaskStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 1024); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Version"); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if err := model.ValidateMin(v, "Version", 1); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if err := model.ValidateMax(v, "Version", 64); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for SWF.
 const (
 	RegistrationStatusDeprecated = "DEPRECATED"
@@ -1474,6 +3739,28 @@ const (
 // RequestCancelActivityTaskDecisionAttributes is undocumented.
 type RequestCancelActivityTaskDecisionAttributes struct {
 	ActivityID aws.StringValue `json:"activityId"`
+}
+
+func (v *RequestCancelActivityTaskDecisionAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActivityID"); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ActivityID", 1); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ActivityID", 256); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1489,11 +3776,79 @@ type RequestCancelActivityTaskFailedEventAttributes struct {
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
 }
 
+func (v *RequestCancelActivityTaskFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActivityID"); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ActivityID", 1); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ActivityID", 256); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	causeEnum := []string{
+		RequestCancelActivityTaskFailedCauseActivityIDUnknown,
+		RequestCancelActivityTaskFailedCauseOperationNotPermitted,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RequestCancelExternalWorkflowExecutionDecisionAttributes is undocumented.
 type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 	Control    aws.StringValue `json:"control,omitempty"`
 	RunID      aws.StringValue `json:"runId,omitempty"`
 	WorkflowID aws.StringValue `json:"workflowId"`
+}
+
+func (v *RequestCancelExternalWorkflowExecutionDecisionAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateMax(v, "RunID", 64); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1513,12 +3868,97 @@ type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
 	WorkflowID                   aws.StringValue `json:"workflowId"`
 }
 
+func (v *RequestCancelExternalWorkflowExecutionFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	causeEnum := []string{
+		RequestCancelExternalWorkflowExecutionFailedCauseOperationNotPermitted,
+		RequestCancelExternalWorkflowExecutionFailedCauseRequestCancelExternalWorkflowExecutionRateExceeded,
+		RequestCancelExternalWorkflowExecutionFailedCauseUnknownExternalWorkflowExecution,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InitiatedEventID"); err != nil {
+		errors["InitiatedEventID"] = append(errors["InitiatedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "RunID", 64); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RequestCancelExternalWorkflowExecutionInitiatedEventAttributes is undocumented.
 type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
 	Control                      aws.StringValue `json:"control,omitempty"`
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
 	RunID                        aws.StringValue `json:"runId,omitempty"`
 	WorkflowID                   aws.StringValue `json:"workflowId"`
+}
+
+func (v *RequestCancelExternalWorkflowExecutionInitiatedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "RunID", 64); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RequestCancelWorkflowExecutionInput is undocumented.
@@ -1528,16 +3968,106 @@ type RequestCancelWorkflowExecutionInput struct {
 	WorkflowID aws.StringValue `json:"workflowId"`
 }
 
+func (v *RequestCancelWorkflowExecutionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "RunID", 64); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RespondActivityTaskCanceledInput is undocumented.
 type RespondActivityTaskCanceledInput struct {
 	Details   aws.StringValue `json:"details,omitempty"`
 	TaskToken aws.StringValue `json:"taskToken"`
 }
 
+func (v *RespondActivityTaskCanceledInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskToken"); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "TaskToken", 1); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskToken", 1024); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RespondActivityTaskCompletedInput is undocumented.
 type RespondActivityTaskCompletedInput struct {
 	Result    aws.StringValue `json:"result,omitempty"`
 	TaskToken aws.StringValue `json:"taskToken"`
+}
+
+func (v *RespondActivityTaskCompletedInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Result", 32768); err != nil {
+		errors["Result"] = append(errors["Result"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskToken"); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "TaskToken", 1); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskToken", 1024); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RespondActivityTaskFailedInput is undocumented.
@@ -1547,6 +4077,36 @@ type RespondActivityTaskFailedInput struct {
 	TaskToken aws.StringValue `json:"taskToken"`
 }
 
+func (v *RespondActivityTaskFailedInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateMax(v, "Reason", 256); err != nil {
+		errors["Reason"] = append(errors["Reason"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskToken"); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "TaskToken", 1); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskToken", 1024); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RespondDecisionTaskCompletedInput is undocumented.
 type RespondDecisionTaskCompletedInput struct {
 	Decisions        []Decision      `json:"decisions,omitempty"`
@@ -1554,9 +4114,53 @@ type RespondDecisionTaskCompletedInput struct {
 	TaskToken        aws.StringValue `json:"taskToken"`
 }
 
+func (v *RespondDecisionTaskCompletedInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "ExecutionContext", 32768); err != nil {
+		errors["ExecutionContext"] = append(errors["ExecutionContext"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskToken"); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMin(v, "TaskToken", 1); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskToken", 1024); err != nil {
+		errors["TaskToken"] = append(errors["TaskToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Run is undocumented.
 type Run struct {
 	RunID aws.StringValue `json:"runId,omitempty"`
+}
+
+func (v *Run) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "RunID", 1); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateMax(v, "RunID", 64); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ScheduleActivityTaskDecisionAttributes is undocumented.
@@ -1570,6 +4174,56 @@ type ScheduleActivityTaskDecisionAttributes struct {
 	ScheduleToStartTimeout aws.StringValue `json:"scheduleToStartTimeout,omitempty"`
 	StartToCloseTimeout    aws.StringValue `json:"startToCloseTimeout,omitempty"`
 	TaskList               *TaskList       `json:"taskList,omitempty"`
+}
+
+func (v *ScheduleActivityTaskDecisionAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActivityID"); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ActivityID", 1); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ActivityID", 256); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ActivityType"); err != nil {
+		errors["ActivityType"] = append(errors["ActivityType"], err)
+	}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateMax(v, "HeartbeatTimeout", 8); err != nil {
+		errors["HeartbeatTimeout"] = append(errors["HeartbeatTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateMax(v, "ScheduleToCloseTimeout", 8); err != nil {
+		errors["ScheduleToCloseTimeout"] = append(errors["ScheduleToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "ScheduleToStartTimeout", 8); err != nil {
+		errors["ScheduleToStartTimeout"] = append(errors["ScheduleToStartTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "StartToCloseTimeout", 8); err != nil {
+		errors["StartToCloseTimeout"] = append(errors["StartToCloseTimeout"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1595,6 +4249,57 @@ type ScheduleActivityTaskFailedEventAttributes struct {
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
 }
 
+func (v *ScheduleActivityTaskFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ActivityID"); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ActivityID", 1); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ActivityID", 256); err != nil {
+		errors["ActivityID"] = append(errors["ActivityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ActivityType"); err != nil {
+		errors["ActivityType"] = append(errors["ActivityType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	causeEnum := []string{
+		ScheduleActivityTaskFailedCauseActivityCreationRateExceeded,
+		ScheduleActivityTaskFailedCauseActivityIDAlreadyInUse,
+		ScheduleActivityTaskFailedCauseActivityTypeDeprecated,
+		ScheduleActivityTaskFailedCauseActivityTypeDoesNotExist,
+		ScheduleActivityTaskFailedCauseDefaultHeartbeatTimeoutUndefined,
+		ScheduleActivityTaskFailedCauseDefaultScheduleToCloseTimeoutUndefined,
+		ScheduleActivityTaskFailedCauseDefaultScheduleToStartTimeoutUndefined,
+		ScheduleActivityTaskFailedCauseDefaultStartToCloseTimeoutUndefined,
+		ScheduleActivityTaskFailedCauseDefaultTaskListUndefined,
+		ScheduleActivityTaskFailedCauseOpenActivitiesLimitExceeded,
+		ScheduleActivityTaskFailedCauseOperationNotPermitted,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SignalExternalWorkflowExecutionDecisionAttributes is undocumented.
 type SignalExternalWorkflowExecutionDecisionAttributes struct {
 	Control    aws.StringValue `json:"control,omitempty"`
@@ -1602,6 +4307,52 @@ type SignalExternalWorkflowExecutionDecisionAttributes struct {
 	RunID      aws.StringValue `json:"runId,omitempty"`
 	SignalName aws.StringValue `json:"signalName"`
 	WorkflowID aws.StringValue `json:"workflowId"`
+}
+
+func (v *SignalExternalWorkflowExecutionDecisionAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateMax(v, "RunID", 64); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SignalName"); err != nil {
+		errors["SignalName"] = append(errors["SignalName"], err)
+	}
+
+	if err := model.ValidateMin(v, "SignalName", 1); err != nil {
+		errors["SignalName"] = append(errors["SignalName"], err)
+	}
+
+	if err := model.ValidateMax(v, "SignalName", 256); err != nil {
+		errors["SignalName"] = append(errors["SignalName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1621,6 +4372,57 @@ type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 	WorkflowID                   aws.StringValue `json:"workflowId"`
 }
 
+func (v *SignalExternalWorkflowExecutionFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	causeEnum := []string{
+		SignalExternalWorkflowExecutionFailedCauseOperationNotPermitted,
+		SignalExternalWorkflowExecutionFailedCauseSignalExternalWorkflowExecutionRateExceeded,
+		SignalExternalWorkflowExecutionFailedCauseUnknownExternalWorkflowExecution,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InitiatedEventID"); err != nil {
+		errors["InitiatedEventID"] = append(errors["InitiatedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "RunID", 64); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SignalExternalWorkflowExecutionInitiatedEventAttributes is undocumented.
 type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 	Control                      aws.StringValue `json:"control,omitempty"`
@@ -1631,6 +4433,56 @@ type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 	WorkflowID                   aws.StringValue `json:"workflowId"`
 }
 
+func (v *SignalExternalWorkflowExecutionInitiatedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateMax(v, "RunID", 64); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SignalName"); err != nil {
+		errors["SignalName"] = append(errors["SignalName"], err)
+	}
+
+	if err := model.ValidateMin(v, "SignalName", 1); err != nil {
+		errors["SignalName"] = append(errors["SignalName"], err)
+	}
+
+	if err := model.ValidateMax(v, "SignalName", 256); err != nil {
+		errors["SignalName"] = append(errors["SignalName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SignalWorkflowExecutionInput is undocumented.
 type SignalWorkflowExecutionInput struct {
 	Domain     aws.StringValue `json:"domain"`
@@ -1638,6 +4490,60 @@ type SignalWorkflowExecutionInput struct {
 	RunID      aws.StringValue `json:"runId,omitempty"`
 	SignalName aws.StringValue `json:"signalName"`
 	WorkflowID aws.StringValue `json:"workflowId"`
+}
+
+func (v *SignalWorkflowExecutionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateMax(v, "RunID", 64); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SignalName"); err != nil {
+		errors["SignalName"] = append(errors["SignalName"], err)
+	}
+
+	if err := model.ValidateMin(v, "SignalName", 1); err != nil {
+		errors["SignalName"] = append(errors["SignalName"], err)
+	}
+
+	if err := model.ValidateMax(v, "SignalName", 256); err != nil {
+		errors["SignalName"] = append(errors["SignalName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // StartChildWorkflowExecutionDecisionAttributes is undocumented.
@@ -1651,6 +4557,61 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	TaskStartToCloseTimeout      aws.StringValue `json:"taskStartToCloseTimeout,omitempty"`
 	WorkflowID                   aws.StringValue `json:"workflowId"`
 	WorkflowType                 *WorkflowType   `json:"workflowType"`
+}
+
+func (v *StartChildWorkflowExecutionDecisionAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	childPolicyEnum := []string{
+		ChildPolicyAbandon,
+		ChildPolicyRequestCancel,
+		ChildPolicyTerminate,
+	}
+	if err := model.ValidateEnum(v, "ChildPolicy", childPolicyEnum); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExecutionStartToCloseTimeout", 8); err != nil {
+		errors["ExecutionStartToCloseTimeout"] = append(errors["ExecutionStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateMax(v, "TagList", 5); err != nil {
+		errors["TagList"] = append(errors["TagList"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskStartToCloseTimeout", 8); err != nil {
+		errors["TaskStartToCloseTimeout"] = append(errors["TaskStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1678,6 +4639,65 @@ type StartChildWorkflowExecutionFailedEventAttributes struct {
 	WorkflowType                 *WorkflowType   `json:"workflowType"`
 }
 
+func (v *StartChildWorkflowExecutionFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	causeEnum := []string{
+		StartChildWorkflowExecutionFailedCauseChildCreationRateExceeded,
+		StartChildWorkflowExecutionFailedCauseDefaultChildPolicyUndefined,
+		StartChildWorkflowExecutionFailedCauseDefaultExecutionStartToCloseTimeoutUndefined,
+		StartChildWorkflowExecutionFailedCauseDefaultTaskListUndefined,
+		StartChildWorkflowExecutionFailedCauseDefaultTaskStartToCloseTimeoutUndefined,
+		StartChildWorkflowExecutionFailedCauseOpenChildrenLimitExceeded,
+		StartChildWorkflowExecutionFailedCauseOpenWorkflowsLimitExceeded,
+		StartChildWorkflowExecutionFailedCauseOperationNotPermitted,
+		StartChildWorkflowExecutionFailedCauseWorkflowAlreadyRunning,
+		StartChildWorkflowExecutionFailedCauseWorkflowTypeDeprecated,
+		StartChildWorkflowExecutionFailedCauseWorkflowTypeDoesNotExist,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InitiatedEventID"); err != nil {
+		errors["InitiatedEventID"] = append(errors["InitiatedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StartChildWorkflowExecutionInitiatedEventAttributes is undocumented.
 type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	ChildPolicy                  aws.StringValue `json:"childPolicy"`
@@ -1692,11 +4712,116 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	WorkflowType                 *WorkflowType   `json:"workflowType"`
 }
 
+func (v *StartChildWorkflowExecutionInitiatedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ChildPolicy"); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	childPolicyEnum := []string{
+		ChildPolicyAbandon,
+		ChildPolicyRequestCancel,
+		ChildPolicyTerminate,
+	}
+	if err := model.ValidateEnum(v, "ChildPolicy", childPolicyEnum); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExecutionStartToCloseTimeout", 8); err != nil {
+		errors["ExecutionStartToCloseTimeout"] = append(errors["ExecutionStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateMax(v, "TagList", 5); err != nil {
+		errors["TagList"] = append(errors["TagList"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskList"); err != nil {
+		errors["TaskList"] = append(errors["TaskList"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskStartToCloseTimeout", 8); err != nil {
+		errors["TaskStartToCloseTimeout"] = append(errors["TaskStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StartTimerDecisionAttributes is undocumented.
 type StartTimerDecisionAttributes struct {
 	Control            aws.StringValue `json:"control,omitempty"`
 	StartToFireTimeout aws.StringValue `json:"startToFireTimeout"`
 	TimerID            aws.StringValue `json:"timerId"`
+}
+
+func (v *StartTimerDecisionAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartToFireTimeout"); err != nil {
+		errors["StartToFireTimeout"] = append(errors["StartToFireTimeout"], err)
+	}
+
+	if err := model.ValidateMin(v, "StartToFireTimeout", 1); err != nil {
+		errors["StartToFireTimeout"] = append(errors["StartToFireTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "StartToFireTimeout", 8); err != nil {
+		errors["StartToFireTimeout"] = append(errors["StartToFireTimeout"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TimerID"); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TimerID", 1); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TimerID", 256); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1714,6 +4839,46 @@ type StartTimerFailedEventAttributes struct {
 	TimerID                      aws.StringValue `json:"timerId"`
 }
 
+func (v *StartTimerFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Cause"); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	causeEnum := []string{
+		StartTimerFailedCauseOpenTimersLimitExceeded,
+		StartTimerFailedCauseOperationNotPermitted,
+		StartTimerFailedCauseTimerCreationRateExceeded,
+		StartTimerFailedCauseTimerIDAlreadyInUse,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TimerID"); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TimerID", 1); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TimerID", 256); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StartWorkflowExecutionInput is undocumented.
 type StartWorkflowExecutionInput struct {
 	ChildPolicy                  aws.StringValue `json:"childPolicy,omitempty"`
@@ -1727,14 +4892,121 @@ type StartWorkflowExecutionInput struct {
 	WorkflowType                 *WorkflowType   `json:"workflowType"`
 }
 
+func (v *StartWorkflowExecutionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	childPolicyEnum := []string{
+		ChildPolicyAbandon,
+		ChildPolicyRequestCancel,
+		ChildPolicyTerminate,
+	}
+	if err := model.ValidateEnum(v, "ChildPolicy", childPolicyEnum); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExecutionStartToCloseTimeout", 8); err != nil {
+		errors["ExecutionStartToCloseTimeout"] = append(errors["ExecutionStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateMax(v, "TagList", 5); err != nil {
+		errors["TagList"] = append(errors["TagList"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskStartToCloseTimeout", 8); err != nil {
+		errors["TaskStartToCloseTimeout"] = append(errors["TaskStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TagFilter is undocumented.
 type TagFilter struct {
 	Tag aws.StringValue `json:"tag"`
 }
 
+func (v *TagFilter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Tag"); err != nil {
+		errors["Tag"] = append(errors["Tag"], err)
+	}
+
+	if err := model.ValidateMin(v, "Tag", 1); err != nil {
+		errors["Tag"] = append(errors["Tag"], err)
+	}
+
+	if err := model.ValidateMax(v, "Tag", 256); err != nil {
+		errors["Tag"] = append(errors["Tag"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TaskList is undocumented.
 type TaskList struct {
 	Name aws.StringValue `json:"name"`
+}
+
+func (v *TaskList) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TerminateWorkflowExecutionInput is undocumented.
@@ -1747,6 +5019,61 @@ type TerminateWorkflowExecutionInput struct {
 	WorkflowID  aws.StringValue `json:"workflowId"`
 }
 
+func (v *TerminateWorkflowExecutionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	childPolicyEnum := []string{
+		ChildPolicyAbandon,
+		ChildPolicyRequestCancel,
+		ChildPolicyTerminate,
+	}
+	if err := model.ValidateEnum(v, "ChildPolicy", childPolicyEnum); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Domain"); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMin(v, "Domain", 1); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Domain", 256); err != nil {
+		errors["Domain"] = append(errors["Domain"], err)
+	}
+
+	if err := model.ValidateMax(v, "Reason", 256); err != nil {
+		errors["Reason"] = append(errors["Reason"], err)
+	}
+
+	if err := model.ValidateMax(v, "RunID", 64); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TimerCanceledEventAttributes is undocumented.
 type TimerCanceledEventAttributes struct {
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
@@ -1754,10 +5081,66 @@ type TimerCanceledEventAttributes struct {
 	TimerID                      aws.StringValue `json:"timerId"`
 }
 
+func (v *TimerCanceledEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TimerID"); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TimerID", 1); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TimerID", 256); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TimerFiredEventAttributes is undocumented.
 type TimerFiredEventAttributes struct {
 	StartedEventID aws.LongValue   `json:"startedEventId"`
 	TimerID        aws.StringValue `json:"timerId"`
+}
+
+func (v *TimerFiredEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StartedEventID"); err != nil {
+		errors["StartedEventID"] = append(errors["StartedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TimerID"); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TimerID", 1); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TimerID", 256); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TimerStartedEventAttributes is undocumented.
@@ -1768,10 +5151,86 @@ type TimerStartedEventAttributes struct {
 	TimerID                      aws.StringValue `json:"timerId"`
 }
 
+func (v *TimerStartedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Control", 32768); err != nil {
+		errors["Control"] = append(errors["Control"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartToFireTimeout"); err != nil {
+		errors["StartToFireTimeout"] = append(errors["StartToFireTimeout"], err)
+	}
+
+	if err := model.ValidateMin(v, "StartToFireTimeout", 1); err != nil {
+		errors["StartToFireTimeout"] = append(errors["StartToFireTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "StartToFireTimeout", 8); err != nil {
+		errors["StartToFireTimeout"] = append(errors["StartToFireTimeout"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TimerID"); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TimerID", 1); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TimerID", 256); err != nil {
+		errors["TimerID"] = append(errors["TimerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowExecution is undocumented.
 type WorkflowExecution struct {
 	RunID      aws.StringValue `json:"runId"`
 	WorkflowID aws.StringValue `json:"workflowId"`
+}
+
+func (v *WorkflowExecution) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "RunID"); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateMin(v, "RunID", 1); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateMax(v, "RunID", 64); err != nil {
+		errors["RunID"] = append(errors["RunID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1786,10 +5245,45 @@ type WorkflowExecutionCancelRequestedEventAttributes struct {
 	ExternalWorkflowExecution *WorkflowExecution `json:"externalWorkflowExecution,omitempty"`
 }
 
+func (v *WorkflowExecutionCancelRequestedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	causeEnum := []string{
+		WorkflowExecutionCancelRequestedCauseChildPolicyApplied,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowExecutionCanceledEventAttributes is undocumented.
 type WorkflowExecutionCanceledEventAttributes struct {
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
 	Details                      aws.StringValue `json:"details,omitempty"`
+}
+
+func (v *WorkflowExecutionCanceledEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // WorkflowExecutionCompletedEventAttributes is undocumented.
@@ -1798,12 +5292,81 @@ type WorkflowExecutionCompletedEventAttributes struct {
 	Result                       aws.StringValue `json:"result,omitempty"`
 }
 
+func (v *WorkflowExecutionCompletedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "Result", 32768); err != nil {
+		errors["Result"] = append(errors["Result"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowExecutionConfiguration is undocumented.
 type WorkflowExecutionConfiguration struct {
 	ChildPolicy                  aws.StringValue `json:"childPolicy"`
 	ExecutionStartToCloseTimeout aws.StringValue `json:"executionStartToCloseTimeout"`
 	TaskList                     *TaskList       `json:"taskList"`
 	TaskStartToCloseTimeout      aws.StringValue `json:"taskStartToCloseTimeout"`
+}
+
+func (v *WorkflowExecutionConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ChildPolicy"); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	childPolicyEnum := []string{
+		ChildPolicyAbandon,
+		ChildPolicyRequestCancel,
+		ChildPolicyTerminate,
+	}
+	if err := model.ValidateEnum(v, "ChildPolicy", childPolicyEnum); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ExecutionStartToCloseTimeout"); err != nil {
+		errors["ExecutionStartToCloseTimeout"] = append(errors["ExecutionStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMin(v, "ExecutionStartToCloseTimeout", 1); err != nil {
+		errors["ExecutionStartToCloseTimeout"] = append(errors["ExecutionStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExecutionStartToCloseTimeout", 8); err != nil {
+		errors["ExecutionStartToCloseTimeout"] = append(errors["ExecutionStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskList"); err != nil {
+		errors["TaskList"] = append(errors["TaskList"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskStartToCloseTimeout"); err != nil {
+		errors["TaskStartToCloseTimeout"] = append(errors["TaskStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMin(v, "TaskStartToCloseTimeout", 1); err != nil {
+		errors["TaskStartToCloseTimeout"] = append(errors["TaskStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskStartToCloseTimeout", 8); err != nil {
+		errors["TaskStartToCloseTimeout"] = append(errors["TaskStartToCloseTimeout"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // WorkflowExecutionContinuedAsNewEventAttributes is undocumented.
@@ -1819,10 +5382,87 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 	WorkflowType                 *WorkflowType   `json:"workflowType"`
 }
 
+func (v *WorkflowExecutionContinuedAsNewEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ChildPolicy"); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	childPolicyEnum := []string{
+		ChildPolicyAbandon,
+		ChildPolicyRequestCancel,
+		ChildPolicyTerminate,
+	}
+	if err := model.ValidateEnum(v, "ChildPolicy", childPolicyEnum); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExecutionStartToCloseTimeout", 8); err != nil {
+		errors["ExecutionStartToCloseTimeout"] = append(errors["ExecutionStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NewExecutionRunID"); err != nil {
+		errors["NewExecutionRunID"] = append(errors["NewExecutionRunID"], err)
+	}
+
+	if err := model.ValidateMin(v, "NewExecutionRunID", 1); err != nil {
+		errors["NewExecutionRunID"] = append(errors["NewExecutionRunID"], err)
+	}
+
+	if err := model.ValidateMax(v, "NewExecutionRunID", 64); err != nil {
+		errors["NewExecutionRunID"] = append(errors["NewExecutionRunID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TagList", 5); err != nil {
+		errors["TagList"] = append(errors["TagList"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskList"); err != nil {
+		errors["TaskList"] = append(errors["TaskList"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskStartToCloseTimeout", 8); err != nil {
+		errors["TaskStartToCloseTimeout"] = append(errors["TaskStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowExecutionCount is undocumented.
 type WorkflowExecutionCount struct {
 	Count     aws.IntegerValue `json:"count"`
 	Truncated aws.BooleanValue `json:"truncated,omitempty"`
+}
+
+func (v *WorkflowExecutionCount) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Count"); err != nil {
+		errors["Count"] = append(errors["Count"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // WorkflowExecutionDetail is undocumented.
@@ -1834,6 +5474,32 @@ type WorkflowExecutionDetail struct {
 	OpenCounts                  *WorkflowExecutionOpenCounts    `json:"openCounts"`
 }
 
+func (v *WorkflowExecutionDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ExecutionConfiguration"); err != nil {
+		errors["ExecutionConfiguration"] = append(errors["ExecutionConfiguration"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ExecutionInfo"); err != nil {
+		errors["ExecutionInfo"] = append(errors["ExecutionInfo"], err)
+	}
+
+	if err := model.ValidateMax(v, "LatestExecutionContext", 32768); err != nil {
+		errors["LatestExecutionContext"] = append(errors["LatestExecutionContext"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OpenCounts"); err != nil {
+		errors["OpenCounts"] = append(errors["OpenCounts"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowExecutionFailedEventAttributes is undocumented.
 type WorkflowExecutionFailedEventAttributes struct {
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
@@ -1841,9 +5507,53 @@ type WorkflowExecutionFailedEventAttributes struct {
 	Reason                       aws.StringValue `json:"reason,omitempty"`
 }
 
+func (v *WorkflowExecutionFailedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DecisionTaskCompletedEventID"); err != nil {
+		errors["DecisionTaskCompletedEventID"] = append(errors["DecisionTaskCompletedEventID"], err)
+	}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateMax(v, "Reason", 256); err != nil {
+		errors["Reason"] = append(errors["Reason"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowExecutionFilter is undocumented.
 type WorkflowExecutionFilter struct {
 	WorkflowID aws.StringValue `json:"workflowId"`
+}
+
+func (v *WorkflowExecutionFilter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "WorkflowID"); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMin(v, "WorkflowID", 1); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkflowID", 256); err != nil {
+		errors["WorkflowID"] = append(errors["WorkflowID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // WorkflowExecutionInfo is undocumented.
@@ -1859,10 +5569,78 @@ type WorkflowExecutionInfo struct {
 	WorkflowType    *WorkflowType      `json:"workflowType"`
 }
 
+func (v *WorkflowExecutionInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	closeStatusEnum := []string{
+		CloseStatusCanceled,
+		CloseStatusCompleted,
+		CloseStatusContinuedAsNew,
+		CloseStatusFailed,
+		CloseStatusTerminated,
+		CloseStatusTimedOut,
+	}
+	if err := model.ValidateEnum(v, "CloseStatus", closeStatusEnum); err != nil {
+		errors["CloseStatus"] = append(errors["CloseStatus"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Execution"); err != nil {
+		errors["Execution"] = append(errors["Execution"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ExecutionStatus"); err != nil {
+		errors["ExecutionStatus"] = append(errors["ExecutionStatus"], err)
+	}
+
+	executionStatusEnum := []string{
+		ExecutionStatusClosed,
+		ExecutionStatusOpen,
+	}
+	if err := model.ValidateEnum(v, "ExecutionStatus", executionStatusEnum); err != nil {
+		errors["ExecutionStatus"] = append(errors["ExecutionStatus"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartTimestamp"); err != nil {
+		errors["StartTimestamp"] = append(errors["StartTimestamp"], err)
+	}
+
+	if err := model.ValidateMax(v, "TagList", 5); err != nil {
+		errors["TagList"] = append(errors["TagList"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowExecutionInfos is undocumented.
 type WorkflowExecutionInfos struct {
 	ExecutionInfos []WorkflowExecutionInfo `json:"executionInfos"`
 	NextPageToken  aws.StringValue         `json:"nextPageToken,omitempty"`
+}
+
+func (v *WorkflowExecutionInfos) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ExecutionInfos"); err != nil {
+		errors["ExecutionInfos"] = append(errors["ExecutionInfos"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // WorkflowExecutionOpenCounts is undocumented.
@@ -1873,12 +5651,68 @@ type WorkflowExecutionOpenCounts struct {
 	OpenTimers                  aws.IntegerValue `json:"openTimers"`
 }
 
+func (v *WorkflowExecutionOpenCounts) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "OpenActivityTasks"); err != nil {
+		errors["OpenActivityTasks"] = append(errors["OpenActivityTasks"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OpenChildWorkflowExecutions"); err != nil {
+		errors["OpenChildWorkflowExecutions"] = append(errors["OpenChildWorkflowExecutions"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OpenDecisionTasks"); err != nil {
+		errors["OpenDecisionTasks"] = append(errors["OpenDecisionTasks"], err)
+	}
+
+	if err := model.ValidateMax(v, "OpenDecisionTasks", 1); err != nil {
+		errors["OpenDecisionTasks"] = append(errors["OpenDecisionTasks"], err)
+	}
+
+	if err := model.ValidateRequired(v, "OpenTimers"); err != nil {
+		errors["OpenTimers"] = append(errors["OpenTimers"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowExecutionSignaledEventAttributes is undocumented.
 type WorkflowExecutionSignaledEventAttributes struct {
 	ExternalInitiatedEventID  aws.LongValue      `json:"externalInitiatedEventId,omitempty"`
 	ExternalWorkflowExecution *WorkflowExecution `json:"externalWorkflowExecution,omitempty"`
 	Input                     aws.StringValue    `json:"input,omitempty"`
 	SignalName                aws.StringValue    `json:"signalName"`
+}
+
+func (v *WorkflowExecutionSignaledEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SignalName"); err != nil {
+		errors["SignalName"] = append(errors["SignalName"], err)
+	}
+
+	if err := model.ValidateMin(v, "SignalName", 1); err != nil {
+		errors["SignalName"] = append(errors["SignalName"], err)
+	}
+
+	if err := model.ValidateMax(v, "SignalName", 256); err != nil {
+		errors["SignalName"] = append(errors["SignalName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // WorkflowExecutionStartedEventAttributes is undocumented.
@@ -1893,6 +5727,57 @@ type WorkflowExecutionStartedEventAttributes struct {
 	TaskList                     *TaskList          `json:"taskList"`
 	TaskStartToCloseTimeout      aws.StringValue    `json:"taskStartToCloseTimeout,omitempty"`
 	WorkflowType                 *WorkflowType      `json:"workflowType"`
+}
+
+func (v *WorkflowExecutionStartedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ChildPolicy"); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	childPolicyEnum := []string{
+		ChildPolicyAbandon,
+		ChildPolicyRequestCancel,
+		ChildPolicyTerminate,
+	}
+	if err := model.ValidateEnum(v, "ChildPolicy", childPolicyEnum); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	if err := model.ValidateMax(v, "ContinuedExecutionRunID", 64); err != nil {
+		errors["ContinuedExecutionRunID"] = append(errors["ContinuedExecutionRunID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExecutionStartToCloseTimeout", 8); err != nil {
+		errors["ExecutionStartToCloseTimeout"] = append(errors["ExecutionStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Input", 32768); err != nil {
+		errors["Input"] = append(errors["Input"], err)
+	}
+
+	if err := model.ValidateMax(v, "TagList", 5); err != nil {
+		errors["TagList"] = append(errors["TagList"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskList"); err != nil {
+		errors["TaskList"] = append(errors["TaskList"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskStartToCloseTimeout", 8); err != nil {
+		errors["TaskStartToCloseTimeout"] = append(errors["TaskStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1910,10 +5795,84 @@ type WorkflowExecutionTerminatedEventAttributes struct {
 	Reason      aws.StringValue `json:"reason,omitempty"`
 }
 
+func (v *WorkflowExecutionTerminatedEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	causeEnum := []string{
+		WorkflowExecutionTerminatedCauseChildPolicyApplied,
+		WorkflowExecutionTerminatedCauseEventLimitExceeded,
+		WorkflowExecutionTerminatedCauseOperatorInitiated,
+	}
+	if err := model.ValidateEnum(v, "Cause", causeEnum); err != nil {
+		errors["Cause"] = append(errors["Cause"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ChildPolicy"); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	childPolicyEnum := []string{
+		ChildPolicyAbandon,
+		ChildPolicyRequestCancel,
+		ChildPolicyTerminate,
+	}
+	if err := model.ValidateEnum(v, "ChildPolicy", childPolicyEnum); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	if err := model.ValidateMax(v, "Details", 32768); err != nil {
+		errors["Details"] = append(errors["Details"], err)
+	}
+
+	if err := model.ValidateMax(v, "Reason", 256); err != nil {
+		errors["Reason"] = append(errors["Reason"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowExecutionTimedOutEventAttributes is undocumented.
 type WorkflowExecutionTimedOutEventAttributes struct {
 	ChildPolicy aws.StringValue `json:"childPolicy"`
 	TimeoutType aws.StringValue `json:"timeoutType"`
+}
+
+func (v *WorkflowExecutionTimedOutEventAttributes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ChildPolicy"); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	childPolicyEnum := []string{
+		ChildPolicyAbandon,
+		ChildPolicyRequestCancel,
+		ChildPolicyTerminate,
+	}
+	if err := model.ValidateEnum(v, "ChildPolicy", childPolicyEnum); err != nil {
+		errors["ChildPolicy"] = append(errors["ChildPolicy"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TimeoutType"); err != nil {
+		errors["TimeoutType"] = append(errors["TimeoutType"], err)
+	}
+
+	timeoutTypeEnum := []string{
+		WorkflowExecutionTimeoutTypeStartToClose,
+	}
+	if err := model.ValidateEnum(v, "TimeoutType", timeoutTypeEnum); err != nil {
+		errors["TimeoutType"] = append(errors["TimeoutType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for SWF.
@@ -1927,6 +5886,40 @@ type WorkflowType struct {
 	Version aws.StringValue `json:"version"`
 }
 
+func (v *WorkflowType) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Version"); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if err := model.ValidateMin(v, "Version", 1); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if err := model.ValidateMax(v, "Version", 64); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowTypeConfiguration is undocumented.
 type WorkflowTypeConfiguration struct {
 	DefaultChildPolicy                  aws.StringValue `json:"defaultChildPolicy,omitempty"`
@@ -1935,16 +5928,87 @@ type WorkflowTypeConfiguration struct {
 	DefaultTaskStartToCloseTimeout      aws.StringValue `json:"defaultTaskStartToCloseTimeout,omitempty"`
 }
 
+func (v *WorkflowTypeConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	defaultChildPolicyEnum := []string{
+		ChildPolicyAbandon,
+		ChildPolicyRequestCancel,
+		ChildPolicyTerminate,
+	}
+	if err := model.ValidateEnum(v, "DefaultChildPolicy", defaultChildPolicyEnum); err != nil {
+		errors["DefaultChildPolicy"] = append(errors["DefaultChildPolicy"], err)
+	}
+
+	if err := model.ValidateMax(v, "DefaultExecutionStartToCloseTimeout", 8); err != nil {
+		errors["DefaultExecutionStartToCloseTimeout"] = append(errors["DefaultExecutionStartToCloseTimeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "DefaultTaskStartToCloseTimeout", 8); err != nil {
+		errors["DefaultTaskStartToCloseTimeout"] = append(errors["DefaultTaskStartToCloseTimeout"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowTypeDetail is undocumented.
 type WorkflowTypeDetail struct {
 	Configuration *WorkflowTypeConfiguration `json:"configuration"`
 	TypeInfo      *WorkflowTypeInfo          `json:"typeInfo"`
 }
 
+func (v *WorkflowTypeDetail) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Configuration"); err != nil {
+		errors["Configuration"] = append(errors["Configuration"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TypeInfo"); err != nil {
+		errors["TypeInfo"] = append(errors["TypeInfo"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowTypeFilter is undocumented.
 type WorkflowTypeFilter struct {
 	Name    aws.StringValue `json:"name"`
 	Version aws.StringValue `json:"version,omitempty"`
+}
+
+func (v *WorkflowTypeFilter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Version", 64); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // WorkflowTypeInfo is undocumented.
@@ -1956,10 +6020,62 @@ type WorkflowTypeInfo struct {
 	WorkflowType    *WorkflowType      `json:"workflowType"`
 }
 
+func (v *WorkflowTypeInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CreationDate"); err != nil {
+		errors["CreationDate"] = append(errors["CreationDate"], err)
+	}
+
+	if err := model.ValidateMax(v, "Description", 1024); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	statusEnum := []string{
+		RegistrationStatusDeprecated,
+		RegistrationStatusRegistered,
+	}
+	if err := model.ValidateEnum(v, "Status", statusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkflowType"); err != nil {
+		errors["WorkflowType"] = append(errors["WorkflowType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // WorkflowTypeInfos is undocumented.
 type WorkflowTypeInfos struct {
 	NextPageToken aws.StringValue    `json:"nextPageToken,omitempty"`
 	TypeInfos     []WorkflowTypeInfo `json:"typeInfos"`
+}
+
+func (v *WorkflowTypeInfos) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "NextPageToken", 2048); err != nil {
+		errors["NextPageToken"] = append(errors["NextPageToken"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TypeInfos"); err != nil {
+		errors["TypeInfos"] = append(errors["TypeInfos"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

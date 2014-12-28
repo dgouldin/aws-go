@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // Config is a client for AWS Config.
@@ -45,6 +46,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Con
 // channel, stop the running configuration recorder using the
 // StopConfigurationRecorder action.
 func (c *Config) DeleteDeliveryChannel(req *DeleteDeliveryChannelRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteDeliveryChannel", "POST", "/", req, nil)
 	return
@@ -58,6 +63,10 @@ func (c *Config) DeleteDeliveryChannel(req *DeleteDeliveryChannelRequest) (err e
 // successfully completed. Notification of delivery failure, if the
 // delivery failed to complete.
 func (c *Config) DeliverConfigSnapshot(req *DeliverConfigSnapshotRequest) (resp *DeliverConfigSnapshotResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeliverConfigSnapshotResponse{}
 	err = c.client.Do("DeliverConfigSnapshot", "POST", "/", req, resp)
 	return
@@ -68,6 +77,10 @@ func (c *Config) DeliverConfigSnapshot(req *DeliverConfigSnapshotRequest) (resp 
 // specified, this action returns the status of all configuration recorder
 // associated with the account.
 func (c *Config) DescribeConfigurationRecorderStatus(req *DescribeConfigurationRecorderStatusRequest) (resp *DescribeConfigurationRecorderStatusResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeConfigurationRecorderStatusResponse{}
 	err = c.client.Do("DescribeConfigurationRecorderStatus", "POST", "/", req, resp)
 	return
@@ -78,6 +91,10 @@ func (c *Config) DescribeConfigurationRecorderStatus(req *DescribeConfigurationR
 // action returns the names of all the configuration recorders associated
 // with the account.
 func (c *Config) DescribeConfigurationRecorders(req *DescribeConfigurationRecordersRequest) (resp *DescribeConfigurationRecordersResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeConfigurationRecordersResponse{}
 	err = c.client.Do("DescribeConfigurationRecorders", "POST", "/", req, resp)
 	return
@@ -88,6 +105,10 @@ func (c *Config) DescribeConfigurationRecorders(req *DescribeConfigurationRecord
 // action returns the current status of all delivery channels associated
 // with the account.
 func (c *Config) DescribeDeliveryChannelStatus(req *DescribeDeliveryChannelStatusRequest) (resp *DescribeDeliveryChannelStatusResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDeliveryChannelStatusResponse{}
 	err = c.client.Do("DescribeDeliveryChannelStatus", "POST", "/", req, resp)
 	return
@@ -97,6 +118,10 @@ func (c *Config) DescribeDeliveryChannelStatus(req *DescribeDeliveryChannelStatu
 // channel. If a delivery channel is not specified, this action returns the
 // details of all delivery channels associated with the account.
 func (c *Config) DescribeDeliveryChannels(req *DescribeDeliveryChannelsRequest) (resp *DescribeDeliveryChannelsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDeliveryChannelsResponse{}
 	err = c.client.Do("DescribeDeliveryChannels", "POST", "/", req, resp)
 	return
@@ -109,6 +134,10 @@ func (c *Config) DescribeDeliveryChannels(req *DescribeDeliveryChannelsRequest) 
 // nextToken is returned as part of the result that you can use to continue
 // this request.
 func (c *Config) GetResourceConfigHistory(req *GetResourceConfigHistoryRequest) (resp *GetResourceConfigHistoryResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetResourceConfigHistoryResponse{}
 	err = c.client.Do("GetResourceConfigHistory", "POST", "/", req, resp)
 	return
@@ -119,6 +148,10 @@ func (c *Config) GetResourceConfigHistory(req *GetResourceConfigHistoryRequest) 
 // roleARN ) of an existing recorder. To change the role, call the action
 // on the existing configuration recorder and specify a role.
 func (c *Config) PutConfigurationRecorder(req *PutConfigurationRecorderRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutConfigurationRecorder", "POST", "/", req, nil)
 	return
@@ -133,6 +166,10 @@ func (c *Config) PutConfigurationRecorder(req *PutConfigurationRecorderRequest) 
 // different value for either the S3 bucket or the SNS topic, this action
 // will keep the existing value for the parameter that is not changed.
 func (c *Config) PutDeliveryChannel(req *PutDeliveryChannelRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("PutDeliveryChannel", "POST", "/", req, nil)
 	return
@@ -142,6 +179,10 @@ func (c *Config) PutDeliveryChannel(req *PutDeliveryChannelRequest) (err error) 
 // resources associated with the account. You must have created at least
 // one delivery channel to successfully start the configuration recorder.
 func (c *Config) StartConfigurationRecorder(req *StartConfigurationRecorderRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("StartConfigurationRecorder", "POST", "/", req, nil)
 	return
@@ -150,6 +191,10 @@ func (c *Config) StartConfigurationRecorder(req *StartConfigurationRecorderReque
 // StopConfigurationRecorder stops recording configurations of all the
 // resources associated with the account.
 func (c *Config) StopConfigurationRecorder(req *StopConfigurationRecorderRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("StopConfigurationRecorder", "POST", "/", req, nil)
 	return
@@ -170,12 +215,48 @@ type ConfigExportDeliveryInfo struct {
 	LastSuccessfulTime time.Time       `json:"lastSuccessfulTime,omitempty"`
 }
 
+func (v *ConfigExportDeliveryInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	lastStatusEnum := []string{
+		DeliveryStatusFailure,
+		DeliveryStatusSuccess,
+	}
+	if err := model.ValidateEnum(v, "LastStatus", lastStatusEnum); err != nil {
+		errors["LastStatus"] = append(errors["LastStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfigStreamDeliveryInfo is undocumented.
 type ConfigStreamDeliveryInfo struct {
 	LastErrorCode        aws.StringValue `json:"lastErrorCode,omitempty"`
 	LastErrorMessage     aws.StringValue `json:"lastErrorMessage,omitempty"`
 	LastStatus           aws.StringValue `json:"lastStatus,omitempty"`
 	LastStatusChangeTime time.Time       `json:"lastStatusChangeTime,omitempty"`
+}
+
+func (v *ConfigStreamDeliveryInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	lastStatusEnum := []string{
+		DeliveryStatusFailure,
+		DeliveryStatusSuccess,
+	}
+	if err := model.ValidateEnum(v, "LastStatus", lastStatusEnum); err != nil {
+		errors["LastStatus"] = append(errors["LastStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ConfigurationItem is undocumented.
@@ -197,6 +278,46 @@ type ConfigurationItem struct {
 	Version                      aws.StringValue   `json:"version,omitempty"`
 }
 
+func (v *ConfigurationItem) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	configurationItemStatusEnum := []string{
+		ConfigurationItemStatusDeleted,
+		ConfigurationItemStatusDiscovered,
+		ConfigurationItemStatusFailed,
+		ConfigurationItemStatusOK,
+	}
+	if err := model.ValidateEnum(v, "ConfigurationItemStatus", configurationItemStatusEnum); err != nil {
+		errors["ConfigurationItemStatus"] = append(errors["ConfigurationItemStatus"], err)
+	}
+
+	resourceTypeEnum := []string{
+		ResourceTypeAWSCloudTrailTrail,
+		ResourceTypeAWSEC2CustomerGateway,
+		ResourceTypeAWSEC2EIP,
+		ResourceTypeAWSEC2Instance,
+		ResourceTypeAWSEC2InternetGateway,
+		ResourceTypeAWSEC2NetworkACL,
+		ResourceTypeAWSEC2NetworkInterface,
+		ResourceTypeAWSEC2RouteTable,
+		ResourceTypeAWSEC2SecurityGroup,
+		ResourceTypeAWSEC2Subnet,
+		ResourceTypeAWSEC2VPC,
+		ResourceTypeAWSEC2VPNconnection,
+		ResourceTypeAWSEC2VPNgateway,
+		ResourceTypeAWSEC2Volume,
+	}
+	if err := model.ValidateEnum(v, "ResourceType", resourceTypeEnum); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for Config.
 const (
 	ConfigurationItemStatusDeleted    = "Deleted"
@@ -211,6 +332,24 @@ type ConfigurationRecorder struct {
 	RoleARN aws.StringValue `json:"roleARN,omitempty"`
 }
 
+func (v *ConfigurationRecorder) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ConfigurationRecorderStatus is undocumented.
 type ConfigurationRecorderStatus struct {
 	LastErrorCode        aws.StringValue  `json:"lastErrorCode,omitempty"`
@@ -223,9 +362,50 @@ type ConfigurationRecorderStatus struct {
 	Recording            aws.BooleanValue `json:"recording,omitempty"`
 }
 
+func (v *ConfigurationRecorderStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	lastStatusEnum := []string{
+		RecorderStatusFailure,
+		RecorderStatusPending,
+		RecorderStatusSuccess,
+	}
+	if err := model.ValidateEnum(v, "LastStatus", lastStatusEnum); err != nil {
+		errors["LastStatus"] = append(errors["LastStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteDeliveryChannelRequest is undocumented.
 type DeleteDeliveryChannelRequest struct {
 	DeliveryChannelName aws.StringValue `json:"DeliveryChannelName"`
+}
+
+func (v *DeleteDeliveryChannelRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DeliveryChannelName"); err != nil {
+		errors["DeliveryChannelName"] = append(errors["DeliveryChannelName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeliveryChannelName", 1); err != nil {
+		errors["DeliveryChannelName"] = append(errors["DeliveryChannelName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeliveryChannelName", 256); err != nil {
+		errors["DeliveryChannelName"] = append(errors["DeliveryChannelName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeliverConfigSnapshotRequest is undocumented.
@@ -233,9 +413,41 @@ type DeliverConfigSnapshotRequest struct {
 	DeliveryChannelName aws.StringValue `json:"deliveryChannelName"`
 }
 
+func (v *DeliverConfigSnapshotRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DeliveryChannelName"); err != nil {
+		errors["DeliveryChannelName"] = append(errors["DeliveryChannelName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeliveryChannelName", 1); err != nil {
+		errors["DeliveryChannelName"] = append(errors["DeliveryChannelName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeliveryChannelName", 256); err != nil {
+		errors["DeliveryChannelName"] = append(errors["DeliveryChannelName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeliverConfigSnapshotResponse is undocumented.
 type DeliverConfigSnapshotResponse struct {
 	ConfigSnapshotID aws.StringValue `json:"configSnapshotId,omitempty"`
+}
+
+func (v *DeliverConfigSnapshotResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeliveryChannel is undocumented.
@@ -246,12 +458,40 @@ type DeliveryChannel struct {
 	SNSTopicARN  aws.StringValue `json:"snsTopicARN,omitempty"`
 }
 
+func (v *DeliveryChannel) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 256); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeliveryChannelStatus is undocumented.
 type DeliveryChannelStatus struct {
 	ConfigHistoryDeliveryInfo  *ConfigExportDeliveryInfo `json:"configHistoryDeliveryInfo,omitempty"`
 	ConfigSnapshotDeliveryInfo *ConfigExportDeliveryInfo `json:"configSnapshotDeliveryInfo,omitempty"`
 	ConfigStreamDeliveryInfo   *ConfigStreamDeliveryInfo `json:"configStreamDeliveryInfo,omitempty"`
 	Name                       aws.StringValue           `json:"name,omitempty"`
+}
+
+func (v *DeliveryChannelStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Config.
@@ -265,9 +505,29 @@ type DescribeConfigurationRecorderStatusRequest struct {
 	ConfigurationRecorderNames []string `json:"ConfigurationRecorderNames,omitempty"`
 }
 
+func (v *DescribeConfigurationRecorderStatusRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeConfigurationRecorderStatusResponse is undocumented.
 type DescribeConfigurationRecorderStatusResponse struct {
 	ConfigurationRecordersStatus []ConfigurationRecorderStatus `json:"ConfigurationRecordersStatus,omitempty"`
+}
+
+func (v *DescribeConfigurationRecorderStatusResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeConfigurationRecordersRequest is undocumented.
@@ -275,9 +535,29 @@ type DescribeConfigurationRecordersRequest struct {
 	ConfigurationRecorderNames []string `json:"ConfigurationRecorderNames,omitempty"`
 }
 
+func (v *DescribeConfigurationRecordersRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeConfigurationRecordersResponse is undocumented.
 type DescribeConfigurationRecordersResponse struct {
 	ConfigurationRecorders []ConfigurationRecorder `json:"ConfigurationRecorders,omitempty"`
+}
+
+func (v *DescribeConfigurationRecordersResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeDeliveryChannelStatusRequest is undocumented.
@@ -285,9 +565,29 @@ type DescribeDeliveryChannelStatusRequest struct {
 	DeliveryChannelNames []string `json:"DeliveryChannelNames,omitempty"`
 }
 
+func (v *DescribeDeliveryChannelStatusRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDeliveryChannelStatusResponse is undocumented.
 type DescribeDeliveryChannelStatusResponse struct {
 	DeliveryChannelsStatus []DeliveryChannelStatus `json:"DeliveryChannelsStatus,omitempty"`
+}
+
+func (v *DescribeDeliveryChannelStatusResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeDeliveryChannelsRequest is undocumented.
@@ -295,9 +595,29 @@ type DescribeDeliveryChannelsRequest struct {
 	DeliveryChannelNames []string `json:"DeliveryChannelNames,omitempty"`
 }
 
+func (v *DescribeDeliveryChannelsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDeliveryChannelsResponse is undocumented.
 type DescribeDeliveryChannelsResponse struct {
 	DeliveryChannels []DeliveryChannel `json:"DeliveryChannels,omitempty"`
+}
+
+func (v *DescribeDeliveryChannelsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetResourceConfigHistoryRequest is undocumented.
@@ -311,10 +631,70 @@ type GetResourceConfigHistoryRequest struct {
 	ResourceType       aws.StringValue  `json:"resourceType"`
 }
 
+func (v *GetResourceConfigHistoryRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	chronologicalOrderEnum := []string{
+		ChronologicalOrderForward,
+		ChronologicalOrderReverse,
+	}
+	if err := model.ValidateEnum(v, "ChronologicalOrder", chronologicalOrderEnum); err != nil {
+		errors["ChronologicalOrder"] = append(errors["ChronologicalOrder"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 100); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceID"); err != nil {
+		errors["ResourceID"] = append(errors["ResourceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceType"); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	resourceTypeEnum := []string{
+		ResourceTypeAWSCloudTrailTrail,
+		ResourceTypeAWSEC2CustomerGateway,
+		ResourceTypeAWSEC2EIP,
+		ResourceTypeAWSEC2Instance,
+		ResourceTypeAWSEC2InternetGateway,
+		ResourceTypeAWSEC2NetworkACL,
+		ResourceTypeAWSEC2NetworkInterface,
+		ResourceTypeAWSEC2RouteTable,
+		ResourceTypeAWSEC2SecurityGroup,
+		ResourceTypeAWSEC2Subnet,
+		ResourceTypeAWSEC2VPC,
+		ResourceTypeAWSEC2VPNconnection,
+		ResourceTypeAWSEC2VPNgateway,
+		ResourceTypeAWSEC2Volume,
+	}
+	if err := model.ValidateEnum(v, "ResourceType", resourceTypeEnum); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetResourceConfigHistoryResponse is undocumented.
 type GetResourceConfigHistoryResponse struct {
 	ConfigurationItems []ConfigurationItem `json:"configurationItems,omitempty"`
 	NextToken          aws.StringValue     `json:"nextToken,omitempty"`
+}
+
+func (v *GetResourceConfigHistoryResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutConfigurationRecorderRequest is undocumented.
@@ -322,9 +702,37 @@ type PutConfigurationRecorderRequest struct {
 	ConfigurationRecorder *ConfigurationRecorder `json:"ConfigurationRecorder"`
 }
 
+func (v *PutConfigurationRecorderRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ConfigurationRecorder"); err != nil {
+		errors["ConfigurationRecorder"] = append(errors["ConfigurationRecorder"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutDeliveryChannelRequest is undocumented.
 type PutDeliveryChannelRequest struct {
 	DeliveryChannel *DeliveryChannel `json:"DeliveryChannel"`
+}
+
+func (v *PutDeliveryChannelRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DeliveryChannel"); err != nil {
+		errors["DeliveryChannel"] = append(errors["DeliveryChannel"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Config.
@@ -339,6 +747,36 @@ type Relationship struct {
 	RelationshipName aws.StringValue `json:"relationshipName,omitempty"`
 	ResourceID       aws.StringValue `json:"resourceId,omitempty"`
 	ResourceType     aws.StringValue `json:"resourceType,omitempty"`
+}
+
+func (v *Relationship) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	resourceTypeEnum := []string{
+		ResourceTypeAWSCloudTrailTrail,
+		ResourceTypeAWSEC2CustomerGateway,
+		ResourceTypeAWSEC2EIP,
+		ResourceTypeAWSEC2Instance,
+		ResourceTypeAWSEC2InternetGateway,
+		ResourceTypeAWSEC2NetworkACL,
+		ResourceTypeAWSEC2NetworkInterface,
+		ResourceTypeAWSEC2RouteTable,
+		ResourceTypeAWSEC2SecurityGroup,
+		ResourceTypeAWSEC2Subnet,
+		ResourceTypeAWSEC2VPC,
+		ResourceTypeAWSEC2VPNconnection,
+		ResourceTypeAWSEC2VPNgateway,
+		ResourceTypeAWSEC2Volume,
+	}
+	if err := model.ValidateEnum(v, "ResourceType", resourceTypeEnum); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Config.
@@ -364,9 +802,53 @@ type StartConfigurationRecorderRequest struct {
 	ConfigurationRecorderName aws.StringValue `json:"ConfigurationRecorderName"`
 }
 
+func (v *StartConfigurationRecorderRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ConfigurationRecorderName"); err != nil {
+		errors["ConfigurationRecorderName"] = append(errors["ConfigurationRecorderName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ConfigurationRecorderName", 1); err != nil {
+		errors["ConfigurationRecorderName"] = append(errors["ConfigurationRecorderName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ConfigurationRecorderName", 256); err != nil {
+		errors["ConfigurationRecorderName"] = append(errors["ConfigurationRecorderName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StopConfigurationRecorderRequest is undocumented.
 type StopConfigurationRecorderRequest struct {
 	ConfigurationRecorderName aws.StringValue `json:"ConfigurationRecorderName"`
+}
+
+func (v *StopConfigurationRecorderRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ConfigurationRecorderName"); err != nil {
+		errors["ConfigurationRecorderName"] = append(errors["ConfigurationRecorderName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ConfigurationRecorderName", 1); err != nil {
+		errors["ConfigurationRecorderName"] = append(errors["ConfigurationRecorderName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ConfigurationRecorderName", 256); err != nil {
+		errors["ConfigurationRecorderName"] = append(errors["ConfigurationRecorderName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

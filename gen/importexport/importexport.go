@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // ImportExport is a client for AWS Import/Export.
@@ -43,6 +44,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Imp
 // cancel it. The operation fails if the job has already started or is
 // complete.
 func (c *ImportExport) CancelJob(req *CancelJobInput) (resp *CancelJobResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CancelJobResult{}
 	err = c.client.Do("CancelJob", "POST", "/?Operation=CancelJob", req, resp)
 	return
@@ -55,6 +60,10 @@ func (c *ImportExport) CancelJob(req *CancelJobInput) (resp *CancelJobResult, er
 // that you use to identify your storage device, and the address where you
 // should ship your storage device.
 func (c *ImportExport) CreateJob(req *CreateJobInput) (resp *CreateJobResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateJobResult{}
 	err = c.client.Do("CreateJob", "POST", "/?Operation=CreateJob", req, resp)
 	return
@@ -65,6 +74,10 @@ func (c *ImportExport) CreateJob(req *CreateJobInput) (resp *CreateJobResult, er
 // and the signature value associated with the job. You can only return
 // information about jobs you own.
 func (c *ImportExport) GetStatus(req *GetStatusInput) (resp *GetStatusResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetStatusResult{}
 	err = c.client.Do("GetStatus", "POST", "/?Operation=GetStatus", req, resp)
 	return
@@ -76,6 +89,10 @@ func (c *ImportExport) GetStatus(req *GetStatusInput) (resp *GetStatusResult, er
 // Test2 was created 2010Feb05, the ListJobs operation would return Test2
 // followed by Test1.
 func (c *ImportExport) ListJobs(req *ListJobsInput) (resp *ListJobsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListJobsResult{}
 	err = c.client.Do("ListJobs", "POST", "/?Operation=ListJobs", req, resp)
 	return
@@ -87,6 +104,10 @@ func (c *ImportExport) ListJobs(req *ListJobsInput) (resp *ListJobsResult, err e
 // file. You can only use the operation after a CreateJob request but
 // before the data transfer starts and you can only use it on jobs you own.
 func (c *ImportExport) UpdateJob(req *UpdateJobInput) (resp *UpdateJobResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateJobResult{}
 	err = c.client.Do("UpdateJob", "POST", "/?Operation=UpdateJob", req, resp)
 	return
@@ -97,9 +118,33 @@ type CancelJobInput struct {
 	JobID aws.StringValue `xml:"JobId"`
 }
 
+func (v *CancelJobInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "JobID"); err != nil {
+		errors["JobID"] = append(errors["JobID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CancelJobOutput is undocumented.
 type CancelJobOutput struct {
 	Success aws.BooleanValue `xml:"CancelJobResult>Success"`
+}
+
+func (v *CancelJobOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateJobInput is undocumented.
@@ -108,6 +153,36 @@ type CreateJobInput struct {
 	Manifest         aws.StringValue  `xml:"Manifest"`
 	ManifestAddendum aws.StringValue  `xml:"ManifestAddendum"`
 	ValidateOnly     aws.BooleanValue `xml:"ValidateOnly"`
+}
+
+func (v *CreateJobInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "JobType"); err != nil {
+		errors["JobType"] = append(errors["JobType"], err)
+	}
+
+	JobTypeEnum := []string{
+		JobTypeExport,
+		JobTypeImport,
+	}
+	if err := model.ValidateEnum(v, "JobType", JobTypeEnum); err != nil {
+		errors["JobType"] = append(errors["JobType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Manifest"); err != nil {
+		errors["Manifest"] = append(errors["Manifest"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ValidateOnly"); err != nil {
+		errors["ValidateOnly"] = append(errors["ValidateOnly"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateJobOutput is undocumented.
@@ -120,9 +195,41 @@ type CreateJobOutput struct {
 	WarningMessage        aws.StringValue `xml:"CreateJobResult>WarningMessage"`
 }
 
+func (v *CreateJobOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	JobTypeEnum := []string{
+		JobTypeExport,
+		JobTypeImport,
+	}
+	if err := model.ValidateEnum(v, "JobType", JobTypeEnum); err != nil {
+		errors["JobType"] = append(errors["JobType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetStatusInput is undocumented.
 type GetStatusInput struct {
 	JobID aws.StringValue `xml:"JobId"`
+}
+
+func (v *GetStatusInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "JobID"); err != nil {
+		errors["JobID"] = append(errors["JobID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetStatusOutput is undocumented.
@@ -145,12 +252,48 @@ type GetStatusOutput struct {
 	TrackingNumber        aws.StringValue  `xml:"GetStatusResult>TrackingNumber"`
 }
 
+func (v *GetStatusOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	JobTypeEnum := []string{
+		JobTypeExport,
+		JobTypeImport,
+	}
+	if err := model.ValidateEnum(v, "JobType", JobTypeEnum); err != nil {
+		errors["JobType"] = append(errors["JobType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Job is undocumented.
 type Job struct {
 	CreationDate time.Time        `xml:"CreationDate"`
 	IsCanceled   aws.BooleanValue `xml:"IsCanceled"`
 	JobID        aws.StringValue  `xml:"JobId"`
 	JobType      aws.StringValue  `xml:"JobType"`
+}
+
+func (v *Job) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	JobTypeEnum := []string{
+		JobTypeExport,
+		JobTypeImport,
+	}
+	if err := model.ValidateEnum(v, "JobType", JobTypeEnum); err != nil {
+		errors["JobType"] = append(errors["JobType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for ImportExport.
@@ -165,10 +308,30 @@ type ListJobsInput struct {
 	MaxJobs aws.IntegerValue `xml:"MaxJobs"`
 }
 
+func (v *ListJobsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListJobsOutput is undocumented.
 type ListJobsOutput struct {
 	IsTruncated aws.BooleanValue `xml:"ListJobsResult>IsTruncated"`
 	Jobs        []Job            `xml:"ListJobsResult>Jobs>member"`
+}
+
+func (v *ListJobsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateJobInput is undocumented.
@@ -179,10 +342,54 @@ type UpdateJobInput struct {
 	ValidateOnly aws.BooleanValue `xml:"ValidateOnly"`
 }
 
+func (v *UpdateJobInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "JobID"); err != nil {
+		errors["JobID"] = append(errors["JobID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "JobType"); err != nil {
+		errors["JobType"] = append(errors["JobType"], err)
+	}
+
+	JobTypeEnum := []string{
+		JobTypeExport,
+		JobTypeImport,
+	}
+	if err := model.ValidateEnum(v, "JobType", JobTypeEnum); err != nil {
+		errors["JobType"] = append(errors["JobType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Manifest"); err != nil {
+		errors["Manifest"] = append(errors["Manifest"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ValidateOnly"); err != nil {
+		errors["ValidateOnly"] = append(errors["ValidateOnly"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateJobOutput is undocumented.
 type UpdateJobOutput struct {
 	Success        aws.BooleanValue `xml:"UpdateJobResult>Success"`
 	WarningMessage aws.StringValue  `xml:"UpdateJobResult>WarningMessage"`
+}
+
+func (v *UpdateJobOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CancelJobResult is a wrapper for CancelJobOutput.

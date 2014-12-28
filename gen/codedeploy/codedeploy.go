@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // CodeDeploy is a client for AWS CodeDeploy.
@@ -41,6 +42,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Cod
 
 // BatchGetApplications is undocumented.
 func (c *CodeDeploy) BatchGetApplications(req *BatchGetApplicationsInput) (resp *BatchGetApplicationsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &BatchGetApplicationsOutput{}
 	err = c.client.Do("BatchGetApplications", "POST", "/", req, resp)
 	return
@@ -48,6 +53,10 @@ func (c *CodeDeploy) BatchGetApplications(req *BatchGetApplicationsInput) (resp 
 
 // BatchGetDeployments is undocumented.
 func (c *CodeDeploy) BatchGetDeployments(req *BatchGetDeploymentsInput) (resp *BatchGetDeploymentsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &BatchGetDeploymentsOutput{}
 	err = c.client.Do("BatchGetDeployments", "POST", "/", req, resp)
 	return
@@ -55,6 +64,10 @@ func (c *CodeDeploy) BatchGetDeployments(req *BatchGetDeploymentsInput) (resp *B
 
 // CreateApplication is undocumented.
 func (c *CodeDeploy) CreateApplication(req *CreateApplicationInput) (resp *CreateApplicationOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateApplicationOutput{}
 	err = c.client.Do("CreateApplication", "POST", "/", req, resp)
 	return
@@ -63,6 +76,10 @@ func (c *CodeDeploy) CreateApplication(req *CreateApplicationInput) (resp *Creat
 // CreateDeployment deploys an application revision to the specified
 // deployment group.
 func (c *CodeDeploy) CreateDeployment(req *CreateDeploymentInput) (resp *CreateDeploymentOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDeploymentOutput{}
 	err = c.client.Do("CreateDeployment", "POST", "/", req, resp)
 	return
@@ -70,6 +87,10 @@ func (c *CodeDeploy) CreateDeployment(req *CreateDeploymentInput) (resp *CreateD
 
 // CreateDeploymentConfig is undocumented.
 func (c *CodeDeploy) CreateDeploymentConfig(req *CreateDeploymentConfigInput) (resp *CreateDeploymentConfigOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDeploymentConfigOutput{}
 	err = c.client.Do("CreateDeploymentConfig", "POST", "/", req, resp)
 	return
@@ -78,6 +99,10 @@ func (c *CodeDeploy) CreateDeploymentConfig(req *CreateDeploymentConfigInput) (r
 // CreateDeploymentGroup creates a new deployment group for application
 // revisions to be deployed to.
 func (c *CodeDeploy) CreateDeploymentGroup(req *CreateDeploymentGroupInput) (resp *CreateDeploymentGroupOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDeploymentGroupOutput{}
 	err = c.client.Do("CreateDeploymentGroup", "POST", "/", req, resp)
 	return
@@ -85,6 +110,10 @@ func (c *CodeDeploy) CreateDeploymentGroup(req *CreateDeploymentGroupInput) (res
 
 // DeleteApplication is undocumented.
 func (c *CodeDeploy) DeleteApplication(req *DeleteApplicationInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteApplication", "POST", "/", req, nil)
 	return
@@ -94,6 +123,10 @@ func (c *CodeDeploy) DeleteApplication(req *DeleteApplicationInput) (err error) 
 // configuration cannot be deleted if it is currently in use. Also,
 // predefined configurations cannot be deleted.
 func (c *CodeDeploy) DeleteDeploymentConfig(req *DeleteDeploymentConfigInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteDeploymentConfig", "POST", "/", req, nil)
 	return
@@ -101,6 +134,10 @@ func (c *CodeDeploy) DeleteDeploymentConfig(req *DeleteDeploymentConfigInput) (e
 
 // DeleteDeploymentGroup is undocumented.
 func (c *CodeDeploy) DeleteDeploymentGroup(req *DeleteDeploymentGroupInput) (resp *DeleteDeploymentGroupOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteDeploymentGroupOutput{}
 	err = c.client.Do("DeleteDeploymentGroup", "POST", "/", req, resp)
 	return
@@ -108,6 +145,10 @@ func (c *CodeDeploy) DeleteDeploymentGroup(req *DeleteDeploymentGroupInput) (res
 
 // GetApplication is undocumented.
 func (c *CodeDeploy) GetApplication(req *GetApplicationInput) (resp *GetApplicationOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetApplicationOutput{}
 	err = c.client.Do("GetApplication", "POST", "/", req, resp)
 	return
@@ -115,6 +156,10 @@ func (c *CodeDeploy) GetApplication(req *GetApplicationInput) (resp *GetApplicat
 
 // GetApplicationRevision is undocumented.
 func (c *CodeDeploy) GetApplicationRevision(req *GetApplicationRevisionInput) (resp *GetApplicationRevisionOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetApplicationRevisionOutput{}
 	err = c.client.Do("GetApplicationRevision", "POST", "/", req, resp)
 	return
@@ -122,6 +167,10 @@ func (c *CodeDeploy) GetApplicationRevision(req *GetApplicationRevisionInput) (r
 
 // GetDeployment is undocumented.
 func (c *CodeDeploy) GetDeployment(req *GetDeploymentInput) (resp *GetDeploymentOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetDeploymentOutput{}
 	err = c.client.Do("GetDeployment", "POST", "/", req, resp)
 	return
@@ -129,6 +178,10 @@ func (c *CodeDeploy) GetDeployment(req *GetDeploymentInput) (resp *GetDeployment
 
 // GetDeploymentConfig is undocumented.
 func (c *CodeDeploy) GetDeploymentConfig(req *GetDeploymentConfigInput) (resp *GetDeploymentConfigOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetDeploymentConfigOutput{}
 	err = c.client.Do("GetDeploymentConfig", "POST", "/", req, resp)
 	return
@@ -136,6 +189,10 @@ func (c *CodeDeploy) GetDeploymentConfig(req *GetDeploymentConfigInput) (resp *G
 
 // GetDeploymentGroup is undocumented.
 func (c *CodeDeploy) GetDeploymentGroup(req *GetDeploymentGroupInput) (resp *GetDeploymentGroupOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetDeploymentGroupOutput{}
 	err = c.client.Do("GetDeploymentGroup", "POST", "/", req, resp)
 	return
@@ -144,6 +201,10 @@ func (c *CodeDeploy) GetDeploymentGroup(req *GetDeploymentGroupInput) (resp *Get
 // GetDeploymentInstance gets information about an Amazon EC2 instance as
 // part of a deployment.
 func (c *CodeDeploy) GetDeploymentInstance(req *GetDeploymentInstanceInput) (resp *GetDeploymentInstanceOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetDeploymentInstanceOutput{}
 	err = c.client.Do("GetDeploymentInstance", "POST", "/", req, resp)
 	return
@@ -152,6 +213,10 @@ func (c *CodeDeploy) GetDeploymentInstance(req *GetDeploymentInstanceInput) (res
 // ListApplicationRevisions lists information about revisions for an
 // application.
 func (c *CodeDeploy) ListApplicationRevisions(req *ListApplicationRevisionsInput) (resp *ListApplicationRevisionsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListApplicationRevisionsOutput{}
 	err = c.client.Do("ListApplicationRevisions", "POST", "/", req, resp)
 	return
@@ -160,6 +225,10 @@ func (c *CodeDeploy) ListApplicationRevisions(req *ListApplicationRevisionsInput
 // ListApplications lists the applications registered within the AWS user
 // account.
 func (c *CodeDeploy) ListApplications(req *ListApplicationsInput) (resp *ListApplicationsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListApplicationsOutput{}
 	err = c.client.Do("ListApplications", "POST", "/", req, resp)
 	return
@@ -168,6 +237,10 @@ func (c *CodeDeploy) ListApplications(req *ListApplicationsInput) (resp *ListApp
 // ListDeploymentConfigs lists the deployment configurations within the AWS
 // user account.
 func (c *CodeDeploy) ListDeploymentConfigs(req *ListDeploymentConfigsInput) (resp *ListDeploymentConfigsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListDeploymentConfigsOutput{}
 	err = c.client.Do("ListDeploymentConfigs", "POST", "/", req, resp)
 	return
@@ -176,6 +249,10 @@ func (c *CodeDeploy) ListDeploymentConfigs(req *ListDeploymentConfigsInput) (res
 // ListDeploymentGroups lists the deployment groups for an application
 // registered within the AWS user account.
 func (c *CodeDeploy) ListDeploymentGroups(req *ListDeploymentGroupsInput) (resp *ListDeploymentGroupsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListDeploymentGroupsOutput{}
 	err = c.client.Do("ListDeploymentGroups", "POST", "/", req, resp)
 	return
@@ -184,6 +261,10 @@ func (c *CodeDeploy) ListDeploymentGroups(req *ListDeploymentGroupsInput) (resp 
 // ListDeploymentInstances lists the Amazon EC2 instances for a deployment
 // within the AWS user account.
 func (c *CodeDeploy) ListDeploymentInstances(req *ListDeploymentInstancesInput) (resp *ListDeploymentInstancesOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListDeploymentInstancesOutput{}
 	err = c.client.Do("ListDeploymentInstances", "POST", "/", req, resp)
 	return
@@ -192,6 +273,10 @@ func (c *CodeDeploy) ListDeploymentInstances(req *ListDeploymentInstancesInput) 
 // ListDeployments lists the deployments under a deployment group for an
 // application registered within the AWS user account.
 func (c *CodeDeploy) ListDeployments(req *ListDeploymentsInput) (resp *ListDeploymentsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListDeploymentsOutput{}
 	err = c.client.Do("ListDeployments", "POST", "/", req, resp)
 	return
@@ -200,6 +285,10 @@ func (c *CodeDeploy) ListDeployments(req *ListDeploymentsInput) (resp *ListDeplo
 // RegisterApplicationRevision registers with AWS CodeDeploy a revision for
 // the specified application.
 func (c *CodeDeploy) RegisterApplicationRevision(req *RegisterApplicationRevisionInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RegisterApplicationRevision", "POST", "/", req, nil)
 	return
@@ -207,6 +296,10 @@ func (c *CodeDeploy) RegisterApplicationRevision(req *RegisterApplicationRevisio
 
 // StopDeployment is undocumented.
 func (c *CodeDeploy) StopDeployment(req *StopDeploymentInput) (resp *StopDeploymentOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &StopDeploymentOutput{}
 	err = c.client.Do("StopDeployment", "POST", "/", req, resp)
 	return
@@ -214,6 +307,10 @@ func (c *CodeDeploy) StopDeployment(req *StopDeploymentInput) (resp *StopDeploym
 
 // UpdateApplication is undocumented.
 func (c *CodeDeploy) UpdateApplication(req *UpdateApplicationInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateApplication", "POST", "/", req, nil)
 	return
@@ -222,6 +319,10 @@ func (c *CodeDeploy) UpdateApplication(req *UpdateApplicationInput) (err error) 
 // UpdateDeploymentGroup changes information about an existing deployment
 // group.
 func (c *CodeDeploy) UpdateDeploymentGroup(req *UpdateDeploymentGroupInput) (resp *UpdateDeploymentGroupOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateDeploymentGroupOutput{}
 	err = c.client.Do("UpdateDeploymentGroup", "POST", "/", req, resp)
 	return
@@ -233,6 +334,24 @@ type ApplicationInfo struct {
 	ApplicationName aws.StringValue    `json:"applicationName,omitempty"`
 	CreateTime      *aws.LongTimestamp `json:"createTime,omitempty"`
 	LinkedToGitHub  aws.BooleanValue   `json:"linkedToGitHub,omitempty"`
+}
+
+func (v *ApplicationInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CodeDeploy.
@@ -248,9 +367,29 @@ type AutoScalingGroup struct {
 	Name aws.StringValue `json:"name,omitempty"`
 }
 
+func (v *AutoScalingGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BatchGetApplicationsInput is undocumented.
 type BatchGetApplicationsInput struct {
 	ApplicationNames []string `json:"applicationNames,omitempty"`
+}
+
+func (v *BatchGetApplicationsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // BatchGetApplicationsOutput is undocumented.
@@ -258,14 +397,44 @@ type BatchGetApplicationsOutput struct {
 	ApplicationsInfo []ApplicationInfo `json:"applicationsInfo,omitempty"`
 }
 
+func (v *BatchGetApplicationsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BatchGetDeploymentsInput is undocumented.
 type BatchGetDeploymentsInput struct {
 	DeploymentIDs []string `json:"deploymentIds,omitempty"`
 }
 
+func (v *BatchGetDeploymentsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BatchGetDeploymentsOutput is undocumented.
 type BatchGetDeploymentsOutput struct {
 	DeploymentsInfo []DeploymentInfo `json:"deploymentsInfo,omitempty"`
+}
+
+func (v *BatchGetDeploymentsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CodeDeploy.
@@ -280,9 +449,41 @@ type CreateApplicationInput struct {
 	ApplicationName aws.StringValue `json:"applicationName"`
 }
 
+func (v *CreateApplicationInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateApplicationOutput is undocumented.
 type CreateApplicationOutput struct {
 	ApplicationID aws.StringValue `json:"applicationId,omitempty"`
+}
+
+func (v *CreateApplicationOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateDeploymentConfigInput is undocumented.
@@ -291,9 +492,41 @@ type CreateDeploymentConfigInput struct {
 	MinimumHealthyHosts  *MinimumHealthyHosts `json:"minimumHealthyHosts,omitempty"`
 }
 
+func (v *CreateDeploymentConfigInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DeploymentConfigName"); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentConfigName", 1); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentConfigName", 100); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDeploymentConfigOutput is undocumented.
 type CreateDeploymentConfigOutput struct {
 	DeploymentConfigID aws.StringValue `json:"deploymentConfigId,omitempty"`
+}
+
+func (v *CreateDeploymentConfigOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateDeploymentGroupInput is undocumented.
@@ -306,9 +539,61 @@ type CreateDeploymentGroupInput struct {
 	ServiceRoleARN       aws.StringValue `json:"serviceRoleArn,omitempty"`
 }
 
+func (v *CreateDeploymentGroupInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentConfigName", 1); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentConfigName", 100); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DeploymentGroupName"); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentGroupName", 1); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentGroupName", 100); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDeploymentGroupOutput is undocumented.
 type CreateDeploymentGroupOutput struct {
 	DeploymentGroupID aws.StringValue `json:"deploymentGroupId,omitempty"`
+}
+
+func (v *CreateDeploymentGroupOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateDeploymentInput is undocumented.
@@ -321,9 +606,57 @@ type CreateDeploymentInput struct {
 	Revision                      *RevisionLocation `json:"revision,omitempty"`
 }
 
+func (v *CreateDeploymentInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentConfigName", 1); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentConfigName", 100); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentGroupName", 1); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentGroupName", 100); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDeploymentOutput is undocumented.
 type CreateDeploymentOutput struct {
 	DeploymentID aws.StringValue `json:"deploymentId,omitempty"`
+}
+
+func (v *CreateDeploymentOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteApplicationInput is undocumented.
@@ -331,9 +664,53 @@ type DeleteApplicationInput struct {
 	ApplicationName aws.StringValue `json:"applicationName"`
 }
 
+func (v *DeleteApplicationInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteDeploymentConfigInput is undocumented.
 type DeleteDeploymentConfigInput struct {
 	DeploymentConfigName aws.StringValue `json:"deploymentConfigName"`
+}
+
+func (v *DeleteDeploymentConfigInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DeploymentConfigName"); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentConfigName", 1); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentConfigName", 100); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteDeploymentGroupInput is undocumented.
@@ -342,9 +719,53 @@ type DeleteDeploymentGroupInput struct {
 	DeploymentGroupName aws.StringValue `json:"deploymentGroupName"`
 }
 
+func (v *DeleteDeploymentGroupInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DeploymentGroupName"); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentGroupName", 1); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentGroupName", 100); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteDeploymentGroupOutput is undocumented.
 type DeleteDeploymentGroupOutput struct {
 	HooksNotCleanedUp []AutoScalingGroup `json:"hooksNotCleanedUp,omitempty"`
+}
+
+func (v *DeleteDeploymentGroupOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeploymentConfigInfo is undocumented.
@@ -353,6 +774,24 @@ type DeploymentConfigInfo struct {
 	DeploymentConfigID   aws.StringValue      `json:"deploymentConfigId,omitempty"`
 	DeploymentConfigName aws.StringValue      `json:"deploymentConfigName,omitempty"`
 	MinimumHealthyHosts  *MinimumHealthyHosts `json:"minimumHealthyHosts,omitempty"`
+}
+
+func (v *DeploymentConfigInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "DeploymentConfigName", 1); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentConfigName", 100); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CodeDeploy.
@@ -373,6 +812,40 @@ type DeploymentGroupInfo struct {
 	TargetRevision       *RevisionLocation  `json:"targetRevision,omitempty"`
 }
 
+func (v *DeploymentGroupInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentConfigName", 1); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentConfigName", 100); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentGroupName", 1); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentGroupName", 100); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeploymentInfo is undocumented.
 type DeploymentInfo struct {
 	ApplicationName               aws.StringValue     `json:"applicationName,omitempty"`
@@ -391,6 +864,60 @@ type DeploymentInfo struct {
 	Status                        aws.StringValue     `json:"status,omitempty"`
 }
 
+func (v *DeploymentInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	creatorEnum := []string{
+		DeploymentCreatorAutoscaling,
+		DeploymentCreatorUser,
+	}
+	if err := model.ValidateEnum(v, "Creator", creatorEnum); err != nil {
+		errors["Creator"] = append(errors["Creator"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentConfigName", 1); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentConfigName", 100); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentGroupName", 1); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentGroupName", 100); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	statusEnum := []string{
+		DeploymentStatusCreated,
+		DeploymentStatusFailed,
+		DeploymentStatusInProgress,
+		DeploymentStatusQueued,
+		DeploymentStatusStopped,
+		DeploymentStatusSucceeded,
+	}
+	if err := model.ValidateEnum(v, "Status", statusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeploymentOverview is undocumented.
 type DeploymentOverview struct {
 	Failed     aws.LongValue `json:"Failed,omitempty"`
@@ -398,6 +925,16 @@ type DeploymentOverview struct {
 	Pending    aws.LongValue `json:"Pending,omitempty"`
 	Skipped    aws.LongValue `json:"Skipped,omitempty"`
 	Succeeded  aws.LongValue `json:"Succeeded,omitempty"`
+}
+
+func (v *DeploymentOverview) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CodeDeploy.
@@ -418,11 +955,52 @@ type Diagnostics struct {
 	ScriptName aws.StringValue `json:"scriptName,omitempty"`
 }
 
+func (v *Diagnostics) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	errorCodeEnum := []string{
+		LifecycleErrorCodeScriptFailed,
+		LifecycleErrorCodeScriptMissing,
+		LifecycleErrorCodeScriptNotExecutable,
+		LifecycleErrorCodeScriptTimedOut,
+		LifecycleErrorCodeSuccess,
+		LifecycleErrorCodeUnknownError,
+	}
+	if err := model.ValidateEnum(v, "ErrorCode", errorCodeEnum); err != nil {
+		errors["ErrorCode"] = append(errors["ErrorCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EC2TagFilter is undocumented.
 type EC2TagFilter struct {
 	Key   aws.StringValue `json:"Key,omitempty"`
 	Type  aws.StringValue `json:"Type,omitempty"`
 	Value aws.StringValue `json:"Value,omitempty"`
+}
+
+func (v *EC2TagFilter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	TypeEnum := []string{
+		EC2TagFilterTypeKeyAndValue,
+		EC2TagFilterTypeKeyOnly,
+		EC2TagFilterTypeValueOnly,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CodeDeploy.
@@ -453,6 +1031,33 @@ type ErrorInformation struct {
 	Message aws.StringValue `json:"message,omitempty"`
 }
 
+func (v *ErrorInformation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	codeEnum := []string{
+		ErrorCodeApplicationMissing,
+		ErrorCodeDeploymentGroupMissing,
+		ErrorCodeHealthConstraints,
+		ErrorCodeHealthConstraintsInvalid,
+		ErrorCodeIAMRoleMissing,
+		ErrorCodeIAMRolePermissions,
+		ErrorCodeInternalError,
+		ErrorCodeNoInstances,
+		ErrorCodeOverMaxInstances,
+		ErrorCodeRevisionMissing,
+		ErrorCodeTimeout,
+	}
+	if err := model.ValidateEnum(v, "Code", codeEnum); err != nil {
+		errors["Code"] = append(errors["Code"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GenericRevisionInfo is undocumented.
 type GenericRevisionInfo struct {
 	DeploymentGroups []string           `json:"deploymentGroups,omitempty"`
@@ -462,9 +1067,41 @@ type GenericRevisionInfo struct {
 	RegisterTime     *aws.LongTimestamp `json:"registerTime,omitempty"`
 }
 
+func (v *GenericRevisionInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetApplicationInput is undocumented.
 type GetApplicationInput struct {
 	ApplicationName aws.StringValue `json:"applicationName"`
+}
+
+func (v *GetApplicationInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetApplicationOutput is undocumented.
@@ -472,10 +1109,46 @@ type GetApplicationOutput struct {
 	Application *ApplicationInfo `json:"application,omitempty"`
 }
 
+func (v *GetApplicationOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetApplicationRevisionInput is undocumented.
 type GetApplicationRevisionInput struct {
 	ApplicationName aws.StringValue   `json:"applicationName"`
 	Revision        *RevisionLocation `json:"revision"`
+}
+
+func (v *GetApplicationRevisionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Revision"); err != nil {
+		errors["Revision"] = append(errors["Revision"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetApplicationRevisionOutput is undocumented.
@@ -485,14 +1158,64 @@ type GetApplicationRevisionOutput struct {
 	RevisionInfo    *GenericRevisionInfo `json:"revisionInfo,omitempty"`
 }
 
+func (v *GetApplicationRevisionOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetDeploymentConfigInput is undocumented.
 type GetDeploymentConfigInput struct {
 	DeploymentConfigName aws.StringValue `json:"deploymentConfigName"`
 }
 
+func (v *GetDeploymentConfigInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DeploymentConfigName"); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentConfigName", 1); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentConfigName", 100); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetDeploymentConfigOutput is undocumented.
 type GetDeploymentConfigOutput struct {
 	DeploymentConfigInfo *DeploymentConfigInfo `json:"deploymentConfigInfo,omitempty"`
+}
+
+func (v *GetDeploymentConfigOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetDeploymentGroupInput is undocumented.
@@ -501,14 +1224,72 @@ type GetDeploymentGroupInput struct {
 	DeploymentGroupName aws.StringValue `json:"deploymentGroupName"`
 }
 
+func (v *GetDeploymentGroupInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DeploymentGroupName"); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentGroupName", 1); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentGroupName", 100); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetDeploymentGroupOutput is undocumented.
 type GetDeploymentGroupOutput struct {
 	DeploymentGroupInfo *DeploymentGroupInfo `json:"deploymentGroupInfo,omitempty"`
 }
 
+func (v *GetDeploymentGroupOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetDeploymentInput is undocumented.
 type GetDeploymentInput struct {
 	DeploymentID aws.StringValue `json:"deploymentId"`
+}
+
+func (v *GetDeploymentInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DeploymentID"); err != nil {
+		errors["DeploymentID"] = append(errors["DeploymentID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetDeploymentInstanceInput is undocumented.
@@ -517,9 +1298,37 @@ type GetDeploymentInstanceInput struct {
 	InstanceID   aws.StringValue `json:"instanceId"`
 }
 
+func (v *GetDeploymentInstanceInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DeploymentID"); err != nil {
+		errors["DeploymentID"] = append(errors["DeploymentID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetDeploymentInstanceOutput is undocumented.
 type GetDeploymentInstanceOutput struct {
 	InstanceSummary *InstanceSummary `json:"instanceSummary,omitempty"`
+}
+
+func (v *GetDeploymentInstanceOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetDeploymentOutput is undocumented.
@@ -527,10 +1336,30 @@ type GetDeploymentOutput struct {
 	DeploymentInfo *DeploymentInfo `json:"deploymentInfo,omitempty"`
 }
 
+func (v *GetDeploymentOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GitHubLocation is undocumented.
 type GitHubLocation struct {
 	CommitID   aws.StringValue `json:"commitId,omitempty"`
 	Repository aws.StringValue `json:"repository,omitempty"`
+}
+
+func (v *GitHubLocation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CodeDeploy.
@@ -552,6 +1381,28 @@ type InstanceSummary struct {
 	Status          aws.StringValue    `json:"status,omitempty"`
 }
 
+func (v *InstanceSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	statusEnum := []string{
+		InstanceStatusFailed,
+		InstanceStatusInProgress,
+		InstanceStatusPending,
+		InstanceStatusSkipped,
+		InstanceStatusSucceeded,
+		InstanceStatusUnknown,
+	}
+	if err := model.ValidateEnum(v, "Status", statusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for CodeDeploy.
 const (
 	LifecycleErrorCodeScriptFailed        = "ScriptFailed"
@@ -569,6 +1420,28 @@ type LifecycleEvent struct {
 	LifecycleEventName aws.StringValue    `json:"lifecycleEventName,omitempty"`
 	StartTime          *aws.LongTimestamp `json:"startTime,omitempty"`
 	Status             aws.StringValue    `json:"status,omitempty"`
+}
+
+func (v *LifecycleEvent) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	statusEnum := []string{
+		LifecycleEventStatusFailed,
+		LifecycleEventStatusInProgress,
+		LifecycleEventStatusPending,
+		LifecycleEventStatusSkipped,
+		LifecycleEventStatusSucceeded,
+		LifecycleEventStatusUnknown,
+	}
+	if err := model.ValidateEnum(v, "Status", statusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CodeDeploy.
@@ -592,15 +1465,83 @@ type ListApplicationRevisionsInput struct {
 	SortOrder       aws.StringValue `json:"sortOrder,omitempty"`
 }
 
+func (v *ListApplicationRevisionsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	deployedEnum := []string{
+		ListStateFilterActionExclude,
+		ListStateFilterActionIgnore,
+		ListStateFilterActionInclude,
+	}
+	if err := model.ValidateEnum(v, "Deployed", deployedEnum); err != nil {
+		errors["Deployed"] = append(errors["Deployed"], err)
+	}
+
+	sortByEnum := []string{
+		ApplicationRevisionSortByFirstUsedTime,
+		ApplicationRevisionSortByLastUsedTime,
+		ApplicationRevisionSortByRegisterTime,
+	}
+	if err := model.ValidateEnum(v, "SortBy", sortByEnum); err != nil {
+		errors["SortBy"] = append(errors["SortBy"], err)
+	}
+
+	sortOrderEnum := []string{
+		SortOrderAscending,
+		SortOrderDescending,
+	}
+	if err := model.ValidateEnum(v, "SortOrder", sortOrderEnum); err != nil {
+		errors["SortOrder"] = append(errors["SortOrder"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListApplicationRevisionsOutput is undocumented.
 type ListApplicationRevisionsOutput struct {
 	NextToken aws.StringValue    `json:"nextToken,omitempty"`
 	Revisions []RevisionLocation `json:"revisions,omitempty"`
 }
 
+func (v *ListApplicationRevisionsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListApplicationsInput is undocumented.
 type ListApplicationsInput struct {
 	NextToken aws.StringValue `json:"nextToken,omitempty"`
+}
+
+func (v *ListApplicationsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListApplicationsOutput is undocumented.
@@ -609,9 +1550,29 @@ type ListApplicationsOutput struct {
 	NextToken    aws.StringValue `json:"nextToken,omitempty"`
 }
 
+func (v *ListApplicationsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDeploymentConfigsInput is undocumented.
 type ListDeploymentConfigsInput struct {
 	NextToken aws.StringValue `json:"nextToken,omitempty"`
+}
+
+func (v *ListDeploymentConfigsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListDeploymentConfigsOutput is undocumented.
@@ -620,10 +1581,42 @@ type ListDeploymentConfigsOutput struct {
 	NextToken             aws.StringValue `json:"nextToken,omitempty"`
 }
 
+func (v *ListDeploymentConfigsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDeploymentGroupsInput is undocumented.
 type ListDeploymentGroupsInput struct {
 	ApplicationName aws.StringValue `json:"applicationName"`
 	NextToken       aws.StringValue `json:"nextToken,omitempty"`
+}
+
+func (v *ListDeploymentGroupsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListDeploymentGroupsOutput is undocumented.
@@ -633,6 +1626,24 @@ type ListDeploymentGroupsOutput struct {
 	NextToken        aws.StringValue `json:"nextToken,omitempty"`
 }
 
+func (v *ListDeploymentGroupsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDeploymentInstancesInput is undocumented.
 type ListDeploymentInstancesInput struct {
 	DeploymentID         aws.StringValue `json:"deploymentId"`
@@ -640,10 +1651,34 @@ type ListDeploymentInstancesInput struct {
 	NextToken            aws.StringValue `json:"nextToken,omitempty"`
 }
 
+func (v *ListDeploymentInstancesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DeploymentID"); err != nil {
+		errors["DeploymentID"] = append(errors["DeploymentID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDeploymentInstancesOutput is undocumented.
 type ListDeploymentInstancesOutput struct {
 	InstancesList []string        `json:"instancesList,omitempty"`
 	NextToken     aws.StringValue `json:"nextToken,omitempty"`
+}
+
+func (v *ListDeploymentInstancesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListDeploymentsInput is undocumented.
@@ -655,10 +1690,46 @@ type ListDeploymentsInput struct {
 	NextToken           aws.StringValue `json:"nextToken,omitempty"`
 }
 
+func (v *ListDeploymentsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentGroupName", 1); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentGroupName", 100); err != nil {
+		errors["DeploymentGroupName"] = append(errors["DeploymentGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDeploymentsOutput is undocumented.
 type ListDeploymentsOutput struct {
 	Deployments []string        `json:"deployments,omitempty"`
 	NextToken   aws.StringValue `json:"nextToken,omitempty"`
+}
+
+func (v *ListDeploymentsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CodeDeploy.
@@ -674,6 +1745,24 @@ type MinimumHealthyHosts struct {
 	Value aws.IntegerValue `json:"value,omitempty"`
 }
 
+func (v *MinimumHealthyHosts) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	typeEnum := []string{
+		MinimumHealthyHostsTypeFleetPercent,
+		MinimumHealthyHostsTypeHostCount,
+	}
+	if err := model.ValidateEnum(v, "Type", typeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for CodeDeploy.
 const (
 	MinimumHealthyHostsTypeFleetPercent = "FLEET_PERCENT"
@@ -687,11 +1776,55 @@ type RegisterApplicationRevisionInput struct {
 	Revision        *RevisionLocation `json:"revision"`
 }
 
+func (v *RegisterApplicationRevisionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Revision"); err != nil {
+		errors["Revision"] = append(errors["Revision"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RevisionLocation is undocumented.
 type RevisionLocation struct {
 	GitHubLocation *GitHubLocation `json:"gitHubLocation,omitempty"`
 	RevisionType   aws.StringValue `json:"revisionType,omitempty"`
 	S3Location     *S3Location     `json:"s3Location,omitempty"`
+}
+
+func (v *RevisionLocation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	revisionTypeEnum := []string{
+		RevisionLocationTypeGitHub,
+		RevisionLocationTypeS3,
+	}
+	if err := model.ValidateEnum(v, "RevisionType", revisionTypeEnum); err != nil {
+		errors["RevisionType"] = append(errors["RevisionType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CodeDeploy.
@@ -709,6 +1842,25 @@ type S3Location struct {
 	Version    aws.StringValue `json:"version,omitempty"`
 }
 
+func (v *S3Location) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	bundleTypeEnum := []string{
+		BundleTypeTAR,
+		BundleTypeTGZ,
+		BundleTypeZip,
+	}
+	if err := model.ValidateEnum(v, "BundleType", bundleTypeEnum); err != nil {
+		errors["BundleType"] = append(errors["BundleType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for CodeDeploy.
 const (
 	SortOrderAscending  = "ascending"
@@ -720,10 +1872,42 @@ type StopDeploymentInput struct {
 	DeploymentID aws.StringValue `json:"deploymentId"`
 }
 
+func (v *StopDeploymentInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DeploymentID"); err != nil {
+		errors["DeploymentID"] = append(errors["DeploymentID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StopDeploymentOutput is undocumented.
 type StopDeploymentOutput struct {
 	Status        aws.StringValue `json:"status,omitempty"`
 	StatusMessage aws.StringValue `json:"statusMessage,omitempty"`
+}
+
+func (v *StopDeploymentOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	statusEnum := []string{
+		StopStatusPending,
+		StopStatusSucceeded,
+	}
+	if err := model.ValidateEnum(v, "Status", statusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CodeDeploy.
@@ -738,10 +1922,46 @@ type TimeRange struct {
 	Start *aws.LongTimestamp `json:"start,omitempty"`
 }
 
+func (v *TimeRange) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateApplicationInput is undocumented.
 type UpdateApplicationInput struct {
 	ApplicationName    aws.StringValue `json:"applicationName,omitempty"`
 	NewApplicationName aws.StringValue `json:"newApplicationName,omitempty"`
+}
+
+func (v *UpdateApplicationInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "NewApplicationName", 1); err != nil {
+		errors["NewApplicationName"] = append(errors["NewApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "NewApplicationName", 100); err != nil {
+		errors["NewApplicationName"] = append(errors["NewApplicationName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateDeploymentGroupInput is undocumented.
@@ -755,9 +1975,69 @@ type UpdateDeploymentGroupInput struct {
 	ServiceRoleARN             aws.StringValue `json:"serviceRoleArn,omitempty"`
 }
 
+func (v *UpdateDeploymentGroupInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ApplicationName"); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ApplicationName", 1); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ApplicationName", 100); err != nil {
+		errors["ApplicationName"] = append(errors["ApplicationName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CurrentDeploymentGroupName"); err != nil {
+		errors["CurrentDeploymentGroupName"] = append(errors["CurrentDeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "CurrentDeploymentGroupName", 1); err != nil {
+		errors["CurrentDeploymentGroupName"] = append(errors["CurrentDeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "CurrentDeploymentGroupName", 100); err != nil {
+		errors["CurrentDeploymentGroupName"] = append(errors["CurrentDeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeploymentConfigName", 1); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeploymentConfigName", 100); err != nil {
+		errors["DeploymentConfigName"] = append(errors["DeploymentConfigName"], err)
+	}
+
+	if err := model.ValidateMin(v, "NewDeploymentGroupName", 1); err != nil {
+		errors["NewDeploymentGroupName"] = append(errors["NewDeploymentGroupName"], err)
+	}
+
+	if err := model.ValidateMax(v, "NewDeploymentGroupName", 100); err != nil {
+		errors["NewDeploymentGroupName"] = append(errors["NewDeploymentGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateDeploymentGroupOutput is undocumented.
 type UpdateDeploymentGroupOutput struct {
 	HooksNotCleanedUp []AutoScalingGroup `json:"hooksNotCleanedUp,omitempty"`
+}
+
+func (v *UpdateDeploymentGroupOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

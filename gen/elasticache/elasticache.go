@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // ElasticCache is a client for Amazon ElastiCache.
@@ -45,6 +46,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Ela
 // Amazon EC2, and Amazon EC2 security groups are used as the authorization
 // mechanism.
 func (c *ElasticCache) AuthorizeCacheSecurityGroupIngress(req *AuthorizeCacheSecurityGroupIngressMessage) (resp *AuthorizeCacheSecurityGroupIngressResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AuthorizeCacheSecurityGroupIngressResult{}
 	err = c.client.Do("AuthorizeCacheSecurityGroupIngress", "POST", "/", req, resp)
 	return
@@ -53,6 +58,10 @@ func (c *ElasticCache) AuthorizeCacheSecurityGroupIngress(req *AuthorizeCacheSec
 // CopySnapshot the CopySnapshot operation makes a copy of an existing
 // snapshot.
 func (c *ElasticCache) CopySnapshot(req *CopySnapshotMessage) (resp *CopySnapshotResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CopySnapshotResult{}
 	err = c.client.Do("CopySnapshot", "POST", "/", req, resp)
 	return
@@ -62,6 +71,10 @@ func (c *ElasticCache) CopySnapshot(req *CopySnapshotMessage) (resp *CopySnapsho
 // cluster. All nodes in the cache cluster run the same protocol-compliant
 // cache engine software, either Memcached or Redis.
 func (c *ElasticCache) CreateCacheCluster(req *CreateCacheClusterMessage) (resp *CreateCacheClusterResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateCacheClusterResult{}
 	err = c.client.Do("CreateCacheCluster", "POST", "/", req, resp)
 	return
@@ -72,6 +85,10 @@ func (c *ElasticCache) CreateCacheCluster(req *CreateCacheClusterMessage) (resp 
 // collection of parameters that you apply to all of the nodes in a cache
 // cluster.
 func (c *ElasticCache) CreateCacheParameterGroup(req *CreateCacheParameterGroupMessage) (resp *CreateCacheParameterGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateCacheParameterGroupResult{}
 	err = c.client.Do("CreateCacheParameterGroup", "POST", "/", req, resp)
 	return
@@ -84,6 +101,10 @@ func (c *ElasticCache) CreateCacheParameterGroup(req *CreateCacheParameterGroupM
 // Cloud If you are creating a cache cluster inside of a use a cache subnet
 // group instead. For more information, see CreateCacheSubnetGroup
 func (c *ElasticCache) CreateCacheSecurityGroup(req *CreateCacheSecurityGroupMessage) (resp *CreateCacheSecurityGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateCacheSecurityGroupResult{}
 	err = c.client.Do("CreateCacheSecurityGroup", "POST", "/", req, resp)
 	return
@@ -93,6 +114,10 @@ func (c *ElasticCache) CreateCacheSecurityGroup(req *CreateCacheSecurityGroupMes
 // new cache subnet group. Use this parameter only when you are creating a
 // cluster in an Amazon Virtual Private Cloud
 func (c *ElasticCache) CreateCacheSubnetGroup(req *CreateCacheSubnetGroupMessage) (resp *CreateCacheSubnetGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateCacheSubnetGroupResult{}
 	err = c.client.Do("CreateCacheSubnetGroup", "POST", "/", req, resp)
 	return
@@ -108,6 +133,10 @@ func (c *ElasticCache) CreateCacheSubnetGroup(req *CreateCacheSubnetGroupMessage
 // add one or more read replica replicas to it, up to a total of five read
 // replicas. Note: This action is valid only for Redis.
 func (c *ElasticCache) CreateReplicationGroup(req *CreateReplicationGroupMessage) (resp *CreateReplicationGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateReplicationGroupResult{}
 	err = c.client.Do("CreateReplicationGroup", "POST", "/", req, resp)
 	return
@@ -116,6 +145,10 @@ func (c *ElasticCache) CreateReplicationGroup(req *CreateReplicationGroupMessage
 // CreateSnapshot the CreateSnapshot operation creates a copy of an entire
 // cache cluster at a specific moment in time.
 func (c *ElasticCache) CreateSnapshot(req *CreateSnapshotMessage) (resp *CreateSnapshotResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateSnapshotResult{}
 	err = c.client.Do("CreateSnapshot", "POST", "/", req, resp)
 	return
@@ -130,6 +163,10 @@ func (c *ElasticCache) CreateSnapshot(req *CreateSnapshotMessage) (resp *CreateS
 // that is the last read replica of a replication group that has automatic
 // failover mode enabled.
 func (c *ElasticCache) DeleteCacheCluster(req *DeleteCacheClusterMessage) (resp *DeleteCacheClusterResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteCacheClusterResult{}
 	err = c.client.Do("DeleteCacheCluster", "POST", "/", req, resp)
 	return
@@ -139,6 +176,10 @@ func (c *ElasticCache) DeleteCacheCluster(req *DeleteCacheClusterMessage) (resp 
 // deletes the specified cache parameter group. You cannot delete a cache
 // parameter group if it is associated with any cache clusters.
 func (c *ElasticCache) DeleteCacheParameterGroup(req *DeleteCacheParameterGroupMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteCacheParameterGroup", "POST", "/", req, nil)
 	return
@@ -147,6 +188,10 @@ func (c *ElasticCache) DeleteCacheParameterGroup(req *DeleteCacheParameterGroupM
 // DeleteCacheSecurityGroup the DeleteCacheSecurityGroup operation deletes
 // a cache security group.
 func (c *ElasticCache) DeleteCacheSecurityGroup(req *DeleteCacheSecurityGroupMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteCacheSecurityGroup", "POST", "/", req, nil)
 	return
@@ -155,6 +200,10 @@ func (c *ElasticCache) DeleteCacheSecurityGroup(req *DeleteCacheSecurityGroupMes
 // DeleteCacheSubnetGroup the DeleteCacheSubnetGroup operation deletes a
 // cache subnet group.
 func (c *ElasticCache) DeleteCacheSubnetGroup(req *DeleteCacheSubnetGroupMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteCacheSubnetGroup", "POST", "/", req, nil)
 	return
@@ -168,6 +217,10 @@ func (c *ElasticCache) DeleteCacheSubnetGroup(req *DeleteCacheSubnetGroupMessage
 // Amazon ElastiCache immediately begins deleting the selected resources;
 // you cannot cancel or revert this operation.
 func (c *ElasticCache) DeleteReplicationGroup(req *DeleteReplicationGroupMessage) (resp *DeleteReplicationGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteReplicationGroupResult{}
 	err = c.client.Do("DeleteReplicationGroup", "POST", "/", req, resp)
 	return
@@ -178,6 +231,10 @@ func (c *ElasticCache) DeleteReplicationGroup(req *DeleteReplicationGroupMessage
 // ElastiCache immediately begins deleting the snapshot; you cannot cancel
 // or revert this operation.
 func (c *ElasticCache) DeleteSnapshot(req *DeleteSnapshotMessage) (resp *DeleteSnapshotResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteSnapshotResult{}
 	err = c.client.Do("DeleteSnapshot", "POST", "/", req, resp)
 	return
@@ -201,6 +258,10 @@ func (c *ElasticCache) DeleteSnapshot(req *DeleteSnapshotMessage) (resp *DeleteS
 // being removed from the cache cluster, no endpoint information for the
 // removed nodes is displayed.
 func (c *ElasticCache) DescribeCacheClusters(req *DescribeCacheClustersMessage) (resp *DescribeCacheClustersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeCacheClustersResult{}
 	err = c.client.Do("DescribeCacheClusters", "POST", "/", req, resp)
 	return
@@ -209,6 +270,10 @@ func (c *ElasticCache) DescribeCacheClusters(req *DescribeCacheClustersMessage) 
 // DescribeCacheEngineVersions the DescribeCacheEngineVersions operation
 // returns a list of the available cache engines and their versions.
 func (c *ElasticCache) DescribeCacheEngineVersions(req *DescribeCacheEngineVersionsMessage) (resp *DescribeCacheEngineVersionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeCacheEngineVersionsResult{}
 	err = c.client.Do("DescribeCacheEngineVersions", "POST", "/", req, resp)
 	return
@@ -219,6 +284,10 @@ func (c *ElasticCache) DescribeCacheEngineVersions(req *DescribeCacheEngineVersi
 // parameter group name is specified, the list will contain only the
 // descriptions for that group.
 func (c *ElasticCache) DescribeCacheParameterGroups(req *DescribeCacheParameterGroupsMessage) (resp *DescribeCacheParameterGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeCacheParameterGroupsResult{}
 	err = c.client.Do("DescribeCacheParameterGroups", "POST", "/", req, resp)
 	return
@@ -227,6 +296,10 @@ func (c *ElasticCache) DescribeCacheParameterGroups(req *DescribeCacheParameterG
 // DescribeCacheParameters the DescribeCacheParameters operation returns
 // the detailed parameter list for a particular cache parameter group.
 func (c *ElasticCache) DescribeCacheParameters(req *DescribeCacheParametersMessage) (resp *DescribeCacheParametersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeCacheParametersResult{}
 	err = c.client.Do("DescribeCacheParameters", "POST", "/", req, resp)
 	return
@@ -237,6 +310,10 @@ func (c *ElasticCache) DescribeCacheParameters(req *DescribeCacheParametersMessa
 // group name is specified, the list will contain only the description of
 // that group.
 func (c *ElasticCache) DescribeCacheSecurityGroups(req *DescribeCacheSecurityGroupsMessage) (resp *DescribeCacheSecurityGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeCacheSecurityGroupsResult{}
 	err = c.client.Do("DescribeCacheSecurityGroups", "POST", "/", req, resp)
 	return
@@ -247,6 +324,10 @@ func (c *ElasticCache) DescribeCacheSecurityGroups(req *DescribeCacheSecurityGro
 // name is specified, the list will contain only the description of that
 // group.
 func (c *ElasticCache) DescribeCacheSubnetGroups(req *DescribeCacheSubnetGroupsMessage) (resp *DescribeCacheSubnetGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeCacheSubnetGroupsResult{}
 	err = c.client.Do("DescribeCacheSubnetGroups", "POST", "/", req, resp)
 	return
@@ -256,6 +337,10 @@ func (c *ElasticCache) DescribeCacheSubnetGroups(req *DescribeCacheSubnetGroupsM
 // operation returns the default engine and system parameter information
 // for the specified cache engine.
 func (c *ElasticCache) DescribeEngineDefaultParameters(req *DescribeEngineDefaultParametersMessage) (resp *DescribeEngineDefaultParametersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeEngineDefaultParametersResult{}
 	err = c.client.Do("DescribeEngineDefaultParameters", "POST", "/", req, resp)
 	return
@@ -268,6 +353,10 @@ func (c *ElasticCache) DescribeEngineDefaultParameters(req *DescribeEngineDefaul
 // default, only the events occurring within the last hour are returned;
 // however, you can retrieve up to 14 days' worth of events if necessary.
 func (c *ElasticCache) DescribeEvents(req *DescribeEventsMessage) (resp *DescribeEventsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeEventsResult{}
 	err = c.client.Do("DescribeEvents", "POST", "/", req, resp)
 	return
@@ -278,6 +367,10 @@ func (c *ElasticCache) DescribeEvents(req *DescribeEventsMessage) (resp *Describ
 // identifier is specified, DescribeReplicationGroups returns information
 // about all replication groups.
 func (c *ElasticCache) DescribeReplicationGroups(req *DescribeReplicationGroupsMessage) (resp *DescribeReplicationGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeReplicationGroupsResult{}
 	err = c.client.Do("DescribeReplicationGroups", "POST", "/", req, resp)
 	return
@@ -287,6 +380,10 @@ func (c *ElasticCache) DescribeReplicationGroups(req *DescribeReplicationGroupsM
 // returns information about reserved cache nodes for this account, or
 // about a specified reserved cache node.
 func (c *ElasticCache) DescribeReservedCacheNodes(req *DescribeReservedCacheNodesMessage) (resp *DescribeReservedCacheNodesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeReservedCacheNodesResult{}
 	err = c.client.Do("DescribeReservedCacheNodes", "POST", "/", req, resp)
 	return
@@ -296,6 +393,10 @@ func (c *ElasticCache) DescribeReservedCacheNodes(req *DescribeReservedCacheNode
 // DescribeReservedCacheNodesOfferings operation lists available reserved
 // cache node offerings.
 func (c *ElasticCache) DescribeReservedCacheNodesOfferings(req *DescribeReservedCacheNodesOfferingsMessage) (resp *DescribeReservedCacheNodesOfferingsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeReservedCacheNodesOfferingsResult{}
 	err = c.client.Do("DescribeReservedCacheNodesOfferings", "POST", "/", req, resp)
 	return
@@ -306,6 +407,10 @@ func (c *ElasticCache) DescribeReservedCacheNodesOfferings(req *DescribeReserved
 // of your snapshots; it can optionally describe a single snapshot, or just
 // the snapshots associated with a particular cache cluster.
 func (c *ElasticCache) DescribeSnapshots(req *DescribeSnapshotsMessage) (resp *DescribeSnapshotsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeSnapshotsResult{}
 	err = c.client.Do("DescribeSnapshots", "POST", "/", req, resp)
 	return
@@ -316,6 +421,10 @@ func (c *ElasticCache) DescribeSnapshots(req *DescribeSnapshotsMessage) (resp *D
 // or more cluster configuration parameters by specifying the parameters
 // and the new values.
 func (c *ElasticCache) ModifyCacheCluster(req *ModifyCacheClusterMessage) (resp *ModifyCacheClusterResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyCacheClusterResult{}
 	err = c.client.Do("ModifyCacheCluster", "POST", "/", req, resp)
 	return
@@ -326,6 +435,10 @@ func (c *ElasticCache) ModifyCacheCluster(req *ModifyCacheClusterMessage) (resp 
 // 20 parameters in a single request by submitting a list parameter name
 // and value pairs.
 func (c *ElasticCache) ModifyCacheParameterGroup(req *ModifyCacheParameterGroupMessage) (resp *ModifyCacheParameterGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyCacheParameterGroupResult{}
 	err = c.client.Do("ModifyCacheParameterGroup", "POST", "/", req, resp)
 	return
@@ -334,6 +447,10 @@ func (c *ElasticCache) ModifyCacheParameterGroup(req *ModifyCacheParameterGroupM
 // ModifyCacheSubnetGroup the ModifyCacheSubnetGroup operation modifies an
 // existing cache subnet group.
 func (c *ElasticCache) ModifyCacheSubnetGroup(req *ModifyCacheSubnetGroupMessage) (resp *ModifyCacheSubnetGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyCacheSubnetGroupResult{}
 	err = c.client.Do("ModifyCacheSubnetGroup", "POST", "/", req, resp)
 	return
@@ -342,6 +459,10 @@ func (c *ElasticCache) ModifyCacheSubnetGroup(req *ModifyCacheSubnetGroupMessage
 // ModifyReplicationGroup the ModifyReplicationGroup operation modifies the
 // settings for a replication group.
 func (c *ElasticCache) ModifyReplicationGroup(req *ModifyReplicationGroupMessage) (resp *ModifyReplicationGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyReplicationGroupResult{}
 	err = c.client.Do("ModifyReplicationGroup", "POST", "/", req, resp)
 	return
@@ -351,6 +472,10 @@ func (c *ElasticCache) ModifyReplicationGroup(req *ModifyReplicationGroupMessage
 // PurchaseReservedCacheNodesOffering operation allows you to purchase a
 // reserved cache node offering.
 func (c *ElasticCache) PurchaseReservedCacheNodesOffering(req *PurchaseReservedCacheNodesOfferingMessage) (resp *PurchaseReservedCacheNodesOfferingResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PurchaseReservedCacheNodesOfferingResult{}
 	err = c.client.Do("PurchaseReservedCacheNodesOffering", "POST", "/", req, resp)
 	return
@@ -365,6 +490,10 @@ func (c *ElasticCache) PurchaseReservedCacheNodesOffering(req *PurchaseReservedC
 // (for each cache node being rebooted) to be lost. When the reboot is
 // complete, a cache cluster event is created.
 func (c *ElasticCache) RebootCacheCluster(req *RebootCacheClusterMessage) (resp *RebootCacheClusterResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RebootCacheClusterResult{}
 	err = c.client.Do("RebootCacheCluster", "POST", "/", req, resp)
 	return
@@ -376,6 +505,10 @@ func (c *ElasticCache) RebootCacheCluster(req *RebootCacheClusterMessage) (resp 
 // parameter names. To reset the entire cache parameter group, specify the
 // ResetAllParameters and CacheParameterGroupName parameters.
 func (c *ElasticCache) ResetCacheParameterGroup(req *ResetCacheParameterGroupMessage) (resp *ResetCacheParameterGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ResetCacheParameterGroupResult{}
 	err = c.client.Do("ResetCacheParameterGroup", "POST", "/", req, resp)
 	return
@@ -386,6 +519,10 @@ func (c *ElasticCache) ResetCacheParameterGroup(req *ResetCacheParameterGroupMes
 // operation to disallow access from an Amazon EC2 security group that had
 // been previously authorized.
 func (c *ElasticCache) RevokeCacheSecurityGroupIngress(req *RevokeCacheSecurityGroupIngressMessage) (resp *RevokeCacheSecurityGroupIngressResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RevokeCacheSecurityGroupIngressResult{}
 	err = c.client.Do("RevokeCacheSecurityGroupIngress", "POST", "/", req, resp)
 	return
@@ -404,9 +541,41 @@ type AuthorizeCacheSecurityGroupIngressMessage struct {
 	EC2SecurityGroupOwnerID aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
 }
 
+func (v *AuthorizeCacheSecurityGroupIngressMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheSecurityGroupName"); err != nil {
+		errors["CacheSecurityGroupName"] = append(errors["CacheSecurityGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EC2SecurityGroupName"); err != nil {
+		errors["EC2SecurityGroupName"] = append(errors["EC2SecurityGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EC2SecurityGroupOwnerID"); err != nil {
+		errors["EC2SecurityGroupOwnerID"] = append(errors["EC2SecurityGroupOwnerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AuthorizeCacheSecurityGroupIngressResult is undocumented.
 type AuthorizeCacheSecurityGroupIngressResult struct {
 	CacheSecurityGroup *CacheSecurityGroup `xml:"AuthorizeCacheSecurityGroupIngressResult>CacheSecurityGroup"`
+}
+
+func (v *AuthorizeCacheSecurityGroupIngressResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for ElasticCache.
@@ -420,6 +589,16 @@ const (
 // AvailabilityZone is undocumented.
 type AvailabilityZone struct {
 	Name aws.StringValue `xml:"Name"`
+}
+
+func (v *AvailabilityZone) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CacheCluster is undocumented.
@@ -448,10 +627,30 @@ type CacheCluster struct {
 	SnapshotWindow             aws.StringValue                `xml:"SnapshotWindow"`
 }
 
+func (v *CacheCluster) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CacheClusterMessage is undocumented.
 type CacheClusterMessage struct {
 	CacheClusters []CacheCluster  `xml:"DescribeCacheClustersResult>CacheClusters>CacheCluster"`
 	Marker        aws.StringValue `xml:"DescribeCacheClustersResult>Marker"`
+}
+
+func (v *CacheClusterMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CacheEngineVersion is undocumented.
@@ -463,10 +662,30 @@ type CacheEngineVersion struct {
 	EngineVersion                 aws.StringValue `xml:"EngineVersion"`
 }
 
+func (v *CacheEngineVersion) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CacheEngineVersionMessage is undocumented.
 type CacheEngineVersionMessage struct {
 	CacheEngineVersions []CacheEngineVersion `xml:"DescribeCacheEngineVersionsResult>CacheEngineVersions>CacheEngineVersion"`
 	Marker              aws.StringValue      `xml:"DescribeCacheEngineVersionsResult>Marker"`
+}
+
+func (v *CacheEngineVersionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CacheNode is undocumented.
@@ -478,6 +697,16 @@ type CacheNode struct {
 	Endpoint                 *Endpoint       `xml:"Endpoint"`
 	ParameterGroupStatus     aws.StringValue `xml:"ParameterGroupStatus"`
 	SourceCacheNodeID        aws.StringValue `xml:"SourceCacheNodeId"`
+}
+
+func (v *CacheNode) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CacheNodeTypeSpecificParameter is undocumented.
@@ -492,10 +721,30 @@ type CacheNodeTypeSpecificParameter struct {
 	Source                      aws.StringValue              `xml:"Source"`
 }
 
+func (v *CacheNodeTypeSpecificParameter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CacheNodeTypeSpecificValue is undocumented.
 type CacheNodeTypeSpecificValue struct {
 	CacheNodeType aws.StringValue `xml:"CacheNodeType"`
 	Value         aws.StringValue `xml:"Value"`
+}
+
+func (v *CacheNodeTypeSpecificValue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CacheParameterGroup is undocumented.
@@ -505,6 +754,16 @@ type CacheParameterGroup struct {
 	Description               aws.StringValue `xml:"Description"`
 }
 
+func (v *CacheParameterGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CacheParameterGroupDetails is undocumented.
 type CacheParameterGroupDetails struct {
 	CacheNodeTypeSpecificParameters []CacheNodeTypeSpecificParameter `xml:"DescribeCacheParametersResult>CacheNodeTypeSpecificParameters>CacheNodeTypeSpecificParameter"`
@@ -512,9 +771,29 @@ type CacheParameterGroupDetails struct {
 	Parameters                      []Parameter                      `xml:"DescribeCacheParametersResult>Parameters>Parameter"`
 }
 
+func (v *CacheParameterGroupDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CacheParameterGroupNameMessage is undocumented.
 type CacheParameterGroupNameMessage struct {
 	CacheParameterGroupName aws.StringValue `xml:"CacheParameterGroupName"`
+}
+
+func (v *CacheParameterGroupNameMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CacheParameterGroupStatus is undocumented.
@@ -524,10 +803,30 @@ type CacheParameterGroupStatus struct {
 	ParameterApplyStatus    aws.StringValue `xml:"ParameterApplyStatus"`
 }
 
+func (v *CacheParameterGroupStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CacheParameterGroupsMessage is undocumented.
 type CacheParameterGroupsMessage struct {
 	CacheParameterGroups []CacheParameterGroup `xml:"DescribeCacheParameterGroupsResult>CacheParameterGroups>CacheParameterGroup"`
 	Marker               aws.StringValue       `xml:"DescribeCacheParameterGroupsResult>Marker"`
+}
+
+func (v *CacheParameterGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CacheSecurityGroup is undocumented.
@@ -538,16 +837,46 @@ type CacheSecurityGroup struct {
 	OwnerID                aws.StringValue    `xml:"OwnerId"`
 }
 
+func (v *CacheSecurityGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CacheSecurityGroupMembership is undocumented.
 type CacheSecurityGroupMembership struct {
 	CacheSecurityGroupName aws.StringValue `xml:"CacheSecurityGroupName"`
 	Status                 aws.StringValue `xml:"Status"`
 }
 
+func (v *CacheSecurityGroupMembership) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CacheSecurityGroupMessage is undocumented.
 type CacheSecurityGroupMessage struct {
 	CacheSecurityGroups []CacheSecurityGroup `xml:"DescribeCacheSecurityGroupsResult>CacheSecurityGroups>CacheSecurityGroup"`
 	Marker              aws.StringValue      `xml:"DescribeCacheSecurityGroupsResult>Marker"`
+}
+
+func (v *CacheSecurityGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CacheSubnetGroup is undocumented.
@@ -558,10 +887,30 @@ type CacheSubnetGroup struct {
 	VPCID                       aws.StringValue `xml:"VpcId"`
 }
 
+func (v *CacheSubnetGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CacheSubnetGroupMessage is undocumented.
 type CacheSubnetGroupMessage struct {
 	CacheSubnetGroups []CacheSubnetGroup `xml:"DescribeCacheSubnetGroupsResult>CacheSubnetGroups>CacheSubnetGroup"`
 	Marker            aws.StringValue    `xml:"DescribeCacheSubnetGroupsResult>Marker"`
+}
+
+func (v *CacheSubnetGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CopySnapshotMessage is undocumented.
@@ -570,9 +919,37 @@ type CopySnapshotMessage struct {
 	TargetSnapshotName aws.StringValue `xml:"TargetSnapshotName"`
 }
 
+func (v *CopySnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SourceSnapshotName"); err != nil {
+		errors["SourceSnapshotName"] = append(errors["SourceSnapshotName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetSnapshotName"); err != nil {
+		errors["TargetSnapshotName"] = append(errors["TargetSnapshotName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CopySnapshotResult is undocumented.
 type CopySnapshotResult struct {
 	Snapshot *Snapshot `xml:"CopySnapshotResult>Snapshot"`
+}
+
+func (v *CopySnapshotResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateCacheClusterMessage is undocumented.
@@ -600,9 +977,41 @@ type CreateCacheClusterMessage struct {
 	SnapshotWindow             aws.StringValue  `xml:"SnapshotWindow"`
 }
 
+func (v *CreateCacheClusterMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	AZModeEnum := []string{
+		AZModeCrossAz,
+		AZModeSingleAz,
+	}
+	if err := model.ValidateEnum(v, "AZMode", AZModeEnum); err != nil {
+		errors["AZMode"] = append(errors["AZMode"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CacheClusterID"); err != nil {
+		errors["CacheClusterID"] = append(errors["CacheClusterID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateCacheClusterResult is undocumented.
 type CreateCacheClusterResult struct {
 	CacheCluster *CacheCluster `xml:"CreateCacheClusterResult>CacheCluster"`
+}
+
+func (v *CreateCacheClusterResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateCacheParameterGroupMessage is undocumented.
@@ -612,9 +1021,41 @@ type CreateCacheParameterGroupMessage struct {
 	Description               aws.StringValue `xml:"Description"`
 }
 
+func (v *CreateCacheParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheParameterGroupFamily"); err != nil {
+		errors["CacheParameterGroupFamily"] = append(errors["CacheParameterGroupFamily"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CacheParameterGroupName"); err != nil {
+		errors["CacheParameterGroupName"] = append(errors["CacheParameterGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Description"); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateCacheParameterGroupResult is undocumented.
 type CreateCacheParameterGroupResult struct {
 	CacheParameterGroup *CacheParameterGroup `xml:"CreateCacheParameterGroupResult>CacheParameterGroup"`
+}
+
+func (v *CreateCacheParameterGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateCacheSecurityGroupMessage is undocumented.
@@ -623,9 +1064,37 @@ type CreateCacheSecurityGroupMessage struct {
 	Description            aws.StringValue `xml:"Description"`
 }
 
+func (v *CreateCacheSecurityGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheSecurityGroupName"); err != nil {
+		errors["CacheSecurityGroupName"] = append(errors["CacheSecurityGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Description"); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateCacheSecurityGroupResult is undocumented.
 type CreateCacheSecurityGroupResult struct {
 	CacheSecurityGroup *CacheSecurityGroup `xml:"CreateCacheSecurityGroupResult>CacheSecurityGroup"`
+}
+
+func (v *CreateCacheSecurityGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateCacheSubnetGroupMessage is undocumented.
@@ -635,9 +1104,41 @@ type CreateCacheSubnetGroupMessage struct {
 	SubnetIDs                   []string        `xml:"SubnetIds>SubnetIdentifier"`
 }
 
+func (v *CreateCacheSubnetGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheSubnetGroupDescription"); err != nil {
+		errors["CacheSubnetGroupDescription"] = append(errors["CacheSubnetGroupDescription"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CacheSubnetGroupName"); err != nil {
+		errors["CacheSubnetGroupName"] = append(errors["CacheSubnetGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubnetIDs"); err != nil {
+		errors["SubnetIDs"] = append(errors["SubnetIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateCacheSubnetGroupResult is undocumented.
 type CreateCacheSubnetGroupResult struct {
 	CacheSubnetGroup *CacheSubnetGroup `xml:"CreateCacheSubnetGroupResult>CacheSubnetGroup"`
+}
+
+func (v *CreateCacheSubnetGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateReplicationGroupMessage is undocumented.
@@ -665,9 +1166,37 @@ type CreateReplicationGroupMessage struct {
 	SnapshotWindow              aws.StringValue  `xml:"SnapshotWindow"`
 }
 
+func (v *CreateReplicationGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ReplicationGroupDescription"); err != nil {
+		errors["ReplicationGroupDescription"] = append(errors["ReplicationGroupDescription"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ReplicationGroupID"); err != nil {
+		errors["ReplicationGroupID"] = append(errors["ReplicationGroupID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateReplicationGroupResult is undocumented.
 type CreateReplicationGroupResult struct {
 	ReplicationGroup *ReplicationGroup `xml:"CreateReplicationGroupResult>ReplicationGroup"`
+}
+
+func (v *CreateReplicationGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateSnapshotMessage is undocumented.
@@ -676,9 +1205,37 @@ type CreateSnapshotMessage struct {
 	SnapshotName   aws.StringValue `xml:"SnapshotName"`
 }
 
+func (v *CreateSnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheClusterID"); err != nil {
+		errors["CacheClusterID"] = append(errors["CacheClusterID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SnapshotName"); err != nil {
+		errors["SnapshotName"] = append(errors["SnapshotName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateSnapshotResult is undocumented.
 type CreateSnapshotResult struct {
 	Snapshot *Snapshot `xml:"CreateSnapshotResult>Snapshot"`
+}
+
+func (v *CreateSnapshotResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteCacheClusterMessage is undocumented.
@@ -687,9 +1244,33 @@ type DeleteCacheClusterMessage struct {
 	FinalSnapshotIdentifier aws.StringValue `xml:"FinalSnapshotIdentifier"`
 }
 
+func (v *DeleteCacheClusterMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheClusterID"); err != nil {
+		errors["CacheClusterID"] = append(errors["CacheClusterID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteCacheClusterResult is undocumented.
 type DeleteCacheClusterResult struct {
 	CacheCluster *CacheCluster `xml:"DeleteCacheClusterResult>CacheCluster"`
+}
+
+func (v *DeleteCacheClusterResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteCacheParameterGroupMessage is undocumented.
@@ -697,14 +1278,56 @@ type DeleteCacheParameterGroupMessage struct {
 	CacheParameterGroupName aws.StringValue `xml:"CacheParameterGroupName"`
 }
 
+func (v *DeleteCacheParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheParameterGroupName"); err != nil {
+		errors["CacheParameterGroupName"] = append(errors["CacheParameterGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteCacheSecurityGroupMessage is undocumented.
 type DeleteCacheSecurityGroupMessage struct {
 	CacheSecurityGroupName aws.StringValue `xml:"CacheSecurityGroupName"`
 }
 
+func (v *DeleteCacheSecurityGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheSecurityGroupName"); err != nil {
+		errors["CacheSecurityGroupName"] = append(errors["CacheSecurityGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteCacheSubnetGroupMessage is undocumented.
 type DeleteCacheSubnetGroupMessage struct {
 	CacheSubnetGroupName aws.StringValue `xml:"CacheSubnetGroupName"`
+}
+
+func (v *DeleteCacheSubnetGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheSubnetGroupName"); err != nil {
+		errors["CacheSubnetGroupName"] = append(errors["CacheSubnetGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteReplicationGroupMessage is undocumented.
@@ -714,9 +1337,33 @@ type DeleteReplicationGroupMessage struct {
 	RetainPrimaryCluster    aws.BooleanValue `xml:"RetainPrimaryCluster"`
 }
 
+func (v *DeleteReplicationGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ReplicationGroupID"); err != nil {
+		errors["ReplicationGroupID"] = append(errors["ReplicationGroupID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteReplicationGroupResult is undocumented.
 type DeleteReplicationGroupResult struct {
 	ReplicationGroup *ReplicationGroup `xml:"DeleteReplicationGroupResult>ReplicationGroup"`
+}
+
+func (v *DeleteReplicationGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteSnapshotMessage is undocumented.
@@ -724,9 +1371,33 @@ type DeleteSnapshotMessage struct {
 	SnapshotName aws.StringValue `xml:"SnapshotName"`
 }
 
+func (v *DeleteSnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SnapshotName"); err != nil {
+		errors["SnapshotName"] = append(errors["SnapshotName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteSnapshotResult is undocumented.
 type DeleteSnapshotResult struct {
 	Snapshot *Snapshot `xml:"DeleteSnapshotResult>Snapshot"`
+}
+
+func (v *DeleteSnapshotResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeCacheClustersMessage is undocumented.
@@ -735,6 +1406,16 @@ type DescribeCacheClustersMessage struct {
 	Marker            aws.StringValue  `xml:"Marker"`
 	MaxRecords        aws.IntegerValue `xml:"MaxRecords"`
 	ShowCacheNodeInfo aws.BooleanValue `xml:"ShowCacheNodeInfo"`
+}
+
+func (v *DescribeCacheClustersMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeCacheEngineVersionsMessage is undocumented.
@@ -747,11 +1428,31 @@ type DescribeCacheEngineVersionsMessage struct {
 	MaxRecords                aws.IntegerValue `xml:"MaxRecords"`
 }
 
+func (v *DescribeCacheEngineVersionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeCacheParameterGroupsMessage is undocumented.
 type DescribeCacheParameterGroupsMessage struct {
 	CacheParameterGroupName aws.StringValue  `xml:"CacheParameterGroupName"`
 	Marker                  aws.StringValue  `xml:"Marker"`
 	MaxRecords              aws.IntegerValue `xml:"MaxRecords"`
+}
+
+func (v *DescribeCacheParameterGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeCacheParametersMessage is undocumented.
@@ -762,11 +1463,35 @@ type DescribeCacheParametersMessage struct {
 	Source                  aws.StringValue  `xml:"Source"`
 }
 
+func (v *DescribeCacheParametersMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheParameterGroupName"); err != nil {
+		errors["CacheParameterGroupName"] = append(errors["CacheParameterGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeCacheSecurityGroupsMessage is undocumented.
 type DescribeCacheSecurityGroupsMessage struct {
 	CacheSecurityGroupName aws.StringValue  `xml:"CacheSecurityGroupName"`
 	Marker                 aws.StringValue  `xml:"Marker"`
 	MaxRecords             aws.IntegerValue `xml:"MaxRecords"`
+}
+
+func (v *DescribeCacheSecurityGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeCacheSubnetGroupsMessage is undocumented.
@@ -776,6 +1501,16 @@ type DescribeCacheSubnetGroupsMessage struct {
 	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
 }
 
+func (v *DescribeCacheSubnetGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeEngineDefaultParametersMessage is undocumented.
 type DescribeEngineDefaultParametersMessage struct {
 	CacheParameterGroupFamily aws.StringValue  `xml:"CacheParameterGroupFamily"`
@@ -783,9 +1518,33 @@ type DescribeEngineDefaultParametersMessage struct {
 	MaxRecords                aws.IntegerValue `xml:"MaxRecords"`
 }
 
+func (v *DescribeEngineDefaultParametersMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheParameterGroupFamily"); err != nil {
+		errors["CacheParameterGroupFamily"] = append(errors["CacheParameterGroupFamily"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeEngineDefaultParametersResult is undocumented.
 type DescribeEngineDefaultParametersResult struct {
 	EngineDefaults *EngineDefaults `xml:"DescribeEngineDefaultParametersResult>EngineDefaults"`
+}
+
+func (v *DescribeEngineDefaultParametersResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeEventsMessage is undocumented.
@@ -799,11 +1558,41 @@ type DescribeEventsMessage struct {
 	StartTime        time.Time        `xml:"StartTime"`
 }
 
+func (v *DescribeEventsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	SourceTypeEnum := []string{
+		SourceTypeCacheCluster,
+		SourceTypeCacheParameterGroup,
+		SourceTypeCacheSecurityGroup,
+		SourceTypeCacheSubnetGroup,
+	}
+	if err := model.ValidateEnum(v, "SourceType", SourceTypeEnum); err != nil {
+		errors["SourceType"] = append(errors["SourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeReplicationGroupsMessage is undocumented.
 type DescribeReplicationGroupsMessage struct {
 	Marker             aws.StringValue  `xml:"Marker"`
 	MaxRecords         aws.IntegerValue `xml:"MaxRecords"`
 	ReplicationGroupID aws.StringValue  `xml:"ReplicationGroupId"`
+}
+
+func (v *DescribeReplicationGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeReservedCacheNodesMessage is undocumented.
@@ -818,6 +1607,16 @@ type DescribeReservedCacheNodesMessage struct {
 	ReservedCacheNodesOfferingID aws.StringValue  `xml:"ReservedCacheNodesOfferingId"`
 }
 
+func (v *DescribeReservedCacheNodesMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeReservedCacheNodesOfferingsMessage is undocumented.
 type DescribeReservedCacheNodesOfferingsMessage struct {
 	CacheNodeType                aws.StringValue  `xml:"CacheNodeType"`
@@ -829,10 +1628,30 @@ type DescribeReservedCacheNodesOfferingsMessage struct {
 	ReservedCacheNodesOfferingID aws.StringValue  `xml:"ReservedCacheNodesOfferingId"`
 }
 
+func (v *DescribeReservedCacheNodesOfferingsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeSnapshotsListMessage is undocumented.
 type DescribeSnapshotsListMessage struct {
 	Marker    aws.StringValue `xml:"DescribeSnapshotsResult>Marker"`
 	Snapshots []Snapshot      `xml:"DescribeSnapshotsResult>Snapshots>Snapshot"`
+}
+
+func (v *DescribeSnapshotsListMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeSnapshotsMessage is undocumented.
@@ -844,6 +1663,16 @@ type DescribeSnapshotsMessage struct {
 	SnapshotSource aws.StringValue  `xml:"SnapshotSource"`
 }
 
+func (v *DescribeSnapshotsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EC2SecurityGroup is undocumented.
 type EC2SecurityGroup struct {
 	EC2SecurityGroupName    aws.StringValue `xml:"EC2SecurityGroupName"`
@@ -851,10 +1680,30 @@ type EC2SecurityGroup struct {
 	Status                  aws.StringValue `xml:"Status"`
 }
 
+func (v *EC2SecurityGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Endpoint is undocumented.
 type Endpoint struct {
 	Address aws.StringValue  `xml:"Address"`
 	Port    aws.IntegerValue `xml:"Port"`
+}
+
+func (v *Endpoint) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EngineDefaults is undocumented.
@@ -865,6 +1714,16 @@ type EngineDefaults struct {
 	Parameters                      []Parameter                      `xml:"Parameters>Parameter"`
 }
 
+func (v *EngineDefaults) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Event is undocumented.
 type Event struct {
 	Date             time.Time       `xml:"Date"`
@@ -873,10 +1732,40 @@ type Event struct {
 	SourceType       aws.StringValue `xml:"SourceType"`
 }
 
+func (v *Event) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	SourceTypeEnum := []string{
+		SourceTypeCacheCluster,
+		SourceTypeCacheParameterGroup,
+		SourceTypeCacheSecurityGroup,
+		SourceTypeCacheSubnetGroup,
+	}
+	if err := model.ValidateEnum(v, "SourceType", SourceTypeEnum); err != nil {
+		errors["SourceType"] = append(errors["SourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EventsMessage is undocumented.
 type EventsMessage struct {
 	Events []Event         `xml:"DescribeEventsResult>Events>Event"`
 	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
+}
+
+func (v *EventsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyCacheClusterMessage is undocumented.
@@ -899,15 +1788,65 @@ type ModifyCacheClusterMessage struct {
 	SnapshotWindow             aws.StringValue  `xml:"SnapshotWindow"`
 }
 
+func (v *ModifyCacheClusterMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	AZModeEnum := []string{
+		AZModeCrossAz,
+		AZModeSingleAz,
+	}
+	if err := model.ValidateEnum(v, "AZMode", AZModeEnum); err != nil {
+		errors["AZMode"] = append(errors["AZMode"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CacheClusterID"); err != nil {
+		errors["CacheClusterID"] = append(errors["CacheClusterID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyCacheClusterResult is undocumented.
 type ModifyCacheClusterResult struct {
 	CacheCluster *CacheCluster `xml:"ModifyCacheClusterResult>CacheCluster"`
+}
+
+func (v *ModifyCacheClusterResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyCacheParameterGroupMessage is undocumented.
 type ModifyCacheParameterGroupMessage struct {
 	CacheParameterGroupName aws.StringValue      `xml:"CacheParameterGroupName"`
 	ParameterNameValues     []ParameterNameValue `xml:"ParameterNameValues>ParameterNameValue"`
+}
+
+func (v *ModifyCacheParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheParameterGroupName"); err != nil {
+		errors["CacheParameterGroupName"] = append(errors["CacheParameterGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ParameterNameValues"); err != nil {
+		errors["ParameterNameValues"] = append(errors["ParameterNameValues"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyCacheSubnetGroupMessage is undocumented.
@@ -917,9 +1856,33 @@ type ModifyCacheSubnetGroupMessage struct {
 	SubnetIDs                   []string        `xml:"SubnetIds>SubnetIdentifier"`
 }
 
+func (v *ModifyCacheSubnetGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheSubnetGroupName"); err != nil {
+		errors["CacheSubnetGroupName"] = append(errors["CacheSubnetGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyCacheSubnetGroupResult is undocumented.
 type ModifyCacheSubnetGroupResult struct {
 	CacheSubnetGroup *CacheSubnetGroup `xml:"ModifyCacheSubnetGroupResult>CacheSubnetGroup"`
+}
+
+func (v *ModifyCacheSubnetGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyReplicationGroupMessage is undocumented.
@@ -942,9 +1905,33 @@ type ModifyReplicationGroupMessage struct {
 	SnapshottingClusterID       aws.StringValue  `xml:"SnapshottingClusterId"`
 }
 
+func (v *ModifyReplicationGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ReplicationGroupID"); err != nil {
+		errors["ReplicationGroupID"] = append(errors["ReplicationGroupID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyReplicationGroupResult is undocumented.
 type ModifyReplicationGroupResult struct {
 	ReplicationGroup *ReplicationGroup `xml:"ModifyReplicationGroupResult>ReplicationGroup"`
+}
+
+func (v *ModifyReplicationGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // NodeGroup is undocumented.
@@ -953,6 +1940,16 @@ type NodeGroup struct {
 	NodeGroupMembers []NodeGroupMember `xml:"NodeGroupMembers>NodeGroupMember"`
 	PrimaryEndpoint  *Endpoint         `xml:"PrimaryEndpoint"`
 	Status           aws.StringValue   `xml:"Status"`
+}
+
+func (v *NodeGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // NodeGroupMember is undocumented.
@@ -964,6 +1961,16 @@ type NodeGroupMember struct {
 	ReadEndpoint              *Endpoint       `xml:"ReadEndpoint"`
 }
 
+func (v *NodeGroupMember) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // NodeSnapshot is undocumented.
 type NodeSnapshot struct {
 	CacheNodeCreateTime time.Time       `xml:"CacheNodeCreateTime"`
@@ -972,10 +1979,30 @@ type NodeSnapshot struct {
 	SnapshotCreateTime  time.Time       `xml:"SnapshotCreateTime"`
 }
 
+func (v *NodeSnapshot) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // NotificationConfiguration is undocumented.
 type NotificationConfiguration struct {
 	TopicARN    aws.StringValue `xml:"TopicArn"`
 	TopicStatus aws.StringValue `xml:"TopicStatus"`
+}
+
+func (v *NotificationConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Parameter is undocumented.
@@ -990,10 +2017,30 @@ type Parameter struct {
 	Source               aws.StringValue  `xml:"Source"`
 }
 
+func (v *Parameter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ParameterNameValue is undocumented.
 type ParameterNameValue struct {
 	ParameterName  aws.StringValue `xml:"ParameterName"`
 	ParameterValue aws.StringValue `xml:"ParameterValue"`
+}
+
+func (v *ParameterNameValue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for ElasticCache.
@@ -1009,6 +2056,16 @@ type PendingModifiedValues struct {
 	NumCacheNodes        aws.IntegerValue `xml:"NumCacheNodes"`
 }
 
+func (v *PendingModifiedValues) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PurchaseReservedCacheNodesOfferingMessage is undocumented.
 type PurchaseReservedCacheNodesOfferingMessage struct {
 	CacheNodeCount               aws.IntegerValue `xml:"CacheNodeCount"`
@@ -1016,9 +2073,33 @@ type PurchaseReservedCacheNodesOfferingMessage struct {
 	ReservedCacheNodesOfferingID aws.StringValue  `xml:"ReservedCacheNodesOfferingId"`
 }
 
+func (v *PurchaseReservedCacheNodesOfferingMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ReservedCacheNodesOfferingID"); err != nil {
+		errors["ReservedCacheNodesOfferingID"] = append(errors["ReservedCacheNodesOfferingID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PurchaseReservedCacheNodesOfferingResult is undocumented.
 type PurchaseReservedCacheNodesOfferingResult struct {
 	ReservedCacheNode *ReservedCacheNode `xml:"PurchaseReservedCacheNodesOfferingResult>ReservedCacheNode"`
+}
+
+func (v *PurchaseReservedCacheNodesOfferingResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RebootCacheClusterMessage is undocumented.
@@ -1027,15 +2108,53 @@ type RebootCacheClusterMessage struct {
 	CacheNodeIDsToReboot []string        `xml:"CacheNodeIdsToReboot>CacheNodeId"`
 }
 
+func (v *RebootCacheClusterMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheClusterID"); err != nil {
+		errors["CacheClusterID"] = append(errors["CacheClusterID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "CacheNodeIDsToReboot"); err != nil {
+		errors["CacheNodeIDsToReboot"] = append(errors["CacheNodeIDsToReboot"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RebootCacheClusterResult is undocumented.
 type RebootCacheClusterResult struct {
 	CacheCluster *CacheCluster `xml:"RebootCacheClusterResult>CacheCluster"`
+}
+
+func (v *RebootCacheClusterResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RecurringCharge is undocumented.
 type RecurringCharge struct {
 	RecurringChargeAmount    aws.DoubleValue `xml:"RecurringChargeAmount"`
 	RecurringChargeFrequency aws.StringValue `xml:"RecurringChargeFrequency"`
+}
+
+func (v *RecurringCharge) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReplicationGroup is undocumented.
@@ -1050,16 +2169,64 @@ type ReplicationGroup struct {
 	Status                aws.StringValue                        `xml:"Status"`
 }
 
+func (v *ReplicationGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	AutomaticFailoverEnum := []string{
+		AutomaticFailoverStatusDisabled,
+		AutomaticFailoverStatusDisabling,
+		AutomaticFailoverStatusEnabled,
+		AutomaticFailoverStatusEnabling,
+	}
+	if err := model.ValidateEnum(v, "AutomaticFailover", AutomaticFailoverEnum); err != nil {
+		errors["AutomaticFailover"] = append(errors["AutomaticFailover"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReplicationGroupMessage is undocumented.
 type ReplicationGroupMessage struct {
 	Marker            aws.StringValue    `xml:"DescribeReplicationGroupsResult>Marker"`
 	ReplicationGroups []ReplicationGroup `xml:"DescribeReplicationGroupsResult>ReplicationGroups>ReplicationGroup"`
 }
 
+func (v *ReplicationGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReplicationGroupPendingModifiedValues is undocumented.
 type ReplicationGroupPendingModifiedValues struct {
 	AutomaticFailoverStatus aws.StringValue `xml:"AutomaticFailoverStatus"`
 	PrimaryClusterID        aws.StringValue `xml:"PrimaryClusterId"`
+}
+
+func (v *ReplicationGroupPendingModifiedValues) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	AutomaticFailoverStatusEnum := []string{
+		PendingAutomaticFailoverStatusDisabled,
+		PendingAutomaticFailoverStatusEnabled,
+	}
+	if err := model.ValidateEnum(v, "AutomaticFailoverStatus", AutomaticFailoverStatusEnum); err != nil {
+		errors["AutomaticFailoverStatus"] = append(errors["AutomaticFailoverStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReservedCacheNode is undocumented.
@@ -1078,10 +2245,30 @@ type ReservedCacheNode struct {
 	UsagePrice                   aws.DoubleValue   `xml:"UsagePrice"`
 }
 
+func (v *ReservedCacheNode) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReservedCacheNodeMessage is undocumented.
 type ReservedCacheNodeMessage struct {
 	Marker             aws.StringValue     `xml:"DescribeReservedCacheNodesResult>Marker"`
 	ReservedCacheNodes []ReservedCacheNode `xml:"DescribeReservedCacheNodesResult>ReservedCacheNodes>ReservedCacheNode"`
+}
+
+func (v *ReservedCacheNodeMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReservedCacheNodesOffering is undocumented.
@@ -1096,10 +2283,30 @@ type ReservedCacheNodesOffering struct {
 	UsagePrice                   aws.DoubleValue   `xml:"UsagePrice"`
 }
 
+func (v *ReservedCacheNodesOffering) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReservedCacheNodesOfferingMessage is undocumented.
 type ReservedCacheNodesOfferingMessage struct {
 	Marker                      aws.StringValue              `xml:"DescribeReservedCacheNodesOfferingsResult>Marker"`
 	ReservedCacheNodesOfferings []ReservedCacheNodesOffering `xml:"DescribeReservedCacheNodesOfferingsResult>ReservedCacheNodesOfferings>ReservedCacheNodesOffering"`
+}
+
+func (v *ReservedCacheNodesOfferingMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ResetCacheParameterGroupMessage is undocumented.
@@ -1109,6 +2316,24 @@ type ResetCacheParameterGroupMessage struct {
 	ResetAllParameters      aws.BooleanValue     `xml:"ResetAllParameters"`
 }
 
+func (v *ResetCacheParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheParameterGroupName"); err != nil {
+		errors["CacheParameterGroupName"] = append(errors["CacheParameterGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ParameterNameValues"); err != nil {
+		errors["ParameterNameValues"] = append(errors["ParameterNameValues"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RevokeCacheSecurityGroupIngressMessage is undocumented.
 type RevokeCacheSecurityGroupIngressMessage struct {
 	CacheSecurityGroupName  aws.StringValue `xml:"CacheSecurityGroupName"`
@@ -1116,15 +2341,57 @@ type RevokeCacheSecurityGroupIngressMessage struct {
 	EC2SecurityGroupOwnerID aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
 }
 
+func (v *RevokeCacheSecurityGroupIngressMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CacheSecurityGroupName"); err != nil {
+		errors["CacheSecurityGroupName"] = append(errors["CacheSecurityGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EC2SecurityGroupName"); err != nil {
+		errors["EC2SecurityGroupName"] = append(errors["EC2SecurityGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EC2SecurityGroupOwnerID"); err != nil {
+		errors["EC2SecurityGroupOwnerID"] = append(errors["EC2SecurityGroupOwnerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RevokeCacheSecurityGroupIngressResult is undocumented.
 type RevokeCacheSecurityGroupIngressResult struct {
 	CacheSecurityGroup *CacheSecurityGroup `xml:"RevokeCacheSecurityGroupIngressResult>CacheSecurityGroup"`
+}
+
+func (v *RevokeCacheSecurityGroupIngressResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SecurityGroupMembership is undocumented.
 type SecurityGroupMembership struct {
 	SecurityGroupID aws.StringValue `xml:"SecurityGroupId"`
 	Status          aws.StringValue `xml:"Status"`
+}
+
+func (v *SecurityGroupMembership) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Snapshot is undocumented.
@@ -1151,6 +2418,16 @@ type Snapshot struct {
 	VPCID                      aws.StringValue  `xml:"VpcId"`
 }
 
+func (v *Snapshot) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for ElasticCache.
 const (
 	SourceTypeCacheCluster        = "cache-cluster"
@@ -1163,6 +2440,16 @@ const (
 type Subnet struct {
 	SubnetAvailabilityZone *AvailabilityZone `xml:"SubnetAvailabilityZone"`
 	SubnetIdentifier       aws.StringValue   `xml:"SubnetIdentifier"`
+}
+
+func (v *Subnet) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeCacheClustersResult is a wrapper for CacheClusterMessage.

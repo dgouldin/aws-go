@@ -50,6 +50,7 @@ import (
 
   "github.com/stripe/aws-go/aws"
   "github.com/stripe/aws-go/gen/endpoints"
+  "github.com/stripe/aws-go/model"
 )
 
 {{ end }}
@@ -97,7 +98,11 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
 
 {{ range $name, $op := .Operations }}
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error) {
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error) { {{ if $op.Input }}
+	if err = req.Validate(); err != nil {
+		return
+	}
+  {{ end }}
   {{ if $op.Output }}resp = {{ $op.Output.Literal }}{{ else }}// NRE{{ end }}
   err = c.client.Do("{{ $name }}", "{{ $op.HTTP.Method }}", "{{ $op.HTTP.RequestURI }}", {{ if $op.Input }} req {{ else }} nil {{ end }}, {{ if $op.Output }} resp {{ else }} nil {{ end }})
   return
@@ -113,6 +118,50 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
 type {{ exportable $name }} struct {
 {{ range $name, $m := $s.Members }}
 {{ exportable $name }} {{ $m.Type }} {{ $m.JSONTag }}  {{ end }}
+}
+
+func (v *{{ exportable $name }}) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+{{ range $name, $m := $s.Members}}
+{{ with $ms := $m.Shape }}
+{{ if $m.Required}}
+	if err := model.ValidateRequired(v, "{{ exportable $name }}"); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Enum }}
+	{{ $name }}Enum := []string{
+{{ range $name, $value := $ms.Enums}}{{ $name }},
+{{ end }}
+	}
+	if err := model.ValidateEnum(v, "{{ exportable $name }}", {{ $name }}Enum); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{/* FIXME: this misses validation for $ms.Min == 0 */}}
+{{ if $ms.Min }}
+	if err := model.ValidateMin(v, "{{ exportable $name }}", {{ $ms.Min }}); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Max }}
+	if err := model.ValidateMax(v, "{{ exportable $name }}", {{ $ms.Max }}); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Pattern }}
+	if err := model.ValidatePattern(v, "{{ exportable $name }}", ` + "`{{ $ms.Pattern }}`" + `); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ end }}
+{{ end }}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 {{ end }}
@@ -166,7 +215,11 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
 
 {{ range $name, $op := .Operations }}
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.InputRef }}req {{ $op.InputRef.WrappedType }}{{ end }}) ({{ if $op.OutputRef }}resp {{ $op.OutputRef.WrappedType }},{{ end }} err error) {
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.InputRef }}req {{ $op.InputRef.WrappedType }}{{ end }}) ({{ if $op.OutputRef }}resp {{ $op.OutputRef.WrappedType }},{{ end }} err error) { {{ if $op.InputRef }}
+	if err = req.Validate(); err != nil {
+		return
+	}
+  {{ end }}
   {{ if $op.Output }}resp = {{ $op.OutputRef.WrappedLiteral }}{{ else }}// NRE{{ end }}
   err = c.client.Do("{{ $name }}", "{{ $op.HTTP.Method }}", "{{ $op.HTTP.RequestURI }}", {{ if $op.Input }} req {{ else }} nil {{ end }}, {{ if $op.Output }} resp {{ else }} nil {{ end }})
   return
@@ -182,6 +235,50 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
 type {{ exportable $name }} struct {
 {{ range $name, $m := $s.Members }}
 {{ exportable $name }} {{ $m.Type }} {{ $m.QueryTag $s.ResultWrapper }}  {{ end }}
+}
+
+func (v *{{ exportable $name }}) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+{{ range $name, $m := $s.Members}}
+{{ with $ms := $m.Shape }}
+{{ if $m.Required}}
+	if err := model.ValidateRequired(v, "{{ exportable $name}}"); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Enum }}
+	{{ $name }}Enum := []string{
+{{ range $name, $value := $ms.Enums}}{{ $name }},
+{{ end }}
+	}
+	if err := model.ValidateEnum(v, "{{ exportable $name }}", {{ $name }}Enum); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{/* FIXME: this misses validation for $ms.Min == 0 */}}
+{{ if $ms.Min }}
+	if err := model.ValidateMin(v, "{{ exportable $name }}", {{ $ms.Min }}); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Max }}
+	if err := model.ValidateMax(v, "{{ exportable $name }}", {{ $ms.Max }}); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Pattern }}
+	if err := model.ValidatePattern(v, "{{ exportable $name }}", ` + "`{{ $ms.Pattern }}`" + `); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ end }}
+{{ end }}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 {{ end }}
@@ -245,7 +342,11 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
 
 {{ range $name, $op := .Operations }}
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.InputRef }}req {{ $op.InputRef.WrappedType }}{{ end }}) ({{ if $op.OutputRef }}resp {{ $op.OutputRef.WrappedType }},{{ end }} err error) {
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.InputRef }}req {{ $op.InputRef.WrappedType }}{{ end }}) ({{ if $op.OutputRef }}resp {{ $op.OutputRef.WrappedType }},{{ end }} err error) { {{ if $op.InputRef }}
+	if err = req.Validate(); err != nil {
+		return
+	}
+  {{ end }}
   {{ if $op.Output }}resp = {{ $op.OutputRef.WrappedLiteral }}{{ else }}// NRE{{ end }}
   err = c.client.Do("{{ $name }}", "{{ $op.HTTP.Method }}", "{{ $op.HTTP.RequestURI }}", {{ if $op.Input }} req {{ else }} nil {{ end }}, {{ if $op.Output }} resp {{ else }} nil {{ end }})
   return
@@ -261,6 +362,50 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
 type {{ exportable $name }} struct {
 {{ range $name, $m := $s.Members }}
 {{ exportable $name }} {{ $m.Type }} {{ $m.EC2Tag }}  {{ end }}
+}
+
+func (v *{{ exportable $name }}) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+{{ range $name, $m := $s.Members}}
+{{ with $ms := $m.Shape }}
+{{ if $m.Required}}
+	if err := model.ValidateRequired(v, "{{ exportable $name}}"); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Enum }}
+	{{ $name }}Enum := []string{
+{{ range $name, $value := $ms.Enums}}{{ $name }},
+{{ end }}
+	}
+	if err := model.ValidateEnum(v, "{{ exportable $name }}", {{ $name }}Enum); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{/* FIXME: this misses validation for $ms.Min == 0 */}}
+{{ if $ms.Min }}
+	if err := model.ValidateMin(v, "{{ exportable $name }}", {{ $ms.Min }}); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Max }}
+	if err := model.ValidateMax(v, "{{ exportable $name }}", {{ $ms.Max }}); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Pattern }}
+	if err := model.ValidatePattern(v, "{{ exportable $name }}", ` + "`{{ $ms.Pattern }}`" + `); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ end }}
+{{ end }}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 {{ end }}
@@ -494,7 +639,11 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
 
 {{ range $name, $op := .Operations }}
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error) {
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error) { {{ if $op.Input }}
+	if err = req.Validate(); err != nil {
+		return
+	}
+  {{ end }}
   {{ if $op.Output }}resp = {{ $op.Output.Literal }}{{ else }}// NRE{{ end }}
 
   var body io.Reader
@@ -595,6 +744,50 @@ func (v *{{ exportable $name }}) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *{{ exportable $name }}) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+{{ range $name, $m := $s.Members}}
+{{ with $ms := $m.Shape }}
+{{ if $m.Required}}
+	if err := model.ValidateRequired(v, "{{ exportable $name}}"); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Enum }}
+	{{ $name }}Enum := []string{
+{{ range $name, $value := $ms.Enums}}{{ $name }},
+{{ end }}
+	}
+	if err := model.ValidateEnum(v, "{{ exportable $name }}", {{ $name }}Enum); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{/* FIXME: this misses validation for $ms.Min == 0 */}}
+{{ if $ms.Min }}
+	if err := model.ValidateMin(v, "{{ exportable $name }}", {{ $ms.Min }}); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Max }}
+	if err := model.ValidateMax(v, "{{ exportable $name }}", {{ $ms.Max }}); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Pattern }}
+	if err := model.ValidatePattern(v, "{{ exportable $name }}", ` + "`{{ $ms.Pattern }}`" + `); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ end }}
+{{ end }}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 {{ end }}
 {{ else if $s.Enum }}
 // Possible values for {{ $.Name }}.
@@ -663,7 +856,11 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
 
 {{ range $name, $op := .Operations }}
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error) {
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error) { {{ if $op.Input }}
+	if err = req.Validate(); err != nil {
+		return
+	}
+  {{ end }}
   {{ if $op.Output }}resp = {{ $op.Output.Literal }}{{ else }}// NRE{{ end }}
 
   var body io.Reader
@@ -752,6 +949,49 @@ type {{ exportable $name }} struct {
 {{ exportable $name }} {{ $m.Type }} {{ $m.JSONTag }}  {{ end }}
 }
 
+func (v *{{ exportable $name }}) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+{{ range $name, $m := $s.Members}}
+{{ with $ms := $m.Shape }}
+{{ if $m.Required}}
+	if err := model.ValidateRequired(v, "{{ exportable $name}}"); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Enum }}
+	{{ $name }}Enum := []string{
+{{ range $name, $value := $ms.Enums}}{{ $name }},
+{{ end }}
+	}
+	if err := model.ValidateEnum(v, "{{ exportable $name }}", {{ $name }}Enum); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{/* FIXME: this misses validation for $ms.Min == 0 */}}
+{{ if $ms.Min }}
+	if err := model.ValidateMin(v, "{{ exportable $name }}", {{ $ms.Min }}); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Max }}
+	if err := model.ValidateMax(v, "{{ exportable $name }}", {{ $ms.Max }}); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ if $ms.Pattern }}
+	if err := model.ValidatePattern(v, "{{ exportable $name }}", ` + "`{{ $ms.Pattern }}`" + `); err != nil {
+		errors["{{ exportable $name }}"] = append(errors["{{ exportable $name }}"], err)
+	}
+{{ end }}
+{{ end }}
+{{ end }}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
 {{ end }}
 {{ else if $s.Enum }}
 // Possible values for {{ $.Name }}.

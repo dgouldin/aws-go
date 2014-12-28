@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 import (
@@ -60,6 +61,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Rou
 // made. See GetChange operation for how to track the progress of your
 // change.
 func (c *Route53) AssociateVPCWithHostedZone(req *AssociateVPCWithHostedZoneRequest) (resp *AssociateVPCWithHostedZoneResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AssociateVPCWithHostedZoneResponse{}
 
 	var body io.Reader
@@ -130,6 +135,10 @@ func (c *Route53) AssociateVPCWithHostedZone(req *AssociateVPCWithHostedZoneRequ
 // characters (including spaces) in all Value elements in a request cannot
 // exceed 32,000 characters.
 func (c *Route53) ChangeResourceRecordSets(req *ChangeResourceRecordSetsRequest) (resp *ChangeResourceRecordSetsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ChangeResourceRecordSetsResponse{}
 
 	var body io.Reader
@@ -180,6 +189,10 @@ func (c *Route53) ChangeResourceRecordSets(req *ChangeResourceRecordSetsRequest)
 
 // ChangeTagsForResource <nil>
 func (c *Route53) ChangeTagsForResource(req *ChangeTagsForResourceRequest) (resp *ChangeTagsForResourceResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ChangeTagsForResourceResponse{}
 
 	var body io.Reader
@@ -240,6 +253,10 @@ func (c *Route53) ChangeTagsForResource(req *ChangeTagsForResourceRequest) (resp
 // CreateHealthCheckResponse element that contains metadata about the
 // health check.
 func (c *Route53) CreateHealthCheck(req *CreateHealthCheckRequest) (resp *CreateHealthCheckResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateHealthCheckResponse{}
 
 	var body io.Reader
@@ -306,6 +323,10 @@ func (c *Route53) CreateHealthCheck(req *CreateHealthCheckRequest) (resp *Create
 // and Route53 would assign those 4 NS records for the zone, instead of
 // alloting a new one.
 func (c *Route53) CreateHostedZone(req *CreateHostedZoneRequest) (resp *CreateHostedZoneResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateHostedZoneResponse{}
 
 	var body io.Reader
@@ -364,6 +385,10 @@ func (c *Route53) CreateHostedZone(req *CreateHostedZoneRequest) (resp *CreateHo
 // HostedZoneId is specified, it marks the delegationSet associated with
 // that particular hosted zone as reusable.
 func (c *Route53) CreateReusableDelegationSet(req *CreateReusableDelegationSetRequest) (resp *CreateReusableDelegationSetResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateReusableDelegationSetResponse{}
 
 	var body io.Reader
@@ -424,6 +449,10 @@ func (c *Route53) CreateReusableDelegationSet(req *CreateReusableDelegationSetRe
 // disassociating the records from your health check, see
 // ChangeResourceRecordSets
 func (c *Route53) DeleteHealthCheck(req *DeleteHealthCheckRequest) (resp *DeleteHealthCheckResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteHealthCheckResponse{}
 
 	var body io.Reader
@@ -477,6 +506,10 @@ func (c *Route53) DeleteHealthCheck(req *DeleteHealthCheckRequest) (resp *Delete
 // HostedZoneNotEmpty error. For information about deleting records from
 // your hosted zone, see ChangeResourceRecordSets
 func (c *Route53) DeleteHostedZone(req *DeleteHostedZoneRequest) (resp *DeleteHostedZoneResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteHostedZoneResponse{}
 
 	var body io.Reader
@@ -527,6 +560,10 @@ func (c *Route53) DeleteHostedZone(req *DeleteHostedZoneRequest) (resp *DeleteHo
 // try to delete a reusable delegation set that contains associated hosted
 // zones, Route 53 will deny your request with a DelegationSetInUse error.
 func (c *Route53) DeleteReusableDelegationSet(req *DeleteReusableDelegationSetRequest) (resp *DeleteReusableDelegationSetResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteReusableDelegationSetResponse{}
 
 	var body io.Reader
@@ -578,6 +615,10 @@ func (c *Route53) DeleteReusableDelegationSet(req *DeleteReusableDelegationSetRe
 // DisassociateVPCFromHostedZoneRequest you made. See GetChange operation
 // for how to track the progress of your change.
 func (c *Route53) DisassociateVPCFromHostedZone(req *DisassociateVPCFromHostedZoneRequest) (resp *DisassociateVPCFromHostedZoneResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DisassociateVPCFromHostedZoneResponse{}
 
 	var body io.Reader
@@ -632,6 +673,10 @@ func (c *Route53) DisassociateVPCFromHostedZone(req *DisassociateVPCFromHostedZo
 // This is the initial status of all change batch requests. - indicates
 // that the changes have replicated to all Amazon Route 53 DNS servers.
 func (c *Route53) GetChange(req *GetChangeRequest) (resp *GetChangeResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetChangeResponse{}
 
 	var body io.Reader
@@ -679,6 +724,10 @@ func (c *Route53) GetChange(req *GetChangeRequest) (resp *GetChangeResponse, err
 // addresses to configure router and firewall rules to allow health
 // checkers to check the health of your resources.
 func (c *Route53) GetCheckerIPRanges(req *GetCheckerIPRangesRequest) (resp *GetCheckerIPRangesResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetCheckerIPRangesResponse{}
 
 	var body io.Reader
@@ -719,6 +768,10 @@ func (c *Route53) GetCheckerIPRanges(req *GetCheckerIPRangesRequest) (resp *GetC
 // 2013-04-01/geolocation resource with one of these options: continentcode
 // | countrycode | countrycode and subdivisioncode.
 func (c *Route53) GetGeoLocation(req *GetGeoLocationRequest) (resp *GetGeoLocationResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetGeoLocationResponse{}
 
 	var body io.Reader
@@ -770,6 +823,10 @@ func (c *Route53) GetGeoLocation(req *GetGeoLocationRequest) (resp *GetGeoLocati
 // GetHealthCheck to retrieve the health check, send a request to the
 // 2013-04-01/healthcheck/ health check resource.
 func (c *Route53) GetHealthCheck(req *GetHealthCheckRequest) (resp *GetHealthCheckResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetHealthCheckResponse{}
 
 	var body io.Reader
@@ -814,6 +871,10 @@ func (c *Route53) GetHealthCheck(req *GetHealthCheckRequest) (resp *GetHealthChe
 // GetHealthCheckCount to retrieve a count of all your health checks, send
 // a request to the 2013-04-01/healthcheckcount resource.
 func (c *Route53) GetHealthCheckCount(req *GetHealthCheckCountRequest) (resp *GetHealthCheckCountResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetHealthCheckCountResponse{}
 
 	var body io.Reader
@@ -855,6 +916,10 @@ func (c *Route53) GetHealthCheckCount(req *GetHealthCheckCountRequest) (resp *Ge
 // get the failure reason for the most recent failure. Send a request to
 // the 2013-04-01/healthcheck/ health check /lastfailurereason resource.
 func (c *Route53) GetHealthCheckLastFailureReason(req *GetHealthCheckLastFailureReasonRequest) (resp *GetHealthCheckLastFailureReasonResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetHealthCheckLastFailureReasonResponse{}
 
 	var body io.Reader
@@ -900,6 +965,10 @@ func (c *Route53) GetHealthCheckLastFailureReason(req *GetHealthCheckLastFailure
 // to the 2013-04-01/healthcheck/ health check /status resource. You can
 // use this call to get a health check's current status.
 func (c *Route53) GetHealthCheckStatus(req *GetHealthCheckStatusRequest) (resp *GetHealthCheckStatusResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetHealthCheckStatusResponse{}
 
 	var body io.Reader
@@ -946,6 +1015,10 @@ func (c *Route53) GetHealthCheckStatus(req *GetHealthCheckStatusRequest) (resp *
 // delegation set is the four Route 53 name servers that were assigned to
 // the hosted zone when you created it.
 func (c *Route53) GetHostedZone(req *GetHostedZoneRequest) (resp *GetHostedZoneResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetHostedZoneResponse{}
 
 	var body io.Reader
@@ -990,6 +1063,10 @@ func (c *Route53) GetHostedZone(req *GetHostedZoneRequest) (resp *GetHostedZoneR
 // GetReusableDelegationSet to retrieve the reusable delegation set, send a
 // request to the 2013-04-01/delegationset/ delegation set resource.
 func (c *Route53) GetReusableDelegationSet(req *GetReusableDelegationSetRequest) (resp *GetReusableDelegationSetResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetReusableDelegationSetResponse{}
 
 	var body io.Reader
@@ -1044,6 +1121,10 @@ func (c *Route53) GetReusableDelegationSet(req *GetReusableDelegationSetRequest)
 // to StartContinentCode, StartCountryCode, StartSubdivisionCode to control
 // the geo location that the list begins with.
 func (c *Route53) ListGeoLocations(req *ListGeoLocationsRequest) (resp *ListGeoLocationsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListGeoLocationsResponse{}
 
 	var body io.Reader
@@ -1106,6 +1187,10 @@ func (c *Route53) ListGeoLocations(req *ListGeoLocationsRequest) (resp *ListGeoL
 // Route 53 returns a maximum of 100 items. If you set MaxItems to a value
 // greater than 100, Amazon Route 53 returns only the first 100.
 func (c *Route53) ListHealthChecks(req *ListHealthChecksRequest) (resp *ListHealthChecksResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListHealthChecksResponse{}
 
 	var body io.Reader
@@ -1160,6 +1245,10 @@ func (c *Route53) ListHealthChecks(req *ListHealthChecksRequest) (resp *ListHeal
 // returns a maximum of 100 items. If you set MaxItems to a value greater
 // than 100, Amazon Route 53 returns only the first 100.
 func (c *Route53) ListHostedZones(req *ListHostedZonesRequest) (resp *ListHostedZonesResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListHostedZonesResponse{}
 
 	var body io.Reader
@@ -1243,6 +1332,10 @@ func (c *Route53) ListHostedZones(req *ListHostedZonesRequest) (resp *ListHosted
 // effects of that change will be visible in a subsequent call to
 // ListResourceRecordSets by that process.
 func (c *Route53) ListResourceRecordSets(req *ListResourceRecordSetsRequest) (resp *ListResourceRecordSetsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListResourceRecordSetsResponse{}
 
 	var body io.Reader
@@ -1311,6 +1404,10 @@ func (c *Route53) ListResourceRecordSets(req *ListResourceRecordSetsRequest) (re
 // items. If you set MaxItems to a value greater than 100, Amazon Route 53
 // returns only the first 100.
 func (c *Route53) ListReusableDelegationSets(req *ListReusableDelegationSetsRequest) (resp *ListReusableDelegationSetsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListReusableDelegationSetsResponse{}
 
 	var body io.Reader
@@ -1357,6 +1454,10 @@ func (c *Route53) ListReusableDelegationSets(req *ListReusableDelegationSetsRequ
 
 // ListTagsForResource <nil>
 func (c *Route53) ListTagsForResource(req *ListTagsForResourceRequest) (resp *ListTagsForResourceResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListTagsForResourceResponse{}
 
 	var body io.Reader
@@ -1405,6 +1506,10 @@ func (c *Route53) ListTagsForResource(req *ListTagsForResourceRequest) (resp *Li
 
 // ListTagsForResources <nil>
 func (c *Route53) ListTagsForResources(req *ListTagsForResourcesRequest) (resp *ListTagsForResourcesResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListTagsForResourcesResponse{}
 
 	var body io.Reader
@@ -1460,6 +1565,10 @@ func (c *Route53) ListTagsForResources(req *ListTagsForResourcesRequest) (resp *
 // UpdateHealthCheckResponse element, which contains metadata about the
 // health check.
 func (c *Route53) UpdateHealthCheck(req *UpdateHealthCheckRequest) (resp *UpdateHealthCheckResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateHealthCheckResponse{}
 
 	var body io.Reader
@@ -1514,6 +1623,10 @@ func (c *Route53) UpdateHealthCheck(req *UpdateHealthCheckRequest) (resp *Update
 // element. The response to this request includes the modified HostedZone
 // element. The comment can have a maximum length of 256 characters.
 func (c *Route53) UpdateHostedZoneComment(req *UpdateHostedZoneCommentRequest) (resp *UpdateHostedZoneCommentResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateHostedZoneCommentResponse{}
 
 	var body io.Reader
@@ -1575,6 +1688,36 @@ func (v *AliasTarget) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *AliasTarget) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DNSName"); err != nil {
+		errors["DNSName"] = append(errors["DNSName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DNSName", 1024); err != nil {
+		errors["DNSName"] = append(errors["DNSName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "EvaluateTargetHealth"); err != nil {
+		errors["EvaluateTargetHealth"] = append(errors["EvaluateTargetHealth"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HostedZoneID"); err != nil {
+		errors["HostedZoneID"] = append(errors["HostedZoneID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HostedZoneID", 32); err != nil {
+		errors["HostedZoneID"] = append(errors["HostedZoneID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AssociateVPCWithHostedZoneRequest is undocumented.
 type AssociateVPCWithHostedZoneRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ AssociateVPCWithHostedZoneRequest"`
@@ -1588,6 +1731,28 @@ func (v *AssociateVPCWithHostedZoneRequest) MarshalXML(e *xml.Encoder, start xml
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *AssociateVPCWithHostedZoneRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HostedZoneID"); err != nil {
+		errors["HostedZoneID"] = append(errors["HostedZoneID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HostedZoneID", 32); err != nil {
+		errors["HostedZoneID"] = append(errors["HostedZoneID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VPC"); err != nil {
+		errors["VPC"] = append(errors["VPC"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AssociateVPCWithHostedZoneResponse is undocumented.
 type AssociateVPCWithHostedZoneResponse struct {
 	XMLName xml.Name `xml:"AssociateVPCWithHostedZoneResponse"`
@@ -1597,6 +1762,20 @@ type AssociateVPCWithHostedZoneResponse struct {
 
 func (v *AssociateVPCWithHostedZoneResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *AssociateVPCWithHostedZoneResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ChangeInfo"); err != nil {
+		errors["ChangeInfo"] = append(errors["ChangeInfo"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Change is undocumented.
@@ -1609,6 +1788,33 @@ type Change struct {
 
 func (v *Change) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Change) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Action"); err != nil {
+		errors["Action"] = append(errors["Action"], err)
+	}
+
+	ActionEnum := []string{
+		ChangeActionCreate,
+		ChangeActionDelete,
+		ChangeActionUpsert,
+	}
+	if err := model.ValidateEnum(v, "Action", ActionEnum); err != nil {
+		errors["Action"] = append(errors["Action"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceRecordSet"); err != nil {
+		errors["ResourceRecordSet"] = append(errors["ResourceRecordSet"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Route53.
@@ -1630,6 +1836,28 @@ func (v *ChangeBatch) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ChangeBatch) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Changes"); err != nil {
+		errors["Changes"] = append(errors["Changes"], err)
+	}
+
+	if err := model.ValidateMin(v, "Changes", 1); err != nil {
+		errors["Changes"] = append(errors["Changes"], err)
+	}
+
+	if err := model.ValidateMax(v, "Comment", 256); err != nil {
+		errors["Comment"] = append(errors["Comment"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ChangeInfo is undocumented.
 type ChangeInfo struct {
 	XMLName xml.Name `xml:"ChangeInfo"`
@@ -1644,6 +1872,44 @@ func (v *ChangeInfo) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ChangeInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Comment", 256); err != nil {
+		errors["Comment"] = append(errors["Comment"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 32); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	StatusEnum := []string{
+		ChangeStatusInsync,
+		ChangeStatusPending,
+	}
+	if err := model.ValidateEnum(v, "Status", StatusEnum); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubmittedAt"); err != nil {
+		errors["SubmittedAt"] = append(errors["SubmittedAt"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ChangeResourceRecordSetsRequest is undocumented.
 type ChangeResourceRecordSetsRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ ChangeResourceRecordSetsRequest"`
@@ -1656,6 +1922,28 @@ func (v *ChangeResourceRecordSetsRequest) MarshalXML(e *xml.Encoder, start xml.S
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ChangeResourceRecordSetsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ChangeBatch"); err != nil {
+		errors["ChangeBatch"] = append(errors["ChangeBatch"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HostedZoneID"); err != nil {
+		errors["HostedZoneID"] = append(errors["HostedZoneID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HostedZoneID", 32); err != nil {
+		errors["HostedZoneID"] = append(errors["HostedZoneID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ChangeResourceRecordSetsResponse is undocumented.
 type ChangeResourceRecordSetsResponse struct {
 	XMLName xml.Name `xml:"ChangeResourceRecordSetsResponse"`
@@ -1665,6 +1953,20 @@ type ChangeResourceRecordSetsResponse struct {
 
 func (v *ChangeResourceRecordSetsResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ChangeResourceRecordSetsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ChangeInfo"); err != nil {
+		errors["ChangeInfo"] = append(errors["ChangeInfo"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Route53.
@@ -1687,6 +1989,52 @@ func (v *ChangeTagsForResourceRequest) MarshalXML(e *xml.Encoder, start xml.Star
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ChangeTagsForResourceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AddTags", 1); err != nil {
+		errors["AddTags"] = append(errors["AddTags"], err)
+	}
+
+	if err := model.ValidateMax(v, "AddTags", 10); err != nil {
+		errors["AddTags"] = append(errors["AddTags"], err)
+	}
+
+	if err := model.ValidateMin(v, "RemoveTagKeys", 1); err != nil {
+		errors["RemoveTagKeys"] = append(errors["RemoveTagKeys"], err)
+	}
+
+	if err := model.ValidateMax(v, "RemoveTagKeys", 10); err != nil {
+		errors["RemoveTagKeys"] = append(errors["RemoveTagKeys"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceID"); err != nil {
+		errors["ResourceID"] = append(errors["ResourceID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ResourceID", 64); err != nil {
+		errors["ResourceID"] = append(errors["ResourceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceType"); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	ResourceTypeEnum := []string{
+		TagResourceTypeHealthcheck,
+		TagResourceTypeHostedzone,
+	}
+	if err := model.ValidateEnum(v, "ResourceType", ResourceTypeEnum); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ChangeTagsForResourceResponse is undocumented.
 type ChangeTagsForResourceResponse struct {
 	XMLName xml.Name `xml:"ChangeTagsForResourceResponse"`
@@ -1694,6 +2042,16 @@ type ChangeTagsForResourceResponse struct {
 
 func (v *ChangeTagsForResourceResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ChangeTagsForResourceResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateHealthCheckRequest is undocumented.
@@ -1708,6 +2066,32 @@ func (v *CreateHealthCheckRequest) MarshalXML(e *xml.Encoder, start xml.StartEle
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CreateHealthCheckRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CallerReference"); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMin(v, "CallerReference", 1); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMax(v, "CallerReference", 64); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HealthCheckConfig"); err != nil {
+		errors["HealthCheckConfig"] = append(errors["HealthCheckConfig"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateHealthCheckResponse is undocumented.
 type CreateHealthCheckResponse struct {
 	XMLName xml.Name `xml:"CreateHealthCheckResponse"`
@@ -1718,6 +2102,28 @@ type CreateHealthCheckResponse struct {
 
 func (v *CreateHealthCheckResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CreateHealthCheckResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthCheck"); err != nil {
+		errors["HealthCheck"] = append(errors["HealthCheck"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Location"); err != nil {
+		errors["Location"] = append(errors["Location"], err)
+	}
+
+	if err := model.ValidateMax(v, "Location", 1024); err != nil {
+		errors["Location"] = append(errors["Location"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateHostedZoneRequest is undocumented.
@@ -1735,6 +2141,40 @@ func (v *CreateHostedZoneRequest) MarshalXML(e *xml.Encoder, start xml.StartElem
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CreateHostedZoneRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CallerReference"); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMin(v, "CallerReference", 1); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMax(v, "CallerReference", 128); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMax(v, "DelegationSetID", 32); err != nil {
+		errors["DelegationSetID"] = append(errors["DelegationSetID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 1024); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateHostedZoneResponse is undocumented.
 type CreateHostedZoneResponse struct {
 	XMLName xml.Name `xml:"CreateHostedZoneResponse"`
@@ -1750,6 +2190,36 @@ func (v *CreateHostedZoneResponse) MarshalXML(e *xml.Encoder, start xml.StartEle
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CreateHostedZoneResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ChangeInfo"); err != nil {
+		errors["ChangeInfo"] = append(errors["ChangeInfo"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DelegationSet"); err != nil {
+		errors["DelegationSet"] = append(errors["DelegationSet"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HostedZone"); err != nil {
+		errors["HostedZone"] = append(errors["HostedZone"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Location"); err != nil {
+		errors["Location"] = append(errors["Location"], err)
+	}
+
+	if err := model.ValidateMax(v, "Location", 1024); err != nil {
+		errors["Location"] = append(errors["Location"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateReusableDelegationSetRequest is undocumented.
 type CreateReusableDelegationSetRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ CreateReusableDelegationSetRequest"`
@@ -1762,6 +2232,32 @@ func (v *CreateReusableDelegationSetRequest) MarshalXML(e *xml.Encoder, start xm
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *CreateReusableDelegationSetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CallerReference"); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMin(v, "CallerReference", 1); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMax(v, "CallerReference", 128); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMax(v, "HostedZoneID", 32); err != nil {
+		errors["HostedZoneID"] = append(errors["HostedZoneID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateReusableDelegationSetResponse is undocumented.
 type CreateReusableDelegationSetResponse struct {
 	XMLName xml.Name `xml:"CreateReusableDelegationSetResponse"`
@@ -1772,6 +2268,28 @@ type CreateReusableDelegationSetResponse struct {
 
 func (v *CreateReusableDelegationSetResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *CreateReusableDelegationSetResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DelegationSet"); err != nil {
+		errors["DelegationSet"] = append(errors["DelegationSet"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Location"); err != nil {
+		errors["Location"] = append(errors["Location"], err)
+	}
+
+	if err := model.ValidateMax(v, "Location", 1024); err != nil {
+		errors["Location"] = append(errors["Location"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DelegationSet is undocumented.
@@ -1787,6 +2305,36 @@ func (v *DelegationSet) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DelegationSet) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "CallerReference", 1); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMax(v, "CallerReference", 128); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 32); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NameServers"); err != nil {
+		errors["NameServers"] = append(errors["NameServers"], err)
+	}
+
+	if err := model.ValidateMin(v, "NameServers", 1); err != nil {
+		errors["NameServers"] = append(errors["NameServers"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteHealthCheckRequest is undocumented.
 type DeleteHealthCheckRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1798,6 +2346,24 @@ func (v *DeleteHealthCheckRequest) MarshalXML(e *xml.Encoder, start xml.StartEle
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DeleteHealthCheckRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthCheckID"); err != nil {
+		errors["HealthCheckID"] = append(errors["HealthCheckID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthCheckID", 64); err != nil {
+		errors["HealthCheckID"] = append(errors["HealthCheckID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteHealthCheckResponse is undocumented.
 type DeleteHealthCheckResponse struct {
 	XMLName xml.Name `xml:"DeleteHealthCheckResponse"`
@@ -1805,6 +2371,16 @@ type DeleteHealthCheckResponse struct {
 
 func (v *DeleteHealthCheckResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DeleteHealthCheckResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteHostedZoneRequest is undocumented.
@@ -1818,6 +2394,24 @@ func (v *DeleteHostedZoneRequest) MarshalXML(e *xml.Encoder, start xml.StartElem
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DeleteHostedZoneRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 32); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteHostedZoneResponse is undocumented.
 type DeleteHostedZoneResponse struct {
 	XMLName xml.Name `xml:"DeleteHostedZoneResponse"`
@@ -1827,6 +2421,20 @@ type DeleteHostedZoneResponse struct {
 
 func (v *DeleteHostedZoneResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DeleteHostedZoneResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ChangeInfo"); err != nil {
+		errors["ChangeInfo"] = append(errors["ChangeInfo"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteReusableDelegationSetRequest is undocumented.
@@ -1840,6 +2448,24 @@ func (v *DeleteReusableDelegationSetRequest) MarshalXML(e *xml.Encoder, start xm
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DeleteReusableDelegationSetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 32); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteReusableDelegationSetResponse is undocumented.
 type DeleteReusableDelegationSetResponse struct {
 	XMLName xml.Name `xml:"DeleteReusableDelegationSetResponse"`
@@ -1847,6 +2473,16 @@ type DeleteReusableDelegationSetResponse struct {
 
 func (v *DeleteReusableDelegationSetResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DeleteReusableDelegationSetResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DisassociateVPCFromHostedZoneRequest is undocumented.
@@ -1862,6 +2498,28 @@ func (v *DisassociateVPCFromHostedZoneRequest) MarshalXML(e *xml.Encoder, start 
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *DisassociateVPCFromHostedZoneRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HostedZoneID"); err != nil {
+		errors["HostedZoneID"] = append(errors["HostedZoneID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HostedZoneID", 32); err != nil {
+		errors["HostedZoneID"] = append(errors["HostedZoneID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "VPC"); err != nil {
+		errors["VPC"] = append(errors["VPC"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DisassociateVPCFromHostedZoneResponse is undocumented.
 type DisassociateVPCFromHostedZoneResponse struct {
 	XMLName xml.Name `xml:"DisassociateVPCFromHostedZoneResponse"`
@@ -1871,6 +2529,20 @@ type DisassociateVPCFromHostedZoneResponse struct {
 
 func (v *DisassociateVPCFromHostedZoneResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *DisassociateVPCFromHostedZoneResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ChangeInfo"); err != nil {
+		errors["ChangeInfo"] = append(errors["ChangeInfo"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GeoLocation is undocumented.
@@ -1884,6 +2556,40 @@ type GeoLocation struct {
 
 func (v *GeoLocation) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GeoLocation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ContinentCode", 2); err != nil {
+		errors["ContinentCode"] = append(errors["ContinentCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "ContinentCode", 2); err != nil {
+		errors["ContinentCode"] = append(errors["ContinentCode"], err)
+	}
+
+	if err := model.ValidateMin(v, "CountryCode", 1); err != nil {
+		errors["CountryCode"] = append(errors["CountryCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "CountryCode", 2); err != nil {
+		errors["CountryCode"] = append(errors["CountryCode"], err)
+	}
+
+	if err := model.ValidateMin(v, "SubdivisionCode", 1); err != nil {
+		errors["SubdivisionCode"] = append(errors["SubdivisionCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "SubdivisionCode", 3); err != nil {
+		errors["SubdivisionCode"] = append(errors["SubdivisionCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GeoLocationDetails is undocumented.
@@ -1902,6 +2608,64 @@ func (v *GeoLocationDetails) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GeoLocationDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ContinentCode", 2); err != nil {
+		errors["ContinentCode"] = append(errors["ContinentCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "ContinentCode", 2); err != nil {
+		errors["ContinentCode"] = append(errors["ContinentCode"], err)
+	}
+
+	if err := model.ValidateMin(v, "ContinentName", 1); err != nil {
+		errors["ContinentName"] = append(errors["ContinentName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ContinentName", 32); err != nil {
+		errors["ContinentName"] = append(errors["ContinentName"], err)
+	}
+
+	if err := model.ValidateMin(v, "CountryCode", 1); err != nil {
+		errors["CountryCode"] = append(errors["CountryCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "CountryCode", 2); err != nil {
+		errors["CountryCode"] = append(errors["CountryCode"], err)
+	}
+
+	if err := model.ValidateMin(v, "CountryName", 1); err != nil {
+		errors["CountryName"] = append(errors["CountryName"], err)
+	}
+
+	if err := model.ValidateMax(v, "CountryName", 64); err != nil {
+		errors["CountryName"] = append(errors["CountryName"], err)
+	}
+
+	if err := model.ValidateMin(v, "SubdivisionCode", 1); err != nil {
+		errors["SubdivisionCode"] = append(errors["SubdivisionCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "SubdivisionCode", 3); err != nil {
+		errors["SubdivisionCode"] = append(errors["SubdivisionCode"], err)
+	}
+
+	if err := model.ValidateMin(v, "SubdivisionName", 1); err != nil {
+		errors["SubdivisionName"] = append(errors["SubdivisionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "SubdivisionName", 64); err != nil {
+		errors["SubdivisionName"] = append(errors["SubdivisionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetChangeRequest is undocumented.
 type GetChangeRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1911,6 +2675,24 @@ type GetChangeRequest struct {
 
 func (v *GetChangeRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetChangeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 32); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetChangeResponse is undocumented.
@@ -1924,6 +2706,20 @@ func (v *GetChangeResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetChangeResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ChangeInfo"); err != nil {
+		errors["ChangeInfo"] = append(errors["ChangeInfo"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetCheckerIPRangesRequest is undocumented.
 type GetCheckerIPRangesRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1931,6 +2727,16 @@ type GetCheckerIPRangesRequest struct {
 
 func (v *GetCheckerIPRangesRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetCheckerIPRangesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetCheckerIPRangesResponse is undocumented.
@@ -1942,6 +2748,20 @@ type GetCheckerIPRangesResponse struct {
 
 func (v *GetCheckerIPRangesResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetCheckerIPRangesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CheckerIPRanges"); err != nil {
+		errors["CheckerIPRanges"] = append(errors["CheckerIPRanges"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetGeoLocationRequest is undocumented.
@@ -1957,6 +2777,40 @@ func (v *GetGeoLocationRequest) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetGeoLocationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ContinentCode", 2); err != nil {
+		errors["ContinentCode"] = append(errors["ContinentCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "ContinentCode", 2); err != nil {
+		errors["ContinentCode"] = append(errors["ContinentCode"], err)
+	}
+
+	if err := model.ValidateMin(v, "CountryCode", 1); err != nil {
+		errors["CountryCode"] = append(errors["CountryCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "CountryCode", 2); err != nil {
+		errors["CountryCode"] = append(errors["CountryCode"], err)
+	}
+
+	if err := model.ValidateMin(v, "SubdivisionCode", 1); err != nil {
+		errors["SubdivisionCode"] = append(errors["SubdivisionCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "SubdivisionCode", 3); err != nil {
+		errors["SubdivisionCode"] = append(errors["SubdivisionCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetGeoLocationResponse is undocumented.
 type GetGeoLocationResponse struct {
 	XMLName xml.Name `xml:"GetGeoLocationResponse"`
@@ -1968,6 +2822,20 @@ func (v *GetGeoLocationResponse) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetGeoLocationResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GeoLocationDetails"); err != nil {
+		errors["GeoLocationDetails"] = append(errors["GeoLocationDetails"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetHealthCheckCountRequest is undocumented.
 type GetHealthCheckCountRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1975,6 +2843,16 @@ type GetHealthCheckCountRequest struct {
 
 func (v *GetHealthCheckCountRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetHealthCheckCountRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetHealthCheckCountResponse is undocumented.
@@ -1988,6 +2866,20 @@ func (v *GetHealthCheckCountResponse) MarshalXML(e *xml.Encoder, start xml.Start
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetHealthCheckCountResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthCheckCount"); err != nil {
+		errors["HealthCheckCount"] = append(errors["HealthCheckCount"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetHealthCheckLastFailureReasonRequest is undocumented.
 type GetHealthCheckLastFailureReasonRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1997,6 +2889,24 @@ type GetHealthCheckLastFailureReasonRequest struct {
 
 func (v *GetHealthCheckLastFailureReasonRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetHealthCheckLastFailureReasonRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthCheckID"); err != nil {
+		errors["HealthCheckID"] = append(errors["HealthCheckID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthCheckID", 64); err != nil {
+		errors["HealthCheckID"] = append(errors["HealthCheckID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetHealthCheckLastFailureReasonResponse is undocumented.
@@ -2010,6 +2920,20 @@ func (v *GetHealthCheckLastFailureReasonResponse) MarshalXML(e *xml.Encoder, sta
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetHealthCheckLastFailureReasonResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthCheckObservations"); err != nil {
+		errors["HealthCheckObservations"] = append(errors["HealthCheckObservations"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetHealthCheckRequest is undocumented.
 type GetHealthCheckRequest struct {
 	XMLName xml.Name `xml:""`
@@ -2019,6 +2943,24 @@ type GetHealthCheckRequest struct {
 
 func (v *GetHealthCheckRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetHealthCheckRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthCheckID"); err != nil {
+		errors["HealthCheckID"] = append(errors["HealthCheckID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthCheckID", 64); err != nil {
+		errors["HealthCheckID"] = append(errors["HealthCheckID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetHealthCheckResponse is undocumented.
@@ -2032,6 +2974,20 @@ func (v *GetHealthCheckResponse) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetHealthCheckResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthCheck"); err != nil {
+		errors["HealthCheck"] = append(errors["HealthCheck"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetHealthCheckStatusRequest is undocumented.
 type GetHealthCheckStatusRequest struct {
 	XMLName xml.Name `xml:""`
@@ -2041,6 +2997,24 @@ type GetHealthCheckStatusRequest struct {
 
 func (v *GetHealthCheckStatusRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetHealthCheckStatusRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthCheckID"); err != nil {
+		errors["HealthCheckID"] = append(errors["HealthCheckID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthCheckID", 64); err != nil {
+		errors["HealthCheckID"] = append(errors["HealthCheckID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetHealthCheckStatusResponse is undocumented.
@@ -2054,6 +3028,20 @@ func (v *GetHealthCheckStatusResponse) MarshalXML(e *xml.Encoder, start xml.Star
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetHealthCheckStatusResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthCheckObservations"); err != nil {
+		errors["HealthCheckObservations"] = append(errors["HealthCheckObservations"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetHostedZoneRequest is undocumented.
 type GetHostedZoneRequest struct {
 	XMLName xml.Name `xml:""`
@@ -2063,6 +3051,24 @@ type GetHostedZoneRequest struct {
 
 func (v *GetHostedZoneRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetHostedZoneRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 32); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetHostedZoneResponse is undocumented.
@@ -2078,6 +3084,24 @@ func (v *GetHostedZoneResponse) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetHostedZoneResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HostedZone"); err != nil {
+		errors["HostedZone"] = append(errors["HostedZone"], err)
+	}
+
+	if err := model.ValidateMin(v, "VPCs", 1); err != nil {
+		errors["VPCs"] = append(errors["VPCs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetReusableDelegationSetRequest is undocumented.
 type GetReusableDelegationSetRequest struct {
 	XMLName xml.Name `xml:""`
@@ -2089,6 +3113,24 @@ func (v *GetReusableDelegationSetRequest) MarshalXML(e *xml.Encoder, start xml.S
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *GetReusableDelegationSetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 32); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetReusableDelegationSetResponse is undocumented.
 type GetReusableDelegationSetResponse struct {
 	XMLName xml.Name `xml:"GetReusableDelegationSetResponse"`
@@ -2098,6 +3140,20 @@ type GetReusableDelegationSetResponse struct {
 
 func (v *GetReusableDelegationSetResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *GetReusableDelegationSetResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DelegationSet"); err != nil {
+		errors["DelegationSet"] = append(errors["DelegationSet"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // HealthCheck is undocumented.
@@ -2112,6 +3168,48 @@ type HealthCheck struct {
 
 func (v *HealthCheck) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *HealthCheck) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CallerReference"); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMin(v, "CallerReference", 1); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMax(v, "CallerReference", 64); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HealthCheckConfig"); err != nil {
+		errors["HealthCheckConfig"] = append(errors["HealthCheckConfig"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HealthCheckVersion"); err != nil {
+		errors["HealthCheckVersion"] = append(errors["HealthCheckVersion"], err)
+	}
+
+	if err := model.ValidateMin(v, "HealthCheckVersion", 1); err != nil {
+		errors["HealthCheckVersion"] = append(errors["HealthCheckVersion"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 64); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // HealthCheckConfig is undocumented.
@@ -2132,6 +3230,75 @@ func (v *HealthCheckConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *HealthCheckConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "FailureThreshold", 1); err != nil {
+		errors["FailureThreshold"] = append(errors["FailureThreshold"], err)
+	}
+
+	if err := model.ValidateMax(v, "FailureThreshold", 10); err != nil {
+		errors["FailureThreshold"] = append(errors["FailureThreshold"], err)
+	}
+
+	if err := model.ValidateMax(v, "FullyQualifiedDomainName", 255); err != nil {
+		errors["FullyQualifiedDomainName"] = append(errors["FullyQualifiedDomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "IPAddress", 15); err != nil {
+		errors["IPAddress"] = append(errors["IPAddress"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IPAddress", `^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$`); err != nil {
+		errors["IPAddress"] = append(errors["IPAddress"], err)
+	}
+
+	if err := model.ValidateMin(v, "Port", 1); err != nil {
+		errors["Port"] = append(errors["Port"], err)
+	}
+
+	if err := model.ValidateMax(v, "Port", 65535); err != nil {
+		errors["Port"] = append(errors["Port"], err)
+	}
+
+	if err := model.ValidateMin(v, "RequestInterval", 10); err != nil {
+		errors["RequestInterval"] = append(errors["RequestInterval"], err)
+	}
+
+	if err := model.ValidateMax(v, "RequestInterval", 30); err != nil {
+		errors["RequestInterval"] = append(errors["RequestInterval"], err)
+	}
+
+	if err := model.ValidateMax(v, "ResourcePath", 255); err != nil {
+		errors["ResourcePath"] = append(errors["ResourcePath"], err)
+	}
+
+	if err := model.ValidateMax(v, "SearchString", 255); err != nil {
+		errors["SearchString"] = append(errors["SearchString"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Type"); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	TypeEnum := []string{
+		HealthCheckTypeHTTP,
+		HealthCheckTypeHTTPS,
+		HealthCheckTypeHTTPSStrMatch,
+		HealthCheckTypeHTTPStrMatch,
+		HealthCheckTypeTCP,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // HealthCheckObservation is undocumented.
 type HealthCheckObservation struct {
 	XMLName xml.Name `xml:"HealthCheckObservation"`
@@ -2142,6 +3309,24 @@ type HealthCheckObservation struct {
 
 func (v *HealthCheckObservation) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *HealthCheckObservation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "IPAddress", 15); err != nil {
+		errors["IPAddress"] = append(errors["IPAddress"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IPAddress", `^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$`); err != nil {
+		errors["IPAddress"] = append(errors["IPAddress"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Route53.
@@ -2168,6 +3353,44 @@ func (v *HostedZone) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *HostedZone) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CallerReference"); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMin(v, "CallerReference", 1); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateMax(v, "CallerReference", 128); err != nil {
+		errors["CallerReference"] = append(errors["CallerReference"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 32); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 1024); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // HostedZoneConfig is undocumented.
 type HostedZoneConfig struct {
 	XMLName xml.Name `xml:"HostedZoneConfig"`
@@ -2178,6 +3401,20 @@ type HostedZoneConfig struct {
 
 func (v *HostedZoneConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *HostedZoneConfig) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Comment", 256); err != nil {
+		errors["Comment"] = append(errors["Comment"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListGeoLocationsRequest is undocumented.
@@ -2192,6 +3429,40 @@ type ListGeoLocationsRequest struct {
 
 func (v *ListGeoLocationsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListGeoLocationsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "StartContinentCode", 2); err != nil {
+		errors["StartContinentCode"] = append(errors["StartContinentCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "StartContinentCode", 2); err != nil {
+		errors["StartContinentCode"] = append(errors["StartContinentCode"], err)
+	}
+
+	if err := model.ValidateMin(v, "StartCountryCode", 1); err != nil {
+		errors["StartCountryCode"] = append(errors["StartCountryCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "StartCountryCode", 2); err != nil {
+		errors["StartCountryCode"] = append(errors["StartCountryCode"], err)
+	}
+
+	if err := model.ValidateMin(v, "StartSubdivisionCode", 1); err != nil {
+		errors["StartSubdivisionCode"] = append(errors["StartSubdivisionCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "StartSubdivisionCode", 3); err != nil {
+		errors["StartSubdivisionCode"] = append(errors["StartSubdivisionCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListGeoLocationsResponse is undocumented.
@@ -2210,6 +3481,52 @@ func (v *ListGeoLocationsResponse) MarshalXML(e *xml.Encoder, start xml.StartEle
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListGeoLocationsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "GeoLocationDetailsList"); err != nil {
+		errors["GeoLocationDetailsList"] = append(errors["GeoLocationDetailsList"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IsTruncated"); err != nil {
+		errors["IsTruncated"] = append(errors["IsTruncated"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaxItems"); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMin(v, "NextContinentCode", 2); err != nil {
+		errors["NextContinentCode"] = append(errors["NextContinentCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextContinentCode", 2); err != nil {
+		errors["NextContinentCode"] = append(errors["NextContinentCode"], err)
+	}
+
+	if err := model.ValidateMin(v, "NextCountryCode", 1); err != nil {
+		errors["NextCountryCode"] = append(errors["NextCountryCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextCountryCode", 2); err != nil {
+		errors["NextCountryCode"] = append(errors["NextCountryCode"], err)
+	}
+
+	if err := model.ValidateMin(v, "NextSubdivisionCode", 1); err != nil {
+		errors["NextSubdivisionCode"] = append(errors["NextSubdivisionCode"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextSubdivisionCode", 3); err != nil {
+		errors["NextSubdivisionCode"] = append(errors["NextSubdivisionCode"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListHealthChecksRequest is undocumented.
 type ListHealthChecksRequest struct {
 	XMLName xml.Name `xml:""`
@@ -2220,6 +3537,20 @@ type ListHealthChecksRequest struct {
 
 func (v *ListHealthChecksRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListHealthChecksRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Marker", 64); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListHealthChecksResponse is undocumented.
@@ -2237,6 +3568,40 @@ func (v *ListHealthChecksResponse) MarshalXML(e *xml.Encoder, start xml.StartEle
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListHealthChecksResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthChecks"); err != nil {
+		errors["HealthChecks"] = append(errors["HealthChecks"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IsTruncated"); err != nil {
+		errors["IsTruncated"] = append(errors["IsTruncated"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Marker"); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 64); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaxItems"); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextMarker", 64); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListHostedZonesRequest is undocumented.
 type ListHostedZonesRequest struct {
 	XMLName xml.Name `xml:""`
@@ -2248,6 +3613,24 @@ type ListHostedZonesRequest struct {
 
 func (v *ListHostedZonesRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListHostedZonesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "DelegationSetID", 32); err != nil {
+		errors["DelegationSetID"] = append(errors["DelegationSetID"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 64); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListHostedZonesResponse is undocumented.
@@ -2265,6 +3648,40 @@ func (v *ListHostedZonesResponse) MarshalXML(e *xml.Encoder, start xml.StartElem
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListHostedZonesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HostedZones"); err != nil {
+		errors["HostedZones"] = append(errors["HostedZones"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IsTruncated"); err != nil {
+		errors["IsTruncated"] = append(errors["IsTruncated"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Marker"); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 64); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaxItems"); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextMarker", 64); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListResourceRecordSetsRequest is undocumented.
 type ListResourceRecordSetsRequest struct {
 	XMLName xml.Name `xml:""`
@@ -2278,6 +3695,52 @@ type ListResourceRecordSetsRequest struct {
 
 func (v *ListResourceRecordSetsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListResourceRecordSetsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HostedZoneID"); err != nil {
+		errors["HostedZoneID"] = append(errors["HostedZoneID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HostedZoneID", 32); err != nil {
+		errors["HostedZoneID"] = append(errors["HostedZoneID"], err)
+	}
+
+	if err := model.ValidateMin(v, "StartRecordIdentifier", 1); err != nil {
+		errors["StartRecordIdentifier"] = append(errors["StartRecordIdentifier"], err)
+	}
+
+	if err := model.ValidateMax(v, "StartRecordIdentifier", 128); err != nil {
+		errors["StartRecordIdentifier"] = append(errors["StartRecordIdentifier"], err)
+	}
+
+	if err := model.ValidateMax(v, "StartRecordName", 1024); err != nil {
+		errors["StartRecordName"] = append(errors["StartRecordName"], err)
+	}
+
+	StartRecordTypeEnum := []string{
+		RRTypeA,
+		RRTypeAaaa,
+		RRTypeCname,
+		RRTypeMx,
+		RRTypeNs,
+		RRTypePtr,
+		RRTypeSoa,
+		RRTypeSpf,
+		RRTypeSrv,
+		RRTypeTxt,
+	}
+	if err := model.ValidateEnum(v, "StartRecordType", StartRecordTypeEnum); err != nil {
+		errors["StartRecordType"] = append(errors["StartRecordType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListResourceRecordSetsResponse is undocumented.
@@ -2296,6 +3759,56 @@ func (v *ListResourceRecordSetsResponse) MarshalXML(e *xml.Encoder, start xml.St
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListResourceRecordSetsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IsTruncated"); err != nil {
+		errors["IsTruncated"] = append(errors["IsTruncated"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaxItems"); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMin(v, "NextRecordIdentifier", 1); err != nil {
+		errors["NextRecordIdentifier"] = append(errors["NextRecordIdentifier"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextRecordIdentifier", 128); err != nil {
+		errors["NextRecordIdentifier"] = append(errors["NextRecordIdentifier"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextRecordName", 1024); err != nil {
+		errors["NextRecordName"] = append(errors["NextRecordName"], err)
+	}
+
+	NextRecordTypeEnum := []string{
+		RRTypeA,
+		RRTypeAaaa,
+		RRTypeCname,
+		RRTypeMx,
+		RRTypeNs,
+		RRTypePtr,
+		RRTypeSoa,
+		RRTypeSpf,
+		RRTypeSrv,
+		RRTypeTxt,
+	}
+	if err := model.ValidateEnum(v, "NextRecordType", NextRecordTypeEnum); err != nil {
+		errors["NextRecordType"] = append(errors["NextRecordType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceRecordSets"); err != nil {
+		errors["ResourceRecordSets"] = append(errors["ResourceRecordSets"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListReusableDelegationSetsRequest is undocumented.
 type ListReusableDelegationSetsRequest struct {
 	XMLName xml.Name `xml:""`
@@ -2306,6 +3819,20 @@ type ListReusableDelegationSetsRequest struct {
 
 func (v *ListReusableDelegationSetsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListReusableDelegationSetsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Marker", 64); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListReusableDelegationSetsResponse is undocumented.
@@ -2323,6 +3850,40 @@ func (v *ListReusableDelegationSetsResponse) MarshalXML(e *xml.Encoder, start xm
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListReusableDelegationSetsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DelegationSets"); err != nil {
+		errors["DelegationSets"] = append(errors["DelegationSets"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IsTruncated"); err != nil {
+		errors["IsTruncated"] = append(errors["IsTruncated"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Marker"); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateMax(v, "Marker", 64); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaxItems"); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextMarker", 64); err != nil {
+		errors["NextMarker"] = append(errors["NextMarker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListTagsForResourceRequest is undocumented.
 type ListTagsForResourceRequest struct {
 	XMLName xml.Name `xml:""`
@@ -2335,6 +3896,36 @@ func (v *ListTagsForResourceRequest) MarshalXML(e *xml.Encoder, start xml.StartE
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListTagsForResourceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ResourceID"); err != nil {
+		errors["ResourceID"] = append(errors["ResourceID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ResourceID", 64); err != nil {
+		errors["ResourceID"] = append(errors["ResourceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceType"); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	ResourceTypeEnum := []string{
+		TagResourceTypeHealthcheck,
+		TagResourceTypeHostedzone,
+	}
+	if err := model.ValidateEnum(v, "ResourceType", ResourceTypeEnum); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListTagsForResourceResponse is undocumented.
 type ListTagsForResourceResponse struct {
 	XMLName xml.Name `xml:"ListTagsForResourceResponse"`
@@ -2344,6 +3935,20 @@ type ListTagsForResourceResponse struct {
 
 func (v *ListTagsForResourceResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListTagsForResourceResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ResourceTagSet"); err != nil {
+		errors["ResourceTagSet"] = append(errors["ResourceTagSet"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListTagsForResourcesRequest is undocumented.
@@ -2358,6 +3963,40 @@ func (v *ListTagsForResourcesRequest) MarshalXML(e *xml.Encoder, start xml.Start
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ListTagsForResourcesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ResourceIDs"); err != nil {
+		errors["ResourceIDs"] = append(errors["ResourceIDs"], err)
+	}
+
+	if err := model.ValidateMin(v, "ResourceIDs", 1); err != nil {
+		errors["ResourceIDs"] = append(errors["ResourceIDs"], err)
+	}
+
+	if err := model.ValidateMax(v, "ResourceIDs", 10); err != nil {
+		errors["ResourceIDs"] = append(errors["ResourceIDs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ResourceType"); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	ResourceTypeEnum := []string{
+		TagResourceTypeHealthcheck,
+		TagResourceTypeHostedzone,
+	}
+	if err := model.ValidateEnum(v, "ResourceType", ResourceTypeEnum); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListTagsForResourcesResponse is undocumented.
 type ListTagsForResourcesResponse struct {
 	XMLName xml.Name `xml:"ListTagsForResourcesResponse"`
@@ -2367,6 +4006,20 @@ type ListTagsForResourcesResponse struct {
 
 func (v *ListTagsForResourcesResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ListTagsForResourcesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ResourceTagSets"); err != nil {
+		errors["ResourceTagSets"] = append(errors["ResourceTagSets"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Route53.
@@ -2394,6 +4047,24 @@ func (v *ResourceRecord) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ResourceRecord) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Value"); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 4000); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ResourceRecordSet is undocumented.
 type ResourceRecordSet struct {
 	XMLName xml.Name `xml:"ResourceRecordSet"`
@@ -2413,6 +4084,100 @@ type ResourceRecordSet struct {
 
 func (v *ResourceRecordSet) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *ResourceRecordSet) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	FailoverEnum := []string{
+		ResourceRecordSetFailoverPrimary,
+		ResourceRecordSetFailoverSecondary,
+	}
+	if err := model.ValidateEnum(v, "Failover", FailoverEnum); err != nil {
+		errors["Failover"] = append(errors["Failover"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthCheckID", 64); err != nil {
+		errors["HealthCheckID"] = append(errors["HealthCheckID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 1024); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	RegionEnum := []string{
+		ResourceRecordSetRegionApNortheast1,
+		ResourceRecordSetRegionApSoutheast1,
+		ResourceRecordSetRegionApSoutheast2,
+		ResourceRecordSetRegionCnNorth1,
+		ResourceRecordSetRegionEuCentral1,
+		ResourceRecordSetRegionEuWest1,
+		ResourceRecordSetRegionSaEast1,
+		ResourceRecordSetRegionUsEast1,
+		ResourceRecordSetRegionUsWest1,
+		ResourceRecordSetRegionUsWest2,
+	}
+	if err := model.ValidateEnum(v, "Region", RegionEnum); err != nil {
+		errors["Region"] = append(errors["Region"], err)
+	}
+
+	if err := model.ValidateMin(v, "Region", 1); err != nil {
+		errors["Region"] = append(errors["Region"], err)
+	}
+
+	if err := model.ValidateMax(v, "Region", 64); err != nil {
+		errors["Region"] = append(errors["Region"], err)
+	}
+
+	if err := model.ValidateMin(v, "ResourceRecords", 1); err != nil {
+		errors["ResourceRecords"] = append(errors["ResourceRecords"], err)
+	}
+
+	if err := model.ValidateMin(v, "SetIdentifier", 1); err != nil {
+		errors["SetIdentifier"] = append(errors["SetIdentifier"], err)
+	}
+
+	if err := model.ValidateMax(v, "SetIdentifier", 128); err != nil {
+		errors["SetIdentifier"] = append(errors["SetIdentifier"], err)
+	}
+
+	if err := model.ValidateMax(v, "TTL", 2147483647); err != nil {
+		errors["TTL"] = append(errors["TTL"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Type"); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	TypeEnum := []string{
+		RRTypeA,
+		RRTypeAaaa,
+		RRTypeCname,
+		RRTypeMx,
+		RRTypeNs,
+		RRTypePtr,
+		RRTypeSoa,
+		RRTypeSpf,
+		RRTypeSrv,
+		RRTypeTxt,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if err := model.ValidateMax(v, "Weight", 255); err != nil {
+		errors["Weight"] = append(errors["Weight"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Route53.
@@ -2448,6 +4213,36 @@ func (v *ResourceTagSet) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *ResourceTagSet) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "ResourceID", 64); err != nil {
+		errors["ResourceID"] = append(errors["ResourceID"], err)
+	}
+
+	ResourceTypeEnum := []string{
+		TagResourceTypeHealthcheck,
+		TagResourceTypeHostedzone,
+	}
+	if err := model.ValidateEnum(v, "ResourceType", ResourceTypeEnum); err != nil {
+		errors["ResourceType"] = append(errors["ResourceType"], err)
+	}
+
+	if err := model.ValidateMin(v, "Tags", 1); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if err := model.ValidateMax(v, "Tags", 10); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StatusReport is undocumented.
 type StatusReport struct {
 	XMLName xml.Name `xml:"StatusReport"`
@@ -2460,6 +4255,16 @@ func (v *StatusReport) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *StatusReport) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Tag is undocumented.
 type Tag struct {
 	XMLName xml.Name `xml:"Tag"`
@@ -2470,6 +4275,24 @@ type Tag struct {
 
 func (v *Tag) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *Tag) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Key", 128); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 256); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Route53.
@@ -2496,6 +4319,64 @@ func (v *UpdateHealthCheckRequest) MarshalXML(e *xml.Encoder, start xml.StartEle
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *UpdateHealthCheckRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "FailureThreshold", 1); err != nil {
+		errors["FailureThreshold"] = append(errors["FailureThreshold"], err)
+	}
+
+	if err := model.ValidateMax(v, "FailureThreshold", 10); err != nil {
+		errors["FailureThreshold"] = append(errors["FailureThreshold"], err)
+	}
+
+	if err := model.ValidateMax(v, "FullyQualifiedDomainName", 255); err != nil {
+		errors["FullyQualifiedDomainName"] = append(errors["FullyQualifiedDomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HealthCheckID"); err != nil {
+		errors["HealthCheckID"] = append(errors["HealthCheckID"], err)
+	}
+
+	if err := model.ValidateMax(v, "HealthCheckID", 64); err != nil {
+		errors["HealthCheckID"] = append(errors["HealthCheckID"], err)
+	}
+
+	if err := model.ValidateMin(v, "HealthCheckVersion", 1); err != nil {
+		errors["HealthCheckVersion"] = append(errors["HealthCheckVersion"], err)
+	}
+
+	if err := model.ValidateMax(v, "IPAddress", 15); err != nil {
+		errors["IPAddress"] = append(errors["IPAddress"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IPAddress", `^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$`); err != nil {
+		errors["IPAddress"] = append(errors["IPAddress"], err)
+	}
+
+	if err := model.ValidateMin(v, "Port", 1); err != nil {
+		errors["Port"] = append(errors["Port"], err)
+	}
+
+	if err := model.ValidateMax(v, "Port", 65535); err != nil {
+		errors["Port"] = append(errors["Port"], err)
+	}
+
+	if err := model.ValidateMax(v, "ResourcePath", 255); err != nil {
+		errors["ResourcePath"] = append(errors["ResourcePath"], err)
+	}
+
+	if err := model.ValidateMax(v, "SearchString", 255); err != nil {
+		errors["SearchString"] = append(errors["SearchString"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateHealthCheckResponse is undocumented.
 type UpdateHealthCheckResponse struct {
 	XMLName xml.Name `xml:"UpdateHealthCheckResponse"`
@@ -2505,6 +4386,20 @@ type UpdateHealthCheckResponse struct {
 
 func (v *UpdateHealthCheckResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *UpdateHealthCheckResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HealthCheck"); err != nil {
+		errors["HealthCheck"] = append(errors["HealthCheck"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateHostedZoneCommentRequest is undocumented.
@@ -2519,6 +4414,28 @@ func (v *UpdateHostedZoneCommentRequest) MarshalXML(e *xml.Encoder, start xml.St
 	return aws.MarshalXML(v, e, start)
 }
 
+func (v *UpdateHostedZoneCommentRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Comment", 256); err != nil {
+		errors["Comment"] = append(errors["Comment"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 32); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateHostedZoneCommentResponse is undocumented.
 type UpdateHostedZoneCommentResponse struct {
 	XMLName xml.Name `xml:"UpdateHostedZoneCommentResponse"`
@@ -2528,6 +4445,20 @@ type UpdateHostedZoneCommentResponse struct {
 
 func (v *UpdateHostedZoneCommentResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *UpdateHostedZoneCommentResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HostedZone"); err != nil {
+		errors["HostedZone"] = append(errors["HostedZone"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // VPC is undocumented.
@@ -2540,6 +4471,44 @@ type VPC struct {
 
 func (v *VPC) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
+}
+
+func (v *VPC) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "VPCID", 1024); err != nil {
+		errors["VPCID"] = append(errors["VPCID"], err)
+	}
+
+	VPCRegionEnum := []string{
+		VPCRegionApNortheast1,
+		VPCRegionApSoutheast1,
+		VPCRegionApSoutheast2,
+		VPCRegionCnNorth1,
+		VPCRegionEuCentral1,
+		VPCRegionEuWest1,
+		VPCRegionSaEast1,
+		VPCRegionUsEast1,
+		VPCRegionUsWest1,
+		VPCRegionUsWest2,
+	}
+	if err := model.ValidateEnum(v, "VPCRegion", VPCRegionEnum); err != nil {
+		errors["VPCRegion"] = append(errors["VPCRegion"], err)
+	}
+
+	if err := model.ValidateMin(v, "VPCRegion", 1); err != nil {
+		errors["VPCRegion"] = append(errors["VPCRegion"], err)
+	}
+
+	if err := model.ValidateMax(v, "VPCRegion", 64); err != nil {
+		errors["VPCRegion"] = append(errors["VPCRegion"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Route53.

@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 import (
@@ -68,6 +69,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Clo
 // endpoints are also displayed on the domain dashboard in the Amazon
 // CloudSearch console.
 func (c *CloudSearchDomain) Search(req *SearchRequest) (resp *SearchResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SearchResponse{}
 
 	var body io.Reader
@@ -172,6 +177,10 @@ func (c *CloudSearchDomain) Search(req *SearchRequest) (resp *SearchResponse, er
 // service DescribeDomains action. A domain's endpoints are also displayed
 // on the domain dashboard in the Amazon CloudSearch console.
 func (c *CloudSearchDomain) Suggest(req *SuggestRequest) (resp *SuggestResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SuggestResponse{}
 
 	var body io.Reader
@@ -242,6 +251,10 @@ func (c *CloudSearchDomain) Suggest(req *SuggestRequest) (resp *SuggestResponse,
 // information about uploading data for indexing, see Uploading Data in the
 // Amazon CloudSearch Developer Guide .
 func (c *CloudSearchDomain) UploadDocuments(req *UploadDocumentsRequest) (resp *UploadDocumentsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UploadDocumentsResponse{}
 
 	var body io.Reader
@@ -296,9 +309,29 @@ type Bucket struct {
 	Value aws.StringValue `json:"value,omitempty"`
 }
 
+func (v *Bucket) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BucketInfo is undocumented.
 type BucketInfo struct {
 	Buckets []Bucket `json:"buckets,omitempty"`
+}
+
+func (v *BucketInfo) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudSearchDomain.
@@ -312,11 +345,31 @@ type DocumentServiceWarning struct {
 	Message aws.StringValue `json:"message,omitempty"`
 }
 
+func (v *DocumentServiceWarning) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Hit is undocumented.
 type Hit struct {
 	Fields     map[string][]string `json:"fields,omitempty"`
 	Highlights map[string]string   `json:"highlights,omitempty"`
 	ID         aws.StringValue     `json:"id,omitempty"`
+}
+
+func (v *Hit) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Hits is undocumented.
@@ -325,6 +378,16 @@ type Hits struct {
 	Found  aws.LongValue   `json:"found,omitempty"`
 	Hit    []Hit           `json:"hit,omitempty"`
 	Start  aws.LongValue   `json:"start,omitempty"`
+}
+
+func (v *Hits) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudSearchDomain.
@@ -352,6 +415,30 @@ type SearchRequest struct {
 	Start        aws.LongValue    `json:"-"`
 }
 
+func (v *SearchRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Query"); err != nil {
+		errors["Query"] = append(errors["Query"], err)
+	}
+
+	queryParserEnum := []string{
+		QueryParserDismax,
+		QueryParserLucene,
+		QueryParserSimple,
+		QueryParserStructured,
+	}
+	if err := model.ValidateEnum(v, "QueryParser", queryParserEnum); err != nil {
+		errors["QueryParser"] = append(errors["QueryParser"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SearchResponse is undocumented.
 type SearchResponse struct {
 	Facets map[string]BucketInfo `json:"facets,omitempty"`
@@ -359,10 +446,30 @@ type SearchResponse struct {
 	Status *SearchStatus         `json:"status,omitempty"`
 }
 
+func (v *SearchResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SearchStatus is undocumented.
 type SearchStatus struct {
 	Rid    aws.StringValue `json:"rid,omitempty"`
 	Timems aws.LongValue   `json:"timems,omitempty"`
+}
+
+func (v *SearchStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SuggestModel is undocumented.
@@ -372,11 +479,39 @@ type SuggestModel struct {
 	Suggestions []SuggestionMatch `json:"suggestions,omitempty"`
 }
 
+func (v *SuggestModel) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SuggestRequest is undocumented.
 type SuggestRequest struct {
 	Query     aws.StringValue `json:"-"`
 	Size      aws.LongValue   `json:"-"`
 	Suggester aws.StringValue `json:"-"`
+}
+
+func (v *SuggestRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Query"); err != nil {
+		errors["Query"] = append(errors["Query"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Suggester"); err != nil {
+		errors["Suggester"] = append(errors["Suggester"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SuggestResponse is undocumented.
@@ -385,10 +520,30 @@ type SuggestResponse struct {
 	Suggest *SuggestModel  `json:"suggest,omitempty"`
 }
 
+func (v *SuggestResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SuggestStatus is undocumented.
 type SuggestStatus struct {
 	Rid    aws.StringValue `json:"rid,omitempty"`
 	Timems aws.LongValue   `json:"timems,omitempty"`
+}
+
+func (v *SuggestStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SuggestionMatch is undocumented.
@@ -398,10 +553,46 @@ type SuggestionMatch struct {
 	Suggestion aws.StringValue `json:"suggestion,omitempty"`
 }
 
+func (v *SuggestionMatch) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UploadDocumentsRequest is undocumented.
 type UploadDocumentsRequest struct {
 	ContentType aws.StringValue `json:"-"`
 	Documents   []byte          `json:"documents"`
+}
+
+func (v *UploadDocumentsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ContentType"); err != nil {
+		errors["ContentType"] = append(errors["ContentType"], err)
+	}
+
+	contentTypeEnum := []string{
+		ContentTypeApplicationJSON,
+		ContentTypeApplicationXML,
+	}
+	if err := model.ValidateEnum(v, "ContentType", contentTypeEnum); err != nil {
+		errors["ContentType"] = append(errors["ContentType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Documents"); err != nil {
+		errors["Documents"] = append(errors["Documents"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UploadDocumentsResponse is undocumented.
@@ -410,6 +601,16 @@ type UploadDocumentsResponse struct {
 	Deletes  aws.LongValue            `json:"deletes,omitempty"`
 	Status   aws.StringValue          `json:"status,omitempty"`
 	Warnings []DocumentServiceWarning `json:"warnings,omitempty"`
+}
+
+func (v *UploadDocumentsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

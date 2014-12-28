@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // Kinesis is a client for Amazon Kinesis.
@@ -44,6 +45,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Kin
 // assigned to the stream, AddTagsToStream overwrites any existing tags
 // that correspond to the specified tag keys.
 func (c *Kinesis) AddTagsToStream(req *AddTagsToStreamInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AddTagsToStream", "POST", "/", req, nil)
 	return
@@ -78,6 +83,10 @@ func (c *Kinesis) AddTagsToStream(req *AddTagsToStreamInput) (err error) {
 // returned in StreamStatus CreateStream has a limit of 5 transactions per
 // second per account.
 func (c *Kinesis) CreateStream(req *CreateStreamInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateStream", "POST", "/", req, nil)
 	return
@@ -98,6 +107,10 @@ func (c *Kinesis) CreateStream(req *CreateStreamInput) (err error) {
 // StreamStatus DeleteStream has a limit of 5 transactions per second per
 // account.
 func (c *Kinesis) DeleteStream(req *DeleteStreamInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteStream", "POST", "/", req, nil)
 	return
@@ -121,6 +134,10 @@ func (c *Kinesis) DeleteStream(req *DeleteStreamInput) (err error) {
 // subsequent request to DescribeStream . DescribeStream has a limit of 10
 // transactions per second per account.
 func (c *Kinesis) DescribeStream(req *DescribeStreamInput) (resp *DescribeStreamOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeStreamOutput{}
 	err = c.client.Do("DescribeStream", "POST", "/", req, resp)
 	return
@@ -167,6 +184,10 @@ func (c *Kinesis) DescribeStream(req *DescribeStreamInput) (resp *DescribeStream
 // PutRecords ). For more information, see Monitoring Amazon Kinesis with
 // Amazon CloudWatch in the Amazon Kinesis Developer Guide
 func (c *Kinesis) GetRecords(req *GetRecordsInput) (resp *GetRecordsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetRecordsOutput{}
 	err = c.client.Do("GetRecords", "POST", "/", req, resp)
 	return
@@ -204,6 +225,10 @@ func (c *Kinesis) GetRecords(req *GetRecordsInput) (resp *GetRecordsOutput, err 
 // GetShardIterator has a limit of 5 transactions per second per account
 // per open shard.
 func (c *Kinesis) GetShardIterator(req *GetShardIteratorInput) (resp *GetShardIteratorOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetShardIteratorOutput{}
 	err = c.client.Do("GetShardIterator", "POST", "/", req, resp)
 	return
@@ -223,6 +248,10 @@ func (c *Kinesis) GetShardIterator(req *GetShardIteratorInput) (resp *GetShardIt
 // process until all the stream names have been collected in the list.
 // ListStreams has a limit of 5 transactions per second per account.
 func (c *Kinesis) ListStreams(req *ListStreamsInput) (resp *ListStreamsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListStreamsOutput{}
 	err = c.client.Do("ListStreams", "POST", "/", req, resp)
 	return
@@ -231,6 +260,10 @@ func (c *Kinesis) ListStreams(req *ListStreamsInput) (resp *ListStreamsOutput, e
 // ListTagsForStream lists the tags for the specified Amazon Kinesis
 // stream.
 func (c *Kinesis) ListTagsForStream(req *ListTagsForStreamInput) (resp *ListTagsForStreamOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListTagsForStreamOutput{}
 	err = c.client.Do("ListTagsForStream", "POST", "/", req, resp)
 	return
@@ -265,6 +298,10 @@ func (c *Kinesis) ListTagsForStream(req *ListTagsForStreamInput) (resp *ListTags
 // LimitExceededException . MergeShards has limit of 5 transactions per
 // second per account.
 func (c *Kinesis) MergeShards(req *MergeShardsInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("MergeShards", "POST", "/", req, nil)
 	return
@@ -301,6 +338,10 @@ func (c *Kinesis) MergeShards(req *MergeShardsInput) (err error) {
 // only 24 hours from the time that they are added to an Amazon Kinesis
 // stream.
 func (c *Kinesis) PutRecord(req *PutRecordInput) (resp *PutRecordOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PutRecordOutput{}
 	err = c.client.Do("PutRecord", "POST", "/", req, resp)
 	return
@@ -349,6 +390,10 @@ func (c *Kinesis) PutRecord(req *PutRecordInput) (resp *PutRecordOutput, err err
 // Data records are accessible for only 24 hours from the time that they
 // are added to an Amazon Kinesis stream.
 func (c *Kinesis) PutRecords(req *PutRecordsInput) (resp *PutRecordsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PutRecordsOutput{}
 	err = c.client.Do("PutRecords", "POST", "/", req, resp)
 	return
@@ -357,6 +402,10 @@ func (c *Kinesis) PutRecords(req *PutRecordsInput) (resp *PutRecordsOutput, err 
 // RemoveTagsFromStream deletes tags from the specified Amazon Kinesis
 // stream. If you specify a tag that does not exist, it is ignored.
 func (c *Kinesis) RemoveTagsFromStream(req *RemoveTagsFromStreamInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RemoveTagsFromStream", "POST", "/", req, nil)
 	return
@@ -398,6 +447,10 @@ func (c *Kinesis) RemoveTagsFromStream(req *RemoveTagsFromStreamInput) (err erro
 // LimitExceededException . SplitShard has limit of 5 transactions per
 // second per account.
 func (c *Kinesis) SplitShard(req *SplitShardInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SplitShard", "POST", "/", req, nil)
 	return
@@ -409,15 +462,113 @@ type AddTagsToStreamInput struct {
 	Tags       map[string]string `json:"Tags"`
 }
 
+func (v *AddTagsToStreamInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StreamName"); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StreamName", 1); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "StreamName", 128); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Tags"); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if err := model.ValidateMin(v, "Tags", 1); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if err := model.ValidateMax(v, "Tags", 10); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateStreamInput is undocumented.
 type CreateStreamInput struct {
 	ShardCount aws.IntegerValue `json:"ShardCount"`
 	StreamName aws.StringValue  `json:"StreamName"`
 }
 
+func (v *CreateStreamInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ShardCount"); err != nil {
+		errors["ShardCount"] = append(errors["ShardCount"], err)
+	}
+
+	if err := model.ValidateMin(v, "ShardCount", 1); err != nil {
+		errors["ShardCount"] = append(errors["ShardCount"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamName"); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StreamName", 1); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "StreamName", 128); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteStreamInput is undocumented.
 type DeleteStreamInput struct {
 	StreamName aws.StringValue `json:"StreamName"`
+}
+
+func (v *DeleteStreamInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StreamName"); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StreamName", 1); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "StreamName", 128); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeStreamInput is undocumented.
@@ -427,9 +578,69 @@ type DescribeStreamInput struct {
 	StreamName            aws.StringValue  `json:"StreamName"`
 }
 
+func (v *DescribeStreamInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ExclusiveStartShardID", 1); err != nil {
+		errors["ExclusiveStartShardID"] = append(errors["ExclusiveStartShardID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExclusiveStartShardID", 128); err != nil {
+		errors["ExclusiveStartShardID"] = append(errors["ExclusiveStartShardID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ExclusiveStartShardID", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["ExclusiveStartShardID"] = append(errors["ExclusiveStartShardID"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 10000); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamName"); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StreamName", 1); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "StreamName", 128); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeStreamOutput is undocumented.
 type DescribeStreamOutput struct {
 	StreamDescription *StreamDescription `json:"StreamDescription"`
+}
+
+func (v *DescribeStreamOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StreamDescription"); err != nil {
+		errors["StreamDescription"] = append(errors["StreamDescription"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetRecordsInput is undocumented.
@@ -438,10 +649,62 @@ type GetRecordsInput struct {
 	ShardIterator aws.StringValue  `json:"ShardIterator"`
 }
 
+func (v *GetRecordsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 10000); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ShardIterator"); err != nil {
+		errors["ShardIterator"] = append(errors["ShardIterator"], err)
+	}
+
+	if err := model.ValidateMin(v, "ShardIterator", 1); err != nil {
+		errors["ShardIterator"] = append(errors["ShardIterator"], err)
+	}
+
+	if err := model.ValidateMax(v, "ShardIterator", 512); err != nil {
+		errors["ShardIterator"] = append(errors["ShardIterator"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetRecordsOutput is undocumented.
 type GetRecordsOutput struct {
 	NextShardIterator aws.StringValue `json:"NextShardIterator,omitempty"`
 	Records           []Record        `json:"Records"`
+}
+
+func (v *GetRecordsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "NextShardIterator", 1); err != nil {
+		errors["NextShardIterator"] = append(errors["NextShardIterator"], err)
+	}
+
+	if err := model.ValidateMax(v, "NextShardIterator", 512); err != nil {
+		errors["NextShardIterator"] = append(errors["NextShardIterator"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Records"); err != nil {
+		errors["Records"] = append(errors["Records"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetShardIteratorInput is undocumented.
@@ -452,9 +715,87 @@ type GetShardIteratorInput struct {
 	StreamName             aws.StringValue `json:"StreamName"`
 }
 
+func (v *GetShardIteratorInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ShardID"); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ShardID", 1); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ShardID", 128); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ShardID", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ShardIteratorType"); err != nil {
+		errors["ShardIteratorType"] = append(errors["ShardIteratorType"], err)
+	}
+
+	ShardIteratorTypeEnum := []string{
+		ShardIteratorTypeAfterSequenceNumber,
+		ShardIteratorTypeAtSequenceNumber,
+		ShardIteratorTypeLatest,
+		ShardIteratorTypeTrimHorizon,
+	}
+	if err := model.ValidateEnum(v, "ShardIteratorType", ShardIteratorTypeEnum); err != nil {
+		errors["ShardIteratorType"] = append(errors["ShardIteratorType"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StartingSequenceNumber", `0|([1-9]\d{0,128})`); err != nil {
+		errors["StartingSequenceNumber"] = append(errors["StartingSequenceNumber"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamName"); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StreamName", 1); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "StreamName", 128); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetShardIteratorOutput is undocumented.
 type GetShardIteratorOutput struct {
 	ShardIterator aws.StringValue `json:"ShardIterator,omitempty"`
+}
+
+func (v *GetShardIteratorOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ShardIterator", 1); err != nil {
+		errors["ShardIterator"] = append(errors["ShardIterator"], err)
+	}
+
+	if err := model.ValidateMax(v, "ShardIterator", 512); err != nil {
+		errors["ShardIterator"] = append(errors["ShardIterator"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // HashKeyRange is undocumented.
@@ -463,16 +804,90 @@ type HashKeyRange struct {
 	StartingHashKey aws.StringValue `json:"StartingHashKey"`
 }
 
+func (v *HashKeyRange) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EndingHashKey"); err != nil {
+		errors["EndingHashKey"] = append(errors["EndingHashKey"], err)
+	}
+
+	if err := model.ValidatePattern(v, "EndingHashKey", `0|([1-9]\d{0,38})`); err != nil {
+		errors["EndingHashKey"] = append(errors["EndingHashKey"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartingHashKey"); err != nil {
+		errors["StartingHashKey"] = append(errors["StartingHashKey"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StartingHashKey", `0|([1-9]\d{0,38})`); err != nil {
+		errors["StartingHashKey"] = append(errors["StartingHashKey"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListStreamsInput is undocumented.
 type ListStreamsInput struct {
 	ExclusiveStartStreamName aws.StringValue  `json:"ExclusiveStartStreamName,omitempty"`
 	Limit                    aws.IntegerValue `json:"Limit,omitempty"`
 }
 
+func (v *ListStreamsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ExclusiveStartStreamName", 1); err != nil {
+		errors["ExclusiveStartStreamName"] = append(errors["ExclusiveStartStreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExclusiveStartStreamName", 128); err != nil {
+		errors["ExclusiveStartStreamName"] = append(errors["ExclusiveStartStreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ExclusiveStartStreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["ExclusiveStartStreamName"] = append(errors["ExclusiveStartStreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 10000); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListStreamsOutput is undocumented.
 type ListStreamsOutput struct {
 	HasMoreStreams aws.BooleanValue `json:"HasMoreStreams"`
 	StreamNames    []string         `json:"StreamNames"`
+}
+
+func (v *ListStreamsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HasMoreStreams"); err != nil {
+		errors["HasMoreStreams"] = append(errors["HasMoreStreams"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamNames"); err != nil {
+		errors["StreamNames"] = append(errors["StreamNames"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListTagsForStreamInput is undocumented.
@@ -482,10 +897,70 @@ type ListTagsForStreamInput struct {
 	StreamName           aws.StringValue  `json:"StreamName"`
 }
 
+func (v *ListTagsForStreamInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ExclusiveStartTagKey", 1); err != nil {
+		errors["ExclusiveStartTagKey"] = append(errors["ExclusiveStartTagKey"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExclusiveStartTagKey", 128); err != nil {
+		errors["ExclusiveStartTagKey"] = append(errors["ExclusiveStartTagKey"], err)
+	}
+
+	if err := model.ValidateMin(v, "Limit", 1); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateMax(v, "Limit", 10); err != nil {
+		errors["Limit"] = append(errors["Limit"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamName"); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StreamName", 1); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "StreamName", 128); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListTagsForStreamOutput is undocumented.
 type ListTagsForStreamOutput struct {
 	HasMoreTags aws.BooleanValue `json:"HasMoreTags"`
 	Tags        []Tag            `json:"Tags"`
+}
+
+func (v *ListTagsForStreamOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HasMoreTags"); err != nil {
+		errors["HasMoreTags"] = append(errors["HasMoreTags"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Tags"); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // MergeShardsInput is undocumented.
@@ -493,6 +968,64 @@ type MergeShardsInput struct {
 	AdjacentShardToMerge aws.StringValue `json:"AdjacentShardToMerge"`
 	ShardToMerge         aws.StringValue `json:"ShardToMerge"`
 	StreamName           aws.StringValue `json:"StreamName"`
+}
+
+func (v *MergeShardsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AdjacentShardToMerge"); err != nil {
+		errors["AdjacentShardToMerge"] = append(errors["AdjacentShardToMerge"], err)
+	}
+
+	if err := model.ValidateMin(v, "AdjacentShardToMerge", 1); err != nil {
+		errors["AdjacentShardToMerge"] = append(errors["AdjacentShardToMerge"], err)
+	}
+
+	if err := model.ValidateMax(v, "AdjacentShardToMerge", 128); err != nil {
+		errors["AdjacentShardToMerge"] = append(errors["AdjacentShardToMerge"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AdjacentShardToMerge", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["AdjacentShardToMerge"] = append(errors["AdjacentShardToMerge"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ShardToMerge"); err != nil {
+		errors["ShardToMerge"] = append(errors["ShardToMerge"], err)
+	}
+
+	if err := model.ValidateMin(v, "ShardToMerge", 1); err != nil {
+		errors["ShardToMerge"] = append(errors["ShardToMerge"], err)
+	}
+
+	if err := model.ValidateMax(v, "ShardToMerge", 128); err != nil {
+		errors["ShardToMerge"] = append(errors["ShardToMerge"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ShardToMerge", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["ShardToMerge"] = append(errors["ShardToMerge"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamName"); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StreamName", 1); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "StreamName", 128); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutRecordInput is undocumented.
@@ -504,10 +1037,98 @@ type PutRecordInput struct {
 	StreamName                aws.StringValue `json:"StreamName"`
 }
 
+func (v *PutRecordInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Data"); err != nil {
+		errors["Data"] = append(errors["Data"], err)
+	}
+
+	if err := model.ValidateMax(v, "Data", 51200); err != nil {
+		errors["Data"] = append(errors["Data"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ExplicitHashKey", `0|([1-9]\d{0,38})`); err != nil {
+		errors["ExplicitHashKey"] = append(errors["ExplicitHashKey"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PartitionKey"); err != nil {
+		errors["PartitionKey"] = append(errors["PartitionKey"], err)
+	}
+
+	if err := model.ValidateMin(v, "PartitionKey", 1); err != nil {
+		errors["PartitionKey"] = append(errors["PartitionKey"], err)
+	}
+
+	if err := model.ValidateMax(v, "PartitionKey", 256); err != nil {
+		errors["PartitionKey"] = append(errors["PartitionKey"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SequenceNumberForOrdering", `0|([1-9]\d{0,128})`); err != nil {
+		errors["SequenceNumberForOrdering"] = append(errors["SequenceNumberForOrdering"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamName"); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StreamName", 1); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "StreamName", 128); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutRecordOutput is undocumented.
 type PutRecordOutput struct {
 	SequenceNumber aws.StringValue `json:"SequenceNumber"`
 	ShardID        aws.StringValue `json:"ShardId"`
+}
+
+func (v *PutRecordOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SequenceNumber"); err != nil {
+		errors["SequenceNumber"] = append(errors["SequenceNumber"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SequenceNumber", `0|([1-9]\d{0,128})`); err != nil {
+		errors["SequenceNumber"] = append(errors["SequenceNumber"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ShardID"); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ShardID", 1); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ShardID", 128); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ShardID", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutRecordsInput is undocumented.
@@ -516,10 +1137,74 @@ type PutRecordsInput struct {
 	StreamName aws.StringValue          `json:"StreamName"`
 }
 
+func (v *PutRecordsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Records"); err != nil {
+		errors["Records"] = append(errors["Records"], err)
+	}
+
+	if err := model.ValidateMin(v, "Records", 1); err != nil {
+		errors["Records"] = append(errors["Records"], err)
+	}
+
+	if err := model.ValidateMax(v, "Records", 500); err != nil {
+		errors["Records"] = append(errors["Records"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamName"); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StreamName", 1); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "StreamName", 128); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutRecordsOutput is undocumented.
 type PutRecordsOutput struct {
 	FailedRecordCount aws.IntegerValue        `json:"FailedRecordCount,omitempty"`
 	Records           []PutRecordsResultEntry `json:"Records"`
+}
+
+func (v *PutRecordsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "FailedRecordCount", 1); err != nil {
+		errors["FailedRecordCount"] = append(errors["FailedRecordCount"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Records"); err != nil {
+		errors["Records"] = append(errors["Records"], err)
+	}
+
+	if err := model.ValidateMin(v, "Records", 1); err != nil {
+		errors["Records"] = append(errors["Records"], err)
+	}
+
+	if err := model.ValidateMax(v, "Records", 500); err != nil {
+		errors["Records"] = append(errors["Records"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutRecordsRequestEntry is undocumented.
@@ -527,6 +1212,40 @@ type PutRecordsRequestEntry struct {
 	Data            []byte          `json:"Data"`
 	ExplicitHashKey aws.StringValue `json:"ExplicitHashKey,omitempty"`
 	PartitionKey    aws.StringValue `json:"PartitionKey"`
+}
+
+func (v *PutRecordsRequestEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Data"); err != nil {
+		errors["Data"] = append(errors["Data"], err)
+	}
+
+	if err := model.ValidateMax(v, "Data", 51200); err != nil {
+		errors["Data"] = append(errors["Data"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ExplicitHashKey", `0|([1-9]\d{0,38})`); err != nil {
+		errors["ExplicitHashKey"] = append(errors["ExplicitHashKey"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PartitionKey"); err != nil {
+		errors["PartitionKey"] = append(errors["PartitionKey"], err)
+	}
+
+	if err := model.ValidateMin(v, "PartitionKey", 1); err != nil {
+		errors["PartitionKey"] = append(errors["PartitionKey"], err)
+	}
+
+	if err := model.ValidateMax(v, "PartitionKey", 256); err != nil {
+		errors["PartitionKey"] = append(errors["PartitionKey"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutRecordsResultEntry is undocumented.
@@ -537,11 +1256,75 @@ type PutRecordsResultEntry struct {
 	ShardID        aws.StringValue `json:"ShardId,omitempty"`
 }
 
+func (v *PutRecordsResultEntry) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "SequenceNumber", `0|([1-9]\d{0,128})`); err != nil {
+		errors["SequenceNumber"] = append(errors["SequenceNumber"], err)
+	}
+
+	if err := model.ValidateMin(v, "ShardID", 1); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ShardID", 128); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ShardID", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Record is undocumented.
 type Record struct {
 	Data           []byte          `json:"Data"`
 	PartitionKey   aws.StringValue `json:"PartitionKey"`
 	SequenceNumber aws.StringValue `json:"SequenceNumber"`
+}
+
+func (v *Record) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Data"); err != nil {
+		errors["Data"] = append(errors["Data"], err)
+	}
+
+	if err := model.ValidateMax(v, "Data", 51200); err != nil {
+		errors["Data"] = append(errors["Data"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PartitionKey"); err != nil {
+		errors["PartitionKey"] = append(errors["PartitionKey"], err)
+	}
+
+	if err := model.ValidateMin(v, "PartitionKey", 1); err != nil {
+		errors["PartitionKey"] = append(errors["PartitionKey"], err)
+	}
+
+	if err := model.ValidateMax(v, "PartitionKey", 256); err != nil {
+		errors["PartitionKey"] = append(errors["PartitionKey"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SequenceNumber"); err != nil {
+		errors["SequenceNumber"] = append(errors["SequenceNumber"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SequenceNumber", `0|([1-9]\d{0,128})`); err != nil {
+		errors["SequenceNumber"] = append(errors["SequenceNumber"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RemoveTagsFromStreamInput is undocumented.
@@ -550,10 +1333,70 @@ type RemoveTagsFromStreamInput struct {
 	TagKeys    []string        `json:"TagKeys"`
 }
 
+func (v *RemoveTagsFromStreamInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StreamName"); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StreamName", 1); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "StreamName", 128); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TagKeys"); err != nil {
+		errors["TagKeys"] = append(errors["TagKeys"], err)
+	}
+
+	if err := model.ValidateMin(v, "TagKeys", 1); err != nil {
+		errors["TagKeys"] = append(errors["TagKeys"], err)
+	}
+
+	if err := model.ValidateMax(v, "TagKeys", 10); err != nil {
+		errors["TagKeys"] = append(errors["TagKeys"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SequenceNumberRange is undocumented.
 type SequenceNumberRange struct {
 	EndingSequenceNumber   aws.StringValue `json:"EndingSequenceNumber,omitempty"`
 	StartingSequenceNumber aws.StringValue `json:"StartingSequenceNumber"`
+}
+
+func (v *SequenceNumberRange) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "EndingSequenceNumber", `0|([1-9]\d{0,128})`); err != nil {
+		errors["EndingSequenceNumber"] = append(errors["EndingSequenceNumber"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StartingSequenceNumber"); err != nil {
+		errors["StartingSequenceNumber"] = append(errors["StartingSequenceNumber"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StartingSequenceNumber", `0|([1-9]\d{0,128})`); err != nil {
+		errors["StartingSequenceNumber"] = append(errors["StartingSequenceNumber"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Shard is undocumented.
@@ -563,6 +1406,64 @@ type Shard struct {
 	ParentShardID         aws.StringValue      `json:"ParentShardId,omitempty"`
 	SequenceNumberRange   *SequenceNumberRange `json:"SequenceNumberRange"`
 	ShardID               aws.StringValue      `json:"ShardId"`
+}
+
+func (v *Shard) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AdjacentParentShardID", 1); err != nil {
+		errors["AdjacentParentShardID"] = append(errors["AdjacentParentShardID"], err)
+	}
+
+	if err := model.ValidateMax(v, "AdjacentParentShardID", 128); err != nil {
+		errors["AdjacentParentShardID"] = append(errors["AdjacentParentShardID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AdjacentParentShardID", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["AdjacentParentShardID"] = append(errors["AdjacentParentShardID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HashKeyRange"); err != nil {
+		errors["HashKeyRange"] = append(errors["HashKeyRange"], err)
+	}
+
+	if err := model.ValidateMin(v, "ParentShardID", 1); err != nil {
+		errors["ParentShardID"] = append(errors["ParentShardID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ParentShardID", 128); err != nil {
+		errors["ParentShardID"] = append(errors["ParentShardID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ParentShardID", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["ParentShardID"] = append(errors["ParentShardID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SequenceNumberRange"); err != nil {
+		errors["SequenceNumberRange"] = append(errors["SequenceNumberRange"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ShardID"); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ShardID", 1); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ShardID", 128); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ShardID", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["ShardID"] = append(errors["ShardID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Kinesis.
@@ -580,6 +1481,56 @@ type SplitShardInput struct {
 	StreamName         aws.StringValue `json:"StreamName"`
 }
 
+func (v *SplitShardInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "NewStartingHashKey"); err != nil {
+		errors["NewStartingHashKey"] = append(errors["NewStartingHashKey"], err)
+	}
+
+	if err := model.ValidatePattern(v, "NewStartingHashKey", `0|([1-9]\d{0,38})`); err != nil {
+		errors["NewStartingHashKey"] = append(errors["NewStartingHashKey"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ShardToSplit"); err != nil {
+		errors["ShardToSplit"] = append(errors["ShardToSplit"], err)
+	}
+
+	if err := model.ValidateMin(v, "ShardToSplit", 1); err != nil {
+		errors["ShardToSplit"] = append(errors["ShardToSplit"], err)
+	}
+
+	if err := model.ValidateMax(v, "ShardToSplit", 128); err != nil {
+		errors["ShardToSplit"] = append(errors["ShardToSplit"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ShardToSplit", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["ShardToSplit"] = append(errors["ShardToSplit"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamName"); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StreamName", 1); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "StreamName", 128); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StreamDescription is undocumented.
 type StreamDescription struct {
 	HasMoreShards aws.BooleanValue `json:"HasMoreShards"`
@@ -587,6 +1538,58 @@ type StreamDescription struct {
 	StreamARN     aws.StringValue  `json:"StreamARN"`
 	StreamName    aws.StringValue  `json:"StreamName"`
 	StreamStatus  aws.StringValue  `json:"StreamStatus"`
+}
+
+func (v *StreamDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HasMoreShards"); err != nil {
+		errors["HasMoreShards"] = append(errors["HasMoreShards"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Shards"); err != nil {
+		errors["Shards"] = append(errors["Shards"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamARN"); err != nil {
+		errors["StreamARN"] = append(errors["StreamARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamName"); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMin(v, "StreamName", 1); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateMax(v, "StreamName", 128); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StreamName", `[a-zA-Z0-9_.-]+`); err != nil {
+		errors["StreamName"] = append(errors["StreamName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StreamStatus"); err != nil {
+		errors["StreamStatus"] = append(errors["StreamStatus"], err)
+	}
+
+	StreamStatusEnum := []string{
+		StreamStatusActive,
+		StreamStatusCreating,
+		StreamStatusDeleting,
+		StreamStatusUpdating,
+	}
+	if err := model.ValidateEnum(v, "StreamStatus", StreamStatusEnum); err != nil {
+		errors["StreamStatus"] = append(errors["StreamStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Kinesis.
@@ -601,6 +1604,32 @@ const (
 type Tag struct {
 	Key   aws.StringValue `json:"Key"`
 	Value aws.StringValue `json:"Value,omitempty"`
+}
+
+func (v *Tag) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 128); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 256); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

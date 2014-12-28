@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // DataPipeline is a client for AWS Data Pipeline.
@@ -47,6 +48,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Dat
 // PutPipelineDefinition actions. A pipeline cannot be modified after it
 // has been successfully activated.
 func (c *DataPipeline) ActivatePipeline(req *ActivatePipelineInput) (resp *ActivatePipelineOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ActivatePipelineOutput{}
 	err = c.client.Do("ActivatePipeline", "POST", "/", req, resp)
 	return
@@ -56,6 +61,10 @@ func (c *DataPipeline) ActivatePipeline(req *ActivatePipelineInput) (resp *Activ
 // you can then use the PutPipelineDefinition action to populate the
 // pipeline.
 func (c *DataPipeline) CreatePipeline(req *CreatePipelineInput) (resp *CreatePipelineOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreatePipelineOutput{}
 	err = c.client.Do("CreatePipeline", "POST", "/", req, resp)
 	return
@@ -69,6 +78,10 @@ func (c *DataPipeline) CreatePipeline(req *CreatePipelineInput) (resp *CreatePip
 // deleting it, call SetStatus with the status set to Pause on individual
 // components. Components that are paused by SetStatus can be resumed.
 func (c *DataPipeline) DeletePipeline(req *DeletePipelineInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeletePipeline", "POST", "/", req, nil)
 	return
@@ -78,6 +91,10 @@ func (c *DataPipeline) DeletePipeline(req *DeletePipelineInput) (err error) {
 // associated with the pipeline. Object definitions are composed of a set
 // of fields that define the properties of the object.
 func (c *DataPipeline) DescribeObjects(req *DescribeObjectsInput) (resp *DescribeObjectsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeObjectsOutput{}
 	err = c.client.Do("DescribeObjects", "POST", "/", req, resp)
 	return
@@ -93,6 +110,10 @@ func (c *DataPipeline) DescribeObjects(req *DescribeObjectsInput) (resp *Describ
 // instead of metadata about the pipeline, call the GetPipelineDefinition
 // action.
 func (c *DataPipeline) DescribePipelines(req *DescribePipelinesInput) (resp *DescribePipelinesOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribePipelinesOutput{}
 	err = c.client.Do("DescribePipelines", "POST", "/", req, resp)
 	return
@@ -102,6 +123,10 @@ func (c *DataPipeline) DescribePipelines(req *DescribePipelinesInput) (resp *Des
 // object. A task runner can use this action to evaluate SQL queries stored
 // in Amazon S3.
 func (c *DataPipeline) EvaluateExpression(req *EvaluateExpressionInput) (resp *EvaluateExpressionOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &EvaluateExpressionOutput{}
 	err = c.client.Do("EvaluateExpression", "POST", "/", req, resp)
 	return
@@ -111,6 +136,10 @@ func (c *DataPipeline) EvaluateExpression(req *EvaluateExpressionInput) (resp *E
 // You can call GetPipelineDefinition to retrieve the pipeline definition
 // you provided using PutPipelineDefinition
 func (c *DataPipeline) GetPipelineDefinition(req *GetPipelineDefinitionInput) (resp *GetPipelineDefinitionOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetPipelineDefinitionOutput{}
 	err = c.client.Do("GetPipelineDefinition", "POST", "/", req, resp)
 	return
@@ -120,6 +149,10 @@ func (c *DataPipeline) GetPipelineDefinition(req *GetPipelineDefinitionInput) (r
 // pipelines. Identifiers are returned only for pipelines you have
 // permission to access.
 func (c *DataPipeline) ListPipelines(req *ListPipelinesInput) (resp *ListPipelinesOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListPipelinesOutput{}
 	err = c.client.Do("ListPipelines", "POST", "/", req, resp)
 	return
@@ -140,6 +173,10 @@ func (c *DataPipeline) ListPipelines(req *ListPipelinesInput) (resp *ListPipelin
 // PollForTask again on the same workerGroup until it receives a response,
 // and this may take up to 90 seconds.
 func (c *DataPipeline) PollForTask(req *PollForTaskInput) (resp *PollForTaskOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PollForTaskOutput{}
 	err = c.client.Do("PollForTask", "POST", "/", req, resp)
 	return
@@ -156,6 +193,10 @@ func (c *DataPipeline) PollForTask(req *PollForTaskInput) (resp *PollForTaskOutp
 // definitions are passed to the PutPipelineDefinition action and returned
 // by the GetPipelineDefinition action.
 func (c *DataPipeline) PutPipelineDefinition(req *PutPipelineDefinitionInput) (resp *PutPipelineDefinitionOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PutPipelineDefinitionOutput{}
 	err = c.client.Do("PutPipelineDefinition", "POST", "/", req, resp)
 	return
@@ -169,6 +210,10 @@ func (c *DataPipeline) PutPipelineDefinition(req *PutPipelineDefinitionInput) (r
 // QueryObjects , passing in the returned value for marker, until
 // HasMoreResults returns False
 func (c *DataPipeline) QueryObjects(req *QueryObjectsInput) (resp *QueryObjectsOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &QueryObjectsOutput{}
 	err = c.client.Do("QueryObjects", "POST", "/", req, resp)
 	return
@@ -188,6 +233,10 @@ func (c *DataPipeline) QueryObjects(req *QueryObjectsInput) (resp *QueryObjectsO
 // and will reassign the task in a subsequent response to PollForTask .
 // task runners should call ReportTaskProgress every 60 seconds.
 func (c *DataPipeline) ReportTaskProgress(req *ReportTaskProgressInput) (resp *ReportTaskProgressOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ReportTaskProgressOutput{}
 	err = c.client.Do("ReportTaskProgress", "POST", "/", req, resp)
 	return
@@ -199,6 +248,10 @@ func (c *DataPipeline) ReportTaskProgress(req *ReportTaskProgressInput) (resp *R
 // Pipeline, the web service can use this call to detect when the task
 // runner application has failed and restart a new instance.
 func (c *DataPipeline) ReportTaskRunnerHeartbeat(req *ReportTaskRunnerHeartbeatInput) (resp *ReportTaskRunnerHeartbeatOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ReportTaskRunnerHeartbeatOutput{}
 	err = c.client.Do("ReportTaskRunnerHeartbeat", "POST", "/", req, resp)
 	return
@@ -211,6 +264,10 @@ func (c *DataPipeline) ReportTaskRunnerHeartbeat(req *ReportTaskRunnerHeartbeatI
 // perform this operation on pipelines and attempting to do so will return
 // an InvalidRequestException.
 func (c *DataPipeline) SetStatus(req *SetStatusInput) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetStatus", "POST", "/", req, nil)
 	return
@@ -222,6 +279,10 @@ func (c *DataPipeline) SetStatus(req *SetStatusInput) (err error) {
 // does not need to call SetTaskStatus for tasks that are canceled by the
 // web service during a call to ReportTaskProgress .
 func (c *DataPipeline) SetTaskStatus(req *SetTaskStatusInput) (resp *SetTaskStatusOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SetTaskStatusOutput{}
 	err = c.client.Do("SetTaskStatus", "POST", "/", req, resp)
 	return
@@ -231,6 +292,10 @@ func (c *DataPipeline) SetTaskStatus(req *SetTaskStatusInput) (resp *SetTaskStat
 // validation checks to ensure that it is well formed and can run without
 // error.
 func (c *DataPipeline) ValidatePipelineDefinition(req *ValidatePipelineDefinitionInput) (resp *ValidatePipelineDefinitionOutput, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ValidatePipelineDefinitionOutput{}
 	err = c.client.Do("ValidatePipelineDefinition", "POST", "/", req, resp)
 	return
@@ -242,8 +307,44 @@ type ActivatePipelineInput struct {
 	PipelineID      aws.StringValue  `json:"pipelineId"`
 }
 
+func (v *ActivatePipelineInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMin(v, "PipelineID", 1); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PipelineID", 1024); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ActivatePipelineOutput is undocumented.
 type ActivatePipelineOutput struct {
+}
+
+func (v *ActivatePipelineOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreatePipelineInput is undocumented.
@@ -253,14 +354,116 @@ type CreatePipelineInput struct {
 	UniqueID    aws.StringValue `json:"uniqueId"`
 }
 
+func (v *CreatePipelineInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Description", 1024); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Description", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 1024); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UniqueID"); err != nil {
+		errors["UniqueID"] = append(errors["UniqueID"], err)
+	}
+
+	if err := model.ValidateMin(v, "UniqueID", 1); err != nil {
+		errors["UniqueID"] = append(errors["UniqueID"], err)
+	}
+
+	if err := model.ValidateMax(v, "UniqueID", 1024); err != nil {
+		errors["UniqueID"] = append(errors["UniqueID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "UniqueID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["UniqueID"] = append(errors["UniqueID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreatePipelineOutput is undocumented.
 type CreatePipelineOutput struct {
 	PipelineID aws.StringValue `json:"pipelineId"`
 }
 
+func (v *CreatePipelineOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMin(v, "PipelineID", 1); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PipelineID", 1024); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeletePipelineInput is undocumented.
 type DeletePipelineInput struct {
 	PipelineID aws.StringValue `json:"pipelineId"`
+}
+
+func (v *DeletePipelineInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMin(v, "PipelineID", 1); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PipelineID", 1024); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeObjectsInput is undocumented.
@@ -271,6 +474,44 @@ type DescribeObjectsInput struct {
 	PipelineID          aws.StringValue  `json:"pipelineId"`
 }
 
+func (v *DescribeObjectsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Marker", 1024); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ObjectIDs"); err != nil {
+		errors["ObjectIDs"] = append(errors["ObjectIDs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMin(v, "PipelineID", 1); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PipelineID", 1024); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeObjectsOutput is undocumented.
 type DescribeObjectsOutput struct {
 	HasMoreResults  aws.BooleanValue `json:"hasMoreResults,omitempty"`
@@ -278,14 +519,64 @@ type DescribeObjectsOutput struct {
 	PipelineObjects []PipelineObject `json:"pipelineObjects"`
 }
 
+func (v *DescribeObjectsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Marker", 1024); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PipelineObjects"); err != nil {
+		errors["PipelineObjects"] = append(errors["PipelineObjects"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribePipelinesInput is undocumented.
 type DescribePipelinesInput struct {
 	PipelineIDs []string `json:"pipelineIds"`
 }
 
+func (v *DescribePipelinesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PipelineIDs"); err != nil {
+		errors["PipelineIDs"] = append(errors["PipelineIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribePipelinesOutput is undocumented.
 type DescribePipelinesOutput struct {
 	PipelineDescriptionList []PipelineDescription `json:"pipelineDescriptionList"`
+}
+
+func (v *DescribePipelinesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PipelineDescriptionList"); err != nil {
+		errors["PipelineDescriptionList"] = append(errors["PipelineDescriptionList"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EvaluateExpressionInput is undocumented.
@@ -295,9 +586,85 @@ type EvaluateExpressionInput struct {
 	PipelineID aws.StringValue `json:"pipelineId"`
 }
 
+func (v *EvaluateExpressionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Expression"); err != nil {
+		errors["Expression"] = append(errors["Expression"], err)
+	}
+
+	if err := model.ValidateMax(v, "Expression", 20971520); err != nil {
+		errors["Expression"] = append(errors["Expression"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Expression", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Expression"] = append(errors["Expression"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ObjectID"); err != nil {
+		errors["ObjectID"] = append(errors["ObjectID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ObjectID", 1); err != nil {
+		errors["ObjectID"] = append(errors["ObjectID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ObjectID", 1024); err != nil {
+		errors["ObjectID"] = append(errors["ObjectID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ObjectID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ObjectID"] = append(errors["ObjectID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMin(v, "PipelineID", 1); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PipelineID", 1024); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EvaluateExpressionOutput is undocumented.
 type EvaluateExpressionOutput struct {
 	EvaluatedExpression aws.StringValue `json:"evaluatedExpression"`
+}
+
+func (v *EvaluateExpressionOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EvaluatedExpression"); err != nil {
+		errors["EvaluatedExpression"] = append(errors["EvaluatedExpression"], err)
+	}
+
+	if err := model.ValidateMax(v, "EvaluatedExpression", 20971520); err != nil {
+		errors["EvaluatedExpression"] = append(errors["EvaluatedExpression"], err)
+	}
+
+	if err := model.ValidatePattern(v, "EvaluatedExpression", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["EvaluatedExpression"] = append(errors["EvaluatedExpression"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Field is undocumented.
@@ -307,10 +674,90 @@ type Field struct {
 	StringValue aws.StringValue `json:"stringValue,omitempty"`
 }
 
+func (v *Field) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 256); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Key", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMin(v, "RefValue", 1); err != nil {
+		errors["RefValue"] = append(errors["RefValue"], err)
+	}
+
+	if err := model.ValidateMax(v, "RefValue", 256); err != nil {
+		errors["RefValue"] = append(errors["RefValue"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RefValue", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["RefValue"] = append(errors["RefValue"], err)
+	}
+
+	if err := model.ValidateMax(v, "StringValue", 10240); err != nil {
+		errors["StringValue"] = append(errors["StringValue"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StringValue", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["StringValue"] = append(errors["StringValue"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetPipelineDefinitionInput is undocumented.
 type GetPipelineDefinitionInput struct {
 	PipelineID aws.StringValue `json:"pipelineId"`
 	Version    aws.StringValue `json:"version,omitempty"`
+}
+
+func (v *GetPipelineDefinitionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMin(v, "PipelineID", 1); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PipelineID", 1024); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "Version", 1024); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Version", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Version"] = append(errors["Version"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetPipelineDefinitionOutput is undocumented.
@@ -320,15 +767,69 @@ type GetPipelineDefinitionOutput struct {
 	PipelineObjects  []PipelineObject  `json:"pipelineObjects,omitempty"`
 }
 
+func (v *GetPipelineDefinitionOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceIdentity is undocumented.
 type InstanceIdentity struct {
 	Document  aws.StringValue `json:"document,omitempty"`
 	Signature aws.StringValue `json:"signature,omitempty"`
 }
 
+func (v *InstanceIdentity) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Document", 1024); err != nil {
+		errors["Document"] = append(errors["Document"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Document", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Document"] = append(errors["Document"], err)
+	}
+
+	if err := model.ValidateMax(v, "Signature", 1024); err != nil {
+		errors["Signature"] = append(errors["Signature"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Signature", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Signature"] = append(errors["Signature"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListPipelinesInput is undocumented.
 type ListPipelinesInput struct {
 	Marker aws.StringValue `json:"marker,omitempty"`
+}
+
+func (v *ListPipelinesInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Marker", 1024); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListPipelinesOutput is undocumented.
@@ -338,10 +839,53 @@ type ListPipelinesOutput struct {
 	PipelineIDList []PipelineIDName `json:"pipelineIdList"`
 }
 
+func (v *ListPipelinesOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Marker", 1024); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PipelineIDList"); err != nil {
+		errors["PipelineIDList"] = append(errors["PipelineIDList"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Operator is undocumented.
 type Operator struct {
 	Type   aws.StringValue `json:"type,omitempty"`
 	Values []string        `json:"values,omitempty"`
+}
+
+func (v *Operator) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	typeEnum := []string{
+		OperatorTypeBetween,
+		OperatorTypeEq,
+		OperatorTypeGe,
+		OperatorTypeLe,
+		OperatorTypeRefEq,
+	}
+	if err := model.ValidateEnum(v, "Type", typeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for DataPipeline.
@@ -359,16 +903,122 @@ type ParameterAttribute struct {
 	StringValue aws.StringValue `json:"stringValue"`
 }
 
+func (v *ParameterAttribute) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 256); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Key", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StringValue"); err != nil {
+		errors["StringValue"] = append(errors["StringValue"], err)
+	}
+
+	if err := model.ValidateMax(v, "StringValue", 10240); err != nil {
+		errors["StringValue"] = append(errors["StringValue"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StringValue", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["StringValue"] = append(errors["StringValue"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ParameterObject is undocumented.
 type ParameterObject struct {
 	Attributes []ParameterAttribute `json:"attributes"`
 	ID         aws.StringValue      `json:"id"`
 }
 
+func (v *ParameterObject) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Attributes"); err != nil {
+		errors["Attributes"] = append(errors["Attributes"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ID", 1); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 256); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ParameterValue is undocumented.
 type ParameterValue struct {
 	ID          aws.StringValue `json:"id"`
 	StringValue aws.StringValue `json:"stringValue"`
+}
+
+func (v *ParameterValue) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ID", 1); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 256); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StringValue"); err != nil {
+		errors["StringValue"] = append(errors["StringValue"], err)
+	}
+
+	if err := model.ValidateMax(v, "StringValue", 10240); err != nil {
+		errors["StringValue"] = append(errors["StringValue"], err)
+	}
+
+	if err := model.ValidatePattern(v, "StringValue", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["StringValue"] = append(errors["StringValue"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PipelineDescription is undocumented.
@@ -379,10 +1029,98 @@ type PipelineDescription struct {
 	PipelineID  aws.StringValue `json:"pipelineId"`
 }
 
+func (v *PipelineDescription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Description", 1024); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Description", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Fields"); err != nil {
+		errors["Fields"] = append(errors["Fields"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 1024); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMin(v, "PipelineID", 1); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PipelineID", 1024); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PipelineIDName is undocumented.
 type PipelineIDName struct {
 	ID   aws.StringValue `json:"id,omitempty"`
 	Name aws.StringValue `json:"name,omitempty"`
+}
+
+func (v *PipelineIDName) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ID", 1); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 1024); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 1024); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PipelineObject is undocumented.
@@ -392,6 +1130,52 @@ type PipelineObject struct {
 	Name   aws.StringValue `json:"name"`
 }
 
+func (v *PipelineObject) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Fields"); err != nil {
+		errors["Fields"] = append(errors["Fields"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ID"); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMin(v, "ID", 1); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 1024); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMin(v, "Name", 1); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateMax(v, "Name", 1024); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Name", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PollForTaskInput is undocumented.
 type PollForTaskInput struct {
 	Hostname         aws.StringValue   `json:"hostname,omitempty"`
@@ -399,9 +1183,53 @@ type PollForTaskInput struct {
 	WorkerGroup      aws.StringValue   `json:"workerGroup"`
 }
 
+func (v *PollForTaskInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Hostname", 1); err != nil {
+		errors["Hostname"] = append(errors["Hostname"], err)
+	}
+
+	if err := model.ValidateMax(v, "Hostname", 1024); err != nil {
+		errors["Hostname"] = append(errors["Hostname"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Hostname", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Hostname"] = append(errors["Hostname"], err)
+	}
+
+	if err := model.ValidateRequired(v, "WorkerGroup"); err != nil {
+		errors["WorkerGroup"] = append(errors["WorkerGroup"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkerGroup", 1024); err != nil {
+		errors["WorkerGroup"] = append(errors["WorkerGroup"], err)
+	}
+
+	if err := model.ValidatePattern(v, "WorkerGroup", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["WorkerGroup"] = append(errors["WorkerGroup"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PollForTaskOutput is undocumented.
 type PollForTaskOutput struct {
 	TaskObject *TaskObject `json:"taskObject,omitempty"`
+}
+
+func (v *PollForTaskOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PutPipelineDefinitionInput is undocumented.
@@ -412,6 +1240,36 @@ type PutPipelineDefinitionInput struct {
 	PipelineObjects  []PipelineObject  `json:"pipelineObjects"`
 }
 
+func (v *PutPipelineDefinitionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMin(v, "PipelineID", 1); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PipelineID", 1024); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PipelineObjects"); err != nil {
+		errors["PipelineObjects"] = append(errors["PipelineObjects"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PutPipelineDefinitionOutput is undocumented.
 type PutPipelineDefinitionOutput struct {
 	Errored            aws.BooleanValue    `json:"errored"`
@@ -419,9 +1277,33 @@ type PutPipelineDefinitionOutput struct {
 	ValidationWarnings []ValidationWarning `json:"validationWarnings,omitempty"`
 }
 
+func (v *PutPipelineDefinitionOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Errored"); err != nil {
+		errors["Errored"] = append(errors["Errored"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Query is undocumented.
 type Query struct {
 	Selectors []Selector `json:"selectors,omitempty"`
+}
+
+func (v *Query) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // QueryObjectsInput is undocumented.
@@ -433,11 +1315,75 @@ type QueryObjectsInput struct {
 	Sphere     aws.StringValue  `json:"sphere"`
 }
 
+func (v *QueryObjectsInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Marker", 1024); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMin(v, "PipelineID", 1); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PipelineID", 1024); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Sphere"); err != nil {
+		errors["Sphere"] = append(errors["Sphere"], err)
+	}
+
+	if err := model.ValidateMax(v, "Sphere", 1024); err != nil {
+		errors["Sphere"] = append(errors["Sphere"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Sphere", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Sphere"] = append(errors["Sphere"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // QueryObjectsOutput is undocumented.
 type QueryObjectsOutput struct {
 	HasMoreResults aws.BooleanValue `json:"hasMoreResults,omitempty"`
 	IDs            []string         `json:"ids,omitempty"`
 	Marker         aws.StringValue  `json:"marker,omitempty"`
+}
+
+func (v *QueryObjectsOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Marker", 1024); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Marker", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Marker"] = append(errors["Marker"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReportTaskProgressInput is undocumented.
@@ -446,9 +1392,49 @@ type ReportTaskProgressInput struct {
 	TaskID aws.StringValue `json:"taskId"`
 }
 
+func (v *ReportTaskProgressInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "TaskID"); err != nil {
+		errors["TaskID"] = append(errors["TaskID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TaskID", 1); err != nil {
+		errors["TaskID"] = append(errors["TaskID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskID", 2048); err != nil {
+		errors["TaskID"] = append(errors["TaskID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TaskID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["TaskID"] = append(errors["TaskID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReportTaskProgressOutput is undocumented.
 type ReportTaskProgressOutput struct {
 	Canceled aws.BooleanValue `json:"canceled"`
+}
+
+func (v *ReportTaskProgressOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Canceled"); err != nil {
+		errors["Canceled"] = append(errors["Canceled"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReportTaskRunnerHeartbeatInput is undocumented.
@@ -458,9 +1444,69 @@ type ReportTaskRunnerHeartbeatInput struct {
 	WorkerGroup  aws.StringValue `json:"workerGroup,omitempty"`
 }
 
+func (v *ReportTaskRunnerHeartbeatInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Hostname", 1); err != nil {
+		errors["Hostname"] = append(errors["Hostname"], err)
+	}
+
+	if err := model.ValidateMax(v, "Hostname", 1024); err != nil {
+		errors["Hostname"] = append(errors["Hostname"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Hostname", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Hostname"] = append(errors["Hostname"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskrunnerID"); err != nil {
+		errors["TaskrunnerID"] = append(errors["TaskrunnerID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TaskrunnerID", 1); err != nil {
+		errors["TaskrunnerID"] = append(errors["TaskrunnerID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskrunnerID", 1024); err != nil {
+		errors["TaskrunnerID"] = append(errors["TaskrunnerID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TaskrunnerID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["TaskrunnerID"] = append(errors["TaskrunnerID"], err)
+	}
+
+	if err := model.ValidateMax(v, "WorkerGroup", 1024); err != nil {
+		errors["WorkerGroup"] = append(errors["WorkerGroup"], err)
+	}
+
+	if err := model.ValidatePattern(v, "WorkerGroup", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["WorkerGroup"] = append(errors["WorkerGroup"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReportTaskRunnerHeartbeatOutput is undocumented.
 type ReportTaskRunnerHeartbeatOutput struct {
 	Terminate aws.BooleanValue `json:"terminate"`
+}
+
+func (v *ReportTaskRunnerHeartbeatOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Terminate"); err != nil {
+		errors["Terminate"] = append(errors["Terminate"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Selector is undocumented.
@@ -469,11 +1515,71 @@ type Selector struct {
 	Operator  *Operator       `json:"operator,omitempty"`
 }
 
+func (v *Selector) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "FieldName", 1024); err != nil {
+		errors["FieldName"] = append(errors["FieldName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FieldName", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["FieldName"] = append(errors["FieldName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetStatusInput is undocumented.
 type SetStatusInput struct {
 	ObjectIDs  []string        `json:"objectIds"`
 	PipelineID aws.StringValue `json:"pipelineId"`
 	Status     aws.StringValue `json:"status"`
+}
+
+func (v *SetStatusInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ObjectIDs"); err != nil {
+		errors["ObjectIDs"] = append(errors["ObjectIDs"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMin(v, "PipelineID", 1); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PipelineID", 1024); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidateMax(v, "Status", 1024); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Status", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SetTaskStatusInput is undocumented.
@@ -485,8 +1591,73 @@ type SetTaskStatusInput struct {
 	TaskStatus      aws.StringValue `json:"taskStatus"`
 }
 
+func (v *SetTaskStatusInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "ErrorID", 1024); err != nil {
+		errors["ErrorID"] = append(errors["ErrorID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ErrorID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ErrorID"] = append(errors["ErrorID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ErrorStackTrace", 1024); err != nil {
+		errors["ErrorStackTrace"] = append(errors["ErrorStackTrace"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ErrorStackTrace", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ErrorStackTrace"] = append(errors["ErrorStackTrace"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskID"); err != nil {
+		errors["TaskID"] = append(errors["TaskID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TaskID", 1); err != nil {
+		errors["TaskID"] = append(errors["TaskID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskID", 2048); err != nil {
+		errors["TaskID"] = append(errors["TaskID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TaskID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["TaskID"] = append(errors["TaskID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TaskStatus"); err != nil {
+		errors["TaskStatus"] = append(errors["TaskStatus"], err)
+	}
+
+	taskStatusEnum := []string{
+		TaskStatusFailed,
+		TaskStatusFalse,
+		TaskStatusFinished,
+	}
+	if err := model.ValidateEnum(v, "TaskStatus", taskStatusEnum); err != nil {
+		errors["TaskStatus"] = append(errors["TaskStatus"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetTaskStatusOutput is undocumented.
 type SetTaskStatusOutput struct {
+}
+
+func (v *SetTaskStatusOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TaskObject is undocumented.
@@ -495,6 +1666,52 @@ type TaskObject struct {
 	Objects    map[string]PipelineObject `json:"objects,omitempty"`
 	PipelineID aws.StringValue           `json:"pipelineId,omitempty"`
 	TaskID     aws.StringValue           `json:"taskId,omitempty"`
+}
+
+func (v *TaskObject) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "AttemptID", 1); err != nil {
+		errors["AttemptID"] = append(errors["AttemptID"], err)
+	}
+
+	if err := model.ValidateMax(v, "AttemptID", 1024); err != nil {
+		errors["AttemptID"] = append(errors["AttemptID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AttemptID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["AttemptID"] = append(errors["AttemptID"], err)
+	}
+
+	if err := model.ValidateMin(v, "PipelineID", 1); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PipelineID", 1024); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMin(v, "TaskID", 1); err != nil {
+		errors["TaskID"] = append(errors["TaskID"], err)
+	}
+
+	if err := model.ValidateMax(v, "TaskID", 2048); err != nil {
+		errors["TaskID"] = append(errors["TaskID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "TaskID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["TaskID"] = append(errors["TaskID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for DataPipeline.
@@ -512,11 +1729,55 @@ type ValidatePipelineDefinitionInput struct {
 	PipelineObjects  []PipelineObject  `json:"pipelineObjects"`
 }
 
+func (v *ValidatePipelineDefinitionInput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "PipelineID"); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMin(v, "PipelineID", 1); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateMax(v, "PipelineID", 1024); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "PipelineID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["PipelineID"] = append(errors["PipelineID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PipelineObjects"); err != nil {
+		errors["PipelineObjects"] = append(errors["PipelineObjects"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ValidatePipelineDefinitionOutput is undocumented.
 type ValidatePipelineDefinitionOutput struct {
 	Errored            aws.BooleanValue    `json:"errored"`
 	ValidationErrors   []ValidationError   `json:"validationErrors,omitempty"`
 	ValidationWarnings []ValidationWarning `json:"validationWarnings,omitempty"`
+}
+
+func (v *ValidatePipelineDefinitionOutput) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Errored"); err != nil {
+		errors["Errored"] = append(errors["Errored"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ValidationError is undocumented.
@@ -525,10 +1786,54 @@ type ValidationError struct {
 	ID     aws.StringValue `json:"id,omitempty"`
 }
 
+func (v *ValidationError) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ID", 1); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 1024); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ValidationWarning is undocumented.
 type ValidationWarning struct {
 	ID       aws.StringValue `json:"id,omitempty"`
 	Warnings []string        `json:"warnings,omitempty"`
+}
+
+func (v *ValidationWarning) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "ID", 1); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidateMax(v, "ID", 1024); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ID", `[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*`); err != nil {
+		errors["ID"] = append(errors["ID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

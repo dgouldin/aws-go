@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 import (
@@ -62,6 +63,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Lam
 // permission for the iam:PassRole action for the IAM role. It also
 // requires permission for the lambda:AddEventSource action.
 func (c *Lambda) AddEventSource(req *AddEventSourceRequest) (resp *EventSourceConfiguration, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &EventSourceConfiguration{}
 
 	var body io.Reader
@@ -103,6 +108,10 @@ func (c *Lambda) AddEventSource(req *AddEventSourceRequest) (resp *EventSourceCo
 // configuration. This operation requires permission for the
 // lambda:DeleteFunction action.
 func (c *Lambda) DeleteFunction(req *DeleteFunctionRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -144,6 +153,10 @@ func (c *Lambda) DeleteFunction(req *DeleteFunctionRequest) (err error) {
 // source mapping (see AddEventSource This operation requires permission
 // for the lambda:GetEventSource action.
 func (c *Lambda) GetEventSource(req *GetEventSourceRequest) (resp *EventSourceConfiguration, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &EventSourceConfiguration{}
 
 	var body io.Reader
@@ -193,6 +206,10 @@ func (c *Lambda) GetEventSource(req *GetEventSourceRequest) (resp *EventSourceCo
 // information you provided as parameters when uploading the function. This
 // operation requires permission for the lambda:GetFunction action.
 func (c *Lambda) GetFunction(req *GetFunctionRequest) (resp *GetFunctionResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetFunctionResponse{}
 
 	var body io.Reader
@@ -240,6 +257,10 @@ func (c *Lambda) GetFunction(req *GetFunctionRequest) (resp *GetFunctionResponse
 // when uploading the function by using UploadFunction This operation
 // requires permission for the lambda:GetFunctionConfiguration operation.
 func (c *Lambda) GetFunctionConfiguration(req *GetFunctionConfigurationRequest) (resp *FunctionConfiguration, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &FunctionConfiguration{}
 
 	var body io.Reader
@@ -288,6 +309,10 @@ func (c *Lambda) GetFunctionConfiguration(req *GetFunctionConfigurationRequest) 
 // CloudWatch logs console. This operation requires permission for the
 // lambda:InvokeAsync action.
 func (c *Lambda) InvokeAsync(req *InvokeAsyncRequest) (resp *InvokeAsyncResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &InvokeAsyncResponse{}
 
 	var body io.Reader
@@ -345,6 +370,10 @@ func (c *Lambda) InvokeAsync(req *InvokeAsyncRequest) (resp *InvokeAsyncResponse
 // mappings. This operation requires permission for the
 // lambda:ListEventSources action.
 func (c *Lambda) ListEventSources(req *ListEventSourcesRequest) (resp *ListEventSourcesResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListEventSourcesResponse{}
 
 	var body io.Reader
@@ -403,6 +432,10 @@ func (c *Lambda) ListEventSources(req *ListEventSourcesRequest) (resp *ListEvent
 // You must use GetFunction to retrieve the code for your function. This
 // operation requires permission for the lambda:ListFunctions action.
 func (c *Lambda) ListFunctions(req *ListFunctionsRequest) (resp *ListFunctionsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListFunctionsResponse{}
 
 	var body io.Reader
@@ -453,6 +486,10 @@ func (c *Lambda) ListFunctions(req *ListFunctionsRequest) (resp *ListFunctionsRe
 // This operation requires permission for the lambda:RemoveEventSource
 // action.
 func (c *Lambda) RemoveEventSource(req *RemoveEventSourceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 
 	var body io.Reader
@@ -497,6 +534,10 @@ func (c *Lambda) RemoveEventSource(req *RemoveEventSourceRequest) (err error) {
 // the function's code. This operation requires permission for the
 // lambda:UpdateFunctionConfiguration action.
 func (c *Lambda) UpdateFunctionConfiguration(req *UpdateFunctionConfigurationRequest) (resp *FunctionConfiguration, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &FunctionConfiguration{}
 
 	var body io.Reader
@@ -566,6 +607,10 @@ func (c *Lambda) UpdateFunctionConfiguration(req *UpdateFunctionConfigurationReq
 // is updated with the new code and metadata. This operation requires
 // permission for the lambda:UploadFunction action.
 func (c *Lambda) UploadFunction(req *UploadFunctionRequest) (resp *FunctionConfiguration, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &FunctionConfiguration{}
 
 	var body io.Reader
@@ -652,9 +697,73 @@ type AddEventSourceRequest struct {
 	Role         aws.StringValue   `json:"Role"`
 }
 
+func (v *AddEventSourceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "EventSource"); err != nil {
+		errors["EventSource"] = append(errors["EventSource"], err)
+	}
+
+	if err := model.ValidateRequired(v, "FunctionName"); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "FunctionName", 1); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FunctionName", 64); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FunctionName", `[a-zA-Z0-9-]+`); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Role"); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Role", `arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_]+`); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteFunctionRequest is undocumented.
 type DeleteFunctionRequest struct {
 	FunctionName aws.StringValue `json:"-"`
+}
+
+func (v *DeleteFunctionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "FunctionName"); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "FunctionName", 1); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FunctionName", 64); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FunctionName", `[a-zA-Z0-9-]+`); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EventSourceConfiguration is undocumented.
@@ -670,10 +779,46 @@ type EventSourceConfiguration struct {
 	UUID         aws.StringValue   `json:"UUID,omitempty"`
 }
 
+func (v *EventSourceConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "FunctionName", 1); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FunctionName", 64); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FunctionName", `[a-zA-Z0-9-]+`); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Role", `arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_]+`); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // FunctionCodeLocation is undocumented.
 type FunctionCodeLocation struct {
 	Location       aws.StringValue `json:"Location,omitempty"`
 	RepositoryType aws.StringValue `json:"RepositoryType,omitempty"`
+}
+
+func (v *FunctionCodeLocation) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // FunctionConfiguration is undocumented.
@@ -692,9 +837,91 @@ type FunctionConfiguration struct {
 	Timeout         aws.IntegerValue `json:"Timeout,omitempty"`
 }
 
+func (v *FunctionConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Description", 256); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FunctionARN", `arn:aws:lambda:[a-z]{2}-[a-z]+-\d{1}:\d{12}:function:[a-zA-Z0-9-]+(\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})?`); err != nil {
+		errors["FunctionARN"] = append(errors["FunctionARN"], err)
+	}
+
+	if err := model.ValidateMin(v, "FunctionName", 1); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FunctionName", 64); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FunctionName", `[a-zA-Z0-9-]+`); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Handler", `[a-zA-Z0-9./\-_]+`); err != nil {
+		errors["Handler"] = append(errors["Handler"], err)
+	}
+
+	if err := model.ValidateMin(v, "MemorySize", 64); err != nil {
+		errors["MemorySize"] = append(errors["MemorySize"], err)
+	}
+
+	if err := model.ValidateMax(v, "MemorySize", 1024); err != nil {
+		errors["MemorySize"] = append(errors["MemorySize"], err)
+	}
+
+	ModeEnum := []string{
+		ModeEvent,
+	}
+	if err := model.ValidateEnum(v, "Mode", ModeEnum); err != nil {
+		errors["Mode"] = append(errors["Mode"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Role", `arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_]+`); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	RuntimeEnum := []string{
+		RuntimeNodejs,
+	}
+	if err := model.ValidateEnum(v, "Runtime", RuntimeEnum); err != nil {
+		errors["Runtime"] = append(errors["Runtime"], err)
+	}
+
+	if err := model.ValidateMin(v, "Timeout", 1); err != nil {
+		errors["Timeout"] = append(errors["Timeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Timeout", 60); err != nil {
+		errors["Timeout"] = append(errors["Timeout"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetEventSourceRequest is undocumented.
 type GetEventSourceRequest struct {
 	UUID aws.StringValue `json:"-"`
+}
+
+func (v *GetEventSourceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "UUID"); err != nil {
+		errors["UUID"] = append(errors["UUID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetFunctionConfigurationRequest is undocumented.
@@ -702,9 +929,61 @@ type GetFunctionConfigurationRequest struct {
 	FunctionName aws.StringValue `json:"-"`
 }
 
+func (v *GetFunctionConfigurationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "FunctionName"); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "FunctionName", 1); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FunctionName", 64); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FunctionName", `[a-zA-Z0-9-]+`); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetFunctionRequest is undocumented.
 type GetFunctionRequest struct {
 	FunctionName aws.StringValue `json:"-"`
+}
+
+func (v *GetFunctionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "FunctionName"); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "FunctionName", 1); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FunctionName", 64); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FunctionName", `[a-zA-Z0-9-]+`); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetFunctionResponse is undocumented.
@@ -713,15 +992,65 @@ type GetFunctionResponse struct {
 	Configuration *FunctionConfiguration `json:"Configuration,omitempty"`
 }
 
+func (v *GetFunctionResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InvokeAsyncRequest is undocumented.
 type InvokeAsyncRequest struct {
 	FunctionName aws.StringValue `json:"-"`
 	InvokeArgs   []byte          `json:"InvokeArgs"`
 }
 
+func (v *InvokeAsyncRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "FunctionName"); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "FunctionName", 1); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FunctionName", 64); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FunctionName", `[a-zA-Z0-9-]+`); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InvokeArgs"); err != nil {
+		errors["InvokeArgs"] = append(errors["InvokeArgs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InvokeAsyncResponse is undocumented.
 type InvokeAsyncResponse struct {
 	Status aws.IntegerValue `json:"-"`
+}
+
+func (v *InvokeAsyncResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListEventSourcesRequest is undocumented.
@@ -732,10 +1061,50 @@ type ListEventSourcesRequest struct {
 	MaxItems       aws.IntegerValue `json:"-"`
 }
 
+func (v *ListEventSourcesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "FunctionName", 1); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FunctionName", 64); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FunctionName", `[a-zA-Z0-9-]+`); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 10000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListEventSourcesResponse is undocumented.
 type ListEventSourcesResponse struct {
 	EventSources []EventSourceConfiguration `json:"EventSources,omitempty"`
 	NextMarker   aws.StringValue            `json:"NextMarker,omitempty"`
+}
+
+func (v *ListEventSourcesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListFunctionsRequest is undocumented.
@@ -744,10 +1113,38 @@ type ListFunctionsRequest struct {
 	MaxItems aws.IntegerValue `json:"-"`
 }
 
+func (v *ListFunctionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "MaxItems", 1); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if err := model.ValidateMax(v, "MaxItems", 10000); err != nil {
+		errors["MaxItems"] = append(errors["MaxItems"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListFunctionsResponse is undocumented.
 type ListFunctionsResponse struct {
 	Functions  []FunctionConfiguration `json:"Functions,omitempty"`
 	NextMarker aws.StringValue         `json:"NextMarker,omitempty"`
+}
+
+func (v *ListFunctionsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Lambda.
@@ -758,6 +1155,20 @@ const (
 // RemoveEventSourceRequest is undocumented.
 type RemoveEventSourceRequest struct {
 	UUID aws.StringValue `json:"-"`
+}
+
+func (v *RemoveEventSourceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "UUID"); err != nil {
+		errors["UUID"] = append(errors["UUID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for Lambda.
@@ -775,6 +1186,60 @@ type UpdateFunctionConfigurationRequest struct {
 	Timeout      aws.IntegerValue `json:"-"`
 }
 
+func (v *UpdateFunctionConfigurationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Description", 256); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "FunctionName"); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "FunctionName", 1); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FunctionName", 64); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FunctionName", `[a-zA-Z0-9-]+`); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Handler", `[a-zA-Z0-9./\-_]+`); err != nil {
+		errors["Handler"] = append(errors["Handler"], err)
+	}
+
+	if err := model.ValidateMin(v, "MemorySize", 64); err != nil {
+		errors["MemorySize"] = append(errors["MemorySize"], err)
+	}
+
+	if err := model.ValidateMax(v, "MemorySize", 1024); err != nil {
+		errors["MemorySize"] = append(errors["MemorySize"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Role", `arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_]+`); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if err := model.ValidateMin(v, "Timeout", 1); err != nil {
+		errors["Timeout"] = append(errors["Timeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Timeout", 60); err != nil {
+		errors["Timeout"] = append(errors["Timeout"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UploadFunctionRequest is undocumented.
 type UploadFunctionRequest struct {
 	Description  aws.StringValue  `json:"-"`
@@ -786,6 +1251,94 @@ type UploadFunctionRequest struct {
 	Role         aws.StringValue  `json:"-"`
 	Runtime      aws.StringValue  `json:"-"`
 	Timeout      aws.IntegerValue `json:"-"`
+}
+
+func (v *UploadFunctionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "Description", 256); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "FunctionName"); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "FunctionName", 1); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "FunctionName", 64); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "FunctionName", `[a-zA-Z0-9-]+`); err != nil {
+		errors["FunctionName"] = append(errors["FunctionName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "FunctionZip"); err != nil {
+		errors["FunctionZip"] = append(errors["FunctionZip"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Handler"); err != nil {
+		errors["Handler"] = append(errors["Handler"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Handler", `[a-zA-Z0-9./\-_]+`); err != nil {
+		errors["Handler"] = append(errors["Handler"], err)
+	}
+
+	if err := model.ValidateMin(v, "MemorySize", 64); err != nil {
+		errors["MemorySize"] = append(errors["MemorySize"], err)
+	}
+
+	if err := model.ValidateMax(v, "MemorySize", 1024); err != nil {
+		errors["MemorySize"] = append(errors["MemorySize"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Mode"); err != nil {
+		errors["Mode"] = append(errors["Mode"], err)
+	}
+
+	ModeEnum := []string{
+		ModeEvent,
+	}
+	if err := model.ValidateEnum(v, "Mode", ModeEnum); err != nil {
+		errors["Mode"] = append(errors["Mode"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Role"); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if err := model.ValidatePattern(v, "Role", `arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_]+`); err != nil {
+		errors["Role"] = append(errors["Role"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Runtime"); err != nil {
+		errors["Runtime"] = append(errors["Runtime"], err)
+	}
+
+	RuntimeEnum := []string{
+		RuntimeNodejs,
+	}
+	if err := model.ValidateEnum(v, "Runtime", RuntimeEnum); err != nil {
+		errors["Runtime"] = append(errors["Runtime"], err)
+	}
+
+	if err := model.ValidateMin(v, "Timeout", 1); err != nil {
+		errors["Timeout"] = append(errors["Timeout"], err)
+	}
+
+	if err := model.ValidateMax(v, "Timeout", 60); err != nil {
+		errors["Timeout"] = append(errors["Timeout"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

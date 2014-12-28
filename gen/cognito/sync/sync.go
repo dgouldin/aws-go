@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 import (
@@ -55,6 +56,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Cog
 // was merged with will no longer report the merge. Any consequent
 // operation on this dataset will result in a ResourceNotFoundException.
 func (c *CognitoSync) DeleteDataset(req *DeleteDatasetRequest) (resp *DeleteDatasetResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteDatasetResponse{}
 
 	var body io.Reader
@@ -113,6 +118,10 @@ func (c *CognitoSync) DeleteDataset(req *DeleteDatasetRequest) (resp *DeleteData
 // only to its own data. You should use Amazon Cognito Identity service to
 // retrieve the credentials necessary to make this API call.
 func (c *CognitoSync) DescribeDataset(req *DescribeDatasetRequest) (resp *DescribeDatasetResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDatasetResponse{}
 
 	var body io.Reader
@@ -168,6 +177,10 @@ func (c *CognitoSync) DescribeDataset(req *DescribeDatasetRequest) (resp *Descri
 // DescribeIdentityPoolUsage gets usage details (for example, data storage)
 // about a particular identity pool.
 func (c *CognitoSync) DescribeIdentityPoolUsage(req *DescribeIdentityPoolUsageRequest) (resp *DescribeIdentityPoolUsageResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeIdentityPoolUsageResponse{}
 
 	var body io.Reader
@@ -213,6 +226,10 @@ func (c *CognitoSync) DescribeIdentityPoolUsage(req *DescribeIdentityPoolUsageRe
 // DescribeIdentityUsage gets usage information for an identity, including
 // number of datasets and data usage.
 func (c *CognitoSync) DescribeIdentityUsage(req *DescribeIdentityUsageRequest) (resp *DescribeIdentityUsageResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeIdentityUsageResponse{}
 
 	var body io.Reader
@@ -263,6 +280,10 @@ func (c *CognitoSync) DescribeIdentityUsage(req *DescribeIdentityUsageRequest) (
 // GetIdentityPoolConfiguration gets the configuration settings of an
 // identity pool.
 func (c *CognitoSync) GetIdentityPoolConfiguration(req *GetIdentityPoolConfigurationRequest) (resp *GetIdentityPoolConfigurationResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetIdentityPoolConfigurationResponse{}
 
 	var body io.Reader
@@ -311,6 +332,10 @@ func (c *CognitoSync) GetIdentityPoolConfiguration(req *GetIdentityPoolConfigura
 // use Amazon Cognito Identity service to retrieve the credentials
 // necessary to make this API call.
 func (c *CognitoSync) ListDatasets(req *ListDatasetsRequest) (resp *ListDatasetsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListDatasetsResponse{}
 
 	var body io.Reader
@@ -369,6 +394,10 @@ func (c *CognitoSync) ListDatasets(req *ListDatasetsRequest) (resp *ListDatasets
 // ListIdentityPoolUsage gets a list of identity pools registered with
 // Cognito.
 func (c *CognitoSync) ListIdentityPoolUsage(req *ListIdentityPoolUsageRequest) (resp *ListIdentityPoolUsageResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListIdentityPoolUsageResponse{}
 
 	var body io.Reader
@@ -421,6 +450,10 @@ func (c *CognitoSync) ListIdentityPoolUsage(req *ListIdentityPoolUsageRequest) (
 // should use Amazon Cognito Identity service to retrieve the credentials
 // necessary to make this API call.
 func (c *CognitoSync) ListRecords(req *ListRecordsRequest) (resp *ListRecordsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ListRecordsResponse{}
 
 	var body io.Reader
@@ -491,6 +524,10 @@ func (c *CognitoSync) ListRecords(req *ListRecordsRequest) (resp *ListRecordsRes
 
 // RegisterDevice registers a device to receive push sync notifications.
 func (c *CognitoSync) RegisterDevice(req *RegisterDeviceRequest) (resp *RegisterDeviceResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RegisterDeviceResponse{}
 
 	var body io.Reader
@@ -540,6 +577,10 @@ func (c *CognitoSync) RegisterDevice(req *RegisterDeviceRequest) (resp *Register
 
 // SetIdentityPoolConfiguration is undocumented.
 func (c *CognitoSync) SetIdentityPoolConfiguration(req *SetIdentityPoolConfigurationRequest) (resp *SetIdentityPoolConfigurationResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SetIdentityPoolConfigurationResponse{}
 
 	var body io.Reader
@@ -585,6 +626,10 @@ func (c *CognitoSync) SetIdentityPoolConfiguration(req *SetIdentityPoolConfigura
 // SubscribeToDataset subscribes to receive notifications when a dataset is
 // modified by another device.
 func (c *CognitoSync) SubscribeToDataset(req *SubscribeToDatasetRequest) (resp *SubscribeToDatasetResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &SubscribeToDatasetResponse{}
 
 	var body io.Reader
@@ -645,6 +690,10 @@ func (c *CognitoSync) SubscribeToDataset(req *SubscribeToDatasetRequest) (resp *
 // UnsubscribeFromDataset unsubscribe from receiving notifications when a
 // dataset is modified by another device.
 func (c *CognitoSync) UnsubscribeFromDataset(req *UnsubscribeFromDatasetRequest) (resp *UnsubscribeFromDatasetResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UnsubscribeFromDatasetResponse{}
 
 	var body io.Reader
@@ -709,6 +758,10 @@ func (c *CognitoSync) UnsubscribeFromDataset(req *UnsubscribeFromDatasetRequest)
 // Identity service to retrieve the credentials necessary to make this API
 // call.
 func (c *CognitoSync) UpdateRecords(req *UpdateRecordsRequest) (resp *UpdateRecordsResponse, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateRecordsResponse{}
 
 	var body io.Reader
@@ -776,6 +829,40 @@ type Dataset struct {
 	NumRecords       aws.LongValue   `json:"NumRecords,omitempty"`
 }
 
+func (v *Dataset) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "DatasetName", 1); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DatasetName", 128); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DatasetName", `[a-zA-Z0-9_.:-]+`); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityID", 1); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityID", 50); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteDatasetRequest is undocumented.
 type DeleteDatasetRequest struct {
 	DatasetName    aws.StringValue `json:"-"`
@@ -783,9 +870,77 @@ type DeleteDatasetRequest struct {
 	IdentityPoolID aws.StringValue `json:"-"`
 }
 
+func (v *DeleteDatasetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DatasetName"); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DatasetName", 1); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DatasetName", 128); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DatasetName", `[a-zA-Z0-9_.:-]+`); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityID"); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityID", 1); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityID", 50); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityPoolID"); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteDatasetResponse is undocumented.
 type DeleteDatasetResponse struct {
 	Dataset *Dataset `json:"Dataset,omitempty"`
+}
+
+func (v *DeleteDatasetResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeDatasetRequest is undocumented.
@@ -795,9 +950,77 @@ type DescribeDatasetRequest struct {
 	IdentityPoolID aws.StringValue `json:"-"`
 }
 
+func (v *DescribeDatasetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DatasetName"); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DatasetName", 1); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DatasetName", 128); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DatasetName", `[a-zA-Z0-9_.:-]+`); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityID"); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityID", 1); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityID", 50); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityPoolID"); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDatasetResponse is undocumented.
 type DescribeDatasetResponse struct {
 	Dataset *Dataset `json:"Dataset,omitempty"`
+}
+
+func (v *DescribeDatasetResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeIdentityPoolUsageRequest is undocumented.
@@ -805,9 +1028,45 @@ type DescribeIdentityPoolUsageRequest struct {
 	IdentityPoolID aws.StringValue `json:"-"`
 }
 
+func (v *DescribeIdentityPoolUsageRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IdentityPoolID"); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeIdentityPoolUsageResponse is undocumented.
 type DescribeIdentityPoolUsageResponse struct {
 	IdentityPoolUsage *IdentityPoolUsage `json:"IdentityPoolUsage,omitempty"`
+}
+
+func (v *DescribeIdentityPoolUsageResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeIdentityUsageRequest is undocumented.
@@ -816,14 +1075,92 @@ type DescribeIdentityUsageRequest struct {
 	IdentityPoolID aws.StringValue `json:"-"`
 }
 
+func (v *DescribeIdentityUsageRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IdentityID"); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityID", 1); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityID", 50); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityPoolID"); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeIdentityUsageResponse is undocumented.
 type DescribeIdentityUsageResponse struct {
 	IdentityUsage *IdentityUsage `json:"IdentityUsage,omitempty"`
 }
 
+func (v *DescribeIdentityUsageResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetIdentityPoolConfigurationRequest is undocumented.
 type GetIdentityPoolConfigurationRequest struct {
 	IdentityPoolID aws.StringValue `json:"-"`
+}
+
+func (v *GetIdentityPoolConfigurationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IdentityPoolID"); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetIdentityPoolConfigurationResponse is undocumented.
@@ -832,12 +1169,56 @@ type GetIdentityPoolConfigurationResponse struct {
 	PushSync       *PushSync       `json:"PushSync,omitempty"`
 }
 
+func (v *GetIdentityPoolConfigurationResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // IdentityPoolUsage is undocumented.
 type IdentityPoolUsage struct {
 	DataStorage       aws.LongValue   `json:"DataStorage,omitempty"`
 	IdentityPoolID    aws.StringValue `json:"IdentityPoolId,omitempty"`
 	LastModifiedDate  time.Time       `json:"LastModifiedDate,omitempty"`
 	SyncSessionsCount aws.LongValue   `json:"SyncSessionsCount,omitempty"`
+}
+
+func (v *IdentityPoolUsage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // IdentityUsage is undocumented.
@@ -849,12 +1230,88 @@ type IdentityUsage struct {
 	LastModifiedDate time.Time        `json:"LastModifiedDate,omitempty"`
 }
 
+func (v *IdentityUsage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "IdentityID", 1); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityID", 50); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDatasetsRequest is undocumented.
 type ListDatasetsRequest struct {
 	IdentityID     aws.StringValue  `json:"-"`
 	IdentityPoolID aws.StringValue  `json:"-"`
 	MaxResults     aws.IntegerValue `json:"-"`
 	NextToken      aws.StringValue  `json:"-"`
+}
+
+func (v *ListDatasetsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IdentityID"); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityID", 1); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityID", 50); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityPoolID"); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListDatasetsResponse is undocumented.
@@ -864,10 +1321,30 @@ type ListDatasetsResponse struct {
 	NextToken aws.StringValue  `json:"NextToken,omitempty"`
 }
 
+func (v *ListDatasetsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListIdentityPoolUsageRequest is undocumented.
 type ListIdentityPoolUsageRequest struct {
 	MaxResults aws.IntegerValue `json:"-"`
 	NextToken  aws.StringValue  `json:"-"`
+}
+
+func (v *ListIdentityPoolUsageRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListIdentityPoolUsageResponse is undocumented.
@@ -876,6 +1353,16 @@ type ListIdentityPoolUsageResponse struct {
 	IdentityPoolUsages []IdentityPoolUsage `json:"IdentityPoolUsages,omitempty"`
 	MaxResults         aws.IntegerValue    `json:"MaxResults,omitempty"`
 	NextToken          aws.StringValue     `json:"NextToken,omitempty"`
+}
+
+func (v *ListIdentityPoolUsageResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ListRecordsRequest is undocumented.
@@ -889,6 +1376,64 @@ type ListRecordsRequest struct {
 	SyncSessionToken aws.StringValue  `json:"-"`
 }
 
+func (v *ListRecordsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DatasetName"); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DatasetName", 1); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DatasetName", 128); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DatasetName", `[a-zA-Z0-9_.:-]+`); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityID"); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityID", 1); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityID", 50); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityPoolID"); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListRecordsResponse is undocumented.
 type ListRecordsResponse struct {
 	Count                                 aws.IntegerValue `json:"Count,omitempty"`
@@ -900,6 +1445,16 @@ type ListRecordsResponse struct {
 	NextToken                             aws.StringValue  `json:"NextToken,omitempty"`
 	Records                               []Record         `json:"Records,omitempty"`
 	SyncSessionToken                      aws.StringValue  `json:"SyncSessionToken,omitempty"`
+}
+
+func (v *ListRecordsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CognitoSync.
@@ -922,6 +1477,28 @@ type PushSync struct {
 	RoleARN         aws.StringValue `json:"RoleArn,omitempty"`
 }
 
+func (v *PushSync) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "RoleARN", 20); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidateMax(v, "RoleARN", 2048); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if err := model.ValidatePattern(v, "RoleARN", `arn:aws:iam::\d+:role/.*`); err != nil {
+		errors["RoleARN"] = append(errors["RoleARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Record is undocumented.
 type Record struct {
 	DeviceLastModifiedDate time.Time       `json:"DeviceLastModifiedDate,omitempty"`
@@ -930,6 +1507,28 @@ type Record struct {
 	LastModifiedDate       time.Time       `json:"LastModifiedDate,omitempty"`
 	SyncCount              aws.LongValue   `json:"SyncCount,omitempty"`
 	Value                  aws.StringValue `json:"Value,omitempty"`
+}
+
+func (v *Record) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 1024); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 1048575); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RecordPatch is undocumented.
@@ -941,6 +1540,48 @@ type RecordPatch struct {
 	Value                  aws.StringValue `json:"Value,omitempty"`
 }
 
+func (v *RecordPatch) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMin(v, "Key", 1); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateMax(v, "Key", 1024); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Op"); err != nil {
+		errors["Op"] = append(errors["Op"], err)
+	}
+
+	OpEnum := []string{
+		OperationRemove,
+		OperationReplace,
+	}
+	if err := model.ValidateEnum(v, "Op", OpEnum); err != nil {
+		errors["Op"] = append(errors["Op"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SyncCount"); err != nil {
+		errors["SyncCount"] = append(errors["SyncCount"], err)
+	}
+
+	if err := model.ValidateMax(v, "Value", 1048575); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RegisterDeviceRequest is undocumented.
 type RegisterDeviceRequest struct {
 	IdentityID     aws.StringValue `json:"-"`
@@ -949,9 +1590,87 @@ type RegisterDeviceRequest struct {
 	Token          aws.StringValue `json:"Token"`
 }
 
+func (v *RegisterDeviceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IdentityID"); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityID", 1); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityID", 50); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityPoolID"); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Platform"); err != nil {
+		errors["Platform"] = append(errors["Platform"], err)
+	}
+
+	PlatformEnum := []string{
+		PlatformADM,
+		PlatformAPNS,
+		PlatformAPNSSandbox,
+		PlatformGCM,
+	}
+	if err := model.ValidateEnum(v, "Platform", PlatformEnum); err != nil {
+		errors["Platform"] = append(errors["Platform"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Token"); err != nil {
+		errors["Token"] = append(errors["Token"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RegisterDeviceResponse is undocumented.
 type RegisterDeviceResponse struct {
 	DeviceID aws.StringValue `json:"DeviceId,omitempty"`
+}
+
+func (v *RegisterDeviceResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "DeviceID", 1); err != nil {
+		errors["DeviceID"] = append(errors["DeviceID"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeviceID", 256); err != nil {
+		errors["DeviceID"] = append(errors["DeviceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SetIdentityPoolConfigurationRequest is undocumented.
@@ -960,10 +1679,58 @@ type SetIdentityPoolConfigurationRequest struct {
 	PushSync       *PushSync       `json:"PushSync,omitempty"`
 }
 
+func (v *SetIdentityPoolConfigurationRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IdentityPoolID"); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetIdentityPoolConfigurationResponse is undocumented.
 type SetIdentityPoolConfigurationResponse struct {
 	IdentityPoolID aws.StringValue `json:"IdentityPoolId,omitempty"`
 	PushSync       *PushSync       `json:"PushSync,omitempty"`
+}
+
+func (v *SetIdentityPoolConfigurationResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SubscribeToDatasetRequest is undocumented.
@@ -974,8 +1741,88 @@ type SubscribeToDatasetRequest struct {
 	IdentityPoolID aws.StringValue `json:"-"`
 }
 
+func (v *SubscribeToDatasetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DatasetName"); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DatasetName", 1); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DatasetName", 128); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DatasetName", `[a-zA-Z0-9_.:-]+`); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DeviceID"); err != nil {
+		errors["DeviceID"] = append(errors["DeviceID"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeviceID", 1); err != nil {
+		errors["DeviceID"] = append(errors["DeviceID"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeviceID", 256); err != nil {
+		errors["DeviceID"] = append(errors["DeviceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityID"); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityID", 1); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityID", 50); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityPoolID"); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SubscribeToDatasetResponse is undocumented.
 type SubscribeToDatasetResponse struct {
+}
+
+func (v *SubscribeToDatasetResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UnsubscribeFromDatasetRequest is undocumented.
@@ -986,8 +1833,88 @@ type UnsubscribeFromDatasetRequest struct {
 	IdentityPoolID aws.StringValue `json:"-"`
 }
 
+func (v *UnsubscribeFromDatasetRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DatasetName"); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DatasetName", 1); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DatasetName", 128); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DatasetName", `[a-zA-Z0-9_.:-]+`); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DeviceID"); err != nil {
+		errors["DeviceID"] = append(errors["DeviceID"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeviceID", 1); err != nil {
+		errors["DeviceID"] = append(errors["DeviceID"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeviceID", 256); err != nil {
+		errors["DeviceID"] = append(errors["DeviceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityID"); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityID", 1); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityID", 50); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityPoolID"); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UnsubscribeFromDatasetResponse is undocumented.
 type UnsubscribeFromDatasetResponse struct {
+}
+
+func (v *UnsubscribeFromDatasetResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateRecordsRequest is undocumented.
@@ -1001,9 +1928,89 @@ type UpdateRecordsRequest struct {
 	SyncSessionToken aws.StringValue `json:"SyncSessionToken"`
 }
 
+func (v *UpdateRecordsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DatasetName"); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DatasetName", 1); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DatasetName", 128); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DatasetName", `[a-zA-Z0-9_.:-]+`); err != nil {
+		errors["DatasetName"] = append(errors["DatasetName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DeviceID", 1); err != nil {
+		errors["DeviceID"] = append(errors["DeviceID"], err)
+	}
+
+	if err := model.ValidateMax(v, "DeviceID", 256); err != nil {
+		errors["DeviceID"] = append(errors["DeviceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityID"); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityID", 1); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityID", 50); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityID"] = append(errors["IdentityID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IdentityPoolID"); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMin(v, "IdentityPoolID", 1); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateMax(v, "IdentityPoolID", 50); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IdentityPoolID", `[\w-]+:[0-9a-f-]+`); err != nil {
+		errors["IdentityPoolID"] = append(errors["IdentityPoolID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SyncSessionToken"); err != nil {
+		errors["SyncSessionToken"] = append(errors["SyncSessionToken"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateRecordsResponse is undocumented.
 type UpdateRecordsResponse struct {
 	Records []Record `json:"Records,omitempty"`
+}
+
+func (v *UpdateRecordsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced

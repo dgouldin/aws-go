@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // RedShift is a client for Amazon Redshift.
@@ -53,6 +54,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Red
 // information about managing security groups, go to Working with Security
 // Groups in the Amazon Redshift Cluster Management Guide
 func (c *RedShift) AuthorizeClusterSecurityGroupIngress(req *AuthorizeClusterSecurityGroupIngressMessage) (resp *AuthorizeClusterSecurityGroupIngressResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AuthorizeClusterSecurityGroupIngressResult{}
 	err = c.client.Do("AuthorizeClusterSecurityGroupIngress", "POST", "/", req, resp)
 	return
@@ -63,6 +68,10 @@ func (c *RedShift) AuthorizeClusterSecurityGroupIngress(req *AuthorizeClusterSec
 // snapshots, go to Amazon Redshift Snapshots in the Amazon Redshift
 // Cluster Management Guide .
 func (c *RedShift) AuthorizeSnapshotAccess(req *AuthorizeSnapshotAccessMessage) (resp *AuthorizeSnapshotAccessResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &AuthorizeSnapshotAccessResult{}
 	err = c.client.Do("AuthorizeSnapshotAccess", "POST", "/", req, resp)
 	return
@@ -79,6 +88,10 @@ func (c *RedShift) AuthorizeSnapshotAccess(req *AuthorizeSnapshotAccessMessage) 
 // snapshots, go to Amazon Redshift Snapshots in the Amazon Redshift
 // Cluster Management Guide .
 func (c *RedShift) CopyClusterSnapshot(req *CopyClusterSnapshotMessage) (resp *CopyClusterSnapshotResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CopyClusterSnapshotResult{}
 	err = c.client.Do("CopyClusterSnapshot", "POST", "/", req, resp)
 	return
@@ -92,6 +105,10 @@ func (c *RedShift) CopyClusterSnapshot(req *CopyClusterSnapshotMessage) (resp *C
 // about managing clusters, go to Amazon Redshift Clusters in the Amazon
 // Redshift Cluster Management Guide .
 func (c *RedShift) CreateCluster(req *CreateClusterMessage) (resp *CreateClusterResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateClusterResult{}
 	err = c.client.Do("CreateCluster", "POST", "/", req, resp)
 	return
@@ -107,6 +124,10 @@ func (c *RedShift) CreateCluster(req *CreateClusterMessage) (resp *CreateCluster
 // groups, go to Amazon Redshift Parameter Groups in the Amazon Redshift
 // Cluster Management Guide .
 func (c *RedShift) CreateClusterParameterGroup(req *CreateClusterParameterGroupMessage) (resp *CreateClusterParameterGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateClusterParameterGroupResult{}
 	err = c.client.Do("CreateClusterParameterGroup", "POST", "/", req, resp)
 	return
@@ -118,6 +139,10 @@ func (c *RedShift) CreateClusterParameterGroup(req *CreateClusterParameterGroupM
 // Cluster Security Groups in the Amazon Redshift Cluster Management Guide
 // .
 func (c *RedShift) CreateClusterSecurityGroup(req *CreateClusterSecurityGroupMessage) (resp *CreateClusterSecurityGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateClusterSecurityGroupResult{}
 	err = c.client.Do("CreateClusterSecurityGroup", "POST", "/", req, resp)
 	return
@@ -128,6 +153,10 @@ func (c *RedShift) CreateClusterSecurityGroup(req *CreateClusterSecurityGroupMes
 // information about working with snapshots, go to Amazon Redshift
 // Snapshots in the Amazon Redshift Cluster Management Guide .
 func (c *RedShift) CreateClusterSnapshot(req *CreateClusterSnapshotMessage) (resp *CreateClusterSnapshotResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateClusterSnapshotResult{}
 	err = c.client.Do("CreateClusterSnapshot", "POST", "/", req, resp)
 	return
@@ -139,6 +168,10 @@ func (c *RedShift) CreateClusterSnapshot(req *CreateClusterSnapshotMessage) (res
 // group. For information about subnet groups, go to Amazon Redshift
 // Cluster Subnet Groups in the Amazon Redshift Cluster Management Guide .
 func (c *RedShift) CreateClusterSubnetGroup(req *CreateClusterSubnetGroupMessage) (resp *CreateClusterSubnetGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateClusterSubnetGroupResult{}
 	err = c.client.Do("CreateClusterSubnetGroup", "POST", "/", req, resp)
 	return
@@ -166,6 +199,10 @@ func (c *RedShift) CreateClusterSubnetGroup(req *CreateClusterSubnetGroupMessage
 // Amazon Redshift sources belonging to your AWS account. You must specify
 // a source type if you specify a source ID.
 func (c *RedShift) CreateEventSubscription(req *CreateEventSubscriptionMessage) (resp *CreateEventSubscriptionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateEventSubscriptionResult{}
 	err = c.client.Do("CreateEventSubscription", "POST", "/", req, resp)
 	return
@@ -181,6 +218,10 @@ func (c *RedShift) CreateEventSubscription(req *CreateEventSubscriptionMessage) 
 // to Hardware Security Modules in the Amazon Redshift Cluster Management
 // Guide.
 func (c *RedShift) CreateHSMClientCertificate(req *CreateHSMClientCertificateMessage) (resp *CreateHSMClientCertificateResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateHSMClientCertificateResult{}
 	err = c.client.Do("CreateHsmClientCertificate", "POST", "/", req, resp)
 	return
@@ -195,6 +236,10 @@ func (c *RedShift) CreateHSMClientCertificate(req *CreateHSMClientCertificateMes
 // client certificate. For more information, go to Hardware Security
 // Modules in the Amazon Redshift Cluster Management Guide.
 func (c *RedShift) CreateHSMConfiguration(req *CreateHSMConfigurationMessage) (resp *CreateHSMConfigurationResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateHSMConfigurationResult{}
 	err = c.client.Do("CreateHsmConfiguration", "POST", "/", req, resp)
 	return
@@ -206,6 +251,10 @@ func (c *RedShift) CreateHSMConfiguration(req *CreateHSMConfigurationMessage) (r
 // specify a key that already exists for the resource, the value for that
 // key will be updated with the new value.
 func (c *RedShift) CreateTags(req *CreateTagsMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("CreateTags", "POST", "/", req, nil)
 	return
@@ -226,6 +275,10 @@ func (c *RedShift) CreateTags(req *CreateTagsMessage) (err error) {
 // the cluster. For more information about managing clusters, go to Amazon
 // Redshift Clusters in the Amazon Redshift Cluster Management Guide .
 func (c *RedShift) DeleteCluster(req *DeleteClusterMessage) (resp *DeleteClusterResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteClusterResult{}
 	err = c.client.Do("DeleteCluster", "POST", "/", req, resp)
 	return
@@ -235,6 +288,10 @@ func (c *RedShift) DeleteCluster(req *DeleteClusterMessage) (resp *DeleteCluster
 // parameter group. You cannot delete a parameter group if it is associated
 // with a cluster.
 func (c *RedShift) DeleteClusterParameterGroup(req *DeleteClusterParameterGroupMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteClusterParameterGroup", "POST", "/", req, nil)
 	return
@@ -246,6 +303,10 @@ func (c *RedShift) DeleteClusterParameterGroup(req *DeleteClusterParameterGroupM
 // managing security groups, go to Amazon Redshift Cluster Security Groups
 // in the Amazon Redshift Cluster Management Guide .
 func (c *RedShift) DeleteClusterSecurityGroup(req *DeleteClusterSecurityGroupMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteClusterSecurityGroup", "POST", "/", req, nil)
 	return
@@ -260,6 +321,10 @@ func (c *RedShift) DeleteClusterSecurityGroup(req *DeleteClusterSecurityGroupMes
 // snapshot, you must revoke all of the authorizations before you can
 // delete the snapshot.
 func (c *RedShift) DeleteClusterSnapshot(req *DeleteClusterSnapshotMessage) (resp *DeleteClusterSnapshotResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteClusterSnapshotResult{}
 	err = c.client.Do("DeleteClusterSnapshot", "POST", "/", req, resp)
 	return
@@ -267,6 +332,10 @@ func (c *RedShift) DeleteClusterSnapshot(req *DeleteClusterSnapshotMessage) (res
 
 // DeleteClusterSubnetGroup is undocumented.
 func (c *RedShift) DeleteClusterSubnetGroup(req *DeleteClusterSubnetGroupMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteClusterSubnetGroup", "POST", "/", req, nil)
 	return
@@ -275,6 +344,10 @@ func (c *RedShift) DeleteClusterSubnetGroup(req *DeleteClusterSubnetGroupMessage
 // DeleteEventSubscription deletes an Amazon Redshift event notification
 // subscription.
 func (c *RedShift) DeleteEventSubscription(req *DeleteEventSubscriptionMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteEventSubscription", "POST", "/", req, nil)
 	return
@@ -282,6 +355,10 @@ func (c *RedShift) DeleteEventSubscription(req *DeleteEventSubscriptionMessage) 
 
 // DeleteHSMClientCertificate is undocumented.
 func (c *RedShift) DeleteHSMClientCertificate(req *DeleteHSMClientCertificateMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteHsmClientCertificate", "POST", "/", req, nil)
 	return
@@ -290,6 +367,10 @@ func (c *RedShift) DeleteHSMClientCertificate(req *DeleteHSMClientCertificateMes
 // DeleteHSMConfiguration deletes the specified Amazon Redshift HSM
 // configuration.
 func (c *RedShift) DeleteHSMConfiguration(req *DeleteHSMConfigurationMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteHsmConfiguration", "POST", "/", req, nil)
 	return
@@ -298,6 +379,10 @@ func (c *RedShift) DeleteHSMConfiguration(req *DeleteHSMConfigurationMessage) (e
 // DeleteTags deletes a tag or tags from a resource. You must provide the
 // ARN of the resource from which you want to delete the tag or tags.
 func (c *RedShift) DeleteTags(req *DeleteTagsMessage) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteTags", "POST", "/", req, nil)
 	return
@@ -319,6 +404,10 @@ func (c *RedShift) DeleteTags(req *DeleteTagsMessage) (err error) {
 // parameter groups are returned regardless of whether they have tag keys
 // or values associated with them.
 func (c *RedShift) DescribeClusterParameterGroups(req *DescribeClusterParameterGroupsMessage) (resp *DescribeClusterParameterGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeClusterParameterGroupsResult{}
 	err = c.client.Do("DescribeClusterParameterGroups", "POST", "/", req, resp)
 	return
@@ -335,6 +424,10 @@ func (c *RedShift) DescribeClusterParameterGroups(req *DescribeClusterParameterG
 // more information about managing parameter groups, go to Amazon Redshift
 // Parameter Groups in the Amazon Redshift Cluster Management Guide .
 func (c *RedShift) DescribeClusterParameters(req *DescribeClusterParametersMessage) (resp *DescribeClusterParametersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeClusterParametersResult{}
 	err = c.client.Do("DescribeClusterParameters", "POST", "/", req, resp)
 	return
@@ -354,6 +447,10 @@ func (c *RedShift) DescribeClusterParameters(req *DescribeClusterParametersMessa
 // groups are returned regardless of whether they have tag keys or values
 // associated with them.
 func (c *RedShift) DescribeClusterSecurityGroups(req *DescribeClusterSecurityGroupsMessage) (resp *DescribeClusterSecurityGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeClusterSecurityGroupsResult{}
 	err = c.client.Do("DescribeClusterSecurityGroups", "POST", "/", req, resp)
 	return
@@ -374,6 +471,10 @@ func (c *RedShift) DescribeClusterSecurityGroups(req *DescribeClusterSecurityGro
 // the request, snapshots are returned regardless of whether they have tag
 // keys or values associated with them.
 func (c *RedShift) DescribeClusterSnapshots(req *DescribeClusterSnapshotsMessage) (resp *DescribeClusterSnapshotsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeClusterSnapshotsResult{}
 	err = c.client.Do("DescribeClusterSnapshots", "POST", "/", req, resp)
 	return
@@ -391,6 +492,10 @@ func (c *RedShift) DescribeClusterSnapshots(req *DescribeClusterSnapshotsMessage
 // the request, subnet groups are returned regardless of whether they have
 // tag keys or values associated with them.
 func (c *RedShift) DescribeClusterSubnetGroups(req *DescribeClusterSubnetGroupsMessage) (resp *DescribeClusterSubnetGroupsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeClusterSubnetGroupsResult{}
 	err = c.client.Do("DescribeClusterSubnetGroups", "POST", "/", req, resp)
 	return
@@ -402,6 +507,10 @@ func (c *RedShift) DescribeClusterSubnetGroups(req *DescribeClusterSubnetGroupsM
 // For more information about managing clusters, go to Amazon Redshift
 // Clusters in the Amazon Redshift Cluster Management Guide
 func (c *RedShift) DescribeClusterVersions(req *DescribeClusterVersionsMessage) (resp *DescribeClusterVersionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeClusterVersionsResult{}
 	err = c.client.Do("DescribeClusterVersions", "POST", "/", req, resp)
 	return
@@ -420,6 +529,10 @@ func (c *RedShift) DescribeClusterVersions(req *DescribeClusterVersionsMessage) 
 // tag keys and values are omitted from the request, clusters are returned
 // regardless of whether they have tag keys or values associated with them.
 func (c *RedShift) DescribeClusters(req *DescribeClustersMessage) (resp *DescribeClustersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeClustersResult{}
 	err = c.client.Do("DescribeClusters", "POST", "/", req, resp)
 	return
@@ -430,6 +543,10 @@ func (c *RedShift) DescribeClusters(req *DescribeClustersMessage) (resp *Describ
 // managing parameter groups, go to Amazon Redshift Parameter Groups in the
 // Amazon Redshift Cluster Management Guide .
 func (c *RedShift) DescribeDefaultClusterParameters(req *DescribeDefaultClusterParametersMessage) (resp *DescribeDefaultClusterParametersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDefaultClusterParametersResult{}
 	err = c.client.Do("DescribeDefaultClusterParameters", "POST", "/", req, resp)
 	return
@@ -440,6 +557,10 @@ func (c *RedShift) DescribeDefaultClusterParameters(req *DescribeDefaultClusterP
 // event categories and source types, go to Amazon Redshift Event
 // Notifications
 func (c *RedShift) DescribeEventCategories(req *DescribeEventCategoriesMessage) (resp *DescribeEventCategoriesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeEventCategoriesResult{}
 	err = c.client.Do("DescribeEventCategories", "POST", "/", req, resp)
 	return
@@ -449,6 +570,10 @@ func (c *RedShift) DescribeEventCategories(req *DescribeEventCategoriesMessage) 
 // event notifications subscription for a customer account. If you specify
 // a subscription name, lists the description for that subscription.
 func (c *RedShift) DescribeEventSubscriptions(req *DescribeEventSubscriptionsMessage) (resp *DescribeEventSubscriptionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeEventSubscriptionsResult{}
 	err = c.client.Do("DescribeEventSubscriptions", "POST", "/", req, resp)
 	return
@@ -460,6 +585,10 @@ func (c *RedShift) DescribeEventSubscriptions(req *DescribeEventSubscriptionsMes
 // obtained by providing the name as a parameter. By default, the past hour
 // of events are returned.
 func (c *RedShift) DescribeEvents(req *DescribeEventsMessage) (resp *DescribeEventsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeEventsResult{}
 	err = c.client.Do("DescribeEvents", "POST", "/", req, resp)
 	return
@@ -477,6 +606,10 @@ func (c *RedShift) DescribeEvents(req *DescribeEventsMessage) (resp *DescribeEve
 // request, HSM client certificates are returned regardless of whether they
 // have tag keys or values associated with them.
 func (c *RedShift) DescribeHSMClientCertificates(req *DescribeHSMClientCertificatesMessage) (resp *DescribeHSMClientCertificatesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeHSMClientCertificatesResult{}
 	err = c.client.Do("DescribeHsmClientCertificates", "POST", "/", req, resp)
 	return
@@ -494,6 +627,10 @@ func (c *RedShift) DescribeHSMClientCertificates(req *DescribeHSMClientCertifica
 // connections are returned regardless of whether they have tag keys or
 // values associated with them.
 func (c *RedShift) DescribeHSMConfigurations(req *DescribeHSMConfigurationsMessage) (resp *DescribeHSMConfigurationsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeHSMConfigurationsResult{}
 	err = c.client.Do("DescribeHsmConfigurations", "POST", "/", req, resp)
 	return
@@ -503,6 +640,10 @@ func (c *RedShift) DescribeHSMConfigurations(req *DescribeHSMConfigurationsMessa
 // connection attempts, is being logged for the specified Amazon Redshift
 // cluster.
 func (c *RedShift) DescribeLoggingStatus(req *DescribeLoggingStatusMessage) (resp *DescribeLoggingStatusResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeLoggingStatusResult{}
 	err = c.client.Do("DescribeLoggingStatus", "POST", "/", req, resp)
 	return
@@ -518,6 +659,10 @@ func (c *RedShift) DescribeLoggingStatus(req *DescribeLoggingStatusMessage) (res
 // cluster. For more information about managing clusters, go to Amazon
 // Redshift Clusters in the Amazon Redshift Cluster Management Guide
 func (c *RedShift) DescribeOrderableClusterOptions(req *DescribeOrderableClusterOptionsMessage) (resp *DescribeOrderableClusterOptionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeOrderableClusterOptionsResult{}
 	err = c.client.Do("DescribeOrderableClusterOptions", "POST", "/", req, resp)
 	return
@@ -533,6 +678,10 @@ func (c *RedShift) DescribeOrderableClusterOptions(req *DescribeOrderableCluster
 // information about managing parameter groups, go to Purchasing Reserved
 // Nodes in the Amazon Redshift Cluster Management Guide .
 func (c *RedShift) DescribeReservedNodeOfferings(req *DescribeReservedNodeOfferingsMessage) (resp *DescribeReservedNodeOfferingsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeReservedNodeOfferingsResult{}
 	err = c.client.Do("DescribeReservedNodeOfferings", "POST", "/", req, resp)
 	return
@@ -540,6 +689,10 @@ func (c *RedShift) DescribeReservedNodeOfferings(req *DescribeReservedNodeOfferi
 
 // DescribeReservedNodes is undocumented.
 func (c *RedShift) DescribeReservedNodes(req *DescribeReservedNodesMessage) (resp *DescribeReservedNodesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeReservedNodesResult{}
 	err = c.client.Do("DescribeReservedNodes", "POST", "/", req, resp)
 	return
@@ -553,6 +706,10 @@ func (c *RedShift) DescribeReservedNodes(req *DescribeReservedNodesMessage) (res
 // ModifyCluster and specifying a different number or type of nodes for the
 // cluster.
 func (c *RedShift) DescribeResize(req *DescribeResizeMessage) (resp *DescribeResizeResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeResizeResult{}
 	err = c.client.Do("DescribeResize", "POST", "/", req, resp)
 	return
@@ -574,6 +731,10 @@ func (c *RedShift) DescribeResize(req *DescribeResizeMessage) (resp *DescribeRes
 // returned regardless of whether they have tag keys or values associated
 // with them.
 func (c *RedShift) DescribeTags(req *DescribeTagsMessage) (resp *DescribeTagsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTagsResult{}
 	err = c.client.Do("DescribeTags", "POST", "/", req, resp)
 	return
@@ -582,6 +743,10 @@ func (c *RedShift) DescribeTags(req *DescribeTagsMessage) (resp *DescribeTagsRes
 // DisableLogging stops logging information, such as queries and connection
 // attempts, for the specified Amazon Redshift cluster.
 func (c *RedShift) DisableLogging(req *DisableLoggingMessage) (resp *DisableLoggingResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DisableLoggingResult{}
 	err = c.client.Do("DisableLogging", "POST", "/", req, resp)
 	return
@@ -590,6 +755,10 @@ func (c *RedShift) DisableLogging(req *DisableLoggingMessage) (resp *DisableLogg
 // DisableSnapshotCopy disables the automatic copying of snapshots from one
 // region to another region for a specified cluster.
 func (c *RedShift) DisableSnapshotCopy(req *DisableSnapshotCopyMessage) (resp *DisableSnapshotCopyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DisableSnapshotCopyResult{}
 	err = c.client.Do("DisableSnapshotCopy", "POST", "/", req, resp)
 	return
@@ -598,6 +767,10 @@ func (c *RedShift) DisableSnapshotCopy(req *DisableSnapshotCopyMessage) (resp *D
 // EnableLogging starts logging information, such as queries and connection
 // attempts, for the specified Amazon Redshift cluster.
 func (c *RedShift) EnableLogging(req *EnableLoggingMessage) (resp *EnableLoggingResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &EnableLoggingResult{}
 	err = c.client.Do("EnableLogging", "POST", "/", req, resp)
 	return
@@ -606,6 +779,10 @@ func (c *RedShift) EnableLogging(req *EnableLoggingMessage) (resp *EnableLogging
 // EnableSnapshotCopy enables the automatic copy of snapshots from one
 // region to another region for a specified cluster.
 func (c *RedShift) EnableSnapshotCopy(req *EnableSnapshotCopyMessage) (resp *EnableSnapshotCopyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &EnableSnapshotCopyResult{}
 	err = c.client.Do("EnableSnapshotCopy", "POST", "/", req, resp)
 	return
@@ -623,6 +800,10 @@ func (c *RedShift) EnableSnapshotCopy(req *EnableSnapshotCopyMessage) (resp *Ena
 // cluster, you must specify both the number of nodes and the node type
 // even if one of the parameters does not change.
 func (c *RedShift) ModifyCluster(req *ModifyClusterMessage) (resp *ModifyClusterResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyClusterResult{}
 	err = c.client.Do("ModifyCluster", "POST", "/", req, resp)
 	return
@@ -633,6 +814,10 @@ func (c *RedShift) ModifyCluster(req *ModifyClusterMessage) (resp *ModifyCluster
 // Amazon Redshift Parameter Groups in the Amazon Redshift Cluster
 // Management Guide .
 func (c *RedShift) ModifyClusterParameterGroup(req *ModifyClusterParameterGroupMessage) (resp *ModifyClusterParameterGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyClusterParameterGroupResult{}
 	err = c.client.Do("ModifyClusterParameterGroup", "POST", "/", req, resp)
 	return
@@ -642,6 +827,10 @@ func (c *RedShift) ModifyClusterParameterGroup(req *ModifyClusterParameterGroupM
 // specified list of VPC subnets. The operation replaces the existing list
 // of subnets with the new list of subnets.
 func (c *RedShift) ModifyClusterSubnetGroup(req *ModifyClusterSubnetGroupMessage) (resp *ModifyClusterSubnetGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyClusterSubnetGroupResult{}
 	err = c.client.Do("ModifyClusterSubnetGroup", "POST", "/", req, resp)
 	return
@@ -650,6 +839,10 @@ func (c *RedShift) ModifyClusterSubnetGroup(req *ModifyClusterSubnetGroupMessage
 // ModifyEventSubscription modifies an existing Amazon Redshift event
 // notification subscription.
 func (c *RedShift) ModifyEventSubscription(req *ModifyEventSubscriptionMessage) (resp *ModifyEventSubscriptionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifyEventSubscriptionResult{}
 	err = c.client.Do("ModifyEventSubscription", "POST", "/", req, resp)
 	return
@@ -659,6 +852,10 @@ func (c *RedShift) ModifyEventSubscription(req *ModifyEventSubscriptionMessage) 
 // automated snapshots in the destination region after they are copied from
 // the source region.
 func (c *RedShift) ModifySnapshotCopyRetentionPeriod(req *ModifySnapshotCopyRetentionPeriodMessage) (resp *ModifySnapshotCopyRetentionPeriodResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ModifySnapshotCopyRetentionPeriodResult{}
 	err = c.client.Do("ModifySnapshotCopyRetentionPeriod", "POST", "/", req, resp)
 	return
@@ -673,6 +870,10 @@ func (c *RedShift) ModifySnapshotCopyRetentionPeriod(req *ModifySnapshotCopyRete
 // information about managing parameter groups, go to Purchasing Reserved
 // Nodes in the Amazon Redshift Cluster Management Guide .
 func (c *RedShift) PurchaseReservedNodeOffering(req *PurchaseReservedNodeOfferingMessage) (resp *PurchaseReservedNodeOfferingResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &PurchaseReservedNodeOfferingResult{}
 	err = c.client.Do("PurchaseReservedNodeOffering", "POST", "/", req, resp)
 	return
@@ -686,6 +887,10 @@ func (c *RedShift) PurchaseReservedNodeOffering(req *PurchaseReservedNodeOfferin
 // managing clusters, go to Amazon Redshift Clusters in the Amazon Redshift
 // Cluster Management Guide
 func (c *RedShift) RebootCluster(req *RebootClusterMessage) (resp *RebootClusterResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RebootClusterResult{}
 	err = c.client.Do("RebootCluster", "POST", "/", req, resp)
 	return
@@ -697,6 +902,10 @@ func (c *RedShift) RebootCluster(req *RebootClusterMessage) (resp *RebootCluster
 // specify the ResetAllParameters parameter. For parameter changes to take
 // effect you must reboot any associated clusters.
 func (c *RedShift) ResetClusterParameterGroup(req *ResetClusterParameterGroupMessage) (resp *ResetClusterParameterGroupResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &ResetClusterParameterGroupResult{}
 	err = c.client.Do("ResetClusterParameterGroup", "POST", "/", req, resp)
 	return
@@ -714,6 +923,10 @@ func (c *RedShift) ResetClusterParameterGroup(req *ResetClusterParameterGroupMes
 // go to Amazon Redshift Snapshots in the Amazon Redshift Cluster
 // Management Guide .
 func (c *RedShift) RestoreFromClusterSnapshot(req *RestoreFromClusterSnapshotMessage) (resp *RestoreFromClusterSnapshotResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RestoreFromClusterSnapshotResult{}
 	err = c.client.Do("RestoreFromClusterSnapshot", "POST", "/", req, resp)
 	return
@@ -726,6 +939,10 @@ func (c *RedShift) RestoreFromClusterSnapshot(req *RestoreFromClusterSnapshotMes
 // security groups, go to Amazon Redshift Cluster Security Groups in the
 // Amazon Redshift Cluster Management Guide .
 func (c *RedShift) RevokeClusterSecurityGroupIngress(req *RevokeClusterSecurityGroupIngressMessage) (resp *RevokeClusterSecurityGroupIngressResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RevokeClusterSecurityGroupIngressResult{}
 	err = c.client.Do("RevokeClusterSecurityGroupIngress", "POST", "/", req, resp)
 	return
@@ -737,6 +954,10 @@ func (c *RedShift) RevokeClusterSecurityGroupIngress(req *RevokeClusterSecurityG
 // information about working with snapshots, go to Amazon Redshift
 // Snapshots in the Amazon Redshift Cluster Management Guide .
 func (c *RedShift) RevokeSnapshotAccess(req *RevokeSnapshotAccessMessage) (resp *RevokeSnapshotAccessResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RevokeSnapshotAccessResult{}
 	err = c.client.Do("RevokeSnapshotAccess", "POST", "/", req, resp)
 	return
@@ -744,6 +965,10 @@ func (c *RedShift) RevokeSnapshotAccess(req *RevokeSnapshotAccessMessage) (resp 
 
 // RotateEncryptionKey is undocumented.
 func (c *RedShift) RotateEncryptionKey(req *RotateEncryptionKeyMessage) (resp *RotateEncryptionKeyResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RotateEncryptionKeyResult{}
 	err = c.client.Do("RotateEncryptionKey", "POST", "/", req, resp)
 	return
@@ -754,6 +979,16 @@ type AccountWithRestoreAccess struct {
 	AccountID aws.StringValue `xml:"AccountId"`
 }
 
+func (v *AccountWithRestoreAccess) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AuthorizeClusterSecurityGroupIngressMessage is undocumented.
 type AuthorizeClusterSecurityGroupIngressMessage struct {
 	CIDRIP                   aws.StringValue `xml:"CIDRIP"`
@@ -762,9 +997,33 @@ type AuthorizeClusterSecurityGroupIngressMessage struct {
 	EC2SecurityGroupOwnerID  aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
 }
 
+func (v *AuthorizeClusterSecurityGroupIngressMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterSecurityGroupName"); err != nil {
+		errors["ClusterSecurityGroupName"] = append(errors["ClusterSecurityGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AuthorizeClusterSecurityGroupIngressResult is undocumented.
 type AuthorizeClusterSecurityGroupIngressResult struct {
 	ClusterSecurityGroup *ClusterSecurityGroup `xml:"AuthorizeClusterSecurityGroupIngressResult>ClusterSecurityGroup"`
+}
+
+func (v *AuthorizeClusterSecurityGroupIngressResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AuthorizeSnapshotAccessMessage is undocumented.
@@ -774,14 +1033,52 @@ type AuthorizeSnapshotAccessMessage struct {
 	SnapshotIdentifier        aws.StringValue `xml:"SnapshotIdentifier"`
 }
 
+func (v *AuthorizeSnapshotAccessMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccountWithRestoreAccess"); err != nil {
+		errors["AccountWithRestoreAccess"] = append(errors["AccountWithRestoreAccess"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SnapshotIdentifier"); err != nil {
+		errors["SnapshotIdentifier"] = append(errors["SnapshotIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AuthorizeSnapshotAccessResult is undocumented.
 type AuthorizeSnapshotAccessResult struct {
 	Snapshot *Snapshot `xml:"AuthorizeSnapshotAccessResult>Snapshot"`
 }
 
+func (v *AuthorizeSnapshotAccessResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AvailabilityZone is undocumented.
 type AvailabilityZone struct {
 	Name aws.StringValue `xml:"Name"`
+}
+
+func (v *AvailabilityZone) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Cluster is undocumented.
@@ -819,11 +1116,31 @@ type Cluster struct {
 	VPCSecurityGroups                []VPCSecurityGroupMembership     `xml:"VpcSecurityGroups>VpcSecurityGroup"`
 }
 
+func (v *Cluster) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ClusterNode is undocumented.
 type ClusterNode struct {
 	NodeRole         aws.StringValue `xml:"NodeRole"`
 	PrivateIPAddress aws.StringValue `xml:"PrivateIPAddress"`
 	PublicIPAddress  aws.StringValue `xml:"PublicIPAddress"`
+}
+
+func (v *ClusterNode) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ClusterParameterGroup is undocumented.
@@ -834,10 +1151,30 @@ type ClusterParameterGroup struct {
 	Tags                 []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *ClusterParameterGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ClusterParameterGroupDetails is undocumented.
 type ClusterParameterGroupDetails struct {
 	Marker     aws.StringValue `xml:"DescribeClusterParametersResult>Marker"`
 	Parameters []Parameter     `xml:"DescribeClusterParametersResult>Parameters>Parameter"`
+}
+
+func (v *ClusterParameterGroupDetails) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ClusterParameterGroupNameMessage is undocumented.
@@ -846,16 +1183,46 @@ type ClusterParameterGroupNameMessage struct {
 	ParameterGroupStatus aws.StringValue `xml:"ParameterGroupStatus"`
 }
 
+func (v *ClusterParameterGroupNameMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ClusterParameterGroupStatus is undocumented.
 type ClusterParameterGroupStatus struct {
 	ParameterApplyStatus aws.StringValue `xml:"ParameterApplyStatus"`
 	ParameterGroupName   aws.StringValue `xml:"ParameterGroupName"`
 }
 
+func (v *ClusterParameterGroupStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ClusterParameterGroupsMessage is undocumented.
 type ClusterParameterGroupsMessage struct {
 	Marker          aws.StringValue         `xml:"DescribeClusterParameterGroupsResult>Marker"`
 	ParameterGroups []ClusterParameterGroup `xml:"DescribeClusterParameterGroupsResult>ParameterGroups>ClusterParameterGroup"`
+}
+
+func (v *ClusterParameterGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ClusterSecurityGroup is undocumented.
@@ -867,10 +1234,30 @@ type ClusterSecurityGroup struct {
 	Tags                     []Tag              `xml:"Tags>Tag"`
 }
 
+func (v *ClusterSecurityGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ClusterSecurityGroupMembership is undocumented.
 type ClusterSecurityGroupMembership struct {
 	ClusterSecurityGroupName aws.StringValue `xml:"ClusterSecurityGroupName"`
 	Status                   aws.StringValue `xml:"Status"`
+}
+
+func (v *ClusterSecurityGroupMembership) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ClusterSecurityGroupMessage is undocumented.
@@ -879,10 +1266,30 @@ type ClusterSecurityGroupMessage struct {
 	Marker                aws.StringValue        `xml:"DescribeClusterSecurityGroupsResult>Marker"`
 }
 
+func (v *ClusterSecurityGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ClusterSnapshotCopyStatus is undocumented.
 type ClusterSnapshotCopyStatus struct {
 	DestinationRegion aws.StringValue `xml:"DestinationRegion"`
 	RetentionPeriod   aws.LongValue   `xml:"RetentionPeriod"`
+}
+
+func (v *ClusterSnapshotCopyStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ClusterSubnetGroup is undocumented.
@@ -895,10 +1302,30 @@ type ClusterSubnetGroup struct {
 	VPCID                  aws.StringValue `xml:"VpcId"`
 }
 
+func (v *ClusterSubnetGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ClusterSubnetGroupMessage is undocumented.
 type ClusterSubnetGroupMessage struct {
 	ClusterSubnetGroups []ClusterSubnetGroup `xml:"DescribeClusterSubnetGroupsResult>ClusterSubnetGroups>ClusterSubnetGroup"`
 	Marker              aws.StringValue      `xml:"DescribeClusterSubnetGroupsResult>Marker"`
+}
+
+func (v *ClusterSubnetGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ClusterVersion is undocumented.
@@ -908,16 +1335,46 @@ type ClusterVersion struct {
 	Description                 aws.StringValue `xml:"Description"`
 }
 
+func (v *ClusterVersion) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ClusterVersionsMessage is undocumented.
 type ClusterVersionsMessage struct {
 	ClusterVersions []ClusterVersion `xml:"DescribeClusterVersionsResult>ClusterVersions>ClusterVersion"`
 	Marker          aws.StringValue  `xml:"DescribeClusterVersionsResult>Marker"`
 }
 
+func (v *ClusterVersionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ClustersMessage is undocumented.
 type ClustersMessage struct {
 	Clusters []Cluster       `xml:"DescribeClustersResult>Clusters>Cluster"`
 	Marker   aws.StringValue `xml:"DescribeClustersResult>Marker"`
+}
+
+func (v *ClustersMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CopyClusterSnapshotMessage is undocumented.
@@ -927,9 +1384,37 @@ type CopyClusterSnapshotMessage struct {
 	TargetSnapshotIdentifier        aws.StringValue `xml:"TargetSnapshotIdentifier"`
 }
 
+func (v *CopyClusterSnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SourceSnapshotIdentifier"); err != nil {
+		errors["SourceSnapshotIdentifier"] = append(errors["SourceSnapshotIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TargetSnapshotIdentifier"); err != nil {
+		errors["TargetSnapshotIdentifier"] = append(errors["TargetSnapshotIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CopyClusterSnapshotResult is undocumented.
 type CopyClusterSnapshotResult struct {
 	Snapshot *Snapshot `xml:"CopyClusterSnapshotResult>Snapshot"`
+}
+
+func (v *CopyClusterSnapshotResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateClusterMessage is undocumented.
@@ -960,6 +1445,32 @@ type CreateClusterMessage struct {
 	VPCSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
+func (v *CreateClusterMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MasterUserPassword"); err != nil {
+		errors["MasterUserPassword"] = append(errors["MasterUserPassword"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MasterUsername"); err != nil {
+		errors["MasterUsername"] = append(errors["MasterUsername"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NodeType"); err != nil {
+		errors["NodeType"] = append(errors["NodeType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateClusterParameterGroupMessage is undocumented.
 type CreateClusterParameterGroupMessage struct {
 	Description          aws.StringValue `xml:"Description"`
@@ -968,14 +1479,56 @@ type CreateClusterParameterGroupMessage struct {
 	Tags                 []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *CreateClusterParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Description"); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ParameterGroupFamily"); err != nil {
+		errors["ParameterGroupFamily"] = append(errors["ParameterGroupFamily"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ParameterGroupName"); err != nil {
+		errors["ParameterGroupName"] = append(errors["ParameterGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateClusterParameterGroupResult is undocumented.
 type CreateClusterParameterGroupResult struct {
 	ClusterParameterGroup *ClusterParameterGroup `xml:"CreateClusterParameterGroupResult>ClusterParameterGroup"`
 }
 
+func (v *CreateClusterParameterGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateClusterResult is undocumented.
 type CreateClusterResult struct {
 	Cluster *Cluster `xml:"CreateClusterResult>Cluster"`
+}
+
+func (v *CreateClusterResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateClusterSecurityGroupMessage is undocumented.
@@ -985,9 +1538,37 @@ type CreateClusterSecurityGroupMessage struct {
 	Tags                     []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *CreateClusterSecurityGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterSecurityGroupName"); err != nil {
+		errors["ClusterSecurityGroupName"] = append(errors["ClusterSecurityGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Description"); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateClusterSecurityGroupResult is undocumented.
 type CreateClusterSecurityGroupResult struct {
 	ClusterSecurityGroup *ClusterSecurityGroup `xml:"CreateClusterSecurityGroupResult>ClusterSecurityGroup"`
+}
+
+func (v *CreateClusterSecurityGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateClusterSnapshotMessage is undocumented.
@@ -997,9 +1578,37 @@ type CreateClusterSnapshotMessage struct {
 	Tags               []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *CreateClusterSnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SnapshotIdentifier"); err != nil {
+		errors["SnapshotIdentifier"] = append(errors["SnapshotIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateClusterSnapshotResult is undocumented.
 type CreateClusterSnapshotResult struct {
 	Snapshot *Snapshot `xml:"CreateClusterSnapshotResult>Snapshot"`
+}
+
+func (v *CreateClusterSnapshotResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateClusterSubnetGroupMessage is undocumented.
@@ -1010,9 +1619,41 @@ type CreateClusterSubnetGroupMessage struct {
 	Tags                   []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *CreateClusterSubnetGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterSubnetGroupName"); err != nil {
+		errors["ClusterSubnetGroupName"] = append(errors["ClusterSubnetGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Description"); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubnetIDs"); err != nil {
+		errors["SubnetIDs"] = append(errors["SubnetIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateClusterSubnetGroupResult is undocumented.
 type CreateClusterSubnetGroupResult struct {
 	ClusterSubnetGroup *ClusterSubnetGroup `xml:"CreateClusterSubnetGroupResult>ClusterSubnetGroup"`
+}
+
+func (v *CreateClusterSubnetGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateEventSubscriptionMessage is undocumented.
@@ -1027,9 +1668,37 @@ type CreateEventSubscriptionMessage struct {
 	Tags             []Tag            `xml:"Tags>Tag"`
 }
 
+func (v *CreateEventSubscriptionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SNSTopicARN"); err != nil {
+		errors["SNSTopicARN"] = append(errors["SNSTopicARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubscriptionName"); err != nil {
+		errors["SubscriptionName"] = append(errors["SubscriptionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateEventSubscriptionResult is undocumented.
 type CreateEventSubscriptionResult struct {
 	EventSubscription *EventSubscription `xml:"CreateEventSubscriptionResult>EventSubscription"`
+}
+
+func (v *CreateEventSubscriptionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateHSMClientCertificateMessage is undocumented.
@@ -1038,9 +1707,33 @@ type CreateHSMClientCertificateMessage struct {
 	Tags                           []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *CreateHSMClientCertificateMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HSMClientCertificateIdentifier"); err != nil {
+		errors["HSMClientCertificateIdentifier"] = append(errors["HSMClientCertificateIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateHSMClientCertificateResult is undocumented.
 type CreateHSMClientCertificateResult struct {
 	HSMClientCertificate *HSMClientCertificate `xml:"CreateHsmClientCertificateResult>HsmClientCertificate"`
+}
+
+func (v *CreateHSMClientCertificateResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateHSMConfigurationMessage is undocumented.
@@ -1054,15 +1747,77 @@ type CreateHSMConfigurationMessage struct {
 	Tags                       []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *CreateHSMConfigurationMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Description"); err != nil {
+		errors["Description"] = append(errors["Description"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HSMConfigurationIdentifier"); err != nil {
+		errors["HSMConfigurationIdentifier"] = append(errors["HSMConfigurationIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HSMIPAddress"); err != nil {
+		errors["HSMIPAddress"] = append(errors["HSMIPAddress"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HSMPartitionName"); err != nil {
+		errors["HSMPartitionName"] = append(errors["HSMPartitionName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HSMPartitionPassword"); err != nil {
+		errors["HSMPartitionPassword"] = append(errors["HSMPartitionPassword"], err)
+	}
+
+	if err := model.ValidateRequired(v, "HSMServerPublicCertificate"); err != nil {
+		errors["HSMServerPublicCertificate"] = append(errors["HSMServerPublicCertificate"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateHSMConfigurationResult is undocumented.
 type CreateHSMConfigurationResult struct {
 	HSMConfiguration *HSMConfiguration `xml:"CreateHsmConfigurationResult>HsmConfiguration"`
+}
+
+func (v *CreateHSMConfigurationResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateTagsMessage is undocumented.
 type CreateTagsMessage struct {
 	ResourceName aws.StringValue `xml:"ResourceName"`
 	Tags         []Tag           `xml:"Tags>Tag"`
+}
+
+func (v *CreateTagsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ResourceName"); err != nil {
+		errors["ResourceName"] = append(errors["ResourceName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Tags"); err != nil {
+		errors["Tags"] = append(errors["Tags"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DefaultClusterParameters is undocumented.
@@ -1072,6 +1827,16 @@ type DefaultClusterParameters struct {
 	Parameters           []Parameter     `xml:"Parameters>Parameter"`
 }
 
+func (v *DefaultClusterParameters) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteClusterMessage is undocumented.
 type DeleteClusterMessage struct {
 	ClusterIdentifier              aws.StringValue  `xml:"ClusterIdentifier"`
@@ -1079,9 +1844,37 @@ type DeleteClusterMessage struct {
 	SkipFinalClusterSnapshot       aws.BooleanValue `xml:"SkipFinalClusterSnapshot"`
 }
 
+func (v *DeleteClusterMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteClusterParameterGroupMessage is undocumented.
 type DeleteClusterParameterGroupMessage struct {
 	ParameterGroupName aws.StringValue `xml:"ParameterGroupName"`
+}
+
+func (v *DeleteClusterParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ParameterGroupName"); err != nil {
+		errors["ParameterGroupName"] = append(errors["ParameterGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteClusterResult is undocumented.
@@ -1089,9 +1882,33 @@ type DeleteClusterResult struct {
 	Cluster *Cluster `xml:"DeleteClusterResult>Cluster"`
 }
 
+func (v *DeleteClusterResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteClusterSecurityGroupMessage is undocumented.
 type DeleteClusterSecurityGroupMessage struct {
 	ClusterSecurityGroupName aws.StringValue `xml:"ClusterSecurityGroupName"`
+}
+
+func (v *DeleteClusterSecurityGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterSecurityGroupName"); err != nil {
+		errors["ClusterSecurityGroupName"] = append(errors["ClusterSecurityGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteClusterSnapshotMessage is undocumented.
@@ -1100,9 +1917,33 @@ type DeleteClusterSnapshotMessage struct {
 	SnapshotIdentifier        aws.StringValue `xml:"SnapshotIdentifier"`
 }
 
+func (v *DeleteClusterSnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SnapshotIdentifier"); err != nil {
+		errors["SnapshotIdentifier"] = append(errors["SnapshotIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteClusterSnapshotResult is undocumented.
 type DeleteClusterSnapshotResult struct {
 	Snapshot *Snapshot `xml:"DeleteClusterSnapshotResult>Snapshot"`
+}
+
+func (v *DeleteClusterSnapshotResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteClusterSubnetGroupMessage is undocumented.
@@ -1110,9 +1951,37 @@ type DeleteClusterSubnetGroupMessage struct {
 	ClusterSubnetGroupName aws.StringValue `xml:"ClusterSubnetGroupName"`
 }
 
+func (v *DeleteClusterSubnetGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterSubnetGroupName"); err != nil {
+		errors["ClusterSubnetGroupName"] = append(errors["ClusterSubnetGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteEventSubscriptionMessage is undocumented.
 type DeleteEventSubscriptionMessage struct {
 	SubscriptionName aws.StringValue `xml:"SubscriptionName"`
+}
+
+func (v *DeleteEventSubscriptionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SubscriptionName"); err != nil {
+		errors["SubscriptionName"] = append(errors["SubscriptionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteHSMClientCertificateMessage is undocumented.
@@ -1120,15 +1989,61 @@ type DeleteHSMClientCertificateMessage struct {
 	HSMClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
 }
 
+func (v *DeleteHSMClientCertificateMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HSMClientCertificateIdentifier"); err != nil {
+		errors["HSMClientCertificateIdentifier"] = append(errors["HSMClientCertificateIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteHSMConfigurationMessage is undocumented.
 type DeleteHSMConfigurationMessage struct {
 	HSMConfigurationIdentifier aws.StringValue `xml:"HsmConfigurationIdentifier"`
+}
+
+func (v *DeleteHSMConfigurationMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "HSMConfigurationIdentifier"); err != nil {
+		errors["HSMConfigurationIdentifier"] = append(errors["HSMConfigurationIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteTagsMessage is undocumented.
 type DeleteTagsMessage struct {
 	ResourceName aws.StringValue `xml:"ResourceName"`
 	TagKeys      []string        `xml:"TagKeys>TagKey"`
+}
+
+func (v *DeleteTagsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ResourceName"); err != nil {
+		errors["ResourceName"] = append(errors["ResourceName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "TagKeys"); err != nil {
+		errors["TagKeys"] = append(errors["TagKeys"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeClusterParameterGroupsMessage is undocumented.
@@ -1140,12 +2055,36 @@ type DescribeClusterParameterGroupsMessage struct {
 	TagValues          []string         `xml:"TagValues>TagValue"`
 }
 
+func (v *DescribeClusterParameterGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeClusterParametersMessage is undocumented.
 type DescribeClusterParametersMessage struct {
 	Marker             aws.StringValue  `xml:"Marker"`
 	MaxRecords         aws.IntegerValue `xml:"MaxRecords"`
 	ParameterGroupName aws.StringValue  `xml:"ParameterGroupName"`
 	Source             aws.StringValue  `xml:"Source"`
+}
+
+func (v *DescribeClusterParametersMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ParameterGroupName"); err != nil {
+		errors["ParameterGroupName"] = append(errors["ParameterGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeClusterSecurityGroupsMessage is undocumented.
@@ -1155,6 +2094,16 @@ type DescribeClusterSecurityGroupsMessage struct {
 	MaxRecords               aws.IntegerValue `xml:"MaxRecords"`
 	TagKeys                  []string         `xml:"TagKeys>TagKey"`
 	TagValues                []string         `xml:"TagValues>TagValue"`
+}
+
+func (v *DescribeClusterSecurityGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeClusterSnapshotsMessage is undocumented.
@@ -1171,6 +2120,16 @@ type DescribeClusterSnapshotsMessage struct {
 	TagValues          []string         `xml:"TagValues>TagValue"`
 }
 
+func (v *DescribeClusterSnapshotsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeClusterSubnetGroupsMessage is undocumented.
 type DescribeClusterSubnetGroupsMessage struct {
 	ClusterSubnetGroupName aws.StringValue  `xml:"ClusterSubnetGroupName"`
@@ -1180,12 +2139,32 @@ type DescribeClusterSubnetGroupsMessage struct {
 	TagValues              []string         `xml:"TagValues>TagValue"`
 }
 
+func (v *DescribeClusterSubnetGroupsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeClusterVersionsMessage is undocumented.
 type DescribeClusterVersionsMessage struct {
 	ClusterParameterGroupFamily aws.StringValue  `xml:"ClusterParameterGroupFamily"`
 	ClusterVersion              aws.StringValue  `xml:"ClusterVersion"`
 	Marker                      aws.StringValue  `xml:"Marker"`
 	MaxRecords                  aws.IntegerValue `xml:"MaxRecords"`
+}
+
+func (v *DescribeClusterVersionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeClustersMessage is undocumented.
@@ -1197,6 +2176,16 @@ type DescribeClustersMessage struct {
 	TagValues         []string         `xml:"TagValues>TagValue"`
 }
 
+func (v *DescribeClustersMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDefaultClusterParametersMessage is undocumented.
 type DescribeDefaultClusterParametersMessage struct {
 	Marker               aws.StringValue  `xml:"Marker"`
@@ -1204,9 +2193,33 @@ type DescribeDefaultClusterParametersMessage struct {
 	ParameterGroupFamily aws.StringValue  `xml:"ParameterGroupFamily"`
 }
 
+func (v *DescribeDefaultClusterParametersMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ParameterGroupFamily"); err != nil {
+		errors["ParameterGroupFamily"] = append(errors["ParameterGroupFamily"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDefaultClusterParametersResult is undocumented.
 type DescribeDefaultClusterParametersResult struct {
 	DefaultClusterParameters *DefaultClusterParameters `xml:"DescribeDefaultClusterParametersResult>DefaultClusterParameters"`
+}
+
+func (v *DescribeDefaultClusterParametersResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeEventCategoriesMessage is undocumented.
@@ -1214,11 +2227,31 @@ type DescribeEventCategoriesMessage struct {
 	SourceType aws.StringValue `xml:"SourceType"`
 }
 
+func (v *DescribeEventCategoriesMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeEventSubscriptionsMessage is undocumented.
 type DescribeEventSubscriptionsMessage struct {
 	Marker           aws.StringValue  `xml:"Marker"`
 	MaxRecords       aws.IntegerValue `xml:"MaxRecords"`
 	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
+}
+
+func (v *DescribeEventSubscriptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeEventsMessage is undocumented.
@@ -1232,6 +2265,26 @@ type DescribeEventsMessage struct {
 	StartTime        time.Time        `xml:"StartTime"`
 }
 
+func (v *DescribeEventsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	SourceTypeEnum := []string{
+		SourceTypeCluster,
+		SourceTypeClusterParameterGroup,
+		SourceTypeClusterSecurityGroup,
+		SourceTypeClusterSnapshot,
+	}
+	if err := model.ValidateEnum(v, "SourceType", SourceTypeEnum); err != nil {
+		errors["SourceType"] = append(errors["SourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeHSMClientCertificatesMessage is undocumented.
 type DescribeHSMClientCertificatesMessage struct {
 	HSMClientCertificateIdentifier aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
@@ -1239,6 +2292,16 @@ type DescribeHSMClientCertificatesMessage struct {
 	MaxRecords                     aws.IntegerValue `xml:"MaxRecords"`
 	TagKeys                        []string         `xml:"TagKeys>TagKey"`
 	TagValues                      []string         `xml:"TagValues>TagValue"`
+}
+
+func (v *DescribeHSMClientCertificatesMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeHSMConfigurationsMessage is undocumented.
@@ -1250,9 +2313,33 @@ type DescribeHSMConfigurationsMessage struct {
 	TagValues                  []string         `xml:"TagValues>TagValue"`
 }
 
+func (v *DescribeHSMConfigurationsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeLoggingStatusMessage is undocumented.
 type DescribeLoggingStatusMessage struct {
 	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
+}
+
+func (v *DescribeLoggingStatusMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeOrderableClusterOptionsMessage is undocumented.
@@ -1263,11 +2350,31 @@ type DescribeOrderableClusterOptionsMessage struct {
 	NodeType       aws.StringValue  `xml:"NodeType"`
 }
 
+func (v *DescribeOrderableClusterOptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeReservedNodeOfferingsMessage is undocumented.
 type DescribeReservedNodeOfferingsMessage struct {
 	Marker                 aws.StringValue  `xml:"Marker"`
 	MaxRecords             aws.IntegerValue `xml:"MaxRecords"`
 	ReservedNodeOfferingID aws.StringValue  `xml:"ReservedNodeOfferingId"`
+}
+
+func (v *DescribeReservedNodeOfferingsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeReservedNodesMessage is undocumented.
@@ -1277,9 +2384,33 @@ type DescribeReservedNodesMessage struct {
 	ReservedNodeID aws.StringValue  `xml:"ReservedNodeId"`
 }
 
+func (v *DescribeReservedNodesMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeResizeMessage is undocumented.
 type DescribeResizeMessage struct {
 	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
+}
+
+func (v *DescribeResizeMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTagsMessage is undocumented.
@@ -1292,9 +2423,33 @@ type DescribeTagsMessage struct {
 	TagValues    []string         `xml:"TagValues>TagValue"`
 }
 
+func (v *DescribeTagsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DisableLoggingMessage is undocumented.
 type DisableLoggingMessage struct {
 	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
+}
+
+func (v *DisableLoggingMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DisableSnapshotCopyMessage is undocumented.
@@ -1302,9 +2457,33 @@ type DisableSnapshotCopyMessage struct {
 	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
 }
 
+func (v *DisableSnapshotCopyMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DisableSnapshotCopyResult is undocumented.
 type DisableSnapshotCopyResult struct {
 	Cluster *Cluster `xml:"DisableSnapshotCopyResult>Cluster"`
+}
+
+func (v *DisableSnapshotCopyResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EC2SecurityGroup is undocumented.
@@ -1315,10 +2494,30 @@ type EC2SecurityGroup struct {
 	Tags                    []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *EC2SecurityGroup) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ElasticIPStatus is undocumented.
 type ElasticIPStatus struct {
 	ElasticIP aws.StringValue `xml:"ElasticIp"`
 	Status    aws.StringValue `xml:"Status"`
+}
+
+func (v *ElasticIPStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EnableLoggingMessage is undocumented.
@@ -1328,6 +2527,24 @@ type EnableLoggingMessage struct {
 	S3KeyPrefix       aws.StringValue `xml:"S3KeyPrefix"`
 }
 
+func (v *EnableLoggingMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "BucketName"); err != nil {
+		errors["BucketName"] = append(errors["BucketName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnableSnapshotCopyMessage is undocumented.
 type EnableSnapshotCopyMessage struct {
 	ClusterIdentifier aws.StringValue  `xml:"ClusterIdentifier"`
@@ -1335,15 +2552,53 @@ type EnableSnapshotCopyMessage struct {
 	RetentionPeriod   aws.IntegerValue `xml:"RetentionPeriod"`
 }
 
+func (v *EnableSnapshotCopyMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DestinationRegion"); err != nil {
+		errors["DestinationRegion"] = append(errors["DestinationRegion"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnableSnapshotCopyResult is undocumented.
 type EnableSnapshotCopyResult struct {
 	Cluster *Cluster `xml:"EnableSnapshotCopyResult>Cluster"`
+}
+
+func (v *EnableSnapshotCopyResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Endpoint is undocumented.
 type Endpoint struct {
 	Address aws.StringValue  `xml:"Address"`
 	Port    aws.IntegerValue `xml:"Port"`
+}
+
+func (v *Endpoint) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Event is undocumented.
@@ -1357,15 +2612,55 @@ type Event struct {
 	SourceType       aws.StringValue `xml:"SourceType"`
 }
 
+func (v *Event) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	SourceTypeEnum := []string{
+		SourceTypeCluster,
+		SourceTypeClusterParameterGroup,
+		SourceTypeClusterSecurityGroup,
+		SourceTypeClusterSnapshot,
+	}
+	if err := model.ValidateEnum(v, "SourceType", SourceTypeEnum); err != nil {
+		errors["SourceType"] = append(errors["SourceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EventCategoriesMap is undocumented.
 type EventCategoriesMap struct {
 	Events     []EventInfoMap  `xml:"Events>EventInfoMap"`
 	SourceType aws.StringValue `xml:"SourceType"`
 }
 
+func (v *EventCategoriesMap) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EventCategoriesMessage is undocumented.
 type EventCategoriesMessage struct {
 	EventCategoriesMapList []EventCategoriesMap `xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
+}
+
+func (v *EventCategoriesMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EventInfoMap is undocumented.
@@ -1374,6 +2669,16 @@ type EventInfoMap struct {
 	EventDescription aws.StringValue `xml:"EventDescription"`
 	EventID          aws.StringValue `xml:"EventId"`
 	Severity         aws.StringValue `xml:"Severity"`
+}
+
+func (v *EventInfoMap) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // EventSubscription is undocumented.
@@ -1391,16 +2696,46 @@ type EventSubscription struct {
 	Tags                     []Tag            `xml:"Tags>Tag"`
 }
 
+func (v *EventSubscription) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EventSubscriptionsMessage is undocumented.
 type EventSubscriptionsMessage struct {
 	EventSubscriptionsList []EventSubscription `xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
 	Marker                 aws.StringValue     `xml:"DescribeEventSubscriptionsResult>Marker"`
 }
 
+func (v *EventSubscriptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EventsMessage is undocumented.
 type EventsMessage struct {
 	Events []Event         `xml:"DescribeEventsResult>Events>Event"`
 	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
+}
+
+func (v *EventsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // HSMClientCertificate is undocumented.
@@ -1410,10 +2745,30 @@ type HSMClientCertificate struct {
 	Tags                           []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *HSMClientCertificate) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // HSMClientCertificateMessage is undocumented.
 type HSMClientCertificateMessage struct {
 	HSMClientCertificates []HSMClientCertificate `xml:"DescribeHsmClientCertificatesResult>HsmClientCertificates>HsmClientCertificate"`
 	Marker                aws.StringValue        `xml:"DescribeHsmClientCertificatesResult>Marker"`
+}
+
+func (v *HSMClientCertificateMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // HSMConfiguration is undocumented.
@@ -1425,10 +2780,30 @@ type HSMConfiguration struct {
 	Tags                       []Tag           `xml:"Tags>Tag"`
 }
 
+func (v *HSMConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // HSMConfigurationMessage is undocumented.
 type HSMConfigurationMessage struct {
 	HSMConfigurations []HSMConfiguration `xml:"DescribeHsmConfigurationsResult>HsmConfigurations>HsmConfiguration"`
 	Marker            aws.StringValue    `xml:"DescribeHsmConfigurationsResult>Marker"`
+}
+
+func (v *HSMConfigurationMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // HSMStatus is undocumented.
@@ -1438,11 +2813,31 @@ type HSMStatus struct {
 	Status                         aws.StringValue `xml:"Status"`
 }
 
+func (v *HSMStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // IPRange is undocumented.
 type IPRange struct {
 	CIDRIP aws.StringValue `xml:"CIDRIP"`
 	Status aws.StringValue `xml:"Status"`
 	Tags   []Tag           `xml:"Tags>Tag"`
+}
+
+func (v *IPRange) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LoggingStatus is undocumented.
@@ -1453,6 +2848,16 @@ type LoggingStatus struct {
 	LastSuccessfulDeliveryTime time.Time        `xml:"LastSuccessfulDeliveryTime"`
 	LoggingEnabled             aws.BooleanValue `xml:"LoggingEnabled"`
 	S3KeyPrefix                aws.StringValue  `xml:"S3KeyPrefix"`
+}
+
+func (v *LoggingStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyClusterMessage is undocumented.
@@ -1474,15 +2879,57 @@ type ModifyClusterMessage struct {
 	VPCSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
+func (v *ModifyClusterMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyClusterParameterGroupMessage is undocumented.
 type ModifyClusterParameterGroupMessage struct {
 	ParameterGroupName aws.StringValue `xml:"ParameterGroupName"`
 	Parameters         []Parameter     `xml:"Parameters>Parameter"`
 }
 
+func (v *ModifyClusterParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ParameterGroupName"); err != nil {
+		errors["ParameterGroupName"] = append(errors["ParameterGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Parameters"); err != nil {
+		errors["Parameters"] = append(errors["Parameters"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyClusterResult is undocumented.
 type ModifyClusterResult struct {
 	Cluster *Cluster `xml:"ModifyClusterResult>Cluster"`
+}
+
+func (v *ModifyClusterResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyClusterSubnetGroupMessage is undocumented.
@@ -1492,9 +2939,37 @@ type ModifyClusterSubnetGroupMessage struct {
 	SubnetIDs              []string        `xml:"SubnetIds>SubnetIdentifier"`
 }
 
+func (v *ModifyClusterSubnetGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterSubnetGroupName"); err != nil {
+		errors["ClusterSubnetGroupName"] = append(errors["ClusterSubnetGroupName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SubnetIDs"); err != nil {
+		errors["SubnetIDs"] = append(errors["SubnetIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyClusterSubnetGroupResult is undocumented.
 type ModifyClusterSubnetGroupResult struct {
 	ClusterSubnetGroup *ClusterSubnetGroup `xml:"ModifyClusterSubnetGroupResult>ClusterSubnetGroup"`
+}
+
+func (v *ModifyClusterSubnetGroupResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifyEventSubscriptionMessage is undocumented.
@@ -1508,9 +2983,33 @@ type ModifyEventSubscriptionMessage struct {
 	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
 }
 
+func (v *ModifyEventSubscriptionMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "SubscriptionName"); err != nil {
+		errors["SubscriptionName"] = append(errors["SubscriptionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifyEventSubscriptionResult is undocumented.
 type ModifyEventSubscriptionResult struct {
 	EventSubscription *EventSubscription `xml:"ModifyEventSubscriptionResult>EventSubscription"`
+}
+
+func (v *ModifyEventSubscriptionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ModifySnapshotCopyRetentionPeriodMessage is undocumented.
@@ -1519,9 +3018,37 @@ type ModifySnapshotCopyRetentionPeriodMessage struct {
 	RetentionPeriod   aws.IntegerValue `xml:"RetentionPeriod"`
 }
 
+func (v *ModifySnapshotCopyRetentionPeriodMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RetentionPeriod"); err != nil {
+		errors["RetentionPeriod"] = append(errors["RetentionPeriod"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ModifySnapshotCopyRetentionPeriodResult is undocumented.
 type ModifySnapshotCopyRetentionPeriodResult struct {
 	Cluster *Cluster `xml:"ModifySnapshotCopyRetentionPeriodResult>Cluster"`
+}
+
+func (v *ModifySnapshotCopyRetentionPeriodResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // OrderableClusterOption is undocumented.
@@ -1532,10 +3059,30 @@ type OrderableClusterOption struct {
 	NodeType          aws.StringValue    `xml:"NodeType"`
 }
 
+func (v *OrderableClusterOption) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // OrderableClusterOptionsMessage is undocumented.
 type OrderableClusterOptionsMessage struct {
 	Marker                  aws.StringValue          `xml:"DescribeOrderableClusterOptionsResult>Marker"`
 	OrderableClusterOptions []OrderableClusterOption `xml:"DescribeOrderableClusterOptionsResult>OrderableClusterOptions>OrderableClusterOption"`
+}
+
+func (v *OrderableClusterOptionsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Parameter is undocumented.
@@ -1550,6 +3097,16 @@ type Parameter struct {
 	Source               aws.StringValue  `xml:"Source"`
 }
 
+func (v *Parameter) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PendingModifiedValues is undocumented.
 type PendingModifiedValues struct {
 	AutomatedSnapshotRetentionPeriod aws.IntegerValue `xml:"AutomatedSnapshotRetentionPeriod"`
@@ -1561,10 +3118,34 @@ type PendingModifiedValues struct {
 	NumberOfNodes                    aws.IntegerValue `xml:"NumberOfNodes"`
 }
 
+func (v *PendingModifiedValues) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // PurchaseReservedNodeOfferingMessage is undocumented.
 type PurchaseReservedNodeOfferingMessage struct {
 	NodeCount              aws.IntegerValue `xml:"NodeCount"`
 	ReservedNodeOfferingID aws.StringValue  `xml:"ReservedNodeOfferingId"`
+}
+
+func (v *PurchaseReservedNodeOfferingMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ReservedNodeOfferingID"); err != nil {
+		errors["ReservedNodeOfferingID"] = append(errors["ReservedNodeOfferingID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // PurchaseReservedNodeOfferingResult is undocumented.
@@ -1572,9 +3153,33 @@ type PurchaseReservedNodeOfferingResult struct {
 	ReservedNode *ReservedNode `xml:"PurchaseReservedNodeOfferingResult>ReservedNode"`
 }
 
+func (v *PurchaseReservedNodeOfferingResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RebootClusterMessage is undocumented.
 type RebootClusterMessage struct {
 	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
+}
+
+func (v *RebootClusterMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RebootClusterResult is undocumented.
@@ -1582,10 +3187,30 @@ type RebootClusterResult struct {
 	Cluster *Cluster `xml:"RebootClusterResult>Cluster"`
 }
 
+func (v *RebootClusterResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RecurringCharge is undocumented.
 type RecurringCharge struct {
 	RecurringChargeAmount    aws.DoubleValue `xml:"RecurringChargeAmount"`
 	RecurringChargeFrequency aws.StringValue `xml:"RecurringChargeFrequency"`
+}
+
+func (v *RecurringCharge) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReservedNode is undocumented.
@@ -1604,6 +3229,16 @@ type ReservedNode struct {
 	UsagePrice             aws.DoubleValue   `xml:"UsagePrice"`
 }
 
+func (v *ReservedNode) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReservedNodeOffering is undocumented.
 type ReservedNodeOffering struct {
 	CurrencyCode           aws.StringValue   `xml:"CurrencyCode"`
@@ -1616,10 +3251,30 @@ type ReservedNodeOffering struct {
 	UsagePrice             aws.DoubleValue   `xml:"UsagePrice"`
 }
 
+func (v *ReservedNodeOffering) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReservedNodeOfferingsMessage is undocumented.
 type ReservedNodeOfferingsMessage struct {
 	Marker                aws.StringValue        `xml:"DescribeReservedNodeOfferingsResult>Marker"`
 	ReservedNodeOfferings []ReservedNodeOffering `xml:"DescribeReservedNodeOfferingsResult>ReservedNodeOfferings>ReservedNodeOffering"`
+}
+
+func (v *ReservedNodeOfferingsMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ReservedNodesMessage is undocumented.
@@ -1628,11 +3283,35 @@ type ReservedNodesMessage struct {
 	ReservedNodes []ReservedNode  `xml:"DescribeReservedNodesResult>ReservedNodes>ReservedNode"`
 }
 
+func (v *ReservedNodesMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ResetClusterParameterGroupMessage is undocumented.
 type ResetClusterParameterGroupMessage struct {
 	ParameterGroupName aws.StringValue  `xml:"ParameterGroupName"`
 	Parameters         []Parameter      `xml:"Parameters>Parameter"`
 	ResetAllParameters aws.BooleanValue `xml:"ResetAllParameters"`
+}
+
+func (v *ResetClusterParameterGroupMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ParameterGroupName"); err != nil {
+		errors["ParameterGroupName"] = append(errors["ParameterGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ResizeProgressMessage is undocumented.
@@ -1649,6 +3328,16 @@ type ResizeProgressMessage struct {
 	TargetNodeType                     aws.StringValue  `xml:"DescribeResizeResult>TargetNodeType"`
 	TargetNumberOfNodes                aws.IntegerValue `xml:"DescribeResizeResult>TargetNumberOfNodes"`
 	TotalResizeDataInMegaBytes         aws.LongValue    `xml:"DescribeResizeResult>TotalResizeDataInMegaBytes"`
+}
+
+func (v *ResizeProgressMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RestoreFromClusterSnapshotMessage is undocumented.
@@ -1673,9 +3362,37 @@ type RestoreFromClusterSnapshotMessage struct {
 	VPCSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
+func (v *RestoreFromClusterSnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SnapshotIdentifier"); err != nil {
+		errors["SnapshotIdentifier"] = append(errors["SnapshotIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RestoreFromClusterSnapshotResult is undocumented.
 type RestoreFromClusterSnapshotResult struct {
 	Cluster *Cluster `xml:"RestoreFromClusterSnapshotResult>Cluster"`
+}
+
+func (v *RestoreFromClusterSnapshotResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RestoreStatus is undocumented.
@@ -1688,6 +3405,16 @@ type RestoreStatus struct {
 	Status                                 aws.StringValue `xml:"Status"`
 }
 
+func (v *RestoreStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RevokeClusterSecurityGroupIngressMessage is undocumented.
 type RevokeClusterSecurityGroupIngressMessage struct {
 	CIDRIP                   aws.StringValue `xml:"CIDRIP"`
@@ -1696,9 +3423,33 @@ type RevokeClusterSecurityGroupIngressMessage struct {
 	EC2SecurityGroupOwnerID  aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
 }
 
+func (v *RevokeClusterSecurityGroupIngressMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterSecurityGroupName"); err != nil {
+		errors["ClusterSecurityGroupName"] = append(errors["ClusterSecurityGroupName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RevokeClusterSecurityGroupIngressResult is undocumented.
 type RevokeClusterSecurityGroupIngressResult struct {
 	ClusterSecurityGroup *ClusterSecurityGroup `xml:"RevokeClusterSecurityGroupIngressResult>ClusterSecurityGroup"`
+}
+
+func (v *RevokeClusterSecurityGroupIngressResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RevokeSnapshotAccessMessage is undocumented.
@@ -1708,9 +3459,37 @@ type RevokeSnapshotAccessMessage struct {
 	SnapshotIdentifier        aws.StringValue `xml:"SnapshotIdentifier"`
 }
 
+func (v *RevokeSnapshotAccessMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccountWithRestoreAccess"); err != nil {
+		errors["AccountWithRestoreAccess"] = append(errors["AccountWithRestoreAccess"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SnapshotIdentifier"); err != nil {
+		errors["SnapshotIdentifier"] = append(errors["SnapshotIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RevokeSnapshotAccessResult is undocumented.
 type RevokeSnapshotAccessResult struct {
 	Snapshot *Snapshot `xml:"RevokeSnapshotAccessResult>Snapshot"`
+}
+
+func (v *RevokeSnapshotAccessResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RotateEncryptionKeyMessage is undocumented.
@@ -1718,9 +3497,33 @@ type RotateEncryptionKeyMessage struct {
 	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
 }
 
+func (v *RotateEncryptionKeyMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ClusterIdentifier"); err != nil {
+		errors["ClusterIdentifier"] = append(errors["ClusterIdentifier"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RotateEncryptionKeyResult is undocumented.
 type RotateEncryptionKeyResult struct {
 	Cluster *Cluster `xml:"RotateEncryptionKeyResult>Cluster"`
+}
+
+func (v *RotateEncryptionKeyResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Snapshot is undocumented.
@@ -1754,10 +3557,30 @@ type Snapshot struct {
 	VPCID                                  aws.StringValue            `xml:"VpcId"`
 }
 
+func (v *Snapshot) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SnapshotMessage is undocumented.
 type SnapshotMessage struct {
 	Marker    aws.StringValue `xml:"DescribeClusterSnapshotsResult>Marker"`
 	Snapshots []Snapshot      `xml:"DescribeClusterSnapshotsResult>Snapshots>Snapshot"`
+}
+
+func (v *SnapshotMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for RedShift.
@@ -1775,10 +3598,30 @@ type Subnet struct {
 	SubnetStatus           aws.StringValue   `xml:"SubnetStatus"`
 }
 
+func (v *Subnet) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Tag is undocumented.
 type Tag struct {
 	Key   aws.StringValue `xml:"Key"`
 	Value aws.StringValue `xml:"Value"`
+}
+
+func (v *Tag) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TaggedResource is undocumented.
@@ -1788,16 +3631,46 @@ type TaggedResource struct {
 	Tag          *Tag            `xml:"Tag"`
 }
 
+func (v *TaggedResource) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TaggedResourceListMessage is undocumented.
 type TaggedResourceListMessage struct {
 	Marker          aws.StringValue  `xml:"DescribeTagsResult>Marker"`
 	TaggedResources []TaggedResource `xml:"DescribeTagsResult>TaggedResources>TaggedResource"`
 }
 
+func (v *TaggedResourceListMessage) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VPCSecurityGroupMembership is undocumented.
 type VPCSecurityGroupMembership struct {
 	Status             aws.StringValue `xml:"Status"`
 	VPCSecurityGroupID aws.StringValue `xml:"VpcSecurityGroupId"`
+}
+
+func (v *VPCSecurityGroupMembership) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeClusterParameterGroupsResult is a wrapper for ClusterParameterGroupsMessage.

@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // CloudSearch is a client for Amazon CloudSearch.
@@ -42,6 +43,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Clo
 // BuildSuggesters indexes the search suggestions. For more information,
 // see Configuring Suggesters in the Amazon CloudSearch Developer Guide
 func (c *CloudSearch) BuildSuggesters(req *BuildSuggestersRequest) (resp *BuildSuggestersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &BuildSuggestersResult{}
 	err = c.client.Do("BuildSuggesters", "POST", "/", req, resp)
 	return
@@ -50,6 +55,10 @@ func (c *CloudSearch) BuildSuggesters(req *BuildSuggestersRequest) (resp *BuildS
 // CreateDomain creates a new search domain. For more information, see
 // Creating a Search Domain in the Amazon CloudSearch Developer Guide
 func (c *CloudSearch) CreateDomain(req *CreateDomainRequest) (resp *CreateDomainResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDomainResult{}
 	err = c.client.Do("CreateDomain", "POST", "/", req, resp)
 	return
@@ -60,6 +69,10 @@ func (c *CloudSearch) CreateDomain(req *CreateDomainRequest) (resp *CreateDomain
 // processing options. For more information, see Configuring Analysis
 // Schemes in the Amazon CloudSearch Developer Guide
 func (c *CloudSearch) DefineAnalysisScheme(req *DefineAnalysisSchemeRequest) (resp *DefineAnalysisSchemeResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DefineAnalysisSchemeResult{}
 	err = c.client.Do("DefineAnalysisScheme", "POST", "/", req, resp)
 	return
@@ -71,6 +84,10 @@ func (c *CloudSearch) DefineAnalysisScheme(req *DefineAnalysisSchemeRequest) (re
 // information, see Configuring Expressions in the Amazon CloudSearch
 // Developer Guide
 func (c *CloudSearch) DefineExpression(req *DefineExpressionRequest) (resp *DefineExpressionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DefineExpressionResult{}
 	err = c.client.Do("DefineExpression", "POST", "/", req, resp)
 	return
@@ -85,6 +102,10 @@ func (c *CloudSearch) DefineExpression(req *DefineExpressionRequest) (resp *Defi
 // configuration replaces the old one. For more information, see
 // Configuring Index Fields in the Amazon CloudSearch Developer Guide .
 func (c *CloudSearch) DefineIndexField(req *DefineIndexFieldRequest) (resp *DefineIndexFieldResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DefineIndexFieldResult{}
 	err = c.client.Do("DefineIndexField", "POST", "/", req, resp)
 	return
@@ -97,6 +118,10 @@ func (c *CloudSearch) DefineIndexField(req *DefineIndexFieldRequest) (resp *Defi
 // for the suggester. For more information, see Getting Search Suggestions
 // in the Amazon CloudSearch Developer Guide
 func (c *CloudSearch) DefineSuggester(req *DefineSuggesterRequest) (resp *DefineSuggesterResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DefineSuggesterResult{}
 	err = c.client.Do("DefineSuggester", "POST", "/", req, resp)
 	return
@@ -106,6 +131,10 @@ func (c *CloudSearch) DefineSuggester(req *DefineSuggesterRequest) (resp *Define
 // see Configuring Analysis Schemes in the Amazon CloudSearch Developer
 // Guide .
 func (c *CloudSearch) DeleteAnalysisScheme(req *DeleteAnalysisSchemeRequest) (resp *DeleteAnalysisSchemeResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteAnalysisSchemeResult{}
 	err = c.client.Do("DeleteAnalysisScheme", "POST", "/", req, resp)
 	return
@@ -116,6 +145,10 @@ func (c *CloudSearch) DeleteAnalysisScheme(req *DeleteAnalysisSchemeRequest) (re
 // information, see Deleting a Search Domain in the Amazon CloudSearch
 // Developer Guide .
 func (c *CloudSearch) DeleteDomain(req *DeleteDomainRequest) (resp *DeleteDomainResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteDomainResult{}
 	err = c.client.Do("DeleteDomain", "POST", "/", req, resp)
 	return
@@ -125,6 +158,10 @@ func (c *CloudSearch) DeleteDomain(req *DeleteDomainRequest) (resp *DeleteDomain
 // information, see Configuring Expressions in the Amazon CloudSearch
 // Developer Guide
 func (c *CloudSearch) DeleteExpression(req *DeleteExpressionRequest) (resp *DeleteExpressionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteExpressionResult{}
 	err = c.client.Do("DeleteExpression", "POST", "/", req, resp)
 	return
@@ -134,6 +171,10 @@ func (c *CloudSearch) DeleteExpression(req *DeleteExpressionRequest) (resp *Dele
 // information, see Configuring Index Fields in the Amazon CloudSearch
 // Developer Guide
 func (c *CloudSearch) DeleteIndexField(req *DeleteIndexFieldRequest) (resp *DeleteIndexFieldResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteIndexFieldResult{}
 	err = c.client.Do("DeleteIndexField", "POST", "/", req, resp)
 	return
@@ -142,6 +183,10 @@ func (c *CloudSearch) DeleteIndexField(req *DeleteIndexFieldRequest) (resp *Dele
 // DeleteSuggester deletes a suggester. For more information, see Getting
 // Search Suggestions in the Amazon CloudSearch Developer Guide
 func (c *CloudSearch) DeleteSuggester(req *DeleteSuggesterRequest) (resp *DeleteSuggesterResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DeleteSuggesterResult{}
 	err = c.client.Do("DeleteSuggester", "POST", "/", req, resp)
 	return
@@ -156,6 +201,10 @@ func (c *CloudSearch) DeleteSuggester(req *DeleteSuggesterRequest) (resp *Delete
 // information, see Configuring Analysis Schemes in the Amazon CloudSearch
 // Developer Guide
 func (c *CloudSearch) DescribeAnalysisSchemes(req *DescribeAnalysisSchemesRequest) (resp *DescribeAnalysisSchemesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeAnalysisSchemesResult{}
 	err = c.client.Do("DescribeAnalysisSchemes", "POST", "/", req, resp)
 	return
@@ -167,6 +216,10 @@ func (c *CloudSearch) DescribeAnalysisSchemes(req *DescribeAnalysisSchemesReques
 // exclude pending changes. For more information, see Configuring
 // Availability Options in the Amazon CloudSearch Developer Guide
 func (c *CloudSearch) DescribeAvailabilityOptions(req *DescribeAvailabilityOptionsRequest) (resp *DescribeAvailabilityOptionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeAvailabilityOptionsResult{}
 	err = c.client.Do("DescribeAvailabilityOptions", "POST", "/", req, resp)
 	return
@@ -180,6 +233,10 @@ func (c *CloudSearch) DescribeAvailabilityOptions(req *DescribeAvailabilityOptio
 // Getting Information about a Search Domain in the Amazon CloudSearch
 // Developer Guide
 func (c *CloudSearch) DescribeDomains(req *DescribeDomainsRequest) (resp *DescribeDomainsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDomainsResult{}
 	err = c.client.Do("DescribeDomains", "POST", "/", req, resp)
 	return
@@ -192,6 +249,10 @@ func (c *CloudSearch) DescribeDomains(req *DescribeDomainsRequest) (resp *Descri
 // configuration and exclude pending changes. For more information, see
 // Configuring Expressions in the Amazon CloudSearch Developer Guide
 func (c *CloudSearch) DescribeExpressions(req *DescribeExpressionsRequest) (resp *DescribeExpressionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeExpressionsResult{}
 	err = c.client.Do("DescribeExpressions", "POST", "/", req, resp)
 	return
@@ -204,6 +265,10 @@ func (c *CloudSearch) DescribeExpressions(req *DescribeExpressionsRequest) (resp
 // configuration and exclude pending changes. For more information, see
 // Getting Domain Information in the Amazon CloudSearch Developer Guide
 func (c *CloudSearch) DescribeIndexFields(req *DescribeIndexFieldsRequest) (resp *DescribeIndexFieldsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeIndexFieldsResult{}
 	err = c.client.Do("DescribeIndexFields", "POST", "/", req, resp)
 	return
@@ -214,6 +279,10 @@ func (c *CloudSearch) DescribeIndexFields(req *DescribeIndexFieldsRequest) (resp
 // instance type and replication count. For more information, see
 // Configuring Scaling Options in the Amazon CloudSearch Developer Guide
 func (c *CloudSearch) DescribeScalingParameters(req *DescribeScalingParametersRequest) (resp *DescribeScalingParametersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeScalingParametersResult{}
 	err = c.client.Do("DescribeScalingParameters", "POST", "/", req, resp)
 	return
@@ -226,6 +295,10 @@ func (c *CloudSearch) DescribeScalingParameters(req *DescribeScalingParametersRe
 // pending changes. For more information, see Configuring Access for a
 // Search Domain in the Amazon CloudSearch Developer Guide
 func (c *CloudSearch) DescribeServiceAccessPolicies(req *DescribeServiceAccessPoliciesRequest) (resp *DescribeServiceAccessPoliciesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeServiceAccessPoliciesResult{}
 	err = c.client.Do("DescribeServiceAccessPolicies", "POST", "/", req, resp)
 	return
@@ -239,6 +312,10 @@ func (c *CloudSearch) DescribeServiceAccessPolicies(req *DescribeServiceAccessPo
 // configuration and exclude pending changes. For more information, see
 // Getting Search Suggestions in the Amazon CloudSearch Developer Guide
 func (c *CloudSearch) DescribeSuggesters(req *DescribeSuggestersRequest) (resp *DescribeSuggestersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeSuggestersResult{}
 	err = c.client.Do("DescribeSuggesters", "POST", "/", req, resp)
 	return
@@ -248,6 +325,10 @@ func (c *CloudSearch) DescribeSuggesters(req *DescribeSuggestersRequest) (resp *
 // using the latest indexing options. This operation must be invoked to
 // activate options whose OptionStatus is RequiresIndexDocuments
 func (c *CloudSearch) IndexDocuments(req *IndexDocumentsRequest) (resp *IndexDocumentsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &IndexDocumentsResult{}
 	err = c.client.Do("IndexDocuments", "POST", "/", req, resp)
 	return
@@ -268,6 +349,10 @@ func (c *CloudSearch) ListDomainNames() (resp *ListDomainNamesResult, err error)
 // information, see Configuring Availability Options in the Amazon
 // CloudSearch Developer Guide
 func (c *CloudSearch) UpdateAvailabilityOptions(req *UpdateAvailabilityOptionsRequest) (resp *UpdateAvailabilityOptionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateAvailabilityOptionsResult{}
 	err = c.client.Do("UpdateAvailabilityOptions", "POST", "/", req, resp)
 	return
@@ -282,6 +367,10 @@ func (c *CloudSearch) UpdateAvailabilityOptions(req *UpdateAvailabilityOptionsRe
 // For more information, see Configuring Scaling Options in the Amazon
 // CloudSearch Developer Guide .
 func (c *CloudSearch) UpdateScalingParameters(req *UpdateScalingParametersRequest) (resp *UpdateScalingParametersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateScalingParametersResult{}
 	err = c.client.Do("UpdateScalingParameters", "POST", "/", req, resp)
 	return
@@ -291,6 +380,10 @@ func (c *CloudSearch) UpdateScalingParameters(req *UpdateScalingParametersReques
 // access to the domain's document and search endpoints. For more
 // information, see Configuring Access for an Amazon CloudSearch Domain
 func (c *CloudSearch) UpdateServiceAccessPolicies(req *UpdateServiceAccessPoliciesRequest) (resp *UpdateServiceAccessPoliciesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &UpdateServiceAccessPoliciesResult{}
 	err = c.client.Do("UpdateServiceAccessPolicies", "POST", "/", req, resp)
 	return
@@ -300,6 +393,24 @@ func (c *CloudSearch) UpdateServiceAccessPolicies(req *UpdateServiceAccessPolici
 type AccessPoliciesStatus struct {
 	Options aws.StringValue `xml:"Options"`
 	Status  *OptionStatus   `xml:"Status"`
+}
+
+func (v *AccessPoliciesStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Options"); err != nil {
+		errors["Options"] = append(errors["Options"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudSearch.
@@ -319,11 +430,102 @@ type AnalysisOptions struct {
 	Synonyms                       aws.StringValue `xml:"Synonyms"`
 }
 
+func (v *AnalysisOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	AlgorithmicStemmingEnum := []string{
+		AlgorithmicStemmingFull,
+		AlgorithmicStemmingLight,
+		AlgorithmicStemmingMinimal,
+		AlgorithmicStemmingNone,
+	}
+	if err := model.ValidateEnum(v, "AlgorithmicStemming", AlgorithmicStemmingEnum); err != nil {
+		errors["AlgorithmicStemming"] = append(errors["AlgorithmicStemming"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AnalysisScheme is undocumented.
 type AnalysisScheme struct {
 	AnalysisOptions        *AnalysisOptions `xml:"AnalysisOptions"`
 	AnalysisSchemeLanguage aws.StringValue  `xml:"AnalysisSchemeLanguage"`
 	AnalysisSchemeName     aws.StringValue  `xml:"AnalysisSchemeName"`
+}
+
+func (v *AnalysisScheme) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AnalysisSchemeLanguage"); err != nil {
+		errors["AnalysisSchemeLanguage"] = append(errors["AnalysisSchemeLanguage"], err)
+	}
+
+	AnalysisSchemeLanguageEnum := []string{
+		AnalysisSchemeLanguageAr,
+		AnalysisSchemeLanguageBg,
+		AnalysisSchemeLanguageCa,
+		AnalysisSchemeLanguageCs,
+		AnalysisSchemeLanguageDa,
+		AnalysisSchemeLanguageDe,
+		AnalysisSchemeLanguageEl,
+		AnalysisSchemeLanguageEn,
+		AnalysisSchemeLanguageEs,
+		AnalysisSchemeLanguageEu,
+		AnalysisSchemeLanguageFa,
+		AnalysisSchemeLanguageFi,
+		AnalysisSchemeLanguageFr,
+		AnalysisSchemeLanguageGa,
+		AnalysisSchemeLanguageGl,
+		AnalysisSchemeLanguageHe,
+		AnalysisSchemeLanguageHi,
+		AnalysisSchemeLanguageHu,
+		AnalysisSchemeLanguageHy,
+		AnalysisSchemeLanguageID,
+		AnalysisSchemeLanguageIt,
+		AnalysisSchemeLanguageJa,
+		AnalysisSchemeLanguageKo,
+		AnalysisSchemeLanguageLv,
+		AnalysisSchemeLanguageMul,
+		AnalysisSchemeLanguageNl,
+		AnalysisSchemeLanguageNo,
+		AnalysisSchemeLanguagePt,
+		AnalysisSchemeLanguageRo,
+		AnalysisSchemeLanguageRu,
+		AnalysisSchemeLanguageSv,
+		AnalysisSchemeLanguageTh,
+		AnalysisSchemeLanguageTr,
+		AnalysisSchemeLanguageZhHans,
+		AnalysisSchemeLanguageZhHant,
+	}
+	if err := model.ValidateEnum(v, "AnalysisSchemeLanguage", AnalysisSchemeLanguageEnum); err != nil {
+		errors["AnalysisSchemeLanguage"] = append(errors["AnalysisSchemeLanguage"], err)
+	}
+
+	if err := model.ValidateRequired(v, "AnalysisSchemeName"); err != nil {
+		errors["AnalysisSchemeName"] = append(errors["AnalysisSchemeName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AnalysisSchemeName", 1); err != nil {
+		errors["AnalysisSchemeName"] = append(errors["AnalysisSchemeName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AnalysisSchemeName", 64); err != nil {
+		errors["AnalysisSchemeName"] = append(errors["AnalysisSchemeName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AnalysisSchemeName", `[a-z][a-z0-9_]*`); err != nil {
+		errors["AnalysisSchemeName"] = append(errors["AnalysisSchemeName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudSearch.
@@ -371,10 +573,46 @@ type AnalysisSchemeStatus struct {
 	Status  *OptionStatus   `xml:"Status"`
 }
 
+func (v *AnalysisSchemeStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Options"); err != nil {
+		errors["Options"] = append(errors["Options"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AvailabilityOptionsStatus is undocumented.
 type AvailabilityOptionsStatus struct {
 	Options aws.BooleanValue `xml:"Options"`
 	Status  *OptionStatus    `xml:"Status"`
+}
+
+func (v *AvailabilityOptionsStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Options"); err != nil {
+		errors["Options"] = append(errors["Options"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // BuildSuggestersRequest is undocumented.
@@ -382,9 +620,45 @@ type BuildSuggestersRequest struct {
 	DomainName aws.StringValue `xml:"DomainName"`
 }
 
+func (v *BuildSuggestersRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // BuildSuggestersResponse is undocumented.
 type BuildSuggestersResponse struct {
 	FieldNames []string `xml:"BuildSuggestersResult>FieldNames>member"`
+}
+
+func (v *BuildSuggestersResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateDomainRequest is undocumented.
@@ -392,9 +666,45 @@ type CreateDomainRequest struct {
 	DomainName aws.StringValue `xml:"DomainName"`
 }
 
+func (v *CreateDomainRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDomainResponse is undocumented.
 type CreateDomainResponse struct {
 	DomainStatus *DomainStatus `xml:"CreateDomainResult>DomainStatus"`
+}
+
+func (v *CreateDomainResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DateArrayOptions is undocumented.
@@ -404,6 +714,24 @@ type DateArrayOptions struct {
 	ReturnEnabled aws.BooleanValue `xml:"ReturnEnabled"`
 	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
 	SourceFields  aws.StringValue  `xml:"SourceFields"`
+}
+
+func (v *DateArrayOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "DefaultValue", 1024); err != nil {
+		errors["DefaultValue"] = append(errors["DefaultValue"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SourceFields", `\s*[a-z][a-z0-9_]*\s*(,\s*[a-z][a-z0-9_]*\s*)*`); err != nil {
+		errors["SourceFields"] = append(errors["SourceFields"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DateOptions is undocumented.
@@ -416,15 +744,85 @@ type DateOptions struct {
 	SourceField   aws.StringValue  `xml:"SourceField"`
 }
 
+func (v *DateOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "DefaultValue", 1024); err != nil {
+		errors["DefaultValue"] = append(errors["DefaultValue"], err)
+	}
+
+	if err := model.ValidateMin(v, "SourceField", 1); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidateMax(v, "SourceField", 64); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SourceField", `[a-z][a-z0-9_]*`); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DefineAnalysisSchemeRequest is undocumented.
 type DefineAnalysisSchemeRequest struct {
 	AnalysisScheme *AnalysisScheme `xml:"AnalysisScheme"`
 	DomainName     aws.StringValue `xml:"DomainName"`
 }
 
+func (v *DefineAnalysisSchemeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AnalysisScheme"); err != nil {
+		errors["AnalysisScheme"] = append(errors["AnalysisScheme"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DefineAnalysisSchemeResponse is undocumented.
 type DefineAnalysisSchemeResponse struct {
 	AnalysisScheme *AnalysisSchemeStatus `xml:"DefineAnalysisSchemeResult>AnalysisScheme"`
+}
+
+func (v *DefineAnalysisSchemeResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AnalysisScheme"); err != nil {
+		errors["AnalysisScheme"] = append(errors["AnalysisScheme"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DefineExpressionRequest is undocumented.
@@ -433,9 +831,53 @@ type DefineExpressionRequest struct {
 	Expression *Expression     `xml:"Expression"`
 }
 
+func (v *DefineExpressionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Expression"); err != nil {
+		errors["Expression"] = append(errors["Expression"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DefineExpressionResponse is undocumented.
 type DefineExpressionResponse struct {
 	Expression *ExpressionStatus `xml:"DefineExpressionResult>Expression"`
+}
+
+func (v *DefineExpressionResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Expression"); err != nil {
+		errors["Expression"] = append(errors["Expression"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DefineIndexFieldRequest is undocumented.
@@ -444,9 +886,53 @@ type DefineIndexFieldRequest struct {
 	IndexField *IndexField     `xml:"IndexField"`
 }
 
+func (v *DefineIndexFieldRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IndexField"); err != nil {
+		errors["IndexField"] = append(errors["IndexField"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DefineIndexFieldResponse is undocumented.
 type DefineIndexFieldResponse struct {
 	IndexField *IndexFieldStatus `xml:"DefineIndexFieldResult>IndexField"`
+}
+
+func (v *DefineIndexFieldResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IndexField"); err != nil {
+		errors["IndexField"] = append(errors["IndexField"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DefineSuggesterRequest is undocumented.
@@ -455,9 +941,53 @@ type DefineSuggesterRequest struct {
 	Suggester  *Suggester      `xml:"Suggester"`
 }
 
+func (v *DefineSuggesterRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Suggester"); err != nil {
+		errors["Suggester"] = append(errors["Suggester"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DefineSuggesterResponse is undocumented.
 type DefineSuggesterResponse struct {
 	Suggester *SuggesterStatus `xml:"DefineSuggesterResult>Suggester"`
+}
+
+func (v *DefineSuggesterResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Suggester"); err != nil {
+		errors["Suggester"] = append(errors["Suggester"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteAnalysisSchemeRequest is undocumented.
@@ -466,9 +996,65 @@ type DeleteAnalysisSchemeRequest struct {
 	DomainName         aws.StringValue `xml:"DomainName"`
 }
 
+func (v *DeleteAnalysisSchemeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AnalysisSchemeName"); err != nil {
+		errors["AnalysisSchemeName"] = append(errors["AnalysisSchemeName"], err)
+	}
+
+	if err := model.ValidateMin(v, "AnalysisSchemeName", 1); err != nil {
+		errors["AnalysisSchemeName"] = append(errors["AnalysisSchemeName"], err)
+	}
+
+	if err := model.ValidateMax(v, "AnalysisSchemeName", 64); err != nil {
+		errors["AnalysisSchemeName"] = append(errors["AnalysisSchemeName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "AnalysisSchemeName", `[a-z][a-z0-9_]*`); err != nil {
+		errors["AnalysisSchemeName"] = append(errors["AnalysisSchemeName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteAnalysisSchemeResponse is undocumented.
 type DeleteAnalysisSchemeResponse struct {
 	AnalysisScheme *AnalysisSchemeStatus `xml:"DeleteAnalysisSchemeResult>AnalysisScheme"`
+}
+
+func (v *DeleteAnalysisSchemeResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AnalysisScheme"); err != nil {
+		errors["AnalysisScheme"] = append(errors["AnalysisScheme"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteDomainRequest is undocumented.
@@ -476,9 +1062,45 @@ type DeleteDomainRequest struct {
 	DomainName aws.StringValue `xml:"DomainName"`
 }
 
+func (v *DeleteDomainRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteDomainResponse is undocumented.
 type DeleteDomainResponse struct {
 	DomainStatus *DomainStatus `xml:"DeleteDomainResult>DomainStatus"`
+}
+
+func (v *DeleteDomainResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteExpressionRequest is undocumented.
@@ -487,9 +1109,65 @@ type DeleteExpressionRequest struct {
 	ExpressionName aws.StringValue `xml:"ExpressionName"`
 }
 
+func (v *DeleteExpressionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ExpressionName"); err != nil {
+		errors["ExpressionName"] = append(errors["ExpressionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ExpressionName", 1); err != nil {
+		errors["ExpressionName"] = append(errors["ExpressionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExpressionName", 64); err != nil {
+		errors["ExpressionName"] = append(errors["ExpressionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ExpressionName", `[a-z][a-z0-9_]*`); err != nil {
+		errors["ExpressionName"] = append(errors["ExpressionName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteExpressionResponse is undocumented.
 type DeleteExpressionResponse struct {
 	Expression *ExpressionStatus `xml:"DeleteExpressionResult>Expression"`
+}
+
+func (v *DeleteExpressionResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Expression"); err != nil {
+		errors["Expression"] = append(errors["Expression"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteIndexFieldRequest is undocumented.
@@ -498,9 +1176,65 @@ type DeleteIndexFieldRequest struct {
 	IndexFieldName aws.StringValue `xml:"IndexFieldName"`
 }
 
+func (v *DeleteIndexFieldRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IndexFieldName"); err != nil {
+		errors["IndexFieldName"] = append(errors["IndexFieldName"], err)
+	}
+
+	if err := model.ValidateMin(v, "IndexFieldName", 1); err != nil {
+		errors["IndexFieldName"] = append(errors["IndexFieldName"], err)
+	}
+
+	if err := model.ValidateMax(v, "IndexFieldName", 64); err != nil {
+		errors["IndexFieldName"] = append(errors["IndexFieldName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IndexFieldName", `[a-z][a-z0-9_]*`); err != nil {
+		errors["IndexFieldName"] = append(errors["IndexFieldName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteIndexFieldResponse is undocumented.
 type DeleteIndexFieldResponse struct {
 	IndexField *IndexFieldStatus `xml:"DeleteIndexFieldResult>IndexField"`
+}
+
+func (v *DeleteIndexFieldResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IndexField"); err != nil {
+		errors["IndexField"] = append(errors["IndexField"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteSuggesterRequest is undocumented.
@@ -509,9 +1243,65 @@ type DeleteSuggesterRequest struct {
 	SuggesterName aws.StringValue `xml:"SuggesterName"`
 }
 
+func (v *DeleteSuggesterRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SuggesterName"); err != nil {
+		errors["SuggesterName"] = append(errors["SuggesterName"], err)
+	}
+
+	if err := model.ValidateMin(v, "SuggesterName", 1); err != nil {
+		errors["SuggesterName"] = append(errors["SuggesterName"], err)
+	}
+
+	if err := model.ValidateMax(v, "SuggesterName", 64); err != nil {
+		errors["SuggesterName"] = append(errors["SuggesterName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SuggesterName", `[a-z][a-z0-9_]*`); err != nil {
+		errors["SuggesterName"] = append(errors["SuggesterName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteSuggesterResponse is undocumented.
 type DeleteSuggesterResponse struct {
 	Suggester *SuggesterStatus `xml:"DeleteSuggesterResult>Suggester"`
+}
+
+func (v *DeleteSuggesterResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Suggester"); err != nil {
+		errors["Suggester"] = append(errors["Suggester"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAnalysisSchemesRequest is undocumented.
@@ -521,9 +1311,49 @@ type DescribeAnalysisSchemesRequest struct {
 	DomainName          aws.StringValue  `xml:"DomainName"`
 }
 
+func (v *DescribeAnalysisSchemesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAnalysisSchemesResponse is undocumented.
 type DescribeAnalysisSchemesResponse struct {
 	AnalysisSchemes []AnalysisSchemeStatus `xml:"DescribeAnalysisSchemesResult>AnalysisSchemes>member"`
+}
+
+func (v *DescribeAnalysisSchemesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AnalysisSchemes"); err != nil {
+		errors["AnalysisSchemes"] = append(errors["AnalysisSchemes"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAvailabilityOptionsRequest is undocumented.
@@ -532,9 +1362,45 @@ type DescribeAvailabilityOptionsRequest struct {
 	DomainName aws.StringValue  `xml:"DomainName"`
 }
 
+func (v *DescribeAvailabilityOptionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAvailabilityOptionsResponse is undocumented.
 type DescribeAvailabilityOptionsResponse struct {
 	AvailabilityOptions *AvailabilityOptionsStatus `xml:"DescribeAvailabilityOptionsResult>AvailabilityOptions"`
+}
+
+func (v *DescribeAvailabilityOptionsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeDomainsRequest is undocumented.
@@ -542,9 +1408,33 @@ type DescribeDomainsRequest struct {
 	DomainNames []string `xml:"DomainNames>member"`
 }
 
+func (v *DescribeDomainsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDomainsResponse is undocumented.
 type DescribeDomainsResponse struct {
 	DomainStatusList []DomainStatus `xml:"DescribeDomainsResult>DomainStatusList>member"`
+}
+
+func (v *DescribeDomainsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainStatusList"); err != nil {
+		errors["DomainStatusList"] = append(errors["DomainStatusList"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeExpressionsRequest is undocumented.
@@ -554,9 +1444,49 @@ type DescribeExpressionsRequest struct {
 	ExpressionNames []string         `xml:"ExpressionNames>member"`
 }
 
+func (v *DescribeExpressionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeExpressionsResponse is undocumented.
 type DescribeExpressionsResponse struct {
 	Expressions []ExpressionStatus `xml:"DescribeExpressionsResult>Expressions>member"`
+}
+
+func (v *DescribeExpressionsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Expressions"); err != nil {
+		errors["Expressions"] = append(errors["Expressions"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeIndexFieldsRequest is undocumented.
@@ -566,9 +1496,49 @@ type DescribeIndexFieldsRequest struct {
 	FieldNames []string         `xml:"FieldNames>member"`
 }
 
+func (v *DescribeIndexFieldsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeIndexFieldsResponse is undocumented.
 type DescribeIndexFieldsResponse struct {
 	IndexFields []IndexFieldStatus `xml:"DescribeIndexFieldsResult>IndexFields>member"`
+}
+
+func (v *DescribeIndexFieldsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IndexFields"); err != nil {
+		errors["IndexFields"] = append(errors["IndexFields"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeScalingParametersRequest is undocumented.
@@ -576,9 +1546,49 @@ type DescribeScalingParametersRequest struct {
 	DomainName aws.StringValue `xml:"DomainName"`
 }
 
+func (v *DescribeScalingParametersRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeScalingParametersResponse is undocumented.
 type DescribeScalingParametersResponse struct {
 	ScalingParameters *ScalingParametersStatus `xml:"DescribeScalingParametersResult>ScalingParameters"`
+}
+
+func (v *DescribeScalingParametersResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ScalingParameters"); err != nil {
+		errors["ScalingParameters"] = append(errors["ScalingParameters"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeServiceAccessPoliciesRequest is undocumented.
@@ -587,9 +1597,49 @@ type DescribeServiceAccessPoliciesRequest struct {
 	DomainName aws.StringValue  `xml:"DomainName"`
 }
 
+func (v *DescribeServiceAccessPoliciesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeServiceAccessPoliciesResponse is undocumented.
 type DescribeServiceAccessPoliciesResponse struct {
 	AccessPolicies *AccessPoliciesStatus `xml:"DescribeServiceAccessPoliciesResult>AccessPolicies"`
+}
+
+func (v *DescribeServiceAccessPoliciesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccessPolicies"); err != nil {
+		errors["AccessPolicies"] = append(errors["AccessPolicies"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeSuggestersRequest is undocumented.
@@ -599,9 +1649,49 @@ type DescribeSuggestersRequest struct {
 	SuggesterNames []string         `xml:"SuggesterNames>member"`
 }
 
+func (v *DescribeSuggestersRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeSuggestersResponse is undocumented.
 type DescribeSuggestersResponse struct {
 	Suggesters []SuggesterStatus `xml:"DescribeSuggestersResult>Suggesters>member"`
+}
+
+func (v *DescribeSuggestersResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Suggesters"); err != nil {
+		errors["Suggesters"] = append(errors["Suggesters"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DocumentSuggesterOptions is undocumented.
@@ -609,6 +1699,41 @@ type DocumentSuggesterOptions struct {
 	FuzzyMatching  aws.StringValue `xml:"FuzzyMatching"`
 	SortExpression aws.StringValue `xml:"SortExpression"`
 	SourceField    aws.StringValue `xml:"SourceField"`
+}
+
+func (v *DocumentSuggesterOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	FuzzyMatchingEnum := []string{
+		SuggesterFuzzyMatchingHigh,
+		SuggesterFuzzyMatchingLow,
+		SuggesterFuzzyMatchingNone,
+	}
+	if err := model.ValidateEnum(v, "FuzzyMatching", FuzzyMatchingEnum); err != nil {
+		errors["FuzzyMatching"] = append(errors["FuzzyMatching"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SourceField"); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidateMin(v, "SourceField", 1); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidateMax(v, "SourceField", 64); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SourceField", `[a-z][a-z0-9_]*`); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DomainStatus is undocumented.
@@ -628,6 +1753,56 @@ type DomainStatus struct {
 	SearchService          *ServiceEndpoint `xml:"SearchService"`
 }
 
+func (v *DomainStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainID"); err != nil {
+		errors["DomainID"] = append(errors["DomainID"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainID", 1); err != nil {
+		errors["DomainID"] = append(errors["DomainID"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainID", 64); err != nil {
+		errors["DomainID"] = append(errors["DomainID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RequiresIndexDocuments"); err != nil {
+		errors["RequiresIndexDocuments"] = append(errors["RequiresIndexDocuments"], err)
+	}
+
+	if err := model.ValidateMin(v, "SearchInstanceCount", 1); err != nil {
+		errors["SearchInstanceCount"] = append(errors["SearchInstanceCount"], err)
+	}
+
+	if err := model.ValidateMin(v, "SearchPartitionCount", 1); err != nil {
+		errors["SearchPartitionCount"] = append(errors["SearchPartitionCount"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DoubleArrayOptions is undocumented.
 type DoubleArrayOptions struct {
 	DefaultValue  aws.DoubleValue  `xml:"DefaultValue"`
@@ -635,6 +1810,20 @@ type DoubleArrayOptions struct {
 	ReturnEnabled aws.BooleanValue `xml:"ReturnEnabled"`
 	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
 	SourceFields  aws.StringValue  `xml:"SourceFields"`
+}
+
+func (v *DoubleArrayOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "SourceFields", `\s*[a-z][a-z0-9_]*\s*(,\s*[a-z][a-z0-9_]*\s*)*`); err != nil {
+		errors["SourceFields"] = append(errors["SourceFields"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DoubleOptions is undocumented.
@@ -647,10 +1836,70 @@ type DoubleOptions struct {
 	SourceField   aws.StringValue  `xml:"SourceField"`
 }
 
+func (v *DoubleOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "SourceField", 1); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidateMax(v, "SourceField", 64); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SourceField", `[a-z][a-z0-9_]*`); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Expression is undocumented.
 type Expression struct {
 	ExpressionName  aws.StringValue `xml:"ExpressionName"`
 	ExpressionValue aws.StringValue `xml:"ExpressionValue"`
+}
+
+func (v *Expression) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ExpressionName"); err != nil {
+		errors["ExpressionName"] = append(errors["ExpressionName"], err)
+	}
+
+	if err := model.ValidateMin(v, "ExpressionName", 1); err != nil {
+		errors["ExpressionName"] = append(errors["ExpressionName"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExpressionName", 64); err != nil {
+		errors["ExpressionName"] = append(errors["ExpressionName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "ExpressionName", `[a-z][a-z0-9_]*`); err != nil {
+		errors["ExpressionName"] = append(errors["ExpressionName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ExpressionValue"); err != nil {
+		errors["ExpressionValue"] = append(errors["ExpressionValue"], err)
+	}
+
+	if err := model.ValidateMin(v, "ExpressionValue", 1); err != nil {
+		errors["ExpressionValue"] = append(errors["ExpressionValue"], err)
+	}
+
+	if err := model.ValidateMax(v, "ExpressionValue", 10240); err != nil {
+		errors["ExpressionValue"] = append(errors["ExpressionValue"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ExpressionStatus is undocumented.
@@ -659,14 +1908,68 @@ type ExpressionStatus struct {
 	Status  *OptionStatus `xml:"Status"`
 }
 
+func (v *ExpressionStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Options"); err != nil {
+		errors["Options"] = append(errors["Options"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // IndexDocumentsRequest is undocumented.
 type IndexDocumentsRequest struct {
 	DomainName aws.StringValue `xml:"DomainName"`
 }
 
+func (v *IndexDocumentsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // IndexDocumentsResponse is undocumented.
 type IndexDocumentsResponse struct {
 	FieldNames []string `xml:"IndexDocumentsResult>FieldNames>member"`
+}
+
+func (v *IndexDocumentsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // IndexField is undocumented.
@@ -686,10 +1989,75 @@ type IndexField struct {
 	TextOptions         *TextOptions         `xml:"TextOptions"`
 }
 
+func (v *IndexField) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IndexFieldName"); err != nil {
+		errors["IndexFieldName"] = append(errors["IndexFieldName"], err)
+	}
+
+	if err := model.ValidateMin(v, "IndexFieldName", 1); err != nil {
+		errors["IndexFieldName"] = append(errors["IndexFieldName"], err)
+	}
+
+	if err := model.ValidateMax(v, "IndexFieldName", 64); err != nil {
+		errors["IndexFieldName"] = append(errors["IndexFieldName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "IndexFieldName", `[a-z][a-z0-9_]*`); err != nil {
+		errors["IndexFieldName"] = append(errors["IndexFieldName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "IndexFieldType"); err != nil {
+		errors["IndexFieldType"] = append(errors["IndexFieldType"], err)
+	}
+
+	IndexFieldTypeEnum := []string{
+		IndexFieldTypeDate,
+		IndexFieldTypeDateArray,
+		IndexFieldTypeDouble,
+		IndexFieldTypeDoubleArray,
+		IndexFieldTypeInt,
+		IndexFieldTypeIntArray,
+		IndexFieldTypeLatlon,
+		IndexFieldTypeLiteral,
+		IndexFieldTypeLiteralArray,
+		IndexFieldTypeText,
+		IndexFieldTypeTextArray,
+	}
+	if err := model.ValidateEnum(v, "IndexFieldType", IndexFieldTypeEnum); err != nil {
+		errors["IndexFieldType"] = append(errors["IndexFieldType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // IndexFieldStatus is undocumented.
 type IndexFieldStatus struct {
 	Options *IndexField   `xml:"Options"`
 	Status  *OptionStatus `xml:"Status"`
+}
+
+func (v *IndexFieldStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Options"); err != nil {
+		errors["Options"] = append(errors["Options"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudSearch.
@@ -716,6 +2084,20 @@ type IntArrayOptions struct {
 	SourceFields  aws.StringValue  `xml:"SourceFields"`
 }
 
+func (v *IntArrayOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "SourceFields", `\s*[a-z][a-z0-9_]*\s*(,\s*[a-z][a-z0-9_]*\s*)*`); err != nil {
+		errors["SourceFields"] = append(errors["SourceFields"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // IntOptions is undocumented.
 type IntOptions struct {
 	DefaultValue  aws.LongValue    `xml:"DefaultValue"`
@@ -724,6 +2106,28 @@ type IntOptions struct {
 	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
 	SortEnabled   aws.BooleanValue `xml:"SortEnabled"`
 	SourceField   aws.StringValue  `xml:"SourceField"`
+}
+
+func (v *IntOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "SourceField", 1); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidateMax(v, "SourceField", 64); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SourceField", `[a-z][a-z0-9_]*`); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LatLonOptions is undocumented.
@@ -736,15 +2140,77 @@ type LatLonOptions struct {
 	SourceField   aws.StringValue  `xml:"SourceField"`
 }
 
+func (v *LatLonOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "DefaultValue", 1024); err != nil {
+		errors["DefaultValue"] = append(errors["DefaultValue"], err)
+	}
+
+	if err := model.ValidateMin(v, "SourceField", 1); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidateMax(v, "SourceField", 64); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SourceField", `[a-z][a-z0-9_]*`); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Limits is undocumented.
 type Limits struct {
 	MaximumPartitionCount   aws.IntegerValue `xml:"MaximumPartitionCount"`
 	MaximumReplicationCount aws.IntegerValue `xml:"MaximumReplicationCount"`
 }
 
+func (v *Limits) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "MaximumPartitionCount"); err != nil {
+		errors["MaximumPartitionCount"] = append(errors["MaximumPartitionCount"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaximumPartitionCount", 1); err != nil {
+		errors["MaximumPartitionCount"] = append(errors["MaximumPartitionCount"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MaximumReplicationCount"); err != nil {
+		errors["MaximumReplicationCount"] = append(errors["MaximumReplicationCount"], err)
+	}
+
+	if err := model.ValidateMin(v, "MaximumReplicationCount", 1); err != nil {
+		errors["MaximumReplicationCount"] = append(errors["MaximumReplicationCount"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ListDomainNamesResponse is undocumented.
 type ListDomainNamesResponse struct {
 	DomainNames map[string]string `xml:"ListDomainNamesResult>DomainNames"`
+}
+
+func (v *ListDomainNamesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // LiteralArrayOptions is undocumented.
@@ -756,6 +2222,24 @@ type LiteralArrayOptions struct {
 	SourceFields  aws.StringValue  `xml:"SourceFields"`
 }
 
+func (v *LiteralArrayOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "DefaultValue", 1024); err != nil {
+		errors["DefaultValue"] = append(errors["DefaultValue"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SourceFields", `\s*[a-z][a-z0-9_]*\s*(,\s*[a-z][a-z0-9_]*\s*)*`); err != nil {
+		errors["SourceFields"] = append(errors["SourceFields"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // LiteralOptions is undocumented.
 type LiteralOptions struct {
 	DefaultValue  aws.StringValue  `xml:"DefaultValue"`
@@ -764,6 +2248,32 @@ type LiteralOptions struct {
 	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
 	SortEnabled   aws.BooleanValue `xml:"SortEnabled"`
 	SourceField   aws.StringValue  `xml:"SourceField"`
+}
+
+func (v *LiteralOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMax(v, "DefaultValue", 1024); err != nil {
+		errors["DefaultValue"] = append(errors["DefaultValue"], err)
+	}
+
+	if err := model.ValidateMin(v, "SourceField", 1); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidateMax(v, "SourceField", 64); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SourceField", `[a-z][a-z0-9_]*`); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudSearch.
@@ -783,6 +2293,38 @@ type OptionStatus struct {
 	UpdateVersion   aws.IntegerValue `xml:"UpdateVersion"`
 }
 
+func (v *OptionStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "CreationDate"); err != nil {
+		errors["CreationDate"] = append(errors["CreationDate"], err)
+	}
+
+	if err := model.ValidateRequired(v, "State"); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	StateEnum := []string{
+		OptionStateActive,
+		OptionStateFailedToValidate,
+		OptionStateProcessing,
+		OptionStateRequiresIndexDocuments,
+	}
+	if err := model.ValidateEnum(v, "State", StateEnum); err != nil {
+		errors["State"] = append(errors["State"], err)
+	}
+
+	if err := model.ValidateRequired(v, "UpdateDate"); err != nil {
+		errors["UpdateDate"] = append(errors["UpdateDate"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for CloudSearch.
 const (
 	PartitionInstanceTypeSearchM1Large   = "search.m1.large"
@@ -798,10 +2340,48 @@ type ScalingParameters struct {
 	DesiredReplicationCount aws.IntegerValue `xml:"DesiredReplicationCount"`
 }
 
+func (v *ScalingParameters) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	DesiredInstanceTypeEnum := []string{
+		PartitionInstanceTypeSearchM1Large,
+		PartitionInstanceTypeSearchM1Small,
+		PartitionInstanceTypeSearchM22xlarge,
+		PartitionInstanceTypeSearchM2Xlarge,
+	}
+	if err := model.ValidateEnum(v, "DesiredInstanceType", DesiredInstanceTypeEnum); err != nil {
+		errors["DesiredInstanceType"] = append(errors["DesiredInstanceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ScalingParametersStatus is undocumented.
 type ScalingParametersStatus struct {
 	Options *ScalingParameters `xml:"Options"`
 	Status  *OptionStatus      `xml:"Status"`
+}
+
+func (v *ScalingParametersStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Options"); err != nil {
+		errors["Options"] = append(errors["Options"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ServiceEndpoint is undocumented.
@@ -809,10 +2389,50 @@ type ServiceEndpoint struct {
 	Endpoint aws.StringValue `xml:"Endpoint"`
 }
 
+func (v *ServiceEndpoint) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Suggester is undocumented.
 type Suggester struct {
 	DocumentSuggesterOptions *DocumentSuggesterOptions `xml:"DocumentSuggesterOptions"`
 	SuggesterName            aws.StringValue           `xml:"SuggesterName"`
+}
+
+func (v *Suggester) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DocumentSuggesterOptions"); err != nil {
+		errors["DocumentSuggesterOptions"] = append(errors["DocumentSuggesterOptions"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SuggesterName"); err != nil {
+		errors["SuggesterName"] = append(errors["SuggesterName"], err)
+	}
+
+	if err := model.ValidateMin(v, "SuggesterName", 1); err != nil {
+		errors["SuggesterName"] = append(errors["SuggesterName"], err)
+	}
+
+	if err := model.ValidateMax(v, "SuggesterName", 64); err != nil {
+		errors["SuggesterName"] = append(errors["SuggesterName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SuggesterName", `[a-z][a-z0-9_]*`); err != nil {
+		errors["SuggesterName"] = append(errors["SuggesterName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for CloudSearch.
@@ -828,6 +2448,24 @@ type SuggesterStatus struct {
 	Status  *OptionStatus `xml:"Status"`
 }
 
+func (v *SuggesterStatus) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Options"); err != nil {
+		errors["Options"] = append(errors["Options"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Status"); err != nil {
+		errors["Status"] = append(errors["Status"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // TextArrayOptions is undocumented.
 type TextArrayOptions struct {
 	AnalysisScheme   aws.StringValue  `xml:"AnalysisScheme"`
@@ -835,6 +2473,28 @@ type TextArrayOptions struct {
 	HighlightEnabled aws.BooleanValue `xml:"HighlightEnabled"`
 	ReturnEnabled    aws.BooleanValue `xml:"ReturnEnabled"`
 	SourceFields     aws.StringValue  `xml:"SourceFields"`
+}
+
+func (v *TextArrayOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "AnalysisScheme", `[\S]+`); err != nil {
+		errors["AnalysisScheme"] = append(errors["AnalysisScheme"], err)
+	}
+
+	if err := model.ValidateMax(v, "DefaultValue", 1024); err != nil {
+		errors["DefaultValue"] = append(errors["DefaultValue"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SourceFields", `\s*[a-z][a-z0-9_]*\s*(,\s*[a-z][a-z0-9_]*\s*)*`); err != nil {
+		errors["SourceFields"] = append(errors["SourceFields"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TextOptions is undocumented.
@@ -847,15 +2507,85 @@ type TextOptions struct {
 	SourceField      aws.StringValue  `xml:"SourceField"`
 }
 
+func (v *TextOptions) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidatePattern(v, "AnalysisScheme", `[\S]+`); err != nil {
+		errors["AnalysisScheme"] = append(errors["AnalysisScheme"], err)
+	}
+
+	if err := model.ValidateMax(v, "DefaultValue", 1024); err != nil {
+		errors["DefaultValue"] = append(errors["DefaultValue"], err)
+	}
+
+	if err := model.ValidateMin(v, "SourceField", 1); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidateMax(v, "SourceField", 64); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if err := model.ValidatePattern(v, "SourceField", `[a-z][a-z0-9_]*`); err != nil {
+		errors["SourceField"] = append(errors["SourceField"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateAvailabilityOptionsRequest is undocumented.
 type UpdateAvailabilityOptionsRequest struct {
 	DomainName aws.StringValue  `xml:"DomainName"`
 	MultiAZ    aws.BooleanValue `xml:"MultiAZ"`
 }
 
+func (v *UpdateAvailabilityOptionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "MultiAZ"); err != nil {
+		errors["MultiAZ"] = append(errors["MultiAZ"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateAvailabilityOptionsResponse is undocumented.
 type UpdateAvailabilityOptionsResponse struct {
 	AvailabilityOptions *AvailabilityOptionsStatus `xml:"UpdateAvailabilityOptionsResult>AvailabilityOptions"`
+}
+
+func (v *UpdateAvailabilityOptionsResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateScalingParametersRequest is undocumented.
@@ -864,9 +2594,53 @@ type UpdateScalingParametersRequest struct {
 	ScalingParameters *ScalingParameters `xml:"ScalingParameters"`
 }
 
+func (v *UpdateScalingParametersRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ScalingParameters"); err != nil {
+		errors["ScalingParameters"] = append(errors["ScalingParameters"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateScalingParametersResponse is undocumented.
 type UpdateScalingParametersResponse struct {
 	ScalingParameters *ScalingParametersStatus `xml:"UpdateScalingParametersResult>ScalingParameters"`
+}
+
+func (v *UpdateScalingParametersResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ScalingParameters"); err != nil {
+		errors["ScalingParameters"] = append(errors["ScalingParameters"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateServiceAccessPoliciesRequest is undocumented.
@@ -875,9 +2649,53 @@ type UpdateServiceAccessPoliciesRequest struct {
 	DomainName     aws.StringValue `xml:"DomainName"`
 }
 
+func (v *UpdateServiceAccessPoliciesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccessPolicies"); err != nil {
+		errors["AccessPolicies"] = append(errors["AccessPolicies"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DomainName"); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMin(v, "DomainName", 3); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidateMax(v, "DomainName", 28); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if err := model.ValidatePattern(v, "DomainName", `[a-z][a-z0-9\-]+`); err != nil {
+		errors["DomainName"] = append(errors["DomainName"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateServiceAccessPoliciesResponse is undocumented.
 type UpdateServiceAccessPoliciesResponse struct {
 	AccessPolicies *AccessPoliciesStatus `xml:"UpdateServiceAccessPoliciesResult>AccessPolicies"`
+}
+
+func (v *UpdateServiceAccessPoliciesResponse) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AccessPolicies"); err != nil {
+		errors["AccessPolicies"] = append(errors["AccessPolicies"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // BuildSuggestersResult is a wrapper for BuildSuggestersResponse.

@@ -9,6 +9,7 @@ import (
 
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/stripe/aws-go/model"
 )
 
 // OpsWorks is a client for AWS OpsWorks.
@@ -46,6 +47,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Ops
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) AssignInstance(req *AssignInstanceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AssignInstance", "POST", "/", req, nil)
 	return
@@ -59,6 +64,10 @@ func (c *OpsWorks) AssignInstance(req *AssignInstanceRequest) (err error) {
 // that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
 func (c *OpsWorks) AssignVolume(req *AssignVolumeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AssignVolume", "POST", "/", req, nil)
 	return
@@ -72,6 +81,10 @@ func (c *OpsWorks) AssignVolume(req *AssignVolumeRequest) (err error) {
 // or an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions
 func (c *OpsWorks) AssociateElasticIP(req *AssociateElasticIPRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AssociateElasticIp", "POST", "/", req, nil)
 	return
@@ -87,6 +100,10 @@ func (c *OpsWorks) AssociateElasticIP(req *AssociateElasticIPRequest) (err error
 // grants permissions. For more information on user permissions, see
 // Managing User Permissions
 func (c *OpsWorks) AttachElasticLoadBalancer(req *AttachElasticLoadBalancerRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("AttachElasticLoadBalancer", "POST", "/", req, nil)
 	return
@@ -97,6 +114,10 @@ func (c *OpsWorks) AttachElasticLoadBalancer(req *AttachElasticLoadBalancerReque
 // must have an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) CloneStack(req *CloneStackRequest) (resp *CloneStackResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CloneStackResult{}
 	err = c.client.Do("CloneStack", "POST", "/", req, resp)
 	return
@@ -108,6 +129,10 @@ func (c *OpsWorks) CloneStack(req *CloneStackRequest) (resp *CloneStackResult, e
 // policy that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
 func (c *OpsWorks) CreateApp(req *CreateAppRequest) (resp *CreateAppResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateAppResult{}
 	err = c.client.Do("CreateApp", "POST", "/", req, resp)
 	return
@@ -120,6 +145,10 @@ func (c *OpsWorks) CreateApp(req *CreateAppRequest) (resp *CreateAppResult, err 
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) CreateDeployment(req *CreateDeploymentRequest) (resp *CreateDeploymentResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateDeploymentResult{}
 	err = c.client.Do("CreateDeployment", "POST", "/", req, resp)
 	return
@@ -131,6 +160,10 @@ func (c *OpsWorks) CreateDeployment(req *CreateDeploymentRequest) (resp *CreateD
 // the stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) CreateInstance(req *CreateInstanceRequest) (resp *CreateInstanceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateInstanceResult{}
 	err = c.client.Do("CreateInstance", "POST", "/", req, resp)
 	return
@@ -147,6 +180,10 @@ func (c *OpsWorks) CreateInstance(req *CreateInstanceRequest) (resp *CreateInsta
 // the stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) CreateLayer(req *CreateLayerRequest) (resp *CreateLayerResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateLayerResult{}
 	err = c.client.Do("CreateLayer", "POST", "/", req, resp)
 	return
@@ -157,6 +194,10 @@ func (c *OpsWorks) CreateLayer(req *CreateLayerRequest) (resp *CreateLayerResult
 // an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions
 func (c *OpsWorks) CreateStack(req *CreateStackRequest) (resp *CreateStackResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateStackResult{}
 	err = c.client.Do("CreateStack", "POST", "/", req, resp)
 	return
@@ -167,6 +208,10 @@ func (c *OpsWorks) CreateStack(req *CreateStackRequest) (resp *CreateStackResult
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) CreateUserProfile(req *CreateUserProfileRequest) (resp *CreateUserProfileResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &CreateUserProfileResult{}
 	err = c.client.Do("CreateUserProfile", "POST", "/", req, resp)
 	return
@@ -177,6 +222,10 @@ func (c *OpsWorks) CreateUserProfile(req *CreateUserProfileRequest) (resp *Creat
 // or an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions
 func (c *OpsWorks) DeleteApp(req *DeleteAppRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteApp", "POST", "/", req, nil)
 	return
@@ -190,6 +239,10 @@ func (c *OpsWorks) DeleteApp(req *DeleteAppRequest) (err error) {
 // grants permissions. For more information on user permissions, see
 // Managing User Permissions
 func (c *OpsWorks) DeleteInstance(req *DeleteInstanceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteInstance", "POST", "/", req, nil)
 	return
@@ -202,6 +255,10 @@ func (c *OpsWorks) DeleteInstance(req *DeleteInstanceRequest) (err error) {
 // the stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) DeleteLayer(req *DeleteLayerRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteLayer", "POST", "/", req, nil)
 	return
@@ -214,6 +271,10 @@ func (c *OpsWorks) DeleteLayer(req *DeleteLayerRequest) (err error) {
 // or an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions
 func (c *OpsWorks) DeleteStack(req *DeleteStackRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteStack", "POST", "/", req, nil)
 	return
@@ -224,6 +285,10 @@ func (c *OpsWorks) DeleteStack(req *DeleteStackRequest) (err error) {
 // grants permissions. For more information on user permissions, see
 // Managing User Permissions
 func (c *OpsWorks) DeleteUserProfile(req *DeleteUserProfileRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeleteUserProfile", "POST", "/", req, nil)
 	return
@@ -236,6 +301,10 @@ func (c *OpsWorks) DeleteUserProfile(req *DeleteUserProfileRequest) (err error) 
 // attached policy that explicitly grants permissions. For more information
 // on user permissions, see Managing User Permissions
 func (c *OpsWorks) DeregisterElasticIP(req *DeregisterElasticIPRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeregisterElasticIp", "POST", "/", req, nil)
 	return
@@ -249,6 +318,10 @@ func (c *OpsWorks) DeregisterElasticIP(req *DeregisterElasticIPRequest) (err err
 // attached policy that explicitly grants permissions. For more information
 // on user permissions, see Managing User Permissions
 func (c *OpsWorks) DeregisterInstance(req *DeregisterInstanceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeregisterInstance", "POST", "/", req, nil)
 	return
@@ -260,6 +333,10 @@ func (c *OpsWorks) DeregisterInstance(req *DeregisterInstanceRequest) (err error
 // grants permissions. For more information on user permissions, see
 // Managing User Permissions
 func (c *OpsWorks) DeregisterRDSDBInstance(req *DeregisterRDSDBInstanceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeregisterRdsDbInstance", "POST", "/", req, nil)
 	return
@@ -272,6 +349,10 @@ func (c *OpsWorks) DeregisterRDSDBInstance(req *DeregisterRDSDBInstanceRequest) 
 // that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
 func (c *OpsWorks) DeregisterVolume(req *DeregisterVolumeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DeregisterVolume", "POST", "/", req, nil)
 	return
@@ -283,6 +364,10 @@ func (c *OpsWorks) DeregisterVolume(req *DeregisterVolumeRequest) (err error) {
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) DescribeApps(req *DescribeAppsRequest) (resp *DescribeAppsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeAppsResult{}
 	err = c.client.Do("DescribeApps", "POST", "/", req, resp)
 	return
@@ -294,6 +379,10 @@ func (c *OpsWorks) DescribeApps(req *DescribeAppsRequest) (resp *DescribeAppsRes
 // that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeCommands(req *DescribeCommandsRequest) (resp *DescribeCommandsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeCommandsResult{}
 	err = c.client.Do("DescribeCommands", "POST", "/", req, resp)
 	return
@@ -306,6 +395,10 @@ func (c *OpsWorks) DescribeCommands(req *DescribeCommandsRequest) (resp *Describ
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) DescribeDeployments(req *DescribeDeploymentsRequest) (resp *DescribeDeploymentsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeDeploymentsResult{}
 	err = c.client.Do("DescribeDeployments", "POST", "/", req, resp)
 	return
@@ -317,6 +410,10 @@ func (c *OpsWorks) DescribeDeployments(req *DescribeDeploymentsRequest) (resp *D
 // that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeElasticIPs(req *DescribeElasticIPsRequest) (resp *DescribeElasticIPsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeElasticIPsResult{}
 	err = c.client.Do("DescribeElasticIps", "POST", "/", req, resp)
 	return
@@ -329,6 +426,10 @@ func (c *OpsWorks) DescribeElasticIPs(req *DescribeElasticIPsRequest) (resp *Des
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) DescribeElasticLoadBalancers(req *DescribeElasticLoadBalancersRequest) (resp *DescribeElasticLoadBalancersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeElasticLoadBalancersResult{}
 	err = c.client.Do("DescribeElasticLoadBalancers", "POST", "/", req, resp)
 	return
@@ -340,6 +441,10 @@ func (c *OpsWorks) DescribeElasticLoadBalancers(req *DescribeElasticLoadBalancer
 // that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeInstances(req *DescribeInstancesRequest) (resp *DescribeInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeInstancesResult{}
 	err = c.client.Do("DescribeInstances", "POST", "/", req, resp)
 	return
@@ -352,6 +457,10 @@ func (c *OpsWorks) DescribeInstances(req *DescribeInstancesRequest) (resp *Descr
 // that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeLayers(req *DescribeLayersRequest) (resp *DescribeLayersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeLayersResult{}
 	err = c.client.Do("DescribeLayers", "POST", "/", req, resp)
 	return
@@ -364,6 +473,10 @@ func (c *OpsWorks) DescribeLayers(req *DescribeLayersRequest) (resp *DescribeLay
 // an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeLoadBasedAutoScaling(req *DescribeLoadBasedAutoScalingRequest) (resp *DescribeLoadBasedAutoScalingResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeLoadBasedAutoScalingResult{}
 	err = c.client.Do("DescribeLoadBasedAutoScaling", "POST", "/", req, resp)
 	return
@@ -385,6 +498,10 @@ func (c *OpsWorks) DescribeMyUserProfile() (resp *DescribeMyUserProfileResult, e
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) DescribePermissions(req *DescribePermissionsRequest) (resp *DescribePermissionsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribePermissionsResult{}
 	err = c.client.Do("DescribePermissions", "POST", "/", req, resp)
 	return
@@ -396,6 +513,10 @@ func (c *OpsWorks) DescribePermissions(req *DescribePermissionsRequest) (resp *D
 // that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeRAIDArrays(req *DescribeRAIDArraysRequest) (resp *DescribeRAIDArraysResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeRAIDArraysResult{}
 	err = c.client.Do("DescribeRaidArrays", "POST", "/", req, resp)
 	return
@@ -407,6 +528,10 @@ func (c *OpsWorks) DescribeRAIDArrays(req *DescribeRAIDArraysRequest) (resp *Des
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) DescribeRDSDBInstances(req *DescribeRDSDBInstancesRequest) (resp *DescribeRDSDBInstancesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeRDSDBInstancesResult{}
 	err = c.client.Do("DescribeRdsDbInstances", "POST", "/", req, resp)
 	return
@@ -418,6 +543,10 @@ func (c *OpsWorks) DescribeRDSDBInstances(req *DescribeRDSDBInstancesRequest) (r
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) DescribeServiceErrors(req *DescribeServiceErrorsRequest) (resp *DescribeServiceErrorsResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeServiceErrorsResult{}
 	err = c.client.Do("DescribeServiceErrors", "POST", "/", req, resp)
 	return
@@ -429,6 +558,10 @@ func (c *OpsWorks) DescribeServiceErrors(req *DescribeServiceErrorsRequest) (res
 // stack or an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeStackProvisioningParameters(req *DescribeStackProvisioningParametersRequest) (resp *DescribeStackProvisioningParametersResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeStackProvisioningParametersResult{}
 	err = c.client.Do("DescribeStackProvisioningParameters", "POST", "/", req, resp)
 	return
@@ -441,6 +574,10 @@ func (c *OpsWorks) DescribeStackProvisioningParameters(req *DescribeStackProvisi
 // stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeStackSummary(req *DescribeStackSummaryRequest) (resp *DescribeStackSummaryResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeStackSummaryResult{}
 	err = c.client.Do("DescribeStackSummary", "POST", "/", req, resp)
 	return
@@ -452,6 +589,10 @@ func (c *OpsWorks) DescribeStackSummary(req *DescribeStackSummaryRequest) (resp 
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) DescribeStacks(req *DescribeStacksRequest) (resp *DescribeStacksResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeStacksResult{}
 	err = c.client.Do("DescribeStacks", "POST", "/", req, resp)
 	return
@@ -464,6 +605,10 @@ func (c *OpsWorks) DescribeStacks(req *DescribeStacksRequest) (resp *DescribeSta
 // an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeTimeBasedAutoScaling(req *DescribeTimeBasedAutoScalingRequest) (resp *DescribeTimeBasedAutoScalingResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeTimeBasedAutoScalingResult{}
 	err = c.client.Do("DescribeTimeBasedAutoScaling", "POST", "/", req, resp)
 	return
@@ -474,6 +619,10 @@ func (c *OpsWorks) DescribeTimeBasedAutoScaling(req *DescribeTimeBasedAutoScalin
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) DescribeUserProfiles(req *DescribeUserProfilesRequest) (resp *DescribeUserProfilesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeUserProfilesResult{}
 	err = c.client.Do("DescribeUserProfiles", "POST", "/", req, resp)
 	return
@@ -485,6 +634,10 @@ func (c *OpsWorks) DescribeUserProfiles(req *DescribeUserProfilesRequest) (resp 
 // that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeVolumes(req *DescribeVolumesRequest) (resp *DescribeVolumesResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &DescribeVolumesResult{}
 	err = c.client.Do("DescribeVolumes", "POST", "/", req, resp)
 	return
@@ -496,6 +649,10 @@ func (c *OpsWorks) DescribeVolumes(req *DescribeVolumesRequest) (resp *DescribeV
 // attached policy that explicitly grants permissions. For more information
 // on user permissions, see Managing User Permissions
 func (c *OpsWorks) DetachElasticLoadBalancer(req *DetachElasticLoadBalancerRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DetachElasticLoadBalancer", "POST", "/", req, nil)
 	return
@@ -508,6 +665,10 @@ func (c *OpsWorks) DetachElasticLoadBalancer(req *DetachElasticLoadBalancerReque
 // or an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions
 func (c *OpsWorks) DisassociateElasticIP(req *DisassociateElasticIPRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("DisassociateElasticIp", "POST", "/", req, nil)
 	return
@@ -519,6 +680,10 @@ func (c *OpsWorks) DisassociateElasticIP(req *DisassociateElasticIPRequest) (err
 // the stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) GetHostnameSuggestion(req *GetHostnameSuggestionRequest) (resp *GetHostnameSuggestionResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &GetHostnameSuggestionResult{}
 	err = c.client.Do("GetHostnameSuggestion", "POST", "/", req, resp)
 	return
@@ -530,6 +695,10 @@ func (c *OpsWorks) GetHostnameSuggestion(req *GetHostnameSuggestionRequest) (res
 // the stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) RebootInstance(req *RebootInstanceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RebootInstance", "POST", "/", req, nil)
 	return
@@ -544,6 +713,10 @@ func (c *OpsWorks) RebootInstance(req *RebootInstanceRequest) (err error) {
 // that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
 func (c *OpsWorks) RegisterElasticIP(req *RegisterElasticIPRequest) (resp *RegisterElasticIPResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RegisterElasticIPResult{}
 	err = c.client.Do("RegisterElasticIp", "POST", "/", req, resp)
 	return
@@ -560,6 +733,10 @@ func (c *OpsWorks) RegisterElasticIP(req *RegisterElasticIPRequest) (resp *Regis
 // the stack or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) RegisterInstance(req *RegisterInstanceRequest) (resp *RegisterInstanceResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RegisterInstanceResult{}
 	err = c.client.Do("RegisterInstance", "POST", "/", req, resp)
 	return
@@ -571,6 +748,10 @@ func (c *OpsWorks) RegisterInstance(req *RegisterInstanceRequest) (resp *Registe
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) RegisterRDSDBInstance(req *RegisterRDSDBInstanceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("RegisterRdsDbInstance", "POST", "/", req, nil)
 	return
@@ -585,6 +766,10 @@ func (c *OpsWorks) RegisterRDSDBInstance(req *RegisterRDSDBInstanceRequest) (err
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) RegisterVolume(req *RegisterVolumeRequest) (resp *RegisterVolumeResult, err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	resp = &RegisterVolumeResult{}
 	err = c.client.Do("RegisterVolume", "POST", "/", req, resp)
 	return
@@ -601,6 +786,10 @@ func (c *OpsWorks) RegisterVolume(req *RegisterVolumeRequest) (resp *RegisterVol
 // attached policy that explicitly grants permissions. For more information
 // on user permissions, see Managing User Permissions
 func (c *OpsWorks) SetLoadBasedAutoScaling(req *SetLoadBasedAutoScalingRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetLoadBasedAutoScaling", "POST", "/", req, nil)
 	return
@@ -612,6 +801,10 @@ func (c *OpsWorks) SetLoadBasedAutoScaling(req *SetLoadBasedAutoScalingRequest) 
 // attached policy that explicitly grants permissions. For more information
 // on user permissions, see Managing User Permissions
 func (c *OpsWorks) SetPermission(req *SetPermissionRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetPermission", "POST", "/", req, nil)
 	return
@@ -625,6 +818,10 @@ func (c *OpsWorks) SetPermission(req *SetPermissionRequest) (err error) {
 // grants permissions. For more information on user permissions, see
 // Managing User Permissions
 func (c *OpsWorks) SetTimeBasedAutoScaling(req *SetTimeBasedAutoScalingRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("SetTimeBasedAutoScaling", "POST", "/", req, nil)
 	return
@@ -636,6 +833,10 @@ func (c *OpsWorks) SetTimeBasedAutoScaling(req *SetTimeBasedAutoScalingRequest) 
 // the stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) StartInstance(req *StartInstanceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("StartInstance", "POST", "/", req, nil)
 	return
@@ -646,6 +847,10 @@ func (c *OpsWorks) StartInstance(req *StartInstanceRequest) (err error) {
 // stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) StartStack(req *StartStackRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("StartStack", "POST", "/", req, nil)
 	return
@@ -660,6 +865,10 @@ func (c *OpsWorks) StartStack(req *StartStackRequest) (err error) {
 // that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
 func (c *OpsWorks) StopInstance(req *StopInstanceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("StopInstance", "POST", "/", req, nil)
 	return
@@ -670,6 +879,10 @@ func (c *OpsWorks) StopInstance(req *StopInstanceRequest) (err error) {
 // or an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions
 func (c *OpsWorks) StopStack(req *StopStackRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("StopStack", "POST", "/", req, nil)
 	return
@@ -683,6 +896,10 @@ func (c *OpsWorks) StopStack(req *StopStackRequest) (err error) {
 // for the stack or an attached policy that explicitly grants permissions.
 // For more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) UnassignInstance(req *UnassignInstanceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UnassignInstance", "POST", "/", req, nil)
 	return
@@ -695,6 +912,10 @@ func (c *OpsWorks) UnassignInstance(req *UnassignInstanceRequest) (err error) {
 // that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
 func (c *OpsWorks) UnassignVolume(req *UnassignVolumeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UnassignVolume", "POST", "/", req, nil)
 	return
@@ -705,6 +926,10 @@ func (c *OpsWorks) UnassignVolume(req *UnassignVolumeRequest) (err error) {
 // the stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) UpdateApp(req *UpdateAppRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateApp", "POST", "/", req, nil)
 	return
@@ -716,6 +941,10 @@ func (c *OpsWorks) UpdateApp(req *UpdateAppRequest) (err error) {
 // or an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions
 func (c *OpsWorks) UpdateElasticIP(req *UpdateElasticIPRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateElasticIp", "POST", "/", req, nil)
 	return
@@ -726,6 +955,10 @@ func (c *OpsWorks) UpdateElasticIP(req *UpdateElasticIPRequest) (err error) {
 // the stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) UpdateInstance(req *UpdateInstanceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateInstance", "POST", "/", req, nil)
 	return
@@ -736,6 +969,10 @@ func (c *OpsWorks) UpdateInstance(req *UpdateInstanceRequest) (err error) {
 // stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) UpdateLayer(req *UpdateLayerRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateLayer", "POST", "/", req, nil)
 	return
@@ -746,6 +983,10 @@ func (c *OpsWorks) UpdateLayer(req *UpdateLayerRequest) (err error) {
 // enabled or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) UpdateMyUserProfile(req *UpdateMyUserProfileRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateMyUserProfile", "POST", "/", req, nil)
 	return
@@ -756,6 +997,10 @@ func (c *OpsWorks) UpdateMyUserProfile(req *UpdateMyUserProfileRequest) (err err
 // for the stack, or an attached policy that explicitly grants permissions.
 // For more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) UpdateRDSDBInstance(req *UpdateRDSDBInstanceRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateRdsDbInstance", "POST", "/", req, nil)
 	return
@@ -766,6 +1011,10 @@ func (c *OpsWorks) UpdateRDSDBInstance(req *UpdateRDSDBInstanceRequest) (err err
 // stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) UpdateStack(req *UpdateStackRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateStack", "POST", "/", req, nil)
 	return
@@ -776,6 +1025,10 @@ func (c *OpsWorks) UpdateStack(req *UpdateStackRequest) (err error) {
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
 func (c *OpsWorks) UpdateUserProfile(req *UpdateUserProfileRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateUserProfile", "POST", "/", req, nil)
 	return
@@ -787,6 +1040,10 @@ func (c *OpsWorks) UpdateUserProfile(req *UpdateUserProfileRequest) (err error) 
 // stack, or an attached policy that explicitly grants permissions. For
 // more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) UpdateVolume(req *UpdateVolumeRequest) (err error) {
+	if err = req.Validate(); err != nil {
+		return
+	}
+
 	// NRE
 	err = c.client.Do("UpdateVolume", "POST", "/", req, nil)
 	return
@@ -808,6 +1065,28 @@ type App struct {
 	SSLConfiguration *SSLConfiguration     `json:"SslConfiguration,omitempty"`
 	StackID          aws.StringValue       `json:"StackId,omitempty"`
 	Type             aws.StringValue       `json:"Type,omitempty"`
+}
+
+func (v *App) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	TypeEnum := []string{
+		AppTypeJava,
+		AppTypeNodejs,
+		AppTypeOther,
+		AppTypePHP,
+		AppTypeRails,
+		AppTypeStatic,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for OpsWorks.
@@ -839,10 +1118,42 @@ type AssignInstanceRequest struct {
 	LayerIDs   []string        `json:"LayerIds"`
 }
 
+func (v *AssignInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LayerIDs"); err != nil {
+		errors["LayerIDs"] = append(errors["LayerIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AssignVolumeRequest is undocumented.
 type AssignVolumeRequest struct {
 	InstanceID aws.StringValue `json:"InstanceId,omitempty"`
 	VolumeID   aws.StringValue `json:"VolumeId"`
+}
+
+func (v *AssignVolumeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeID"); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AssociateElasticIPRequest is undocumented.
@@ -851,10 +1162,42 @@ type AssociateElasticIPRequest struct {
 	InstanceID aws.StringValue `json:"InstanceId,omitempty"`
 }
 
+func (v *AssociateElasticIPRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ElasticIP"); err != nil {
+		errors["ElasticIP"] = append(errors["ElasticIP"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // AttachElasticLoadBalancerRequest is undocumented.
 type AttachElasticLoadBalancerRequest struct {
 	ElasticLoadBalancerName aws.StringValue `json:"ElasticLoadBalancerName"`
 	LayerID                 aws.StringValue `json:"LayerId"`
+}
+
+func (v *AttachElasticLoadBalancerRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ElasticLoadBalancerName"); err != nil {
+		errors["ElasticLoadBalancerName"] = append(errors["ElasticLoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LayerID"); err != nil {
+		errors["LayerID"] = append(errors["LayerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // AutoScalingThresholds is undocumented.
@@ -867,6 +1210,32 @@ type AutoScalingThresholds struct {
 	ThresholdsWaitTime aws.IntegerValue `json:"ThresholdsWaitTime,omitempty"`
 }
 
+func (v *AutoScalingThresholds) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateMin(v, "IgnoreMetricsTime", 1); err != nil {
+		errors["IgnoreMetricsTime"] = append(errors["IgnoreMetricsTime"], err)
+	}
+
+	if err := model.ValidateMax(v, "IgnoreMetricsTime", 100); err != nil {
+		errors["IgnoreMetricsTime"] = append(errors["IgnoreMetricsTime"], err)
+	}
+
+	if err := model.ValidateMin(v, "ThresholdsWaitTime", 1); err != nil {
+		errors["ThresholdsWaitTime"] = append(errors["ThresholdsWaitTime"], err)
+	}
+
+	if err := model.ValidateMax(v, "ThresholdsWaitTime", 100); err != nil {
+		errors["ThresholdsWaitTime"] = append(errors["ThresholdsWaitTime"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for OpsWorks.
 const (
 	AutoScalingTypeLoad  = "load"
@@ -877,6 +1246,16 @@ const (
 type ChefConfiguration struct {
 	BerkshelfVersion aws.StringValue  `json:"BerkshelfVersion,omitempty"`
 	ManageBerkshelf  aws.BooleanValue `json:"ManageBerkshelf,omitempty"`
+}
+
+func (v *ChefConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CloneStackRequest is undocumented.
@@ -904,9 +1283,45 @@ type CloneStackRequest struct {
 	VPCID                     aws.StringValue            `json:"VpcId,omitempty"`
 }
 
+func (v *CloneStackRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	DefaultRootDeviceTypeEnum := []string{
+		RootDeviceTypeEBS,
+		RootDeviceTypeInstanceStore,
+	}
+	if err := model.ValidateEnum(v, "DefaultRootDeviceType", DefaultRootDeviceTypeEnum); err != nil {
+		errors["DefaultRootDeviceType"] = append(errors["DefaultRootDeviceType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ServiceRoleARN"); err != nil {
+		errors["ServiceRoleARN"] = append(errors["ServiceRoleARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "SourceStackID"); err != nil {
+		errors["SourceStackID"] = append(errors["SourceStackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CloneStackResult is undocumented.
 type CloneStackResult struct {
 	StackID aws.StringValue `json:"StackId,omitempty"`
+}
+
+func (v *CloneStackResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Command is undocumented.
@@ -921,6 +1336,16 @@ type Command struct {
 	LogURL         aws.StringValue  `json:"LogUrl,omitempty"`
 	Status         aws.StringValue  `json:"Status,omitempty"`
 	Type           aws.StringValue  `json:"Type,omitempty"`
+}
+
+func (v *Command) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateAppRequest is undocumented.
@@ -939,9 +1364,53 @@ type CreateAppRequest struct {
 	Type             aws.StringValue       `json:"Type"`
 }
 
+func (v *CreateAppRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Type"); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	TypeEnum := []string{
+		AppTypeJava,
+		AppTypeNodejs,
+		AppTypeOther,
+		AppTypePHP,
+		AppTypeRails,
+		AppTypeStatic,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateAppResult is undocumented.
 type CreateAppResult struct {
 	AppID aws.StringValue `json:"AppId,omitempty"`
+}
+
+func (v *CreateAppResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateDeploymentRequest is undocumented.
@@ -954,9 +1423,37 @@ type CreateDeploymentRequest struct {
 	StackID     aws.StringValue    `json:"StackId"`
 }
 
+func (v *CreateDeploymentRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Command"); err != nil {
+		errors["Command"] = append(errors["Command"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateDeploymentResult is undocumented.
 type CreateDeploymentResult struct {
 	DeploymentID aws.StringValue `json:"DeploymentId,omitempty"`
+}
+
+func (v *CreateDeploymentResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateInstanceRequest is undocumented.
@@ -978,9 +1475,65 @@ type CreateInstanceRequest struct {
 	VirtualizationType   aws.StringValue  `json:"VirtualizationType,omitempty"`
 }
 
+func (v *CreateInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ArchitectureEnum := []string{
+		ArchitectureI386,
+		ArchitectureX8664,
+	}
+	if err := model.ValidateEnum(v, "Architecture", ArchitectureEnum); err != nil {
+		errors["Architecture"] = append(errors["Architecture"], err)
+	}
+
+	AutoScalingTypeEnum := []string{
+		AutoScalingTypeLoad,
+		AutoScalingTypeTimer,
+	}
+	if err := model.ValidateEnum(v, "AutoScalingType", AutoScalingTypeEnum); err != nil {
+		errors["AutoScalingType"] = append(errors["AutoScalingType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceType"); err != nil {
+		errors["InstanceType"] = append(errors["InstanceType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LayerIDs"); err != nil {
+		errors["LayerIDs"] = append(errors["LayerIDs"], err)
+	}
+
+	RootDeviceTypeEnum := []string{
+		RootDeviceTypeEBS,
+		RootDeviceTypeInstanceStore,
+	}
+	if err := model.ValidateEnum(v, "RootDeviceType", RootDeviceTypeEnum); err != nil {
+		errors["RootDeviceType"] = append(errors["RootDeviceType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateInstanceResult is undocumented.
 type CreateInstanceResult struct {
 	InstanceID aws.StringValue `json:"InstanceId,omitempty"`
+}
+
+func (v *CreateInstanceResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateLayerRequest is undocumented.
@@ -1003,9 +1556,61 @@ type CreateLayerRequest struct {
 	VolumeConfigurations        []VolumeConfiguration        `json:"VolumeConfigurations,omitempty"`
 }
 
+func (v *CreateLayerRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Shortname"); err != nil {
+		errors["Shortname"] = append(errors["Shortname"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Type"); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	TypeEnum := []string{
+		LayerTypeCustom,
+		LayerTypeDBMaster,
+		LayerTypeJavaApp,
+		LayerTypeLb,
+		LayerTypeMemcached,
+		LayerTypeMonitoringMaster,
+		LayerTypeNodejsApp,
+		LayerTypePHPApp,
+		LayerTypeRailsApp,
+		LayerTypeWeb,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateLayerResult is undocumented.
 type CreateLayerResult struct {
 	LayerID aws.StringValue `json:"LayerId,omitempty"`
+}
+
+func (v *CreateLayerResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateStackRequest is undocumented.
@@ -1030,9 +1635,53 @@ type CreateStackRequest struct {
 	VPCID                     aws.StringValue            `json:"VpcId,omitempty"`
 }
 
+func (v *CreateStackRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DefaultInstanceProfileARN"); err != nil {
+		errors["DefaultInstanceProfileARN"] = append(errors["DefaultInstanceProfileARN"], err)
+	}
+
+	DefaultRootDeviceTypeEnum := []string{
+		RootDeviceTypeEBS,
+		RootDeviceTypeInstanceStore,
+	}
+	if err := model.ValidateEnum(v, "DefaultRootDeviceType", DefaultRootDeviceTypeEnum); err != nil {
+		errors["DefaultRootDeviceType"] = append(errors["DefaultRootDeviceType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Region"); err != nil {
+		errors["Region"] = append(errors["Region"], err)
+	}
+
+	if err := model.ValidateRequired(v, "ServiceRoleARN"); err != nil {
+		errors["ServiceRoleARN"] = append(errors["ServiceRoleARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateStackResult is undocumented.
 type CreateStackResult struct {
 	StackID aws.StringValue `json:"StackId,omitempty"`
+}
+
+func (v *CreateStackResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // CreateUserProfileRequest is undocumented.
@@ -1043,9 +1692,33 @@ type CreateUserProfileRequest struct {
 	SSHUsername         aws.StringValue  `json:"SshUsername,omitempty"`
 }
 
+func (v *CreateUserProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IAMUserARN"); err != nil {
+		errors["IAMUserARN"] = append(errors["IAMUserARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // CreateUserProfileResult is undocumented.
 type CreateUserProfileResult struct {
 	IAMUserARN aws.StringValue `json:"IamUserArn,omitempty"`
+}
+
+func (v *CreateUserProfileResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DataSource is undocumented.
@@ -1055,9 +1728,33 @@ type DataSource struct {
 	Type         aws.StringValue `json:"Type,omitempty"`
 }
 
+func (v *DataSource) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteAppRequest is undocumented.
 type DeleteAppRequest struct {
 	AppID aws.StringValue `json:"AppId"`
+}
+
+func (v *DeleteAppRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AppID"); err != nil {
+		errors["AppID"] = append(errors["AppID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteInstanceRequest is undocumented.
@@ -1067,9 +1764,37 @@ type DeleteInstanceRequest struct {
 	InstanceID      aws.StringValue  `json:"InstanceId"`
 }
 
+func (v *DeleteInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteLayerRequest is undocumented.
 type DeleteLayerRequest struct {
 	LayerID aws.StringValue `json:"LayerId"`
+}
+
+func (v *DeleteLayerRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LayerID"); err != nil {
+		errors["LayerID"] = append(errors["LayerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeleteStackRequest is undocumented.
@@ -1077,9 +1802,37 @@ type DeleteStackRequest struct {
 	StackID aws.StringValue `json:"StackId"`
 }
 
+func (v *DeleteStackRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeleteUserProfileRequest is undocumented.
 type DeleteUserProfileRequest struct {
 	IAMUserARN aws.StringValue `json:"IamUserArn"`
+}
+
+func (v *DeleteUserProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IAMUserARN"); err != nil {
+		errors["IAMUserARN"] = append(errors["IAMUserARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Deployment is undocumented.
@@ -1098,10 +1851,50 @@ type Deployment struct {
 	Status       aws.StringValue    `json:"Status,omitempty"`
 }
 
+func (v *Deployment) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeploymentCommand is undocumented.
 type DeploymentCommand struct {
 	Args map[string][]string `json:"Args,omitempty"`
 	Name aws.StringValue     `json:"Name"`
+}
+
+func (v *DeploymentCommand) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Name"); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	NameEnum := []string{
+		DeploymentCommandNameDeploy,
+		DeploymentCommandNameExecuteRecipes,
+		DeploymentCommandNameInstallDependencies,
+		DeploymentCommandNameRestart,
+		DeploymentCommandNameRollback,
+		DeploymentCommandNameStart,
+		DeploymentCommandNameStop,
+		DeploymentCommandNameUndeploy,
+		DeploymentCommandNameUpdateCustomCookbooks,
+		DeploymentCommandNameUpdateDependencies,
+	}
+	if err := model.ValidateEnum(v, "Name", NameEnum); err != nil {
+		errors["Name"] = append(errors["Name"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for OpsWorks.
@@ -1123,9 +1916,37 @@ type DeregisterElasticIPRequest struct {
 	ElasticIP aws.StringValue `json:"ElasticIp"`
 }
 
+func (v *DeregisterElasticIPRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ElasticIP"); err != nil {
+		errors["ElasticIP"] = append(errors["ElasticIP"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeregisterInstanceRequest is undocumented.
 type DeregisterInstanceRequest struct {
 	InstanceID aws.StringValue `json:"InstanceId"`
+}
+
+func (v *DeregisterInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DeregisterRDSDBInstanceRequest is undocumented.
@@ -1133,9 +1954,37 @@ type DeregisterRDSDBInstanceRequest struct {
 	RDSDBInstanceARN aws.StringValue `json:"RdsDbInstanceArn"`
 }
 
+func (v *DeregisterRDSDBInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "RDSDBInstanceARN"); err != nil {
+		errors["RDSDBInstanceARN"] = append(errors["RDSDBInstanceARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DeregisterVolumeRequest is undocumented.
 type DeregisterVolumeRequest struct {
 	VolumeID aws.StringValue `json:"VolumeId"`
+}
+
+func (v *DeregisterVolumeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeID"); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeAppsRequest is undocumented.
@@ -1144,9 +1993,29 @@ type DescribeAppsRequest struct {
 	StackID aws.StringValue `json:"StackId,omitempty"`
 }
 
+func (v *DescribeAppsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeAppsResult is undocumented.
 type DescribeAppsResult struct {
 	Apps []App `json:"Apps,omitempty"`
+}
+
+func (v *DescribeAppsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeCommandsRequest is undocumented.
@@ -1156,9 +2025,29 @@ type DescribeCommandsRequest struct {
 	InstanceID   aws.StringValue `json:"InstanceId,omitempty"`
 }
 
+func (v *DescribeCommandsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeCommandsResult is undocumented.
 type DescribeCommandsResult struct {
 	Commands []Command `json:"Commands,omitempty"`
+}
+
+func (v *DescribeCommandsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeDeploymentsRequest is undocumented.
@@ -1168,9 +2057,29 @@ type DescribeDeploymentsRequest struct {
 	StackID       aws.StringValue `json:"StackId,omitempty"`
 }
 
+func (v *DescribeDeploymentsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeDeploymentsResult is undocumented.
 type DescribeDeploymentsResult struct {
 	Deployments []Deployment `json:"Deployments,omitempty"`
+}
+
+func (v *DescribeDeploymentsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeElasticIPsRequest is undocumented.
@@ -1180,9 +2089,29 @@ type DescribeElasticIPsRequest struct {
 	StackID    aws.StringValue `json:"StackId,omitempty"`
 }
 
+func (v *DescribeElasticIPsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeElasticIPsResult is undocumented.
 type DescribeElasticIPsResult struct {
 	ElasticIPs []ElasticIP `json:"ElasticIps,omitempty"`
+}
+
+func (v *DescribeElasticIPsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeElasticLoadBalancersRequest is undocumented.
@@ -1191,9 +2120,29 @@ type DescribeElasticLoadBalancersRequest struct {
 	StackID  aws.StringValue `json:"StackId,omitempty"`
 }
 
+func (v *DescribeElasticLoadBalancersRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeElasticLoadBalancersResult is undocumented.
 type DescribeElasticLoadBalancersResult struct {
 	ElasticLoadBalancers []ElasticLoadBalancer `json:"ElasticLoadBalancers,omitempty"`
+}
+
+func (v *DescribeElasticLoadBalancersResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeInstancesRequest is undocumented.
@@ -1203,9 +2152,29 @@ type DescribeInstancesRequest struct {
 	StackID     aws.StringValue `json:"StackId,omitempty"`
 }
 
+func (v *DescribeInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeInstancesResult is undocumented.
 type DescribeInstancesResult struct {
 	Instances []Instance `json:"Instances,omitempty"`
+}
+
+func (v *DescribeInstancesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeLayersRequest is undocumented.
@@ -1214,9 +2183,29 @@ type DescribeLayersRequest struct {
 	StackID  aws.StringValue `json:"StackId,omitempty"`
 }
 
+func (v *DescribeLayersRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeLayersResult is undocumented.
 type DescribeLayersResult struct {
 	Layers []Layer `json:"Layers,omitempty"`
+}
+
+func (v *DescribeLayersResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeLoadBasedAutoScalingRequest is undocumented.
@@ -1224,14 +2213,48 @@ type DescribeLoadBasedAutoScalingRequest struct {
 	LayerIDs []string `json:"LayerIds"`
 }
 
+func (v *DescribeLoadBasedAutoScalingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LayerIDs"); err != nil {
+		errors["LayerIDs"] = append(errors["LayerIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeLoadBasedAutoScalingResult is undocumented.
 type DescribeLoadBasedAutoScalingResult struct {
 	LoadBasedAutoScalingConfigurations []LoadBasedAutoScalingConfiguration `json:"LoadBasedAutoScalingConfigurations,omitempty"`
 }
 
+func (v *DescribeLoadBasedAutoScalingResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeMyUserProfileResult is undocumented.
 type DescribeMyUserProfileResult struct {
 	UserProfile *SelfUserProfile `json:"UserProfile,omitempty"`
+}
+
+func (v *DescribeMyUserProfileResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribePermissionsRequest is undocumented.
@@ -1240,9 +2263,29 @@ type DescribePermissionsRequest struct {
 	StackID    aws.StringValue `json:"StackId,omitempty"`
 }
 
+func (v *DescribePermissionsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribePermissionsResult is undocumented.
 type DescribePermissionsResult struct {
 	Permissions []Permission `json:"Permissions,omitempty"`
+}
+
+func (v *DescribePermissionsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeRAIDArraysRequest is undocumented.
@@ -1252,9 +2295,29 @@ type DescribeRAIDArraysRequest struct {
 	StackID      aws.StringValue `json:"StackId,omitempty"`
 }
 
+func (v *DescribeRAIDArraysRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeRAIDArraysResult is undocumented.
 type DescribeRAIDArraysResult struct {
 	RAIDArrays []RAIDArray `json:"RaidArrays,omitempty"`
+}
+
+func (v *DescribeRAIDArraysResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeRDSDBInstancesRequest is undocumented.
@@ -1263,9 +2326,33 @@ type DescribeRDSDBInstancesRequest struct {
 	StackID           aws.StringValue `json:"StackId"`
 }
 
+func (v *DescribeRDSDBInstancesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeRDSDBInstancesResult is undocumented.
 type DescribeRDSDBInstancesResult struct {
 	RDSDBInstances []RDSDBInstance `json:"RdsDbInstances,omitempty"`
+}
+
+func (v *DescribeRDSDBInstancesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeServiceErrorsRequest is undocumented.
@@ -1275,14 +2362,48 @@ type DescribeServiceErrorsRequest struct {
 	StackID         aws.StringValue `json:"StackId,omitempty"`
 }
 
+func (v *DescribeServiceErrorsRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeServiceErrorsResult is undocumented.
 type DescribeServiceErrorsResult struct {
 	ServiceErrors []ServiceError `json:"ServiceErrors,omitempty"`
 }
 
+func (v *DescribeServiceErrorsResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeStackProvisioningParametersRequest is undocumented.
 type DescribeStackProvisioningParametersRequest struct {
 	StackID aws.StringValue `json:"StackId"`
+}
+
+func (v *DescribeStackProvisioningParametersRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeStackProvisioningParametersResult is undocumented.
@@ -1291,9 +2412,33 @@ type DescribeStackProvisioningParametersResult struct {
 	Parameters        map[string]string `json:"Parameters,omitempty"`
 }
 
+func (v *DescribeStackProvisioningParametersResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeStackSummaryRequest is undocumented.
 type DescribeStackSummaryRequest struct {
 	StackID aws.StringValue `json:"StackId"`
+}
+
+func (v *DescribeStackSummaryRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeStackSummaryResult is undocumented.
@@ -1301,9 +2446,29 @@ type DescribeStackSummaryResult struct {
 	StackSummary *StackSummary `json:"StackSummary,omitempty"`
 }
 
+func (v *DescribeStackSummaryResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeStacksRequest is undocumented.
 type DescribeStacksRequest struct {
 	StackIDs []string `json:"StackIds,omitempty"`
+}
+
+func (v *DescribeStacksRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeStacksResult is undocumented.
@@ -1311,9 +2476,33 @@ type DescribeStacksResult struct {
 	Stacks []Stack `json:"Stacks,omitempty"`
 }
 
+func (v *DescribeStacksResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeTimeBasedAutoScalingRequest is undocumented.
 type DescribeTimeBasedAutoScalingRequest struct {
 	InstanceIDs []string `json:"InstanceIds"`
+}
+
+func (v *DescribeTimeBasedAutoScalingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceIDs"); err != nil {
+		errors["InstanceIDs"] = append(errors["InstanceIDs"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeTimeBasedAutoScalingResult is undocumented.
@@ -1321,14 +2510,44 @@ type DescribeTimeBasedAutoScalingResult struct {
 	TimeBasedAutoScalingConfigurations []TimeBasedAutoScalingConfiguration `json:"TimeBasedAutoScalingConfigurations,omitempty"`
 }
 
+func (v *DescribeTimeBasedAutoScalingResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeUserProfilesRequest is undocumented.
 type DescribeUserProfilesRequest struct {
 	IAMUserARNs []string `json:"IamUserArns,omitempty"`
 }
 
+func (v *DescribeUserProfilesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeUserProfilesResult is undocumented.
 type DescribeUserProfilesResult struct {
 	UserProfiles []UserProfile `json:"UserProfiles,omitempty"`
+}
+
+func (v *DescribeUserProfilesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DescribeVolumesRequest is undocumented.
@@ -1339,9 +2558,29 @@ type DescribeVolumesRequest struct {
 	VolumeIDs   []string        `json:"VolumeIds,omitempty"`
 }
 
+func (v *DescribeVolumesRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DescribeVolumesResult is undocumented.
 type DescribeVolumesResult struct {
 	Volumes []Volume `json:"Volumes,omitempty"`
+}
+
+func (v *DescribeVolumesResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // DetachElasticLoadBalancerRequest is undocumented.
@@ -1350,9 +2589,41 @@ type DetachElasticLoadBalancerRequest struct {
 	LayerID                 aws.StringValue `json:"LayerId"`
 }
 
+func (v *DetachElasticLoadBalancerRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ElasticLoadBalancerName"); err != nil {
+		errors["ElasticLoadBalancerName"] = append(errors["ElasticLoadBalancerName"], err)
+	}
+
+	if err := model.ValidateRequired(v, "LayerID"); err != nil {
+		errors["LayerID"] = append(errors["LayerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // DisassociateElasticIPRequest is undocumented.
 type DisassociateElasticIPRequest struct {
 	ElasticIP aws.StringValue `json:"ElasticIp"`
+}
+
+func (v *DisassociateElasticIPRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ElasticIP"); err != nil {
+		errors["ElasticIP"] = append(errors["ElasticIP"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ElasticIP is undocumented.
@@ -1362,6 +2633,16 @@ type ElasticIP struct {
 	IP         aws.StringValue `json:"Ip,omitempty"`
 	Name       aws.StringValue `json:"Name,omitempty"`
 	Region     aws.StringValue `json:"Region,omitempty"`
+}
+
+func (v *ElasticIP) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // ElasticLoadBalancer is undocumented.
@@ -1377,6 +2658,16 @@ type ElasticLoadBalancer struct {
 	VPCID                   aws.StringValue `json:"VpcId,omitempty"`
 }
 
+func (v *ElasticLoadBalancer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // EnvironmentVariable is undocumented.
 type EnvironmentVariable struct {
 	Key    aws.StringValue  `json:"Key"`
@@ -1384,15 +2675,57 @@ type EnvironmentVariable struct {
 	Value  aws.StringValue  `json:"Value"`
 }
 
+func (v *EnvironmentVariable) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Key"); err != nil {
+		errors["Key"] = append(errors["Key"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Value"); err != nil {
+		errors["Value"] = append(errors["Value"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // GetHostnameSuggestionRequest is undocumented.
 type GetHostnameSuggestionRequest struct {
 	LayerID aws.StringValue `json:"LayerId"`
+}
+
+func (v *GetHostnameSuggestionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LayerID"); err != nil {
+		errors["LayerID"] = append(errors["LayerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // GetHostnameSuggestionResult is undocumented.
 type GetHostnameSuggestionResult struct {
 	Hostname aws.StringValue `json:"Hostname,omitempty"`
 	LayerID  aws.StringValue `json:"LayerId,omitempty"`
+}
+
+func (v *GetHostnameSuggestionResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Instance is undocumented.
@@ -1432,10 +2765,62 @@ type Instance struct {
 	VirtualizationType       aws.StringValue  `json:"VirtualizationType,omitempty"`
 }
 
+func (v *Instance) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ArchitectureEnum := []string{
+		ArchitectureI386,
+		ArchitectureX8664,
+	}
+	if err := model.ValidateEnum(v, "Architecture", ArchitectureEnum); err != nil {
+		errors["Architecture"] = append(errors["Architecture"], err)
+	}
+
+	AutoScalingTypeEnum := []string{
+		AutoScalingTypeLoad,
+		AutoScalingTypeTimer,
+	}
+	if err := model.ValidateEnum(v, "AutoScalingType", AutoScalingTypeEnum); err != nil {
+		errors["AutoScalingType"] = append(errors["AutoScalingType"], err)
+	}
+
+	RootDeviceTypeEnum := []string{
+		RootDeviceTypeEBS,
+		RootDeviceTypeInstanceStore,
+	}
+	if err := model.ValidateEnum(v, "RootDeviceType", RootDeviceTypeEnum); err != nil {
+		errors["RootDeviceType"] = append(errors["RootDeviceType"], err)
+	}
+
+	VirtualizationTypeEnum := []string{
+		VirtualizationTypeHVM,
+		VirtualizationTypeParavirtual,
+	}
+	if err := model.ValidateEnum(v, "VirtualizationType", VirtualizationTypeEnum); err != nil {
+		errors["VirtualizationType"] = append(errors["VirtualizationType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // InstanceIdentity is undocumented.
 type InstanceIdentity struct {
 	Document  aws.StringValue `json:"Document,omitempty"`
 	Signature aws.StringValue `json:"Signature,omitempty"`
+}
+
+func (v *InstanceIdentity) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // InstancesCount is undocumented.
@@ -1461,6 +2846,16 @@ type InstancesCount struct {
 	Unassigning    aws.IntegerValue `json:"Unassigning,omitempty"`
 }
 
+func (v *InstancesCount) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Layer is undocumented.
 type Layer struct {
 	Attributes                  map[string]string            `json:"Attributes,omitempty"`
@@ -1483,6 +2878,32 @@ type Layer struct {
 	Type                        aws.StringValue              `json:"Type,omitempty"`
 	UseEBSOptimizedInstances    aws.BooleanValue             `json:"UseEbsOptimizedInstances,omitempty"`
 	VolumeConfigurations        []VolumeConfiguration        `json:"VolumeConfigurations,omitempty"`
+}
+
+func (v *Layer) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	TypeEnum := []string{
+		LayerTypeCustom,
+		LayerTypeDBMaster,
+		LayerTypeJavaApp,
+		LayerTypeLb,
+		LayerTypeMemcached,
+		LayerTypeMonitoringMaster,
+		LayerTypeNodejsApp,
+		LayerTypePHPApp,
+		LayerTypeRailsApp,
+		LayerTypeWeb,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for OpsWorks.
@@ -1532,12 +2953,32 @@ type LifecycleEventConfiguration struct {
 	Shutdown *ShutdownEventConfiguration `json:"Shutdown,omitempty"`
 }
 
+func (v *LifecycleEventConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // LoadBasedAutoScalingConfiguration is undocumented.
 type LoadBasedAutoScalingConfiguration struct {
 	DownScaling *AutoScalingThresholds `json:"DownScaling,omitempty"`
 	Enable      aws.BooleanValue       `json:"Enable,omitempty"`
 	LayerID     aws.StringValue        `json:"LayerId,omitempty"`
 	UpScaling   *AutoScalingThresholds `json:"UpScaling,omitempty"`
+}
+
+func (v *LoadBasedAutoScalingConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Permission is undocumented.
@@ -1547,6 +2988,16 @@ type Permission struct {
 	IAMUserARN aws.StringValue  `json:"IamUserArn,omitempty"`
 	Level      aws.StringValue  `json:"Level,omitempty"`
 	StackID    aws.StringValue  `json:"StackId,omitempty"`
+}
+
+func (v *Permission) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RAIDArray is undocumented.
@@ -1566,6 +3017,16 @@ type RAIDArray struct {
 	VolumeType       aws.StringValue  `json:"VolumeType,omitempty"`
 }
 
+func (v *RAIDArray) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RDSDBInstance is undocumented.
 type RDSDBInstance struct {
 	Address              aws.StringValue  `json:"Address,omitempty"`
@@ -1579,9 +3040,33 @@ type RDSDBInstance struct {
 	StackID              aws.StringValue  `json:"StackId,omitempty"`
 }
 
+func (v *RDSDBInstance) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RebootInstanceRequest is undocumented.
 type RebootInstanceRequest struct {
 	InstanceID aws.StringValue `json:"InstanceId"`
+}
+
+func (v *RebootInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Recipes is undocumented.
@@ -1593,15 +3078,53 @@ type Recipes struct {
 	Undeploy  []string `json:"Undeploy,omitempty"`
 }
 
+func (v *Recipes) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RegisterElasticIPRequest is undocumented.
 type RegisterElasticIPRequest struct {
 	ElasticIP aws.StringValue `json:"ElasticIp"`
 	StackID   aws.StringValue `json:"StackId"`
 }
 
+func (v *RegisterElasticIPRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ElasticIP"); err != nil {
+		errors["ElasticIP"] = append(errors["ElasticIP"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RegisterElasticIPResult is undocumented.
 type RegisterElasticIPResult struct {
 	ElasticIP aws.StringValue `json:"ElasticIp,omitempty"`
+}
+
+func (v *RegisterElasticIPResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RegisterInstanceRequest is undocumented.
@@ -1615,9 +3138,33 @@ type RegisterInstanceRequest struct {
 	StackID                 aws.StringValue   `json:"StackId"`
 }
 
+func (v *RegisterInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RegisterInstanceResult is undocumented.
 type RegisterInstanceResult struct {
 	InstanceID aws.StringValue `json:"InstanceId,omitempty"`
+}
+
+func (v *RegisterInstanceResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RegisterRDSDBInstanceRequest is undocumented.
@@ -1628,10 +3175,50 @@ type RegisterRDSDBInstanceRequest struct {
 	StackID          aws.StringValue `json:"StackId"`
 }
 
+func (v *RegisterRDSDBInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "DBPassword"); err != nil {
+		errors["DBPassword"] = append(errors["DBPassword"], err)
+	}
+
+	if err := model.ValidateRequired(v, "DBUser"); err != nil {
+		errors["DBUser"] = append(errors["DBUser"], err)
+	}
+
+	if err := model.ValidateRequired(v, "RDSDBInstanceARN"); err != nil {
+		errors["RDSDBInstanceARN"] = append(errors["RDSDBInstanceARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // RegisterVolumeRequest is undocumented.
 type RegisterVolumeRequest struct {
 	EC2VolumeID aws.StringValue `json:"Ec2VolumeId,omitempty"`
 	StackID     aws.StringValue `json:"StackId"`
+}
+
+func (v *RegisterVolumeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // RegisterVolumeResult is undocumented.
@@ -1639,11 +3226,31 @@ type RegisterVolumeResult struct {
 	VolumeID aws.StringValue `json:"VolumeId,omitempty"`
 }
 
+func (v *RegisterVolumeResult) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ReportedOS is undocumented.
 type ReportedOS struct {
 	Family  aws.StringValue `json:"Family,omitempty"`
 	Name    aws.StringValue `json:"Name,omitempty"`
 	Version aws.StringValue `json:"Version,omitempty"`
+}
+
+func (v *ReportedOS) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for OpsWorks.
@@ -1660,6 +3267,16 @@ type SelfUserProfile struct {
 	SSHUsername  aws.StringValue `json:"SshUsername,omitempty"`
 }
 
+func (v *SelfUserProfile) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ServiceError is undocumented.
 type ServiceError struct {
 	CreatedAt      aws.StringValue `json:"CreatedAt,omitempty"`
@@ -1670,12 +3287,36 @@ type ServiceError struct {
 	Type           aws.StringValue `json:"Type,omitempty"`
 }
 
+func (v *ServiceError) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetLoadBasedAutoScalingRequest is undocumented.
 type SetLoadBasedAutoScalingRequest struct {
 	DownScaling *AutoScalingThresholds `json:"DownScaling,omitempty"`
 	Enable      aws.BooleanValue       `json:"Enable,omitempty"`
 	LayerID     aws.StringValue        `json:"LayerId"`
 	UpScaling   *AutoScalingThresholds `json:"UpScaling,omitempty"`
+}
+
+func (v *SetLoadBasedAutoScalingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LayerID"); err != nil {
+		errors["LayerID"] = append(errors["LayerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // SetPermissionRequest is undocumented.
@@ -1687,16 +3328,58 @@ type SetPermissionRequest struct {
 	StackID    aws.StringValue  `json:"StackId"`
 }
 
+func (v *SetPermissionRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IAMUserARN"); err != nil {
+		errors["IAMUserARN"] = append(errors["IAMUserARN"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // SetTimeBasedAutoScalingRequest is undocumented.
 type SetTimeBasedAutoScalingRequest struct {
 	AutoScalingSchedule *WeeklyAutoScalingSchedule `json:"AutoScalingSchedule,omitempty"`
 	InstanceID          aws.StringValue            `json:"InstanceId"`
 }
 
+func (v *SetTimeBasedAutoScalingRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // ShutdownEventConfiguration is undocumented.
 type ShutdownEventConfiguration struct {
 	DelayUntilElbConnectionsDrained aws.BooleanValue `json:"DelayUntilElbConnectionsDrained,omitempty"`
 	ExecutionTimeout                aws.IntegerValue `json:"ExecutionTimeout,omitempty"`
+}
+
+func (v *ShutdownEventConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Source is undocumented.
@@ -1707,6 +3390,26 @@ type Source struct {
 	Type     aws.StringValue `json:"Type,omitempty"`
 	URL      aws.StringValue `json:"Url,omitempty"`
 	Username aws.StringValue `json:"Username,omitempty"`
+}
+
+func (v *Source) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	TypeEnum := []string{
+		SourceTypeArchive,
+		SourceTypeGit,
+		SourceTypeS3,
+		SourceTypeSVN,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for OpsWorks.
@@ -1722,6 +3425,24 @@ type SSLConfiguration struct {
 	Certificate aws.StringValue `json:"Certificate"`
 	Chain       aws.StringValue `json:"Chain,omitempty"`
 	PrivateKey  aws.StringValue `json:"PrivateKey"`
+}
+
+func (v *SSLConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "Certificate"); err != nil {
+		errors["Certificate"] = append(errors["Certificate"], err)
+	}
+
+	if err := model.ValidateRequired(v, "PrivateKey"); err != nil {
+		errors["PrivateKey"] = append(errors["PrivateKey"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Stack is undocumented.
@@ -1749,6 +3470,24 @@ type Stack struct {
 	VPCID                     aws.StringValue            `json:"VpcId,omitempty"`
 }
 
+func (v *Stack) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	DefaultRootDeviceTypeEnum := []string{
+		RootDeviceTypeEBS,
+		RootDeviceTypeInstanceStore,
+	}
+	if err := model.ValidateEnum(v, "DefaultRootDeviceType", DefaultRootDeviceTypeEnum); err != nil {
+		errors["DefaultRootDeviceType"] = append(errors["DefaultRootDeviceType"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // Possible values for OpsWorks.
 const (
 	StackAttributesKeysColor = "Color"
@@ -1758,6 +3497,16 @@ const (
 type StackConfigurationManager struct {
 	Name    aws.StringValue `json:"Name,omitempty"`
 	Version aws.StringValue `json:"Version,omitempty"`
+}
+
+func (v *StackConfigurationManager) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // StackSummary is undocumented.
@@ -1770,9 +3519,33 @@ type StackSummary struct {
 	StackID        aws.StringValue  `json:"StackId,omitempty"`
 }
 
+func (v *StackSummary) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StartInstanceRequest is undocumented.
 type StartInstanceRequest struct {
 	InstanceID aws.StringValue `json:"InstanceId"`
+}
+
+func (v *StartInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // StartStackRequest is undocumented.
@@ -1780,14 +3553,56 @@ type StartStackRequest struct {
 	StackID aws.StringValue `json:"StackId"`
 }
 
+func (v *StartStackRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StopInstanceRequest is undocumented.
 type StopInstanceRequest struct {
 	InstanceID aws.StringValue `json:"InstanceId"`
 }
 
+func (v *StopInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // StopStackRequest is undocumented.
 type StopStackRequest struct {
 	StackID aws.StringValue `json:"StackId"`
+}
+
+func (v *StopStackRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // TimeBasedAutoScalingConfiguration is undocumented.
@@ -1796,14 +3611,52 @@ type TimeBasedAutoScalingConfiguration struct {
 	InstanceID          aws.StringValue            `json:"InstanceId,omitempty"`
 }
 
+func (v *TimeBasedAutoScalingConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UnassignInstanceRequest is undocumented.
 type UnassignInstanceRequest struct {
 	InstanceID aws.StringValue `json:"InstanceId"`
 }
 
+func (v *UnassignInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UnassignVolumeRequest is undocumented.
 type UnassignVolumeRequest struct {
 	VolumeID aws.StringValue `json:"VolumeId"`
+}
+
+func (v *UnassignVolumeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeID"); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateAppRequest is undocumented.
@@ -1821,10 +3674,50 @@ type UpdateAppRequest struct {
 	Type             aws.StringValue       `json:"Type,omitempty"`
 }
 
+func (v *UpdateAppRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "AppID"); err != nil {
+		errors["AppID"] = append(errors["AppID"], err)
+	}
+
+	TypeEnum := []string{
+		AppTypeJava,
+		AppTypeNodejs,
+		AppTypeOther,
+		AppTypePHP,
+		AppTypeRails,
+		AppTypeStatic,
+	}
+	if err := model.ValidateEnum(v, "Type", TypeEnum); err != nil {
+		errors["Type"] = append(errors["Type"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateElasticIPRequest is undocumented.
 type UpdateElasticIPRequest struct {
 	ElasticIP aws.StringValue `json:"ElasticIp"`
 	Name      aws.StringValue `json:"Name,omitempty"`
+}
+
+func (v *UpdateElasticIPRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "ElasticIP"); err != nil {
+		errors["ElasticIP"] = append(errors["ElasticIP"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateInstanceRequest is undocumented.
@@ -1840,6 +3733,36 @@ type UpdateInstanceRequest struct {
 	LayerIDs             []string         `json:"LayerIds,omitempty"`
 	OS                   aws.StringValue  `json:"Os,omitempty"`
 	SSHKeyName           aws.StringValue  `json:"SshKeyName,omitempty"`
+}
+
+func (v *UpdateInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	ArchitectureEnum := []string{
+		ArchitectureI386,
+		ArchitectureX8664,
+	}
+	if err := model.ValidateEnum(v, "Architecture", ArchitectureEnum); err != nil {
+		errors["Architecture"] = append(errors["Architecture"], err)
+	}
+
+	AutoScalingTypeEnum := []string{
+		AutoScalingTypeLoad,
+		AutoScalingTypeTimer,
+	}
+	if err := model.ValidateEnum(v, "AutoScalingType", AutoScalingTypeEnum); err != nil {
+		errors["AutoScalingType"] = append(errors["AutoScalingType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "InstanceID"); err != nil {
+		errors["InstanceID"] = append(errors["InstanceID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateLayerRequest is undocumented.
@@ -1861,9 +3784,33 @@ type UpdateLayerRequest struct {
 	VolumeConfigurations        []VolumeConfiguration        `json:"VolumeConfigurations,omitempty"`
 }
 
+func (v *UpdateLayerRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "LayerID"); err != nil {
+		errors["LayerID"] = append(errors["LayerID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateMyUserProfileRequest is undocumented.
 type UpdateMyUserProfileRequest struct {
 	SSHPublicKey aws.StringValue `json:"SshPublicKey,omitempty"`
+}
+
+func (v *UpdateMyUserProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateRDSDBInstanceRequest is undocumented.
@@ -1871,6 +3818,20 @@ type UpdateRDSDBInstanceRequest struct {
 	DBPassword       aws.StringValue `json:"DbPassword,omitempty"`
 	DBUser           aws.StringValue `json:"DbUser,omitempty"`
 	RDSDBInstanceARN aws.StringValue `json:"RdsDbInstanceArn"`
+}
+
+func (v *UpdateRDSDBInstanceRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "RDSDBInstanceARN"); err != nil {
+		errors["RDSDBInstanceARN"] = append(errors["RDSDBInstanceARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateStackRequest is undocumented.
@@ -1894,12 +3855,48 @@ type UpdateStackRequest struct {
 	UseOpsworksSecurityGroups aws.BooleanValue           `json:"UseOpsworksSecurityGroups,omitempty"`
 }
 
+func (v *UpdateStackRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	DefaultRootDeviceTypeEnum := []string{
+		RootDeviceTypeEBS,
+		RootDeviceTypeInstanceStore,
+	}
+	if err := model.ValidateEnum(v, "DefaultRootDeviceType", DefaultRootDeviceTypeEnum); err != nil {
+		errors["DefaultRootDeviceType"] = append(errors["DefaultRootDeviceType"], err)
+	}
+
+	if err := model.ValidateRequired(v, "StackID"); err != nil {
+		errors["StackID"] = append(errors["StackID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UpdateUserProfileRequest is undocumented.
 type UpdateUserProfileRequest struct {
 	AllowSelfManagement aws.BooleanValue `json:"AllowSelfManagement,omitempty"`
 	IAMUserARN          aws.StringValue  `json:"IamUserArn"`
 	SSHPublicKey        aws.StringValue  `json:"SshPublicKey,omitempty"`
 	SSHUsername         aws.StringValue  `json:"SshUsername,omitempty"`
+}
+
+func (v *UpdateUserProfileRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "IAMUserARN"); err != nil {
+		errors["IAMUserARN"] = append(errors["IAMUserARN"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // UpdateVolumeRequest is undocumented.
@@ -1909,6 +3906,20 @@ type UpdateVolumeRequest struct {
 	VolumeID   aws.StringValue `json:"VolumeId"`
 }
 
+func (v *UpdateVolumeRequest) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "VolumeID"); err != nil {
+		errors["VolumeID"] = append(errors["VolumeID"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // UserProfile is undocumented.
 type UserProfile struct {
 	AllowSelfManagement aws.BooleanValue `json:"AllowSelfManagement,omitempty"`
@@ -1916,6 +3927,16 @@ type UserProfile struct {
 	Name                aws.StringValue  `json:"Name,omitempty"`
 	SSHPublicKey        aws.StringValue  `json:"SshPublicKey,omitempty"`
 	SSHUsername         aws.StringValue  `json:"SshUsername,omitempty"`
+}
+
+func (v *UserProfile) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // Possible values for OpsWorks.
@@ -1941,6 +3962,16 @@ type Volume struct {
 	VolumeType       aws.StringValue  `json:"VolumeType,omitempty"`
 }
 
+func (v *Volume) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
+}
+
 // VolumeConfiguration is undocumented.
 type VolumeConfiguration struct {
 	IOPS          aws.IntegerValue `json:"Iops,omitempty"`
@@ -1949,6 +3980,28 @@ type VolumeConfiguration struct {
 	RAIDLevel     aws.IntegerValue `json:"RaidLevel,omitempty"`
 	Size          aws.IntegerValue `json:"Size"`
 	VolumeType    aws.StringValue  `json:"VolumeType,omitempty"`
+}
+
+func (v *VolumeConfiguration) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if err := model.ValidateRequired(v, "MountPoint"); err != nil {
+		errors["MountPoint"] = append(errors["MountPoint"], err)
+	}
+
+	if err := model.ValidateRequired(v, "NumberOfDisks"); err != nil {
+		errors["NumberOfDisks"] = append(errors["NumberOfDisks"], err)
+	}
+
+	if err := model.ValidateRequired(v, "Size"); err != nil {
+		errors["Size"] = append(errors["Size"], err)
+	}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // WeeklyAutoScalingSchedule is undocumented.
@@ -1960,6 +4013,16 @@ type WeeklyAutoScalingSchedule struct {
 	Thursday  map[string]string `json:"Thursday,omitempty"`
 	Tuesday   map[string]string `json:"Tuesday,omitempty"`
 	Wednesday map[string]string `json:"Wednesday,omitempty"`
+}
+
+func (v *WeeklyAutoScalingSchedule) Validate() *model.ValidationErrors {
+	errors := model.ValidationErrors{}
+
+	if len(errors) > 0 {
+		return &errors
+	} else {
+		return nil
+	}
 }
 
 // avoid errors if the packages aren't referenced
